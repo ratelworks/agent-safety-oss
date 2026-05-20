@@ -163,17 +163,26 @@ async function preparePhotoFile(input: SavePhotoEvidenceInput): Promise<{
 }> {
   if (input.filePath) {
     const sourcePath = resolve(input.filePath);
-    const sourceStat = await stat(sourcePath);
-    if (!sourceStat.isFile()) throw new Error(`사진 파일이 아닙니다: ${sourcePath}`);
+    // stat + readFile 분리 TOCTOU race 회피 — open(O_RDONLY) 후 fstat 으로 동일 inode 검증.
+    const { open } = await import("node:fs/promises");
+    const fh = await open(sourcePath, "r");
+    let buffer: Buffer;
+    let sourceStat: Awaited<ReturnType<typeof fh.stat>>;
+    try {
+      sourceStat = await fh.stat();
+      if (!sourceStat.isFile()) throw new Error(`사진 파일이 아닙니다: ${sourcePath}`);
+      buffer = await fh.readFile();
+    } finally {
+      await fh.close();
+    }
 
-    const buffer = await readFile(sourcePath);
     const sha256 = createHash("sha256").update(buffer).digest("hex");
     const tempPhotoId = makePhotoId(input.capturedAt, sha256);
     const extension = extname(sourcePath) || ".bin";
     const storagePath = join(getPhotoStorageDir(), `${safeFilename(tempPhotoId)}${extension}`);
-    await copyFile(sourcePath, storagePath);
-    // copyFile 은 source mode 보존하므로 사후 chmod 로 0o600 강제 (사진 binary PII 보호).
-    await chmodSecureFile(storagePath);
+    // 이미 메모리에 읽은 buffer 를 write — copyFile 대신 writeFile (재경합 회피).
+    const { writeFile } = await import("node:fs/promises");
+    await writeFile(storagePath, buffer, { mode: 0o600 });
 
     return {
       fileUri: pathToFileURL(storagePath).href,

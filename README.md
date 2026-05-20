@@ -247,15 +247,14 @@ CLI 사용 예시는 [`examples/`](./examples/) 폴더의 `mcp-list-tools.sh`, `
 | `search_msds` | MSDS (화학물질) |
 | `search_ppe_certification` | 보호구 안전인증 |
 
-#### 키 발급 — 3 경로
+#### 키 발급 — 2 경로
 
-| 경로 | 대상 | 방법 |
-|---|---|---|
-| **A. 라텔웍스 발행 키** | 일반 사용자 (권장) | <https://ratelworks.co.kr/agenthq/api-key> 에서 무료 즉시 발급 (`ASF_xxxx_yyyy`). 라텔웍스 운영 RELAY 통해 단일 키로 7 도구 + KOSHA portal 호출 |
-| **B. 자체 data.go.kr 키** | 자체 운영 / 우회 | data.go.kr 에서 KOSHA OpenAPI 직접 신청 (7일 대기). `.env` 에 `KOSHA_RELAY_URL=""` + `DATA_GO_KR_KEY=...` 설정. 라텔웍스 의존 0 |
-| **C. 사내 자체 중계** | 조직 운영팀 | 자체 RELAY 서버 운영 시 `KOSHA_RELAY_URL=https://my-relay.example.com` |
+| 경로 | 방법 |
+|---|---|
+| **A. 라텔웍스 발행 키** | <https://ratelworks.co.kr/agenthq/api-key> 에서 무료 즉시 발급 (`ASF_xxxx_yyyy`). 단일 키로 7 도구 + KOSHA portal 호출 |
+| **B. 자체 data.go.kr 키** | data.go.kr 에서 KOSHA OpenAPI 즉시 신청·발급. `.env` 에 `DATA_GO_KR_KEY=...` 설정 |
 
-A 가 가장 빠름 (즉시 발급, 단일 키). B 는 라텔웍스 의존 회피 가능 (OSS 거버넌스 보장). 자세한 설정: `.env.example` + [docs/SETUP_CLAUDE_DESKTOP.md](./docs/SETUP_CLAUDE_DESKTOP.md).
+자세한 설정: `.env.example` + [docs/SETUP_CLAUDE_DESKTOP.md](./docs/SETUP_CLAUDE_DESKTOP.md).
 
 #### 향후 추가 가능 공공 데이터
 

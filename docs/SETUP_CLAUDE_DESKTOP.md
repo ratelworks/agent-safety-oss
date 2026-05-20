@@ -96,7 +96,7 @@ npm run build
 }
 ```
 
-자체 data.go.kr 키를 직접 쓰는 방식은 운영팀 또는 사내 중계 운영 조직용입니다. 일반 사용자는 `AGENTHQ_API_KEY`만 설정하면 됩니다.
+data.go.kr 키를 자체 발급해 직접 쓰는 방식도 지원합니다. `.env` 에 `DATA_GO_KR_KEY=<발급키>` 를 설정하면 됩니다.
 
 ## 재시작
 

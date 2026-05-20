@@ -67,12 +67,11 @@ npm run mcp:inspect
 ### 3.1 환경변수
 
 ```bash
-# 라텔웍스 KOSHA Relay (기본)
+# A. 라텔웍스 발행 키 (즉시 발급)
 # AGENTHQ_API_KEY=<라텔웍스 발행 키>
 
-# 또는 사용자 자체 data.go.kr 키
-# DATA_GO_KR_KEY=<사용자 키>
-# KOSHA_RELAY_URL=""    # relay 우회
+# B. 또는 자체 data.go.kr 키 (즉시 신청)
+# DATA_GO_KR_KEY=<발급 키>
 
 # LocalStorage 위치 변경
 # SAFETY_LOCAL_DIR=/path/to/storage
