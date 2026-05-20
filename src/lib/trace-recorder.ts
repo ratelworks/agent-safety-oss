@@ -1,11 +1,12 @@
 import { createHash, randomUUID } from "crypto";
-import { homedir } from "os";
 import { join } from "path";
 import { ensureSecureDir, appendSecureLog } from "./secure-fs.js";
+import { getTracesDir } from "../config/paths.js";
 
 const TRACE_DISABLE_ENV = "SAFETY_TRACE_DISABLE";
+// SAFETY_TRACE_DIR 가 우선이지만 미설정 시 paths.ts 의 getTracesDir() 가 SAFETY_LOCAL_DIR
+// 도 함께 반영해 ~/.agent-safety-oss/traces 또는 SAFETY_LOCAL_DIR/traces 로 라우팅한다.
 const TRACE_DIR_ENV = "SAFETY_TRACE_DIR";
-const DEFAULT_TRACE_DIR = join(homedir(), ".agent-safety-oss", "traces");
 const TRACE_AGENT_IRI = "safety:agent/llm-client";
 const TRACE_ID_PREFIX = "safety:trace";
 const HASH_ID_PREFIX = "safety:hash/sha256";
@@ -29,8 +30,9 @@ export class TraceRecorder {
   private readonly traceDir: string;
   private writeQueue: Promise<void> = Promise.resolve();
 
-  constructor(traceDir = process.env[TRACE_DIR_ENV] || DEFAULT_TRACE_DIR) {
-    this.traceDir = traceDir;
+  constructor(traceDir?: string) {
+    // SAFETY_TRACE_DIR 명시 > paths.ts 의 getTracesDir() (SAFETY_LOCAL_DIR 우선, fallback ~/.agent-safety-oss/traces)
+    this.traceDir = traceDir ?? process.env[TRACE_DIR_ENV] ?? getTracesDir();
   }
 
   async recordToolCall(
