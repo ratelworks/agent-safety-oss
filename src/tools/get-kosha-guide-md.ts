@@ -7,9 +7,8 @@
  *   - 키워드 검색: keyword='굴착' (제목 + 본문 매칭)
  *   - 전체 인덱스: 인수 없음
  *
- * Live API 기반 get_kosha_guide_content (15144147) 와
- *   빈 번들 stub search_kosha_guides 는 본 도구로 통합·제거. 번들이 1,039건을
- *   keyless offline 제공하므로 외부 호출 불필요.
+ * 번들이 1,039건을 keyless offline 제공하므로 외부 Live API 호출 불필요.
+ *   (이전 분리됐던 Live API · stub 도구는 본 단일 도구로 통합됨.)
  */
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
