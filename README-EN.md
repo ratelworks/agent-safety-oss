@@ -190,11 +190,9 @@ Recent verification:
 
 ## Awards & Recognition
 
-| Year | Award | Issuer | Recipient |
-|------|-------|--------|-----------|
-| 2025.07 | **2025 AI·Smart Industrial Safety Tech Best Practice Contest — Grand Prize** | Minister of Employment and Labor | 황룡건설(주) (dev: Ratelworks) |
-| 2025.09 | **2025 Risk Assessment Best Practice Showcase — Excellence Prize** | Daejeon Regional Labor Office Director | 황룡건설(주) (dev: Ratelworks) |
-| 2026.01 | **Side Impact 2025 AI Track — Winner** | Brian Impact Foundation | Ratelworks Inc. |
+- **2025.07** — 2025 AI·Smart Industrial Safety Tech Best Practice Contest **Grand Prize** (Minister of Employment and Labor) · 황룡건설(주), dev: Ratelworks Inc.
+- **2025.09** — 2025 Risk Assessment Best Practice Showcase **Excellence Prize** (Daejeon Regional Labor Office Director) · 황룡건설(주), dev: Ratelworks Inc.
+- **2026.01** — Side Impact 2025 AI Track **Winner** (Brian Impact Foundation) · Ratelworks Inc.
 
 ## Data and Licensing
 
