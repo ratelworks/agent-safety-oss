@@ -13,6 +13,10 @@ import {
   syncToCloud,
   maskApiKey,
   maskCompanyProfile,
+  maskBusinessNumber,
+  maskPersonName,
+  maskAddress,
+  maskCompanyName,
 } from "../lib/company-key.js";
 import { loadProfile, saveProfile, makeId } from "../lib/site-profile.js";
 import type { ToolDefinition as McpToolDefinition } from "../lib/types.js";
@@ -20,6 +24,10 @@ import type { ToolDefinition as McpToolDefinition } from "../lib/types.js";
 // ─── link_company_key ───
 const LinkInput = z.object({
   apiKey: z.string().describe("라텔웍스 발행 API 키 (가입 후 이메일로 받은 ASF_xxxx_yyyy 형식)"),
+  reveal: z.boolean().default(false).describe(
+    "회사·사업자번호·대표자·주소를 평문으로 표시. 기본 false (마스킹). " +
+    "MCP host transcript / 로그 등에 PII 가 평문으로 흘러갈 위험을 줄이려면 false 유지.",
+  ),
 });
 
 const linkCompanyKey: McpToolDefinition = {
@@ -28,7 +36,7 @@ const linkCompanyKey: McpToolDefinition = {
     "라텔웍스 발행 API 키 등록 → 기업 프로파일을 자동 fetch 해서 로컬 SSoT (Site) 에 입력. 가입: https://ratelworks.co.kr/agenthq/api-key",
   inputSchema: LinkInput,
   handler: async (raw) => {
-    const { apiKey } = LinkInput.parse(raw);
+    const { apiKey, reveal } = LinkInput.parse(raw);
     if (!apiKey.startsWith("ASF_")) {
       return {
         content: [{ type: "text" as const, text: `[INVALID_KEY] 키 형식 오류 — 'ASF_xxxx_yyyy' 형식이어야 합니다.` }],
@@ -78,16 +86,20 @@ const linkCompanyKey: McpToolDefinition = {
     else localProfile.sites.push(newSite);
     await saveProfile(localProfile);
 
+    // text content 도 기본 마스킹 — MCP host transcript / 로그 등에 PII 평문 노출 차단.
+    // reveal=true 명시 시만 평문 (사용자 본인이 본인 단말에서 확인 의도).
+    const displayName = reveal ? profile.companyName : maskCompanyName(profile.companyName);
+    const displayBn = reveal ? profile.businessNumber : maskBusinessNumber(profile.businessNumber);
+    const displayCeo = reveal ? profile.ceoName : maskPersonName(profile.ceoName);
+    const displayAddr = reveal ? profile.address : maskAddress(profile.address);
     return {
       content: [{
         type: "text" as const,
-        text: `✅ 라텔웍스 키 연동 완료\n\n  회사: ${profile.companyName}\n  사업자번호: ${profile.businessNumber}\n  대표자: ${profile.ceoName}\n  주소: ${profile.address}\n\n자동 적용:\n  - SSoT 사업장 1개 등록 (\`${siteId}\`)\n  - 향후 모든 94종 양식이 자동 채움\n\n다음:\n  - register_project — 현장·공사 등록\n  - register_person — 직원 등록\n  - sync_to_cloud — 로컬 정보 클라우드 동기화 (선택)`,
+        text: `✅ 라텔웍스 키 연동 완료\n\n  회사: ${displayName}\n  사업자번호: ${displayBn}\n  대표자: ${displayCeo}\n  주소: ${displayAddr}${reveal ? "" : "\n\n  (PII 마스킹 적용 — 평문 확인은 reveal=true)"}\n\n자동 적용:\n  - SSoT 사업장 1개 등록 (\`${siteId}\`)\n  - 향후 모든 94종 양식이 자동 채움\n\n다음:\n  - register_project — 현장·공사 등록\n  - register_person — 직원 등록\n  - sync_to_cloud — 로컬 정보 클라우드 동기화 (선택)`,
       }],
       structuredContent: {
-        // structuredContent 는 host LLM transcript·다른 도구 입력 등으로 흐를 수
-        // 있어 PII 필드(전화·이메일·산재보험번호 등) 는 마스킹된 형태로만 노출.
-        // 사용자에게 보여주는 text content 에는 평문 — sync_to_cloud opt-in 게이트와
-        // 같은 신뢰 경계 (사용자 본인은 자기 회사 정보를 본다).
+        // structuredContent 는 host LLM transcript·다른 도구 입력 등으로 흐를 수 있어
+        // 항상 마스킹 (reveal 옵션 무관). 사용자 본인 확인용 평문은 text content + reveal=true.
         linked: true,
         company: maskCompanyProfile(profile),
         keyPath: getKeyPath(),
@@ -115,13 +127,19 @@ const unlinkCompanyKey: McpToolDefinition = {
 };
 
 // ─── get_company_info ───
-const GetCompanyInfoInput = z.object({});
+const GetCompanyInfoInput = z.object({
+  reveal: z.boolean().default(false).describe(
+    "회사·사업자번호·대표자·주소를 평문으로 표시. 기본 false (마스킹). " +
+    "MCP host transcript / 로그 등에 PII 가 평문으로 흘러갈 위험을 줄이려면 false 유지.",
+  ),
+});
 
 const getCompanyInfo: McpToolDefinition = {
   name: "get_company_info",
   description: "현재 연동된 라텔웍스 키 + 기업 정보 조회. 키 미연동 시 가입 안내.",
   inputSchema: GetCompanyInfoInput,
-  handler: async () => {
+  handler: async (raw) => {
+    const { reveal } = GetCompanyInfoInput.parse(raw ?? {});
     const key = await loadCompanyKey();
     if (!key || !key.apiKey) {
       return {
@@ -158,10 +176,14 @@ const getCompanyInfo: McpToolDefinition = {
         structuredContent: { linked: true, fetchError: error, ...keyMeta },
       };
     }
+    const displayName = reveal ? profile.companyName : maskCompanyName(profile.companyName);
+    const displayBn = reveal ? profile.businessNumber : maskBusinessNumber(profile.businessNumber);
+    const displayCeo = reveal ? profile.ceoName : maskPersonName(profile.ceoName);
+    const displayAddr = reveal ? profile.address : maskAddress(profile.address);
     return {
       content: [{
         type: "text" as const,
-        text: `🟢 라텔웍스 키 연동 중\n\n  회사: ${profile.companyName}\n  사업자번호: ${profile.businessNumber}\n  대표자: ${profile.ceoName}\n  주소: ${profile.address}\n  마지막 동기화: ${key.lastSyncedAt ?? "없음"}`,
+        text: `🟢 라텔웍스 키 연동 중\n\n  회사: ${displayName}\n  사업자번호: ${displayBn}\n  대표자: ${displayCeo}\n  주소: ${displayAddr}\n  마지막 동기화: ${key.lastSyncedAt ?? "없음"}${reveal ? "" : "\n\n  (PII 마스킹 적용 — 평문 확인은 reveal=true)"}`,
       }],
       structuredContent: { linked: true, company: maskCompanyProfile(profile), ...keyMeta },
     };

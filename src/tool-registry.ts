@@ -77,7 +77,8 @@ import { toMcpErrorContent } from "./lib/errors.js";
 import { COMMON_RESPONSE_META } from "./config/constants.js";
 import type { McpToolResult } from "./lib/types.js";
 
-// 파일 최상단 상수 - 공개 도구 80개 (`node build/cli.js tools` 로 검증)
+// 파일 최상단 상수 - 공개 도구 수는 TOOLS.length 가 SSoT (`node build/cli.js tools` 로 실측).
+// 회귀 차단: ci.yml 의 `tool count regression` 단계가 README badge / docs 와 자동 대조.
 // KOSHA Guide 본문 번들 통합으로 getKoshaGuideContentTool·searchKoshaGuidesTool 2개 제거됨 (legacy)
 //   - getKoshaGuideMdTool (번들 1,039건, offline, keyless) 가 list/search/content 모두 통합 제공
 //   - compile-safety-references 의 kosha-guide 호출도 번들 도구로 자동 마이그레이션

@@ -17,18 +17,25 @@
  */
 import { readFile, readdir, stat } from "node:fs/promises";
 import { resolve, join } from "node:path";
-import { homedir } from "node:os";
 import {
   ensureSecureDir as ensureDir,
   writeSecureJson,
   writeSecureTextExclusive,
   appendSecureLog,
 } from "./secure-fs.js";
+import {
+  getStorageRoot,
+  getDraftsDir,
+  getDocumentsDir,
+  getActivityLogPath,
+} from "../config/paths.js";
 
-export const STORAGE_ROOT = resolve(homedir(), ".agent-safety-oss");
-export const DRAFTS_DIR = join(STORAGE_ROOT, "drafts");
-export const DOCUMENTS_DIR = join(STORAGE_ROOT, "documents");
-export const ACTIVITY_LOG = join(STORAGE_ROOT, "activity.log");
+// path SSoT: src/config/paths.ts. SAFETY_LOCAL_DIR 환경변수 즉시 반영을 위해 getter 호출.
+// 기존 상수 노출은 호환성 유지 — getter 결과를 capture 한 lazy export.
+export const STORAGE_ROOT = getStorageRoot();
+export const DRAFTS_DIR = getDraftsDir();
+export const DOCUMENTS_DIR = getDocumentsDir();
+export const ACTIVITY_LOG = getActivityLogPath();
 
 async function logActivity(event: Record<string, unknown>): Promise<void> {
   try {
@@ -313,8 +320,15 @@ export async function listArchivedDocuments(
 }
 
 export async function loadArchivedDocument(docId: string, filename: string): Promise<string | null> {
+  // path traversal 가드 — docId·filename 둘 다 ".." / "/" 금지 + 정상화 경로가 DOCUMENTS_DIR 내부인지 검증.
+  if (typeof docId !== "string" || typeof filename !== "string") return null;
+  if (docId.includes("..") || docId.includes("/") || docId.includes("\\") || docId === "") return null;
+  if (filename.includes("..") || filename.includes("/") || filename.includes("\\") || filename === "") return null;
+  const target = resolve(DOCUMENTS_DIR, docId, filename);
+  const root = resolve(DOCUMENTS_DIR);
+  if (!target.startsWith(root + (root.endsWith("/") ? "" : "/")) && target !== root) return null;
   try {
-    return await readFile(join(DOCUMENTS_DIR, docId, filename), "utf8");
+    return await readFile(target, "utf8");
   } catch {
     return null;
   }

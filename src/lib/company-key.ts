@@ -143,6 +143,38 @@ function maskSubscriptionNumber(v: string): string {
   return `${v.slice(0, 2)}****${v.slice(-2)}`;
 }
 
+// 사업자번호 (XXX-XX-XXXXX) — 앞 3자리만 노출, 나머지 마스킹.
+export function maskBusinessNumber(v: string | undefined | null): string {
+  if (!v) return "***";
+  const digits = String(v).replace(/\D/g, "");
+  if (digits.length < 5) return "***";
+  return `${digits.slice(0, 3)}-**-*****`;
+}
+
+// 사람 이름 — 성만 노출 + 나머지 별표.
+export function maskPersonName(v: string | undefined | null): string {
+  if (!v) return "***";
+  const t = String(v).trim();
+  if (t.length <= 1) return "***";
+  return `${t.slice(0, 1)}${"*".repeat(Math.max(1, t.length - 1))}`;
+}
+
+// 주소 — 시·구 까지만 노출, 나머지 마스킹.
+export function maskAddress(v: string | undefined | null): string {
+  if (!v) return "***";
+  const t = String(v).trim();
+  // 한국 주소 패턴 — "시 / 구 / 동" 단위 토큰 3개까지만.
+  const tokens = t.split(/\s+/);
+  if (tokens.length <= 2) return "***";
+  return `${tokens.slice(0, 2).join(" ")} ***`;
+}
+
+// 회사명 — 그대로 노출 (사명 자체는 공개 정보 — 사업자등록증·등기부등본 에 등재).
+// 단 본 helper 는 향후 정책 변경 시 한 자리에서 토글 가능하도록 둔다.
+export function maskCompanyName(v: string | undefined | null): string {
+  return v ? String(v) : "***";
+}
+
 export interface MaskedCompanyProfile {
   businessNumber?: string;
   companyName?: string;

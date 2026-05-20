@@ -381,11 +381,16 @@ export async function getNode(id: string): Promise<AnyNode | undefined> {
 // 사용 순서: handler 시작에 ensureGraphBuilt() 호출 → 이후 getNodeSync() 사용
 
 /**
- * graph index 가 build 됐는지 보장. 미build 시 buildIndex() 호출.
- * 도구 handler 시작에서 await 1회 호출 후, sync getNodeSync 안전 사용.
+ * graph 가 build 됐는지 보장. 미build 시 buildIndex() + buildGraph() 호출.
+ * 도구 handler 시작에서 await 1회 호출 후, sync getNodeSync · neighborsByEdge · bfsByEdge 안전 사용.
+ *
+ * 이전 버전은 buildIndex() 만 호출했지만 함수명 의미와 불일치 (graphology 그래프 미build).
+ * neighborsByEdge / bfsByEdge 는 내부에서 buildGraph 를 lazy 호출하지만, 이름 부합을 위해
+ * 본 함수가 한 번에 양쪽을 build 한다.
  */
 export async function ensureGraphBuilt(): Promise<void> {
   await buildIndex();
+  await buildGraph();
 }
 
 /**

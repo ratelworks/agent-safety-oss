@@ -166,7 +166,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       title: n.title,
       description: args.includeArticleBody ? n.description : undefined,
       legislationIdentifier: n.legislationIdentifier,
-      excerpt: typeof n.description === "string" ? n.description : undefined,
+      // excerpt 는 includeArticleBody=false 인 환경에서도 LLM 이 빠르게 훑을 수 있도록 500자 발췌만.
+      // 본문 전체는 description 에 includeArticleBody=true 일 때만 들어간다.
+      excerpt: typeof n.description === "string" ? n.description.slice(0, 500) : undefined,
     };
   });
 
