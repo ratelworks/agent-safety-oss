@@ -4,7 +4,8 @@
 // JSON-LD 그래프 노드 로더. Document 중심 P0 구현.
 // build/ontology/graph/nodes/ 에 복사된 .jsonld 를 읽어 메모리에 캐시.
 // 외부 시맨틱 라이브러리(jsonld·graphology) 미사용 — Phase 1 P0 단일 도구
-// 검증을 위해 plain JSON 로딩으로 시작. Phase 2 에서 graphology 도입 검토.
+// plain JSON 로딩 + graphology Graph 인스턴스 (`buildGraph()`) 병용.
+// neighborsByEdge · bfsByEdge 가 graphology API 를 직접 호출한다.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { readFile, readdir } from "node:fs/promises";
