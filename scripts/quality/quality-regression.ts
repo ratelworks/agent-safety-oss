@@ -134,7 +134,8 @@ function evaluateOutput(
   }
 
   // 5. 결재선 기본값 검사 — 모든 문서에 결재선 섹션 있어야
-  if (!text.includes("## 2. 결재선")) {
+  // generate-safety-document.ts:586 의 출력 패턴 `## 결재선` 정합
+  if (!/^##\s+(\d+\.\s+)?결재선/m.test(text)) {
     flags.push("결재선 섹션 누락");
   }
 
