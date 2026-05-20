@@ -68,7 +68,9 @@ and is not required for you to preserve when forking or redistributing
 the code. It is provided so that downstream consumers who wish to
 credit the project correctly have the canonical citation:
 
-- **Provider**: 황룡건설(주) 안전보건기획부 — 도메인 검증·현장 요구사항·시나리오 제공
+- **Provider**: 황룡건설(주) (Hwangryong Construction Co., Ltd.) 안전보건기획부 — 도메인 검증·현장 요구사항·시나리오 제공
+  - 대표자: 황한일
+  - 주소: 충청남도 아산시 염치읍 충무로431번길 9 (9, Chungmu-ro 431beon-gil, Yeomchi-eup, Asan-si, Chungcheongnam-do, Republic of Korea)
 - **Developer**: 주식회사 라텔웍스 (Ratelworks Inc.) — <alphamale@ratelworks.co.kr>
 - **Purpose**: Public-interest open source — improving accessibility of
   Korean public safety-and-health resources for front-line workers and

@@ -200,7 +200,8 @@ Recent verification:
 
 ## Provider · Developer
 
-- **Provider**: 황룡건설(주) Safety & Health Planning Dept. — domain validation, on-site requirements, and scenarios
+- **Provider**: 황룡건설(주) (Hwangryong Construction Co., Ltd.) Safety & Health Planning Dept. — domain validation, on-site requirements, and scenarios
+  - CEO: Hwang Han-il (황한일) · Address: 9, Chungmu-ro 431beon-gil, Yeomchi-eup, Asan-si, Chungcheongnam-do, Republic of Korea
 - **Developer**: Ratelworks Inc. — MCP server design/implementation, OSS maintenance, public safety data accessibility. <alphamale@ratelworks.co.kr>
 
 ## Awards & Recognition
