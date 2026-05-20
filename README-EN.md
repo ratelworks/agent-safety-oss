@@ -183,6 +183,19 @@ Recent verification:
 - Field workflow: 4/4 scenarios, 29/29 steps
 - Generated document quality: 8.65/10 average
 
+## Provider · Developer
+
+- **Provider**: 황룡건설(주) Safety & Health Planning Dept. — domain validation, on-site requirements, and scenarios
+- **Developer**: Ratelworks Inc. — MCP server design/implementation, OSS maintenance, public safety data accessibility. <alphamale@ratelworks.co.kr>
+
+## Awards & Recognition
+
+| Year | Award | Issuer | Recipient |
+|------|-------|--------|-----------|
+| 2025.07 | **2025 AI·Smart Industrial Safety Tech Best Practice Contest — Grand Prize** | Minister of Employment and Labor | 황룡건설(주) (dev: Ratelworks) |
+| 2025.09 | **2025 Risk Assessment Best Practice Showcase — Excellence Prize** | Daejeon Regional Labor Office Director | 황룡건설(주) (dev: Ratelworks) |
+| 2026.01 | **Side Impact 2025 AI Track — Winner** | Brian Impact Foundation | Ratelworks Inc. |
+
 ## Data and Licensing
 
 - Code: MIT
