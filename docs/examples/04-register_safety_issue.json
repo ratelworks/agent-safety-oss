@@ -1,0 +1,196 @@
+[agent-safety-oss v1.0.2] 제공: 황룡건설(주) · 개발: 주식회사 라텔웍스 (Ratelworks Inc.)
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "# 안전 이슈 등록 완료\n\n- issueId: `issue:20260503092443-c3e574b9c6`\n- IRI: `safety:safety_issue/20260503092443-c3e574b9c6`\n- 심각도: high\n- 상태: open\n- 추천 조치: 안전난간·안전대 부착설비\n- 저장 위치: `/Users/ratelworks/.agent-safety-oss/issues`"
+    }
+  ],
+  "structuredContent": {
+    "iri": "safety:safety_issue/20260503092443-c3e574b9c6",
+    "label": "안전 이슈(high) - 개구부 안전난간 미설치 (예시)",
+    "issue": {
+      "@context": {
+        "safety": "https://safety.ratelworks.org/ontology/v1/",
+        "cc": "https://construction.ratelworks.org/ontology/v1/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+      },
+      "@id": "safety:safety_issue/20260503092443-c3e574b9c6",
+      "@type": [
+        "safety:SafetyIssue",
+        "prov:Entity"
+      ],
+      "issueId": "issue:20260503092443-c3e574b9c6",
+      "label": "안전 이슈(high) - 개구부 안전난간 미설치 (예시)",
+      "description": "개구부 안전난간 미설치 (예시)",
+      "relatedTask": "activity:excavation_2m_plus",
+      "relatedRisk": "hazard:fall_from_height",
+      "severity": "high",
+      "status": "open",
+      "photoEvidence": [],
+      "recommendedMeasure": {
+        "iri": "control:eng_guard_rail",
+        "label": "안전난간·안전대 부착설비",
+        "description": "고소작업·개구부·굴착 가장자리에서 추락을 물리적으로 막기 위해 안전난간과 부착설비를 설치하는 공학적 통제.",
+        "ericLevel": 3,
+        "ericLevelLabel": "3. 공학적 통제",
+        "chain": [
+          {
+            "from": "activity:excavation_2m_plus",
+            "relation": "safety:hasHazard",
+            "to": "hazard:fall_from_height",
+            "label": "작업 → 위험요인"
+          },
+          {
+            "from": "hazard:fall_from_height",
+            "relation": "safety:mitigatedBy",
+            "to": "control:eng_guard_rail",
+            "label": "위험요인 → 안전조치"
+          }
+        ],
+        "inference": {
+          "matchedHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)",
+            "score": 100,
+            "matchedBy": "hazardId"
+          },
+          "selectedBy": "relatedRisk --mitigatedBy--> control",
+          "descriptionKeywordBoost": 2,
+          "activityMatched": true
+        },
+        "alternatives": [
+          {
+            "iri": "control:ppe_fall_arrester",
+            "label": "안전난간·죔줄",
+            "ericLevel": 5,
+            "ericLevelLabel": "5. 개인보호구"
+          },
+          {
+            "iri": "control:elim_avoid_work",
+            "label": "위험작업 회피",
+            "ericLevel": 1,
+            "ericLevelLabel": "1. 제거"
+          },
+          {
+            "iri": "control:sub_low_risk_method",
+            "label": "저위험 공법 대체",
+            "ericLevel": 2,
+            "ericLevelLabel": "2. 대체"
+          }
+        ]
+      },
+      "correctiveAction": {
+        "actionId": "action:20260503092443-2095d8aa6b",
+        "iri": "safety:corrective_action/20260503092443-2095d8aa6b",
+        "label": "안전난간·안전대 부착설비 개선조치",
+        "status": "open",
+        "createdAt": "2026-05-03T09:24:43.716Z",
+        "updatedAt": "2026-05-03T09:24:43.716Z",
+        "resolves": "safety:safety_issue/20260503092443-c3e574b9c6"
+      },
+      "statusHistory": [
+        {
+          "at": "2026-05-03T09:24:43.716Z",
+          "status": "open",
+          "note": "이슈 등록"
+        }
+      ],
+      "createdAt": "2026-05-03T09:24:43.716Z",
+      "updatedAt": "2026-05-03T09:24:43.716Z"
+    },
+    "recommendedMeasure": {
+      "iri": "control:eng_guard_rail",
+      "label": "안전난간·안전대 부착설비",
+      "description": "고소작업·개구부·굴착 가장자리에서 추락을 물리적으로 막기 위해 안전난간과 부착설비를 설치하는 공학적 통제.",
+      "ericLevel": 3,
+      "ericLevelLabel": "3. 공학적 통제",
+      "chain": [
+        {
+          "from": "activity:excavation_2m_plus",
+          "relation": "safety:hasHazard",
+          "to": "hazard:fall_from_height",
+          "label": "작업 → 위험요인"
+        },
+        {
+          "from": "hazard:fall_from_height",
+          "relation": "safety:mitigatedBy",
+          "to": "control:eng_guard_rail",
+          "label": "위험요인 → 안전조치"
+        }
+      ],
+      "inference": {
+        "matchedHazard": {
+          "iri": "hazard:fall_from_height",
+          "label": "추락 (떨어짐)",
+          "score": 100,
+          "matchedBy": "hazardId"
+        },
+        "selectedBy": "relatedRisk --mitigatedBy--> control",
+        "descriptionKeywordBoost": 2,
+        "activityMatched": true
+      },
+      "alternatives": [
+        {
+          "iri": "control:ppe_fall_arrester",
+          "label": "안전난간·죔줄",
+          "ericLevel": 5,
+          "ericLevelLabel": "5. 개인보호구"
+        },
+        {
+          "iri": "control:elim_avoid_work",
+          "label": "위험작업 회피",
+          "ericLevel": 1,
+          "ericLevelLabel": "1. 제거"
+        },
+        {
+          "iri": "control:sub_low_risk_method",
+          "label": "저위험 공법 대체",
+          "ericLevel": 2,
+          "ericLevelLabel": "2. 대체"
+        }
+      ]
+    },
+    "graphChain": [
+      {
+        "from": "safety:safety_issue/20260503092443-c3e574b9c6",
+        "relation": "safety:relatedTask",
+        "to": "activity:excavation_2m_plus",
+        "label": "안전 이슈 → 관련 작업"
+      },
+      {
+        "from": "activity:excavation_2m_plus",
+        "relation": "safety:hasHazard",
+        "to": "hazard:fall_from_height",
+        "label": "작업 → 위험요인"
+      },
+      {
+        "from": "safety:safety_issue/20260503092443-c3e574b9c6",
+        "relation": "safety:requiresAction",
+        "to": "safety:corrective_action/20260503092443-2095d8aa6b",
+        "label": "안전 이슈 → 개선조치"
+      },
+      {
+        "from": "safety:corrective_action/20260503092443-2095d8aa6b",
+        "relation": "safety:resolves",
+        "to": "safety:safety_issue/20260503092443-c3e574b9c6",
+        "label": "개선조치 → 안전 이슈 해소"
+      },
+      {
+        "from": "hazard:fall_from_height",
+        "relation": "safety:mitigatedBy",
+        "to": "control:eng_guard_rail",
+        "label": "위험요인 → 추천 안전조치"
+      }
+    ],
+    "storageRoot": "/Users/ratelworks/.agent-safety-oss",
+    "_meta": {
+      "providedBy": "황룡건설(주)",
+      "developedBy": "주식회사 라텔웍스",
+      "license": "MIT (code) + 공공누리 (data)",
+      "projectInfoTool": "get_project_info"
+    }
+  }
+}

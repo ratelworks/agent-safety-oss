@@ -1,0 +1,147 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-37-2021",
+  "@type": "Document",
+  "docId": "kosha_guide_h-37-2021",
+  "title": "근로자의 자살 및 우울증 예방을 위한 사업장 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-37-2021",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"근로자\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 13,
+      "2": 14,
+      "3": 49,
+      "4": 23,
+      "5": 45,
+      "6": 1373,
+      "7": 579,
+      "8": 1,
+      "9": 1,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "근로자",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:psychosocial_stress",
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:5",
+      "law": "산안법",
+      "articleNumber": "5",
+      "title": "사업주 등의 의무",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제5조(사업주의 의무)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-37-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:6",
+      "law": "산안법",
+      "articleNumber": "6",
+      "title": "근로자의 의무",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제6조(근로자의 의무)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-37-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:20",
+      "law": "산안법",
+      "articleNumber": "20",
+      "title": "안전관리자 등의 지도ㆍ조언",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제20조(안전보건관리규정 작성)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-37-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_공정안전에 관한 근로자 교육훈련 지침_4",
+      "title": "공정안전에 관한 근로자 교육훈련 지침 - 교육훈련대상",
+      "score": 55.251
+    },
+    {
+      "docId": "KOSHA07_전기도금 사업장 근로자 보건관리 지침_7",
+      "title": "전기도금 사업장 근로자 보건관리 지침 - 근로자 건강관리",
+      "score": 50.624
+    },
+    {
+      "docId": "KOSHA07_근로자 안전보건 상담에 관한 기술지침_4",
+      "title": "근로자 안전보건 상담에 관한 기술지침 - 안전보건에 관한 근로자 상담의 필요성",
+      "score": 47.41
+    },
+    {
+      "docId": "KOSHA07_공정안전에 관한 근로자 교육훈련 지침_7",
+      "title": "공정안전에 관한 근로자 교육훈련 지침 - 교육훈련의 실시",
+      "score": 46.575
+    },
+    {
+      "docId": "KOSHA07_공정안전에 관한 근로자 교육훈련 지침_5",
+      "title": "공정안전에 관한 근로자 교육훈련 지침 - 교육훈련의 종류",
+      "score": 46.485
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA01_000008000002000000000130000",
+      "title": "제130조 특수건강진단 등",
+      "category": "1",
+      "score": 27.088
+    },
+    {
+      "docId": "KOSHA01_000008000001000000000128002",
+      "title": "제128조의2 휴게시설의 설치",
+      "category": "1",
+      "score": 27.082
+    },
+    {
+      "docId": "KOSHA01_000007000001000000000116000",
+      "title": "제116조 물질안전보건자료와 관련된 자료의 제공",
+      "category": "1",
+      "score": 25.258
+    },
+    {
+      "docId": "KOSHA01_000008000002000000000134000",
+      "title": "제134조 건강진단기관 등의 결과보고 의무",
+      "category": "1",
+      "score": 23.694
+    },
+    {
+      "docId": "KOSHA01_000011000000000000000166002",
+      "title": "제166조의2 현장실습생에 대한 특례",
+      "category": "1",
+      "score": 23.325
+    }
+  ]
+}

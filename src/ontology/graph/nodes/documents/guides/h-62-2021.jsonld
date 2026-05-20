@@ -1,0 +1,199 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-62-2021",
+  "@type": "Document",
+  "docId": "kosha_guide_h-62-2021",
+  "title": "전리방사선 노출 근로자 건강관리지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-62-2021",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 6건 (법령 1 / KOSHA Guide 5). keyword=\"전리방사선\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 0,
+      "5": 0,
+      "6": 3,
+      "7": 15,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "전리방사선",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:radiation_exposure",
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fire",
+    "hazard:thermal_burn",
+    "hazard:electric_shock",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_isolation_barrier",
+    "control:eng_monitoring",
+    "control:admin_health_check",
+    "control:admin_qualification",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:sub_safer_equipment",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:steel_structure"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_전리방사선 노출 근로자 건강관리지침_5",
+      "title": "전리방사선 노출 근로자 건강관리지침 - 전리방사선 노출 위험이 높은 업종 또는 작업",
+      "score": 93.26
+    },
+    {
+      "docId": "KOSHA07_전리방사선 노출 근로자 건강관리지침_8",
+      "title": "전리방사선 노출 근로자 건강관리지침 - 전리방사선 노출 근로자의 건강관리",
+      "score": 92.58
+    },
+    {
+      "docId": "KOSHA07_전리방사선 노출 근로자 건강관리지침_10",
+      "title": "전리방사선 노출 근로자 건강관리지침 - 전리방사선 노출 근로자의 건강장해 예방 조치",
+      "score": 84.901
+    },
+    {
+      "docId": "KOSHA07_전리방사선 노출 근로자 건강관리지침_4",
+      "title": "전리방사선 노출 근로자 건강관리지침 - 전리방사선의 종류와 방사선발생장치",
+      "score": 83.4
+    },
+    {
+      "docId": "KOSHA07_전리방사선 노출 근로자 건강관리지침_3",
+      "title": "전리방사선 노출 근로자 건강관리지침 - 용어의정의",
+      "score": 82.488
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:130",
+      "law": "산안법",
+      "articleNumber": "130",
+      "title": "특수건강진단 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제 130조 (특수건강진단 ), 동 법 시행규칙 제 197조 (일반건강",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-62-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:22",
+      "law": "산안법시행령",
+      "articleNumber": "22",
+      "title": "보건관리자의 업무 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행령 제 22조 (보건관리자의업무등 ), 제 31조 (산업보건",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-62-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:31",
+      "law": "산안법시행령",
+      "articleNumber": "31",
+      "title": "산업보건의의 직무 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행령 제 22조 (보건관리자의업무등 ), 제 31조 (산업보건",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-62-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:2",
+      "law": "기준규칙",
+      "articleNumber": "2",
+      "title": "정의",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "원자력안전법 시행령 제2조 제4호 관련 별표 1(선량한도)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-62-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:13",
+      "law": "기준규칙",
+      "articleNumber": "13",
+      "title": "안전난간의 구조 및 설치요건",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "진단용 방사선 발생장치의 안전관리에 관한 규칙 제13조(방사선 관계 종사자에 대한",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-62-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA03_[서식 84] 일반건강진단 결과표",
+      "title": "[서식 84] 일반건강진단 결과표",
+      "category": "3",
+      "score": 22.831
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:7장",
+      "law": "기준규칙",
+      "chapterTitle": "방사선에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제7장(방사선에 의한 건강장해의 예방)"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 3,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제7장(방사선에 의한 건강장해의 예방)",
+      "needsNode": true
+    }
+  ]
+}

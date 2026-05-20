@@ -1,0 +1,319 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/construction_disaster_prevention_guidance",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "construction_disaster_prevention_guidance",
+  "title": "건설업 산재예방 기술지도",
+  "description": "산안법 제73조 1~120억 원 미만 건설공사 도급인이 산업안전보건법령에 따른 자격을 가진 자(건설재해예방전문지도기관)로부터 매월 받는 지도 결과. 위험요인·개선조치 기록.",
+  "cycle": "cyc:monthly",
+  "trigger": "공사기간 중 매월",
+  "legalBasis": [
+    "art:산안법:73",
+    "art:산안법시행령:59"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:construction_under_50bn",
+    "scaleNotes": "1억~120억 미만 건설공사 (토목 1억~150억). 시행령 제59조."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "1억 미만 건설공사",
+      "120억 이상 (자체 안전관리 의무)"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "guidanceDate",
+      "label": "지도 일자·횟수 (월 1회)",
+      "source": "산안법 제73조 + 시행령 제59조 (1억~120억)",
+      "inputGuide": "지도 실시일 + 횟수 (월 1회 의무 — 산안법 제73조).",
+      "examples": [
+        "2026-04-29 / 4월 1회"
+      ]
+    },
+    {
+      "key": "guidanceAgency",
+      "label": "건설재해예방전문지도기관·자격",
+      "source": "산안법 제73조 + 시행령 제59조 (1억~120억)",
+      "inputGuide": "산업안전기사·산업안전산업기사·안전관리자 자격증 등.",
+      "examples": [
+        "산업안전기사 (한국산업인력공단, 2018-09 발급)"
+      ]
+    },
+    {
+      "key": "siteName",
+      "label": "건설공사명·공사규모",
+      "source": "산안법 제73조 + 시행령 제59조 (1억~120억)",
+      "inputGuide": "대상 공사명 + 공사규모.",
+      "examples": [
+        "삼성동 OO 신축공사 / 연면적 12,000㎡ / 320억"
+      ]
+    },
+    {
+      "key": "findings",
+      "label": "발견 위험요인·결함",
+      "inputGuide": "감소대책 우선순위 (제거→대체→공학적→관리적→보호구) 기준으로 위험 등급 표기. 즉시 시정 / 7일 내 / 시정완료 분류.",
+      "examples": [
+        "[즉시] 안전대 미체결 작업 발견 → 작업중지 / [7일] 가설전기 분전반 접지 부재"
+      ]
+    },
+    {
+      "key": "recommendations",
+      "label": "지도·권고 사항",
+      "inputGuide": "지도기관 (전문기관) 지도·권고 사항.",
+      "examples": [
+        "1) 비계 안전난간 보강 / 2) 외국인 근로자 모국어 안전교육 / 3) 위험성평가 기록 보완"
+      ]
+    },
+    {
+      "key": "verifiedActions",
+      "label": "전월 지적사항 이행 확인",
+      "inputGuide": "직전 월 지적사항 이행 결과 확인.",
+      "examples": [
+        "전월 3건 지적 → 2건 이행 완료 / 1건 진행 중 (5/15까지)"
+      ]
+    },
+    {
+      "key": "siteResponse",
+      "label": "사업주 시정조치 계획",
+      "inputGuide": "법인 대표 또는 위임받은 안전보건책임자.",
+      "examples": [
+        "황한일 (대표)"
+      ]
+    },
+    {
+      "key": "nextGuidance",
+      "label": "차기 지도 일정",
+      "inputGuide": "다음 지도 예정일.",
+      "examples": [
+        "2026-05-29"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 매월 1회 이상 지도 + 결과서",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:73"
+    },
+    {
+      "rule": "필수 — 지도사항 → 개선조치 추적",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행령:59"
+    }
+  ],
+  "searchKeywords": [
+    "건설재해예방 지도결과서",
+    "건설재해예방 지도",
+    "전문지도기관",
+    "1억-120억 건설공사",
+    "매월 1회 이상"
+  ],
+  "references": [
+    "annex:산안법시행규칙:서식6의2",
+    "annex:산안법시행규칙:서식7의2",
+    "annex:산안법시행규칙:서식8의2",
+    "annex:산안법시행령:별표19"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-108-2017"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:risk_assessment_general"
+  ],
+  "cited_in": [
+    "stat:construction_fatal_top_5",
+    "stat:industrial_accident_construction_share"
+  ],
+  "informedBy": [
+    "manual:construction_disaster_prevention",
+    "entity:kosha",
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 건설업 산재예방 기술지도",
+      "legalSource": "산안법 제73조 + 시행규칙 제101조",
+      "fields": [
+        {
+          "key": "projectInfo",
+          "label": "공사 개요",
+          "required": true,
+          "inputGuide": "공사명·금액 (1억~120억 의무).",
+          "examples": [
+            "삼성동 공동주택 35억원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "guidanceAgency",
+          "label": "지도기관 (전문기관)",
+          "required": true,
+          "inputGuide": "고용노동부 지정 전문기관.",
+          "examples": [
+            "(재)한국산업안전기술협회"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "guidanceFrequency",
+          "label": "지도 횟수",
+          "required": true,
+          "inputGuide": "월 1회 + 공사 중요시점.",
+          "examples": [
+            "월 1회 (총 7회 예정)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "guidanceContent",
+          "label": "지도 내용",
+          "required": true,
+          "inputGuide": "위험성평가·안전관리·근로자 교육 등.",
+          "examples": [
+            "1) 위험성평가 검토 / 2) 안전관리 점검 / 3) 교육 자료 지원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "recommendations",
+          "label": "지도 후 권고사항",
+          "required": true,
+          "inputGuide": "개선 권고사항.",
+          "examples": [
+            "1) 추락방호망 1개층 추가 권고, 2) 신호수 1명 추가 권고"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:cave_in"
+  ],
+  "mitigatedBy": [
+    "control:admin_supervisor",
+    "control:admin_inspection",
+    "control:admin_risk_assessment"
+  ],
+  "relatedDocs": [
+    "doc:quarterly/construction_safety_inspection_record",
+    "doc:annual/regular_risk_assessment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,51 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "cc:worktype/railway_shunting",
+  "@type": "cc:WorkType",
+  "slug": "railway_shunting",
+  "label": {
+    "ko": "열차 입환 작업",
+    "en": "Railway shunting work"
+  },
+  "legalBasis": [
+    "annex:기준규칙:별표4-13호"
+  ],
+  "legalBasisLabel": {
+    "ko": "산업안전보건기준에 관한 규칙 별표 4 제13호",
+    "en": "OSH Standards Rule Annex 4 Item 13"
+  },
+  "hasTask": [],
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "graphMigratedAt": "2026-05-03",
+    "graphMigrationNote": "WorkType 정체성 SSoT 보강. 별표 4 법정 작업분류와 현장 실무 대분류를 activity 상위 공종으로 연결."
+  }
+}

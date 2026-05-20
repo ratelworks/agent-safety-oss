@@ -1,0 +1,157 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-98-2014",
+  "@type": "Document",
+  "docId": "kosha_guide_c-98-2014",
+  "title": "철탑공사 안전보건기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-98-2014",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"철탑공사\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 7,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "철탑공사",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by_overturn",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:electric_shock",
+    "hazard:machine_entanglement",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:sub_safer_equipment",
+    "control:eng_monitoring",
+    "control:admin_supervisor",
+    "control:eng_alarm",
+    "control:elim_automation",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:tower_assembly"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_철탑공사 안전보건기술지침_2",
+      "title": "철탑공사 안전보건기술지침 - 적용범위",
+      "score": 103.639
+    },
+    {
+      "docId": "KOSHA07_철탑공사 안전보건기술지침_5",
+      "title": "철탑공사 안전보건기술지침 - 철탑 시공순서",
+      "score": 98.675
+    },
+    {
+      "docId": "KOSHA07_철탑공사 안전보건기술지침_8",
+      "title": "철탑공사 안전보건기술지침 - 전선 설치공사 작업안전",
+      "score": 93.532
+    },
+    {
+      "docId": "KOSHA07_철탑공사 안전보건기술지침_3",
+      "title": "철탑공사 안전보건기술지침 - 용어의 정의",
+      "score": 91.597
+    },
+    {
+      "docId": "KOSHA07_철탑공사 안전보건기술지침_4",
+      "title": "철탑공사 안전보건기술지침 - 철탑 조립공법의 종류",
+      "score": 83.793
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:23",
+      "law": "산안법",
+      "articleNumber": "23",
+      "title": "명예산업안전감독관",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제23조(안전조치) ～ 제27조(기술상의 지침 및 작업환경의 표준)",
+      "citedAsOf": "2014",
+      "temporalNote": "KOSHA Guide C-98-2014 본문 직접 인용 (2014년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:27",
+      "law": "산안법",
+      "articleNumber": "27",
+      "title": "안전보건관리규정의 준수",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제23조(안전조치) ～ 제27조(기술상의 지침 및 작업환경의 표준)",
+      "citedAsOf": "2014",
+      "temporalNote": "KOSHA Guide C-98-2014 본문 직접 인용 (2014년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:23",
+      "law": "산안법",
+      "articleNumber": "23",
+      "title": "명예산업안전감독관",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제23조(안전조치) ～ 제27조(기술상의 지침 및 작업환경의 표준)",
+      "citedAsOf": "2014",
+      "temporalNote": "KOSHA Guide C-98-2014 본문 직접 인용 (2014년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:27",
+      "law": "산안법",
+      "articleNumber": "27",
+      "title": "안전보건관리규정의 준수",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제23조(안전조치) ～ 제27조(기술상의 지침 및 작업환경의 표준)",
+      "citedAsOf": "2014",
+      "temporalNote": "KOSHA Guide C-98-2014 본문 직접 인용 (2014년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

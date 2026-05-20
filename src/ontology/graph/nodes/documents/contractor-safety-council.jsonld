@@ -1,0 +1,411 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/contractor_safety_council",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "contractor_safety_council",
+  "title": "안전보건협의체 회의록 (도급인)",
+  "description": "도급인 + 직접 계약 수급인 전원으로 구성하는 안전보건협의체 매월 1회 이상 정기 회의록. 산안법 제64조 ① 1호 + 시행규칙 제79조 + KOSHA Z-26 기반.",
+  "cycle": "cyc:monthly",
+  "trigger": "매월 1회 이상 정기 + 분기/반기 합동안전보건점검 시",
+  "legalBasis": [
+    "art:산안법:64",
+    "art:산안법시행규칙:79",
+    "art:산안법시행규칙:80"
+  ],
+  "officialFormSpec": {
+    "formId": "kosha_z26_contractor_council",
+    "officialName": "안전 및 보건에 관한 협의체 구성 및 운영에 관한 지침 (KOSHA Z-26-2022)",
+    "formFile": "도급시-산업재해예방-운영지침.pdf",
+    "formMatchType": "고용노동부 운영지침 + KOSHA Z-26 양식 표준 준용",
+    "license": "공공누리 - 출처 KOSHA + 고용노동부"
+  },
+  "sections": [
+    {
+      "title": "1. 회의 개요",
+      "legalSource": "산안법 제64조 + 시행규칙 제79조 ③ (매월 1회 이상)",
+      "fields": [
+        {
+          "key": "meetingNumber",
+          "label": "회의 회차",
+          "required": true,
+          "inputGuide": "연도별 일련번호. 'YYYY-NN'.",
+          "examples": [
+            "2026-04 (4월 정기)"
+          ],
+          "checkPoints": [
+            "매월 1회 이상 의무"
+          ]
+        },
+        {
+          "key": "meetingDate",
+          "label": "회의 일시",
+          "required": true,
+          "inputGuide": "회의 개최 일자·시각.",
+          "examples": [
+            "2026-04-29 14:00~15:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "meetingLocation",
+          "label": "회의 장소",
+          "required": true,
+          "inputGuide": "현장 사무실·회의실.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장 안전관리사무실"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "도급인 사업장명·현장명.",
+          "examples": [
+            "황룡건설(주) 삼성동 ○○공동주택 신축공사 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "contractScale",
+          "label": "도급 규모",
+          "required": true,
+          "inputGuide": "도급금액 + 공기 + 수급인 수.",
+          "examples": [
+            "도급금액 35억원, 공기 2026-03~2026-09 (7개월), 수급인 5개사"
+          ],
+          "checkPoints": [
+            "30일 이내 일시작업 또는 연 60일 미만 간헐작업은 협의체 면제"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. 참석자 (도급인 + 직접 수급인 전원)",
+      "legalSource": "시행규칙 제79조 ① (도급인 및 그의 수급인 전원)",
+      "fields": [
+        {
+          "key": "principalEmployer",
+          "label": "도급인 (사업주 또는 안전보건관리책임자)",
+          "required": true,
+          "inputGuide": "도급인 사업주 또는 위임받은 안전보건관리책임자(현장소장).",
+          "examples": [
+            "황룡 (황룡건설(주) 대표 / 현장소장 위임)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "subcontractors",
+          "label": "수급인 (직접 계약 수급인 전원)",
+          "required": true,
+          "inputGuide": "도급인과 직접 계약 체결한 수급인만 (재하도급 관계수급인 제외). 회사명 + 대표자/현장소장.",
+          "examples": [
+            "1) 우송설비(주) 박설비 / 2) 광산기계(주) 이기계 / 3) 강남도장(주) 김도장 (총 3개사 전원 참석)"
+          ],
+          "checkPoints": [
+            "직접 계약 수급인 전원 참석 의무 (1개사 불참 시 회의 무효)"
+          ]
+        },
+        {
+          "key": "absentCompanies",
+          "label": "불참 수급인 + 사유",
+          "required": false,
+          "optional": true,
+          "inputGuide": "불참 시 사유·차후 보완 계획. 가급적 전원 참석.",
+          "examples": [
+            "[해당없음] 전원 참석"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "secretary",
+          "label": "기록 (간사)",
+          "required": true,
+          "inputGuide": "회의록 작성·보관 책임자.",
+          "examples": [
+            "김안전 (황룡건설 안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 협의 사항 (시행규칙 제79조 ② 의무 협의 6항)",
+      "legalSource": "시행규칙 제79조 ② (작업 시작 시간 / 연락방법 / 대피방법 / 위험성평가 / 연락방법 / 작업공정 조정)",
+      "fields": [
+        {
+          "key": "agenda1_workStartTime",
+          "label": "1. 작업 시작 시간 협의",
+          "required": true,
+          "inputGuide": "도급인·수급인 작업 시작·종료 시간 조율 (혼재작업 충돌 방지).",
+          "examples": [
+            "통일 시작 08:00, 종료 17:00. 점심 12:00~13:00 정지."
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "agenda2_communication",
+          "label": "2. 작업장 간 연락방법",
+          "required": true,
+          "inputGuide": "도급인↔수급인↔수급인 간 통신수단 (무전기 채널·핫라인·일일조회).",
+          "examples": [
+            "일일조회 08:00 (전체) + 무전기 Ch3 (긴급) + 안전관리자 핫라인 010-1234-5678"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "agenda3_emergencyEvacuation",
+          "label": "3. 재해 발생 위험 시 대피방법",
+          "required": true,
+          "inputGuide": "비상시 대피로·집결지·통보 절차.",
+          "examples": [
+            "대피 사이렌 → 집결지 정문 주차장 → 인원점검 → 119 신고"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "agenda4_riskAssessment",
+          "label": "4. 위험성평가 실시 사항",
+          "required": true,
+          "inputGuide": "이번 달 위험성평가 결과 공유 + 합동 평가 일정.",
+          "examples": [
+            "4월 위험성평가 5개 위험요인 (추락 1, 끼임 2, 떨어짐 1, 감전 1) — 5월 합동평가 5월 8일"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "agenda5_employerLiaison",
+          "label": "5. 사업주·수급인·수급인 상호 간 연락방법",
+          "required": true,
+          "inputGuide": "도급인 ↔ 수급인 + 수급인 상호 간 비상연락망.",
+          "examples": [
+            "연락망 표 별첨 (도급인 1, 수급인 5, 119, 응급실)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "agenda6_workSchedule",
+          "label": "6. 작업공정 조정",
+          "required": true,
+          "inputGuide": "혼재작업 시 공정 조정 (시간·장소 분리).",
+          "examples": [
+            "타워크레인 양중(09~12) + 외벽 도장(13~17) 시간 분리, 같은 동 중복 작업 금지"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 결정사항 / 후속 조치",
+      "legalSource": "시행규칙 제79조 ③ (회의 결과 기록·보존)",
+      "fields": [
+        {
+          "key": "decisions",
+          "label": "결정사항",
+          "required": true,
+          "inputGuide": "회의에서 합의된 결정·조치 사항.",
+          "examples": [
+            "1) 5월 8일 합동 위험성평가 실시, 2) 무전기 채널 Ch3 통일, 3) 작업공정 시간분리 매주 월요일 갱신"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "followUp",
+          "label": "이행 책임자 + 기한",
+          "required": true,
+          "inputGuide": "각 결정사항별 책임자·이행 기한.",
+          "examples": [
+            "1) 김안전, 5월 8일 / 2) 박감독, 5월 1일 / 3) 황룡(현장소장), 매주 월요일"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "nextMeeting",
+          "label": "차회 회의 일정",
+          "required": true,
+          "inputGuide": "다음 협의체 회의 (매월 1회 이상).",
+          "examples": [
+            "2026-05-27 14:00 (5월 정기)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "5. 첨부 / 보존",
+      "legalSource": "시행규칙 제79조 ③ (기록·보존 의무)",
+      "fields": [
+        {
+          "key": "attachments",
+          "label": "첨부 자료",
+          "required": false,
+          "optional": true,
+          "inputGuide": "위험성평가 결과·연락망·도면 등 협의 자료.",
+          "examples": [
+            "1) 4월 위험성평가 결과 별첨 1, 2) 비상연락망 별첨 2, 3) 작업공정표 별첨 3"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "retention",
+          "label": "보존 기간 (3년)",
+          "required": true,
+          "inputGuide": "산안법 제164조 회의록 3년 보존.",
+          "examples": [
+            "3년 (2029-04-29까지)"
+          ],
+          "checkPoints": [
+            "3년 보존 의무"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "6. 결재선",
+      "legalSource": "산안법 제64조 ① 1호 (도급인 책임)",
+      "fields": [
+        {
+          "key": "secretary_sign",
+          "label": "기록 (간사) 서명",
+          "required": true,
+          "inputGuide": "회의록 작성자 서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "도급인 (사업주/현장소장) 서명",
+          "required": true,
+          "inputGuide": "도급인 사업주 또는 안전보건관리책임자 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "subcontractor_signs",
+          "label": "수급인 사업주 서명 (전원)",
+          "required": true,
+          "inputGuide": "수급인 사업주 또는 현장 책임자 전원 서명.",
+          "examples": [
+            "박설비(우송설비) / 이기계(광산기계) / 김도장(강남도장) 각 서명"
+          ],
+          "checkPoints": [
+            "전원 서명 의무"
+          ]
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "기록 (간사)",
+      "action": "회의록 작성"
+    },
+    {
+      "role": "도급인 (사업주/안전보건관리책임자)",
+      "action": "검토 + 서명"
+    },
+    {
+      "role": "수급인 사업주 (전원)",
+      "action": "확인 + 서명"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "도급인 + 직접 수급인 전원 참석 (1개사 불참 시 fail)",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:79",
+      "checkFields": [
+        "principalEmployer",
+        "subcontractors"
+      ]
+    },
+    {
+      "rule": "협의 사항 6항 모두 협의 (시작시간·연락·대피·위험성평가·연락망·공정)",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:79",
+      "checkFields": [
+        "agenda1_workStartTime",
+        "agenda2_communication",
+        "agenda3_emergencyEvacuation",
+        "agenda4_riskAssessment",
+        "agenda5_employerLiaison",
+        "agenda6_workSchedule"
+      ]
+    },
+    {
+      "rule": "결정사항 + 이행 책임자 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:79",
+      "checkFields": [
+        "decisions",
+        "followUp"
+      ]
+    },
+    {
+      "rule": "도급인 + 수급인 전원 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:64",
+      "checkFields": [
+        "principal_sign",
+        "subcontractor_signs"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:170",
+  "retention": "3년 (산안법 제164조)",
+  "guidedBy": [
+    "doc:kosha_guide/Z-26-2022"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:64",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "도급인",
+      "수급인",
+      "협의체",
+      "회의록"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "council",
+    "licenseHint": "공공누리 - 출처 고용노동부 + KOSHA",
+    "alignedAt": "2026-04-29",
+    "alignSource": "도급시 산업재해예방 운영지침(고용노동부) + KOSHA Z-26-2022 양식 매핑"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:contractor",
+    "scaleNotes": "도급인 (직접 계약 수급인 1개사 이상). 30일 이내 일시작업 또는 연 60일 미만 간헐작업은 면제."
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:caught_in"
+  ],
+  "appliesToActivities": [
+    "activity:contractor_management"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha"
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_supervisor",
+    "control:admin_inspection"
+  ],
+  "relatedDocs": [
+    "doc:monthly/contractor_consultative_body",
+    "doc:weekly/weekly_joint_inspection",
+    "doc:on_construction_open/contract_safety_health_clause"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_safety_reports",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "로컬 reports 디렉토리에 저장된 safety:SafetyReport 목록을 siteId 또는 perio",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Safety Reports",
+      "@language": "en"
+    }
+  ],
+  "description": "로컬 reports 디렉토리에 저장된 safety:SafetyReport 목록을 siteId 또는 period 기준으로 조회한다.",
+  "toolName": "list_safety_reports",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/list_safety_reports",
+  "maps_to_action": "safety:action/list_safety_reports",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

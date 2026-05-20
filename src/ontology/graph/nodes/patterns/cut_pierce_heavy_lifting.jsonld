@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cut_pierce_heavy_lifting",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cut_pierce_heavy_lifting",
+  "title": "cut_pierce × heavy_lifting",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 cut_pierce 작업유형 heavy_lifting.",
+  "koshaAccidentType": "cut_pierce",
+  "hasHazard": [
+    "hazard:machine_entanglement"
+  ],
+  "causedBy": [
+    "activity:heavy_lifting"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "떨어지는 강관 트러스에 맞음",
+    "떨어지는 강관 트러스에 맞음",
+    "떨어지는 강관 트러스에 맞음"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

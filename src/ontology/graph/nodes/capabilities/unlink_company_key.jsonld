@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/unlink_company_key",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "라텔웍스 키 연동 해제",
+      "@language": "ko"
+    },
+    {
+      "@value": "Unlink Company Key",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 라텔웍스 키 연동 해제. 로컬 SSoT 는 유지됨. 클라우드 동기화는 중단됨.",
+  "toolName": "unlink_company_key",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/unlink_company_key",
+  "producesEntity": [
+    "safety:CompanyKeyLink"
+  ],
+  "maps_to_action": "safety:action/unlink_company_key",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

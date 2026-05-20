@@ -1,0 +1,902 @@
+{
+  "$schema": "./synonyms.schema.json",
+  "version": "1.0.0",
+  "updatedAt": "2026-04-28",
+  "purpose": "현장 친화 동의어·축약어 사전. field_safety_briefing 검색 정확도 핵심 개선. 한국 건설안전 도메인 한정.",
+  "groups": [
+    {
+      "id": "education",
+      "primary": "교육",
+      "synonyms": [
+        "교육·훈련",
+        "교육시간",
+        "교육내용",
+        "안전보건교육",
+        "기초안전보건교육",
+        "건설업 기초안전보건교육",
+        "건설업 기초",
+        "4시간",
+        "6시간",
+        "정기교육",
+        "신규교육",
+        "특별교육",
+        "관리감독자교육",
+        "직무교육",
+        "보수교육",
+        "신규자교육",
+        "분기 교육",
+        "분기 정기교육",
+        "TBM",
+        "조회"
+      ],
+      "expandsTo": [
+        "activity:safety_education",
+        "activity:tbm_daily",
+        "art:산안법:29",
+        "art:산안법:32",
+        "art:산안법시행규칙:26",
+        "art:산안법시행규칙:27",
+        "art:산안법시행규칙:35",
+        "doc:monthly/monthly_education_log",
+        "doc:annual/supervisor_education_log"
+      ]
+    },
+    {
+      "id": "frequency",
+      "primary": "주기",
+      "synonyms": [
+        "분기",
+        "분기별",
+        "정기",
+        "수시",
+        "상시",
+        "월",
+        "월별",
+        "매월",
+        "주",
+        "주별",
+        "매주",
+        "년",
+        "연간",
+        "매년",
+        "반기",
+        "반기별",
+        "3개월",
+        "6개월",
+        "12개월",
+        "일일",
+        "매일"
+      ],
+      "expandsTo": [
+        "cyc:annual",
+        "cyc:semi_annual",
+        "cyc:monthly",
+        "cyc:weekly",
+        "cyc:daily",
+        "cyc:quarterly",
+        "cyc:ad_hoc",
+        "cyc:continuous"
+      ]
+    },
+    {
+      "id": "risk_assessment",
+      "primary": "위험성평가",
+      "synonyms": [
+        "위험성 평가",
+        "유해위험요인",
+        "위험요인",
+        "위험 평가",
+        "리스크 평가",
+        "Risk Assessment",
+        "RA",
+        "최초평가",
+        "정기평가",
+        "수시평가",
+        "상시평가",
+        "KRAS",
+        "OPS",
+        "체크리스트",
+        "3단계 판단법",
+        "빈도 강도법",
+        "key factor",
+        "절차",
+        "방법",
+        "사전준비",
+        "감소대책"
+      ],
+      "expandsTo": [
+        "activity:risk_assessment_general",
+        "art:산안법:36",
+        "art:위험성평가-고시:5",
+        "art:위험성평가-고시:6",
+        "art:위험성평가-고시:7",
+        "art:위험성평가-고시:8",
+        "art:위험성평가-고시:9",
+        "art:위험성평가-고시:10",
+        "art:위험성평가-고시:11",
+        "art:위험성평가-고시:12",
+        "art:위험성평가-고시:13",
+        "art:위험성평가-고시:14",
+        "art:위험성평가-고시:15"
+      ],
+      "userMisuseNote": "사용자가 '분기 정기 위험성평가'·'분기별 평가'로 표기하는 경우 → 법정 '정기평가'는 1년 주기 재검토. '분기'는 사업장 자체 운영. 출력 시 ra_timing_fix 그룹의 timingNote 안내 필요."
+    },
+    {
+      "id": "fall",
+      "primary": "추락",
+      "synonyms": [
+        "고소작업",
+        "고소",
+        "비계",
+        "사다리",
+        "안전대",
+        "안전난간",
+        "추락방지망",
+        "안전방망",
+        "수직보호망",
+        "수직 보호망",
+        "수직형 추락방망",
+        "개구부",
+        "낙하",
+        "방망"
+      ],
+      "expandsTo": [
+        "hazard:fall_from_height",
+        "activity:scaffolding_assembly",
+        "art:기준규칙:42",
+        "art:기준규칙:43",
+        "art:기준규칙:44",
+        "art:기준규칙:45",
+        "art:기준규칙:13",
+        "doc:daily/fall_prevention_net_inspection",
+        "doc:monthly/safety_harness_inspection"
+      ]
+    },
+    {
+      "id": "fire_explosion",
+      "primary": "화재",
+      "synonyms": [
+        "폭발",
+        "화기작업",
+        "용접",
+        "용단",
+        "그라인더",
+        "산소",
+        "아세틸렌",
+        "인화성",
+        "가연물",
+        "발화"
+      ],
+      "expandsTo": [
+        "hazard:fire_explosion",
+        "art:기준규칙:236",
+        "art:기준규칙:237",
+        "art:기준규칙:239",
+        "doc:ad_hoc/work_permit"
+      ]
+    },
+    {
+      "id": "msds",
+      "primary": "MSDS",
+      "synonyms": [
+        "물질안전보건자료",
+        "화학물질",
+        "유해물질",
+        "도료",
+        "페인트",
+        "시너",
+        "용제",
+        "방수제",
+        "에폭시",
+        "우레탄",
+        "신너",
+        "유기용제",
+        "산",
+        "알칼리",
+        "독성",
+        "표준 양식",
+        "표준 서식",
+        "MSDS 양식"
+      ],
+      "expandsTo": [
+        "doc:continuous/msds_register",
+        "art:산안법:110",
+        "art:산안법:111",
+        "art:산안법:114",
+        "art:산안법:115",
+        "art:산안법:175",
+        "annex:산안법시행규칙:서식11"
+      ]
+    },
+    {
+      "id": "construction_50bn",
+      "primary": "대규모 건설",
+      "synonyms": [
+        "50억",
+        "80억",
+        "100억",
+        "120억",
+        "150억",
+        "착공",
+        "신규 공사",
+        "신규 건설",
+        "건축공사",
+        "토목공사",
+        "공사금액",
+        "발주자",
+        "안전보건대장",
+        "기본안전보건대장",
+        "설계안전보건대장",
+        "공사안전보건대장",
+        "산업안전보건관리비",
+        "안전관리비",
+        "건설재해예방",
+        "지도결과",
+        "중처법",
+        "안전보건관리체계",
+        "경영책임자"
+      ],
+      "expandsTo": [
+        "art:산안법:67",
+        "art:산안법:72",
+        "art:산안법:73",
+        "art:중처법:4",
+        "art:중처법:6",
+        "art:중처법시행령:4",
+        "art:중처법시행령:5",
+        "doc:ad_hoc/basic_safety_health_register",
+        "doc:ad_hoc/design_safety_health_register",
+        "doc:ad_hoc/construction_safety_health_register",
+        "doc:monthly/safety_health_mgmt_cost_plan",
+        "doc:monthly/construction_disaster_prevention_guidance",
+        "doc:annual/safety_health_management_policy",
+        "doc:semi_annual/severe_accident_compliance"
+      ],
+      "exclusionNote": "유해위험방지계획서(제42조 / doc:hazardous_risk_prevention_plan_construction)는 금액만으로 단정 불가. 시행령 제42조 ③ 별도 조건(지상 31m+, 연면적 3만㎡+, 깊이 10m+ 굴착, 터널·교량·댐 등) 충족 필요. 별도 그룹 hazardous_risk_plan 참조."
+    },
+    {
+      "id": "hazardous_risk_plan",
+      "primary": "유해위험방지계획서",
+      "synonyms": [
+        "계획서 제출",
+        "착공 30일 전",
+        "지상 31m",
+        "연면적 3만㎡",
+        "깊이 10m 굴착",
+        "터널 건설",
+        "교량 건설 50m 이상",
+        "다목적댐",
+        "냉동·냉장 창고 5천㎡"
+      ],
+      "expandsTo": [
+        "art:산안법:42",
+        "art:산안법시행령:42",
+        "doc:ad_hoc/hazardous_risk_prevention_plan_construction"
+      ],
+      "applicabilityNote": "시행령 제42조 ③ 건설공사 대상: (1) 지상 31m 이상 / 연면적 3만㎡ 이상 / 5천㎡ 이상 문화·집회·판매시설 / (2) 5천㎡ 이상 냉동·냉장 창고 / (3) 50m 이상 다리 / (4) 터널 / (5) 다목적댐 등 / (6) 깊이 10m 이상 굴착. 금액 무관."
+    },
+    {
+      "id": "ra_timing_fix",
+      "primary": "위험성평가 시기",
+      "synonyms": [
+        "정기평가",
+        "매년",
+        "1년 주기",
+        "재검토",
+        "최초평가",
+        "수시평가",
+        "상시평가",
+        "매월",
+        "매주",
+        "매작업일"
+      ],
+      "expandsTo": [
+        "art:위험성평가-고시:15"
+      ],
+      "timingNote": "위험성평가 고시 제15조 정확 정의: (1) 최초 — 사업개시 1개월 이내 / (2) 수시 — 6가지 사유 (건설물 변경·기계 도입·작업 변경·사고 등) / (3) 정기 — 1년 주기 재검토 / (4) 상시평가 — 매월 + 매주 + 매작업일 점검 (이 경우 수시·정기 갈음). '분기'·'분기별'은 법정 개념 아님."
+    },
+    {
+      "id": "safety_measure",
+      "primary": "안전조치",
+      "synonyms": [
+        "보건조치",
+        "안전조치 미이행",
+        "안전조치 위반",
+        "안전·보건조치",
+        "필요한 조치",
+        "재해 예방조치"
+      ],
+      "expandsTo": [
+        "art:산안법:38",
+        "art:산안법:39",
+        "art:산안법:167",
+        "art:산안법:168"
+      ]
+    },
+    {
+      "id": "noncompliance",
+      "primary": "미이행",
+      "synonyms": [
+        "불이행",
+        "안 함",
+        "안 했음",
+        "누락",
+        "위반",
+        "미실시",
+        "미작성",
+        "미제출",
+        "미보고",
+        "미신고",
+        "미게시",
+        "미통지"
+      ],
+      "expandsTo": [
+        "art:산안법:167",
+        "art:산안법:168",
+        "art:산안법:170",
+        "art:산안법:175"
+      ]
+    },
+    {
+      "id": "report_filing",
+      "primary": "신고",
+      "synonyms": [
+        "보고",
+        "통지",
+        "신청",
+        "심사 신청",
+        "고용노동부 보고",
+        "지방관서 신고",
+        "관할 기관 신고"
+      ],
+      "expandsTo": [
+        "art:산안법:54",
+        "art:산안법:57",
+        "art:산안법:42",
+        "doc:ad_hoc/industrial_accident_report"
+      ]
+    },
+    {
+      "id": "ra_methods",
+      "primary": "위험성평가 방법",
+      "synonyms": [
+        "3단계 판단법",
+        "체크리스트법",
+        "위험가능성·중대성 매트릭스",
+        "5x5 매트릭스",
+        "KRAS",
+        "Key Factor",
+        "OPS",
+        "1페이지",
+        "JSA",
+        "Bow-Tie",
+        "HAZOP",
+        "사전준비",
+        "유해위험요인 파악",
+        "위험성 결정",
+        "감소대책 수립",
+        "기록·보존"
+      ],
+      "expandsTo": [
+        "art:위험성평가-고시:7",
+        "art:위험성평가-고시:8",
+        "art:위험성평가-고시:10",
+        "art:위험성평가-고시:11",
+        "art:위험성평가-고시:14"
+      ]
+    },
+    {
+      "id": "form_template",
+      "primary": "양식",
+      "synonyms": [
+        "서식",
+        "표준 양식",
+        "별지 서식",
+        "기재 양식",
+        "기록 양식",
+        "양식 다운로드",
+        "HWP 다운로드",
+        "PDF 양식"
+      ],
+      "expandsTo": []
+    },
+    {
+      "id": "severe_accident",
+      "primary": "중대재해",
+      "synonyms": [
+        "사망",
+        "사망사고",
+        "치명상",
+        "중대 산업재해",
+        "중처법",
+        "중대재해처벌법",
+        "안전보건관리체계",
+        "안전보건경영방침",
+        "경영책임자",
+        "9대 의무",
+        "1억",
+        "안전보건 의무",
+        "검토"
+      ],
+      "expandsTo": [
+        "art:중처법:4",
+        "art:중처법:5",
+        "art:중처법:6",
+        "art:중처법:7",
+        "art:중처법시행령:4",
+        "art:중처법시행령:5",
+        "doc:semi_annual/severe_accident_compliance",
+        "doc:annual/safety_health_management_policy"
+      ]
+    },
+    {
+      "id": "accident_report",
+      "primary": "재해 보고",
+      "synonyms": [
+        "사고",
+        "재해",
+        "산업재해",
+        "중대재해 발생",
+        "사고 보고",
+        "사고 신고",
+        "산재 보고",
+        "조사표",
+        "별지 30호서식",
+        "원인조사",
+        "재발방지",
+        "응급조치",
+        "응급",
+        "긴급조치",
+        "즉시 조치",
+        "작업 중지"
+      ],
+      "expandsTo": [
+        "doc:ad_hoc/industrial_accident_report",
+        "doc:ad_hoc/severe_accident_immediate_report",
+        "art:산안법:54",
+        "art:산안법:57",
+        "art:산안법:170",
+        "art:산안법:51"
+      ]
+    },
+    {
+      "id": "violation_penalty",
+      "primary": "위반",
+      "synonyms": [
+        "벌칙",
+        "처벌",
+        "과태료",
+        "벌금",
+        "징역",
+        "구속",
+        "기소",
+        "1천만원",
+        "5천만원",
+        "1억",
+        "5년 이하",
+        "7년 이하",
+        "사망",
+        "결과",
+        "안전조치 미이행",
+        "보건조치 미이행",
+        "위반시"
+      ],
+      "expandsTo": [
+        "art:산안법:167",
+        "art:산안법:168",
+        "art:산안법:170",
+        "art:산안법:170의2",
+        "art:산안법:171",
+        "art:산안법:175",
+        "art:중처법:6",
+        "art:중처법:7",
+        "art:중처법:8",
+        "penalty:산안법:167",
+        "penalty:산안법:168",
+        "penalty:산안법:170"
+      ]
+    },
+    {
+      "id": "scaffold",
+      "primary": "비계",
+      "synonyms": [
+        "강관비계",
+        "시스템비계",
+        "달비계",
+        "이동식비계",
+        "쌍줄비계",
+        "외줄비계",
+        "안전대걸이",
+        "벽이음",
+        "발판",
+        "수평재"
+      ],
+      "expandsTo": [
+        "activity:scaffolding_assembly",
+        "art:기준규칙:55",
+        "art:기준규칙:56",
+        "art:기준규칙:59",
+        "art:기준규칙:62",
+        "art:기준규칙:67",
+        "art:기준규칙:71",
+        "art:기준규칙:72",
+        "art:기준규칙:73",
+        "doc:weekly/scaffolding_inspection_checklist"
+      ]
+    },
+    {
+      "id": "formwork",
+      "primary": "거푸집",
+      "synonyms": [
+        "거푸집동바리",
+        "동바리",
+        "거푸집 해체",
+        "거푸집 시공",
+        "시스템동바리",
+        "강관동바리",
+        "콘크리트 타설",
+        "양생",
+        "압축강도"
+      ],
+      "expandsTo": [
+        "activity:formwork_shoring",
+        "activity:rc_concrete",
+        "art:기준규칙:331",
+        "art:기준규칙:332",
+        "art:기준규칙:333",
+        "art:기준규칙:334",
+        "art:기준규칙:335",
+        "art:기준규칙:336",
+        "art:기준규칙:337",
+        "art:기준규칙:338",
+        "art:기준규칙:339",
+        "doc:ad_hoc/formwork_shoring_drawing",
+        "doc:ad_hoc/concrete_placement_plan"
+      ],
+      "explicitlyExcludes": [
+        "art:기준규칙:365"
+      ],
+      "exclusionNote": "제365조 (터널 지보공 부재 해체) 는 본문에 '거푸집' 키워드 포함하지만 터널 작업 한정. 일반 거푸집 해체와 별개."
+    },
+    {
+      "id": "excavation",
+      "primary": "굴착",
+      "synonyms": [
+        "굴착작업",
+        "터파기",
+        "흙막이",
+        "지보공",
+        "토류판",
+        "스트럿",
+        "어스앵커",
+        "버팀대",
+        "사면",
+        "절토",
+        "성토"
+      ],
+      "expandsTo": [
+        "activity:excavation_2m_plus",
+        "art:기준규칙:340",
+        "art:기준규칙:341",
+        "art:기준규칙:342",
+        "art:기준규칙:343",
+        "art:기준규칙:344",
+        "art:기준규칙:345",
+        "art:기준규칙:346",
+        "art:기준규칙:347",
+        "doc:ad_hoc/earth_retaining_drawing"
+      ]
+    },
+    {
+      "id": "lifting",
+      "primary": "양중",
+      "synonyms": [
+        "인양",
+        "타워크레인",
+        "이동식크레인",
+        "리프트",
+        "곤돌라",
+        "체인블록",
+        "와이어로프",
+        "신호수",
+        "권상",
+        "권하",
+        "정격하중"
+      ],
+      "expandsTo": [
+        "activity:tower_crane",
+        "activity:heavy_lifting",
+        "art:기준규칙:134",
+        "art:기준규칙:135",
+        "art:기준규칙:142",
+        "doc:daily/tower_crane_inspection"
+      ]
+    },
+    {
+      "id": "confined_space",
+      "primary": "밀폐공간",
+      "synonyms": [
+        "맨홀",
+        "탱크",
+        "터널",
+        "지하실",
+        "사일로",
+        "산소결핍",
+        "질식",
+        "유해가스",
+        "황화수소"
+      ],
+      "expandsTo": [
+        "activity:underground_utility",
+        "art:기준규칙:618",
+        "art:기준규칙:619",
+        "art:기준규칙:620",
+        "art:기준규칙:621",
+        "art:기준규칙:622",
+        "doc:ad_hoc/work_permit_confined_space"
+      ]
+    },
+    {
+      "id": "ppe",
+      "primary": "보호구",
+      "synonyms": [
+        "안전모",
+        "안전화",
+        "안전대",
+        "보안경",
+        "방진마스크",
+        "방독마스크",
+        "귀마개",
+        "안전장갑",
+        "지급",
+        "관리"
+      ],
+      "expandsTo": [
+        "doc:ad_hoc/ppe_register",
+        "doc:monthly/safety_harness_inspection",
+        "art:기준규칙:31",
+        "art:기준규칙:32",
+        "art:기준규칙:34"
+      ]
+    },
+    {
+      "id": "appointment",
+      "primary": "선임",
+      "synonyms": [
+        "안전관리자 선임",
+        "보건관리자 선임",
+        "안전보건관리책임자",
+        "관리감독자",
+        "산업보건의",
+        "신고",
+        "위촉"
+      ],
+      "expandsTo": [
+        "art:산안법:15",
+        "art:산안법:16",
+        "art:산안법:17",
+        "art:산안법:18",
+        "art:산안법:19",
+        "art:산안법:22",
+        "doc:ad_hoc/safety_health_manager_appointment"
+      ]
+    },
+    {
+      "id": "health_exam",
+      "primary": "건강진단",
+      "synonyms": [
+        "일반건강진단",
+        "특수건강진단",
+        "임시건강진단",
+        "배치전건강진단",
+        "수시건강진단",
+        "사후조치",
+        "근로금지",
+        "질병자"
+      ],
+      "expandsTo": [
+        "art:산안법:129",
+        "art:산안법:130",
+        "art:산안법:131",
+        "art:산안법:134",
+        "art:산안법:138",
+        "doc:annual/health_examination_records"
+      ]
+    },
+    {
+      "id": "work_environment",
+      "primary": "작업환경측정",
+      "synonyms": [
+        "분진",
+        "소음",
+        "진동",
+        "고열",
+        "한랭",
+        "조도",
+        "유기용제",
+        "측정",
+        "노출기준",
+        "통지",
+        "게시"
+      ],
+      "expandsTo": [
+        "art:산안법:125",
+        "art:산안법:126",
+        "doc:semi_annual/work_environment_measurement"
+      ]
+    },
+    {
+      "id": "safety_committee",
+      "primary": "산업안전보건위원회",
+      "synonyms": [
+        "산안위",
+        "안전보건위원회",
+        "노사 협의",
+        "심의·의결",
+        "노사동수",
+        "회의록"
+      ],
+      "expandsTo": [
+        "art:산안법:24",
+        "doc:monthly/health_safety_committee"
+      ]
+    },
+    {
+      "id": "joint_inspection",
+      "primary": "합동안전점검",
+      "synonyms": [
+        "합동점검",
+        "주간점검",
+        "도급사업주 점검",
+        "합동안전보건점검"
+      ],
+      "expandsTo": [
+        "art:산안법:64",
+        "doc:weekly/weekly_joint_inspection"
+      ]
+    },
+    {
+      "id": "contractor",
+      "primary": "도급",
+      "synonyms": [
+        "도급인",
+        "수급인",
+        "협력업체",
+        "원청",
+        "하청",
+        "안전보건협의체",
+        "협의체"
+      ],
+      "expandsTo": [
+        "art:산안법:63",
+        "art:산안법:64",
+        "art:산안법:67",
+        "art:산안법:75",
+        "doc:monthly/contractor_safety_council",
+        "doc:monthly/contractor_consultative_body"
+      ]
+    },
+    {
+      "id": "asbestos",
+      "primary": "석면",
+      "synonyms": [
+        "석면조사",
+        "석면해체",
+        "발암",
+        "기관석면조사",
+        "일반석면조사",
+        "석면지도"
+      ],
+      "expandsTo": [
+        "activity:asbestos_removal",
+        "art:산안법:119",
+        "art:산안법:122",
+        "art:산안법:142",
+        "doc:ad_hoc/asbestos_investigation_report"
+      ]
+    },
+    {
+      "id": "machinery",
+      "primary": "건설기계",
+      "synonyms": [
+        "굴삭기",
+        "로더",
+        "덤프트럭",
+        "롤러",
+        "지게차",
+        "콘크리트펌프",
+        "차량계",
+        "차량계 건설기계",
+        "운전자",
+        "면허"
+      ],
+      "expandsTo": [
+        "activity:vehicle_construction",
+        "art:기준규칙:78",
+        "art:기준규칙:79",
+        "art:기준규칙:86",
+        "art:기준규칙:98",
+        "art:기준규칙:99",
+        "doc:daily/construction_machinery_inspection"
+      ]
+    },
+    {
+      "id": "electric",
+      "primary": "전기작업",
+      "synonyms": [
+        "감전",
+        "활선",
+        "정전작업",
+        "LOTO",
+        "절연",
+        "접지",
+        "전격방지기",
+        "교류아크용접기"
+      ],
+      "expandsTo": [
+        "activity:electric_work_50v_plus",
+        "art:기준규칙:301",
+        "art:기준규칙:302",
+        "art:기준규칙:306",
+        "art:기준규칙:318",
+        "art:기준규칙:319",
+        "doc:ad_hoc/work_permit_loto"
+      ]
+    },
+    {
+      "id": "work_plan",
+      "primary": "작업계획서",
+      "synonyms": [
+        "작업계획",
+        "별표 4",
+        "13종 작업계획서",
+        "타워크레인 작업계획",
+        "굴착 작업계획",
+        "양중 작업계획",
+        "해체 작업계획"
+      ],
+      "expandsTo": [
+        "art:기준규칙:38",
+        "doc:ad_hoc/work_plan"
+      ]
+    },
+    {
+      "id": "work_permit",
+      "primary": "작업허가서",
+      "synonyms": [
+        "허가서",
+        "작업허가",
+        "정전작업 허가",
+        "화기작업 허가",
+        "밀폐공간 작업허가",
+        "고소작업 허가"
+      ],
+      "expandsTo": [
+        "art:기준규칙:239",
+        "art:기준규칙:319",
+        "art:기준규칙:619",
+        "doc:ad_hoc/work_permit",
+        "doc:ad_hoc/work_permit_loto",
+        "doc:ad_hoc/work_permit_confined_space",
+        "doc:ad_hoc/work_permit_high_altitude"
+      ]
+    },
+    {
+      "id": "tbm",
+      "primary": "TBM",
+      "synonyms": [
+        "조회",
+        "작업 전 안전점검회의",
+        "도구상자 회의",
+        "Tool Box Meeting",
+        "일일점검",
+        "일일조회"
+      ],
+      "expandsTo": [
+        "activity:tbm_daily",
+        "doc:daily/daily_tbm",
+        "doc:daily/pre_work_inspection"
+      ]
+    }
+  ]
+}

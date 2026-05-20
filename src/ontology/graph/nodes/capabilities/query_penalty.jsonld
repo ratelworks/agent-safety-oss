@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/query_penalty",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "조문·문서 위반 시 처벌 조회 (과태료·벌금·형사)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Query Penalty",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 법정문서 미작성 또는 조문 위반 시 적용되는 처벌(과태료·벌금·징역) 조회. 입력은 docId 또는 articleRef. 그래프 노드의 penalizedBy/penaltyOnMissing 엣지 추적. Phase 1 P1 — 점진 확장 중, 현재 산안법 §175(굴착 작업계획서 미작성) 등록 완료.",
+  "toolName": "query_penalty",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/query_penalty",
+  "producesEntity": [
+    "safety:Penalty"
+  ],
+  "maps_to_action": "safety:action/query_penalty",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

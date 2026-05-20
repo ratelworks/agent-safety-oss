@@ -1,0 +1,338 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_demolition",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_demolition",
+  "title": "해체 작업계획서",
+  "description": "구축물·건축물·시설물 해체작업 (별표 4 10호, 2023-11-14 개정으로 확장)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "구축물·건축물 해체 작업 전",
+  "applicableWhen": {
+    "workType": "demolition"
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-10호"
+  ],
+  "requiredFields": [
+    {
+      "key": "preSurvey.structure",
+      "label": "해체건물 등의 구조",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "해체 대상 건물 구조 — 철근콘크리트·철골·조적조·목구조 등 + 층수·연면적.",
+      "examples": [
+        "철근콘크리트조 (지하 2·지상 8층, 연면적 4,200㎡)"
+      ]
+    },
+    {
+      "key": "f_1_주변_상황",
+      "label": "주변 상황",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "인근 건물·도로·전선·지하매설물 + 보행자 동선 + 학교·병원 등 민감 시설.",
+      "examples": [
+        "전면 인접 건물 5m / 후면 6차선 도로 / 학교 80m / 지하 도시가스 매설"
+      ]
+    },
+    {
+      "key": "f_2_해체의_방법_및_해체_",
+      "label": "해체의 방법 및 해체 순서도면",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "해체 공법 (압쇄·발파·기계·인력 등) + 단계별 해체 순서 도면 첨부.",
+      "examples": [
+        "상층부 압쇄 + 하층부 인력 (8층→1층 순) / 도면 첨부"
+      ]
+    },
+    {
+      "key": "f_3_가설설비_방호설비_환기",
+      "label": "가설설비·방호설비·환기설비 및 살수·방화설비 등의 방법",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "비계·낙하방호망·분진차단막·살수설비 위치 + 작동 방법.",
+      "examples": [
+        "외부 시스템비계 + 분진차단막 (이중) + 상시 살수 + 소화기 6층마다 2대"
+      ]
+    },
+    {
+      "key": "communication",
+      "label": "사업장 내 연락방법",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "현장 내 비상·긴급 연락 체계 (무전기·확성기·핫라인).",
+      "examples": [
+        "현장: 무전기 채널 7 / 119·112 직통 / 안전관리자 010-1234-5678"
+      ]
+    },
+    {
+      "key": "f_5_해체물의_처분계획",
+      "label": "해체물의 처분계획",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "해체 폐기물 분리·반출·재활용 계획 (석면·납·PCB 등 유해물 별도).",
+      "examples": [
+        "철근콘크리트 분리 → 인근 재활용업체 / 석면 함유 폐기물 → 지정폐기물 처리업체"
+      ]
+    },
+    {
+      "key": "f_6_해체작업용_기계_기구_",
+      "label": "해체작업용 기계·기구 등의 작업계획서",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "굴삭기·압쇄기·크러셔 등 사용 기계 + 안전조치.",
+      "examples": [
+        "굴삭기 30톤 (압쇄기 부착) 1대 / 크러셔 1대 / 안전검사필증 첨부"
+      ]
+    },
+    {
+      "key": "f_7_해체작업용_화약류_등의",
+      "label": "해체작업용 화약류 등의 사용계획서",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "발파 사용 시 화약류 종류·수량·관리책임자 (해체에서 발파 사용은 드묾).",
+      "examples": [
+        "해당 없음 (인력·기계 해체)"
+      ]
+    },
+    {
+      "key": "f_8_그_밖에_안전_보건에_",
+      "label": "그 밖에 안전·보건에 관련된 사항",
+      "source": "산안기준규칙 제38조 + 별표 4 10호",
+      "inputGuide": "위 항목 외 추가 안전조치·보건조치.",
+      "examples": [
+        "소음·진동 인근 민원 대응 + 작업시간 제한 (08:00~17:00) + 분진 측정 주 1회"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "작업계획 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-10호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 해체 작업계획서 (별표 4 11호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 11호",
+      "fields": [
+        {
+          "key": "preSurvey",
+          "label": "사전조사 (해체 대상 구조·석면·인접·지장물)",
+          "required": true,
+          "inputGuide": "해체 대상 건축물 구조·재질·석면 함유·인접 시설.",
+          "examples": [
+            "1978년 RC조 5층, 외벽 석면 양성(별첨), 인접 도로 5m, 지하 도시가스"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "demolitionMethod",
+          "label": "해체 방법·순서",
+          "required": true,
+          "inputGuide": "기계식·발파·인력 + 해체 순서.",
+          "examples": [
+            "기계식(굴삭기 + 압쇄기), 5층 → 1층 순차"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardArea",
+          "label": "위험구역 설정·통제",
+          "required": true,
+          "inputGuide": "낙하 반경 + 통제 펜스.",
+          "examples": [
+            "반경 H/2 + 5m, 펜스·낙하방지망"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "dustControl",
+          "label": "분진·소음 제어",
+          "required": true,
+          "inputGuide": "살수·방진막.",
+          "examples": [
+            "살수 차량 1대 상시 + 방진막 H10m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "asbestosHandling",
+          "label": "석면 처리 (해당 시)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "석면 양성 시 별도 해체업체.",
+          "examples": [
+            "석면 양성 → (주)한국석면해체 별도 위탁"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "emergencyPlan",
+          "label": "비상조치 계획",
+          "required": true,
+          "inputGuide": "붕괴·인접 손상 시.",
+          "examples": [
+            "1) 즉시 작업 중단, 2) 119 + 인접 시설 통보"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [
+    "doc:kosha_guide/C-36-2011",
+    "doc:kosha_guide/C-47-2023",
+    "doc:kosha_guide/G-131-2020",
+    "doc:kosha_guide/G-6-2011",
+    "doc:kosha_guide/H-100-2012",
+    "doc:kosha_guide/H-199-2018",
+    "doc:kosha_guide/H-70-2020",
+    "doc:kosha_guide/E-G-7-2025",
+    "doc:kosha_guide/M-82-2011"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "해체",
+      "철거"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:falling_object",
+    "hazard:dust",
+    "hazard:noise"
+  ],
+  "appliesToActivities": [
+    "activity:demolition"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:eng_isolation_barrier"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/asbestos_investigation_report"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

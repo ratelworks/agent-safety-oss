@@ -1,0 +1,330 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/safety_health_regulation",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_regulation",
+  "title": "안전보건관리규정",
+  "description": "사업장 안전보건 유지 위한 관리규정 (산안법 제25조)",
+  "cycle": "cyc:annual",
+  "legalBasis": [
+    "art:산안법:25",
+    "art:산안법시행규칙:25",
+    "art:산안법:26"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "f_1_작성일",
+      "label": "작성일",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "YYYY-MM-DD 형식. 작성·점검·평가 실제 시행 일자.",
+      "examples": [
+        "2026-04-29",
+        "2026-05-15"
+      ]
+    },
+    {
+      "key": "f_2_안전보건_관리조직과_직",
+      "label": "안전보건 관리조직과 직무",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "수행 업무.",
+      "examples": [
+        "안전관리"
+      ]
+    },
+    {
+      "key": "f_3_안전보건교육에_관한_사",
+      "label": "안전보건교육에 관한 사항",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "안전보건교육 관련 규정 (대상·시기·시간·방법).",
+      "examples": [
+        "1) 정기교육 (관리감독자 16시간/년, 근로자 6시간/분기) / 2) 신규채용 8시간 / 3) 작업변경 2시간"
+      ]
+    },
+    {
+      "key": "f_4_작업장_안전_보건관리에",
+      "label": "작업장 안전·보건관리에 관한 사항",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "작업장 안전·보건관리 규정.",
+      "examples": [
+        "1) 위험성평가 매월 / 2) 합동점검 분기 / 3) MSDS 비치 / 4) 보호구 지급·교체"
+      ]
+    },
+    {
+      "key": "f_5_사고_조사_대책_수립",
+      "label": "사고 조사·대책 수립",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "재해·아차사고 조사·대책 수립 절차.",
+      "examples": [
+        "1) 24시간 내 1차 조사 / 2) 7일 내 보고서 / 3) 재발방지 대책 + 이행 점검"
+      ]
+    },
+    {
+      "key": "f_6_그_밖에_안전보건_관련",
+      "label": "그 밖에 안전보건 관련",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "기타 안전보건 관련 사항.",
+      "examples": [
+        "1) 비상연락망 / 2) 응급처치 / 3) 외국인 모국어 교육 / 4) 종사자 의견 청취"
+      ]
+    },
+    {
+      "key": "f_7_근로자_대표_의견_청취",
+      "label": "근로자 대표 의견 청취",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "규정 제·개정 시 근로자대표 의견 청취 (산안법 제26조).",
+      "examples": [
+        "2026-01-15 근로자대표 (이작업) 서면 동의 + 회의록 첨부"
+      ]
+    },
+    {
+      "key": "f_8_사업주_서명",
+      "label": "사업주 서명",
+      "source": "산안법 제25조 + 시행규칙 별표3",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "5+1항목 작성",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:25"
+    },
+    {
+      "rule": "산업안전보건위원회 또는 근로자대표 의견 청취",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:26"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건관리규정",
+      "legalSource": "산안법 제25조 + 시행규칙 제25조",
+      "fields": [
+        {
+          "key": "chapter1_general",
+          "label": "제1장 총칙 (목적·적용범위)",
+          "required": true,
+          "inputGuide": "규정 목적·적용 대상.",
+          "examples": [
+            "본 규정은 산안법 제25조에 따라 황룡건설(주) 전 사업장 안전보건 사항을 규정"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "chapter2_organization",
+          "label": "제2장 안전보건관리체제",
+          "required": true,
+          "inputGuide": "안전보건관리책임자·관리감독자·안전관리자 직무.",
+          "examples": [
+            "안전보건관리책임자(현장소장) + 관리감독자 + 전임 안전관리자 1명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "chapter3_education",
+          "label": "제3장 안전보건교육",
+          "required": true,
+          "inputGuide": "정기·신규·작업변경·특별교육 시행.",
+          "examples": [
+            "매월 정기교육 / 신규채용시 8시간 / 작업변경 2시간 / 특별교육 16시간"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "chapter4_workplace",
+          "label": "제4장 작업장 안전",
+          "required": true,
+          "inputGuide": "위험성평가·작업계획서·작업허가.",
+          "examples": [
+            "매월 위험성평가, 별표 4 9종 작업계획서, P-94 작업허가서"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "chapter5_health",
+          "label": "제5장 보건관리",
+          "required": true,
+          "inputGuide": "건강진단·작업환경측정·MSDS.",
+          "examples": [
+            "일반·특수건강진단, 반기 작업환경측정, 화학물질 MSDS"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "chapter6_emergency",
+          "label": "제6장 사고·비상대응",
+          "required": true,
+          "inputGuide": "중대재해 보고·응급조치·대피.",
+          "examples": [
+            "사고 즉시 보고, 119 신고, 대피로·집결지 매뉴얼"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "지속",
+  "guidedBy": [
+    "doc:kosha_guide/A-R-1-2026"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:25",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "안전보건관리체계",
+      "관리규정",
+      "경영방침"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "administrative",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:fifty_persons_or_more",
+    "scaleNotes": "사업장 50인 이상 (건설업 100인 이상). 시행령 별표 2."
+  },
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "src:law_go_kr",
+    "src:kosha_portal",
+    "manual:kosha_ms",
+    "manual:kosha_ms_domain_leadership",
+    "manual:kosha_ms_domain_planning",
+    "manual:kosha_ms_domain_operation",
+    "manual:kosha_ms_domain_check",
+    "manual:kosha_ms_domain_review",
+    "entity:moel",
+    "entity:kosha",
+    "entity:moleg"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "relatedDocs": [
+    "doc:annual/safety_health_management_policy",
+    "doc:monthly/health_safety_committee",
+    "doc:annual/risk_assessment_procedure"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

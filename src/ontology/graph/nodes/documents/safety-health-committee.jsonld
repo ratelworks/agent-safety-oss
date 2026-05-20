@@ -1,0 +1,241 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:quarterly/safety_health_committee",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_committee",
+  "title": "산업안전보건위원회 회의록",
+  "description": "산업안전보건위원회 회의록 - 산안법:24 + 산안법시행령:34 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:quarterly",
+  "trigger": "분기",
+  "legalBasis": [
+    "art:산안법:24",
+    "art:산안법시행령:34"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_safety_health_committee",
+    "officialName": "산업안전보건위원회 회의록 (KOSHA)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 산업안전보건위원회 회의록 (분기)",
+      "legalSource": "산안법 제24조 + 시행령 제34조 (100인 이상 의무)",
+      "fields": [
+        {
+          "key": "meetingNumber",
+          "label": "회의 회차",
+          "required": true,
+          "inputGuide": "분기별 일련번호.",
+          "examples": [
+            "2026-Q2 (2분기 정기)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "meetingDate",
+          "label": "회의 일시",
+          "required": true,
+          "inputGuide": "분기 1회 이상.",
+          "examples": [
+            "2026-04-29 14:00~15:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "members",
+          "label": "위원 (사용자·근로자 동수)",
+          "required": true,
+          "inputGuide": "산안법 제24조 ② 위원 구성.",
+          "examples": [
+            "사용자측 5명 + 근로자측 5명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "agenda",
+          "label": "심의·의결 사항",
+          "required": true,
+          "inputGuide": "산안법 제24조 ③ 8개 항목.",
+          "examples": [
+            "1) 산재예방계획 / 2) 안전보건관리규정 / 3) 위험성평가 / 4) 산재 발생 보고 / 5) 안전보건관리비 / 6) 도급사업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "decisions",
+          "label": "의결 사항",
+          "required": true,
+          "inputGuide": "위원회 결정.",
+          "examples": [
+            "1) 분기 위험성평가 강화 / 2) 산재예방 교육 추가"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "recordKeeping",
+          "label": "회의록 보존 (3년)",
+          "required": true,
+          "inputGuide": "산안법 제164조.",
+          "examples": [
+            "3년 보존 (2029-04-29까지)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:24",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:24",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:24",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "appointment",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "100인 이상 또는 별표 9"
+  },
+  "hasHazard": [],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_supervisor",
+    "control:admin_safety_education"
+  ],
+  "relatedDocs": [
+    "doc:annual/safety_health_management_policy",
+    "doc:monthly/contractor_safety_council",
+    "doc:monthly/monthly_risk_assessment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

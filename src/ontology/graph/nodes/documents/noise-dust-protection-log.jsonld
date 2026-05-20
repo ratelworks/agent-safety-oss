@@ -1,0 +1,245 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/noise_dust_protection_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "noise_dust_protection_log",
+  "title": "소음·분진 작업장 측정·보호구 대장",
+  "description": "소음·분진 작업장 측정·보호구 대장 - 산안기준규칙:511 + 산안기준규칙:607 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:monthly",
+  "trigger": "매월",
+  "legalBasis": [
+    "art:기준규칙:511",
+    "art:기준규칙:607"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_noise_dust_protection_log",
+    "officialName": "소음·분진 작업장 측정·보호구 대장 (KOSHA)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 소음·분진 작업장 측정·보호구 대장",
+      "legalSource": "산안기준규칙 제511조·제607조",
+      "fields": [
+        {
+          "key": "measureDate",
+          "label": "측정 일시",
+          "required": true,
+          "inputGuide": "매월.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "measureLocation",
+          "label": "측정 지점",
+          "required": true,
+          "inputGuide": "소음·분진 노출 작업장.",
+          "examples": [
+            "A동 골조 작업장 + B동 콘크리트 절단"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "noiseLevel",
+          "label": "소음 (dB)",
+          "required": true,
+          "inputGuide": "TWA dB(A) 측정.",
+          "examples": [
+            "85.3 dB(A) (8h TWA)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "dustLevel",
+          "label": "분진 (mg/m³)",
+          "required": true,
+          "inputGuide": "호흡성 분진 mg/m³.",
+          "examples": [
+            "0.7 mg/m³ (호흡성)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "exposedWorkers",
+          "label": "노출 근로자",
+          "required": true,
+          "inputGuide": "노출 인원·시간.",
+          "examples": [
+            "12명 × 8시간"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "protectionPPE",
+          "label": "보호구 지급",
+          "required": true,
+          "inputGuide": "이어플러그·방진마스크.",
+          "examples": [
+            "이어플러그 12개 + 방진마스크(N95) 12개 지급"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:511",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:511",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "retention": "5년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:511",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "register",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "노출 작업장"
+  },
+  "hasHazard": [
+    "hazard:noise",
+    "hazard:dust",
+    "hazard:vibration_exposure"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Hazard",
+  "mitigatedBy": [
+    "control:ppe_hearing_protection",
+    "control:ppe_respirator",
+    "control:eng_ventilation",
+    "control:eng_noise_barrier"
+  ],
+  "relatedDocs": [
+    "doc:semi_annual/work_environment_measurement",
+    "doc:annual/health_examination_records"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

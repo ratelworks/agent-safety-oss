@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_work_plan_schema",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작업계획서 스키마",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Work Plan Schema",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 작업계획서 작성 스키마 (산안기준규칙 §38 ① 별표 4 13종). workType 으로 공종 선택 시 해당 호의 사전조사·작업계획 필수 항목을 자동 구성. LLM 은 이 스키마의 필수 필드를 채워 초안 작성. 별표 4 원문은 `get_safety_law_article('산안기준규칙 §38')` 로 조회.",
+  "toolName": "get_work_plan_schema",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_work_plan_schema",
+  "producesEntity": [
+    "safety:DocumentSchema"
+  ],
+  "maps_to_action": "safety:action/create_work_plan",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

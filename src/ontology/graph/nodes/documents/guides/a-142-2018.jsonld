@@ -1,0 +1,87 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/A-142-2018",
+  "@type": "Document",
+  "docId": "kosha_guide_a-142-2018",
+  "title": "디에탄올아민에 대한 작업환경측정 분석 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "A-142-2018",
+    "guideCategory": "occupational_hygiene",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 2건 (법령 2 / KOSHA Guide 0). keyword=\"디에탄올아민\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "디에탄올아민"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA03_[별표 21] 작업환경측정 대상 유해인자(제186조제1항 관련)",
+      "title": "[별표 21] 작업환경측정 대상 유해인자(제186조제1항 관련)",
+      "category": "3",
+      "score": 17.937
+    },
+    {
+      "docId": "KOSHA04_[별표 12] 관리대상 유해물질의 종류(제420조, 제439조 및 제440조 관련)",
+      "title": "[별표 12] 관리대상 유해물질의 종류(제420조, 제439조 및 제440조 관련)",
+      "category": "4",
+      "score": 17.942
+    }
+  ]
+}

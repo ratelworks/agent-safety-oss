@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fall_from_height_bridge_5m_30m",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fall_from_height_bridge_5m_30m",
+  "title": "fall_from_height × bridge_5m_30m",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 25건 관측. 사고유형 fall_from_height 작업유형 bridge_5m_30m.",
+  "koshaAccidentType": "fall_from_height",
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "causedBy": [
+    "activity:bridge_5m_30m"
+  ],
+  "caseFrequency": 25,
+  "sampleKeywords": [
+    "교량 PSC빔 거치작업 중 떨어짐(사망1명, 부상2명)",
+    "교량 슬래브 하면 정리작업 중 작업대 탈락(사망 2명)",
+    "교량 슬래브 하면 정리작업 중 작업대 탈락(사망 2명)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

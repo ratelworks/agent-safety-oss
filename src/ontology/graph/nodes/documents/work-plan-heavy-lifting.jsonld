@@ -1,0 +1,288 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_heavy_lifting",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_heavy_lifting",
+  "title": "중량물 작업계획서",
+  "description": "중량물 취급작업 (별표 4 11호)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "중량물 취급 작업 전",
+  "applicableWhen": {
+    "workType": "heavy_lifting"
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-11호",
+    "art:기준규칙:168"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_추락위험_예방_안전대책",
+      "label": "추락위험 예방 안전대책",
+      "source": "산안기준규칙 제38조 + 별표 4 11호",
+      "inputGuide": "중량물 작업 시 추락 예방 대책.",
+      "examples": [
+        "고소작업대 작업 시 안전대 100% 체결 + 안전난간"
+      ]
+    },
+    {
+      "key": "f_1_낙하위험_예방_안전대책",
+      "label": "낙하위험 예방 안전대책",
+      "source": "산안기준규칙 제38조 + 별표 4 11호",
+      "inputGuide": "중량물 낙하 예방 대책 (양중 시).",
+      "examples": [
+        "두 줄 걸이 + 와이어로프 안전계수 5 이상 + 신호수 + 하부 통제선 (반경 1.5배)"
+      ]
+    },
+    {
+      "key": "f_2_전도위험_예방_안전대책",
+      "label": "전도위험 예방 안전대책",
+      "source": "산안기준규칙 제38조 + 별표 4 11호",
+      "inputGuide": "중장비 전도 예방 대책.",
+      "examples": [
+        "아우트리거 4개소 완전 펴기 + 강판 받침대 + 지반 평탄도 확인"
+      ]
+    },
+    {
+      "key": "f_3_협착위험_예방_안전대책",
+      "label": "협착위험 예방 안전대책",
+      "source": "산안기준규칙 제38조 + 별표 4 11호",
+      "inputGuide": "양중 하부 협착 예방 대책.",
+      "examples": [
+        "양중 하부 작업자 진입 금지 + 신호수 + 무전기 통신"
+      ]
+    },
+    {
+      "key": "f_4_붕괴위험_예방_안전대책",
+      "label": "붕괴위험 예방 안전대책",
+      "source": "산안기준규칙 제38조 + 별표 4 11호",
+      "inputGuide": "지반·구조물 붕괴 예방 대책.",
+      "examples": [
+        "지반 다짐도 확인 + 작업 중량 < 지반 지지력 / 인접 구조물 균열 점검"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "5대 위험 모두 안전대책 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-11호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 중량물 작업계획서 (별표 4 5호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 5호",
+      "fields": [
+        {
+          "key": "loadInfo",
+          "label": "중량물 정보 (중량·치수·중심)",
+          "required": true,
+          "inputGuide": "단위 중량 × 개수 + 치수 + 중심위치.",
+          "examples": [
+            "철골 보 5톤 × 12개, 길이 12m, 중심 6m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "liftingMethod",
+          "label": "양중 방법·장비",
+          "required": true,
+          "inputGuide": "이동식크레인·타워크레인·체인블록.",
+          "examples": [
+            "이동식크레인 50톤 × 1대, 50m 반경 8톤"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "riggingPlan",
+          "label": "줄걸이 계획",
+          "required": true,
+          "inputGuide": "슬링벨트·체인·정격하중·각도.",
+          "examples": [
+            "슬링벨트 5톤 × 4본, 60° 각도"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "liftingSequence",
+          "label": "양중 순서",
+          "required": true,
+          "inputGuide": "단계별 양중 + 정착.",
+          "examples": [
+            "1) 지상 인양 → 2) 5층 위치 이동 → 3) 정착 → 4) 슬링 해제"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "lossPath",
+          "label": "낙하·전도 방지",
+          "required": true,
+          "inputGuide": "안전대 + 가이드·태그라인.",
+          "examples": [
+            "태그라인 2조, 가이드라인 + 안전대 100% Tie-off"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [
+    "doc:kosha_guide/A-G-17-2026",
+    "doc:kosha_guide/G-10-2023",
+    "doc:kosha_guide/G-40-2012",
+    "doc:kosha_guide/G-90-2015",
+    "doc:kosha_guide/K-1-2023",
+    "doc:kosha_guide/X-36-2016",
+    "doc:kosha_guide/G-91-2012"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "중량물",
+      "양중",
+      "운반"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:ergonomic_overload",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [
+    "activity:heavy_lifting"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:admin_signal_person",
+    "control:eng_machine_guard",
+    "control:ppe_helmet"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_permit_heavy_lifting",
+    "doc:daily/tower_crane_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "manual:kosha_ms",
+  "@type": "Manual",
+  "label": "KOSHA-MS 안전보건경영시스템",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단",
+    "sourceRef": "kosha_portal",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "KOSHA가 인증하는 안전보건경영시스템 표준. 산안법 제15조 안전보건관리체계와 정합. 5개 영역 32개 항목.",
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:risk_assessment_general"
+  ],
+  "isPartOf": "src:kosha_portal",
+  "references": [
+    "facet:group/ctgr01",
+    "facet:group/ctgr02",
+    "facet:group/ctgr03",
+    "facet:group/ctgr04",
+    "facet:group/ctgr05"
+  ]
+}

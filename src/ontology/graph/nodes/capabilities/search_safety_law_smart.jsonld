@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_safety_law_smart",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "KOSHA 안전보건법령 스마트검색 ",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Safety Law Smart",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 안전보건법령 스마트검색 (data.go.kr 15123696) 호출. AI 유사어로 산안법·시행령·시행규칙·기준규칙·고시·중대재해처벌법·KOSHA GUIDE·미디어·취업제한규칙을 한 번에 검색. category=0(전체) 또는 1~11 분류별. '보호구'→안전대·방진마스크 자동 확장, '스카이'→고소작업대 매칭 등 키워드 의미 확장. 응답에는 카테고리별 매칭 건수·AI 유사어·각 자료의 score·doc_id·title·content 포함. (근거 등급: recommended — 검색·인용용, 법적 강제는 원문 기준)",
+  "toolName": "search_safety_law_smart",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/search_safety_law_smart",
+  "maps_to_action": "safety:action/search_safety_law_smart",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

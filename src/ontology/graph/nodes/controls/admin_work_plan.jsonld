@@ -1,0 +1,42 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_work_plan",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_work_plan",
+  "label": "작업계획서 작성",
+  "description": "굴착·양중·해체·차량계 장비 등 사전계획이 필요한 작업에서 순서, 장비, 통제수단을 문서화하는 관리 통제.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:formwork_shoring",
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:phc_pile_driving",
+    "activity:precast_installation",
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "작업계획"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

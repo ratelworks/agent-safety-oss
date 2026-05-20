@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_downloadable_forms",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "다운로드 가능 양식 목록",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Downloadable Forms",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 132종 양식(공식 hwp/pdf/xlsx 38 + 자동생성 .md 94)을 format·category·query 로 필터·인덱스. 라이프사이클 §1.2 작성 단계의 양식 진입점. 단일 양식 본문은 get_official_form 도구 사용.",
+  "toolName": "list_downloadable_forms",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/list_downloadable_forms",
+  "producesEntity": [
+    "safety:DocumentForm"
+  ],
+  "maps_to_action": "safety:action/list_downloadable_forms",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

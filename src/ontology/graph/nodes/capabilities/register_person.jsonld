@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/register_person",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "인력 등록",
+      "@language": "ko"
+    },
+    {
+      "@value": "Register Person",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 사용자 SSoT — 직원·근로자 등록. role 에 '안전관리자', '관리감독자', '현장소장', '근로자대표' 명시 시 결재선 자동 구성됨.",
+  "toolName": "register_person",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/register_person",
+  "producesEntity": [
+    "safety:PersonProfile"
+  ],
+  "maps_to_action": "safety:action/register_person",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

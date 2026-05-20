@@ -1,0 +1,110 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-14-2011",
+  "@type": "Document",
+  "docId": "kosha_guide_g-14-2011",
+  "title": "기계적 진동과 충격의 임상실험에 대한 안전가이드",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-14-2011",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"기계적\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 1,
+      "5": 7,
+      "6": 581,
+      "7": 302,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "기계적",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:vibration_exposure",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_기계적 진동과 충격의 임상실험에 대한 안전가이드_4",
+      "title": "기계적 진동과 충격의 임상실험에 대한 안전가이드 - 기계적 진동과 충격 실험의 위험요소와 위험도",
+      "score": 42.951
+    },
+    {
+      "docId": "KOSHA07_기계적 진동과 충격의 임상실험에 대한 안전가이드_2",
+      "title": "기계적 진동과 충격의 임상실험에 대한 안전가이드 - 적용범위",
+      "score": 37.711
+    },
+    {
+      "docId": "KOSHA07_기계적 진동과 충격의 임상실험에 대한 안전가이드_1",
+      "title": "기계적 진동과 충격의 임상실험에 대한 안전가이드 - 목적",
+      "score": 36.569
+    },
+    {
+      "docId": "KOSHA07_기계적 진동과 충격의 임상실험에 대한 안전가이드_6",
+      "title": "기계적 진동과 충격의 임상실험에 대한 안전가이드 - 실험 시 안전보건 지침",
+      "score": 35.079
+    },
+    {
+      "docId": "KOSHA07_기계적 진동과 충격의 임상실험에 대한 안전가이드_7",
+      "title": "기계적 진동과 충격의 임상실험에 대한 안전가이드 - 실험대상자의 선발",
+      "score": 33.604
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA03_[별표 5] 안전보건교육 교육대상별 교육내용(제26조제1항 등 관련)",
+      "title": "[별표 5] 안전보건교육 교육대상별 교육내용(제26조제1항 등 관련)",
+      "category": "3",
+      "score": 4.781
+    },
+    {
+      "docId": "KOSHA04_002000003000001000000000303000",
+      "title": "제303조 전기 기계ㆍ기구의 적정설치 등",
+      "category": "4",
+      "score": 17.853
+    },
+    {
+      "docId": "KOSHA05_방호장치 자율안전기준 고시000000004000001000000000000000006000",
+      "title": "방호장치 자율안전기준 고시 제6조 정의",
+      "category": "5",
+      "score": 19.046
+    },
+    {
+      "docId": "KOSHA05_터널공사표준안전작업지침-NATM공법000000008000000000000000000000028000",
+      "title": "터널공사표준안전작업지침-NATM공법 제28조 계측기의 관리",
+      "category": "5",
+      "score": 17.556
+    },
+    {
+      "docId": "KOSHA05_제1차 금속산업 안전작업지침000000003000000000000000000000013000",
+      "title": "제1차 금속산업 안전작업지침 제13조 점토포",
+      "category": "5",
+      "score": 17.297
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_archived_documents",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "보관된 문서 목록",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Archived Documents",
+      "@language": "en"
+    }
+  ],
+  "description": "프로젝트 메타, A2UI 렌더링, 로컬 초안·보관소 상태를 관리하는 capability. documents/ 디렉토리의 모든 보관 문서 (또는 특정 docId 필터).",
+  "toolName": "list_archived_documents",
+  "category": "meta",
+  "inputSchema": "safety:schema/input/list_archived_documents",
+  "producesEntity": [
+    "safety:ArchiveIndex"
+  ],
+  "maps_to_action": "safety:action/list_archived_documents",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

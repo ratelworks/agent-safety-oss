@@ -1,0 +1,99 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:formwork_shoring",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "거푸집·동바리 작업",
+  "category": "structural",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-28",
+    "graphEnrichmentNote": "Activity 14개 신규 보강 — 건설 주요 공종 인벤토리 완성 (RC/철골/비계/거푸집/마감/방수/PHC/석면/토공/포장/타워조립/하수/지하매설)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "description": "거푸집·동바리 조립·해체. 시스템동바리 + 콘크리트 타설 압력 + 양중 위험.",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:cave_in",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:331",
+    "art:기준규칙:332",
+    "art:기준규칙:333",
+    "art:기준규칙:334"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-36-2011",
+    "doc:kosha_guide/D-C-8-2026",
+    "doc:kosha_guide/D-C-9-2026"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr03/01",
+    "facet:ctgr03/02"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:cave_in",
+      "hazard:struck_by",
+      "hazard:crushing"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/concrete",
+  "workTypeLabel": {
+    "ko": "콘크리트 타설·구조 작업",
+    "en": "Concrete placement and structural work"
+  }
+}

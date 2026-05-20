@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_kosha_archive",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "KOSHA 안전보건자료실 Live 검색 (8,976건)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Kosha Archive",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 지침·자료실·법령 번들을 검색하거나 본문·facet·첨부 파일을 조회하는 capability. KOSHA 산업안전포털 안전보건자료실의 OPS·동영상·책자·교안·기타 8,976건을 Live 로 검색. 키워드 + 5개 facet (일반분야·기계설비·작업·직업건강·특수형태) + 페이지네이션. 응답에 자료별 공공누리 유형(medGonggongnuriNm) 자동 포함. 검색 후 contsAtcflNo 로 get_kosha_archive_files 호출하여 다운로드 URL 조립. **API 키 불필요** (KOSHA portal24 비로그인 endpoint).",
+  "toolName": "search_kosha_archive",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/search_kosha_archive",
+  "producesEntity": [
+    "safety:KoshaArchiveMaterial"
+  ],
+  "maps_to_action": "safety:action/search_kosha_archive",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

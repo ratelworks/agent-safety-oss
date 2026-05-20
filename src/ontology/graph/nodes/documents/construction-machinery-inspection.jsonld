@@ -1,0 +1,384 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/construction_machinery_inspection",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "construction_machinery_inspection",
+  "title": "건설기계 일상점검",
+  "description": "기준규칙 제78조~제116조 건설기계 안전. 운전 시작 전 일일점검. KOSHA Guide C-G-21 권장 양식. 굴삭기·로더·덤프트럭·롤러·콘크리트펌프·믹서트럭·크레인 운반차 등.",
+  "cycle": "cyc:daily",
+  "trigger": "운전 시작 전 매일",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "건설기계 사용 모든 현장."
+  },
+  "legalBasis": [
+    "art:기준규칙:78",
+    "art:기준규칙:79",
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-3호",
+    "art:기준규칙:86",
+    "art:기준규칙:98",
+    "art:기준규칙:99",
+    "art:기준규칙:100",
+    "art:기준규칙:104"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_점검_일자",
+      "label": "점검 일자",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "점검 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "f_1_점검자",
+      "label": "점검자",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "작성한 사람의 성명 + 직책 + (가능 시) 자격번호.",
+      "examples": [
+        "홍길동 (안전관리자, 산업안전기사 자격 1234567호)",
+        "김철수 (현장소장)"
+      ]
+    },
+    {
+      "key": "f_2_기계_종류_모델",
+      "label": "기계 종류·모델",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "건설기계 종류 + 모델.",
+      "examples": [
+        "굴삭기 22톤 / Volvo EC220"
+      ]
+    },
+    {
+      "key": "f_3_엔진_유압",
+      "label": "엔진·유압",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "엔진·유압 시스템 정상 작동.",
+      "examples": [
+        "엔진 정상 / 유압 누유 없음 / 유압유 적정"
+      ]
+    },
+    {
+      "key": "f_4_브레이크",
+      "label": "브레이크",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "브레이크 작동·마모 점검.",
+      "examples": [
+        "주차·작업 브레이크 정상 / 마모 30% (한도 70%)"
+      ]
+    },
+    {
+      "key": "f_5_타이어_궤도",
+      "label": "타이어·궤도",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "타이어 공기압·마모 또는 궤도 장력·마모.",
+      "examples": [
+        "궤도 장력 정상 / 마모 25% (한도 60%)"
+      ]
+    },
+    {
+      "key": "f_6_전도방지장치",
+      "label": "전도방지장치",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "전도방지장치·아우트리거·안전바 작동.",
+      "examples": [
+        "아우트리거 4개소 정상 작동 / 안전바 정상"
+      ]
+    },
+    {
+      "key": "f_7_신호장치",
+      "label": "신호장치",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "경음기·후진경보·점멸등 작동.",
+      "examples": [
+        "전체 정상 (90dB 이상)"
+      ]
+    },
+    {
+      "key": "f_8_결과__적합_부적합_",
+      "label": "결과 (적합/부적합)",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "적합 / 부적합 + 부적합 시 시정 사항.",
+      "examples": [
+        "적합"
+      ]
+    },
+    {
+      "key": "f_9_조치_내용",
+      "label": "조치 내용",
+      "source": "산안법 제93조 + KOSHA Guide",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 운전자 자격증 + 일일점검 서명",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:86"
+    },
+    {
+      "rule": "필수 — 제동·후진경보·전도방지 3종 작동",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:79"
+    },
+    {
+      "rule": "필수 — 정격하중 초과 작업 금지",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:79"
+    }
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "scope": "construction",
+    "note": "건설안전 특화 의무문서 (Phase 3 wave1 — 기준규칙 + KCS + KOSHA C 시리즈 권장 양식 통합).",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "guidedBy": [
+    "doc:kosha_guide/C-103-2014",
+    "doc:kosha_guide/D-C-11-2026",
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/C-48-2022",
+    "doc:kosha_guide/H-77-2012",
+    "doc:kosha_guide/H-177-2015",
+    "doc:kosha_guide/H-169-2015",
+    "doc:kosha_guide/E-M-3-2025",
+    "doc:kosha_guide/E-M-6-2026",
+    "doc:kosha_guide/E-M-7-2026",
+    "doc:kosha_guide/E-M-8-2026",
+    "doc:kosha_guide/M-159-2012",
+    "doc:kosha_guide/D-55-2016",
+    "doc:kosha_guide/D-57-2016",
+    "doc:kosha_guide/A-G-18-2026",
+    "doc:kosha_guide/G-100-2013",
+    "doc:kosha_guide/M-153-2012",
+    "doc:kosha_guide/M-49-2023",
+    "doc:kosha_guide/E-96-2011",
+    "doc:kosha_guide/C-71-2012",
+    "doc:kosha_guide/C-82-2020",
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/C-50-2012",
+    "doc:kosha_guide/G-40-2012",
+    "doc:kosha_guide/H-172-2015"
+  ],
+  "searchKeywords": [
+    "건설기계 일일점검",
+    "굴삭기 점검",
+    "차량계 점검"
+  ],
+  "hasHazard": [
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:crushing",
+    "hazard:caught_in"
+  ],
+  "appliesToActivities": [
+    "activity:vehicle_construction",
+    "activity:vehicle_cargo",
+    "activity:earthwork_landfill",
+    "activity:phc_pile_driving",
+    "activity:road_pavement"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 건설기계 일상점검",
+      "legalSource": "산안기준규칙 제136조 + 별표 7",
+      "fields": [
+        {
+          "key": "inspectionDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "매 작업일 시작 전.",
+          "examples": [
+            "2026-04-29 07:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "machineId",
+          "label": "기계명·일련번호",
+          "required": true,
+          "inputGuide": "이동식크레인·굴삭기·덤프트럭 등.",
+          "examples": [
+            "이동식크레인 KOBELCO RK-500 (KO-2024-1234)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "operator",
+          "label": "운전자 (자격)",
+          "required": true,
+          "inputGuide": "면허 운전자.",
+          "examples": [
+            "박운전 (이동식크레인운전기능사)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checkItems",
+          "label": "점검 항목 (별표 7)",
+          "required": true,
+          "inputGuide": "엔진·유압·브레이크·조향·방호장치·안전장치.",
+          "examples": [
+            [
+              {
+                "항목": "엔진오일",
+                "결과": "양호"
+              },
+              {
+                "항목": "유압",
+                "결과": "양호"
+              },
+              {
+                "항목": "브레이크",
+                "결과": "양호"
+              },
+              {
+                "항목": "과부하방지장치",
+                "결과": "양호"
+              },
+              {
+                "항목": "권과방지장치",
+                "결과": "양호"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "이상·조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "이상 시 사용 중지·정비.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:eng_machine_guard"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/safety_inspection_application",
+    "doc:daily/tower_crane_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

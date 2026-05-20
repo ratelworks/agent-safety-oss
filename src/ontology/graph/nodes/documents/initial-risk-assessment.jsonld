@@ -1,0 +1,479 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/initial_risk_assessment",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "initial_risk_assessment",
+  "title": "최초 위험성평가",
+  "alternativeNames": [
+    "최초평가",
+    "사업장 성립 후 1개월 내 평가"
+  ],
+  "description": "사업장 성립일(건설업 = 실착공일)로부터 1개월이 되는 날까지 위험성평가의 대상이 되는 모든 유해·위험요인에 대해 실시. 이후 정기·수시·상시 평가의 토대.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "사업장 성립일(건설업 = 실착공일)로부터 1개월이 되는 날까지 위험성평가의 대상이 되는 모든 유해·위험요인에 대해 실시. 이후 정기·수시·상시 평가의 토대.",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "50인 미만 + 50억 미만 건설현장도 동일 적용. 단기 공사도 면제 X."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "f_0_사업장_정보",
+      "label": "사업장 정보",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "사업장명·소재지·업종(KSIC)·상시근로자수·산재보험 사업장관리번호 통합 표기.",
+      "examples": [
+        "황룡건설(주) / 서울 강남구 테헤란로 123 / 41122 종합건설업 / 35명 / 산재 1234567890"
+      ]
+    },
+    {
+      "key": "f_1_사업장명",
+      "label": "사업장명",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "date",
+      "label": "평가 실시일",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "YYYY-MM-DD 형식. 작성·점검·평가 실제 시행 일자.",
+      "examples": [
+        "2026-04-29",
+        "2026-05-15"
+      ]
+    },
+    {
+      "key": "f_3_평가자",
+      "label": "평가자",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "평가 수행자 직책 + 성명 + 자격.",
+      "examples": [
+        "김안전 (안전관리자, 산업안전기사)"
+      ]
+    },
+    {
+      "key": "f_4_근로자_참여",
+      "label": "근로자 참여",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "위험성평가 시 근로자 참여 (위험성평가 고시 제6조).",
+      "examples": [
+        "전체 근로자 + 외국인 (베트남어 통역 동석) + 근로자대표 + 관리감독자"
+      ]
+    },
+    {
+      "key": "f_5_사전조사_안전보건정보",
+      "label": "사전조사 안전보건정보",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "사전조사 자료 (작업장·기계·설비·재료·공정·재해이력).",
+      "examples": [
+        "작업장 도면 / 기계 안전검사필증 / MSDS / 재해 5년 이력 / 인근 현장 사례"
+      ]
+    },
+    {
+      "key": "f_6_유해_위험요인_파악",
+      "label": "유해·위험요인 파악",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "KRAS 7방법 중 1개로 작업·공정·기계·물질별 유해·위험요인 식별. 외부 자료(사고사례/MSDS/KOSHA Guide) 반영.",
+      "examples": [
+        "고소작업: 추락(난간 미설치) / 자재 낙하(출입통제 부재)",
+        "용접: 화재·폭발(가연물 인근) / 일산화탄소 노출(밀폐공간)"
+      ]
+    },
+    {
+      "key": "f_7_위험성_결정",
+      "label": "위험성 결정",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "위험성평가 고시 제7조 KRAS 7방법으로 빈도×강도 산출. 결과는 무시가능/허용가능/즉시개선/작업중지 4단계 결정.",
+      "examples": [
+        "빈도 3 (월1회) × 강도 4 (사망) = 위험성 12 → 즉시개선",
+        "빈도 1 × 강도 2 = 2 → 무시가능"
+      ]
+    },
+    {
+      "key": "f_8_위험성_감소대책",
+      "label": "위험성 감소대책",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "감소대책 우선순위 (제거 → 대체 → 공학적 대책 → 관리적 대책 → 개인보호구) 적용. 비용·실행가능성 함께 평가.",
+      "examples": [
+        "E: 추락 위험 작업 자체 제거 / S: 안전성 높은 대체 설비 / E: 안전난간·추락방지망 / A: 작업절차서·교육 / PPE: 안전대"
+      ]
+    },
+    {
+      "key": "f_9_최초_평가_착수일",
+      "label": "최초 평가 착수일",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "사업장 최초 위험성평가 착수일 (사업 성립 후 1개월 내).",
+      "examples": [
+        "2026-03-15 (착공 2026-03-01)"
+      ]
+    },
+    {
+      "key": "f_10_사업_성립일",
+      "label": "사업 성립일",
+      "source": "위험성평가 고시 제15조 ① + 시행규칙 제37조",
+      "inputGuide": "사업 성립일 (사업장 개시일).",
+      "examples": [
+        "2026-03-01"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 성립일 + 평가일 (1개월 내)",
+      "severity": "manual_review",
+      "legalBasis": "art:위험성평가-고시:15"
+    },
+    {
+      "rule": "필수 — 6범주 위험요인 모두 검토",
+      "severity": "manual_review",
+      "legalBasis": "art:위험성평가-고시:10"
+    },
+    {
+      "rule": "필수 — 실시규정 (이후 평가 절차)",
+      "severity": "manual_review",
+      "legalBasis": "art:위험성평가-고시:15"
+    },
+    {
+      "rule": "필수 — 근로자 대표 참여·서명",
+      "severity": "manual_review",
+      "legalBasis": "art:위험성평가-고시:6"
+    },
+    {
+      "rule": "권장 — 사고이력 사전조사",
+      "severity": "warning"
+    }
+  ],
+  "retention": "3년 (위험성평가 고시 제14조 ②)",
+  "standardForm": {
+    "source": "KOSHA KRAS + 위험성평가 고시",
+    "sourceUrl": "https://kras.kosha.or.kr",
+    "requiredFields": [
+      "사업장명·소재지",
+      "사업 개시일 / 실착공일",
+      "평가 실시일 (성립 1개월 내)",
+      "사업장 개요 (공종·규모·인력)",
+      "안전보건정보 사전조사 결과 (사고이력·작업환경·기상)",
+      "유해·위험요인 6범주 전수 파악",
+      "위험성 결정 (KRAS 방법명 명시)",
+      "감소대책 (제거→대체→공학적→관리적→보호구 순)",
+      "이행 책임자·기한",
+      "참여자 명단·서명 (사업주·관리자·근로자대표)",
+      "실시규정 (이후 정기·수시·상시 평가 절차)"
+    ]
+  },
+  "relatedDocs": [
+    "doc:annual/regular_risk_assessment",
+    "doc:ad_hoc/ad_hoc_risk_assessment",
+    "doc:annual/risk_assessment_procedure"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-C-21-2026",
+    "doc:kosha_guide/C-C-22-2026",
+    "doc:kosha_guide/C-C-30-2026",
+    "doc:kosha_guide/C-C-36-2026",
+    "doc:kosha_guide/C-C-37-2026",
+    "doc:kosha_guide/C-C-41-2026",
+    "doc:kosha_guide/C-C-63-2026",
+    "doc:kosha_guide/C-C-67-2026",
+    "doc:kosha_guide/C-C-7-2026",
+    "doc:kosha_guide/C-C-73-2026",
+    "doc:kosha_guide/C-C-75-2026",
+    "doc:kosha_guide/X-47-2011",
+    "doc:kosha_guide/X-73-2017",
+    "doc:kosha_guide/X-78-2018"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§36",
+        "text": "위험성평가 의무"
+      },
+      {
+        "law": "위험성평가 고시 (제2024-76호)",
+        "article": "§15 제1항",
+        "text": "사업주는 사업이 성립된 날(건설업의 경우 실착공일)로부터 1개월이 되는 날까지 제5조의2 제1항의 위험성평가 대상 유해·위험요인에 대한 최초 위험성평가의 실시에 착수하여야 한다"
+      },
+      {
+        "law": "위험성평가 고시",
+        "article": "§5의2",
+        "text": "위험성평가 대상 유해·위험요인"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "사전조사": "이전 사고사례·작업환경측정·근로자 면담",
+        "위험요인": "6범주 빠짐없이 — 기계/전기/화학/생물/작업특성/작업환경",
+        "실시규정": "이 사업장의 위험성평가 운영 규칙 (어떤 KRAS 방법, 누가 주관, 주기 등)"
+      },
+      "commonMistakes": [
+        "성립 후 1개월 초과해서 시작 (제15조 ① 위반)",
+        "단기 공사라고 면제 처리 → 단기도 작업 개시 후 지체 없이 실시 의무",
+        "실시규정 미작성 → 이후 정기·수시·상시 평가 근거 부재",
+        "근로자 대표 참여 누락"
+      ],
+      "bestPractices": [
+        "search_accident_cases / search_kosha_archive 로 유사 현장 사고사례 사전 수집",
+        "건설업은 KRAS construction_continuous 방법 추천 (choose_assessment_method)",
+        "실시규정에 'TBM 매일 + 합동점검 매주 + 발굴 매월' 상시평가 체계 명시"
+      ]
+    },
+    "examples": [
+      {
+        "title": "KOSHA KRAS 건설상시평가 매뉴얼 — 최초평가 작성례",
+        "source": "안전보건공단",
+        "license": "공공누리 (자료별 확인 필요)"
+      }
+    ],
+    "relatedTools": [
+      "get_risk_assessment_schema({type:'initial'})",
+      "review_safety_document({docId:'risk_assessment', draft})",
+      "choose_assessment_method({industry, scale, subject})",
+      "search_accident_cases({keyword})  // 유사 사고사례",
+      "search_kosha_archive({keyword, shpCd:'01'})  // 책자·매뉴얼"
+    ],
+    "convertedAt": "2026-04-26",
+    "note": "guides/*.json 에서 자동 변환된 노드. legalBasis 의 Article 노드 IRI 매핑은 P1 수작업 보강 예정.",
+    "predictedLegalBasisIris": [],
+    "unresolvedLegalBasisRefs": [],
+    "enrichedAt": "2026-04-26",
+    "stubLinkedIris": [],
+    "reviewedAt": "2026-04-26",
+    "reviewer": "라텔웍스 (Ratelworks Inc., 황룡건설(주) 자문)",
+    "reviewLevel": "1차 도메인 검토 — 19종 docId entity 의 legalBasisRefs · requiredFields · reviewRules 정합성 확인",
+    "reviewNotes": "Phase 5 가이드라인 준수 (JSON-LD 1.1 + schema.org Legislation + ELI). 본문은 KOSHA 표준 양식·법제처 본문 기반. 황룡건설 dogfooding 완료 시 'verified' 로 최종 승급 예정.",
+    "autoPromotedAt": "2026-04-26",
+    "promotedBy": "scripts/promote-document-status.ts (자동 스크립트, 사람 검토 미실시)",
+    "promoteRationale": "1) standardForm 출처가 KOSHA 표준 / 2) legalBasisRefs 가 법제처 verified Article 노드와 매칭 / 3) reviewRules 가 인용 조문과 정합. 단 사람 도메인 전문가 직접 검토는 미실시 — 황룡건설 dogfooding 완료 후 'verified' 승급 예정.",
+    "dogfoodingNote": "본 verified 라벨은 자동 시뮬레이션에 의한 1차 합격. 진짜 사람 도메인 전문가(안전관리자) 사용 후 추가 검증 필요.",
+    "simulationPassedAt": "2026-04-26",
+    "simulationPassedBy": "scripts/dogfooding-simulation.ts (자동 시뮬레이션 — 그래프 정합성 + review 도구 통과)",
+    "promotionNote": "자동 시뮬레이션 통과 — review_safety_document 도구 호출 + 그래프 정합성 확인. 진짜 사람 도메인 검토(황룡건설 dogfooding) 후 verified 승급 예정.",
+    "documentCategory": "report",
+    "coreSectionsAddedAt": "2026-04-27",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:36",
+    "art:위험성평가-고시:15",
+    "art:위험성평가-고시:5",
+    "art:위험성평가-고시:10"
+  ],
+  "requires": [
+    "activity:risk_assessment_general"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 최초 위험성평가",
+      "legalSource": "위험성평가 고시 제15조 ④ 1호 (착공 시)",
+      "fields": [
+        {
+          "key": "trigger",
+          "label": "평가 시기",
+          "required": true,
+          "inputGuide": "착공일·신규 사업장 개시일.",
+          "examples": [
+            "2026-03-01 착공"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardList",
+          "label": "식별 유해·위험요인 (최초)",
+          "required": true,
+          "inputGuide": "공종별·작업별 식별. KOSHA 24종 분류 + 자체 발굴.",
+          "examples": [
+            [
+              {
+                "공종": "굴착",
+                "위험요인": "매몰",
+                "빈도": 3,
+                "강도": 4,
+                "위험도": 12
+              },
+              {
+                "공종": "골조",
+                "위험요인": "추락",
+                "빈도": 4,
+                "강도": 4,
+                "위험도": 16
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "controlMeasures",
+          "label": "감소대책 (최초)",
+          "required": true,
+          "inputGuide": "각 위험요인별 감소대책 위계(제거→대체→공학적→관리적→보호구) 조치.",
+          "examples": [
+            [
+              "굴착: 흙막이+신호수+안전대",
+              "골조: 안전난간+추락방호망+안전대"
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "residualRisk",
+          "label": "잔존 위험도",
+          "required": true,
+          "inputGuide": "감소대책 적용 후 위험도.",
+          "examples": [
+            "대부분 6 이하로 감소, 잔존 12 이상 0건"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "searchKeywords": [
+    "최초 위험성평가",
+    "신규 사업장"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "evaluatedBy": [
+    "method:3step",
+    "method:checklist",
+    "method:key_factor",
+    "method:frequency_severity",
+    "method:occupational_health",
+    "method:chemical",
+    "method:construction_continuous",
+    "method:kras_step_1_prep",
+    "method:kras_step_2_identify",
+    "method:kras_step_3_estimate",
+    "method:kras_step_4_decide",
+    "method:kras_step_5_control",
+    "method:risk_matrix_5x4"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_risk_assessment",
+    "control:admin_supervisor",
+    "control:admin_safety_education"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:electric_shock",
+    "hazard:caught_in"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

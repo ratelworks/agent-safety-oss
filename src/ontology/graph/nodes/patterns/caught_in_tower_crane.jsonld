@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_tower_crane",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_tower_crane",
+  "title": "caught_in × tower_crane",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 caught_in 작업유형 tower_crane.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:tower_crane"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "대형 패널 벽체 거푸집 설치작업 중 전도(사망 1명)",
+    "빌딩 철골 조립작업중 H-Beam에 깔려 사망",
+    "강관파이프 다발 하부에 지지된 각재가 부러지면서"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/generate_safety_report",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "기간 내 SafetyIssue 와 CorrectiveAction 로컬 저장 데이터를 합본하여 safety:S",
+      "@language": "ko"
+    },
+    {
+      "@value": "Generate Safety Report",
+      "@language": "en"
+    }
+  ],
+  "description": "기간 내 SafetyIssue 와 CorrectiveAction 로컬 저장 데이터를 합본하여 safety:SafetyReport 운영 보고서를 Markdown 및 구조화 콘텐츠로 생성한다. 19 법정문서와 분리한다.",
+  "toolName": "generate_safety_report",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/generate_safety_report",
+  "maps_to_action": "safety:action/generate_safety_report",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

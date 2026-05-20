@@ -1,0 +1,153 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/B-E-17-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_b-e-17-2026",
+  "title": "도장 공정에서의 화재·폭발위험방지에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "B-E-17-2026",
+    "guideCategory": "electric",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"도장\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 2,
+      "5": 3,
+      "6": 60,
+      "7": 95,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "도장",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:chemical_exposure",
+    "hazard:chemical_burn",
+    "hazard:fall_from_height",
+    "hazard:asphyxiation",
+    "hazard:dust_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:admin_safety_education",
+    "control:admin_emergency_plan",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_monitoring",
+    "control:admin_work_permit",
+    "control:elim_automation",
+    "control:admin_health_check",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:sub_safer_equipment",
+    "control:admin_supervisor"
+  ],
+  "appliesToActivities": [
+    "activity:finishing_paint"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:230",
+      "law": "기준규칙",
+      "articleNumber": "230",
+      "title": "폭발위험이 있는 장소의 설정 및 관리",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제230조(폭발위험이 있는 장소의 설정 및 관리)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide B-E-17-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_침지탱크의 작업안전 관리 기술지침_2",
+      "title": "침지탱크의 작업안전 관리 기술지침 - 적용범위",
+      "score": 120.832
+    },
+    {
+      "docId": "KOSHA07_제지기계의 안전 사용에 관한 기술지침_8",
+      "title": "제지기계의 안전 사용에 관한 기술지침 - 사이징과 코팅 기계",
+      "score": 84.166
+    },
+    {
+      "docId": "KOSHA07_침지탱크의 작업안전 관리 기술지침_5",
+      "title": "침지탱크의 작업안전 관리 기술지침 - 침지 및 코팅 작업 기준",
+      "score": 71.221
+    },
+    {
+      "docId": "KOSHA07_침지탱크의 작업안전 관리 기술지침_3",
+      "title": "침지탱크의 작업안전 관리 기술지침 - 용어의 정의",
+      "score": 70.164
+    },
+    {
+      "docId": "KOSHA07_기기 및 배관의 부식관리 기술지침 _8",
+      "title": "기기 및 배관의 부식관리 기술지침  - 부식방지대책",
+      "score": 70.123
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_003000001000006000000000450000",
+      "title": "제450조 호흡용 보호구의 지급 등",
+      "category": "4",
+      "score": 41.306
+    },
+    {
+      "docId": "KOSHA04_002000002000004000000000256000",
+      "title": "제256조 부식 방지",
+      "category": "4",
+      "score": 39.05
+    },
+    {
+      "docId": "KOSHA05_정전기재해 예방을 위한 기술상의 지침000000000000000000000000000000007000",
+      "title": "정전기재해 예방을 위한 기술상의 지침 제7조 코팅, 함침 공정",
+      "category": "5",
+      "score": 74.331
+    },
+    {
+      "docId": "KOSHA05_방호장치안전인증고시000000007000001000006000001000022000",
+      "title": "방호장치안전인증고시 제22조 정의",
+      "category": "5",
+      "score": 24.4
+    },
+    {
+      "docId": "KOSHA05_방호장치 안전인증 고시000000007000001000006000001000022000",
+      "title": "방호장치 안전인증 고시 제22조 정의",
+      "category": "5",
+      "score": 22.314
+    }
+  ]
+}

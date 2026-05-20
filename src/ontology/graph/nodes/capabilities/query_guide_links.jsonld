@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/query_guide_links",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법정문서·작업의 KOSHA Guide·재해사례 연결 묶음",
+      "@language": "ko"
+    },
+    {
+      "@value": "Query Guide Links",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 특정 법정문서(docId) 또는 작업(activitySlug)과 연결된 KOSHA Guide·OPS·재해사례·법령 근거를 그래프 엣지로 추적해 통합 응답. guidedBy/legalBasis 엣지 활용. 그래프 내장 자료가 부족한 경우(sparseLinks) 외부 Live API 도구(compile_safety_references / get_kosha_guide_md / search_accident_cases) 사용 권장 메시지 자동 부착. P3 Activity 노드 카탈로그화 시 가치 증대.",
+  "toolName": "query_guide_links",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/query_guide_links",
+  "producesEntity": [
+    "safety:GuideLinkBundle"
+  ],
+  "maps_to_action": "safety:action/query_guide_links",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

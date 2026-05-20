@@ -1,0 +1,36 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:elim_automation",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "elim_automation",
+  "label": "자동화·무인화",
+  "description": "반복·중량·고노출 작업에서 사람이 위험원에 접근하지 않도록 자동화·무인화 장비로 작업을 제거하는 통제.",
+  "ericLevel": 1,
+  "category": "elimination",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:cement_handling",
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:machinery_repair",
+    "activity:precast_installation",
+    "activity:rc_concrete",
+    "activity:vehicle_cargo"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "자동화",
+      "로봇"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

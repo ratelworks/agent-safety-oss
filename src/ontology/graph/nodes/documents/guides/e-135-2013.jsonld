@@ -1,0 +1,132 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-135-2013",
+  "@type": "Document",
+  "docId": "kosha_guide_e-135-2013",
+  "title": "저압 개폐장치 및 제어장치의 시험·점검에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-135-2013",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 7건 (법령 2 / KOSHA Guide 5). keyword=\"저압\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 1,
+      "6": 2,
+      "7": 107,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "저압",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA04_002000003000001000000000304000",
+      "title": "제304조 누전차단기에 의한 감전방지",
+      "category": "4",
+      "score": 24.986
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000003000002000000000000000024000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제24조 폭발위험장소 구분도 및 전기단선도 등",
+      "category": "5",
+      "score": 31.034
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_저압 개폐장치의 정비에 관한 기술지침_2",
+      "title": "저압 개폐장치의 정비에 관한 기술지침 - 적용범위",
+      "score": 66.818
+    },
+    {
+      "docId": "KOSHA07_저압 개폐장치의 정비에 관한 기술지침_1",
+      "title": "저압 개폐장치의 정비에 관한 기술지침 - 목적",
+      "score": 66.192
+    },
+    {
+      "docId": "KOSHA07_이동형 저압 발전기의 안전점검에 관한 기술지침_1",
+      "title": "이동형 저압 발전기의 안전점검에 관한 기술지침 - 목적",
+      "score": 65.068
+    },
+    {
+      "docId": "KOSHA07_이동형 저압 발전기의 안전점검에 관한 기술지침_2",
+      "title": "이동형 저압 발전기의 안전점검에 관한 기술지침 - 적용범위",
+      "score": 64.432
+    },
+    {
+      "docId": "KOSHA07_저압 개폐장치 및 제어장치의 오작동방지에 관한 기술지침_1",
+      "title": "저압 개폐장치 및 제어장치의 오작동방지에 관한 기술지침 - 목적",
+      "score": 62.45
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_002000003000001000000000304000",
+      "title": "제304조 누전차단기에 의한 감전방지",
+      "category": "4",
+      "score": 24.986
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000003000002000000000000000024000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제24조 폭발위험장소 구분도 및 전기단선도 등",
+      "category": "5",
+      "score": 31.034
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:3장",
+      "law": "기준규칙",
+      "chapterTitle": "금지유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장(전기로 인한 위험방지) 제1절"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장(전기로 인한 위험방지) 제1절",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "절",
+      "num": 1,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장(전기로 인한 위험방지) 제1절",
+      "needsNode": true
+    }
+  ]
+}

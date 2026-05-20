@@ -1,0 +1,99 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-90-2015",
+  "@type": "Document",
+  "docId": "kosha_guide_g-90-2015",
+  "title": "운반구에 관한 안전지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-90-2015",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"운반구\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 2,
+      "6": 8,
+      "7": 16,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "운반구",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:ergonomic_overload",
+    "hazard:manual_handling",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:admin_safety_education",
+    "control:admin_supervisor"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_운반구에 관한 안전지침_4",
+      "title": "운반구에 관한 안전지침 - 종류 및 구성",
+      "score": 62.39
+    },
+    {
+      "docId": "KOSHA07_운반구에 관한 안전지침_5",
+      "title": "운반구에 관한 안전지침 - 사업주의 의무",
+      "score": 60.872
+    },
+    {
+      "docId": "KOSHA07_운반구에 관한 안전지침_7",
+      "title": "운반구에 관한 안전지침 - 위험 요소와 예방 대책",
+      "score": 53.993
+    },
+    {
+      "docId": "KOSHA07_운반구에 관한 안전지침_6",
+      "title": "운반구에 관한 안전지침 - 일반 안전 수칙",
+      "score": 53.507
+    },
+    {
+      "docId": "KOSHA07_운반구에 관한 안전지침_3",
+      "title": "운반구에 관한 안전지침 - 용어의 정의",
+      "score": 49.804
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA04_002000001000009000000000151000",
+      "title": "제151조 권과 방지 등",
+      "category": "4",
+      "score": 52.012
+    },
+    {
+      "docId": "KOSHA05_안전검사 고시000000004000000000000000000000007000",
+      "title": "안전검사 고시 제7조 정의",
+      "category": "5",
+      "score": 49.659
+    },
+    {
+      "docId": "KOSHA05_위험기계·기구 안전인증 고시000000004000001000000000000000008000",
+      "title": "위험기계·기구 안전인증 고시 제8조 정의",
+      "category": "5",
+      "score": 48.454
+    }
+  ]
+}

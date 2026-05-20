@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fire_explosion_waterproofing",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fire_explosion_waterproofing",
+  "title": "fire_explosion × waterproofing",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 fire_explosion 작업유형 waterproofing.",
+  "koshaAccidentType": "fire_explosion",
+  "hasHazard": [
+    "hazard:fire_explosion",
+    "hazard:fire"
+  ],
+  "causedBy": [
+    "activity:waterproofing"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "맨홀 내부 방수시트 설치작업 중 폭발",
+    "욕조 바닥 방수액 도포작업 중 발생가스 폭발, 사망",
+    "지하철 정거장 방수작업중 가스폭발 사고"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

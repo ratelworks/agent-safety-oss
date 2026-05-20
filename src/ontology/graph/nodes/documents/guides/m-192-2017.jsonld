@@ -1,0 +1,89 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/M-192-2017",
+  "@type": "Document",
+  "docId": "kosha_guide_m-192-2017",
+  "title": "기계안전을 위한 제어시스템의 안전관련부품류 설계 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "M-192-2017",
+    "guideCategory": "machine",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction_partial",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 6건 (법령 5 / KOSHA Guide 1). keyword=\"기계안전\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 3,
+      "3": 2,
+      "4": 0,
+      "5": 1,
+      "6": 4,
+      "7": 1,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "기계안전",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_자체감사 점검표 작성에 관한 기술지침_4",
+      "title": "자체감사 점검표 작성에 관한 기술지침 - 일반사항",
+      "score": 57.752
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 12] 직무교육기관의 인력ㆍ시설 및 장비 기준(제40조제3항제2호 관련)",
+      "title": "[별표 12] 직무교육기관의 인력ㆍ시설 및 장비 기준(제40조제3항제2호 관련)",
+      "category": "2",
+      "score": 32.726
+    },
+    {
+      "docId": "KOSHA02_[별표 32] 지도사 자격시험 중 필기시험의 업무 영역별 과목 및 범위(제103조제2항 관련)",
+      "title": "[별표 32] 지도사 자격시험 중 필기시험의 업무 영역별 과목 및 범위(제103조제2항 관련)",
+      "category": "2",
+      "score": 29.493
+    },
+    {
+      "docId": "KOSHA02_[별표 10] 근로자안전보건교육기관의 인력ㆍ시설 및 장비 등 기준(제40조제1항 관련)",
+      "title": "[별표 10] 근로자안전보건교육기관의 인력ㆍ시설 및 장비 등 기준(제40조제1항 관련)",
+      "category": "2",
+      "score": 27.15
+    },
+    {
+      "docId": "KOSHA03_[서식 90의2] 지도사 자격증(발급, 재발급)신청서",
+      "title": "[서식 90의2] 지도사 자격증(발급, 재발급)신청서",
+      "category": "3",
+      "score": 43.971
+    },
+    {
+      "docId": "KOSHA03_[서식 89] 지도사 자격시험 응시원서",
+      "title": "[서식 89] 지도사 자격시험 응시원서",
+      "category": "3",
+      "score": 39.72
+    }
+  ]
+}

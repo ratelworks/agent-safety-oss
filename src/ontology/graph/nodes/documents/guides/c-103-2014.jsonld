@@ -1,0 +1,165 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-103-2014",
+  "@type": "Document",
+  "docId": "kosha_guide_c-103-2014",
+  "title": "굴착공사 계측관리 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-103-2014",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 9건 (법령 4 / KOSHA Guide 5). keyword=\"굴착공사\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 1,
+      "3": 1,
+      "4": 0,
+      "5": 2,
+      "6": 2,
+      "7": 42,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "굴착공사",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:buried_alive",
+    "hazard:cave_in",
+    "hazard:fall_from_height",
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:electric_shock",
+    "hazard:gas_leak",
+    "hazard:asphyxiation",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:eng_monitoring",
+    "control:eng_shoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:admin_emergency_plan",
+    "control:sub_low_risk_method",
+    "control:elim_avoid_work",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:sub_safer_equipment",
+    "control:eng_isolation_barrier",
+    "control:admin_signal_person",
+    "control:admin_inspection",
+    "control:admin_safety_education",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:admin_work_permit",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:ppe_safety_shoes",
+    "control:elim_automation"
+  ],
+  "appliesToActivities": [
+    "activity:excavation_2m_plus"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_굴착공사 안전작업 지침_1",
+      "title": "굴착공사 안전작업 지침 - 목적",
+      "score": 78.338
+    },
+    {
+      "docId": "KOSHA07_굴착공사 계측관리 기술지침_2",
+      "title": "굴착공사 계측관리 기술지침 - 적용범위",
+      "score": 76.314
+    },
+    {
+      "docId": "KOSHA07_지하매설물 굴착공사 안전작업 지침_7",
+      "title": "지하매설물 굴착공사 안전작업 지침 - 안전점검 사항",
+      "score": 74.005
+    },
+    {
+      "docId": "KOSHA07_굴착공사 안전작업 지침_8",
+      "title": "굴착공사 안전작업 지침 - 붕괴재해예방",
+      "score": 73.111
+    },
+    {
+      "docId": "KOSHA07_굴착공사 계측관리 기술지침_5",
+      "title": "굴착공사 계측관리 기술지침 - 계측관리 계획 절차 및 계측기 종류",
+      "score": 72.958
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:38",
+      "law": "기준규칙",
+      "articleNumber": "38",
+      "title": "사전조사 및 작업계획서의 작성 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제38조 (사전조사 및 작업계획서의 작성)",
+      "citedAsOf": "2014",
+      "temporalNote": "KOSHA Guide C-103-2014 본문 직접 인용 (2014년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:347",
+      "law": "기준규칙",
+      "articleNumber": "347",
+      "title": "붕괴 등의 위험 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제347조 (붕괴 등의 위험 방지)",
+      "citedAsOf": "2014",
+      "temporalNote": "KOSHA Guide C-103-2014 본문 직접 인용 (2014년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000004000000000000000042000",
+      "title": "제42조 유해위험방지계획서 제출 대상",
+      "category": "2",
+      "score": 29.142
+    },
+    {
+      "docId": "KOSHA03_[서식 3] 안전관리자ㆍ보건관리자ㆍ산업보건의 선임 등 보고서(건설업)",
+      "title": "[서식 3] 안전관리자ㆍ보건관리자ㆍ산업보건의 선임 등 보고서(건설업)",
+      "category": "3",
+      "score": 27.554
+    },
+    {
+      "docId": "KOSHA05_굴착공사표준안전작업지침000000005000002000000000000000033000",
+      "title": "굴착공사표준안전작업지침 제33조 동시작업의 금지",
+      "category": "5",
+      "score": 43.434
+    },
+    {
+      "docId": "KOSHA05_굴착공사표준안전작업지침000000001000000000000000000000001000",
+      "title": "굴착공사표준안전작업지침 제1조 목적",
+      "category": "5",
+      "score": 43.187
+    }
+  ]
+}

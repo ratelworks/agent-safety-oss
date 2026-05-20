@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_construction_subtasks",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "건설업 공종별 세부공정 (15087828)",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Construction Subtasks",
+      "@language": "en"
+    }
+  ],
+  "description": "건설 공종·세부공정·단계 의무·현장 위험 브리핑을 분석하는 capability. KOSHA 건설업 공종별 세부공정 목록(15087828) — 위험성평가(RA) 체크리스트 표준 공종 분류. 주공종(토공사/철근콘크리트/철골/가설/해체/양중/마감/MEP/기타) × 세부공정 × 주요 위험요인 계층. RA 문서의 공종 구조를 짤 때 SSoT 로 사용.",
+  "toolName": "list_construction_subtasks",
+  "category": "construction",
+  "inputSchema": "safety:schema/input/list_construction_subtasks",
+  "producesEntity": [
+    "safety:ConstructionSubtask"
+  ],
+  "maps_to_action": "safety:action/list_construction_subtasks",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

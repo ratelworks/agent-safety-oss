@@ -1,0 +1,86 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-28-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_d-28-2012",
+  "title": "소규모사업장에서의 화재폭발사고 방지를 위한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-28-2012",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 1건 (법령 0 / KOSHA Guide 1). keyword=\"소규모사업장에서\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 17,
+      "7": 1,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "소규모사업장에서",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fire",
+    "hazard:fire_explosion"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_사고시나리오에 따른 비상대응계획 작성에 관한 기술지침_4",
+      "title": "사고시나리오에 따른 비상대응계획 작성에 관한 기술지침 - 일반사항",
+      "score": 13.382
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:27",
+      "law": "산안법",
+      "articleNumber": "27",
+      "title": "안전보건관리규정의 준수",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제27조의 규정에 의거 작성됨.",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-28-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:27",
+      "law": "산안법",
+      "articleNumber": "27",
+      "title": "안전보건관리규정의 준수",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제27조의 규정에 의거 작성됨.",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-28-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

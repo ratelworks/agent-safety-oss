@@ -1,0 +1,102 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:tower_assembly",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "타워크레인 설치·해체",
+  "category": "lifting",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-28",
+    "graphEnrichmentNote": "Activity 14개 신규 보강 — 건설 주요 공종 인벤토리 완성 (RC/철골/비계/거푸집/마감/방수/PHC/석면/토공/포장/타워조립/하수/지하매설)",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "description": "타워크레인 설치·인상·해체 특수 작업. 최고난도 양중 작업 — 제142조 풍속 기준 엄격 적용.",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by_overturn",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:electric_shock",
+    "hazard:machine_entanglement",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:142",
+    "art:산안법:38",
+    "art:산안법:82"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-54-2012",
+    "doc:kosha_guide/C-98-2014",
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/M-82-2011",
+    "doc:kosha_guide/M-89-2016",
+    "doc:kosha_guide/M-91-2012"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr02/10"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:struck_by_overturn",
+      "hazard:struck_by",
+      "hazard:crushing",
+      "hazard:electric_shock",
+      "hazard:machine_entanglement"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/tower_crane",
+  "workTypeLabel": {
+    "ko": "타워크레인 설치·조립·해체 작업",
+    "en": "Tower crane erection, assembly, and dismantling work"
+  }
+}

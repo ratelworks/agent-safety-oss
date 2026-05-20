@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/electric_shock_finishing_paint",
+  "@type": [
+    "Event"
+  ],
+  "slug": "electric_shock_finishing_paint",
+  "title": "electric_shock × finishing_paint",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 electric_shock 작업유형 finishing_paint.",
+  "koshaAccidentType": "electric_shock",
+  "hasHazard": [
+    "hazard:electric_shock"
+  ],
+  "causedBy": [
+    "activity:finishing_paint"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "배전철탑 도장작업 중 충전전로(22.9kV)에 감전",
+    "외벽 페인트 작업중 특고압 전선에 감전",
+    "바닥마감재에 우레탄락카 칠 작업중 화재발생"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

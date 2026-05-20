@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_incident_response_workflow",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "산업재해 시간순 법정 의무",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Incident Response Workflow",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 산업재해 발생 시점부터 시간순(T+0분 / 30분 / 24시간 / 1주 / 1개월 / 반기)으로 법정 의무를 반환한다. 라이프사이클 §5.1 응급 시나리오. 중대재해는 중처법 §4 + 산안법 §54 통합.",
+  "toolName": "get_incident_response_workflow",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_incident_response_workflow",
+  "producesEntity": [
+    "safety:IncidentResponseWorkflow"
+  ],
+  "maps_to_action": "safety:action/get_incident_response_workflow",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

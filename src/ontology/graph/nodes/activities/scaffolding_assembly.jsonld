@@ -1,0 +1,125 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:scaffolding_assembly",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "비계 조립·해체",
+  "category": "scaffolding",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-28",
+    "graphEnrichmentNote": "Activity 14개 신규 보강 — 건설 주요 공종 인벤토리 완성 (RC/철골/비계/거푸집/마감/방수/PHC/석면/토공/포장/타워조립/하수/지하매설)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "description": "강관·강관틀·시스템·달비계 조립 및 해체. 추락 사망사고 빈발 영역 1순위.\n\n**관련 키워드**: 강관비계, 시스템비계, 이동식비계, 강관비계 설치, 비계 설치, 비계 점검, 안전난간, 작업발판, 고소작업, 추락방지, 벽이음.",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:59",
+    "art:기준규칙:60",
+    "art:기준규칙:61",
+    "art:기준규칙:62",
+    "art:기준규칙:42",
+    "art:기준규칙:43",
+    "art:기준규칙:44"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-4-2025",
+    "doc:kosha_guide/C-11-2012",
+    "doc:kosha_guide/C-74-2015",
+    "doc:kosha_guide/D-C-14-2026",
+    "doc:kosha_guide/D-C-7-2026",
+    "doc:kosha_guide/D-C-8-2026",
+    "doc:kosha_guide/M-155-2023",
+    "doc:kosha_guide/X-44-2016"
+  ],
+  "searchKeywords": [
+    "비계",
+    "강관비계",
+    "시스템비계",
+    "달비계",
+    "이동식비계",
+    "강관비계 설치",
+    "비계 설치",
+    "비계 점검",
+    "안전난간",
+    "작업발판",
+    "고소작업",
+    "추락방지",
+    "벽이음"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr03/12",
+    "facet:ctgr03/13"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:struck_by",
+      "hazard:cave_in",
+      "hazard:crushing",
+      "hazard:machine_entanglement"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/general",
+  "workTypeLabel": {
+    "ko": "일반 안전관리 작업",
+    "en": "General safety management work"
+  }
+}

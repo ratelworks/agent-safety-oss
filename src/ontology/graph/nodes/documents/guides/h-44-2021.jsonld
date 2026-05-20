@@ -1,0 +1,157 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-44-2021",
+  "@type": "Document",
+  "docId": "kosha_guide_h-44-2021",
+  "title": "호흡기 감작물질 노출근로자의 보건관리 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-44-2021",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"호흡기\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 2,
+      "4": 0,
+      "5": 4,
+      "6": 17,
+      "7": 120,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "호흡기",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_호흡기 감작물질 노출근로자의 보건관리 지침_5",
+      "title": "호흡기 감작물질 노출근로자의 보건관리 지침 - 호흡기 감작물질의 확인",
+      "score": 89.822
+    },
+    {
+      "docId": "KOSHA07_호흡기 감작물질 노출근로자의 보건관리 지침_6",
+      "title": "호흡기 감작물질 노출근로자의 보건관리 지침 - 호흡기 감작물질 노출에 대한 관리",
+      "score": 86.377
+    },
+    {
+      "docId": "KOSHA07_호흡기 감작물질 노출근로자의 보건관리 지침_7",
+      "title": "호흡기 감작물질 노출근로자의 보건관리 지침 - 호흡기 감작물질 노출근로자의 건강관리",
+      "score": 83.562
+    },
+    {
+      "docId": "KOSHA07_호흡기 감작물질 노출근로자의 보건관리 지침_4",
+      "title": "호흡기 감작물질 노출근로자의 보건관리 지침 - 호흡기 감작물질 노출 시 임상적 특성",
+      "score": 81.88
+    },
+    {
+      "docId": "KOSHA07_호흡기 감작물질 노출근로자의 보건관리 지침_1",
+      "title": "호흡기 감작물질 노출근로자의 보건관리 지침 - 목적",
+      "score": 77.534
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법시행규칙:22",
+      "law": "산안법시행규칙",
+      "articleNumber": "22",
+      "title": "안전관리ㆍ보건관리전문기관의 지도ㆍ감독",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제22조(보건관리자의 업무) 제1항",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-44-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:39",
+      "law": "산안법",
+      "articleNumber": "39",
+      "title": "보건조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제39조(보건조치)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-44-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:205",
+      "law": "산안법시행규칙",
+      "articleNumber": "205",
+      "title": "수시건강진단 대상 근로자 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제205조(수시건강진단 대상 근로자 등)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-44-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:39",
+      "law": "산안법시행규칙",
+      "articleNumber": "39",
+      "title": "안전보건표지의 설치 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "이 지침은 산업안전보건법 제39조(보건조치)와 산업안전보건법 시행규칙 제",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-44-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA03_[별표 18] 유해인자의 유해성ㆍ위험성 분류기준(제141조 관련)",
+      "title": "[별표 18] 유해인자의 유해성ㆍ위험성 분류기준(제141조 관련)",
+      "category": "3",
+      "score": 23.469
+    },
+    {
+      "docId": "KOSHA03_[별표 6] 안전보건표지의 종류와 형태(제38조제1항 관련)",
+      "title": "[별표 6] 안전보건표지의 종류와 형태(제38조제1항 관련)",
+      "category": "3",
+      "score": 22.103
+    },
+    {
+      "docId": "KOSHA05_작업환경측정 및 정도관리 등에 관한 고시002000004000002000000000000000022000",
+      "title": "작업환경측정 및 정도관리 등에 관한 고시 제22조 측정위치",
+      "category": "5",
+      "score": 40.642
+    },
+    {
+      "docId": "KOSHA05_작업환경측정 및 정도관리 등에 관한 고시002000004000003000000000000000025000",
+      "title": "작업환경측정 및 정도관리 등에 관한 고시 제25조 검지관방식의 측정",
+      "category": "5",
+      "score": 35.246
+    },
+    {
+      "docId": "KOSHA05_사무실 공기관리 지침000000000000000000000000000000004000",
+      "title": "사무실 공기관리 지침 제4조 사무실 공기관리 상태평가",
+      "category": "5",
+      "score": 34.33
+    }
+  ]
+}

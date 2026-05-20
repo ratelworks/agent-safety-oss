@@ -1,0 +1,36 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_explosion_proof",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_explosion_proof",
+  "label": "방폭 설비",
+  "description": "인화성 증기·가스·분진이 존재할 수 있는 작업에서 점화원을 억제하는 방폭 구조와 설비를 적용하는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:chemical_handling",
+    "activity:drainage_sewerage",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:steel_structure",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "방폭"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

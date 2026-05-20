@@ -1,0 +1,101 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/M-37-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_m-37-2012",
+  "title": "작업장내 기계 소음평가에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "M-37-2012",
+    "guideCategory": "machine",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction_partial",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"작업장내\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 17,
+      "7": 25,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "작업장내",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:noise_exposure",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:eng_isolation_barrier",
+    "control:admin_health_check",
+    "control:admin_inspection"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_작업장내 기계 소음평가에 관한 기술지침 _2",
+      "title": "작업장내 기계 소음평가에 관한 기술지침  - 적용범위",
+      "score": 82.935
+    },
+    {
+      "docId": "KOSHA07_작업장내 안전한 적재 및 하역작업을 위한 기술지침_2",
+      "title": "작업장내 안전한 적재 및 하역작업을 위한 기술지침 - 적용범위",
+      "score": 79.009
+    },
+    {
+      "docId": "KOSHA07_작업장내 안전한 적재 및 하역작업을 위한 기술지침_1",
+      "title": "작업장내 안전한 적재 및 하역작업을 위한 기술지침 - 목적",
+      "score": 77.831
+    },
+    {
+      "docId": "KOSHA07_작업장내 기계 소음평가에 관한 기술지침 _1",
+      "title": "작업장내 기계 소음평가에 관한 기술지침  - 목 적",
+      "score": 77.586
+    },
+    {
+      "docId": "KOSHA07_작업장내 기계 소음평가에 관한 기술지침 _6",
+      "title": "작업장내 기계 소음평가에 관한 기술지침  - 소음평가",
+      "score": 51.346
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:4장",
+      "law": "기준규칙",
+      "chapterTitle": "소음 및 진동에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제4장 (소음 및 진동에 의한"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 3,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제4장 (소음 및 진동에 의한",
+      "needsNode": true
+    }
+  ]
+}

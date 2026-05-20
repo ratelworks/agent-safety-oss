@@ -1,0 +1,105 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-16-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_d-16-2012",
+  "title": "폭발억제장치의 설치에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-16-2012",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"폭발억제장치\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 16,
+      "7": 5,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "폭발억제장치",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fire_explosion"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_폭발억제장치의 설치에 관한 기술지침_3",
+      "title": "폭발억제장치의 설치에 관한 기술지침 - 정 의",
+      "score": 102.941
+    },
+    {
+      "docId": "KOSHA07_가스 및 증기상의 화재?폭발 위험성이 있는 설비의 설계에 관한 기술지침_7",
+      "title": "가스 및 증기상의 화재?폭발 위험성이 있는 설비의 설계에 관한 기술지침 - 설비 내에서의 연소 위험 대처 방안",
+      "score": 78.812
+    },
+    {
+      "docId": "KOSHA07_화학공정에서의 분진폭발방지에 관한 기술지침_3",
+      "title": "화학공정에서의 분진폭발방지에 관한 기술지침 - 정의",
+      "score": 62.091
+    },
+    {
+      "docId": "KOSHA07_금속분진 취급 공정의 화재폭발예방에 관한 기술지침_6",
+      "title": "금속분진 취급 공정의 화재폭발예방에 관한 기술지침 - 금속분진의 취급 안전",
+      "score": 50.531
+    },
+    {
+      "docId": "KOSHA07_목재가공시설의 화재?폭발 예방기준_11",
+      "title": "목재가공시설의 화재?폭발 예방기준 - 미세한 목재분쇄작업",
+      "score": 39.273
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:243",
+      "law": "기준규칙",
+      "articleNumber": "243",
+      "title": "소화설비",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "「산업안전보건기준에 관한 규칙」 제243조(소화설비)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-16-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:243",
+      "law": "기준규칙",
+      "articleNumber": "243",
+      "title": "소화설비",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 「산업안전보건기준에 관한 규칙」 제243조(소화설비)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-16-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

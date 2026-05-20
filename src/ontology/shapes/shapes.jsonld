@@ -1,0 +1,102 @@
+{
+  "@context": "../graph/context.jsonld",
+  "@graph": [
+    {
+      "@id": "shp:DocumentShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "safety:Document",
+      "rdfs:label": "Document Shape",
+      "rdfs:comment": "94종 법정의무문서 노드 무결성 — 라이프사이클 6단계 키 필수.",
+      "sh:property": [
+        { "sh:path": "docId", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:maxCount": 1, "sh:pattern": "^[a-z][a-z0-9_]*$" },
+        { "sh:path": "title", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "category", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "legalBasis", "sh:nodeKind": "sh:IRI", "sh:minCount": 1, "sh:message": "최소 1개 법령근거 필수" },
+        { "sh:path": "cycle", "sh:nodeKind": "sh:IRI", "sh:minCount": 1 },
+        { "sh:path": "retention", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "iso45001Class", "sh:nodeKind": "sh:IRI", "sh:minCount": 1, "sh:message": "ISO 45001 클래스 매핑 필수 (A3)" },
+        { "sh:path": "verificationStatus", "sh:in": ["verified", "pending", "auto-aligned", "kosha_live_verified"] }
+      ]
+    },
+    {
+      "@id": "shp:ArticleShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "safety:Article",
+      "rdfs:label": "Article Shape",
+      "rdfs:comment": "법령 조문 노드 — schema:Legislation 표준 채택 필수.",
+      "sh:property": [
+        { "sh:path": "articleNumber", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "title", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "description", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "legislationIdentifier", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "legislationDate", "sh:datatype": "xsd:date", "sh:minCount": 1 },
+        { "sh:path": "legislationType", "sh:in": ["Act", "Decree", "Rule", "Regulation", "Notice", "Notification"], "sh:minCount": 1 },
+        { "sh:path": "legislationLegalForce", "sh:in": ["InForce", "Repealed"], "sh:minCount": 1 },
+        { "sh:path": "jurisdiction", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:hasValue": "KR" }
+      ]
+    },
+    {
+      "@id": "shp:AnnexShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "safety:Annex",
+      "rdfs:label": "Annex Shape",
+      "rdfs:comment": "별표·별지 노드. annexNumber + annexKind 필수.",
+      "sh:property": [
+        { "sh:path": "annexNumber", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "title", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "annexKind", "sh:in": ["별표", "별지", "별첨", "서식"], "sh:minCount": 1 },
+        { "sh:path": "partOf", "sh:nodeKind": "sh:IRI", "sh:minCount": 1, "sh:message": "상위 법령 참조 필수" }
+      ]
+    },
+    {
+      "@id": "shp:HazardShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "safety:Hazard",
+      "rdfs:label": "Hazard Shape",
+      "rdfs:comment": "유해·위험요인 노드. category + iso45001Class 필수.",
+      "sh:property": [
+        { "sh:path": "label", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "category", "sh:in": ["physical", "chemical", "biological", "ergonomic", "psychological", "psychosocial", "environmental"], "sh:minCount": 1 },
+        { "sh:path": "iso45001Class", "sh:hasValue": "iso45001:Hazard", "sh:minCount": 1 },
+        { "sh:path": "description", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "mitigatedBy", "sh:nodeKind": "sh:IRI", "sh:minCount": 1, "sh:message": "최소 1개 통제수단 필수" }
+      ]
+    },
+    {
+      "@id": "shp:PersonShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "safety:Person",
+      "rdfs:label": "Person Shape",
+      "rdfs:comment": "사이트 프로파일 직원 노드. role 필수.",
+      "sh:property": [
+        { "sh:path": "name", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "role", "sh:datatype": "xsd:string", "sh:minCount": 1 },
+        { "sh:path": "iso45001Class", "sh:hasValue": "iso45001:Worker" },
+        { "sh:path": "isForeign", "sh:datatype": "xsd:boolean" },
+        { "sh:path": "preferredLanguage", "sh:in": ["ko", "vi", "zh-CN", "th", "en", "id", "km", "lo", "mn", "uz", "tg", "tl"] }
+      ]
+    },
+    {
+      "@id": "shp:ApplicabilityShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "safety:Applicability",
+      "rdfs:label": "Applicability Shape",
+      "rdfs:comment": "Applicability 결정론적 추론 룰 노드. JSON Logic style condition + 법령 근거 + mandatory/recommended/reference 가중치. v1.3.x 추가 (외부 평가 보고서 2026-05-20).",
+      "sh:property": [
+        { "sh:path": "label", "sh:datatype": "xsd:string", "sh:minCount": 1, "sh:message": "사람이 읽는 룰 이름 (예: '추락방호 의무 (높이 2m 이상 + 개구부)')" },
+        { "sh:path": "condition", "sh:minCount": 1, "sh:message": "JSON Logic condition 필수 — all/any/not 그룹 또는 var+op+value 단일. 누락 시 결정론 평가 불가" },
+        { "sh:path": "legalBasis", "sh:nodeKind": "sh:IRI", "sh:minCount": 1, "sh:message": "최소 1개 art:* 법령 조문 IRI 필수 (graph 자체 인용 — LLM 출처 환각 차단)" },
+        { "sh:path": "legalWeight", "sh:in": ["mandatory", "recommended", "reference"], "sh:minCount": 1, "sh:message": "법적 가중치 — mandatory(법정 의무) | recommended(권고) | reference(참고)" },
+        { "sh:path": "enforces", "sh:nodeKind": "sh:IRI", "sh:message": "조건 충족 시 강제되는 control:* IRI (예: ppe_harness, eng_guardrail) — optional" }
+      ]
+    },
+    {
+      "@id": "shapes:_meta",
+      "@type": "safety:Metadata",
+      "creator": "entity:ratelworks",
+      "created": "2026-04-29",
+      "rights": "MIT",
+      "comment": "SHACL 1.0 (W3C Recommendation, 2017-07-20) 호환 6종 Shape (Annex/Article/Document/Hazard/Person + Applicability v1.3.x). 외부 SPARQL endpoint·rdf-validate-shacl 등으로 직접 사용 가능. 우리 OSS 자체 검증은 src/lib/graph-validators.ts (Zod 기반, 의존성 0)."
+    }
+  ]
+}

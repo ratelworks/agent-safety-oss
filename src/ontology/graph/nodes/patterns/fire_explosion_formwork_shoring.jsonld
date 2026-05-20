@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fire_explosion_formwork_shoring",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fire_explosion_formwork_shoring",
+  "title": "fire_explosion × formwork_shoring",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 6건 관측. 사고유형 fire_explosion 작업유형 formwork_shoring.",
+  "koshaAccidentType": "fire_explosion",
+  "hasHazard": [
+    "hazard:fire_explosion",
+    "hazard:fire"
+  ],
+  "causedBy": [
+    "activity:formwork_shoring"
+  ],
+  "caseFrequency": 6,
+  "sampleKeywords": [
+    "우레탄 폼 캔 폭발",
+    "갱폼 용단작업 중 발생된 불티에 의한 화재",
+    "지하층 천장에 시공된 우레탄폼에 화재 발생 (사망 4명, 부상 9명)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:object_set/specific_hazards_29",
+  "@type": [
+    "safety:ObjectSet",
+    "prov:Collection"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "구체 위험요인 29건",
+      "@language": "ko"
+    },
+    {
+      "@value": "29 Specific Hazards",
+      "@language": "en"
+    }
+  ],
+  "description": "specificity='specific'로 검증된 위험요인 29건 집합 — 일반 위험요인보다 구체적인 사고형태·노출형태를 우선 traversal한다.",
+  "category": "Hazard",
+  "sparqlFilter": "?hazard a safety:Hazard ; safety:specificity 'specific' .",
+  "members": [
+    {
+      "@id": "hazard:acute_toxic_gas"
+    },
+    {
+      "@id": "hazard:asphyxiation"
+    },
+    {
+      "@id": "hazard:biological_hazard"
+    },
+    {
+      "@id": "hazard:buried_alive"
+    },
+    {
+      "@id": "hazard:burn"
+    },
+    {
+      "@id": "hazard:caught_in"
+    },
+    {
+      "@id": "hazard:cave_in"
+    },
+    {
+      "@id": "hazard:chemical_burn"
+    },
+    {
+      "@id": "hazard:chemical_exposure"
+    },
+    {
+      "@id": "hazard:crushing"
+    },
+    {
+      "@id": "hazard:drowning"
+    },
+    {
+      "@id": "hazard:dust"
+    },
+    {
+      "@id": "hazard:dust_exposure"
+    },
+    {
+      "@id": "hazard:electric_shock"
+    },
+    {
+      "@id": "hazard:electrocution"
+    },
+    {
+      "@id": "hazard:fall_from_height"
+    },
+    {
+      "@id": "hazard:fall_object"
+    },
+    {
+      "@id": "hazard:falling_object"
+    },
+    {
+      "@id": "hazard:fire"
+    },
+    {
+      "@id": "hazard:fire_explosion"
+    },
+    {
+      "@id": "hazard:gas_leak"
+    },
+    {
+      "@id": "hazard:machine_entanglement"
+    },
+    {
+      "@id": "hazard:radiation_exposure"
+    },
+    {
+      "@id": "hazard:radiation_uv"
+    },
+    {
+      "@id": "hazard:struck_by"
+    },
+    {
+      "@id": "hazard:struck_by_overturn"
+    },
+    {
+      "@id": "hazard:thermal_burn"
+    },
+    {
+      "@id": "hazard:traffic_accident"
+    },
+    {
+      "@id": "hazard:vibration_exposure"
+    }
+  ],
+  "memberCount": 29,
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks",
+    "intendedUse": "LLM이 구체 위험요인만 우선 집계하여 mitigatedBy, regulatedBy, guidedBy 경로를 축소 탐색한다.",
+    "sourcePattern": "declarative named object-set query pattern"
+  }
+}

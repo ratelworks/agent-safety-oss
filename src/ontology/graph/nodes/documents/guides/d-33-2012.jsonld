@@ -1,0 +1,126 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-33-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_d-33-2012",
+  "title": "가스 및 증기상의 화재폭발 위험성이 있는 설비의 설계에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-33-2012",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"가스\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 1,
+      "2": 8,
+      "3": 10,
+      "4": 36,
+      "5": 45,
+      "6": 154,
+      "7": 907,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "가스",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:gas_leak"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:225",
+      "law": "기준규칙",
+      "articleNumber": "225",
+      "title": "위험물질 등의 제조 등 작업 시의 조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "o 관련 법규․규칙․고시 등 산업안전보건기준에 관한 규칙 제225조의 규정에 의거 작성됨.",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-33-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_사출성형의 플라스틱공정에서 흄 제어에 관한 기술지침_3",
+      "title": "사출성형의 플라스틱공정에서 흄 제어에 관한 기술지침 - 용어의 정의",
+      "score": 158.209
+    },
+    {
+      "docId": "KOSHA07_수동 금속 아크 용접에 관한 기술지침_3",
+      "title": "수동 금속 아크 용접에 관한 기술지침 - 용어의 정의",
+      "score": 134.749
+    },
+    {
+      "docId": "KOSHA07_호흡보호구의 선정·사용 및 관리에 관한 지침_5",
+      "title": "호흡보호구의 선정·사용 및 관리에 관한 지침 - 호흡보호구 사용을 위한 필요조건",
+      "score": 125.275
+    },
+    {
+      "docId": "KOSHA07_도장공정에서의 화재·폭발위험방지에 관한 기술지침_5",
+      "title": "도장공정에서의 화재·폭발위험방지에 관한 기술지침 - 가스 폭발위험장소에서의 전기설비 설치",
+      "score": 122.464
+    },
+    {
+      "docId": "KOSHA07_가스 및 증기상의 화재?폭발 위험성이 있는 설비의 설계에 관한 기술지침_5",
+      "title": "가스 및 증기상의 화재?폭발 위험성이 있는 설비의 설계에 관한 기술지침 - 연소원의 종류",
+      "score": 117.908
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA01_000004000000000000000036000",
+      "title": "제36조 위험성평가의 실시",
+      "category": "1",
+      "score": 70.273
+    },
+    {
+      "docId": "KOSHA02_[별표 27] 석면조사기관의 인력ㆍ시설 및 장비 기준(제90조 관련)",
+      "title": "[별표 27] 석면조사기관의 인력ㆍ시설 및 장비 기준(제90조 관련)",
+      "category": "2",
+      "score": 26.353
+    },
+    {
+      "docId": "KOSHA02_[별표 5] 보건관리자를 두어야 하는 사업의 종류, 사업장의 상시근로자 수, 보건관리자의 수 및 선임방법(제20조제1항 관련)",
+      "title": "[별표 5] 보건관리자를 두어야 하는 사업의 종류, 사업장의 상시근로자 수, 보건관리자의 수 및 선임방법(제20조제1항 관련)",
+      "category": "2",
+      "score": 23.638
+    },
+    {
+      "docId": "KOSHA02_[별표 17] 보건진단기관의 인력ㆍ시설 및 장비 등의 기준(제47조 관련)",
+      "title": "[별표 17] 보건진단기관의 인력ㆍ시설 및 장비 등의 기준(제47조 관련)",
+      "category": "2",
+      "score": 23.228
+    },
+    {
+      "docId": "KOSHA02_[별표 13] 유해ㆍ위험물질 규정량(제43조제1항 관련)",
+      "title": "[별표 13] 유해ㆍ위험물질 규정량(제43조제1항 관련)",
+      "category": "2",
+      "score": 22.176
+    }
+  ]
+}

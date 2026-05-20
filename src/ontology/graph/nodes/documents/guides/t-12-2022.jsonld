@@ -1,0 +1,167 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/T-12-2022",
+  "@type": "Document",
+  "docId": "kosha_guide_t-12-2022",
+  "title": "시험동물 관리지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "T-12-2022",
+    "guideCategory": "toxicity",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"시험동물\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction_partial",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 32,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "시험동물",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:msd_repetitive",
+    "hazard:psychosocial_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:safety_education"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_시험동물 조직의 박절 및 염색 지침(안)_4",
+      "title": "시험동물 조직의 박절 및 염색 지침(안) - 시험방법",
+      "score": 73.734
+    },
+    {
+      "docId": "KOSHA07_시험동물 조직의 전처리 및 포매 지침_4",
+      "title": "시험동물 조직의 전처리 및 포매 지침 - 시험의 방법",
+      "score": 68.801
+    },
+    {
+      "docId": "KOSHA07_화학물질의 고정용량법에 의한 급성경구독성시험 기술지침_6",
+      "title": "화학물질의 고정용량법에 의한 급성경구독성시험 기술지침 - 독성시험결과 및 보고",
+      "score": 55.067
+    },
+    {
+      "docId": "KOSHA07_화학물질의 독성등급법에 의한 급성경구독성시험에 관한 기술지침_6",
+      "title": "화학물질의 독성등급법에 의한 급성경구독성시험에 관한 기술지침 - 독성시험결과 및 보고",
+      "score": 52.027
+    },
+    {
+      "docId": "KOSHA07_시험동물 관리지침_2",
+      "title": "시험동물 관리지침 - 적용범위",
+      "score": 47.58
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:105",
+      "law": "산안법",
+      "articleNumber": "105",
+      "title": "유해인자의 유해성ㆍ위험성 평가 및 관리",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제105조(유해인자의 유해성ㆍ위험성 평가 및 관리), 제",
+      "citedAsOf": "2022",
+      "temporalNote": "KOSHA Guide T-12-2022 본문 직접 인용 (2022년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:141",
+      "law": "산안법시행규칙",
+      "articleNumber": "141",
+      "title": "유해인자의 분류기준",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제141조(유해인자의 분류기준), 제143조(유해인자의 관리 등)",
+      "citedAsOf": "2022",
+      "temporalNote": "KOSHA Guide T-12-2022 본문 직접 인용 (2022년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:143",
+      "law": "산안법시행규칙",
+      "articleNumber": "143",
+      "title": "유해인자의 관리 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제141조(유해인자의 분류기준), 제143조(유해인자의 관리 등)",
+      "citedAsOf": "2022",
+      "temporalNote": "KOSHA Guide T-12-2022 본문 직접 인용 (2022년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:105",
+      "law": "산안법",
+      "articleNumber": "105",
+      "title": "유해인자의 유해성ㆍ위험성 평가 및 관리",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제105조(유해인자의 유해성ㆍ위험성 평가 및 관리), 제",
+      "citedAsOf": "2022",
+      "temporalNote": "KOSHA Guide T-12-2022 본문 직접 인용 (2022년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:141",
+      "law": "산안법시행규칙",
+      "articleNumber": "141",
+      "title": "유해인자의 분류기준",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 시행규칙 제141조(유해인자의 분류기준), 제143조(유해인자의 관리 등)",
+      "citedAsOf": "2022",
+      "temporalNote": "KOSHA Guide T-12-2022 본문 직접 인용 (2022년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:143",
+      "law": "산안법시행규칙",
+      "articleNumber": "143",
+      "title": "유해인자의 관리 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 시행규칙 제141조(유해인자의 분류기준), 제143조(유해인자의 관리 등)",
+      "citedAsOf": "2022",
+      "temporalNote": "KOSHA Guide T-12-2022 본문 직접 인용 (2022년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

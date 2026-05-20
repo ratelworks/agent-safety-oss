@@ -1,0 +1,347 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/safety_certification_application",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_certification_application",
+  "title": "안전인증 신청 (별지 42호)",
+  "description": "산안법 제83조 안전인증대상 기계·기구·방호장치·보호구 제조·수입 시 안전인증 신청. KCs 마크 부착 근거.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "인증대상 제품 제조·수입 시",
+  "legalBasis": [
+    "art:산안법:83",
+    "art:산안법시행규칙:74",
+    "art:산안법:80"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "안전인증대상 9종(프레스·전단기·크레인·리프트·압력용기·롤러기·사출성형기·고소작업대·곤돌라) + 방호장치·보호구 제조·수입자."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "인증대상 외 기계",
+      "수출 전용 (국내 사용 X)"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "applicantName",
+      "label": "제조·수입자 회사명·주소",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "도로명 주소 우선. 지번 주소는 보조.",
+      "examples": [
+        "서울특별시 강남구 테헤란로 123"
+      ]
+    },
+    {
+      "key": "businessNo",
+      "label": "사업자등록번호",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "10자리 숫자 (사업자등록번호) 또는 13자리 숫자 (법인등록번호). 하이픈 포함 표기 권장.",
+      "examples": [
+        "123-45-67890",
+        "110111-0123456"
+      ]
+    },
+    {
+      "key": "representative",
+      "label": "대표자 성명",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "contact",
+      "label": "연락처 (24시간)",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "본인 휴대전화. 010-XXXX-XXXX.",
+      "examples": [
+        "010-1234-5678"
+      ]
+    },
+    {
+      "key": "productCategory",
+      "label": "안전인증 13종 분류",
+      "source": "산안법 제80조 + 시행령 제74조 + 별표 21 (13종)",
+      "inputGuide": "안전인증대상 13종 분류 (산안법 제84조 + 시행령 제74조).",
+      "examples": [
+        "크레인 (제2호 가목)"
+      ]
+    },
+    {
+      "key": "productName",
+      "label": "제품명·모델",
+      "source": "산안법 제80조 + 시행령 제74조 + 별표 21 (13종)",
+      "inputGuide": "인증 대상 제품 명칭 + 모델 번호.",
+      "examples": [
+        "타워크레인 TC-7030 (모델 #2026-A)"
+      ]
+    },
+    {
+      "key": "specifications",
+      "label": "정격·규격·성능",
+      "source": "산안법 제80조 + 시행령 제74조 + 별표 21 (13종)",
+      "inputGuide": "정격하중·규격·성능 사양.",
+      "examples": [
+        "정격하중 6톤 (반경 70m) / 자립고 70m / 권상속도 80m/min"
+      ]
+    },
+    {
+      "key": "safetyDevice",
+      "label": "방호장치·안전장치",
+      "source": "산안법 제80조 + 시행령 제74조 + 별표 21 (13종)",
+      "inputGuide": "필수 방호장치·안전장치 (권과방지·과부하방지·비상정지 등).",
+      "examples": [
+        "권과방지장치·과부하방지장치·비상정지·풍속계·각도지시계 (KCs 인증)"
+      ]
+    },
+    {
+      "key": "applicationDate",
+      "label": "신청 일자",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "인증 신청 접수일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "result",
+      "label": "인증 결과 (적합/부적합)",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "적합 / 부적합 + 부적합 시 시정 사항.",
+      "examples": [
+        "적합"
+      ]
+    },
+    {
+      "key": "kcsNumber",
+      "label": "KCs 인증번호",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "인증 발급 번호 (KCs-AB-XXXX-XXXX).",
+      "examples": [
+        "KCs-CR-2026-0042"
+      ]
+    },
+    {
+      "key": "validUntil",
+      "label": "유효기간",
+      "source": "산안법 제83조 + 시행규칙 제74조",
+      "inputGuide": "인증 유효기간 (보통 3년).",
+      "examples": [
+        "2026-05-01 ~ 2029-04-30 (3년)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 인증품목 + 모델 + 시험성적서",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:83"
+    },
+    {
+      "rule": "필수 — KCs 마크 부착 + 인증서 번호",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:74"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/M-137-2023"
+  ],
+  "appliesToActivities": [
+    "activity:tower_crane",
+    "activity:heavy_lifting",
+    "activity:tower_assembly"
+  ],
+  "informedBy": [
+    "src:moel_safety_inspection",
+    "src:kosha_portal",
+    "entity:kosha",
+    "entity:moel"
+  ],
+  "appliesTo": [
+    "applic:safety_certification_13"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전인증 신청 (별지 제42호)",
+      "legalSource": "산안법 제93조 + 시행규칙 제107조 별지 제42호",
+      "fields": [
+        {
+          "key": "applicantInfo",
+          "label": "신청인 (제조·수입자)",
+          "required": true,
+          "inputGuide": "회사명·대표자·사업자번호·주소.",
+          "examples": [
+            "(주)한국기계, 대표 김대표, 사업자번호 123-45-67890"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "machineType",
+          "label": "기계·기구 종류 (대상 12종)",
+          "required": true,
+          "inputGuide": "별표 19 안전인증 대상 기계.",
+          "examples": [
+            "프레스 (별표 19 1호)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "specifications",
+          "label": "규격·모델",
+          "required": true,
+          "inputGuide": "제조사·모델·일련번호·제조일.",
+          "examples": [
+            "프레스 P-100, 제조번호 P2026-001, 2026-04 제조"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "certificationAgency",
+          "label": "인증기관",
+          "required": true,
+          "inputGuide": "KOSHA 안전인증원.",
+          "examples": [
+            "한국산업안전보건공단 안전인증원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicationDate",
+          "label": "신청 일자",
+          "required": true,
+          "inputGuide": "기계 도입·제조 전.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "annexReference": [
+    "annex:산안법시행규칙:서식42"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/safety_inspection_application",
+    "doc:ad_hoc/voluntary_safety_confirmation_filing",
+    "doc:daily/construction_machinery_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능.",
+  "useFrequency": "low_for_small_construction",
+  "useFrequencyNote": "안전인증 신청 (제조사·수입사 — 시공사 거의 안 함)"
+}

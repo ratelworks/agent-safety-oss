@@ -1,0 +1,109 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:bridge_5m_30m",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "교량 설치·해체·변경 (5m/30m 이상)",
+  "category": "structure",
+  "annexReference": "annex:기준규칙:별표4-8호",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/별표4",
+    "fetchedAt": "2026-04-26",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "건설 안전 도메인 매트릭스 기반 hasHazard/regulatedBy 일괄 채움. 작업 활동(work activity) 만 채움.",
+    "graphAugmentedAt": "2026-04-28",
+    "graphAugmentationNote": "일반 hazard 보강 — trip_slip/heat/cold/ergonomic/msd 추가 (모든 작업에 해당하는 일반 위험요인)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:cave_in"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-21-2011",
+    "doc:kosha_guide/C-22-2011",
+    "doc:kosha_guide/C-41-2011",
+    "doc:kosha_guide/C-73-2012",
+    "doc:kosha_guide/C-83-2013",
+    "doc:kosha_guide/C-84-2013",
+    "doc:kosha_guide/C-94-2013",
+    "doc:kosha_guide/D-C-2-2025"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:drowning",
+    "hazard:struck_by",
+    "hazard:traffic_accident",
+    "hazard:struck_by_overturn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:42"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr03/18"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:drowning",
+      "hazard:struck_by",
+      "hazard:traffic_accident",
+      "hazard:struck_by_overturn"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/bridge",
+  "workTypeLabel": {
+    "ko": "교량 설치·해체·변경 작업",
+    "en": "Bridge installation, dismantling, and alteration work"
+  }
+}

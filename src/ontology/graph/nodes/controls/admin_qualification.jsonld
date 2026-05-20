@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_qualification",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_qualification",
+  "label": "자격·면허 확인",
+  "description": "전기·양중·차량계 장비·유해작업 등 자격이 필요한 작업에서 면허와 교육 이수를 확인하는 관리 통제.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:hazardous_chemical_work",
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:machinery_repair",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:tower_crane_maintenance",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "면허",
+      "자격",
+      "조종"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

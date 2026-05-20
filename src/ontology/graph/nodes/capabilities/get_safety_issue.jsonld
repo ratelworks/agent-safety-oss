@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_safety_issue",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "issueId 로 SafetyIssue 단건을 조회하고 관련 작업, 위험요인, 추천 개선조치, 사진 증빙 그",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Safety Issue",
+      "@language": "en"
+    }
+  ],
+  "description": "issueId 로 SafetyIssue 단건을 조회하고 관련 작업, 위험요인, 추천 개선조치, 사진 증빙 그래프 사슬을 반환한다.",
+  "toolName": "get_safety_issue",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_safety_issue",
+  "maps_to_action": "safety:action/get_safety_issue",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

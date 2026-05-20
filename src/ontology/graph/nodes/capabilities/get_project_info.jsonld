@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_project_info",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "프로젝트 정보·크레딧",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Project Info",
+      "@language": "en"
+    }
+  ],
+  "description": "프로젝트 메타, A2UI 렌더링, 로컬 초안·보관소 상태를 관리하는 capability. 본 MCP 서버의 공식 크레딧·연락처·라이선스·수상 실적을 반환한다. LLM 이 답변 생성 시 출처 표기(황룡건설(주) 이사 황룡 제공 / 라텔웍스 대표이사 황룡 개발) 및 공식 인용 문구가 필요할 때 호출. 외부 API 를 호출하지 않음.",
+  "toolName": "get_project_info",
+  "category": "meta",
+  "inputSchema": "safety:schema/input/get_project_info",
+  "producesEntity": [
+    "safety:ProjectInfo"
+  ],
+  "maps_to_action": "safety:action/get_project_info",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-C-29-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_c-c-29-2026",
+  "title": "경고표지를 이용한 화학물질 관리에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-C-29-2026",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 6건 (법령 1 / KOSHA Guide 5). keyword=\"경고표지\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 1,
+      "6": 103,
+      "7": 44,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "경고표지",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:fall_object",
+    "hazard:struck_by"
+  ],
+  "mitigatedBy": [
+    "control:admin_msds",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_safety_education",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:eng_fall_net",
+    "control:admin_signal_person",
+    "control:eng_alarm",
+    "control:admin_supervisor"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:115",
+      "law": "산안법",
+      "articleNumber": "115",
+      "title": "물질안전보건자료대상물질 용기 등의 경고표시",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제115조 (물질안전보건자료대상물질 용기 등의 경고표시)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide C-C-29-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_경고표지 작성 지침_5",
+      "title": "경고표지 작성 지침 - 유해성?위험성 별 경고표지 요소",
+      "score": 103.791
+    },
+    {
+      "docId": "KOSHA07_경고표지 작성 지침_1",
+      "title": "경고표지 작성 지침 - 목적",
+      "score": 85.49
+    },
+    {
+      "docId": "KOSHA07_경고표지 작성 지침_4",
+      "title": "경고표지 작성 지침 - 작성 원칙",
+      "score": 69.619
+    },
+    {
+      "docId": "KOSHA07_경고표지 작성 지침_3",
+      "title": "경고표지 작성 지침 - 용어의정의",
+      "score": 65.593
+    },
+    {
+      "docId": "KOSHA07_사출성형기 방호조치에 관한 기술지침_8",
+      "title": "사출성형기 방호조치에 관한 기술지침 - 안전표지의 부착",
+      "score": 50.379
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA05_화학물질의 분류·표시 및 물질안전보건자료에 관한 기준000000003000000000000000000000005000",
+      "title": "화학물질의 분류·표시 및 물질안전보건자료에 관한 기준 제5조 경고표지의 부착",
+      "category": "5",
+      "score": 44.547
+    }
+  ]
+}

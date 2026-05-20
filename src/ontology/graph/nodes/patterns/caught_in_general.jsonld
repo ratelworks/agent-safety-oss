@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_general",
+  "title": "caught_in",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 48건 관측. 사고유형 caught_in.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [],
+  "caseFrequency": 48,
+  "sampleKeywords": [
+    "아웃트리거 인출 작업 중 끼임",
+    "시저형 고소작업대 불시 상승으로 끼임",
+    "고소작업대 작업중 끼임"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

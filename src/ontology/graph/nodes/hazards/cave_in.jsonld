@@ -1,0 +1,78 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:cave_in",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "cave_in",
+  "label": "무너짐 (붕괴)",
+  "category": "physical",
+  "koshaAccidentType": "무너짐",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "붕괴",
+      "흙막이",
+      "지반",
+      "사면",
+      "옹벽",
+      "터널"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:sub_low_risk_method",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:admin_inspection",
+    "control:admin_emergency_plan",
+    "control:ppe_helmet",
+    "control:admin_risk_assessment",
+    "control:eric_eliminate",
+    "control:eric_substitute",
+    "control:eric_engineering",
+    "control:eric_administrative",
+    "control:eric_ppe"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-1-2025",
+    "doc:kosha_guide/C-103-2014",
+    "doc:kosha_guide/D-C-11-2026",
+    "doc:kosha_guide/D-C-5-2025"
+  ],
+  "description": "**원인**: 흙막이 변위 한계 초과 / 지하수위 상승 / 인접 하중 증가.\n**상황**: 깊이 2m 이상 굴착 / 도심지 근접 시공.\n**확인**: 계측관리 (변위·응력·지하수위) / 1차·2차·3차 관리기준치 / 비상조치 절차.\n**중대성**: 흙막이 붕괴 시 굴착부 매몰 + 인접 건물 침하·붕괴.",
+  "koshaArchiveFacets": [
+    "facet:ctgr03/04",
+    "facet:ctgr03/05"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:demolition",
+    "activity:drainage_sewerage",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:formwork_shoring",
+    "activity:phc_pile_driving",
+    "activity:scaffolding_assembly",
+    "activity:tunnel_excavation",
+    "activity:underground_utility"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/D-C-1-2025",
+    "doc:kosha_guide/C-103-2014",
+    "doc:kosha_guide/D-C-11-2026",
+    "doc:kosha_guide/D-C-5-2025"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_all_fatal_accidents",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "전 업종 사고사망 게시판 (15119137)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search All Fatal Accidents",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 재해사례와 사고사망 데이터를 검색하고 사고 첨부 자료를 조회하는 capability. KOSHA **사고사망 게시판**(15119137, /news_api02, callApiId=1040) — **전 업종 최신 사망사고 공지**. 건설업 일별(15133935, 2017~2021 고정) 의 상위집합으로 가장 최신 기록을 포함. **구분:** 건설만 필요하면 search_construction_fatal_accidents, 구조화된 원인-대책 패턴은 search_sif_archive. 건설 외 업종 비교·전국 기준선 확인 용도.",
+  "toolName": "search_all_fatal_accidents",
+  "category": "accident_search",
+  "inputSchema": "safety:schema/input/search_all_fatal_accidents",
+  "producesEntity": [
+    "safety:FatalAccidentCase"
+  ],
+  "maps_to_action": "safety:action/search_all_fatal_accidents",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

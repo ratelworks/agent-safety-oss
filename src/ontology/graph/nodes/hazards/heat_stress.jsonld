@@ -1,0 +1,53 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:heat_stress",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "heat_stress",
+  "label": "고온 노출 (온열질환)",
+  "category": "environmental",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "고열",
+      "온열",
+      "폭염",
+      "열사"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_health_check",
+    "control:admin_supervisor",
+    "control:admin_safety_education",
+    "control:admin_inspection"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-30-2012",
+    "doc:kosha_guide/E-G-22-2026",
+    "doc:kosha_guide/X-9-2012"
+  ],
+  "description": "**원인**: 고온환경 + 직사광선 + 보호구 통기 부족 + 수분·전해질 부족.\n**상황**: 폭염 시 옥외 작업 / 밀폐공간 / 용접 작업.\n**확인**: WBGT 측정 / 작업·휴식 주기 (30°C 이상 시 50분 작업·10분 휴식) / 그늘 휴식공간 / 수분·전해질 공급.\n**중대성**: 열사병 시 의식 상실·사망. 즉시 그늘 이동·체온 강하 응급조치 필수.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/17"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/E-G-22-2026",
+    "doc:kosha_guide/X-9-2012",
+    "doc:kosha_guide/D-30-2012"
+  ]
+}

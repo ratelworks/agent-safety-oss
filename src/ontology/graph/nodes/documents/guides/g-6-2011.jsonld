@@ -1,0 +1,131 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-6-2011",
+  "@type": "Document",
+  "docId": "kosha_guide_g-6-2011",
+  "title": "산업폐기물 처리사업장에 관한 안전가이드",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-6-2011",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"산업폐기물\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 20,
+      "7": 10,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "산업폐기물",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_burn",
+    "hazard:cave_in",
+    "hazard:fall_object",
+    "hazard:fall_from_height",
+    "hazard:dust_exposure",
+    "hazard:struck_by",
+    "hazard:fire",
+    "hazard:asphyxiation",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_isolation_barrier",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:admin_emergency_plan",
+    "control:sub_low_risk_method",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:eng_fall_net",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:elim_avoid_work",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:elim_automation",
+    "control:admin_health_check",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:admin_work_permit",
+    "control:sub_safer_equipment",
+    "control:eng_noise_barrier",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:demolition"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_산업폐기물 처리사업장에 관한 안전가이드_1",
+      "title": "산업폐기물 처리사업장에 관한 안전가이드 - 목적",
+      "score": 96.678
+    },
+    {
+      "docId": "KOSHA07_산업폐기물 처리사업장에 관한 안전가이드_3",
+      "title": "산업폐기물 처리사업장에 관한 안전가이드 - 용어의 정의",
+      "score": 84.638
+    },
+    {
+      "docId": "KOSHA07_산업폐기물 처리사업장에 관한 안전가이드_6",
+      "title": "산업폐기물 처리사업장에 관한 안전가이드 - 수작업 시의 위험요소와 예방책",
+      "score": 61.523
+    },
+    {
+      "docId": "KOSHA07_산업폐기물 처리사업장에 관한 안전가이드_8",
+      "title": "산업폐기물 처리사업장에 관한 안전가이드 - 기타 위험요소와 해결방안",
+      "score": 36.489
+    },
+    {
+      "docId": "KOSHA07_산업폐기물 처리사업장에 관한 안전가이드_2",
+      "title": "산업폐기물 처리사업장에 관한 안전가이드 - 적용범위",
+      "score": 34.057
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 1,
+      "rawCitation": "「산업안전보건기준에 관한 규칙」제1편 (총칙)",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "「산업안전보건기준에 관한 규칙」제2편 (기계 기구 및 그 밖의 설비에",
+      "needsNode": true
+    }
+  ]
+}

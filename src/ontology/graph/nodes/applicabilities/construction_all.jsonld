@@ -1,0 +1,21 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:construction_all",
+  "@type": "Applicability",
+  "label": "전 건설업 (TBM·작업계획서 등)",
+  "condition": {
+    "var": "industry",
+    "op": "==",
+    "value": "construction"
+  },
+  "legalBasis": [
+    "art:기준규칙:38"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "비건설업 — 건설업 특화 의무 면제 (다른 업종 별도)",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

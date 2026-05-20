@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/save_profile_from_form",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "Profile 폼 입력 저장",
+      "@language": "ko"
+    },
+    {
+      "@value": "Save Profile From Form",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. render_profile_input_form 의 dataModel JSON 을 받아 profile.jsonld 에 일괄 저장. 5 entity (Site/Project/Person×4/Equipment×2/Contractor×2) 통합 처리. 빈 값 무시 (mode=merge). 한 번 저장하면 94종 법정의무문서가 자동 채움.",
+  "toolName": "save_profile_from_form",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/save_profile_from_form",
+  "producesEntity": [
+    "safety:SiteProfile"
+  ],
+  "maps_to_action": "safety:action/save_profile_from_form",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

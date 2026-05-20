@@ -1,0 +1,68 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:object_set/safety_certified_equipment",
+  "@type": [
+    "safety:ObjectSet",
+    "prov:Collection"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "안전인증·자율안전확인 장비",
+      "@language": "ko"
+    },
+    {
+      "@value": "Safety Certified & Self-Confirmed Equipment",
+      "@language": "en"
+    }
+  ],
+  "description": "산안법 제80조 안전인증 대상과 제89조 자율안전확인 대상 장비·적용성 집합 — KCs 적격품 확인 및 법적 근거 traversal용.",
+  "category": "EquipmentApplicability",
+  "sparqlFilter": "{ ?equipment a safety:Equipment ; schema:category 'safety_certified' . } UNION { VALUES ?equipment { applic:safety_certification_13 applic:voluntary_safety_confirmation_21 } }",
+  "members": [
+    {
+      "@id": "equipment:ac_arc_welder"
+    },
+    {
+      "@id": "equipment:aerial_work_platform"
+    },
+    {
+      "@id": "equipment:crane"
+    },
+    {
+      "@id": "equipment:fall_prevention_temporary"
+    },
+    {
+      "@id": "equipment:gondola"
+    },
+    {
+      "@id": "equipment:lift"
+    },
+    {
+      "@id": "equipment:power_saw"
+    },
+    {
+      "@id": "equipment:pressure_vessel"
+    },
+    {
+      "@id": "equipment:shear_bender"
+    },
+    {
+      "@id": "equipment:welding_cutting_apparatus"
+    },
+    {
+      "@id": "applic:safety_certification_13"
+    },
+    {
+      "@id": "applic:voluntary_safety_confirmation_21"
+    }
+  ],
+  "memberCount": 12,
+  "representedItemCount": 32,
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks",
+    "intendedUse": "LLM이 현장 장비가 안전인증 또는 자율안전확인 대상인지 판별하고 산안법 제80조·제89조 근거를 따라간다.",
+    "coverageNote": "현재 materialized Equipment 10건과 적용성 메타 노드 2건을 members로 두며, 안전인증 13종 + 자율안전확인 19종의 target coverage는 representedItemCount로 표현한다.",
+    "sourcePattern": "declarative named object-set query pattern"
+  }
+}

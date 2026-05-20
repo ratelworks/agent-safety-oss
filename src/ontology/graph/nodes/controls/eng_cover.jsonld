@@ -1,0 +1,27 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_cover",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_cover",
+  "label": "개구부 덮개 (Floor Opening Cover)",
+  "description": "근로자 추락 위험이 있는 개구부에 견고한 덮개 설치. 덮개에는 'OPENING' 등 식별 표시. 산안기준규칙 §43 (개구부 등의 방호조치).",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:facade_work"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "산안기준규칙 §43 (개구부 등의 방호조치)",
+    "verifiedAt": "2026-05-20",
+    "matchKeywords": ["개구부", "덮개", "floor opening", "cover"],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "note": "v1.3.x Applicability rule 보강 — applic:edge_work.enforces 지원"
+  },
+  "iso45001Class": "iso45001:Control"
+}

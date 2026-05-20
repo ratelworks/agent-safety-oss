@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_tbm_schema",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "TBM 기록 스키마",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Tbm Schema",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. TBM (Tool Box Meeting) 기록 스키마. 위험성평가 고시 제2024-76호 §15 제4항 제3호 기반 (매 작업일 작업 전 안전점검회의). §15 제4항 1·2·3호 모두 이행 시 수시·정기 평가 갈음. 5/10/15분 옵션. LLM 은 이 스키마로 TBM 대본을 한국어 자연어로 작성.",
+  "toolName": "get_tbm_schema",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_tbm_schema",
+  "producesEntity": [
+    "safety:DocumentSchema"
+  ],
+  "maps_to_action": "safety:action/create_daily_tbm",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

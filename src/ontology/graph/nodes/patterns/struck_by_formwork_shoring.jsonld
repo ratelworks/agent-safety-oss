@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_formwork_shoring",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_formwork_shoring",
+  "title": "struck_by × formwork_shoring",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 21건 관측. 사고유형 struck_by 작업유형 formwork_shoring.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:formwork_shoring"
+  ],
+  "caseFrequency": 21,
+  "sampleKeywords": [
+    "라이닝거푸집 이동설치 작업 중 감전(사망1명)",
+    "적치된 수직벤트의 연쇄적인 도괴로 철골공 협착 ",
+    "거푸집 가공작업중 후진하는 카고크레인에 충돌"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

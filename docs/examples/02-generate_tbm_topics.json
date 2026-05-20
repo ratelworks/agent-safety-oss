@@ -1,0 +1,466 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "# TBM 회의 주제 (2026-05-03)\n\n## 오늘의 작업\n- 굴착작업 (높이 2m 이상) (`activity:excavation_2m_plus`)\n- 양식: TBM (Tool Box Meeting) 일지\n- 필수 항목: 일자·시간·장소, 당일 작업 공종, 당일 주요 위험요인, 핵심 안전수칙, 필요 보호구\n\n## 주요 위험요인\n- 무너짐 (붕괴) (`hazard:cave_in`) - **원인**: 흙막이 변위 한계 초과 / 지하수위 상승 / 인접 하중 증가. **상황**: 깊이 2m 이상 굴착 / 도심지 근접 시공. **확인**: 계측관리 (변위·응력·지하수위) / 1차·2차·3차 관리기준...\n- 매몰 (`hazard:buried_alive`) - **원인**: 굴착사면 붕괴 / 흙막이 미시공·시공 부실 / 우천 후 토사 슬라이드. **상황**: 2m 이상 굴착 / 흙막이 가시설 시공 / 매설관 굴착. **확인**: 흙막이 시공상세도 + 계측 / 굴착사면...\n- 추락 (떨어짐) (`hazard:fall_from_height`) - **원인**: 안전난간·작업발판·승강설비 미설치 / 안전대 미착용 / 개구부 덮개 부재 / 비계 결손 / 사다리 미고정. **상황**: 2m 이상 고소작업 (비계·거푸집·철골·지붕·개구부 주변). **확인**:...\n- 깔림·뒤집힘 (`hazard:struck_by_overturn`) - **원인**: 건설기계 전도 / 차량 전복 / 흙막이·구조물 무너짐. **상황**: 경사지 차량 작업·아우트리거 미사용 굴삭·고소작업대 풍속 초과·흙막이 시공. **확인**: 아우트리거 전개·고정 / 풍속 10...\n- 맞음 (낙하·비래) (`hazard:fall_object`) - **원인**: 낙하물 방지망 미설치 / 자재 가장자리 적재 / 양중 시 결속 부실 / 풍력. **상황**: 비계 외측·양중 작업·해체작업·고소 운반 시. **확인**: 낙하방지망 (그물코 10cm 이내) / 방...\n\n## 안전조치\n- 위험작업 회피 (`control:elim_avoid_work`) - 1. 제거, 관련 위험: 추락 (떨어짐)\n- 저위험 공법 대체 (`control:sub_low_risk_method`) - 2. 대체, 관련 위험: 무너짐 (붕괴)\n- 격리·차폐 (`control:eng_isolation_barrier`) - 3. 공학적 통제, 관련 위험: 깔림·뒤집힘\n- 계측 모니터링 (`control:eng_monitoring`) - 3. 공학적 통제, 관련 위험: 무너짐 (붕괴)\n- 안전난간·안전대 부착설비 (`control:eng_guard_rail`) - 3. 공학적 통제, 관련 위험: 추락 (떨어짐)\n\n## 필요 보호구\n- 안전난간·죔줄 (`control:ppe_fall_arrester`) - 관련 위험: 추락 (떨어짐)\n- 안전대 (`control:ppe_harness`) - 관련 위험: 추락 (떨어짐)\n- 안전모 (`control:ppe_helmet`) - 관련 위험: 무너짐 (붕괴)\n- 안전화 (`control:ppe_safety_shoes`) - 관련 위험: 깔림·뒤집힘\n\n## 관련 KOSHA Guide\n- 굴착공사 계측관리 기술지침 (`doc:kosha_guide/C-103-2014`) - https://www.kosha.or.kr/kosha/data/guideExp.do\n- 흙막이공사에 대한 기술지원규정 (`doc:kosha_guide/D-C-1-2025`) - https://www.kosha.or.kr/kosha/data/guideExp.do\n- 굴착 및 토공 안전작업에 관한 기술지원규정 (`doc:kosha_guide/D-C-11-2026`) - https://www.kosha.or.kr/kosha/data/guideExp.do\n\n## 관련 법조\n- 산업안전보건기준에 관한 규칙 굴착작업 사전조사 등 (`art:기준규칙:338`) - https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제338조\n- 산업안전보건기준에 관한 규칙 추락의 방지 (`art:기준규칙:42`) - https://www.law.go.kr/법령/%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B8%B0%EC%A4%80%EC%97%90%20%EA%B4%80%ED%95%9C%20%EA%B7%9C%EC%B9%99/제42조\n- 산업안전보건기준에 관한 규칙 사전조사 및 작업계획서의 작성 등 (`art:기준규칙:38`) - https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제38조"
+    }
+  ],
+  "structuredContent": {
+    "query": {
+      "activityId": "activity:excavation_2m_plus"
+    },
+    "found": true,
+    "tbmDate": "2026-05-03",
+    "matchedActivity": {
+      "iri": "activity:excavation_2m_plus",
+      "label": "굴착작업 (높이 2m 이상)",
+      "score": 100,
+      "matchedBy": "activityId"
+    },
+    "dailyTbmSchema": {
+      "docId": "daily_tbm",
+      "title": "TBM (Tool Box Meeting) 일지",
+      "requiredFields": [
+        {
+          "key": "required_01",
+          "label": "일자·시간·장소",
+          "source": "art:산안법:36"
+        },
+        {
+          "key": "required_02",
+          "label": "당일 작업 공종",
+          "source": "art:산안법:36"
+        },
+        {
+          "key": "required_04",
+          "label": "당일 주요 위험요인",
+          "source": "art:산안법:36"
+        },
+        {
+          "key": "required_05",
+          "label": "핵심 안전수칙",
+          "source": "art:산안법:36"
+        },
+        {
+          "key": "required_06",
+          "label": "필요 보호구",
+          "source": "art:산안법:36"
+        }
+      ],
+      "standardRequiredFields": [
+        "일자·시간 (YYYY-MM-DD HH:MM)",
+        "장소 / 공종",
+        "참여 인원 (총 N명, 명단 첨부)",
+        "진행자 (관리감독자) 성명·서명",
+        "당일 주요 위험요인 3~5개 (구체적 시나리오)",
+        "핵심 안전 수칙 3~5개 (해야 할 행동)",
+        "필요 보호구",
+        "근로자 질문·의견"
+      ]
+    },
+    "topics": {
+      "todayWork": {
+        "iri": "activity:excavation_2m_plus",
+        "label": "굴착작업 (높이 2m 이상)"
+      },
+      "majorHazards": [
+        {
+          "iri": "hazard:cave_in",
+          "label": "무너짐 (붕괴)",
+          "specificity": "specific",
+          "description": "**원인**: 흙막이 변위 한계 초과 / 지하수위 상승 / 인접 하중 증가. **상황**: 깊이 2m 이상 굴착 / 도심지 근접 시공. **확인**: 계측관리 (변위·응력·지하수위) / 1차·2차·3차 관리기준...",
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "relation": "hasHazard",
+            "hazard": {
+              "iri": "hazard:cave_in",
+              "label": "무너짐 (붕괴)"
+            }
+          }
+        },
+        {
+          "iri": "hazard:buried_alive",
+          "label": "매몰",
+          "specificity": "specific",
+          "description": "**원인**: 굴착사면 붕괴 / 흙막이 미시공·시공 부실 / 우천 후 토사 슬라이드. **상황**: 2m 이상 굴착 / 흙막이 가시설 시공 / 매설관 굴착. **확인**: 흙막이 시공상세도 + 계측 / 굴착사면...",
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "relation": "hasHazard",
+            "hazard": {
+              "iri": "hazard:buried_alive",
+              "label": "매몰"
+            }
+          }
+        },
+        {
+          "iri": "hazard:fall_from_height",
+          "label": "추락 (떨어짐)",
+          "specificity": "specific",
+          "description": "**원인**: 안전난간·작업발판·승강설비 미설치 / 안전대 미착용 / 개구부 덮개 부재 / 비계 결손 / 사다리 미고정. **상황**: 2m 이상 고소작업 (비계·거푸집·철골·지붕·개구부 주변). **확인**:...",
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "relation": "hasHazard",
+            "hazard": {
+              "iri": "hazard:fall_from_height",
+              "label": "추락 (떨어짐)"
+            }
+          }
+        },
+        {
+          "iri": "hazard:struck_by_overturn",
+          "label": "깔림·뒤집힘",
+          "specificity": "specific",
+          "description": "**원인**: 건설기계 전도 / 차량 전복 / 흙막이·구조물 무너짐. **상황**: 경사지 차량 작업·아우트리거 미사용 굴삭·고소작업대 풍속 초과·흙막이 시공. **확인**: 아우트리거 전개·고정 / 풍속 10...",
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "relation": "hasHazard",
+            "hazard": {
+              "iri": "hazard:struck_by_overturn",
+              "label": "깔림·뒤집힘"
+            }
+          }
+        },
+        {
+          "iri": "hazard:fall_object",
+          "label": "맞음 (낙하·비래)",
+          "specificity": "specific",
+          "description": "**원인**: 낙하물 방지망 미설치 / 자재 가장자리 적재 / 양중 시 결속 부실 / 풍력. **상황**: 비계 외측·양중 작업·해체작업·고소 운반 시. **확인**: 낙하방지망 (그물코 10cm 이내) / 방...",
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "relation": "hasHazard",
+            "hazard": {
+              "iri": "hazard:fall_object",
+              "label": "맞음 (낙하·비래)"
+            }
+          }
+        }
+      ],
+      "safetyMeasures": [
+        {
+          "iri": "control:elim_avoid_work",
+          "label": "위험작업 회피",
+          "ericLevel": 1,
+          "ericLevelLabel": "1. 제거",
+          "controlSpecificity": "specific",
+          "directActivityMatch": true,
+          "hazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:fall_from_height",
+              "label": "추락 (떨어짐)"
+            },
+            "mitigatedBy": {
+              "iri": "control:elim_avoid_work",
+              "label": "위험작업 회피"
+            }
+          }
+        },
+        {
+          "iri": "control:sub_low_risk_method",
+          "label": "저위험 공법 대체",
+          "ericLevel": 2,
+          "ericLevelLabel": "2. 대체",
+          "controlSpecificity": "specific",
+          "directActivityMatch": true,
+          "hazard": {
+            "iri": "hazard:cave_in",
+            "label": "무너짐 (붕괴)"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:cave_in",
+              "label": "무너짐 (붕괴)"
+            },
+            "mitigatedBy": {
+              "iri": "control:sub_low_risk_method",
+              "label": "저위험 공법 대체"
+            }
+          }
+        },
+        {
+          "iri": "control:eng_isolation_barrier",
+          "label": "격리·차폐",
+          "ericLevel": 3,
+          "ericLevelLabel": "3. 공학적 통제",
+          "controlSpecificity": "specific",
+          "directActivityMatch": true,
+          "hazard": {
+            "iri": "hazard:struck_by_overturn",
+            "label": "깔림·뒤집힘"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:struck_by_overturn",
+              "label": "깔림·뒤집힘"
+            },
+            "mitigatedBy": {
+              "iri": "control:eng_isolation_barrier",
+              "label": "격리·차폐"
+            }
+          }
+        },
+        {
+          "iri": "control:eng_monitoring",
+          "label": "계측 모니터링",
+          "ericLevel": 3,
+          "ericLevelLabel": "3. 공학적 통제",
+          "controlSpecificity": "specific",
+          "directActivityMatch": true,
+          "hazard": {
+            "iri": "hazard:cave_in",
+            "label": "무너짐 (붕괴)"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:cave_in",
+              "label": "무너짐 (붕괴)"
+            },
+            "mitigatedBy": {
+              "iri": "control:eng_monitoring",
+              "label": "계측 모니터링"
+            }
+          }
+        },
+        {
+          "iri": "control:eng_guard_rail",
+          "label": "안전난간·안전대 부착설비",
+          "ericLevel": 3,
+          "ericLevelLabel": "3. 공학적 통제",
+          "controlSpecificity": "specific",
+          "directActivityMatch": true,
+          "hazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:fall_from_height",
+              "label": "추락 (떨어짐)"
+            },
+            "mitigatedBy": {
+              "iri": "control:eng_guard_rail",
+              "label": "안전난간·안전대 부착설비"
+            }
+          }
+        }
+      ],
+      "requiredPpe": [
+        {
+          "iri": "control:ppe_fall_arrester",
+          "label": "안전난간·죔줄",
+          "ericLevel": 5,
+          "ericLevelLabel": "5. 개인보호구",
+          "controlSpecificity": "specific",
+          "directActivityMatch": false,
+          "hazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:fall_from_height",
+              "label": "추락 (떨어짐)"
+            },
+            "mitigatedBy": {
+              "iri": "control:ppe_fall_arrester",
+              "label": "안전난간·죔줄"
+            }
+          }
+        },
+        {
+          "iri": "control:ppe_harness",
+          "label": "안전대",
+          "ericLevel": 5,
+          "ericLevelLabel": "5. 개인보호구",
+          "controlSpecificity": "specific",
+          "directActivityMatch": false,
+          "hazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:fall_from_height",
+              "label": "추락 (떨어짐)"
+            },
+            "mitigatedBy": {
+              "iri": "control:ppe_harness",
+              "label": "안전대"
+            }
+          }
+        },
+        {
+          "iri": "control:ppe_helmet",
+          "label": "안전모",
+          "ericLevel": 5,
+          "ericLevelLabel": "5. 개인보호구",
+          "controlSpecificity": "general",
+          "directActivityMatch": false,
+          "hazard": {
+            "iri": "hazard:cave_in",
+            "label": "무너짐 (붕괴)"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:cave_in",
+              "label": "무너짐 (붕괴)"
+            },
+            "mitigatedBy": {
+              "iri": "control:ppe_helmet",
+              "label": "안전모"
+            }
+          }
+        },
+        {
+          "iri": "control:ppe_safety_shoes",
+          "label": "안전화",
+          "ericLevel": 5,
+          "ericLevelLabel": "5. 개인보호구",
+          "controlSpecificity": "general",
+          "directActivityMatch": false,
+          "hazard": {
+            "iri": "hazard:struck_by_overturn",
+            "label": "깔림·뒤집힘"
+          },
+          "chain": {
+            "activity": {
+              "iri": "activity:excavation_2m_plus",
+              "label": "굴착작업 (높이 2m 이상)"
+            },
+            "hasHazard": {
+              "iri": "hazard:struck_by_overturn",
+              "label": "깔림·뒤집힘"
+            },
+            "mitigatedBy": {
+              "iri": "control:ppe_safety_shoes",
+              "label": "안전화"
+            }
+          }
+        }
+      ],
+      "citations": {
+        "koshaGuides": [
+          {
+            "iri": "doc:kosha_guide/C-103-2014",
+            "label": "굴착공사 계측관리 기술지침",
+            "sourceType": "kosha_guide",
+            "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+            "guideNo": "C-103-2014",
+            "legalWeight": "recommended"
+          },
+          {
+            "iri": "doc:kosha_guide/D-C-1-2025",
+            "label": "흙막이공사에 대한 기술지원규정",
+            "sourceType": "kosha_guide",
+            "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+            "guideNo": "D-C-1-2025",
+            "legalWeight": "recommended"
+          },
+          {
+            "iri": "doc:kosha_guide/D-C-11-2026",
+            "label": "굴착 및 토공 안전작업에 관한 기술지원규정",
+            "sourceType": "kosha_guide",
+            "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+            "guideNo": "D-C-11-2026",
+            "legalWeight": "recommended"
+          }
+        ],
+        "legalArticles": [
+          {
+            "iri": "art:기준규칙:338",
+            "label": "굴착작업 사전조사 등",
+            "sourceType": "law_article",
+            "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제338조",
+            "articleNumber": "338",
+            "legislationIdentifier": "산업안전보건기준에 관한 규칙",
+            "legalWeight": "mandatory"
+          },
+          {
+            "iri": "art:기준규칙:42",
+            "label": "추락의 방지",
+            "sourceType": "law_article",
+            "sourceUrl": "https://www.law.go.kr/법령/%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B8%B0%EC%A4%80%EC%97%90%20%EA%B4%80%ED%95%9C%20%EA%B7%9C%EC%B9%99/제42조",
+            "articleNumber": "42",
+            "legislationIdentifier": "산업안전보건기준에 관한 규칙",
+            "legalWeight": "mandatory"
+          },
+          {
+            "iri": "art:기준규칙:38",
+            "label": "사전조사 및 작업계획서의 작성 등",
+            "sourceType": "law_article",
+            "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제38조",
+            "articleNumber": "38",
+            "legislationIdentifier": "산업안전보건기준에 관한 규칙",
+            "legalWeight": "mandatory"
+          }
+        ]
+      }
+    },
+    "graphTraversal": {
+      "start": "activity:excavation_2m_plus",
+      "chains": [
+        "activity --hasHazard--> hazard",
+        "hazard --mitigatedBy--> control",
+        "activity/hazard --guidedBy--> doc:kosha_guide",
+        "activity/hazard --regulatedBy--> art"
+      ]
+    },
+    "license": "MIT. 그래프 노드의 출처·라이선스는 각 node._meta.licenseHint 및 sourceUrl을 따른다.",
+    "_meta": {
+      "providedBy": "황룡건설(주)",
+      "developedBy": "주식회사 라텔웍스",
+      "license": "MIT (code) + 공공누리 (data)",
+      "projectInfoTool": "get_project_info"
+    }
+  }
+}

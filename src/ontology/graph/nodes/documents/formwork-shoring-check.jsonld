@@ -1,0 +1,275 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/formwork_shoring_check",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "formwork_shoring_check",
+  "title": "거푸집·동바리 점검표",
+  "description": "거푸집·동바리 점검표 - 산안기준규칙:331의2 + 산안기준규칙:332 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "타설전",
+  "legalBasis": [
+    "art:기준규칙:331의2",
+    "art:기준규칙:332"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_formwork_shoring_check",
+    "officialName": "거푸집·동바리 점검표 (KOSHA)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 거푸집·동바리 점검표",
+      "legalSource": "산안기준규칙 제331조의2·제332조·제334조",
+      "fields": [
+        {
+          "key": "checkDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "콘크리트 타설 전 + 타설 중.",
+          "examples": [
+            "2026-04-29 09:00 (타설 전) + 11:00 (타설 중)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checker",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "형틀목공·구조 자격 + 안전관리자.",
+          "examples": [
+            "박형틀 (형틀목공기능사) + 김안전"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "areaPouring",
+          "label": "타설 구역·물량",
+          "required": true,
+          "inputGuide": "동·층·물량.",
+          "examples": [
+            "A동 5층 슬래브, 콘크리트 120m³"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "formworkCheck",
+          "label": "거푸집 점검 (제331조의2)",
+          "required": true,
+          "inputGuide": "수직도·이음·결속·하중.",
+          "examples": [
+            [
+              {
+                "항목": "수직도",
+                "결과": "적정"
+              },
+              {
+                "항목": "폼타이",
+                "결과": "체결"
+              },
+              {
+                "항목": "단부 결속",
+                "결과": "양호"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "shoringCheck",
+          "label": "동바리 점검 (제332조)",
+          "required": true,
+          "inputGuide": "수직재·수평재·가새·기초·이음.",
+          "examples": [
+            [
+              {
+                "항목": "수직재 좌굴",
+                "결과": "없음"
+              },
+              {
+                "항목": "수평재 결속",
+                "결과": "양호"
+              },
+              {
+                "항목": "가새 설치",
+                "결과": "양호"
+              },
+              {
+                "항목": "기초 침하",
+                "결과": "없음"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "이상·조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "미흡 시 타설 즉시 중단.",
+          "examples": [
+            "[해당없음] 타설 진행 가능"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:331의2",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:331의2",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:331의2",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "inspection",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "콘크리트 현장"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:falling_object",
+    "hazard:cave_in"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:eng_shoring",
+    "control:admin_inspection"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_plan_excavation",
+    "doc:quarterly/construction_safety_inspection_record"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

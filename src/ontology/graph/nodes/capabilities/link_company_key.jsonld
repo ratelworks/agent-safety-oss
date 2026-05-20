@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/link_company_key",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "라텔웍스 키 연동",
+      "@language": "ko"
+    },
+    {
+      "@value": "Link Company Key",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 라텔웍스 발행 API 키 등록 → 기업 프로파일을 자동 fetch 해서 로컬 SSoT (Site) 에 입력. 가입: https://ratelworks.co.kr/agent-safety/signup",
+  "toolName": "link_company_key",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/link_company_key",
+  "producesEntity": [
+    "safety:CompanyKeyLink"
+  ],
+  "maps_to_action": "safety:action/link_company_key",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

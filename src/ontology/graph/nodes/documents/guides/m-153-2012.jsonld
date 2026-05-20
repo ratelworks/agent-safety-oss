@@ -1,0 +1,155 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/M-153-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_m-153-2012",
+  "title": "가공목재 및 판재의 적재에 관한 안전기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "M-153-2012",
+    "guideCategory": "machine",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction_partial",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"가공목재\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 6,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "가공목재",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:traffic_accident",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:manual_handling",
+    "hazard:struck_by_overturn"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:admin_signal_person",
+    "control:admin_qualification",
+    "control:eng_monitoring"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus",
+    "activity:vehicle_cargo"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_가공목재 및 판재의 적재에 관한 안전기술지침_2",
+      "title": "가공목재 및 판재의 적재에 관한 안전기술지침 - 적용범위",
+      "score": 92.507
+    },
+    {
+      "docId": "KOSHA07_가공목재 및 판재의 적재에 관한 안전기술지침_1",
+      "title": "가공목재 및 판재의 적재에 관한 안전기술지침 - 목 적",
+      "score": 83.333
+    },
+    {
+      "docId": "KOSHA07_가공목재 및 판재의 적재에 관한 안전기술지침_5",
+      "title": "가공목재 및 판재의 적재에 관한 안전기술지침 - 안전 작업",
+      "score": 80.264
+    },
+    {
+      "docId": "KOSHA07_가공목재 및 판재의 적재에 관한 안전기술지침_4",
+      "title": "가공목재 및 판재의 적재에 관한 안전기술지침 - 적재의 안전성을 좌우 하는 요인",
+      "score": 72.45
+    },
+    {
+      "docId": "KOSHA07_가공목재 및 판재의 적재에 관한 안전기술지침_3",
+      "title": "가공목재 및 판재의 적재에 관한 안전기술지침 - 용어의 정의",
+      "score": 34.187
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:산안법:6장",
+      "law": "산안법",
+      "chapterTitle": "유해ㆍ위험 기계 등에 대한 조치",
+      "source": "guide_body_citation",
+      "rawCitation": "o 관련법규․규칙․고시 등 산업안전보건법 안전보건기준에 관한 규칙 제6장 제1절 “화물취급 작업 등”"
+    },
+    {
+      "chapterNodeId": "chapter:기준규칙:6장",
+      "law": "기준규칙",
+      "chapterTitle": "온도ㆍ습도에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "이 지침은 산업안전보건기준에 관한 규칙의 제2편 제6장 제1절의 “화물취급 작업"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "산안법",
+      "unit": "절",
+      "num": 1,
+      "rawCitation": "o 관련법규․규칙․고시 등 산업안전보건법 안전보건기준에 관한 규칙 제6장 제1절 “화물취급 작업 등”",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "이 지침은 산업안전보건기준에 관한 규칙의 제2편 제6장 제1절의 “화물취급 작업",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "절",
+      "num": 1,
+      "rawCitation": "이 지침은 산업안전보건기준에 관한 규칙의 제2편 제6장 제1절의 “화물취급 작업",
+      "needsNode": true
+    }
+  ]
+}

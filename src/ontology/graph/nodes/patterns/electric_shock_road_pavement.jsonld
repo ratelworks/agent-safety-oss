@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/electric_shock_road_pavement",
+  "@type": [
+    "Event"
+  ],
+  "slug": "electric_shock_road_pavement",
+  "title": "electric_shock × road_pavement",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 electric_shock 작업유형 road_pavement.",
+  "koshaAccidentType": "electric_shock",
+  "hasHazard": [
+    "hazard:electric_shock"
+  ],
+  "causedBy": [
+    "activity:road_pavement"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "가건물 숙소에서 취침중 전기설비의 누전으로 용접공, 화재 사망",
+    "송전선로에 점퍼선 연결작업중",
+    "고압선(6,600V)을 전신부에서 분리중 역송전에 의해 감전(220V)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

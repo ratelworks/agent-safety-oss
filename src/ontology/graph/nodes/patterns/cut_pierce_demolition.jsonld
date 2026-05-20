@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cut_pierce_demolition",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cut_pierce_demolition",
+  "title": "cut_pierce × demolition",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 cut_pierce 작업유형 demolition.",
+  "koshaAccidentType": "cut_pierce",
+  "hasHazard": [
+    "hazard:machine_entanglement"
+  ],
+  "causedBy": [
+    "activity:demolition"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "H빔 절단 작업 중 빔 전도",
+    "방호벽 경사버팀보 해체작업 중 절단된 경사버팀보 도괴",
+    "이동통신기지국 해체작업중 전도되는 철탑에"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

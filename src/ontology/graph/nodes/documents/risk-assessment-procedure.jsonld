@@ -1,0 +1,347 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/risk_assessment_procedure",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "risk_assessment_procedure",
+  "title": "위험성평가 절차서",
+  "description": "위험성평가 효과적 실시 위한 사업장 규정 (위험성평가 고시 제6조)",
+  "cycle": "cyc:annual",
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "f_1_실시규정_작성일",
+      "label": "실시규정 작성일",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "본 양식 작성일. 자동 채움 권장.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "f_2_위험성평가_대상_작업",
+      "label": "위험성평가 대상 작업",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "평가 대상 작업·공정·기계·설비.",
+      "examples": [
+        "전 공정 (굴착·골조·외장·설비) + 신규 도입 기계·설비 + 변경 공정"
+      ]
+    },
+    {
+      "key": "f_3_유해_위험요인_파악_방",
+      "label": "유해·위험요인 파악 방법",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "발견·예상 유해·위험요인. KRAS 7방법 적용.",
+      "examples": [
+        "1) 추락 (2m 이상 단부) / 2) 협착 (양중 하부) / 3) 화재 (용접 불꽃)"
+      ]
+    },
+    {
+      "key": "f_4_위험성_결정_기준",
+      "label": "위험성 결정 기준",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "위험성 결정 매트릭스 (KRAS 5x4 빈도×강도).",
+      "examples": [
+        "KRAS 5x4: 1~3 허용 / 4~9 작업 가능 (추가관리) / 10~16 작업 중지 / 17~25 즉시 시정"
+      ]
+    },
+    {
+      "key": "f_5_감소대책_위계__ERI",
+      "label": "감소대책 위계 (제거→대체→공학적→관리적→보호구)",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "감소대책 위계 적용 절차.",
+      "examples": [
+        "1순위 제거 (공정 변경) → 2순위 대체 (저위험 물질) → 3순위 공학적 (안전난간) → 4순위 관리적 (절차) → 5순위 보호구"
+      ]
+    },
+    {
+      "key": "f_6_근로자_참여_절차",
+      "label": "근로자 참여 절차",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "근로자 참여 절차 (위험성평가 고시 제6조).",
+      "examples": [
+        "1) 사전 안내 / 2) 의견 수렴 (TBM·게시판) / 3) 현장 평가 동행 / 4) 결과 공유"
+      ]
+    },
+    {
+      "key": "f_7_기록_보존_방법",
+      "label": "기록·보존 방법",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "기록·보존 방법 (위험성평가 고시 제14조).",
+      "examples": [
+        "전자문서 (위험성평가 시스템) + 출력본 보관 / 보존 3년"
+      ]
+    },
+    {
+      "key": "f_8_사업주_서명",
+      "label": "사업주 서명",
+      "source": "위험성평가 고시 제6조",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "5항목 모두 작성",
+      "severity": "manual_review",
+      "legalBasis": "art:위험성평가-고시:6"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 위험성평가 절차",
+      "legalSource": "위험성평가 고시 제13조",
+      "fields": [
+        {
+          "key": "scope",
+          "label": "평가 대상·범위",
+          "required": true,
+          "inputGuide": "전 작업·공정 + 비정형 작업 포함.",
+          "examples": [
+            "전 공정(굴착·골조·마감) + 비정형(긴급보수·청소)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "team",
+          "label": "평가팀 구성",
+          "required": true,
+          "inputGuide": "사업주·관리감독자·작업자·안전관리자 + 외부전문가(필요시).",
+          "examples": [
+            "사업주 1, 관리감독자 2, 작업자대표 3, 안전관리자 1"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "method",
+          "label": "평가 방법",
+          "required": true,
+          "inputGuide": "빈도·강도법(5×4) 또는 KRAS·체크리스트.",
+          "examples": [
+            "빈도(1~5) × 강도(1~4) 매트릭스, 위험도 12 이상 우선조치"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "cycle",
+          "label": "평가 주기",
+          "required": true,
+          "inputGuide": "최초 + 정기(연1회) + 상시(매월·매주·매일) + 수시(변경시).",
+          "examples": [
+            "최초 착공시, 정기 매년 12월, 상시 매월·매주·매일, 수시 변경시"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "controlHierarchy",
+          "label": "감소대책 위계",
+          "required": true,
+          "inputGuide": "제거 → 대체 → 공학적 대책 → 관리적 대책 → 개인보호구 순으로 적용.",
+          "examples": [
+            "1순위 제거(공정변경), 2순위 대체(저위험물질), 3순위 공학적(방호장치), 4순위 관리적, 5순위 PPE"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workerParticipation",
+          "label": "근로자 참여",
+          "required": true,
+          "inputGuide": "고시 제16조 (의견청취·참여 의무).",
+          "examples": [
+            "TBM에서 5분 의견청취, 월 1회 협의회"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "지속 (개정 시까지)",
+  "guidedBy": [
+    "doc:kosha_guide/C-C-21-2026",
+    "doc:kosha_guide/C-C-22-2026",
+    "doc:kosha_guide/C-C-30-2026",
+    "doc:kosha_guide/C-C-36-2026",
+    "doc:kosha_guide/C-C-67-2026",
+    "doc:kosha_guide/C-C-7-2026",
+    "doc:kosha_guide/C-C-73-2026",
+    "doc:kosha_guide/C-C-75-2026",
+    "doc:kosha_guide/X-78-2018"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:위험성평가-고시:6",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "위험성평가",
+      "위험성 평가"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "모든 사업장. 위험성평가 절차 규정."
+  },
+  "trigger": "최초 작성 + 산업안전보건위원회 의결 시",
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "evaluatedBy": [
+    "method:3step",
+    "method:checklist",
+    "method:key_factor",
+    "method:frequency_severity",
+    "method:occupational_health",
+    "method:chemical",
+    "method:construction_continuous",
+    "method:kras_step_1_prep",
+    "method:kras_step_2_identify",
+    "method:kras_step_3_estimate",
+    "method:kras_step_4_decide",
+    "method:kras_step_5_control",
+    "method:risk_matrix_5x4"
+  ],
+  "cited_in": [
+    "stat:sif_archive_kosha"
+  ],
+  "informedBy": [
+    "manual:risk_assessment_practical",
+    "entity:kosha",
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_risk_assessment",
+    "control:admin_supervisor"
+  ],
+  "relatedDocs": [
+    "doc:annual/regular_risk_assessment",
+    "doc:monthly/monthly_risk_assessment",
+    "doc:ad_hoc/ad_hoc_risk_assessment",
+    "doc:ad_hoc/initial_risk_assessment",
+    "doc:daily/daily_tbm"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

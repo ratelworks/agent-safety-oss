@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "dataId": "15116595",
+  "bundleStatus": "static_index_pending_live_api_active",
+  "source": "한국산업안전보건공단 기술지원규정(KOSHA Guide) 목록 (data.go.kr)",
+  "sourceUrl": "https://www.data.go.kr/data/15116595/fileData.do",
+  "license": "공공누리 출처표시·변경금지",
+  "legalWeight": "recommended",
+  "licenseNote": "그래프 노드는 공식 필드(번호·제목·발행일·분류·URL)를 변경 없이 색인하는 사실(fact) 진술이며, 공공누리 변경금지 조항의 구성요건(원저작물 개작·2차적 저작물 작성)에 해당하지 않는다. 본문은 그래프에 포함하지 않고 KOSHA Live API(15144147)로 동적 조회한다. 출처 표기는 발행기관·sourceUrl·접근일자를 _meta에 명시한다.",
+  "purposeAlignment": "KOSHA Guide의 발행 목적은 건설사 실무자가 현장에서 안전 기술 기준을 활용하는 것이며, 본 OSS의 목적은 중소건설현장이 그 활용을 자동화·표준화해 대기업급 안전관리 출발선에 도달하는 것이다. 두 목적이 정확히 일치하므로, 1,350건 메타데이터의 온톨로지 그래프 색인은 KOSHA 발행 목적의 실현 형태이다 (사용자 합의 2026-04-30, agentsafety_kosha_guide_publication_purpose.md).",
+  "liveApiStatus": {
+    "dataId": "15144147",
+    "tool": "get_kosha_guide_md",
+    "graphNodeDir": "src/ontology/graph/nodes/documents/guides/",
+    "verifiedNodeCount": 1039,
+    "verificationStatus": "kosha_live_verified",
+    "seedScript": "scripts/seed-kosha-catalog.ts (P-A)"
+  },
+  "notice": "본 파일은 정적 1,350건 카탈로그(폐지·이력 포함)를 위한 인덱스이다. 현재 유효 1,039건은 KOSHA Live API(15144147)에서 ground truth로 자동 흡수되어 graph/nodes/documents/guides/ 에 그래프 노드로 존재한다. 정적 인덱스를 채우려면 data.go.kr 15116595 CSV 다운로드 → ./data/kosha-guide.csv → npm run sync-kosha 실행 (공식 필드 무변경 저장).",
+  "lastSyncedAt": null,
+  "officialCount": 1350,
+  "guides": []
+}

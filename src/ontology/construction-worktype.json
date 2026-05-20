@@ -1,0 +1,98 @@
+{
+  "version": "0.1.0",
+  "licenseOrigin": "project-internal (MIT)",
+  "description": "건설공사 작업공종 간이 분류표 — 프로젝트 자체 코드표. KOSHA 공식 공종 분류(15087828)와 별개로 내부 taxonomy 로 구성되어 있고 MIT 하에 자유 재사용. KOSHA 공식 매핑을 원하면 npm run sync-kosha 후 construction-subtasks.json 사용.",
+  "workTypes": [
+    {
+      "code": "SCAFFOLD_INSTALL",
+      "ko": "비계 설치",
+      "aliases": ["비계 작업", "가설구조물 설치"],
+      "mainHazards": ["FALL", "STRUCK_BY", "COLLAPSE"],
+      "relatedObjects": ["작업발판", "안전난간", "비계기둥"]
+    },
+    {
+      "code": "SCAFFOLD_DISMANTLE",
+      "ko": "비계 해체",
+      "aliases": ["가설구조물 해체"],
+      "mainHazards": ["FALL", "STRUCK_BY", "COLLAPSE"],
+      "relatedObjects": ["작업발판", "안전대 부착설비"]
+    },
+    {
+      "code": "FORMWORK_INSTALL",
+      "ko": "거푸집 설치",
+      "aliases": ["형틀 설치", "폼 설치"],
+      "mainHazards": ["FALL", "STRUCK_BY", "CAUGHT_IN"],
+      "relatedObjects": ["동바리", "작업발판", "개구부"]
+    },
+    {
+      "code": "FORMWORK_DISMANTLE",
+      "ko": "거푸집 해체",
+      "aliases": ["형틀 해체"],
+      "mainHazards": ["FALL", "STRUCK_BY", "COLLAPSE"],
+      "relatedObjects": ["동바리", "작업발판"]
+    },
+    {
+      "code": "REBAR",
+      "ko": "철근 배근",
+      "aliases": ["철근 조립", "배근 작업"],
+      "mainHazards": ["FALL", "CUT", "CAUGHT_IN"],
+      "relatedObjects": ["개구부", "슬래브", "철근"]
+    },
+    {
+      "code": "CONCRETE_POUR",
+      "ko": "콘크리트 타설",
+      "aliases": ["타설 작업"],
+      "mainHazards": ["COLLAPSE", "FALL", "CHEMICAL"],
+      "relatedObjects": ["펌프카", "거푸집", "동바리"]
+    },
+    {
+      "code": "EXCAVATION",
+      "ko": "굴착 작업",
+      "aliases": ["터파기", "굴착"],
+      "mainHazards": ["COLLAPSE", "CRUSHED", "STRUCK_BY"],
+      "relatedObjects": ["흙막이", "굴착기", "트렌치"]
+    },
+    {
+      "code": "EARTH_RETAINING",
+      "ko": "흙막이 작업",
+      "aliases": ["흙막이 지보공", "가시설"],
+      "mainHazards": ["COLLAPSE", "FALL"],
+      "relatedObjects": ["H-Pile", "스트럿", "토류판"]
+    },
+    {
+      "code": "STEEL_ERECTION",
+      "ko": "철골 조립",
+      "aliases": ["철골 세우기"],
+      "mainHazards": ["FALL", "STRUCK_BY", "COLLAPSE"],
+      "relatedObjects": ["크레인", "안전대", "추락방호망"]
+    },
+    {
+      "code": "LIFTING",
+      "ko": "양중 작업",
+      "aliases": ["인양", "크레인 작업"],
+      "mainHazards": ["STRUCK_BY", "CRUSHED", "CAUGHT_IN"],
+      "relatedObjects": ["크레인", "줄걸이", "신호수"]
+    },
+    {
+      "code": "DEMOLITION",
+      "ko": "해체공사",
+      "aliases": ["철거"],
+      "mainHazards": ["COLLAPSE", "FALL", "STRUCK_BY"],
+      "relatedObjects": ["구조물", "분진", "소음"]
+    },
+    {
+      "code": "OPENING_WORK",
+      "ko": "개구부 작업",
+      "aliases": ["단부 작업"],
+      "mainHazards": ["FALL"],
+      "relatedObjects": ["안전난간", "덮개", "추락방호망"]
+    },
+    {
+      "code": "HIGH_ALTITUDE",
+      "ko": "고소 작업",
+      "aliases": ["고소작업대", "이동식 작업대"],
+      "mainHazards": ["FALL", "STRUCK_BY"],
+      "relatedObjects": ["고소작업대", "안전대", "아웃트리거"]
+    }
+  ]
+}

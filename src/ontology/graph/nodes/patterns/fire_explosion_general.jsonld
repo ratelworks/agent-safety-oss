@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fire_explosion_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fire_explosion_general",
+  "title": "fire_explosion",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 26건 관측. 사고유형 fire_explosion.",
+  "koshaAccidentType": "fire_explosion",
+  "hasHazard": [
+    "hazard:fire_explosion",
+    "hazard:fire"
+  ],
+  "causedBy": [],
+  "caseFrequency": 26,
+  "sampleKeywords": [
+    "사일로 맨홀 용단작업 중 폭발(사망1명)",
+    "LPG 용접용단 시 화재폭발 재해예방 안전대책",
+    "건설공사 용접용단작업 시 화재폭발 재해예방 안전대책"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

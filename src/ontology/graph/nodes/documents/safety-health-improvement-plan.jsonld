@@ -1,0 +1,240 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/safety_health_improvement_plan",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_improvement_plan",
+  "title": "안전보건개선계획서",
+  "description": "안전보건개선계획서 - 산안법:49 + 산안법:50 + 산안법시행규칙:61 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "지정시",
+  "legalBasis": [
+    "art:산안법:49",
+    "art:산안법:50",
+    "art:산안법시행규칙:61"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_safety_health_improvement_plan",
+    "officialName": "안전보건개선계획서 (고용노동부)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건개선계획서",
+      "legalSource": "산안법 제49조·제50조 + 시행규칙 제61조",
+      "fields": [
+        {
+          "key": "trigger",
+          "label": "수립 사유",
+          "required": true,
+          "inputGuide": "진단·명령·자체 결정.",
+          "examples": [
+            "고용노동부 개선 명령 (2026-04-29)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "period",
+          "label": "계획 기간",
+          "required": true,
+          "inputGuide": "6개월~1년.",
+          "examples": [
+            "2026-05-01 ~ 2026-10-31 (6개월)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "improvementGoals",
+          "label": "개선 목표",
+          "required": true,
+          "inputGuide": "진단 지적사항 → 정량 목표.",
+          "examples": [
+            "1) 추락사고 0건, 2) 위험성평가 100% 이행, 3) 안전대 100% 착용"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "actionPlan",
+          "label": "세부 실행 계획",
+          "required": true,
+          "inputGuide": "항목별 책임자·일정·예산.",
+          "examples": [
+            [
+              {
+                "항목": "안전난간 보강",
+                "책임": "박감독",
+                "기한": "5/15",
+                "예산": "500만"
+              },
+              {
+                "항목": "안전대 교체",
+                "책임": "김안전",
+                "기한": "5/30",
+                "예산": "3,000만"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reportSubmission",
+          "label": "고용노동부 제출",
+          "required": true,
+          "inputGuide": "진단 후 60일 내 제출.",
+          "examples": [
+            "2026-06-15 강남고용노동지청 제출"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:49",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:49",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "5년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:49",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "report",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "지정 사업장"
+  },
+  "hasHazard": [],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Audit",
+  "relatedDocs": [
+    "doc:ad_hoc/safety_health_diagnosis_report",
+    "doc:annual/regular_risk_assessment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

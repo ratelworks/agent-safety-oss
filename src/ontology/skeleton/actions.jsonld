@@ -1,0 +1,994 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "vann": "http://purl.org/vocab/vann/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0/",
+    "bfo": "http://purl.obolibrary.org/obo/",
+    "iao": "http://purl.obolibrary.org/obo/",
+    "iso45001": "https://safety.ratelworks.org/iso45001#",
+    "cc": "https://construction.ratelworks.org/ontology/v1/",
+    "safety": "https://safety.ratelworks.org/ontology/v1/",
+    "activity": "https://safety.ratelworks.org/activity/",
+    "art": "https://safety.ratelworks.org/article/",
+    "doc": "https://safety.ratelworks.org/document/",
+    "cyc": "https://safety.ratelworks.org/cycle/"
+  },
+  "@graph": [
+    {
+      "@id": "safety:action/create_ad_hoc_risk_assessment",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "수시 위험성평가 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Ad Hoc Risk Assessment Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 수시 위험성평가 양식 생성을 위한 Action Type Contract다. src/ontology/guides/ad-hoc-risk-assessment.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Ad Hoc Risk Assessment. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/ad-hoc-risk-assessment.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:general_workplace_safety",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_ad_hoc_risk_assessment\",\"title\":\"create_ad_hoc_risk_assessment\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"ad_hoc_risk_assessment\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:ad_hoc\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\"],\"default\":\"activity:general_workplace_safety\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:36\",\"art:위험성평가-고시:15\",\"art:위험성평가-고시:6\",\"art:위험성평가-고시:10\",\"art:위험성평가-고시:12\",\"art:위험성평가-고시:14\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"수시평가 트리거\",\"description\":\"수시평가 트리거 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"변경 일자\",\"description\":\"변경 일자 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"변경 전후 내용\",\"description\":\"변경 전후 내용 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"추가 유해·위험요인\",\"description\":\"추가 유해·위험요인 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"위험성 결정\",\"description\":\"위험성 결정 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"감소대책 및 이행기한\",\"description\":\"감소대책 및 이행기한 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"ad_hoc_risk_assessment\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:ad_hoc\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_ad_hoc_risk_assessment\",\"outputDocId\":\"ad_hoc_risk_assessment\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:ad_hoc/ad_hoc_risk_assessment"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:36"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-ad_hoc_risk_assessment"
+    },
+    {
+      "@id": "safety:action/create_contractor_safety_council",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "도급 안전보건협의체 회의록 + 합동 순회점검 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Contractor Safety Council Minutes Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 도급 안전보건협의체 회의록 + 합동 순회점검 양식 생성을 위한 Action Type Contract다. src/ontology/guides/contractor-safety-council.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Contractor Safety Council Minutes. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/contractor-safety-council.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:contractor_management",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_contractor_safety_council\",\"title\":\"create_contractor_safety_council\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"contractor_safety_council\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:monthly\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:contractor_management\"],\"default\":\"activity:contractor_management\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:63\",\"art:산안법:64\",\"art:산안법시행규칙:79\",\"art:산안법시행규칙:80\",\"art:산안법:164\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"회의일자·장소\",\"description\":\"회의일자·장소 / 법적 근거: art:산안법:63\",\"x-legalBasis\":\"art:산안법:63\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"원·하청 참석자 및 책임자\",\"description\":\"원·하청 참석자 및 책임자 / 법적 근거: art:산안법:63\",\"x-legalBasis\":\"art:산안법:63\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"협의 안건\",\"description\":\"협의 안건 / 법적 근거: art:산안법:63\",\"x-legalBasis\":\"art:산안법:63\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"혼재작업 조정사항\",\"description\":\"혼재작업 조정사항 / 법적 근거: art:산안법:63\",\"x-legalBasis\":\"art:산안법:63\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"합동점검 결과\",\"description\":\"합동점검 결과 / 법적 근거: art:산안법:63\",\"x-legalBasis\":\"art:산안법:63\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"시정조치 책임자·기한\",\"description\":\"시정조치 책임자·기한 / 법적 근거: art:산안법:63\",\"x-legalBasis\":\"art:산안법:63\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"contractor_safety_council\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:monthly\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:contractor_management\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_contractor_safety_council\",\"outputDocId\":\"contractor_safety_council\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:monthly/contractor_safety_council"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:63"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-contractor_safety_council"
+    },
+    {
+      "@id": "safety:action/create_daily_tbm",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "TBM (Tool Box Meeting) 일지 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Daily TBM Log Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 TBM (Tool Box Meeting) 일지 양식 생성을 위한 Action Type Contract다. src/ontology/guides/daily-tbm.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Daily TBM Log. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/daily-tbm.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:tbm_daily",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_daily_tbm\",\"title\":\"create_daily_tbm\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"daily_tbm\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:daily\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:tbm_daily\"],\"default\":\"activity:tbm_daily\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:36\",\"art:산안법:29\",\"art:위험성평가-고시:15\",\"art:위험성평가-고시:6\",\"art:위험성평가-고시:13\",\"art:위험성평가-고시:14\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"일자·시간·장소\",\"description\":\"일자·시간·장소 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"당일 작업 공종\",\"description\":\"당일 작업 공종 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"참여자 명단·서명\",\"description\":\"참여자 명단·서명 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"당일 주요 위험요인\",\"description\":\"당일 주요 위험요인 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"핵심 안전수칙\",\"description\":\"핵심 안전수칙 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"필요 보호구\",\"description\":\"필요 보호구 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"daily_tbm\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:daily\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:tbm_daily\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_daily_tbm\",\"outputDocId\":\"daily_tbm\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:daily/daily_tbm"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:36"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-daily_tbm"
+    },
+    {
+      "@id": "safety:action/create_health_examination_records",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "건강진단 (일반·특수) 결과 기록 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Health Examination Records Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 건강진단 (일반·특수) 결과 기록 양식 생성을 위한 Action Type Contract다. src/ontology/guides/health-examination-records.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Health Examination Records. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/health-examination-records.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:hazardous_chemical_work",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_health_examination_records\",\"title\":\"create_health_examination_records\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"health_examination_records\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:annual\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:hazardous_chemical_work\",\"activity:chemical_handling\",\"activity:painting\",\"activity:cement_handling\"],\"default\":\"activity:hazardous_chemical_work\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:129\",\"art:산안법:130\",\"art:산안법:131\",\"art:산안법시행규칙:241\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"근로자 인적사항\",\"description\":\"근로자 인적사항 / 법적 근거: art:산안법:129\",\"x-legalBasis\":\"art:산안법:129\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"진단 종류\",\"description\":\"진단 종류 / 법적 근거: art:산안법:129\",\"x-legalBasis\":\"art:산안법:129\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"진단 일자\",\"description\":\"진단 일자 / 법적 근거: art:산안법:129\",\"x-legalBasis\":\"art:산안법:129\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"건강진단기관\",\"description\":\"건강진단기관 / 법적 근거: art:산안법:129\",\"x-legalBasis\":\"art:산안법:129\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"진단 결과 판정\",\"description\":\"진단 결과 판정 / 법적 근거: art:산안법:129\",\"x-legalBasis\":\"art:산안법:129\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"사후관리 조치\",\"description\":\"사후관리 조치 / 법적 근거: art:산안법:129\",\"x-legalBasis\":\"art:산안법:129\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"health_examination_records\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:annual\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:hazardous_chemical_work\",\"activity:chemical_handling\",\"activity:painting\",\"activity:cement_handling\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_health_examination_records\",\"outputDocId\":\"health_examination_records\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:annual/health_examination_records"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:129"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-health_examination_records"
+    },
+    {
+      "@id": "safety:action/create_health_safety_committee",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "산업안전보건위원회 회의록 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Health and Safety Committee Minutes Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 산업안전보건위원회 회의록 양식 생성을 위한 Action Type Contract다. src/ontology/guides/health-safety-committee.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Health and Safety Committee Minutes. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/health-safety-committee.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:general_workplace_safety",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_health_safety_committee\",\"title\":\"create_health_safety_committee\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"health_safety_committee\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:quarterly\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\"],\"default\":\"activity:general_workplace_safety\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:24\",\"art:산안법시행령:34\",\"art:산안법시행령:35\",\"art:산안법:164\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"회의일자·장소\",\"description\":\"회의일자·장소 / 법적 근거: art:산안법:24\",\"x-legalBasis\":\"art:산안법:24\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"사용자위원·근로자위원 명단\",\"description\":\"사용자위원·근로자위원 명단 / 법적 근거: art:산안법:24\",\"x-legalBasis\":\"art:산안법:24\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"안건\",\"description\":\"안건 / 법적 근거: art:산안법:24\",\"x-legalBasis\":\"art:산안법:24\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"심의·의결 사항\",\"description\":\"심의·의결 사항 / 법적 근거: art:산안법:24\",\"x-legalBasis\":\"art:산안법:24\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"표결 결과\",\"description\":\"표결 결과 / 법적 근거: art:산안법:24\",\"x-legalBasis\":\"art:산안법:24\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"위원 서명\",\"description\":\"위원 서명 / 법적 근거: art:산안법:24\",\"x-legalBasis\":\"art:산안법:24\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"health_safety_committee\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:quarterly\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_health_safety_committee\",\"outputDocId\":\"health_safety_committee\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:monthly/health_safety_committee"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:24"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-health_safety_committee"
+    },
+    {
+      "@id": "safety:action/create_industrial_accident_report",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "산업재해조사표 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Industrial Accident Report Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 산업재해조사표 양식 생성을 위한 Action Type Contract다. src/ontology/guides/industrial-accident-report.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Industrial Accident Report. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/industrial-accident-report.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:general_workplace_safety",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_industrial_accident_report\",\"title\":\"create_industrial_accident_report\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"industrial_accident_report\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:ad_hoc\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\"],\"default\":\"activity:general_workplace_safety\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:54\",\"art:산안법:57\",\"art:산안법시행규칙:73\",\"art:산안법:164\",\"art:산안법:175\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"재해자 인적사항\",\"description\":\"재해자 인적사항 / 법적 근거: art:산안법:54\",\"x-legalBasis\":\"art:산안법:54\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"재해 발생 일시·장소\",\"description\":\"재해 발생 일시·장소 / 법적 근거: art:산안법:54\",\"x-legalBasis\":\"art:산안법:54\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"재해 유형·정도\",\"description\":\"재해 유형·정도 / 법적 근거: art:산안법:54\",\"x-legalBasis\":\"art:산안법:54\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"발생 경위·원인\",\"description\":\"발생 경위·원인 / 법적 근거: art:산안법:54\",\"x-legalBasis\":\"art:산안법:54\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"재발방지 대책\",\"description\":\"재발방지 대책 / 법적 근거: art:산안법:54\",\"x-legalBasis\":\"art:산안법:54\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"사업주·작성자 서명\",\"description\":\"사업주·작성자 서명 / 법적 근거: art:산안법:54\",\"x-legalBasis\":\"art:산안법:54\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"industrial_accident_report\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:ad_hoc\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_industrial_accident_report\",\"outputDocId\":\"industrial_accident_report\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:ad_hoc/industrial_accident_report"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:54"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-industrial_accident_report"
+    },
+    {
+      "@id": "safety:action/create_initial_risk_assessment",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "최초 위험성평가 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Initial Risk Assessment Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 최초 위험성평가 양식 생성을 위한 Action Type Contract다. src/ontology/guides/initial-risk-assessment.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Initial Risk Assessment. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/initial-risk-assessment.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:risk_assessment_general",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_initial_risk_assessment\",\"title\":\"create_initial_risk_assessment\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"initial_risk_assessment\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:ad_hoc\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:risk_assessment_general\"],\"default\":\"activity:risk_assessment_general\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:36\",\"art:위험성평가-고시:15\",\"art:위험성평가-고시:5\",\"art:위험성평가-고시:6\",\"art:위험성평가-고시:10\",\"art:위험성평가-고시:12\",\"art:위험성평가-고시:14\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"사업장명·소재지\",\"description\":\"사업장명·소재지 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"사업 개시일·실착공일\",\"description\":\"사업 개시일·실착공일 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"평가 실시일\",\"description\":\"평가 실시일 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"유해·위험요인 목록\",\"description\":\"유해·위험요인 목록 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"위험성 결정 방법\",\"description\":\"위험성 결정 방법 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"감소대책 및 책임자\",\"description\":\"감소대책 및 책임자 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"initial_risk_assessment\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:ad_hoc\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:risk_assessment_general\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_initial_risk_assessment\",\"outputDocId\":\"initial_risk_assessment\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:ad_hoc/initial_risk_assessment"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:36"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-initial_risk_assessment"
+    },
+    {
+      "@id": "safety:action/create_monthly_education_log",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "안전보건 교육일지 (정기·신규·특별·관리감독자) 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Monthly Safety Education Log Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 안전보건 교육일지 (정기·신규·특별·관리감독자) 양식 생성을 위한 Action Type Contract다. src/ontology/guides/monthly-education-log.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Monthly Safety Education Log. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/monthly-education-log.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:safety_education",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_monthly_education_log\",\"title\":\"create_monthly_education_log\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"monthly_education_log\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:monthly\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:safety_education\"],\"default\":\"activity:safety_education\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:29\",\"art:산안법시행규칙:26\",\"art:산안법:164\",\"art:산안법:175\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"교육일자·시간\",\"description\":\"교육일자·시간 / 법적 근거: art:산안법:29\",\"x-legalBasis\":\"art:산안법:29\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"교육 종류\",\"description\":\"교육 종류 / 법적 근거: art:산안법:29\",\"x-legalBasis\":\"art:산안법:29\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"교육 내용\",\"description\":\"교육 내용 / 법적 근거: art:산안법:29\",\"x-legalBasis\":\"art:산안법:29\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"강사 성명·자격\",\"description\":\"강사 성명·자격 / 법적 근거: art:산안법:29\",\"x-legalBasis\":\"art:산안법:29\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"수강자 명단·서명\",\"description\":\"수강자 명단·서명 / 법적 근거: art:산안법:29\",\"x-legalBasis\":\"art:산안법:29\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"교육 자료\",\"description\":\"교육 자료 / 법적 근거: art:산안법:29\",\"x-legalBasis\":\"art:산안법:29\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"monthly_education_log\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:monthly\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:safety_education\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_monthly_education_log\",\"outputDocId\":\"monthly_education_log\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:monthly/monthly_education_log"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:29"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-monthly_education_log"
+    },
+    {
+      "@id": "safety:action/create_monthly_risk_assessment",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "월 위험성평가표 (상시평가) 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Monthly Risk Assessment Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 월 위험성평가표 (상시평가) 양식 생성을 위한 Action Type Contract다. src/ontology/guides/monthly-risk-assessment.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Monthly Risk Assessment. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/monthly-risk-assessment.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:risk_assessment_general",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_monthly_risk_assessment\",\"title\":\"create_monthly_risk_assessment\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"monthly_risk_assessment\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:monthly\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:risk_assessment_general\"],\"default\":\"activity:risk_assessment_general\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:36\",\"art:위험성평가-고시:15\",\"art:위험성평가-고시:7\",\"art:위험성평가-고시:10\",\"art:위험성평가-고시:11\",\"art:위험성평가-고시:12\",\"art:위험성평가-고시:14\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"월간 위험요인 발굴 결과\",\"description\":\"월간 위험요인 발굴 결과 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"아차사고·근로자 제안\",\"description\":\"아차사고·근로자 제안 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"위험성 결정\",\"description\":\"위험성 결정 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"감소대책\",\"description\":\"감소대책 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"이행 책임자·기한\",\"description\":\"이행 책임자·기한 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"월간 순회점검 결과\",\"description\":\"월간 순회점검 결과 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"monthly_risk_assessment\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:monthly\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:risk_assessment_general\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_monthly_risk_assessment\",\"outputDocId\":\"monthly_risk_assessment\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:monthly/monthly_risk_assessment"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:36"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-monthly_risk_assessment"
+    },
+    {
+      "@id": "safety:action/create_msds_register",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "MSDS (물질안전보건자료) 게시·교육·관리대장 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create MSDS Register Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 MSDS (물질안전보건자료) 게시·교육·관리대장 양식 생성을 위한 Action Type Contract다. src/ontology/guides/msds-register.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating MSDS Register. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/msds-register.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:hazardous_chemical_work",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_msds_register\",\"title\":\"create_msds_register\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"msds_register\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:continuous\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:hazardous_chemical_work\",\"activity:chemical_handling\",\"activity:painting\",\"activity:waterproofing\",\"activity:cement_handling\"],\"default\":\"activity:hazardous_chemical_work\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:110\",\"art:산안법:111\",\"art:산안법:114\",\"art:산안법:115\",\"art:산안법시행규칙:167\",\"art:산안법:175\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"제품명·물질명\",\"description\":\"제품명·물질명 / 법적 근거: art:산안법:110\",\"x-legalBasis\":\"art:산안법:110\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"제조·공급자\",\"description\":\"제조·공급자 / 법적 근거: art:산안법:110\",\"x-legalBasis\":\"art:산안법:110\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"MSDS 최신 개정일\",\"description\":\"MSDS 최신 개정일 / 법적 근거: art:산안법:110\",\"x-legalBasis\":\"art:산안법:110\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"게시·비치 장소\",\"description\":\"게시·비치 장소 / 법적 근거: art:산안법:110\",\"x-legalBasis\":\"art:산안법:110\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"GHS 유해성 분류\",\"description\":\"GHS 유해성 분류 / 법적 근거: art:산안법:110\",\"x-legalBasis\":\"art:산안법:110\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"교육 실시 여부\",\"description\":\"교육 실시 여부 / 법적 근거: art:산안법:110\",\"x-legalBasis\":\"art:산안법:110\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"msds_register\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:continuous\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:hazardous_chemical_work\",\"activity:chemical_handling\",\"activity:painting\",\"activity:waterproofing\",\"activity:cement_handling\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_msds_register\",\"outputDocId\":\"msds_register\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:continuous/msds_register"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:110"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-msds_register"
+    },
+    {
+      "@id": "safety:action/create_ppe_register",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "보호구 지급·관리대장 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create PPE Register Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 보호구 지급·관리대장 양식 생성을 위한 Action Type Contract다. src/ontology/guides/ppe-register.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating PPE Register. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/ppe-register.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:general_workplace_safety",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_ppe_register\",\"title\":\"create_ppe_register\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"ppe_register\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:monthly\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\"],\"default\":\"activity:general_workplace_safety\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:기준규칙:32\",\"art:기준규칙:33\",\"art:산안법:38\",\"art:산안법:39\",\"art:산안법:84\",\"art:산안법시행령:74\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"보호구 종류\",\"description\":\"보호구 종류 / 법적 근거: art:기준규칙:32\",\"x-legalBasis\":\"art:기준규칙:32\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"지급 대상자\",\"description\":\"지급 대상자 / 법적 근거: art:기준규칙:32\",\"x-legalBasis\":\"art:기준규칙:32\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"지급 일자\",\"description\":\"지급 일자 / 법적 근거: art:기준규칙:32\",\"x-legalBasis\":\"art:기준규칙:32\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"수량·규격\",\"description\":\"수량·규격 / 법적 근거: art:기준규칙:32\",\"x-legalBasis\":\"art:기준규칙:32\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"안전인증 여부\",\"description\":\"안전인증 여부 / 법적 근거: art:기준규칙:32\",\"x-legalBasis\":\"art:기준규칙:32\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"점검·교체 이력\",\"description\":\"점검·교체 이력 / 법적 근거: art:기준규칙:32\",\"x-legalBasis\":\"art:기준규칙:32\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"ppe_register\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:monthly\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_ppe_register\",\"outputDocId\":\"ppe_register\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:as_needed/ppe_register"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:기준규칙:32"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-ppe_register"
+    },
+    {
+      "@id": "safety:action/create_pre_work_inspection",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "작업시작 전 점검표 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Pre-Work Inspection Checklist Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 작업시작 전 점검표 양식 생성을 위한 Action Type Contract다. src/ontology/guides/pre-work-inspection.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Pre-Work Inspection Checklist. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/pre-work-inspection.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:general_workplace_safety",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_pre_work_inspection\",\"title\":\"create_pre_work_inspection\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"pre_work_inspection\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:daily\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\"],\"default\":\"activity:general_workplace_safety\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:기준규칙:35\",\"art:산안법:16\",\"art:산안법:38\",\"art:기준규칙:43\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"점검일자·시간\",\"description\":\"점검일자·시간 / 법적 근거: art:기준규칙:35\",\"x-legalBasis\":\"art:기준규칙:35\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"작업명·장소\",\"description\":\"작업명·장소 / 법적 근거: art:기준규칙:35\",\"x-legalBasis\":\"art:기준규칙:35\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"점검자\",\"description\":\"점검자 / 법적 근거: art:기준규칙:35\",\"x-legalBasis\":\"art:기준규칙:35\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"작업시작 전 점검항목\",\"description\":\"작업시작 전 점검항목 / 법적 근거: art:기준규칙:35\",\"x-legalBasis\":\"art:기준규칙:35\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"이상 유무\",\"description\":\"이상 유무 / 법적 근거: art:기준규칙:35\",\"x-legalBasis\":\"art:기준규칙:35\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"조치 결과·확인자\",\"description\":\"조치 결과·확인자 / 법적 근거: art:기준규칙:35\",\"x-legalBasis\":\"art:기준규칙:35\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"pre_work_inspection\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:daily\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_pre_work_inspection\",\"outputDocId\":\"pre_work_inspection\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:daily/pre_work_inspection"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:기준규칙:35"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-pre_work_inspection"
+    },
+    {
+      "@id": "safety:action/create_regular_risk_assessment",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "정기 위험성평가 (1년 재검토) 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Regular Risk Assessment Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 정기 위험성평가 (1년 재검토) 양식 생성을 위한 Action Type Contract다. src/ontology/guides/regular-risk-assessment.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Regular Risk Assessment. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/regular-risk-assessment.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:risk_assessment_general",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_regular_risk_assessment\",\"title\":\"create_regular_risk_assessment\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"regular_risk_assessment\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:annual\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:risk_assessment_general\"],\"default\":\"activity:risk_assessment_general\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:36\",\"art:위험성평가-고시:15\",\"art:위험성평가-고시:6\",\"art:위험성평가-고시:12\",\"art:위험성평가-고시:14\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"재검토 일자\",\"description\":\"재검토 일자 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"최초·수시평가 결과 종합\",\"description\":\"최초·수시평가 결과 종합 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"4개 재검토 항목\",\"description\":\"4개 재검토 항목 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"위험성 수준 변경 여부\",\"description\":\"위험성 수준 변경 여부 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"감소대책 재수립\",\"description\":\"감소대책 재수립 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"참여자 명단·서명\",\"description\":\"참여자 명단·서명 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"regular_risk_assessment\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:annual\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:risk_assessment_general\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_regular_risk_assessment\",\"outputDocId\":\"regular_risk_assessment\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:annual/regular_risk_assessment"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:36"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-regular_risk_assessment"
+    },
+    {
+      "@id": "safety:action/create_safety_health_manager_appointment",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "안전보건관리책임자·안전관리자·보건관리자·관리감독자 선임 서류 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Safety and Health Manager Appointment Document Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 안전보건관리책임자·안전관리자·보건관리자·관리감독자 선임 서류 양식 생성을 위한 Action Type Contract다. src/ontology/guides/safety-health-manager-appointment.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Safety and Health Manager Appointment Document. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/safety-health-manager-appointment.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:contractor_management",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_safety_health_manager_appointment\",\"title\":\"create_safety_health_manager_appointment\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"safety_health_manager_appointment\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:ad_hoc\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:contractor_management\"],\"default\":\"activity:contractor_management\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:15\",\"art:산안법:16\",\"art:산안법:17\",\"art:산안법:18\",\"art:산안법:19\",\"art:산안법:62\",\"art:산안법시행령:24\",\"art:산안법:175\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"선임 대상자 인적사항\",\"description\":\"선임 대상자 인적사항 / 법적 근거: art:산안법:15\",\"x-legalBasis\":\"art:산안법:15\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"선임 직책\",\"description\":\"선임 직책 / 법적 근거: art:산안법:15\",\"x-legalBasis\":\"art:산안법:15\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"자격 증빙\",\"description\":\"자격 증빙 / 법적 근거: art:산안법:15\",\"x-legalBasis\":\"art:산안법:15\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"선임 일자\",\"description\":\"선임 일자 / 법적 근거: art:산안법:15\",\"x-legalBasis\":\"art:산안법:15\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"업무 범위\",\"description\":\"업무 범위 / 법적 근거: art:산안법:15\",\"x-legalBasis\":\"art:산안법:15\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"사업주 서명·날인\",\"description\":\"사업주 서명·날인 / 법적 근거: art:산안법:15\",\"x-legalBasis\":\"art:산안법:15\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"safety_health_manager_appointment\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:ad_hoc\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:contractor_management\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_safety_health_manager_appointment\",\"outputDocId\":\"safety_health_manager_appointment\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:on_appointment/safety_health_manager_appointment"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:15"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-safety_health_manager_appointment"
+    },
+    {
+      "@id": "safety:action/create_severe_accident_compliance",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "중대재해 처벌법 안전보건확보의무 이행 점검 기록 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Serious Accident Compliance Inspection Record Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 중대재해 처벌법 안전보건확보의무 이행 점검 기록 양식 생성을 위한 Action Type Contract다. src/ontology/guides/severe-accident-compliance.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Serious Accident Compliance Inspection Record. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/severe-accident-compliance.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:contractor_management",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_severe_accident_compliance\",\"title\":\"create_severe_accident_compliance\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"severe_accident_compliance\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:semi_annual\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:contractor_management\"],\"default\":\"activity:contractor_management\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:중처법:4\",\"art:중처법:5\",\"art:중처법시행령:4\",\"art:중처법시행령:5\",\"art:중처법시행령:13\",\"art:산안법:54\",\"art:중처법:6\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"점검 기간\",\"description\":\"점검 기간 / 법적 근거: art:중처법:4\",\"x-legalBasis\":\"art:중처법:4\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"경영책임자 성명·서명\",\"description\":\"경영책임자 성명·서명 / 법적 근거: art:중처법:4\",\"x-legalBasis\":\"art:중처법:4\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"시행령 제4조 9개 항목 이행 여부\",\"description\":\"시행령 제4조 9개 항목 이행 여부 / 법적 근거: art:중처법:4\",\"x-legalBasis\":\"art:중처법:4\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"법령상 의무 이행 점검\",\"description\":\"법령상 의무 이행 점검 / 법적 근거: art:중처법:4\",\"x-legalBasis\":\"art:중처법:4\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"증빙 문서 목록\",\"description\":\"증빙 문서 목록 / 법적 근거: art:중처법:4\",\"x-legalBasis\":\"art:중처법:4\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"미이행 보완조치·기한\",\"description\":\"미이행 보완조치·기한 / 법적 근거: art:중처법:4\",\"x-legalBasis\":\"art:중처법:4\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"severe_accident_compliance\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:semi_annual\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:contractor_management\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_severe_accident_compliance\",\"outputDocId\":\"severe_accident_compliance\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:semi_annual/severe_accident_compliance"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:중처법:4"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-severe_accident_compliance"
+    },
+    {
+      "@id": "safety:action/create_weekly_joint_inspection",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "원·하청 합동안전점검 회의록 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Weekly Joint Safety Inspection Minutes Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 원·하청 합동안전점검 회의록 양식 생성을 위한 Action Type Contract다. src/ontology/guides/weekly-joint-inspection.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Weekly Joint Safety Inspection Minutes. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/weekly-joint-inspection.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:contractor_management",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_weekly_joint_inspection\",\"title\":\"create_weekly_joint_inspection\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"weekly_joint_inspection\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:weekly\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:general_workplace_safety\",\"activity:contractor_management\",\"activity:risk_assessment_general\"],\"default\":\"activity:contractor_management\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:36\",\"art:위험성평가-고시:15\",\"art:산안법:64\",\"art:산안법시행규칙:79\",\"art:위험성평가-고시:14\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"회의일자·장소\",\"description\":\"회의일자·장소 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"원·하청 참석자 명단·서명\",\"description\":\"원·하청 참석자 명단·서명 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"지난주 위험요인 발굴 결과\",\"description\":\"지난주 위험요인 발굴 결과 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"이행상태 점검\",\"description\":\"이행상태 점검 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"미이행 조치사항\",\"description\":\"미이행 조치사항 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"다음주 중점 점검 계획\",\"description\":\"다음주 중점 점검 계획 / 법적 근거: art:산안법:36\",\"x-legalBasis\":\"art:산안법:36\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"weekly_joint_inspection\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:weekly\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:general_workplace_safety\",\"activity:contractor_management\",\"activity:risk_assessment_general\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_weekly_joint_inspection\",\"outputDocId\":\"weekly_joint_inspection\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:weekly/weekly_joint_inspection"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:36"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-weekly_joint_inspection"
+    },
+    {
+      "@id": "safety:action/create_work_environment_measurement",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "작업환경측정 결과표 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Work Environment Measurement Record Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 작업환경측정 결과표 양식 생성을 위한 Action Type Contract다. src/ontology/guides/work-environment-measurement.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Work Environment Measurement Record. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/work-environment-measurement.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:hazardous_chemical_work",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_work_environment_measurement\",\"title\":\"create_work_environment_measurement\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"work_environment_measurement\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:semi_annual\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:hazardous_chemical_work\",\"activity:chemical_handling\",\"activity:painting\",\"activity:cement_handling\",\"activity:asbestos_removal\",\"activity:waterproofing\"],\"default\":\"activity:hazardous_chemical_work\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:산안법:125\",\"art:산안법시행령:95\",\"art:산안법시행규칙:186\",\"art:산안법시행규칙:241\",\"art:산안법:175\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"측정일자·측정기관\",\"description\":\"측정일자·측정기관 / 법적 근거: art:산안법:125\",\"x-legalBasis\":\"art:산안법:125\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"측정 작업장\",\"description\":\"측정 작업장 / 법적 근거: art:산안법:125\",\"x-legalBasis\":\"art:산안법:125\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"측정 유해인자\",\"description\":\"측정 유해인자 / 법적 근거: art:산안법:125\",\"x-legalBasis\":\"art:산안법:125\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"노출기준\",\"description\":\"노출기준 / 법적 근거: art:산안법:125\",\"x-legalBasis\":\"art:산안법:125\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"측정 결과\",\"description\":\"측정 결과 / 법적 근거: art:산안법:125\",\"x-legalBasis\":\"art:산안법:125\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"초과 여부 및 개선조치\",\"description\":\"초과 여부 및 개선조치 / 법적 근거: art:산안법:125\",\"x-legalBasis\":\"art:산안법:125\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"work_environment_measurement\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:semi_annual\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:hazardous_chemical_work\",\"activity:chemical_handling\",\"activity:painting\",\"activity:cement_handling\",\"activity:asbestos_removal\",\"activity:waterproofing\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_work_environment_measurement\",\"outputDocId\":\"work_environment_measurement\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:semi_annual/work_environment_measurement"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:산안법:125"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-work_environment_measurement"
+    },
+    {
+      "@id": "safety:action/create_work_permit",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "작업허가서 (5종 위험작업) 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Work Permit Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 작업허가서 (5종 위험작업) 양식 생성을 위한 Action Type Contract다. src/ontology/guides/work-permit.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Work Permit. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/work-permit.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:chemical_handling",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_work_permit\",\"title\":\"create_work_permit\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"work_permit\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:ad_hoc\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:chemical_handling\",\"activity:hazardous_chemical_work\",\"activity:drainage_sewerage\",\"activity:tunnel_excavation\",\"activity:underground_utility\",\"activity:electric_work_50v_plus\",\"activity:electrical_maintenance\",\"activity:roofing\",\"activity:facade_work\",\"activity:scaffolding_assembly\",\"activity:excavation_2m_plus\",\"activity:earthwork_landfill\"],\"default\":\"activity:chemical_handling\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:기준규칙:239\",\"art:기준규칙:619\",\"art:기준규칙:319\",\"art:기준규칙:42\",\"art:기준규칙:338\",\"art:기준규칙:340\",\"art:기준규칙:341\",\"art:중처법:4\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"허가 종류\",\"description\":\"허가 종류 / 법적 근거: art:기준규칙:239\",\"x-legalBasis\":\"art:기준규칙:239\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"작업일자·시간·장소\",\"description\":\"작업일자·시간·장소 / 법적 근거: art:기준규칙:239\",\"x-legalBasis\":\"art:기준규칙:239\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"작업 내용\",\"description\":\"작업 내용 / 법적 근거: art:기준규칙:239\",\"x-legalBasis\":\"art:기준규칙:239\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"작업 책임자·작업자 명단\",\"description\":\"작업 책임자·작업자 명단 / 법적 근거: art:기준규칙:239\",\"x-legalBasis\":\"art:기준규칙:239\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"사전 조건 점검\",\"description\":\"사전 조건 점검 / 법적 근거: art:기준규칙:239\",\"x-legalBasis\":\"art:기준규칙:239\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"허가자 서명\",\"description\":\"허가자 서명 / 법적 근거: art:기준규칙:239\",\"x-legalBasis\":\"art:기준규칙:239\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_07\":{\"title\":\"작업 종료 확인\",\"description\":\"작업 종료 확인 / 법적 근거: art:기준규칙:239\",\"x-legalBasis\":\"art:기준규칙:239\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\",\"required_07\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"work_permit\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:ad_hoc\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:chemical_handling\",\"activity:hazardous_chemical_work\",\"activity:drainage_sewerage\",\"activity:tunnel_excavation\",\"activity:underground_utility\",\"activity:electric_work_50v_plus\",\"activity:electrical_maintenance\",\"activity:roofing\",\"activity:facade_work\",\"activity:scaffolding_assembly\",\"activity:excavation_2m_plus\",\"activity:earthwork_landfill\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]},{\"!!\":[{\"var\":\"draft.required_07\"}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_work_permit\",\"outputDocId\":\"work_permit\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:ad_hoc/work_permit"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:기준규칙:239"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-work_permit"
+    },
+    {
+      "@id": "safety:action/create_work_plan",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "작업계획서 (산안기준규칙 제38조 별표4 13종) 작성 액션",
+          "@language": "ko"
+        },
+        {
+          "@value": "Create Work Plan Action",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "이 Action은 작업계획서 (산안기준규칙 제38조 별표4 13종) 양식 생성을 위한 Action Type Contract다. src/ontology/guides/work-plan.json의 cycle, legalBasis, appliesToActivity, requiredFields를 기준으로 JSON Schema와 JSON Logic 제출 조건을 고정한다.",
+          "@language": "ko"
+        },
+        {
+          "@value": "Action Type Contract for generating Work Plan. It fixes JSON Schema and JSON Logic submission rules from cycle, legalBasis, appliesToActivity, and requiredFields in src/ontology/guides/work-plan.json.",
+          "@language": "en"
+        }
+      ],
+      "safety:appliesTo": {
+        "@id": "activity:excavation_2m_plus",
+        "@type": "safety:WorkActivity"
+      },
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"https://safety.ratelworks.org/action-schema/create_work_plan\",\"title\":\"create_work_plan\",\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"work_plan\",\"description\":\"생성할 안전문서 guide docId. 이 Action에서는 const 값만 허용한다.\"},\"cycle\":{\"type\":\"string\",\"const\":\"cyc:ad_hoc\",\"description\":\"가이드에서 검증된 작성 주기 IRI.\"},\"activityId\":{\"type\":\"string\",\"enum\":[\"activity:tower_crane\",\"activity:tower_assembly\",\"activity:vehicle_cargo\",\"activity:vehicle_construction\",\"activity:machinery_repair\",\"activity:chemical_handling\",\"activity:electric_work_50v_plus\",\"activity:electrical_maintenance\",\"activity:excavation_2m_plus\",\"activity:tunnel_excavation\",\"activity:bridge_5m_30m\",\"activity:demolition\",\"activity:heavy_lifting\",\"activity:lifting_operation\",\"activity:phc_pile_driving\",\"activity:formwork_shoring\",\"activity:steel_erection\",\"activity:precast_installation\",\"activity:rc_concrete\",\"activity:concrete_work\"],\"default\":\"activity:excavation_2m_plus\",\"description\":\"Action 적용 대상 작업 활동 IRI. guide.appliesToActivity를 정규화한 값만 허용한다.\"},\"legalBasis\":{\"const\":[\"art:기준규칙:38\",\"art:기준규칙:39\",\"art:산안법:38\",\"art:산안법:164\"],\"description\":\"가이드에서 검증된 법적 근거 IRI 배열. 호출자가 임의 조문을 추가하지 않는다.\"},\"draft\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"required_01\":{\"title\":\"작업명\",\"description\":\"작업명 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_02\":{\"title\":\"작업일자·시간·장소\",\"description\":\"작업일자·시간·장소 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_03\":{\"title\":\"작업 책임자\",\"description\":\"작업 책임자 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_04\":{\"title\":\"작업자 명단\",\"description\":\"작업자 명단 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_05\":{\"title\":\"사전조사 결과\",\"description\":\"사전조사 결과 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_06\":{\"title\":\"작업방법·순서\",\"description\":\"작업방법·순서 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_07\":{\"title\":\"안전조치·보호구\",\"description\":\"안전조치·보호구 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"required_08\":{\"title\":\"비상 연락망\",\"description\":\"비상 연락망 / 법적 근거: art:기준규칙:38\",\"x-legalBasis\":\"art:기준규칙:38\",\"anyOf\":[{\"type\":\"string\",\"minLength\":1},{\"type\":\"array\",\"minItems\":1},{\"type\":\"object\",\"minProperties\":1}]},\"excavationDepthM\":{\"type\":\"number\",\"minimum\":0,\"description\":\"activityId가 activity:excavation_2m_plus인 경우 산안기준규칙 제38조 별표 4 굴착작업 적용 여부를 확인하는 굴착 깊이(m).\",\"x-legalBasis\":\"art:기준규칙:38\"}},\"required\":[\"required_01\",\"required_02\",\"required_03\",\"required_04\",\"required_05\",\"required_06\",\"required_07\",\"required_08\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false,\"description\":\"저장된 site profile을 병합할지 여부.\"},\"scale\":{\"type\":\"object\",\"additionalProperties\":true,\"properties\":{\"workforce\":{\"type\":\"integer\",\"minimum\":0},\"constructionValue\":{\"type\":\"number\",\"minimum\":0},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"cycle\",\"activityId\",\"draft\"]}",
+      "safety:submissionCriterion": "{\"and\":[{\"===\":[{\"var\":\"docId\"},\"work_plan\"]},{\"===\":[{\"var\":\"cycle\"},\"cyc:ad_hoc\"]},{\"in\":[{\"var\":\"activityId\"},[\"activity:tower_crane\",\"activity:tower_assembly\",\"activity:vehicle_cargo\",\"activity:vehicle_construction\",\"activity:machinery_repair\",\"activity:chemical_handling\",\"activity:electric_work_50v_plus\",\"activity:electrical_maintenance\",\"activity:excavation_2m_plus\",\"activity:tunnel_excavation\",\"activity:bridge_5m_30m\",\"activity:demolition\",\"activity:heavy_lifting\",\"activity:lifting_operation\",\"activity:phc_pile_driving\",\"activity:formwork_shoring\",\"activity:steel_erection\",\"activity:precast_installation\",\"activity:rc_concrete\",\"activity:concrete_work\"]]},{\"!!\":[{\"var\":\"draft.required_01\"}]},{\"!!\":[{\"var\":\"draft.required_02\"}]},{\"!!\":[{\"var\":\"draft.required_03\"}]},{\"!!\":[{\"var\":\"draft.required_04\"}]},{\"!!\":[{\"var\":\"draft.required_05\"}]},{\"!!\":[{\"var\":\"draft.required_06\"}]},{\"!!\":[{\"var\":\"draft.required_07\"}]},{\"!!\":[{\"var\":\"draft.required_08\"}]},{\"or\":[{\"!==\":[{\"var\":\"activityId\"},\"activity:excavation_2m_plus\"]},{\">=\":[{\"var\":\"draft.excavationDepthM\"},2]}]}]}",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":{\"requiredFields\":[\"prov:wasGeneratedBy\",\"prov:generatedAtTime\",\"prov:used\",\"prov:wasAssociatedWith\",\"safety:contentHash\"],\"sourceTrace\":[\"prov:wasDerivedFrom\",\"prov:hadPrimarySource\"],\"actionId\":\"safety:action/create_work_plan\",\"outputDocId\":\"work_plan\"}}",
+      "prov:wasGeneratedBy": {
+        "@id": "safety:process/skeleton-d8-2026-05-03"
+      },
+      "prov:generatedAtTime": {
+        "@value": "2026-05-03T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "prov:wasDerivedFrom": {
+        "@id": "doc:ad_hoc/work_plan"
+      },
+      "prov:hadPrimarySource": {
+        "@id": "art:기준규칙:38"
+      },
+      "safety:hashStatus": "placeholder",
+      "safety:contentHash": "sha256:placeholder-action-work_plan"
+    }
+  ]
+}

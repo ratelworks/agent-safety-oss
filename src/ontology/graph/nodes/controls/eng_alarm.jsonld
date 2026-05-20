@@ -1,0 +1,42 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_alarm",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_alarm",
+  "label": "경보·검지 시스템",
+  "description": "가스·산소·화재·차량 접근 등 즉시 감지가 필요한 작업에서 검지기와 경보장치로 위험을 알리는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:chemical_handling",
+    "activity:drainage_sewerage",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:road_pavement",
+    "activity:steel_structure",
+    "activity:tower_crane",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "검지",
+      "경보",
+      "탐지"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

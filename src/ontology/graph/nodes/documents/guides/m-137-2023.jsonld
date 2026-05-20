@@ -1,0 +1,156 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/M-137-2023",
+  "@type": "Document",
+  "docId": "kosha_guide_m-137-2023",
+  "title": "기계의 제작 구매 사용 시 안전기준에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "M-137-2023",
+    "guideCategory": "machine",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction_partial",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"기계\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 1,
+      "2": 16,
+      "3": 5,
+      "4": 8,
+      "5": 24,
+      "6": 598,
+      "7": 367,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "기계",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:machine_entanglement",
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:89",
+      "law": "기준규칙",
+      "articleNumber": "89",
+      "title": "운전 시작 전 조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "안전보건기술지침의 개요 ◦ 작성자 : 한국산업안전보건공단 박수덕 ◦ 개정자 : 안전보건공단 안전연구실 안전보건공단 전문기술실 김명관 ◦ 제․개정경과 - 2007년 10월 기계안전분야 제정위원회 심의 - 2007년 11월 총괄 제정위원회 심의 - 201",
+      "citedAsOf": "2023",
+      "temporalNote": "KOSHA Guide M-137-2023 본문 직접 인용 (2023년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_작업장내 기계 소음평가에 관한 기술지침 _2",
+      "title": "작업장내 기계 소음평가에 관한 기술지침  - 적용범위",
+      "score": 56.624
+    },
+    {
+      "docId": "KOSHA07_기계?기구 제조업 등의 위험성 평가지침_2",
+      "title": "기계?기구 제조업 등의 위험성 평가지침 - 적용범위",
+      "score": 54.045
+    },
+    {
+      "docId": "KOSHA07_작업장내 기계 소음평가에 관한 기술지침 _4",
+      "title": "작업장내 기계 소음평가에 관한 기술지침  - 일반사항",
+      "score": 53.85
+    },
+    {
+      "docId": "KOSHA07_수목작업에서의 굴삭기 안전작업에 대한 기술지침_7",
+      "title": "수목작업에서의 굴삭기 안전작업에 대한 기술지침 - 기계",
+      "score": 53.258
+    },
+    {
+      "docId": "KOSHA07_작업장내 기계 소음평가에 관한 기술지침 _1",
+      "title": "작업장내 기계 소음평가에 관한 기술지침  - 목 적",
+      "score": 53.038
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA01_000005000004000000000079000",
+      "title": "제79조 가맹본부의 산업재해 예방 조치",
+      "category": "1",
+      "score": 24.417
+    },
+    {
+      "docId": "KOSHA02_000005000000000000000066000",
+      "title": "제66조 기계ㆍ기구 등",
+      "category": "2",
+      "score": 32.833
+    },
+    {
+      "docId": "KOSHA02_000006000000000000000077000",
+      "title": "제77조 자율안전확인대상기계등",
+      "category": "2",
+      "score": 30.752
+    },
+    {
+      "docId": "KOSHA02_[별표 9] 산업안전보건위원회를 구성해야 할 사업의 종류 및 사업장의 상시근로자 수(제34조 관련)",
+      "title": "[별표 9] 산업안전보건위원회를 구성해야 할 사업의 종류 및 사업장의 상시근로자 수(제34조 관련)",
+      "category": "2",
+      "score": 30.281
+    },
+    {
+      "docId": "KOSHA02_000006000000000000000075000",
+      "title": "제75조 안전인증기관의 지정 요건",
+      "category": "2",
+      "score": 26.794
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_tunnel_excavation",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_tunnel_excavation",
+  "title": "struck_by × tunnel_excavation",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 10건 관측. 사고유형 struck_by 작업유형 tunnel_excavation.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:tunnel_excavation"
+  ],
+  "caseFrequency": 10,
+  "sampleKeywords": [
+    "급경사진 경사터널에서 덤프트럭 충돌(사망1명, 부상1명)",
+    "철도터널 보강작업 준비 중 열차에 충돌(사망2명)",
+    "하강 중이던 크람쉘 버켓에 충돌"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

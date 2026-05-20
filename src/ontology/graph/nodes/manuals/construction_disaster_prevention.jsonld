@@ -1,0 +1,23 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "manual:construction_disaster_prevention",
+  "@type": "Manual",
+  "label": "건설재해예방 실무 매뉴얼",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 + 건설안전협의회",
+    "sourceRef": "kosha_portal",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "건설업 산재예방 표준 절차 (50억/50인 미만 중소현장 중점). 산안법 제73조 + 시행령 제59조.",
+  "appliesToActivities": [
+    "activity:rc_concrete",
+    "activity:steel_structure",
+    "activity:scaffolding_assembly",
+    "activity:excavation_2m_plus",
+    "activity:demolition",
+    "activity:tower_crane"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

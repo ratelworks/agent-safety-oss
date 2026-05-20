@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "equipment:pressure_vessel",
+  "@type": "Equipment",
+  "slug": "pressure_vessel",
+  "name": "압력용기",
+  "label": "압력용기",
+  "category": "safety_certified",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건법/제80조",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "산안법 제80조 안전인증 대상 13종 (시행령 별표). 안전인증 받지 않으면 제169조 (3년/3천만)",
+    "constructionApplicability": "건설업 적용 — 가스용접·용단·콘크리트 양생용 보일러·압축공기탱크 등 건설현장 사용. 안전인증 제80조 + 정기 안전검사 제93조 의무.",
+    "updatedAt": "2026-04-28"
+  },
+  "description": "고압 가스·액체 저장 용기 (산안법 제80조 안전인증 13종 중 5호). 건설현장 LPG·산소·아세틸렌 봄베 / 가스용접 기구 / 공기탱크 / 보일러 등이 해당. 폭발·누출 위험.",
+  "hasHazard": [
+    "hazard:fire_explosion",
+    "hazard:gas_leak",
+    "hazard:chemical_exposure"
+  ],
+  "regulatedBy": [
+    "art:산안법:80",
+    "art:산안법:84"
+  ],
+  "alternativeNames": [
+    "압력용기",
+    "가스용기",
+    "고압가스 저장용기",
+    "보일러",
+    "공기탱크"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr02/23"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "cc:worktype/railway_track_maintenance",
+  "@type": "cc:WorkType",
+  "slug": "railway_track_maintenance",
+  "label": {
+    "ko": "궤도·관련 설비 보수점검 작업",
+    "en": "Railway track and related facility maintenance work"
+  },
+  "legalBasis": [
+    "annex:기준규칙:별표4-12호"
+  ],
+  "legalBasisLabel": {
+    "ko": "산업안전보건기준에 관한 규칙 별표 4 제12호",
+    "en": "OSH Standards Rule Annex 4 Item 12"
+  },
+  "hasTask": [],
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "graphMigratedAt": "2026-05-03",
+    "graphMigrationNote": "WorkType 정체성 SSoT 보강. 별표 4 법정 작업분류와 현장 실무 대분류를 activity 상위 공종으로 연결."
+  }
+}

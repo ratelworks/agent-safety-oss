@@ -1,0 +1,394 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:weekly/temporary_electric_inspection",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "temporary_electric_inspection",
+  "title": "가설전기 점검",
+  "description": "기준규칙 제301조~제305조 전기작업 + 가설전기 안전. 분전반·접지·누전차단기·가설배선 점검. KOSHA Guide C-G-32 권장.",
+  "cycle": "cyc:weekly",
+  "trigger": "가설전기 설치 + 매주 정기점검 + 강우 후",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "건설현장 가설전기 사용 모든 현장."
+  },
+  "legalBasis": [
+    "art:기준규칙:301",
+    "art:기준규칙:302",
+    "art:기준규칙:303",
+    "art:기준규칙:304",
+    "art:기준규칙:305",
+    "art:기준규칙:319",
+    "art:기준규칙:306",
+    "art:기준규칙:318"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_점검_일자",
+      "label": "점검 일자",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "점검 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "f_1_점검자",
+      "label": "점검자",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "작성한 사람의 성명 + 직책 + (가능 시) 자격번호.",
+      "examples": [
+        "홍길동 (안전관리자, 산업안전기사 자격 1234567호)",
+        "김철수 (현장소장)"
+      ]
+    },
+    {
+      "key": "f_2_가설전기_위치",
+      "label": "가설전기 위치",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "동·층·구역별 가설전기 분전반 위치.",
+      "examples": [
+        "A동 각 층 분전반 + 외부 임시 분전반 2개소"
+      ]
+    },
+    {
+      "key": "f_3_누전차단기_작동",
+      "label": "누전차단기 작동",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "누전차단기 작동 시험 (테스트 버튼 정상).",
+      "examples": [
+        "전체 정상 작동 (테스트 버튼 트립 확인)"
+      ]
+    },
+    {
+      "key": "f_4_접지_상태",
+      "label": "접지 상태",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "접지 저항 측정 (10Ω 이하).",
+      "examples": [
+        "평균 5.2Ω (10Ω 이하 합격)"
+      ]
+    },
+    {
+      "key": "f_5_절연_저항",
+      "label": "절연 저항",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "절연저항계 측정 (1MΩ 이상).",
+      "examples": [
+        "전 회로 1MΩ 이상 (정상)"
+      ]
+    },
+    {
+      "key": "f_6_분전반",
+      "label": "분전반",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "분전반 외함·문 잠금 + 누설 점검.",
+      "examples": [
+        "외함 잠금 + 누설 없음 / 1개소 문 손상 → 교체"
+      ]
+    },
+    {
+      "key": "f_7_케이블_손상",
+      "label": "케이블 손상",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "전기 케이블 피복 손상·짓밟힘 점검.",
+      "examples": [
+        "1개소 피복 손상 발견 → 교체 (4/29)"
+      ]
+    },
+    {
+      "key": "f_8_결과",
+      "label": "결과",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "f_9_조치_내용",
+      "label": "조치 내용",
+      "source": "산안기준규칙 제301조~제312조 + KOSHA Guide",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 누전차단기 작동 + 매주 시험",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:304"
+    },
+    {
+      "rule": "필수 — 접지저항 100Ω 이하",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:302"
+    },
+    {
+      "rule": "필수 — 강우 후 즉시 점검 + 옥외 방수",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:301"
+    },
+    {
+      "rule": "필수 — 활선 작업 시 LOTO + 검전 후 작업",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:319"
+    }
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "scope": "construction",
+    "note": "건설안전 특화 의무문서 (Phase 3 wave1 — 기준규칙 + KCS + KOSHA C 시리즈 권장 양식 통합).",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:electric_shock",
+    "hazard:fire_explosion",
+    "hazard:electrocution"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-7-2025",
+    "doc:kosha_guide/D-57-2016",
+    "doc:kosha_guide/D-6-2012",
+    "doc:kosha_guide/D-C-5-2025",
+    "doc:kosha_guide/B-E-1-2025",
+    "doc:kosha_guide/B-E-10-2026",
+    "doc:kosha_guide/B-E-11-2026",
+    "doc:kosha_guide/B-E-12-2026",
+    "doc:kosha_guide/B-E-13-2026",
+    "doc:kosha_guide/B-E-14-2026",
+    "doc:kosha_guide/B-E-15-2026",
+    "doc:kosha_guide/B-E-16-2026",
+    "doc:kosha_guide/B-E-19-2026",
+    "doc:kosha_guide/B-E-21-2026",
+    "doc:kosha_guide/B-E-3-2025",
+    "doc:kosha_guide/B-E-4-2025",
+    "doc:kosha_guide/B-E-6-2025",
+    "doc:kosha_guide/B-E-9-2026",
+    "doc:kosha_guide/E-100-2021",
+    "doc:kosha_guide/E-103-2011",
+    "doc:kosha_guide/C-70-2012",
+    "doc:kosha_guide/C-C-29-2026",
+    "doc:kosha_guide/A-G-10-2025",
+    "doc:kosha_guide/A-G-11-2025",
+    "doc:kosha_guide/A-G-12-2026",
+    "doc:kosha_guide/A-G-15-2026",
+    "doc:kosha_guide/A-G-16-2026",
+    "doc:kosha_guide/A-G-19-2026",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-20-2026",
+    "doc:kosha_guide/A-G-3-2025",
+    "doc:kosha_guide/A-G-5-2025",
+    "doc:kosha_guide/A-G-6-2025",
+    "doc:kosha_guide/A-G-7-2025",
+    "doc:kosha_guide/A-G-8-2025",
+    "doc:kosha_guide/A-G-9-2025",
+    "doc:kosha_guide/G-26-2013",
+    "doc:kosha_guide/G-36-2012",
+    "doc:kosha_guide/H-26-2020",
+    "doc:kosha_guide/M-89-2016"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus",
+    "activity:general_workplace_safety"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 가설전기 점검",
+      "legalSource": "산안기준규칙 제319조",
+      "fields": [
+        {
+          "key": "inspectionDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "매일 작업 시작 전.",
+          "examples": [
+            "2026-04-29 07:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspector",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "전기 전문가 또는 관리감독자.",
+          "examples": [
+            "박전기 (전기기능사)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checkItems",
+          "label": "점검 항목",
+          "required": true,
+          "inputGuide": "분전반·누전차단기·접지·케이블·콘센트.",
+          "examples": [
+            [
+              {
+                "항목": "분전반 잠금",
+                "결과": "양호"
+              },
+              {
+                "항목": "누전차단기 30mA",
+                "결과": "작동"
+              },
+              {
+                "항목": "접지저항",
+                "결과": "<10Ω"
+              },
+              {
+                "항목": "케이블 절연",
+                "결과": "양호"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardousLocation",
+          "label": "가공선 이격거리",
+          "required": true,
+          "inputGuide": "22.9kV → 4m, 154kV → 6m.",
+          "examples": [
+            "가공선 22.9kV 4m 이격 확인"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "이상·조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "이상 시 즉시 차단·수리.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kepco",
+    "entity:kosha",
+    "src:kepco:123",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:ppe_insulating_gloves"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_permit_loto",
+    "doc:ad_hoc/work_plan_electric_work"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

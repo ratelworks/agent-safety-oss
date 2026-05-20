@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/field_safety_briefing",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "현장 안전 통합 브리핑",
+      "@language": "ko"
+    },
+    {
+      "@value": "Field Safety Briefing",
+      "@language": "en"
+    }
+  ],
+  "description": "건설 공종·세부공정·단계 의무·현장 위험 브리핑을 분석하는 capability. 🏗️ 현장 안전 통합 brief — 작업명·위험·의무 토픽 한 줄 입력 → 위험요인·필수통제·법령근거·의무문서·KOSHA 가이드·**위반 시 처벌**까지 한 화면 요약. 현장소장(즉시 이해)·안전관리자(법령 인용) 페르소나별 정렬. **동의어 사전 28그룹** 자동 확장 ('분기'≈'정기'·'도료'≈'MSDS'·'사망'≈'중대재해'). 산안법·시행령·시행규칙·기준규칙·중처법·위험성평가-고시(번들 6 본문 + 중처법시행령 그래프 노드)·KOSHA Guide 본문 (v1.1.17+ 번들 1,039건, offline)를 cover. 부칙·법무 전문 조항은 default 제외 (userVisible=false 필터).",
+  "toolName": "field_safety_briefing",
+  "category": "construction",
+  "inputSchema": "safety:schema/input/field_safety_briefing",
+  "producesEntity": [
+    "safety:SafetyBriefing"
+  ],
+  "maps_to_action": "safety:action/field_safety_briefing",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

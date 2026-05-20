@@ -1,0 +1,173 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-C-3-2025",
+  "@type": "Document",
+  "docId": "kosha_guide_d-c-3-2025",
+  "title": "철골공사(데크플레이트 포함)의 안전작업에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-C-3-2025",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"철골공사\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 2,
+      "6": 52,
+      "7": 19,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "철골공사",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fire",
+    "hazard:thermal_burn",
+    "hazard:electric_shock",
+    "hazard:noise_exposure",
+    "hazard:radiation_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:sub_safer_equipment",
+    "control:eng_monitoring",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:admin_qualification",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:steel_structure"
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA04_002000004000003000000000380000",
+      "title": "제380조 철골조립 시의 위험 방지",
+      "category": "4",
+      "score": 46.756
+    },
+    {
+      "docId": "KOSHA05_철골공사표준안전작업지침000000001000000000000000000000001000",
+      "title": "철골공사표준안전작업지침 제1조 목적",
+      "category": "5",
+      "score": 54.799
+    },
+    {
+      "docId": "KOSHA05_철골공사표준안전작업지침000000005000000000000000000000016000",
+      "title": "철골공사표준안전작업지침 제16조 재해방지 설비",
+      "category": "5",
+      "score": 36.717
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_철골공사 안전보건작업 지침_7",
+      "title": "철골공사 안전보건작업 지침 - 철골공사용 가설설비",
+      "score": 99.289
+    },
+    {
+      "docId": "KOSHA07_철골공사 안전보건작업 지침_1",
+      "title": "철골공사 안전보건작업 지침 - 목적",
+      "score": 98.052
+    },
+    {
+      "docId": "KOSHA07_철골공사 안전보건작업 지침_5",
+      "title": "철골공사 안전보건작업 지침 - 철골세우기 전의 준비",
+      "score": 88.472
+    },
+    {
+      "docId": "KOSHA07_철골공사 무지보 거푸집동바리(데크플레이트 공법) 안전보건작업 지침_1",
+      "title": "철골공사 무지보 거푸집동바리(데크플레이트 공법) 안전보건작업 지침 - 목적",
+      "score": 81.597
+    },
+    {
+      "docId": "KOSHA07_철골공사 무지보 거푸집동바리(데크플레이트 공법) 안전보건작업 지침_2",
+      "title": "철골공사 무지보 거푸집동바리(데크플레이트 공법) 안전보건작업 지침 - 적용범위",
+      "score": 80.796
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_002000004000003000000000380000",
+      "title": "제380조 철골조립 시의 위험 방지",
+      "category": "4",
+      "score": 46.756
+    },
+    {
+      "docId": "KOSHA05_철골공사표준안전작업지침000000001000000000000000000000001000",
+      "title": "철골공사표준안전작업지침 제1조 목적",
+      "category": "5",
+      "score": 54.799
+    },
+    {
+      "docId": "KOSHA05_철골공사표준안전작업지침000000005000000000000000000000016000",
+      "title": "철골공사표준안전작업지침 제16조 재해방지 설비",
+      "category": "5",
+      "score": 36.717
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:6장",
+      "law": "기준규칙",
+      "chapterTitle": "온도ㆍ습도에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제1편 제6장(추락 또는 붕괴에 의한 위험방지) 및"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 1,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제1편 제6장(추락 또는 붕괴에 의한 위험방지) 및",
+      "needsNode": true
+    }
+  ]
+}

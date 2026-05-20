@@ -1,0 +1,41 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_work_permit",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_work_permit",
+  "label": "작업허가제",
+  "description": "화기·밀폐공간·전기·고소·화학물질 등 허가가 필요한 고위험 작업의 착수 조건을 확인하는 관리 통제.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:chemical_handling",
+    "activity:drainage_sewerage",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:facade_work",
+    "activity:finishing_paint",
+    "activity:formwork_shoring",
+    "activity:hazardous_chemical_work",
+    "activity:machinery_repair",
+    "activity:painting",
+    "activity:roofing",
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "작업허가"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

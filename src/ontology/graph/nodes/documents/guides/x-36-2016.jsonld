@@ -1,0 +1,114 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/X-36-2016",
+  "@type": "Document",
+  "docId": "kosha_guide_x-36-2016",
+  "title": "이삿짐 운반용 리프트 작업의 리스크 확인 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "X-36-2016",
+    "guideCategory": "general_safety",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"이삿짐\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 1,
+      "3": 0,
+      "4": 2,
+      "5": 0,
+      "6": 19,
+      "7": 5,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "이삿짐",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:ergonomic_overload",
+    "hazard:manual_handling",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:admin_safety_education",
+    "control:admin_supervisor"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_이삿짐 운반용 리프트 작업의 리스크 확인 지침_2",
+      "title": "이삿짐 운반용 리프트 작업의 리스크 확인 지침 - 적용범위",
+      "score": 90.969
+    },
+    {
+      "docId": "KOSHA07_이삿짐 운반용 리프트 작업의 리스크 확인 지침_4",
+      "title": "이삿짐 운반용 리프트 작업의 리스크 확인 지침 - 이삿짐 운반 작업 리스크",
+      "score": 90.596
+    },
+    {
+      "docId": "KOSHA07_이삿짐 운반용 리프트 작업의 리스크 확인 지침_1",
+      "title": "이삿짐 운반용 리프트 작업의 리스크 확인 지침 - 목적",
+      "score": 79.203
+    },
+    {
+      "docId": "KOSHA07_이삿짐 운반용 리프트 작업의 리스크 확인 지침_3",
+      "title": "이삿짐 운반용 리프트 작업의 리스크 확인 지침 - 용어의 정의",
+      "score": 70.763
+    },
+    {
+      "docId": "KOSHA07_이삿짐 운반용 리프트 작업의 리스크 확인 지침_5",
+      "title": "이삿짐 운반용 리프트 작업의 리스크 확인 지침 - 리스크 확인 방법",
+      "score": 67.712
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:34",
+      "law": "기준규칙",
+      "articleNumber": "34",
+      "title": "전용 보호구 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제34조, 같은 법 산업안전보건기준에 관한 규칙",
+      "citedAsOf": "2016",
+      "temporalNote": "KOSHA Guide X-36-2016 본문 직접 인용 (2016년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 23] 안전인증기관의 인력ㆍ시설 및 장비 기준(제75조제2호 관련)",
+      "title": "[별표 23] 안전인증기관의 인력ㆍ시설 및 장비 기준(제75조제2호 관련)",
+      "category": "2",
+      "score": 26.455
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000158000",
+      "title": "제158조 이삿짐 운반용 리프트 전도의 방지",
+      "category": "4",
+      "score": 96.492
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000159000",
+      "title": "제159조 화물의 낙하 방지",
+      "category": "4",
+      "score": 54.808
+    }
+  ]
+}

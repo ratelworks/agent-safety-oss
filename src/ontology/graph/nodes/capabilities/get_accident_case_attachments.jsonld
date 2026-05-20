@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_accident_case_attachments",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "재해사례 첨부파일 조회 (15121008)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Accident Case Attachments",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 재해사례와 사고사망 데이터를 검색하고 사고 첨부 자료를 조회하는 capability. KOSHA 국내재해사례 첨부파일 서비스(15121008, /disaster_attach_api). 특정 재해사례의 첨부 이미지·도면·PDF URL 목록 반환. **Prerequisite: boardno 파라미터는 search_accident_cases 응답의 results[].boardno 필드값**. 즉 재해사례 검색을 선행 호출해야 사용 가능. 현장 시각화·TBM 교육자료·RAG 보강용.",
+  "toolName": "get_accident_case_attachments",
+  "category": "accident_search",
+  "inputSchema": "safety:schema/input/get_accident_case_attachments",
+  "producesEntity": [
+    "safety:AccidentAttachment"
+  ],
+  "maps_to_action": "safety:action/get_accident_case_attachments",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

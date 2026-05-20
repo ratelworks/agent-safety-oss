@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fall_from_height_vehicle_construction",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fall_from_height_vehicle_construction",
+  "title": "fall_from_height × vehicle_construction",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 26건 관측. 사고유형 fall_from_height 작업유형 vehicle_construction.",
+  "koshaAccidentType": "fall_from_height",
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "causedBy": [
+    "activity:vehicle_construction"
+  ],
+  "caseFrequency": 26,
+  "sampleKeywords": [
+    "굴삭기 버켓을 타고 작업중 추락",
+    "지게차 포크 위에서 전선정리 작업 중 추락 ",
+    "지게차로 하역작업 중 적재물 낙하"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

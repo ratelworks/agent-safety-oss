@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:3step",
+  "@type": "Method",
+  "label": "위험성 수준 3단계 판단법",
+  "docId": "kras_3step",
+  "verificationStatus": "kosha_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras/evaluation/kras-method",
+    "formId": "10182",
+    "bodyFile": "kras-methods/3step.md",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "위험성을 상·중·하 (또는 저·중·고) 3단계로 직관적으로 구분. 소규모 사업장·초보 도입·신속한 판단용.",
+  "suitableFor": "small_workplace_initial",
+  "applicableTo": [
+    "activity:risk_assessment_general"
+  ],
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

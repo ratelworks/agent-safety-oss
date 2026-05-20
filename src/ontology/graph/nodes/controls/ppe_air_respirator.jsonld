@@ -1,0 +1,28 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_air_respirator",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_air_respirator",
+  "label": "송기마스크·공기호흡기 (Air-Supplied Respirator / SCBA)",
+  "description": "밀폐공간·산소결핍·유해가스 농도 초과 환경에서 외부 공기 공급식 호흡보호구. 정화식 방진·방독 마스크와 구분. 산안기준규칙 §625·§632.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:drainage_sewerage",
+    "activity:chemical_handling"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "산안기준규칙 §625 (송기마스크 지급 등) + §632 (호흡보호구) + KS M ISO 16972",
+    "verifiedAt": "2026-05-20",
+    "matchKeywords": ["송기마스크", "공기호흡기", "SCBA", "air respirator"],
+    "excludeKeywords": ["방진", "방독"],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "note": "v1.3.x Applicability rule 보강 — applic:confined_space.enforces 지원. ppe_respirator(정화식)와 별개"
+  },
+  "iso45001Class": "iso45001:Control"
+}

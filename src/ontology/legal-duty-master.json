@@ -1,0 +1,3804 @@
+{
+  "_meta": {
+    "version": "0.5.0",
+    "compiled": "2026-04-29",
+    "license": "공공누리 (출처 표시) + MIT (코드)",
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "description": "안전관리 법정의무 문서 마스터 리스트 (SSoT). 모든 노드/양식/검증의 단일 진실 공급원. agent-safety-oss v0.4부터 모든 작업은 이 파일을 참조하여 1:1 정합 보장.",
+    "scope": "산안법 + 시행령 + 시행규칙 + 산업안전보건기준에 관한 규칙 + 중대재해처벌법 + 위험성평가에 관한 고시(2024-76) + 산업안전보건관리비 계상 및 사용기준(2022-43) + 석면안전관리법(부분)",
+    "sources": [
+      "법제처 국가법령정보센터 (law.go.kr)",
+      "고용노동부 (moel.go.kr)",
+      "한국산업안전보건공단 KOSHA (kosha.or.kr)"
+    ],
+    "fieldSchema": {
+      "docId": "MCP 노드 docId (snake_case)",
+      "title": "한글 정식 명칭",
+      "category": "A_체제 / B_위평 / C_교육 / D_작업계획 / E_작업허가 / F_도급 / G_점검 / H_화학 / I_측정 / J_건강 / K_사고 / L_진단 / M_인증 / N_비용 / O_보강",
+      "legalRef": "법령:조항:항·호 (배열)",
+      "formStrictness": "법령강제 (별지 호 또는 의무 양식) / KOSHA표준 / 고시 / 자율",
+      "formSource": "법제처 별지 / KOSHA 표준 / 고용노동부 / 자체 (KOSHA 가이드 권고)",
+      "frequency": "매일 / 매주 / 매월 / 분기 / 반기 / 연 / 사고시 / 현장개설 / 선임시 / 작업단위 / 수시",
+      "applicableScope": "전 사업장 / 50인 이상 / 50억 이상 / 도급 / 화학물질 / 유해인자 노출 등",
+      "retention": "보존 기간 (산안법 제164조)",
+      "penaltyOnMissing": "벌칙 조항"
+    },
+    "lastExtendedAt": "2026-04-29T14:04:16.062Z",
+    "extendedKeys": [
+      "purpose",
+      "submitTo",
+      "submitDeadline",
+      "electronicSubmission",
+      "templateUrl",
+      "koshaGuideRef",
+      "relatedDocsByLifecycle",
+      "nextDueRule"
+    ]
+  },
+  "documents": [
+    {
+      "docId": "safety_health_management_policy",
+      "title": "안전보건경영 방침서",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:14"
+      ],
+      "formStrictness": "자율",
+      "formSource": "자체",
+      "frequency": "현장개설",
+      "applicableScope": "전 사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "사업주의 안전보건 경영방침 (중처법 시행령 제4조)",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "safety_health_regulation",
+      "title": "안전보건관리규정",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:25",
+        "산안법시행규칙:25"
+      ],
+      "formStrictness": "자율",
+      "formSource": "자체",
+      "frequency": "현장개설",
+      "applicableScope": "100인 이상 또는 별표 2 업종",
+      "retention": "영구",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "사업장 안전보건 유지 위한 관리규정 (산안법 제25조)",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "safety_health_manager_appointment",
+      "title": "안전보건관리체제 지정·선임 보고",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:15",
+        "산안법:17",
+        "산안법:18",
+        "산안법:19",
+        "산안법시행규칙:11"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제24호",
+      "frequency": "선임시",
+      "applicableScope": "50인 이상 / 건설업 50억 이상",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제17조(안전관리자)·제18조(보건관리자)·제22조(산업보건의)에 따라 사업주가 선임·교체·해임·증원·교체임명 시 14일 이내 관할 지방고용노동관서에 제출하는 법정 보고서",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "on_appointment"
+    },
+    {
+      "docId": "safety_health_management_assistant_appointment",
+      "title": "안전보건관리담당자 선임 보고",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:19",
+        "산안법시행령:24"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제24호",
+      "frequency": "선임시",
+      "applicableScope": "20~49인 한정업종",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "20인 이상 50인 미만 사업장 안전보건관리담당자 선임 (산안법 제19조 + 시행규칙 제43조)",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "industrial_physician_appointment",
+      "title": "산업보건의 선임 보고",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:22",
+        "산안법시행규칙:11"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제24호",
+      "frequency": "선임시",
+      "applicableScope": "50인 이상",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제22조 50인 이상 사업장의 산업보건의 선임 시 14일 이내 고용노동부 관할 지방관서에 신고",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "honorary_safety_supervisor_appointment",
+      "title": "명예산업안전감독관 위촉",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법시행령:32"
+      ],
+      "formStrictness": "고시",
+      "formSource": "고용노동부",
+      "frequency": "선임시",
+      "applicableScope": "노사협의에 따라",
+      "retention": "5년",
+      "penaltyOnMissing": "—",
+      "purpose": "산안법 제23조 명예산업안전감독관 위촉",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "safety_health_total_responsible_appointment",
+      "title": "안전보건총괄책임자 지정서",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:62",
+        "산안법시행령:52"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "선임시",
+      "applicableScope": "50억 이상 도급",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "안전보건총괄책임자 지정서 - 산안법:62 + 산안법시행령:52 (자동 생성 스켈레톤",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "on_appointment"
+    },
+    {
+      "docId": "safety_health_coordinator_appointment",
+      "title": "안전보건조정자 지정서",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:68",
+        "산안법시행령:56"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "선임시",
+      "applicableScope": "50억+2개 이상 동시 도급",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "안전보건조정자 지정서 - 산안법:68 + 산안법시행령:56 (자동 생성 스켈레톤",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "on_appointment"
+    },
+    {
+      "docId": "signaler_appointment",
+      "title": "신호수 지정서",
+      "category": "A_체제",
+      "legalRef": [
+        "산안기준규칙:40"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "선임시",
+      "applicableScope": "전 건설현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "기준규칙 제40조 + 제142조 크레인·차량계 건설기계 신호수 지정",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "construction_safety_health_register",
+      "title": "건설업 안전보건대장 (3종 - 기본·설계·공사)",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:67",
+        "산안법시행규칙:84"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "현장개설",
+      "applicableScope": "공사금액 50억 이상",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "수급인이 작성하는 공사안전보건대장 (산안법 제67조 + 시행규칙 제86조 ③)",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "design_safety_health_register",
+      "title": "설계 안전보건대장",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:67",
+        "산안법시행규칙:84"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "설계시",
+      "applicableScope": "공사금액 50억 이상",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "설계자가 작성하는 설계안전보건대장 (산안법 제67조 + 시행규칙 제86조 ②)",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "basic_safety_health_register",
+      "title": "기본 안전보건대장",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:67",
+        "산안법시행규칙:84"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "발주시",
+      "applicableScope": "공사금액 50억 이상",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "건설공사 발주자가 계획단계에서 작성하는 기본안전보건대장 (산안법 제67조 + 시행규칙 제86조 ①)",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "legal_summary_posting",
+      "title": "법령 요지 게시",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:34"
+      ],
+      "formStrictness": "자율",
+      "formSource": "고용노동부",
+      "frequency": "현장개설",
+      "applicableScope": "전 사업장",
+      "retention": "현장 운영중",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제34조에 따라 사업주가 산업안전보건법령 요지 + 안전보건관리규정 요지(해당 시)를 근로자가 항상 볼 수 있는 장소에 게시·비치",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "safety_health_information_provision",
+      "title": "안전보건정보 제공",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:73"
+      ],
+      "formStrictness": "자율",
+      "formSource": "자체",
+      "frequency": "현장개설",
+      "applicableScope": "도급 시",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제11조 도급계약 체결 시 도급인이 수급인에게 제공해야 하는 안전보건정보 (작업환경·유해위험요인·예방조치) 제공서",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "safety_health_committee",
+      "title": "산업안전보건위원회 회의록",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:24",
+        "산안법시행령:34"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA",
+      "frequency": "분기",
+      "applicableScope": "100인 이상 또는 별표 9",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산업안전보건위원회 회의록 - 산안법:24 + 산안법시행령:34 (자동 생성 스켈레톤",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P3M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "quarterly"
+    },
+    {
+      "docId": "health_safety_committee",
+      "title": "산업안전보건위원회 운영규정",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:24",
+        "산안법시행규칙:35"
+      ],
+      "formStrictness": "자율",
+      "formSource": "자체",
+      "frequency": "현장개설",
+      "applicableScope": "100인 이상",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제24조 의 산업안전보건위원회 분기 1회 이상 운영 의무 이행 기록",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "safety_responsible_log",
+      "title": "안전보건관리책임자 직무 기록",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:15",
+        "산안법시행규칙:9"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "자체",
+      "frequency": "수시",
+      "applicableScope": "50인 이상",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "안전보건관리책임자 직무 기록 - 산안법:15 + 산안법시행규칙:9 (자동 생성 스켈레톤",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "as_needed"
+    },
+    {
+      "docId": "supervisor_monthly_log",
+      "title": "관리감독자 직무 일지 (월별)",
+      "category": "A_체제",
+      "legalRef": [
+        "산안법:16",
+        "산안법시행규칙:35"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "자체",
+      "frequency": "매월",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "관리감독자 직무 일지 (월별) - 산안법:16 + 산안법시행규칙:35 (자동 생성 스켈레톤",
+      "submitTo": "자체 게시·비치 (사업장 내)",
+      "submitDeadline": "현장 개설 시 즉시 / 변경 시 14일 이내 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "risk_assessment_procedure",
+      "title": "위험성평가 절차서",
+      "category": "B_위평",
+      "legalRef": [
+        "위험성평가-고시:13"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "현장개설",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "위험성평가 효과적 실시 위한 사업장 규정 (위험성평가 고시 제6조)",
+      "submitTo": "자체 보관 (감독관 요구 시 즉시 제시)",
+      "submitDeadline": "각 평가 시점 (최초 1개월 내 / 정기 매년 / 수시 변경 시)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "initial_risk_assessment",
+      "title": "최초 위험성평가",
+      "category": "B_위평",
+      "legalRef": [
+        "위험성평가-고시:15:1"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "착공",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "사업장 성립일(건설업 = 실착공일)로부터 1개월이 되는 날까지 위험성평가의 대상이 되는 모든 유해·위험요인에 대해 실시",
+      "submitTo": "자체 보관 (감독관 요구 시 즉시 제시)",
+      "submitDeadline": "각 평가 시점 (최초 1개월 내 / 정기 매년 / 수시 변경 시)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "regular_risk_assessment",
+      "title": "정기 위험성평가 (연 1회)",
+      "category": "B_위평",
+      "legalRef": [
+        "위험성평가-고시:15:2"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "연",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "최초평가 결과의 적정성을 1년마다 재검토",
+      "submitTo": "자체 보관 (감독관 요구 시 즉시 제시)",
+      "submitDeadline": "각 평가 시점 (최초 1개월 내 / 정기 매년 / 수시 변경 시)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1Y",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "monthly_risk_assessment",
+      "title": "상시 위험성평가 (매월·매주·매일·TBM)",
+      "category": "B_위평",
+      "legalRef": [
+        "위험성평가-고시:15:3"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매일·매주·매월",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "상시평가 선택 사업장이 매월 1회 이상 사업장 순회·아차사고·근로자 제안을 통해 유해·위험요인을 발굴하고 위험성 결정·감소대책을 수립·실행하기 위한 핵심 문서",
+      "submitTo": "자체 보관 (감독관 요구 시 즉시 제시)",
+      "submitDeadline": "각 평가 시점 (최초 1개월 내 / 정기 매년 / 수시 변경 시)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D (일일) / + P7D (주간) / + P1M (월간)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "ad_hoc_risk_assessment",
+      "title": "수시 위험성평가 (변경 시)",
+      "category": "B_위평",
+      "legalRef": [
+        "위험성평가-고시:15:4"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "변경시",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "설비·작업방법 변경 또는 산업재해 발생 시 추가된 유해·위험요인에 대해 즉시 실시하는 평가",
+      "submitTo": "자체 보관 (감독관 요구 시 즉시 제시)",
+      "submitDeadline": "각 평가 시점 (최초 1개월 내 / 정기 매년 / 수시 변경 시)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "daily_tbm",
+      "title": "TBM 회의록 (Tool Box Meeting)",
+      "category": "B_위평",
+      "legalRef": [
+        "위험성평가-고시:15:3",
+        "산안법:29"
+      ],
+      "formStrictness": "KOSHA표준",
+      "formSource": "KOSHA P-103",
+      "frequency": "매일",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "매 작업일 작업 시작 전 5~15분 안전회의로 당일 위험요인·감소대책을 작업자에게 공유하고 서명으로 확인",
+      "submitTo": "자체 보관 (감독관 요구 시 즉시 제시)",
+      "submitDeadline": "각 평가 시점 (최초 1개월 내 / 정기 매년 / 수시 변경 시)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "worker_complaint_log",
+      "title": "근로자 의견청취·고충처리 대장",
+      "category": "B_위평",
+      "legalRef": [
+        "위험성평가-고시:16"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "수시",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "—",
+      "purpose": "근로자 의견청취·고충처리 대장 - 위험성평가-고시:16 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (감독관 요구 시 즉시 제시)",
+      "submitDeadline": "각 평가 시점 (최초 1개월 내 / 정기 매년 / 수시 변경 시)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "as_needed"
+    },
+    {
+      "docId": "monthly_education_log",
+      "title": "정기 안전보건교육 일지",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:29",
+        "산안법시행규칙:26"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제79호",
+      "frequency": "매월",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제29조 + 시행규칙 별표 4·5에 따른 안전보건교육 실시 후 작성하는 교육일지",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "as_needed"
+    },
+    {
+      "docId": "supervisor_education_log",
+      "title": "관리감독자 안전보건교육 일지",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:29:2",
+        "산안법시행규칙:27"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제79호",
+      "frequency": "연",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "관리감독자의 직무 수행 + 정기·신규채용·변경 시 교육 기록 (산안법 제32조 + 시행규칙 제35조)",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1Y",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "msds_education_log",
+      "title": "MSDS 교육 일지",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:114:2"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA",
+      "frequency": "연",
+      "applicableScope": "화학물질 취급",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제115조 + 시행규칙 제169조에 따라 사업주가 대상화학물질을 취급하는 근로자에게 실시한 MSDS 교육 기록",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1Y",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "as_needed"
+    },
+    {
+      "docId": "new_hire_education_log",
+      "title": "신규채용 시 안전보건교육 일지",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:29:2",
+        "산안법시행규칙:26"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제79호",
+      "frequency": "채용시",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "신규채용 시 안전보건교육 일지 - 산안법:29:2 + 산안법시행규칙:26 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_change_education_log",
+      "title": "작업변경 시 안전보건교육 일지",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:29:2",
+        "산안법시행규칙:26"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제79호",
+      "frequency": "작업변경시",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "작업변경 시 안전보건교육 일지 - 산안법:29:2 + 산안법시행규칙:26 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "special_education_log",
+      "title": "특별 안전보건교육 일지",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:29:3",
+        "산안법시행규칙:27"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제79호",
+      "frequency": "특수작업시",
+      "applicableScope": "유해위험 작업 39종",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "특별 안전보건교육 일지 - 산안법:29:3 + 산안법시행규칙:27 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "safety_health_education_material_log",
+      "title": "안전보건교육 자료 비치대장",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:41",
+        "산안법시행규칙:32"
+      ],
+      "formStrictness": "자율",
+      "formSource": "자체",
+      "frequency": "현장개설",
+      "applicableScope": "전 사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "—",
+      "purpose": "안전보건교육 자료 비치대장 - 산안법:41 + 산안법시행규칙:32 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "on_construction_open"
+    },
+    {
+      "docId": "first_aid_training_log",
+      "title": "응급처치 교육 일지",
+      "category": "C_교육",
+      "legalRef": [
+        "산안법:29",
+        "산안기준규칙:639"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "연",
+      "applicableScope": "위험사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "—",
+      "purpose": "응급처치 교육 일지 - 산안법:29 + 산안기준규칙:639 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (교육일지·교육실시증빙)",
+      "submitDeadline": "교육 종료 즉시 작성 / 보관기간 3년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1Y",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "work_plan_excavation",
+      "title": "굴착 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:별표4-6호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "굴착 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "굴착면 높이 2m 이상의 굴착작업 시작 전 사업주가 작성·근로자에게 통지해야 하는 작업계획서",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_demolition",
+      "title": "해체 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:별표4-11호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "해체 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "구축물·건축물·시설물 해체작업 (별표 4 10호, 2023-11-14 개정으로 확장)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_tower_crane",
+      "title": "타워크레인 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:141",
+        "산안기준규칙:별표4-1호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "타워크레인 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "타워크레인 설치·조립·해체 작업 시작 전 작성 의무 (별표 4 1호)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_heavy_lifting",
+      "title": "중량물 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:별표4-5호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "중량물 취급",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "중량물 취급작업 (별표 4 11호)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_vehicle_construction",
+      "title": "차량계 건설기계 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:별표4-1호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "건설기계 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "굴삭기·로더·불도저 등 차량계 건설기계 사용 작업 (별표 4 3호)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_vehicle_cargo",
+      "title": "차량계 하역운반 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:별표4-2호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "하역운반 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "지게차·트럭 등 차량계 하역운반기계 사용 작업 (도로 주행 제외, 별표 4 2호)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_electric_work",
+      "title": "전기작업 계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:301",
+        "산안기준규칙:별표4-14호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "활선·정전 작업",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "전기작업 (50V 초과 또는 250VA 초과) 작업 전 (별표 4 5호)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_tunnel",
+      "title": "터널 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:별표4-7호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "터널 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "터널굴착작업 (별표 4 7호)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_plan_bridge",
+      "title": "교량 작업계획서",
+      "category": "D_작업계획",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:별표4-8호"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "작업단위",
+      "applicableScope": "교량 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "교량 (높이 5m 이상 또는 지간 30m 이상 금속·콘크리트) 설치·해체·변경 (별표 4 8호)",
+      "submitTo": "발주처(필요 시) + 자체 보관",
+      "submitDeadline": "작업 개시 전 (착공 7일 전 권장)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_permit_hot_work",
+      "title": "화기작업 허가서",
+      "category": "E_작업허가",
+      "legalRef": [
+        "산안기준규칙:239"
+      ],
+      "formStrictness": "KOSHA표준",
+      "formSource": "KOSHA P-94",
+      "frequency": "작업단위",
+      "applicableScope": "화기 작업",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "용접·용단·연삭 등 화기작업 시 위험 방지 허가서",
+      "submitTo": "자체 보관 (현장 책임자 결재 후)",
+      "submitDeadline": "작업 개시 전 매 건",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_permit_confined_space",
+      "title": "밀폐공간 작업허가서",
+      "category": "E_작업허가",
+      "legalRef": [
+        "산안기준규칙:619:2"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA P-94",
+      "frequency": "작업단위",
+      "applicableScope": "밀폐공간 작업",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "밀폐공간(맨홀·탱크·배수로·터널·배관 등) 작업 시 산소·유해가스·질식 방지 안전작업허가서",
+      "submitTo": "자체 보관 (현장 책임자 결재 후)",
+      "submitDeadline": "작업 개시 전 매 건",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_permit_high_altitude",
+      "title": "고소작업 허가서",
+      "category": "E_작업허가",
+      "legalRef": [
+        "산안기준규칙:42"
+      ],
+      "formStrictness": "KOSHA표준",
+      "formSource": "KOSHA P-94",
+      "frequency": "작업단위",
+      "applicableScope": "2m 이상 고소",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "2m 이상 고소작업 안전작업허가서",
+      "submitTo": "자체 보관 (현장 책임자 결재 후)",
+      "submitDeadline": "작업 개시 전 매 건",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_permit_heavy_lifting",
+      "title": "중량물 작업허가서 (중장비)",
+      "category": "E_작업허가",
+      "legalRef": [
+        "산안기준규칙:141"
+      ],
+      "formStrictness": "KOSHA표준",
+      "formSource": "KOSHA P-94",
+      "frequency": "작업단위",
+      "applicableScope": "중장비 작업",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "중량물 인양·운반 또는 고소작업대·이동식크레인 등 중장비 작업 안전작업허가서",
+      "submitTo": "자체 보관 (현장 책임자 결재 후)",
+      "submitDeadline": "작업 개시 전 매 건",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "work_permit_loto",
+      "title": "정비·보수 작업허가서 (LOTO)",
+      "category": "E_작업허가",
+      "legalRef": [
+        "산안기준규칙:92",
+        "산안기준규칙:93"
+      ],
+      "formStrictness": "KOSHA표준",
+      "formSource": "KOSHA P-94",
+      "frequency": "작업단위",
+      "applicableScope": "정비·보수",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "기계·전기 설비 정비·보수 시 에너지원 차단·잠금·표지 (LOTO: Lockout/Tagout) 안전작업허가서",
+      "submitTo": "자체 보관 (현장 책임자 결재 후)",
+      "submitDeadline": "작업 개시 전 매 건",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "작업 종료 후 보관기간까지",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "contractor_safety_council",
+      "title": "안전보건협의체 회의록 (도급인)",
+      "category": "F_도급",
+      "legalRef": [
+        "산안법:64:1:1",
+        "산안법시행규칙:79"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA Z-26",
+      "frequency": "매월",
+      "applicableScope": "도급 (직접 계약 수급인 1+)",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "도급인 + 직접 계약 수급인 전원으로 구성하는 안전보건협의체 매월 1회 이상 정기 회의록",
+      "submitTo": "자체 보관 (도급계약서 첨부)",
+      "submitDeadline": "도급 계약 체결 시 / 변경 시 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "contractor_round_inspection_log",
+      "title": "작업장 순회점검 일지",
+      "category": "F_도급",
+      "legalRef": [
+        "산안법:64:1:2",
+        "산안법시행규칙:80"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "자체",
+      "frequency": "건설 2일1회 / 기타 주1회",
+      "applicableScope": "도급",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "도급인이 자신의 사업장에서 관계수급인의 근로자가 작업할 때 실시하는 작업장 순회점검 일지",
+      "submitTo": "자체 보관 (도급계약서 첨부)",
+      "submitDeadline": "도급 계약 체결 시 / 변경 시 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "건설 compileDate + P2D / 기타 + P7D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "every_2_days"
+    },
+    {
+      "docId": "weekly_joint_inspection",
+      "title": "합동 안전보건점검",
+      "category": "F_도급",
+      "legalRef": [
+        "산안법:64:1:4",
+        "산안법시행규칙:82"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "자체",
+      "frequency": "건설 2개월1회 / 기타 분기",
+      "applicableScope": "도급",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "주 1회 안전보건관계자가 모여 월 단위 발굴·일 단위 TBM 결과를 공유·점검하고 이행 상황을 확인",
+      "submitTo": "자체 보관 (도급계약서 첨부)",
+      "submitDeadline": "도급 계약 체결 시 / 변경 시 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "건설 compileDate + P2M / 기타 + P3M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "weekly"
+    },
+    {
+      "docId": "contractor_consultative_body",
+      "title": "도급인 안전보건교육 지원",
+      "category": "F_도급",
+      "legalRef": [
+        "산안법:64:1:3"
+      ],
+      "formStrictness": "자율",
+      "formSource": "자체",
+      "frequency": "수시",
+      "applicableScope": "도급",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "50억 이상 건설현장 또는 일정 규모 도급사업 안전보건협의체 (산안법 제75조 + 시행규칙 제74조)",
+      "submitTo": "자체 보관 (도급계약서 첨부)",
+      "submitDeadline": "도급 계약 체결 시 / 변경 시 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "pre_work_inspection",
+      "title": "작업 전 안전점검",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:35"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매일",
+      "applicableScope": "전 사업장",
+      "retention": "1년",
+      "penaltyOnMissing": "—",
+      "purpose": "관리감독자가 매일 작업 시작 전 안전보건규칙 제35조 별표3 점검사항을 점검하고 이상 시 즉시 조치하기 위한 체크리스트",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "work_start_pre_check",
+      "title": "작업시작 전 점검표 (별표 3 23종)",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:35",
+        "산안기준규칙:별표3"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별표 3",
+      "frequency": "매일",
+      "applicableScope": "별표 3 23종 작업",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "작업시작 전 점검표 (별표 3 23종) - 산안기준규칙:35 + 산안기준규칙:별표3 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "scaffolding_inspection_checklist",
+      "title": "비계 점검표",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:57"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매주·강풍후",
+      "applicableScope": "비계 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "기준규칙 제59조~제71조 비계 작업 시 매일·강풍·강우 후 안전점검",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P7D 또는 강풍 직후",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "weekly"
+    },
+    {
+      "docId": "scaffolding_assembly_check",
+      "title": "비계 조립·해체·변경 시 점검",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:57",
+        "산안기준규칙:60"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA",
+      "frequency": "조립후",
+      "applicableScope": "전 건설현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "비계 조립·해체·변경 시 점검 - 산안기준규칙:57 + 산안기준규칙:60 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "construction_machinery_inspection",
+      "title": "건설기계 일상점검",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:136"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매일",
+      "applicableScope": "건설기계 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "기준규칙 제78조~제116조 건설기계 안전",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "tower_crane_inspection",
+      "title": "타워크레인 점검",
+      "category": "G_점검",
+      "legalRef": [
+        "산안법:93",
+        "산안법시행규칙:126"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA",
+      "frequency": "월·반기",
+      "applicableScope": "타워크레인",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "기준규칙 제142조 타워크레인 안전",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M (월간) / + P6M (반기)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "fall_prevention_net_inspection",
+      "title": "추락방호망 점검",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:42"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매일",
+      "applicableScope": "추락방호망 설치 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "기준규칙 제42조-제45조 추락방지 의무",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "safety_harness_inspection",
+      "title": "안전대 점검",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:32"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매월",
+      "applicableScope": "고소작업 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "—",
+      "purpose": "산안법 제38조 + 기준규칙 제32조 보호구 지급·관리",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "temporary_electric_inspection",
+      "title": "가설전기 점검",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:319"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매일",
+      "applicableScope": "가설전기 사용 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "—",
+      "purpose": "기준규칙 제301조~제305조 전기작업 + 가설전기 안전",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "weekly"
+    },
+    {
+      "docId": "temporary_fire_facility_check",
+      "title": "가설 소방시설 점검",
+      "category": "G_점검",
+      "legalRef": [
+        "소방시설법",
+        "산안기준규칙:241"
+      ],
+      "formStrictness": "자율",
+      "formSource": "소방청",
+      "frequency": "매일",
+      "applicableScope": "전 건설현장",
+      "retention": "1년",
+      "penaltyOnMissing": "—",
+      "purpose": "건설현장 임시소방시설 (소화기·간이소화장치·비상경보·간이피난유도선·비상조명·방화포)",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "formwork_shoring_check",
+      "title": "거푸집·동바리 점검표",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:331의2",
+        "산안기준규칙:332"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA",
+      "frequency": "타설전",
+      "applicableScope": "콘크리트 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "거푸집·동바리 점검표 - 산안기준규칙:331의2 + 산안기준규칙:332 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "excavation_daily_check",
+      "title": "굴착 일일 점검표 (지반·매설물)",
+      "category": "G_점검",
+      "legalRef": [
+        "산안기준규칙:38",
+        "산안기준규칙:341"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매일",
+      "applicableScope": "굴착 현장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "굴착 일일 점검표 (지반·매설물) - 산안기준규칙:38 + 산안기준규칙:341 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "msds_register",
+      "title": "MSDS 비치대장",
+      "category": "H_화학",
+      "legalRef": [
+        "산안법:114",
+        "산안법시행규칙:169"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA",
+      "frequency": "수시",
+      "applicableScope": "화학물질 취급",
+      "retention": "30년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "화학물질·유해인자 취급 사업장의 MSDS 비치·관리 대장",
+      "submitTo": "자체 비치 (사용 장소) + MSDS 게시",
+      "submitDeadline": "화학물질 입고 시 즉시 / 변경 시 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "continuous"
+    },
+    {
+      "docId": "ppe_register",
+      "title": "보호구 지급대장",
+      "category": "H_화학",
+      "legalRef": [
+        "산안기준규칙:32"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매월",
+      "applicableScope": "전 사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "—",
+      "purpose": "산안기준규칙 제32조·제33조에 따라 사업주가 근로자에게 지급한 보호구를 기록·관리하는 대장",
+      "submitTo": "자체 비치 (사용 장소) + MSDS 게시",
+      "submitDeadline": "화학물질 입고 시 즉시 / 변경 시 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "as_needed"
+    },
+    {
+      "docId": "asbestos_investigation_report",
+      "title": "석면조사 결과서",
+      "category": "H_화학",
+      "legalRef": [
+        "석면안전관리법:21"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "환경부",
+      "frequency": "해체전",
+      "applicableScope": "1985년 이전 건축물",
+      "retention": "30년",
+      "penaltyOnMissing": "석면법:38",
+      "purpose": "산안법 제142조 건축물·설비 철거·해체 전 석면 함유 여부 조사",
+      "submitTo": "자체 비치 (사용 장소) + MSDS 게시",
+      "submitDeadline": "화학물질 입고 시 즉시 / 변경 시 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "hazard_chemical_workplace_log",
+      "title": "유해·위험 작업장 작업기록",
+      "category": "H_화학",
+      "legalRef": [
+        "산안기준규칙:511",
+        "산안기준규칙:607",
+        "산안기준규칙:439",
+        "산안기준규칙:451"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "자체",
+      "frequency": "매일",
+      "applicableScope": "유해인자 노출",
+      "retention": "30년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "유해·위험 작업장 작업기록 - 산안기준규칙:511 + 산안기준규칙:607 + 산안기준규칙:439 + 산안기준규칙:451 (자동 생성 스켈레톤",
+      "submitTo": "자체 비치 (사용 장소) + MSDS 게시",
+      "submitDeadline": "화학물질 입고 시 즉시 / 변경 시 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1D",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "daily"
+    },
+    {
+      "docId": "noise_dust_protection_log",
+      "title": "소음·분진 작업장 측정·보호구 대장",
+      "category": "H_화학",
+      "legalRef": [
+        "산안기준규칙:511",
+        "산안기준규칙:607"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매월",
+      "applicableScope": "노출 작업장",
+      "retention": "5년",
+      "penaltyOnMissing": "—",
+      "purpose": "소음·분진 작업장 측정·보호구 대장 - 산안기준규칙:511 + 산안기준규칙:607 (자동 생성 스켈레톤",
+      "submitTo": "자체 비치 (사용 장소) + MSDS 게시",
+      "submitDeadline": "화학물질 입고 시 즉시 / 변경 시 갱신",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "work_environment_measurement",
+      "title": "작업환경측정 결과보고서 (별지 82호)",
+      "category": "I_측정",
+      "legalRef": [
+        "산안법:125",
+        "산안법시행규칙:188"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제82호",
+      "frequency": "반기",
+      "applicableScope": "유해인자 노출",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제125조에 따라 사업주가 측정기관을 통해 작업환경을 측정한 결과를 시행규칙 제188조 ① 에 따라 관할 지방고용노동관서에 보고하는 별지 제82호서식",
+      "submitTo": "관할 지방고용노동(지)청 + 사업주 + 근로자대표 (산안법 제125조)",
+      "submitDeadline": "측정 종료 후 30일 이내 결과 보고",
+      "electronicSubmission": {
+        "available": true,
+        "url": "https://miis.kosha.or.kr",
+        "system": "안전보건공단 작업환경측정 결과보고 시스템"
+      },
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P6M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "manual",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "semi_annual"
+    },
+    {
+      "docId": "work_environment_measurement_notification",
+      "title": "작업환경측정 결과 통보 (별지 84호)",
+      "category": "I_측정",
+      "legalRef": [
+        "산안법:125",
+        "산안법시행규칙:188"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제84호",
+      "frequency": "반기",
+      "applicableScope": "유해인자 노출",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "작업환경측정 실시 결과를 근로자·산업보건의·노조에 통보하는 서식",
+      "submitTo": "근로자(대표) + 자체 비치 (산안법 제125조 ⑥)",
+      "submitDeadline": "측정 결과 통보 후 30일 이내 게시·통보",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P6M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "semi_annual"
+    },
+    {
+      "docId": "health_examination_records",
+      "title": "일반·특수건강진단 결과",
+      "category": "J_건강",
+      "legalRef": [
+        "산안법:129",
+        "산안법:130"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제85호",
+      "frequency": "연1회/특수 6개월",
+      "applicableScope": "전 사업장 / 유해인자 노출",
+      "retention": "5~30년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제129조·제130조·제131조 의 건강진단 의무 이행",
+      "submitTo": "검진기관 → 사업주 (산안법 제129조)",
+      "submitDeadline": "사무직 2년 1회 / 기타 1년 1회 / 특수업무 6개월~2년",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1Y (일반) / + P6M (특수)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "health_examination_followup",
+      "title": "건강진단 사후관리",
+      "category": "J_건강",
+      "legalRef": [
+        "산안법:132"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "특수진단후",
+      "applicableScope": "유해인자 노출",
+      "retention": "5~30년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제134조 건강진단 결과에 따른 작업전환·근로시간 단축·작업환경 개선 등 사후조치 기록",
+      "submitTo": "자체 보관 + 유소견자 본인 통보",
+      "submitDeadline": "건강진단 결과 통보 후 30일 이내 사후관리 (산안법 제132조)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "annual"
+    },
+    {
+      "docId": "industrial_accident_report",
+      "title": "산업재해조사표 (별지 30호)",
+      "category": "K_사고",
+      "legalRef": [
+        "산안법:57",
+        "산안법시행규칙:73"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제30호",
+      "frequency": "사고시 1개월",
+      "applicableScope": "전 사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산업재해(휴업 3일 이상 또는 사망)가 발생한 경우 시행규칙 제73조 에 따라 1개월 이내 관할 지방고용노동관서에 제출하는 법정 보고서",
+      "submitTo": "관할 지방고용노동(지)청 산재예방지도과",
+      "submitDeadline": "산업재해 발생일로부터 1개월 이내 (산안법 제57조·시행규칙 제73조)",
+      "electronicSubmission": {
+        "available": true,
+        "url": "https://minwon.moel.go.kr",
+        "system": "고용노동부 e-노동민원 (산업재해조사표 신청)"
+      },
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "manual",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "severe_accident_immediate_report",
+      "title": "중대재해 즉시보고",
+      "category": "K_사고",
+      "legalRef": [
+        "산안법:54",
+        "산안법시행규칙:67",
+        "중처법:4"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "사고시 즉시",
+      "applicableScope": "전 사업장 + 중처법(50억↑·50인↑)",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175 + 중처법:6",
+      "purpose": "중대재해(사망 1명 이상 / 3개월 이상 부상 2명 이상 / 직업성질병 1년 내 3명 이상) 발생 시 지방고용노동청에 지체 없이 전화·팩스·전자우편으로 즉시보고",
+      "submitTo": "관할 지방고용노동(지)청 + 119 + 경찰",
+      "submitDeadline": "중대재해 발생 즉시 (산안법 제54조·중대재해처벌법)",
+      "electronicSubmission": {
+        "available": true,
+        "url": "https://minwon.moel.go.kr",
+        "system": "고용노동부 e-노동민원"
+      },
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "manual",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "severe_accident_compliance",
+      "title": "중대재해 안전보건확보 이행계획",
+      "category": "K_사고",
+      "legalRef": [
+        "중처법:4",
+        "중처법:5"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "연",
+      "applicableScope": "중처법 적용",
+      "retention": "영구",
+      "penaltyOnMissing": "중처법:6",
+      "purpose": "중처법 제4조 ① 1~4호 + 시행령 제4조 1~9호의 9가지 안전보건관리체계 구축·이행 의무에 대한 기록",
+      "submitTo": "자체 보관 (대표·경영책임자 결재)",
+      "submitDeadline": "반기 1회 점검 (중처법 시행령 제4조·제5조)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1Y",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "semi_annual"
+    },
+    {
+      "docId": "work_stop_order_report",
+      "title": "작업중지 명령 후 보고서",
+      "category": "K_사고",
+      "legalRef": [
+        "산안법:53",
+        "산안법시행규칙:69"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "사고후",
+      "applicableScope": "작업중지 명령 시",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "작업중지 명령 후 보고서 - 산안법:53 + 산안법시행규칙:69 (자동 생성 스켈레톤",
+      "submitTo": "관할 지방고용노동(지)청 산재예방지도과",
+      "submitDeadline": "작업중지 명령 후 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "safety_health_diagnosis_report",
+      "title": "안전보건진단 결과서",
+      "category": "L_진단",
+      "legalRef": [
+        "산안법:49",
+        "산안법시행규칙:61"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "지정시",
+      "applicableScope": "지정 사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제47조 고용노동부장관 명령에 따른 종합·안전·보건진단 결과보고서",
+      "submitTo": "진단기관 발행 + 자체 보관",
+      "submitDeadline": "진단 명령 후 6개월 이내",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "safety_health_improvement_plan",
+      "title": "안전보건개선계획서",
+      "category": "L_진단",
+      "legalRef": [
+        "산안법:49",
+        "산안법:50",
+        "산안법시행규칙:61"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "지정시",
+      "applicableScope": "지정 사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "안전보건개선계획서 - 산안법:49 + 산안법:50 + 산안법시행규칙:61 (자동 생성 스켈레톤",
+      "submitTo": "진단기관 발행 + 자체 보관",
+      "submitDeadline": "진단 명령 후 6개월 이내",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "hazardous_risk_prevention_plan_construction",
+      "title": "유해·위험방지계획서 (건설)",
+      "category": "L_진단",
+      "legalRef": [
+        "산안법:42",
+        "산안법:43"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "공사전",
+      "applicableScope": "특정 건설공사 (별표 10)",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "대상 건설공사(시행령 제42조 ③) 유해위험방지계획서 (산안법 제42조 3호)",
+      "submitTo": "안전보건공단 (착공 15일 전)",
+      "submitDeadline": "건설공사 착공 15일 전 (산안법 제42조·시행규칙 제42조)",
+      "electronicSubmission": {
+        "available": true,
+        "url": "https://miis.kosha.or.kr",
+        "system": "안전보건공단 유해위험방지계획서 심사 시스템"
+      },
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "manual",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "construction_disaster_prevention_guidance",
+      "title": "건설업 산재예방 기술지도",
+      "category": "L_진단",
+      "legalRef": [
+        "산안법:73",
+        "산안법시행규칙:101"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "전문기관",
+      "frequency": "월1회",
+      "applicableScope": "공사금액 1억~120억",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제73조 1~120억 원 미만 건설공사 도급인이 산업안전보건법령에 따른 자격을 가진 자(건설재해예방전문지도기관)로부터 매월 받는 지도 결과",
+      "submitTo": "진단기관 발행 + 자체 보관",
+      "submitDeadline": "진단 명령 후 6개월 이내",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "safety_certification_application",
+      "title": "안전인증 신청 (별지 42호)",
+      "category": "M_인증",
+      "legalRef": [
+        "산안법:93",
+        "산안법시행규칙:107"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제42호",
+      "frequency": "기계도입시",
+      "applicableScope": "안전인증 대상 기계",
+      "retention": "기계 사용중",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제83조 안전인증대상 기계·기구·방호장치·보호구 제조·수입 시 안전인증 신청",
+      "submitTo": "안전보건공단 (위험기계·기구 안전인증)",
+      "submitDeadline": "기계·기구 제조·수입 시 사전 신청 (산안법 제84조)",
+      "electronicSubmission": {
+        "available": true,
+        "url": "https://miis.kosha.or.kr",
+        "system": "안전보건공단 위험기계·기구 안전인증 시스템"
+      },
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "manual",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "voluntary_safety_confirmation_filing",
+      "title": "자율안전확인 신고 (별지 45호)",
+      "category": "M_인증",
+      "legalRef": [
+        "산안법:98",
+        "산안법시행규칙:123"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제45호",
+      "frequency": "기계도입시",
+      "applicableScope": "자율안전확인 대상",
+      "retention": "기계 사용중",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제89조 자율안전확인대상 기계·기구·설비를 제조·수입한 자가 안전기준 적합 여부를 확인하여 신고",
+      "submitTo": "안전보건공단 (자율안전확인 신고)",
+      "submitDeadline": "자율안전확인대상 기계·기구 출고 30일 이내 (산안법 제89조)",
+      "electronicSubmission": {
+        "available": true,
+        "url": "https://miis.kosha.or.kr",
+        "system": "안전보건공단 자율안전확인 신고"
+      },
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "manual",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "safety_inspection_application",
+      "title": "안전검사 신청 (별지 48호)",
+      "category": "M_인증",
+      "legalRef": [
+        "산안법:95",
+        "산안법시행규칙:125"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "법제처 별지 제48호",
+      "frequency": "주기검사",
+      "applicableScope": "안전검사 대상",
+      "retention": "기계 사용중",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "산안법 제93조 안전검사 대상 기계·기구(프레스·전단기·크레인·리프트·압력용기 등) 사용사업주가 정기적으로 받는 검사",
+      "submitTo": "안전보건공단 (안전검사 기관)",
+      "submitDeadline": "안전검사 대상 기계·기구는 검사 주기 도래 30일 전 신청 (산안법 제93조)",
+      "electronicSubmission": {
+        "available": true,
+        "url": "https://miis.kosha.or.kr",
+        "system": "안전보건공단 안전검사"
+      },
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "manual",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "ad_hoc"
+    },
+    {
+      "docId": "voluntary_inspection_program",
+      "title": "자율검사프로그램 인정 신청",
+      "category": "M_인증",
+      "legalRef": [
+        "산안법:99",
+        "산안법시행규칙:132"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "수시",
+      "applicableScope": "자율검사 적용 사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "자율검사프로그램 인정 신청 - 산안법:99 + 산안법시행규칙:132 (자동 생성 스켈레톤",
+      "submitTo": "안전보건공단 (자율검사프로그램 인정)",
+      "submitDeadline": "안전검사 대체 시 사전 인정 신청 (산안법 제98조)",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": null,
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "manual",
+          "submitDeadline": "manual",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "manual"
+        }
+      },
+      "cycleSlug": "as_needed"
+    },
+    {
+      "docId": "safety_health_mgmt_cost_plan",
+      "title": "산업안전보건관리비 계획·집행·정산",
+      "category": "N_비용",
+      "legalRef": [
+        "산안법:72",
+        "안전보건관리비고시:2022-43"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부 고시",
+      "frequency": "월·정산",
+      "applicableScope": "공사 2천만원 이상",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "건설공사 산업안전보건관리비 (계상·집행·정산) 사용계획·내역서",
+      "submitTo": "발주처 + 자체 보관",
+      "submitDeadline": "착공 전 사용계획 / 매월 정산내역 / 준공 후 정산서",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "safety_signage_register",
+      "title": "안전·보건 표지 대장",
+      "category": "N_비용",
+      "legalRef": [
+        "산안기준규칙:39"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "매월",
+      "applicableScope": "전 사업장",
+      "retention": "1년",
+      "penaltyOnMissing": "—",
+      "purpose": "사업장 안전보건표지 부착 + 정기 점검·교체 (산안법 제37조 + 시행규칙 제38·39조 + 별표 6·7·8)",
+      "submitTo": "발주처 + 자체 보관",
+      "submitDeadline": "착공 전 사용계획 / 매월 정산내역 / 준공 후 정산서",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P1M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "monthly"
+    },
+    {
+      "docId": "rest_facility_register",
+      "title": "휴게시설 설치·운영 대장",
+      "category": "N_비용",
+      "legalRef": [
+        "산안법:128의2",
+        "산안법시행규칙:194의2"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부",
+      "frequency": "현장개설",
+      "applicableScope": "20인 이상 또는 한정업종",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "휴게시설 설치·운영 대장 - 산안법:128의2 + 산안법시행규칙:194의2 (자동 생성 스켈레톤",
+      "submitTo": "발주처 + 자체 보관",
+      "submitDeadline": "착공 전 사용계획 / 매월 정산내역 / 준공 후 정산서",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "on_construction_open"
+    },
+    {
+      "docId": "welfare_facility_register",
+      "title": "복리후생시설(목욕·세면·탈의) 대장",
+      "category": "N_비용",
+      "legalRef": [
+        "산안기준규칙:80"
+      ],
+      "formStrictness": "자율",
+      "formSource": "KOSHA",
+      "frequency": "현장개설",
+      "applicableScope": "전 사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "—",
+      "purpose": "복리후생시설(목욕·세면·탈의) 대장 - 산안기준규칙:80 (자동 생성 스켈레톤",
+      "submitTo": "발주처 + 자체 보관",
+      "submitDeadline": "착공 전 사용계획 / 매월 정산내역 / 준공 후 정산서",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "on_construction_open"
+    },
+    {
+      "docId": "construction_safety_management_plan",
+      "title": "안전관리계획서 (건설기술진흥법)",
+      "category": "L_진단",
+      "legalRef": [
+        "건진법:62",
+        "건진법시행령:98"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "국토부 / 건설안전관리정보망 (CSI)",
+      "frequency": "현장개설",
+      "applicableScope": "건진법 시행령 별표 5 대상 (5억 이상 일부 + 50억 이상 의무)",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "건진법:90 (과태료 1천만원 이하)",
+      "purpose": "안전관리계획서 (건설기술진흥법) - 건진법:62 + 건진법시행령:98 (자동 생성 스켈레톤",
+      "submitTo": "진단기관 발행 + 자체 보관",
+      "submitDeadline": "진단 명령 후 6개월 이내",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "on_construction_open"
+    },
+    {
+      "docId": "construction_safety_inspection_record",
+      "title": "건설공사 안전점검 결과 (건진법)",
+      "category": "G_점검",
+      "legalRef": [
+        "건진법:62:5"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "국토부 / CSI",
+      "frequency": "분기",
+      "applicableScope": "안전관리계획서 대상 공사",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "건진법:90",
+      "purpose": "건설공사 안전점검 결과 (건진법) - 건진법:62:5 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관",
+      "submitDeadline": "점검 주기에 맞춰 즉시 작성",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P3M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "quarterly"
+    },
+    {
+      "docId": "contract_safety_health_clause",
+      "title": "도급계약서 안전보건 조항",
+      "category": "F_도급",
+      "legalRef": [
+        "산안법:70",
+        "산안법시행규칙:43"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "고용노동부 도급사업 운영지침",
+      "frequency": "현장개설",
+      "applicableScope": "도급계약 시",
+      "retention": "공사 완료시까지",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "도급계약서 안전보건 조항 - 산안법:70 + 산안법시행규칙:43 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (도급계약서 첨부)",
+      "submitDeadline": "도급 계약 체결 시 / 변경 시 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "on_construction_open"
+    },
+    {
+      "docId": "emergency_response_manual",
+      "title": "비상대응 매뉴얼 / 경보체계",
+      "category": "F_도급",
+      "legalRef": [
+        "산안법:64:1:5",
+        "산안기준규칙:32"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA 권고 + 자체",
+      "frequency": "현장개설",
+      "applicableScope": "도급사업 + 위험사업장",
+      "retention": "5년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "비상대응 매뉴얼 / 경보체계 - 산안법:64:1:5 + 산안기준규칙:32 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (도급계약서 첨부)",
+      "submitDeadline": "도급 계약 체결 시 / 변경 시 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "on_construction_open"
+    },
+    {
+      "docId": "evacuation_drill_record",
+      "title": "대피훈련 결과 보고서",
+      "category": "F_도급",
+      "legalRef": [
+        "산안법:64:1:5"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "자체",
+      "frequency": "분기",
+      "applicableScope": "도급사업 + 위험사업장",
+      "retention": "3년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "대피훈련 결과 보고서 - 산안법:64:1:5 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (도급계약서 첨부)",
+      "submitDeadline": "도급 계약 체결 시 / 변경 시 즉시",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "compileDate + P3M",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "quarterly"
+    },
+    {
+      "docId": "confined_space_program",
+      "title": "밀폐공간 작업 프로그램 (사전)",
+      "category": "E_작업허가",
+      "legalRef": [
+        "산안기준규칙:619:3"
+      ],
+      "formStrictness": "법령강제",
+      "formSource": "KOSHA H-80",
+      "frequency": "현장개설",
+      "applicableScope": "밀폐공간 작업 사업장",
+      "retention": "1년",
+      "penaltyOnMissing": "산안법:175",
+      "purpose": "밀폐공간 작업 프로그램 (사전) - 산안기준규칙:619:3 (자동 생성 스켈레톤",
+      "submitTo": "자체 보관 (현장 책임자 결재 후)",
+      "submitDeadline": "작업 개시 전 매 건",
+      "electronicSubmission": null,
+      "templateUrl": null,
+      "koshaGuideRef": [],
+      "relatedDocsByLifecycle": {
+        "before": [],
+        "during": [],
+        "after": []
+      },
+      "nextDueRule": "현장 운영 중 지속 (신규 현장 개설 시 신규 작성)",
+      "sourceStatus": {
+        "keys": {
+          "purpose": "rule-default",
+          "submitTo": "rule-default",
+          "submitDeadline": "rule-default",
+          "electronicSubmission": "rule-default",
+          "templateUrl": "rule-default",
+          "koshaGuideRef": "pending",
+          "relatedDocsByLifecycle": "pending",
+          "nextDueRule": "rule-default"
+        }
+      },
+      "cycleSlug": "on_construction_open"
+    }
+  ]
+}

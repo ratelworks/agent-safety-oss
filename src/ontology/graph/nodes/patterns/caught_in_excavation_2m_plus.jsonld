@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_excavation_2m_plus",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_excavation_2m_plus",
+  "title": "caught_in × excavation_2m_plus",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 31건 관측. 사고유형 caught_in 작업유형 excavation_2m_plus.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:excavation_2m_plus"
+  ],
+  "caseFrequency": 31,
+  "sampleKeywords": [
+    "어스오거 전도방지대에 끼임",
+    "버킷 운반 작업 중 끼임",
+    "굴착기 상부 회전체에 끼임"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

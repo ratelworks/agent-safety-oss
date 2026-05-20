@@ -1,0 +1,61 @@
+name: CodeQL — 보안 정적 분석
+
+# 퍼블릭 OSS 표준 보안 스캐너 (무료).
+# 본 OSS 는 한국 건설 안전 데이터를 다루므로 정적 분석 회귀 차단이 본질적 의무.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # 매주 월 09:00 KST (UTC 00:00) 정기 재스캔 (의존성 추가 / GitHub 룰 갱신 반영)
+    - cron: "0 0 * * 1"
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript-typescript"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          # security-extended: 보안 룰만 (code quality 룰 제외).
+          # 본 OSS 의 scripts/ETL·migration 은 dev-only — quality 룰이 부적합.
+          queries: security-extended
+          # 분석 대상 = src/ 런타임 코드만 (외부 사용자가 npm install 로 받는 build/ 의 source).
+          # scripts/* · a2ui-demo/* · tests/* 는 라텔웍스 내부 개발용 — code scanning 제외.
+          config: |
+            paths:
+              - src
+            paths-ignore:
+              - scripts
+              - a2ui-demo
+              - tests
+              - examples
+              - docs
+              - reports
+              - build
+              - node_modules
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v4
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"

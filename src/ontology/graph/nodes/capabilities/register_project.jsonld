@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/register_project",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "현장·공사 등록",
+      "@language": "ko"
+    },
+    {
+      "@value": "Register Project",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 사용자 SSoT — 현장·공사 등록. 사업장 1개에 현장 여러 개 가능.",
+  "toolName": "register_project",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/register_project",
+  "producesEntity": [
+    "safety:ProjectProfile"
+  ],
+  "maps_to_action": "safety:action/register_project",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

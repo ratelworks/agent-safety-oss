@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_site_profile",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "사업장 SSoT 조회",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Site Profile",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 사용자 SSoT 조회 — 등록된 사업장·현장·직원·장비·수급업체 전체 또는 카테고리별.",
+  "toolName": "get_site_profile",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/get_site_profile",
+  "producesEntity": [
+    "safety:SiteProfile"
+  ],
+  "maps_to_action": "safety:action/get_site_profile",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

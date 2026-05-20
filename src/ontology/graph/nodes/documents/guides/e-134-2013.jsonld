@@ -1,0 +1,153 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-134-2013",
+  "@type": "Document",
+  "docId": "kosha_guide_e-134-2013",
+  "title": "의료용 전기 시스템의 안전한 사용에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-134-2013",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 7건 (법령 2 / KOSHA Guide 5). keyword=\"의료용\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 2,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 10,
+      "7": 24,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "의료용",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_의료용 전기 시스템의 안전한 사용에 관한 기술지침_1",
+      "title": "의료용 전기 시스템의 안전한 사용에 관한 기술지침 - 목적",
+      "score": 90.971
+    },
+    {
+      "docId": "KOSHA07_의료용 전기 시스템의 안전한 사용에 관한 기술지침_3",
+      "title": "의료용 전기 시스템의 안전한 사용에 관한 기술지침 - 정의",
+      "score": 87.517
+    },
+    {
+      "docId": "KOSHA07_의료용 전기 시스템의 안전한 사용에 관한 기술지침_2",
+      "title": "의료용 전기 시스템의 안전한 사용에 관한 기술지침 - 적용범위",
+      "score": 86.683
+    },
+    {
+      "docId": "KOSHA07_의료용 전기 시스템의 안전한 사용에 관한 기술지침_4",
+      "title": "의료용 전기 시스템의 안전한 사용에 관한 기술지침 - 위험유해요인의 특성",
+      "score": 76.351
+    },
+    {
+      "docId": "KOSHA07_의료용 전기 시스템의 안전한 사용에 관한 기술지침_5",
+      "title": "의료용 전기 시스템의 안전한 사용에 관한 기술지침 - ME 장비의 기본 안전",
+      "score": 69.078
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 2] 안전보건관리책임자를 두어야 하는 사업의 종류 및 사업장의 상시근로자 수(제14조제1항 관련)",
+      "title": "[별표 2] 안전보건관리책임자를 두어야 하는 사업의 종류 및 사업장의 상시근로자 수(제14조제1항 관련)",
+      "category": "2",
+      "score": 35.334
+    },
+    {
+      "docId": "KOSHA02_[별표 5] 보건관리자를 두어야 하는 사업의 종류, 사업장의 상시근로자 수, 보건관리자의 수 및 선임방법(제20조제1항 관련)",
+      "title": "[별표 5] 보건관리자를 두어야 하는 사업의 종류, 사업장의 상시근로자 수, 보건관리자의 수 및 선임방법(제20조제1항 관련)",
+      "category": "2",
+      "score": 21.081
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 2] 안전보건관리책임자를 두어야 하는 사업의 종류 및 사업장의 상시근로자 수(제14조제1항 관련)",
+      "title": "[별표 2] 안전보건관리책임자를 두어야 하는 사업의 종류 및 사업장의 상시근로자 수(제14조제1항 관련)",
+      "category": "2",
+      "score": 35.334
+    },
+    {
+      "docId": "KOSHA02_[별표 5] 보건관리자를 두어야 하는 사업의 종류, 사업장의 상시근로자 수, 보건관리자의 수 및 선임방법(제20조제1항 관련)",
+      "title": "[별표 5] 보건관리자를 두어야 하는 사업의 종류, 사업장의 상시근로자 수, 보건관리자의 수 및 선임방법(제20조제1항 관련)",
+      "category": "2",
+      "score": 21.081
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:3장",
+      "law": "기준규칙",
+      "chapterTitle": "금지유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장(전기로 인한 위험방지) 제1"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장(전기로 인한 위험방지) 제1",
+      "needsNode": true
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_tunnel_excavation",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_tunnel_excavation",
+  "title": "cave_in × tunnel_excavation",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 6건 관측. 사고유형 cave_in 작업유형 tunnel_excavation.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [
+    "activity:tunnel_excavation"
+  ],
+  "caseFrequency": 6,
+  "sampleKeywords": [
+    "터널 장약작업 중 암반이 무너지며 매몰(사망2명)",
+    "터널 막장면 천공 후 장약작업 중 막장면 상부 암반이 무너짐(2명 사망)",
+    "채석을 위해 천공작업 중 주변지반 붕괴"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

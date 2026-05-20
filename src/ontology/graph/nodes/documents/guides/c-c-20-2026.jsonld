@@ -1,0 +1,124 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-C-20-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_c-c-20-2026",
+  "title": "화학설비의 재질선정에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-C-20-2026",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"화학설비\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 2,
+      "3": 3,
+      "4": 19,
+      "5": 9,
+      "6": 170,
+      "7": 268,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "화학설비",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:256",
+      "law": "기준규칙",
+      "articleNumber": "256",
+      "title": "부식 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제256조(부식 방지)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide C-C-20-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_화학설비의 재질선정에 관한 기술지침_2",
+      "title": "화학설비의 재질선정에 관한 기술지침 - 적용범위",
+      "score": 161.614
+    },
+    {
+      "docId": "KOSHA07_설비 배치에 관한 기술지침_7",
+      "title": "설비 배치에 관한 기술지침 - 설비의 안전거리",
+      "score": 90.274
+    },
+    {
+      "docId": "KOSHA07_산화에틸렌 취급설비의 안전에 관한 기술지침_5",
+      "title": "산화에틸렌 취급설비의 안전에 관한 기술지침 - 일반적인 안전조치",
+      "score": 82.698
+    },
+    {
+      "docId": "KOSHA07_공정배관계장도(P&ID) 작성에 관한 기술지침_6",
+      "title": "공정배관계장도(P&ID) 작성에 관한 기술지침 - 장치 및 동력기계 고유번호 부여 방법",
+      "score": 80.526
+    },
+    {
+      "docId": "KOSHA07_저장탱크 과충전방지에 관한 기술지침_2",
+      "title": "저장탱크 과충전방지에 관한 기술지침 - 적용범위",
+      "score": 77.493
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 31] 지도사의 업무 영역별 업무 범위(제102조제2항 관련)",
+      "title": "[별표 31] 지도사의 업무 영역별 업무 범위(제102조제2항 관련)",
+      "category": "2",
+      "score": 26.153
+    },
+    {
+      "docId": "KOSHA02_000004000000000000000042000",
+      "title": "제42조 유해위험방지계획서 제출 대상",
+      "category": "2",
+      "score": 23.463
+    },
+    {
+      "docId": "KOSHA03_000005000002000000000084000",
+      "title": "제84조 화학물질",
+      "category": "3",
+      "score": 38.008
+    },
+    {
+      "docId": "KOSHA03_000005000002000000000083000",
+      "title": "제83조 안전ㆍ보건 정보제공 등",
+      "category": "3",
+      "score": 31.116
+    },
+    {
+      "docId": "KOSHA03_000001000000000000000006000",
+      "title": "제6조 도급인의 안전ㆍ보건 조치 장소",
+      "category": "3",
+      "score": 30.509
+    }
+  ]
+}

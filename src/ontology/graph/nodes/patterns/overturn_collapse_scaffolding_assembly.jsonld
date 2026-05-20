@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/overturn_collapse_scaffolding_assembly",
+  "@type": [
+    "Event"
+  ],
+  "slug": "overturn_collapse_scaffolding_assembly",
+  "title": "overturn_collapse × scaffolding_assembly",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 12건 관측. 사고유형 overturn_collapse 작업유형 scaffolding_assembly.",
+  "koshaAccidentType": "overturn_collapse",
+  "hasHazard": [
+    "hazard:struck_by_overturn"
+  ],
+  "causedBy": [
+    "activity:scaffolding_assembly"
+  ],
+  "caseFrequency": 12,
+  "sampleKeywords": [
+    "조적벽체 해체 작업 중 벽체 전도",
+    "비계 전도(사망1, 부상1)",
+    "갱폼 작업발판을 통해 작업장으로 이동 중 전도"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

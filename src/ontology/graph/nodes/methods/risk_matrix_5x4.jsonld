@@ -1,0 +1,149 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:risk_matrix_5x4",
+  "@type": "Method",
+  "label": "위험성 등급 매트릭스 (빈도×강도 5x4)",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단",
+    "sourceRef": "위험성평가 고시 + KRAS 빈도·강도법",
+    "fetchedAt": "2026-04-28",
+    "matrix": {
+      "frequency": {
+        "A": {
+          "label": "상시 (주 1회 이상)",
+          "weight": 5
+        },
+        "B": {
+          "label": "자주 (월 1회 이상)",
+          "weight": 4
+        },
+        "C": {
+          "label": "가끔 (연 3회 이상)",
+          "weight": 3
+        },
+        "D": {
+          "label": "드물게 (연 1회)",
+          "weight": 2
+        },
+        "E": {
+          "label": "거의 없음",
+          "weight": 1
+        }
+      },
+      "severity": {
+        "I": {
+          "label": "치명 (사망·영구장애)",
+          "weight": 4
+        },
+        "II": {
+          "label": "중대 (휴업 14일 이상)",
+          "weight": 3
+        },
+        "III": {
+          "label": "경미 (휴업 3-13일)",
+          "weight": 2
+        },
+        "IV": {
+          "label": "미미 (휴업 3일 미만)",
+          "weight": 1
+        }
+      },
+      "riskLevel": {
+        "high": {
+          "range": "15-20",
+          "label": "상",
+          "action": "즉시 작업 중단 또는 통제 강화"
+        },
+        "medium": {
+          "range": "8-14",
+          "label": "중",
+          "action": "안전조치 강화·대책 수립"
+        },
+        "low": {
+          "range": "1-7",
+          "label": "하",
+          "action": "일상 관리로 충분"
+        }
+      }
+    },
+    "validationNote": "scoring·scoreRanges·testCases를 review 룰에서 활용하여 examples 자동 검증 가능",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "description": "KRAS 빈도·강도법 정량 매트릭스. 빈도 5등급(A~E) × 강도 4등급(I~IV) = 위험성 점수(1~20). 등급 환산 (상=15-20 / 중=8-14 / 하=1-7).",
+  "legalBasis": [
+    "art:위험성평가-고시:7"
+  ],
+  "isPartOf": "method:frequency_severity",
+  "validation": {
+    "scoring": {
+      "type": "multiplicative",
+      "formula": "frequency × severity"
+    },
+    "frequencyValues": {
+      "A": 5,
+      "B": 4,
+      "C": 3,
+      "D": 2,
+      "E": 1
+    },
+    "severityValues": {
+      "I": 4,
+      "II": 3,
+      "III": 2,
+      "IV": 1
+    },
+    "scoreRanges": [
+      {
+        "min": 15,
+        "max": 20,
+        "grade": "상",
+        "action": "즉시 작업 중단 또는 통제 강화"
+      },
+      {
+        "min": 8,
+        "max": 14,
+        "grade": "중",
+        "action": "안전조치 강화·대책 수립"
+      },
+      {
+        "min": 1,
+        "max": 7,
+        "grade": "하",
+        "action": "일상 관리로 충분"
+      }
+    ],
+    "testCases": [
+      {
+        "f": "A",
+        "s": "I",
+        "expectedScore": 20,
+        "expectedGrade": "상"
+      },
+      {
+        "f": "C",
+        "s": "I",
+        "expectedScore": 12,
+        "expectedGrade": "중"
+      },
+      {
+        "f": "B",
+        "s": "II",
+        "expectedScore": 12,
+        "expectedGrade": "중"
+      },
+      {
+        "f": "A",
+        "s": "IV",
+        "expectedScore": 5,
+        "expectedGrade": "하"
+      },
+      {
+        "f": "D",
+        "s": "II",
+        "expectedScore": 6,
+        "expectedGrade": "하"
+      }
+    ]
+  }
+}

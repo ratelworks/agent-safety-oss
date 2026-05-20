@@ -1,0 +1,28 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/drowning_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "drowning_general",
+  "title": "drowning",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 8건 관측. 사고유형 drowning.",
+  "koshaAccidentType": "drowning",
+  "hasHazard": [
+    "hazard:drowning"
+  ],
+  "causedBy": [],
+  "caseFrequency": 8,
+  "sampleKeywords": [
+    "수중 잠수작업중 익사",
+    "방파제 안전난간 보수 중 월파에 휩쓸려 익사(사망1)",
+    "하수암거 보강작업 중 불어난 물에 익사"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

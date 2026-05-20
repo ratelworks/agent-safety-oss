@@ -1,0 +1,98 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:fall_from_height",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "fall_from_height",
+  "label": "추락 (떨어짐)",
+  "category": "physical",
+  "koshaAccidentType": "떨어짐",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "추락",
+      "방호망",
+      "안전대",
+      "고소",
+      "개구부",
+      "사다리",
+      "비계",
+      "작업발판"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_work_permit",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:admin_inspection",
+    "control:ppe_harness",
+    "control:ppe_fall_arrester",
+    "control:ppe_helmet"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:42",
+    "art:기준규칙:38"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-1-2025",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-4-2025",
+    "doc:kosha_guide/C-74-2015",
+    "doc:kosha_guide/D-C-14-2026",
+    "doc:kosha_guide/D-C-7-2026",
+    "doc:kosha_guide/M-155-2023",
+    "doc:kosha_guide/X-44-2016",
+    "doc:kosha_guide/D-C-11-2026"
+  ],
+  "description": "**원인**: 안전난간·작업발판·승강설비 미설치 / 안전대 미착용 / 개구부 덮개 부재 / 비계 결손 / 사다리 미고정.\n**상황**: 2m 이상 고소작업 (비계·거푸집·철골·지붕·개구부 주변).\n**확인**: 작업발판 폭 40cm 이상·틈 3cm 이하 / 안전난간 90cm·중간대·발끝막이 / 안전대 후크 결속 / 개구부 덮개·표시.\n**중대성**: 건설업 사망사고 1위 (전체의 약 50%). 즉시 사망 또는 영구장해.",
+  "koshaArchiveFacets": [
+    "facet:ctgr01/06",
+    "facet:ctgr01/07",
+    "facet:ctgr01/09"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:drainage_sewerage",
+    "activity:electric_work_50v_plus",
+    "activity:excavation_2m_plus",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:formwork_shoring",
+    "activity:heavy_lifting",
+    "activity:rc_concrete",
+    "activity:risk_assessment_general",
+    "activity:safety_education",
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:tbm_daily",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:vehicle_cargo",
+    "activity:waterproofing"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/A-G-1-2025",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/D-C-7-2026",
+    "doc:kosha_guide/D-C-11-2026"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_kosha_archive_facets",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "KOSHA 자료실 facet 코드 목록 (5개 분류)",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Kosha Archive Facets",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 지침·자료실·법령 번들을 검색하거나 본문·facet·첨부 파일을 조회하는 capability. search_kosha_archive 의 ctgr01~05 파라미터에 넣을 facet 코드 목록을 KOSHA Live API 로 조회. 5개 분류: 일반분야(추락·비계·보호구 등 17개) / 기계설비(크레인·지게차·굴착기 등 35+개) / 작업(굴착·터널·해체 등 24개) / 직업건강(밀폐공간·소음·석면 등 28+개) / 특수형태(배달종사자 등 3개). **API 키 불필요**.",
+  "toolName": "list_kosha_archive_facets",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/list_kosha_archive_facets",
+  "producesEntity": [
+    "safety:KoshaArchiveFacet"
+  ],
+  "maps_to_action": "safety:action/list_kosha_archive_facets",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

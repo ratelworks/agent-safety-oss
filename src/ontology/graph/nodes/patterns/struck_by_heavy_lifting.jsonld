@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_heavy_lifting",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_heavy_lifting",
+  "title": "struck_by × heavy_lifting",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 13건 관측. 사고유형 struck_by 작업유형 heavy_lifting.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:heavy_lifting"
+  ],
+  "caseFrequency": 13,
+  "sampleKeywords": [
+    "이동식 크레인 와이어로프 전선에 접촉",
+    "충전 전로 접촉에 의한 감전",
+    "고소작업대 사용 중 천정크레인과 충돌하여 전도(사망1)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

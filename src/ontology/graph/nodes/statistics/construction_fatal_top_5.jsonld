@@ -1,0 +1,25 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "stat:construction_fatal_top_5",
+  "@type": "Statistic",
+  "label": "건설업 사망사고 Top 5 유형",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "고용노동부 + 한국산업안전보건공단",
+    "period": "2024",
+    "industry": "construction",
+    "sourceRef": "고용노동부 2024 산업재해 발생현황",
+    "sourceUrl": "",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "description": "고용노동부 산재통계 (2024 기준). 건설업 사망사고 1위 추락(50%+) > 끼임 > 부딪힘 > 무너짐 > 떨어짐.",
+  "involves": [
+    "event:fall_from_height",
+    "event:caught_in",
+    "event:struck_by",
+    "event:cave_in",
+    "event:fall_object"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

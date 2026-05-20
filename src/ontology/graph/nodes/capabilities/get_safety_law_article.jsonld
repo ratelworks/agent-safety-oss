@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_safety_law_article",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법령 조문 본문 조회",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Safety Law Article",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 지침·자료실·법령 번들을 검색하거나 본문·facet·첨부 파일을 조회하는 capability. 특정 법령 조문의 원문을 Markdown 으로 반환. ref 는 '산안법 §36', '§38', '산안기준규칙 §38', '중처법 §4' 같이 법령명+조번호 형식. LLM 이 위험성평가·작업계획서 작성 시 'mandatory 근거' 로 이 응답을 그대로 인용. 저작권법 §7 비보호 저작물이라 복제·재배포 자유.",
+  "toolName": "get_safety_law_article",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/get_safety_law_article",
+  "producesEntity": [
+    "safety:Article"
+  ],
+  "maps_to_action": "safety:action/get_safety_law_article",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

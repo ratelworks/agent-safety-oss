@@ -1,0 +1,154 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/M-155-2023",
+  "@type": "Document",
+  "docId": "kosha_guide_m-155-2023",
+  "title": "이동식 고소작업대의 선정과 안전관리에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "M-155-2023",
+    "guideCategory": "machine",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction_partial",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"이동식\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 1,
+      "3": 2,
+      "4": 15,
+      "5": 16,
+      "6": 122,
+      "7": 228,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "이동식",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:crushing",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:eng_loto"
+  ],
+  "appliesToActivities": [
+    "activity:scaffolding_assembly"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_이동식 크레인 안전보건작업 지침_4",
+      "title": "이동식 크레인 안전보건작업 지침 - 이동식 크레인의 종류",
+      "score": 67.43
+    },
+    {
+      "docId": "KOSHA07_이동식 작업등의 선정 및 사용에 관한 기술지침_5",
+      "title": "이동식 작업등의 선정 및 사용에 관한 기술지침 - 이동식 작업등에 의한 감전예방 대책",
+      "score": 66.473
+    },
+    {
+      "docId": "KOSHA07_이동식 크레인 양중작업의 안정성 검토 지침_4",
+      "title": "이동식 크레인 양중작업의 안정성 검토 지침 - 이동식 크레인의 종류",
+      "score": 66.464
+    },
+    {
+      "docId": "KOSHA07_이동식 작업등의 선정 및 사용에 관한 기술지침_6",
+      "title": "이동식 작업등의 선정 및 사용에 관한 기술지침 - 이동식 작업등에 의한 화재?폭발위험",
+      "score": 66.4
+    },
+    {
+      "docId": "KOSHA07_이동식 작업등의 선정 및 사용에 관한 기술지침_4",
+      "title": "이동식 작업등의 선정 및 사용에 관한 기술지침 - 이동식 작업등에 의한 감전위험",
+      "score": 65.619
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:186",
+      "law": "기준규칙",
+      "articleNumber": "186",
+      "title": "고소작업대 설치 등의 조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제 186조(고소작업대 설치 등의 조치)",
+      "citedAsOf": "2023",
+      "temporalNote": "KOSHA Guide M-155-2023 본문 직접 인용 (2023년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 21] 대여자 등이 안전조치 등을 해야 하는 기계ㆍ기구ㆍ설비 및 건축물 등(제71조 관련)",
+      "title": "[별표 21] 대여자 등이 안전조치 등을 해야 하는 기계ㆍ기구ㆍ설비 및 건축물 등(제71조 관련)",
+      "category": "2",
+      "score": 29.986
+    },
+    {
+      "docId": "KOSHA03_000006000004000000000126000",
+      "title": "제126조 안전검사의 주기와 합격표시 및 표시방법",
+      "category": "3",
+      "score": 34.415
+    },
+    {
+      "docId": "KOSHA03_[별표 25] 건강관리카드의 발급 대상(제214조 관련)",
+      "title": "[별표 25] 건강관리카드의 발급 대상(제214조 관련)",
+      "category": "3",
+      "score": 10.742
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000147000",
+      "title": "제147조 설계기준 준수",
+      "category": "4",
+      "score": 39.688
+    },
+    {
+      "docId": "KOSHA04_001000006000001000000000042000",
+      "title": "제42조 추락의 방지",
+      "category": "4",
+      "score": 39.549
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "$schema": "./scope.schema.json",
+  "version": "1.0.0",
+  "updatedAt": "2026-04-28",
+  "domain": {
+    "id": "construction_safety",
+    "label": "건설안전 (Construction Safety)",
+    "description": "한국 건설현장 안전관리 도메인. 산업안전보건법 + 시행령 + 시행규칙 + 산업안전보건기준에관한규칙 + 중대재해처벌법 中 건설업 적용 조문 + 위험성평가 고시 + KOSHA C/D 시리즈 + KCS·KS 건설표준 위주.",
+    "scopeBoundary": {
+      "included": [
+        "건설공사 (토목·건축·철도·교량·터널·전기·통신·기계설비·해체)",
+        "건설업 발주자·도급인·수급인 의무",
+        "건설근로자 보호 (산안법 + 중처법)",
+        "건설장비 (타워크레인·건설기계·굴착기 등)",
+        "건설현장 작업환경 (분진·소음·MSDS 등 보건도 건설 한정)"
+      ],
+      "excluded": [
+        "제조업 일반 산업기계 (프레스·전단기·사출 등 — 건설 외 제조업 적용)",
+        "공정안전관리 PSM (석유화학·화학설비 — 건설 시공 단계 외)",
+        "산업보건 일반 (사무직·서비스업 일반 보건)",
+        "어업·농업 안전 (어선조업·농작업)",
+        "화학물질관리법·위험물안전관리법 (환경부·소방청 소관)",
+        "전기사업법·정보통신공사업법 (산업통상자원부·과기정통부 소관)"
+      ]
+    }
+  },
+  "includedActivities": [
+    "activity:rc_concrete",
+    "activity:steel_structure",
+    "activity:scaffolding_assembly",
+    "activity:formwork_shoring",
+    "activity:excavation_2m_plus",
+    "activity:tunnel_excavation",
+    "activity:demolition",
+    "activity:waterproofing",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:phc_pile_driving",
+    "activity:earthwork_landfill",
+    "activity:road_pavement",
+    "activity:underground_utility",
+    "activity:drainage_sewerage",
+    "activity:bridge_5m_30m",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:heavy_lifting",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction",
+    "activity:safety_education",
+    "activity:tbm_daily",
+    "activity:risk_assessment_general",
+    "activity:electric_work_50v_plus",
+    "activity:asbestos_removal",
+    "activity:general_workplace_safety"
+  ],
+  "excludedActivities": [
+    "activity:industrial_machinery_general",
+    "activity:electrical_facility_general",
+    "activity:occupational_health_general",
+    "activity:process_safety_management"
+  ],
+  "lawCoverage": {
+    "산업안전보건법": {
+      "totalArticles": 175,
+      "constructionRelevant": 50,
+      "comment": "건설업 직접 적용 조문 (제5장 건설업 제67조-제77조, 발주자·도급인 의무, 안전인증, 작업환경측정, 건강진단, 화학물질·MSDS 등)"
+    },
+    "산업안전보건법시행령": {
+      "totalArticles": 159,
+      "constructionRelevant": 30,
+      "comment": "건설공사 발주 제42조-제50조, 안전관리자 선임 제16조-제19조 (건설업 기준), 산업안전보건관리비, 안전인증 제74조"
+    },
+    "산업안전보건법시행규칙": {
+      "totalArticles": 252,
+      "constructionRelevant": 60,
+      "comment": "건설업 안전관리비 사용기준 제85조-제89조, 도급사업 제80조-제86조, 위탁계약 제89조, 안전보건교육 제26조-제40조 (건설업 기초안전보건교육 포함)"
+    },
+    "산업안전보건기준에관한규칙": {
+      "totalArticles": 671,
+      "constructionRelevant": 200,
+      "comment": "제1장 통칙 제38조(작업계획서) 제42조-제66조(추락) / 제2장 제67조-제77조(비계) / 제3장 제78조-제116조(건설기계) / 제8장 제331조-제337조(거푸집) 제340조-제346조(굴착) 제347조-제366조(터널) 제367조-제384조(교량) / 굴착·구조물·해체·발파 등 건설 직접 조문"
+    },
+    "중대재해처벌등에관한법률": {
+      "totalArticles": 16,
+      "constructionRelevant": 16,
+      "comment": "건설업 50억 이상 적용 — 모든 조문 적용"
+    },
+    "중대재해처벌등에관한법률시행령": {
+      "totalArticles": 14,
+      "constructionRelevant": 14,
+      "comment": "9대 의무 모두 건설 적용"
+    },
+    "위험성평가-고시": {
+      "totalArticles": 23,
+      "constructionRelevant": 23,
+      "comment": "건설업 위험성평가 의무 (모든 사업장 적용)"
+    }
+  },
+  "totalConstructionRelevantArticles": 393,
+  "koshaGuide": {
+    "totalGuides": 817,
+    "estimatedConstructionRelevant": 817,
+    "categoryMapping": {
+      "construction": [
+        "C-*",
+        "D-*",
+        "C-C-*",
+        "D-C-*"
+      ],
+      "general_applicable": [
+        "A-*",
+        "G-*",
+        "X-*",
+        "H-*",
+        "W-*",
+        "B-E-*",
+        "E-* (E-G/T/M/H 외)",
+        "O-*",
+        "F-*",
+        "K-*"
+      ],
+      "construction_partial": [
+        "E-G-*",
+        "E-T-*",
+        "E-M-*",
+        "E-H-*",
+        "T-*",
+        "M-*"
+      ],
+      "out_of_domain": [
+        "B-M-*",
+        "B-5*",
+        "B-6*",
+        "P-*"
+      ]
+    },
+    "comment": "본 OSS는 건설안전 적용 가능한 KOSHA 가이드만 보유. C/D/C-C/D-C는 건설 직접 (construction). A/G/X/H/W/B-E/E-(전기)/O/F/K는 일반 적용 (general_applicable). M/T/E-G/E-T/E-M/E-H는 부분 적용 (construction_partial)."
+  },
+  "constructionSpecificForms": [
+    "안전보건대장 3종 (기본·설계·공사)",
+    "산업안전보건관리비 사용계획서·실적서",
+    "건설업 기초안전보건교육 이수증",
+    "유해위험방지계획서 (건설공사)",
+    "건설재해예방 지도결과서",
+    "비계 안전점검표",
+    "추락방지망 점검표",
+    "안전대 점검표",
+    "임시소방시설 점검표",
+    "건설기계 일일점검표 (굴삭기·크레인·로더·덤프트럭)",
+    "타워크레인 일일점검표",
+    "거푸집동바리 시공상세도",
+    "콘크리트 타설 시공계획서",
+    "흙막이 가시설 시공상세도",
+    "가설전기 점검표",
+    "비상연락망 (현장)",
+    "안전모·안전화·보안경 지급대장",
+    "관리감독자 지정서",
+    "신호수 지정서",
+    "고소작업대 사용계획서",
+    "건설현장 안전보건협의체 회의록"
+  ],
+  "rationale": {
+    "whyConstruction": "건설업은 한국 산재 사망사고의 약 50%를 차지하며 (고용노동부 2024 통계), 50억 이상 건설은 중처법 1순위 적용 산업. 본 OSS의 1차 타겟인 50억/50인 미만 중소건설업체 안전관리 부담 경감이 비전. 비건설 산업은 모듈러 OSS 분리 (`agent-machinery-safety` 등) 방향.",
+    "whyExclusionsExplicit": "도메인 경계를 명시하지 않으면 KOSHA 1039 가이드 모두 건설에 매핑 시도 → 환각 발생. C/D 시리즈는 직접 건설, B-M/H/P 시리즈는 별도 도메인. 사용자에게 정직한 검색결과 제공.",
+    "whyGeneralWorkplaceIncluded": "통로·조명·표지·정리정돈 등은 건설현장에도 적용. 건설현장 ≠ 건설공사 (현장사무소·작업장 일반 공통)."
+  }
+}

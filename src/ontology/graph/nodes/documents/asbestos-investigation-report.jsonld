@@ -1,0 +1,355 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/asbestos_investigation_report",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "asbestos_investigation_report",
+  "title": "석면조사 결과서",
+  "description": "산안법 제142조 건축물·설비 철거·해체 전 석면 함유 여부 조사. 일반석면조사 + 기관석면조사(50㎡ 이상). 석면지도 작성·해체작업계획 첨부.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "건축물·설비 철거·해체 착수 전",
+  "legalBasis": [
+    "art:산안법:142",
+    "art:산안법:119",
+    "art:산안법:122",
+    "art:기준규칙:574"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "건축물·설비 철거·해체 전. 50㎡ 이상 건축물·15㎡ 이상 단열재 → 기관석면조사."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "1995년 이후 신축 + 무석면 인증",
+      "철거·해체 미시행"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "buildingInfo",
+      "label": "건축물·설비 정보 (소유주·면적·연도)",
+      "source": "산안법 제142조 + 시행규칙 제175조 (50㎡↑ 기관조사 의무)",
+      "inputGuide": "소유주·면적(연면적/대지면적)·준공연도·구조(철콘/철골/조적)·층수.",
+      "examples": [
+        "황룡개발(주) / 연면적 5,000㎡ 대지 1,200㎡ / 1985년 준공 / 철근콘크리트조 지상 5층 지하 1층"
+      ]
+    },
+    {
+      "key": "investigationDate",
+      "label": "조사 일자",
+      "source": "산안법 제142조 + 시행규칙 제175조 (50㎡↑ 기관조사 의무)",
+      "inputGuide": "석면조사 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "investigator",
+      "label": "조사기관·자격",
+      "source": "산안법 제142조 + 시행규칙 제175조 (50㎡↑ 기관조사 의무)",
+      "inputGuide": "고용노동부 등록 석면조사기관 + 석면조사기관 등록번호 + 책임조사자 자격번호.",
+      "examples": [
+        "(주)석면조사기관OO (등록 제2024-0001호) / 책임 김OO (석면조사기사 1234호)"
+      ]
+    },
+    {
+      "key": "investigationType",
+      "label": "일반조사 / 기관조사",
+      "source": "산안법 제142조 + 시행규칙 제175조 (50㎡↑ 기관조사 의무)",
+      "inputGuide": "일반석면조사 (자체) / 기관석면조사 (지정기관) — 산안법 제119조.",
+      "examples": [
+        "기관조사 (한국산업안전보건공단)"
+      ]
+    },
+    {
+      "key": "samplingPoint",
+      "label": "시료 채취 지점·점수",
+      "inputGuide": "시료 채취 지점 명시 + 채취 점수 (KOSHA 가이드 기준 면적·재료별).",
+      "examples": [
+        "1) 천정재 5점 / 2) 바닥재 3점 / 3) 단열재 4점 (총 12점)"
+      ]
+    },
+    {
+      "key": "analysisResult",
+      "label": "분석 결과 (석면 함유 여부·종류·함유율)",
+      "inputGuide": "PLM/PCM 분석 결과. 석면 종류 (백석면·청석면·갈석면) + 함유율(%).",
+      "examples": [
+        "1) 천정재 백석면 5% (함유) / 2) 바닥재 미함유 / 3) 단열재 갈석면 8% (함유)"
+      ]
+    },
+    {
+      "key": "asbestosMap",
+      "label": "석면지도 (위치·면적)",
+      "inputGuide": "석면 함유 자재 위치 + 면적 도면.",
+      "examples": [
+        "지하 1층 천정재 320㎡ + 3층 단열재 180㎡ (석면지도 첨부)"
+      ]
+    },
+    {
+      "key": "demolitionPlan",
+      "label": "해체 작업계획 (석면 함유 시)",
+      "inputGuide": "석면 해체·제거 작업계획 (격리·습식·공기 측정·폐기물).",
+      "examples": [
+        "격리 (이중차단막) + 습식 작업 + 공기 측정 (4시간 간격) + 지정폐기물 처리"
+      ]
+    },
+    {
+      "key": "workerNotification",
+      "label": "근로자 통지",
+      "inputGuide": "석면 함유 사실 근로자 통지 (산안법 제123조).",
+      "examples": [
+        "전체 근로자 게시판 통지 + 안전교육 30분 (4/30)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 50㎡ 이상 건축물 → 기관석면조사 의무",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:142"
+    },
+    {
+      "rule": "필수 — 시료 분석 결과 + 석면지도",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:119"
+    },
+    {
+      "rule": "필수 — 석면 함유 시 해체작업계획서 연계",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:122"
+    }
+  ],
+  "searchKeywords": [
+    "석면조사 결과서",
+    "기관석면조사",
+    "일반석면조사"
+  ],
+  "references": [
+    "annex:산안법시행규칙:서식78",
+    "annex:산안법시행령:별표27"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/H-70-2020",
+    "doc:kosha_guide/H-193-2021",
+    "doc:kosha_guide/H-199-2018",
+    "doc:kosha_guide/W-10-2023",
+    "doc:kosha_guide/E-G-20-2026",
+    "doc:kosha_guide/E-T-7-2026",
+    "doc:kosha_guide/T-9-2016",
+    "doc:kosha_guide/C-36-2011",
+    "doc:kosha_guide/C-47-2023",
+    "doc:kosha_guide/G-131-2020",
+    "doc:kosha_guide/G-6-2011",
+    "doc:kosha_guide/H-100-2012",
+    "doc:kosha_guide/E-G-7-2025",
+    "doc:kosha_guide/M-82-2011"
+  ],
+  "appliesToActivities": [
+    "activity:asbestos_removal",
+    "activity:demolition"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 석면조사 결과",
+      "legalSource": "석면안전관리법 제21조 + 시행규칙 제27조",
+      "fields": [
+        {
+          "key": "buildingInfo",
+          "label": "건축물 정보",
+          "required": true,
+          "inputGuide": "건축연도·구조·연면적.",
+          "examples": [
+            "1978년 준공, 철근콘크리트 5층, 연면적 800m², 해체 대상"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "investigatedBy",
+          "label": "조사기관 (지정)",
+          "required": true,
+          "inputGuide": "환경부 지정 석면조사기관.",
+          "examples": [
+            "(주)한국석면조사 (지정번호 환경부 제2024-001호)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "investigationDate",
+          "label": "조사 일자",
+          "required": true,
+          "inputGuide": "해체 작업 전 30일 이내.",
+          "examples": [
+            "2026-04-15"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "sampleResults",
+          "label": "시료 분석 결과",
+          "required": true,
+          "inputGuide": "각 시료별 함유율 + 종류.",
+          "examples": [
+            [
+              {
+                "시료": "S-001",
+                "위치": "외벽 마감재",
+                "함유율": "3.5%",
+                "종류": "백석면"
+              },
+              {
+                "시료": "S-002",
+                "위치": "보온재",
+                "함유율": "음성"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "asbestosPresent",
+          "label": "석면 함유 여부",
+          "required": true,
+          "inputGuide": "양성/음성 + 양성 시 면적.",
+          "examples": [
+            "양성 (외벽 마감재 320m² + 보온재 50m²)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "removalPlan",
+          "label": "해체·처리 계획",
+          "required": true,
+          "inputGuide": "양성 시 해체업체·처리절차.",
+          "examples": [
+            "(주)한국석면해체 (지정업체) 위탁, 음압 격리 + HEPA + 폐기물 인계"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "hasHazard": [
+    "hazard:dust",
+    "hazard:chemical_exposure"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_plan_demolition",
+    "doc:continuous/msds_register"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

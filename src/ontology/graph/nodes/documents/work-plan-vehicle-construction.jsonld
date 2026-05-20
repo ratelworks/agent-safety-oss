@@ -1,0 +1,284 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_vehicle_construction",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_vehicle_construction",
+  "title": "차량계 건설기계 작업계획서",
+  "description": "굴삭기·로더·불도저 등 차량계 건설기계 사용 작업 (별표 4 3호)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "차량계 건설기계 사용 작업 전",
+  "applicableWhen": {
+    "workType": "vehicle_construction"
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-3호",
+    "art:기준규칙:207",
+    "art:기준규칙:210"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_굴러떨어짐_지반_침하_",
+      "label": "굴러떨어짐·지반 침하 위험",
+      "source": "산안기준규칙 제38조 + 별표 4 3호",
+      "inputGuide": "차량계 건설기계 굴러떨어짐·지반 침하 위험 + 대책.",
+      "examples": [
+        "단부 안전난간 + 지반 다짐도 검사 + 강판 받침대"
+      ]
+    },
+    {
+      "key": "machineType",
+      "label": "차량계 건설기계 종류·성능",
+      "source": "산안기준규칙 제38조 + 별표 4 3호",
+      "inputGuide": "사용 건설기계 종류 + 성능.",
+      "examples": [
+        "굴삭기 22톤 (Volvo EC220) + 덤프트럭 15톤 + 콘크리트펌프카 60m"
+      ]
+    },
+    {
+      "key": "f_2_운행_경로",
+      "label": "운행 경로",
+      "source": "산안기준규칙 제38조 + 별표 4 3호",
+      "inputGuide": "운행 경로 (도면 첨부).",
+      "examples": [
+        "정문 → 작업장 → 야적장 (단방향, 우회전 우선)"
+      ]
+    },
+    {
+      "key": "method",
+      "label": "작업방법",
+      "source": "산안기준규칙 제38조 + 별표 4 3호",
+      "inputGuide": "작업 방법 + 안전조치.",
+      "examples": [
+        "굴착 1:1.5 안전기울기 + 신호수 1명 + 작업반경 출입 통제"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "사전조사·작업계획 모두 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-3호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 차량계 건설기계 작업계획서 (별표 4 1호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 1호",
+      "fields": [
+        {
+          "key": "machineList",
+          "label": "투입 건설기계",
+          "required": true,
+          "inputGuide": "굴삭기·로더·덤프·롤러 등.",
+          "examples": [
+            "굴삭기 0.7m³ × 2대, 덤프트럭 25톤 × 3대"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workScope",
+          "label": "작업 범위",
+          "required": true,
+          "inputGuide": "굴착·운반·다짐 등.",
+          "examples": [
+            "B동 굴착 4,000m³ + 토사운반 → 외부 사토장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trafficPlan",
+          "label": "동선·진출입로",
+          "required": true,
+          "inputGuide": "공사장 내 차량 동선 + 진출입.",
+          "examples": [
+            "진입 정문 → 굴착장 → 사토장 / 출구 후문 (편도 2차로)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "signalPlan",
+          "label": "신호수·유도원",
+          "required": true,
+          "inputGuide": "진출입 + 후진 시.",
+          "examples": [
+            "진출입 신호수 1, 후진 유도원 1 (각 차량)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "groundCondition",
+          "label": "지반·받침 조치",
+          "required": true,
+          "inputGuide": "연약지반 받침 + 침하 방지.",
+          "examples": [
+            "받침대 강판 1m² × 4매 (각 굴삭기)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [
+    "doc:kosha_guide/C-48-2022",
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/H-77-2012",
+    "doc:kosha_guide/H-177-2015",
+    "doc:kosha_guide/H-169-2015",
+    "doc:kosha_guide/E-M-3-2025",
+    "doc:kosha_guide/E-M-6-2026",
+    "doc:kosha_guide/E-M-7-2026",
+    "doc:kosha_guide/E-M-8-2026",
+    "doc:kosha_guide/M-159-2012",
+    "doc:kosha_guide/C-71-2012",
+    "doc:kosha_guide/C-82-2020",
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/C-50-2012",
+    "doc:kosha_guide/G-40-2012",
+    "doc:kosha_guide/H-172-2015"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "굴삭기",
+      "건설기계",
+      "차량계"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:crushing",
+    "hazard:traffic_accident"
+  ],
+  "appliesToActivities": [
+    "activity:vehicle_construction",
+    "activity:phc_pile_driving",
+    "activity:road_pavement"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:admin_signal_person"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

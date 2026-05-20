@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_submission_info",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법정문서 제출 정보 조회",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Submission Info",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 법정문서의 제출처·마감·전자제출 URL·보관기간을 조회한다. 라이프사이클 §1.5 제출 단계. 마스터 SSoT 기반.",
+  "toolName": "get_submission_info",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_submission_info",
+  "producesEntity": [
+    "safety:SubmissionInfo"
+  ],
+  "maps_to_action": "safety:action/get_submission_info",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

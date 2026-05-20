@@ -1,0 +1,351 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan",
+  "title": "작업계획서 (산안기준규칙 제38조 별표4 13종)",
+  "alternativeNames": [
+    "작업계획서 13종",
+    "위험작업 작업계획서"
+  ],
+  "description": "산안기준규칙 제38조 별표4 가 정한 13종 작업 시 사업주가 사전조사·작업계획서를 작성하고 근로자에게 알려야 하는 의무. 13종 외에도 위험작업은 자체 작성 권장.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "산안기준규칙 제38조 별표4 가 정한 13종 작업 시 사업주가 사전조사·작업계획서를 작성하고 근로자에게 알려야 하는 의무. 13종 외에도 위험작업은 자체 작성 권장.",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "50인 미만 + 50억 미만 건설현장도 동일 적용. 해당 작업 1건이라도 발생 시 의무."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "workType",
+      "label": "작업 종류 (1·2·3·5·6·7·8·10·11호 — 건설 9종)",
+      "source": "기준규칙 제38조 + 별표 4",
+      "inputGuide": "건설 위험작업 13종 분류 (산안기준규칙 제38조 별표4).",
+      "examples": [
+        "1호 (높이 2m 이상 추락 위험)"
+      ]
+    },
+    {
+      "key": "subDocId",
+      "label": "해당 작업계획서 (work_plan_*)",
+      "source": "기준규칙 제38조 + 별표 4",
+      "inputGuide": "산안기준규칙 제38조 별표4 13종 작업계획서 중 해당 종.",
+      "examples": [
+        "굴착 (work_plan_excavation)"
+      ]
+    },
+    {
+      "key": "siteName",
+      "label": "사업장·공사명",
+      "source": "기준규칙 제38조 + 별표 4",
+      "inputGuide": "발주처 공식 공사 명칭.",
+      "examples": [
+        "삼성동 OO빌딩 신축공사"
+      ]
+    },
+    {
+      "key": "supervisor",
+      "label": "작업지휘자",
+      "source": "기준규칙 제38조 + 별표 4",
+      "inputGuide": "감리 회사명 + 책임감리원 성명 + 자격번호.",
+      "examples": [
+        "(주)도화엔지니어링 / 김감리 (건축사 1234호)"
+      ]
+    },
+    {
+      "key": "documentId",
+      "label": "문서 번호 (예: WP-2026-0427-001)",
+      "source": "한국 안전관리 표준 양식 공통 메타",
+      "inputGuide": "현장 자체 부여 일련번호.",
+      "examples": [
+        "DOC-2026-0429-01"
+      ]
+    },
+    {
+      "key": "approvalChain",
+      "label": "결재 라인 — 사업주·관리감독자·근로자대표 서명·날짜",
+      "source": "한국 안전관리 표준 행정 양식 (법적 근거는 각 Document legalBasis 참조)",
+      "inputGuide": "작성 → 검토 → 승인 순. 직책 + 성명 + 서명.",
+      "examples": [
+        "작성: 김안전 / 검토: 박감독 / 승인: 황룡"
+      ]
+    },
+    {
+      "key": "workPeriod",
+      "label": "작업 기간 또는 유효 기간 (YYYY-MM-DD ~ YYYY-MM-DD)",
+      "source": "한국 안전관리 표준 양식 공통 메타",
+      "inputGuide": "작업계획 유효 기간.",
+      "examples": [
+        "2026-04-29 ~ 2026-05-30"
+      ]
+    },
+    {
+      "key": "emergencyContacts",
+      "label": "비상연락망 — 119·관할 지방고용노동청·응급의료기관·사업주",
+      "source": "art:기준규칙:38",
+      "inputGuide": "법인 대표 또는 위임받은 안전보건책임자.",
+      "examples": [
+        "황한일 (대표)"
+      ]
+    },
+    {
+      "key": "workerNotification",
+      "label": "근로자 통지 사실·일자·방법 (회의·게시·교육)",
+      "source": "art:기준규칙:38",
+      "inputGuide": "근로자 통지 사실 + 방법.",
+      "examples": [
+        "2026-04-28 TBM 시 통지 + 게시판 부착 + 교육 30분"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 작업명 (별표 4 13종 중 해당)",
+      "severity": "manual_review",
+      "legalBasis": [
+        "art:기준규칙:38",
+        "annex:기준규칙:별표4"
+      ]
+    },
+    {
+      "rule": "필수 — 작업 책임자 자격",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 사전조사 결과 (작업별 표준 항목)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    },
+    {
+      "rule": "필수 — 작업 중지 기준 (정량)",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 비상 연락망",
+      "severity": "manual_review"
+    }
+  ],
+  "retention": "3년 (산안법 제164조)",
+  "standardForm": {
+    "source": "산안기준규칙 제38조 + KOSHA Guide 작업별 안내",
+    "sourceUrl": "https://www.law.go.kr/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039625",
+    "requiredFields": [
+      "작업명 (별표 4 13종 중 해당)",
+      "작업일자·시간·장소",
+      "작업 책임자 (성명·자격)",
+      "작업자 명단",
+      "사전조사 결과 (작업장 상태·기상·지반·전선·매설물 등 작업별 조사항목)",
+      "작업방법·순서",
+      "주요 위험요인",
+      "안전조치·필요 장비·보호구",
+      "작업 중지 기준 (기상·이상 상황)",
+      "비상 연락망"
+    ]
+  },
+  "relatedDocs": [],
+  "guidedBy": [
+    "doc:kosha_guide/C-36-2011",
+    "doc:kosha_guide/C-41-2011",
+    "doc:kosha_guide/C-47-2023",
+    "doc:kosha_guide/C-48-2022",
+    "doc:kosha_guide/C-50-2012",
+    "doc:kosha_guide/C-53-2012",
+    "doc:kosha_guide/C-71-2012",
+    "doc:kosha_guide/C-78-2016",
+    "doc:kosha_guide/C-C-2-2025",
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/D-C-15-2026",
+    "doc:kosha_guide/D-C-7-2026",
+    "doc:kosha_guide/D-C-8-2026",
+    "doc:kosha_guide/D-C-9-2026",
+    "doc:kosha_guide/G-100-2013"
+  ],
+  "verificationStatus": "simulation_passed",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건기준에 관한 규칙",
+        "article": "§38",
+        "text": "사전조사 및 작업계획서의 작성 등 — 사업주는 별표 4의 작업을 할 때 작업계획서를 작성하고 그 계획에 따라 작업하도록 하여야 한다"
+      },
+      {
+        "law": "산안기준규칙",
+        "article": "별표 4",
+        "text": "작업계획서 작성 대상 13종 — 1.차량계 하역운반기계 등을 사용하는 작업, 2.차량계 건설기계 사용, 3.화학설비 정비·보수, 4.제406조 전기 작업, 5.굴착작업, 6.터널굴착작업, 7.교량 인장·교각·교대 작업, 8.채석작업, 9.해체작업, 10.중량물 취급, 11.궤도와 그 밖의 관련 설비의 보수·점검 작업, 12.입환작업, 13.그 밖에 (생략)"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "별표 4 13종 매핑": "tower_crane / vehicle_construction / chemical / electric / excavation / tunnel / bridge / quarry / demolition / heavy_lifting / railway_maintenance / railway_shunting / other",
+        "사전조사": "작업별 표준 항목 (예: 굴착 → 토질·지하수·매설물·기상)",
+        "작업 중지 기준": "강풍 10m/s 초과·강우 50mm/h 초과 등 정량 기준"
+      },
+      "commonMistakes": [
+        "작업 책임자 자격 미명시 (예: 굴착 → 굴착기 면허)",
+        "사전조사 항목을 '확인함' 만 적고 결과 미기재",
+        "작업 중지 기준을 '날씨 나쁘면' 같이 모호하게",
+        "13종 중 어느 것에 해당하는지 미명시"
+      ],
+      "bestPractices": [
+        "get_work_plan_schema({workType}) 로 13종별 표준 양식 호출",
+        "compile_safety_references({workType, docType:'work_plan'}) 로 관련 법령·KOSHA Guide 자동 묶음",
+        "작업 책임자 자격증 사본 첨부",
+        "작업 위치 도면 첨부 (지하매설물 표시)"
+      ]
+    },
+    "examples": [
+      {
+        "title": "KOSHA Guide 작업계획서 작성례 (작업별)",
+        "source": "안전보건공단",
+        "license": "공공누리 (자료별 확인 필요)"
+      }
+    ],
+    "relatedTools": [
+      "get_work_plan_schema({workType})  // 13종별 양식",
+      "compile_safety_references({workType, docType:'work_plan'})",
+      "search_safety_laws({keyword:'제38조'})",
+      "search_kosha_archive({keyword, shpCd:'01'})  // 책자",
+      "review_safety_document({docId:'risk_assessment', draft})  // Phase B 에서 work_plan 확장 예정"
+    ],
+    "convertedAt": "2026-04-26",
+    "note": "guides/*.json 에서 자동 변환된 노드. legalBasis 의 Article 노드 IRI 매핑은 P1 수작업 보강 예정.",
+    "predictedLegalBasisIris": [],
+    "unresolvedLegalBasisRefs": [],
+    "enrichedAt": "2026-04-26",
+    "stubLinkedIris": [],
+    "reviewedAt": "2026-04-26",
+    "reviewer": "라텔웍스 (Ratelworks Inc., 황룡건설(주) 자문)",
+    "reviewLevel": "1차 도메인 검토 — 19종 docId entity 의 legalBasisRefs · requiredFields · reviewRules 정합성 확인",
+    "reviewNotes": "Phase 5 가이드라인 준수 (JSON-LD 1.1 + schema.org Legislation + ELI). 본문은 KOSHA 표준 양식·법제처 본문 기반. 황룡건설 dogfooding 완료 시 'verified' 로 최종 승급 예정.",
+    "autoPromotedAt": "2026-04-26",
+    "promotedBy": "scripts/promote-document-status.ts (자동 스크립트, 사람 검토 미실시)",
+    "promoteRationale": "1) standardForm 출처가 KOSHA 표준 / 2) legalBasisRefs 가 법제처 verified Article 노드와 매칭 / 3) reviewRules 가 인용 조문과 정합. 단 사람 도메인 전문가 직접 검토는 미실시 — 황룡건설 dogfooding 완료 후 'verified' 승급 예정.",
+    "dogfoodingNote": "본 verified 라벨은 자동 시뮬레이션에 의한 1차 합격. 진짜 사람 도메인 전문가(안전관리자) 사용 후 추가 검증 필요.",
+    "simulationPassedAt": "2026-04-26",
+    "simulationPassedBy": "scripts/dogfooding-simulation.ts (자동 시뮬레이션 — 그래프 정합성 + review 도구 통과)",
+    "promotionNote": "자동 시뮬레이션 통과 — review_safety_document 도구 호출 + 그래프 정합성 확인. 진짜 사람 도메인 검토(황룡건설 dogfooding) 후 verified 승급 예정.",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4",
+    "art:기준규칙:335",
+    "art:기준규칙:336",
+    "art:기준규칙:337",
+    "art:기준규칙:343",
+    "art:기준규칙:344",
+    "art:기준규칙:345",
+    "art:기준규칙:346",
+    "art:기준규칙:332",
+    "art:기준규칙:333",
+    "art:기준규칙:334",
+    "art:기준규칙:341",
+    "art:기준규칙:342"
+  ],
+  "requires": [
+    "activity:tower_crane",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction",
+    "activity:electric_work_50v_plus",
+    "activity:excavation_2m_plus",
+    "activity:tunnel_excavation",
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:heavy_lifting"
+  ],
+  "searchKeywords": [
+    "작업계획서",
+    "별표 4",
+    "13종 작업계획서"
+  ],
+  "appliesToActivities": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:electric_work_50v_plus",
+    "activity:excavation_2m_plus",
+    "activity:heavy_lifting",
+    "activity:tower_crane",
+    "activity:tunnel_excavation",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction",
+    "activity:phc_pile_driving",
+    "activity:road_pavement"
+  ],
+  "sections": [
+    {
+      "title": "통합 작업계획서 — 별표 4 13종 중 적용",
+      "legalSource": "기준규칙 제38조 + 별표 4",
+      "fields": [
+        {
+          "key": "workType",
+          "label": "작업 종류 (1·2·3·5·6·7·8·10·11호 — 건설 9종)",
+          "required": true,
+          "examples": [
+            "1호 (높이 2m 이상 추락 위험)"
+          ],
+          "checkPoints": [],
+          "_meta": {
+            "guidanceStatus": "pending_manual_review",
+            "guidanceNote": "v0.2.x 자동 변환 시 다른 doc 의 일반 행정 가이드가 누수됨. 도메인 전문가 보강 필요. (audit 2026-04-29)"
+          },
+          "inputGuide": "건설 위험작업 13종 분류 (산안기준규칙 제38조 별표4)."
+        },
+        {
+          "key": "subDocId",
+          "label": "해당 작업계획서 (work_plan_*)",
+          "required": true,
+          "examples": [
+            "굴착 (work_plan_excavation)"
+          ],
+          "checkPoints": [],
+          "_meta": {
+            "guidanceStatus": "pending_manual_review",
+            "guidanceNote": "v0.2.x 자동 변환 시 다른 doc 의 일반 행정 가이드가 누수됨. 도메인 전문가 보강 필요. (audit 2026-04-29)"
+          },
+          "inputGuide": "산안기준규칙 제38조 별표4 13종 작업계획서 중 해당 종."
+        },
+        {
+          "key": "siteName",
+          "label": "사업장·공사명",
+          "required": true,
+          "inputGuide": "공식 발주 공사명 + 발주처 + 도급계약번호. 공정·공구·구간 추가.",
+          "standardFormat": "[공사명] / 발주: [발주처] / 계약 [번호] / [공정·공구]",
+          "examples": [
+            "천안시청 신청사 신축공사 / 발주: 천안시 / 계약 2026-건설-XXX / 토공 1공구",
+            "한국전력 변전소 증설 / KEPCO / 2026-XXX / 전기공사"
+          ],
+          "checkPoints": [
+            "발주처 안전관리비 사용계획 (산안법 제72조)",
+            "공사 규모 (공사금액 50억·인원 50인 기준)"
+          ]
+        },
+        {
+          "key": "supervisor",
+          "label": "작업지휘자",
+          "required": true,
+          "examples": [
+            "박감독 (관리감독자)"
+          ],
+          "checkPoints": [],
+          "_meta": {
+            "guidanceStatus": "pending_manual_review",
+            "guidanceNote": "v0.2.x 자동 변환 시 다른 doc 의 일반 행정 가이드가 누수됨. 도메인 전문가 보강 필요. (audit 2026-04-29)"
+          },
+          "inputGuide": "작업지휘자 (관리감독자) 직책 + 성명."
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

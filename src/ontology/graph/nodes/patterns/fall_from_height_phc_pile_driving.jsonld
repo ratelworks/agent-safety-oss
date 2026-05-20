@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fall_from_height_phc_pile_driving",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fall_from_height_phc_pile_driving",
+  "title": "fall_from_height × phc_pile_driving",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 118건 관측. 사고유형 fall_from_height 작업유형 phc_pile_driving.",
+  "koshaAccidentType": "fall_from_height",
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "causedBy": [
+    "activity:phc_pile_driving"
+  ],
+  "caseFrequency": 118,
+  "sampleKeywords": [
+    "공장 경사지붕 위 이동중 선라이트를 밟아 깨져 떨어짐(사망 1명)",
+    "고소작업대에 탑승하여 이동 중 붐이 꺾이면서 지상으로 추락(사망2명)",
+    "아웃트리거의 받침대 파단으로 이동식 크레인 전도(사망 1명)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

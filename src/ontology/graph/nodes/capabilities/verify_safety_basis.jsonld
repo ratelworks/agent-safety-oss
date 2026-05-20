@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/verify_safety_basis",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "안전관리 근거 검증 (ref 실존 + 등급 정합성)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Verify Safety Basis",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. LLM 이 생성한 안전관리 결론(claim)에 첨부된 근거(evidence)의 **(1) 등급 정합성**(basisType↔legalWeight) + **(2) reference 실존성**(번들 법령 55조문 대조) + **(3) mandatory trigger 검사**(의무/반드시/필수/금지/위반 등 포함 시 법령 근거 필수) 를 점검. 환각 인용 발견 시 응답 첫 줄에 `[HALLUCINATION_DETECTED]` 마커 + isError:true 를 부착해 LLM 의 자가검열을 강제. **주의**: 의미론적 entailment(이 조문이 정말 이 주장에 적용되는가)는 검증하지 않음 — 인간 검토 필요. 법령 조회 Tool 미제공 환경에서는 allowRecommendedAsBasis=true 로 KOSHA Guide 근거까지 허용 가능.",
+  "toolName": "verify_safety_basis",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/verify_safety_basis",
+  "producesEntity": [
+    "safety:VerificationResult"
+  ],
+  "maps_to_action": "safety:action/verify_safety_basis",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

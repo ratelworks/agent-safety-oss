@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/register_equipment",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "장비 등록",
+      "@language": "ko"
+    },
+    {
+      "@value": "Register Equipment",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 사용자 SSoT — 기계·장비 등록. 작업계획서·작업허가서·점검표에 자동 참조.",
+  "toolName": "register_equipment",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/register_equipment",
+  "producesEntity": [
+    "safety:EquipmentProfile"
+  ],
+  "maps_to_action": "safety:action/register_equipment",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

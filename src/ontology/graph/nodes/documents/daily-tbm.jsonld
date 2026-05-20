@@ -1,0 +1,713 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/daily_tbm",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "daily_tbm",
+  "title": "TBM 회의록 (Tool Box Meeting)",
+  "alternativeNames": [
+    "TBM 일지",
+    "작업 전 안전점검회의",
+    "Toolbox Talk"
+  ],
+  "description": "매 작업일 작업 시작 전 5~15분 안전회의로 당일 위험요인·감소대책을 작업자에게 공유하고 서명으로 확인. 위험성평가 상시평가의 일단위 핵심 증빙. 본 노드는 KOSHA TBM 실행 시나리오 및 회의록 양식 본문과 1:1 매핑 (kordoc/pdftotext 검증 2026-04-29).",
+  "cycle": "cyc:daily",
+  "trigger": "매 작업일 작업 시작 전 5~15분 안전회의. 위험성평가 고시 제15조 ④ 3호.",
+  "applicableWhen": {
+    "appliesTo": "applic:ongoing_assessment_selected",
+    "scaleNotes": "50인 미만 + 50억 미만도 적용. 안전관리자 미선임 시 사업주·현장소장이 진행."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "tbmDate",
+      "label": "TBM 일시",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "TBM 실시 일시 (작업 시작 전).",
+      "examples": [
+        "2026-04-29 07:30"
+      ]
+    },
+    {
+      "key": "sameAsWorkDate",
+      "label": "작업날짜와 동일함 (예/아니오)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "TBM 일자가 작업 일자와 동일한지.",
+      "examples": [
+        "예"
+      ]
+    },
+    {
+      "key": "workName",
+      "label": "작업명",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "본 작업 식별 명칭. 작업계획서 ID 일치.",
+      "examples": [
+        "3층 발코니 거푸집 양중 작업"
+      ]
+    },
+    {
+      "key": "workContent",
+      "label": "작업내용",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "당일 시행 작업 내용 요약.",
+      "examples": [
+        "A동 5층 발코니 거푸집 양중 + B동 굴착"
+      ]
+    },
+    {
+      "key": "tbmPlace",
+      "label": "TBM 장소",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "TBM 실시 장소.",
+      "examples": [
+        "A동 1층 휴게실 (작업 투입 직전)"
+      ]
+    },
+    {
+      "key": "raDone",
+      "label": "위험성평가 실시여부 (예/아니오)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "당일 작업에 대한 위험성평가 사전 실시 여부.",
+      "examples": [
+        "예"
+      ]
+    },
+    {
+      "key": "hazard1",
+      "label": "❶ 잠재위험요인",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "잠재 위험요인 #1 — 행위·조건 명시.",
+      "examples": [
+        "양중 작업 시 협착 (양중 하부 작업자 진입)"
+      ]
+    },
+    {
+      "key": "control1",
+      "label": "❶ 대책 (제거→대체→통제 순서)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요인 #1 감소대책 — 제거 → 대체 → 공학적 → 관리적 → 보호구 순.",
+      "examples": [
+        "양중 하부 작업구역 통제 (관리적) + 신호수 1명 배치 (관리적)"
+      ]
+    },
+    {
+      "key": "hazard2",
+      "label": "❷ 잠재위험요인",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "잠재 위험요인 #2.",
+      "examples": [
+        "굴착 사면 붕괴 (지반 약화)"
+      ]
+    },
+    {
+      "key": "control2",
+      "label": "❷ 대책",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요인 #2 감소대책.",
+      "examples": [
+        "굴착 사면 1:1.5 안전기울기 + 매일 계측 + 강우 시 작업 중지"
+      ]
+    },
+    {
+      "key": "hazard3",
+      "label": "❸ 잠재위험요인",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "잠재 위험요인 #3.",
+      "examples": [
+        "고소작업 추락 (단부)"
+      ]
+    },
+    {
+      "key": "control3",
+      "label": "❸ 대책",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요인 #3 감소대책.",
+      "examples": [
+        "단부 안전난간 + 풀하네스 안전대 100% 체결 점검"
+      ]
+    },
+    {
+      "key": "criticalHazardSelection",
+      "label": "선정",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "중점 위험요인 1개 선정 (가장 우선 통제).",
+      "examples": [
+        "❶ 양중 협착 (당일 양중 작업 다수 + 외국인 신규 투입)"
+      ]
+    },
+    {
+      "key": "criticalHazardControl",
+      "label": "중점위험요인 대책",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "중점 위험요인 추가 통제 대책.",
+      "examples": [
+        "양중 작업 시 신호수 + 관리감독자 1명 상주 + 무전기 통신 의무"
+      ]
+    },
+    {
+      "key": "leaderOrg",
+      "label": "소속",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "회사 + 부서.",
+      "examples": [
+        "황룡건설(주) 안전관리팀"
+      ]
+    },
+    {
+      "key": "leaderTitle",
+      "label": "직책",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "사내 공식 직책. 안전 관련 역할 시 자격·선임 근거 함께 표기.",
+      "examples": [
+        "안전관리자 (산안법 제17조 선임)",
+        "현장소장",
+        "관리감독자"
+      ]
+    },
+    {
+      "key": "leaderName",
+      "label": "성명·서명",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "한국인은 한글, 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "NGUYEN VAN A (응엔 반 아)"
+      ]
+    },
+    {
+      "key": "preCheckHazard1",
+      "label": "❶ 잠재위험요소 (중점위험 포함)",
+      "source": "KOSHA TBM 양식 — 작업 전 안전조치 확인",
+      "inputGuide": "작업 중간·종료 점검 — 위험요소 #1.",
+      "examples": [
+        "양중 하부 통제선 유지 여부"
+      ]
+    },
+    {
+      "key": "preCheckResult1",
+      "label": "❶ 조치여부 (예/아니오)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요소 #1 조치 완료 여부.",
+      "examples": [
+        "예"
+      ]
+    },
+    {
+      "key": "preCheckAction1",
+      "label": "❶ '아니오'인 경우 조치 내용",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    },
+    {
+      "key": "preCheckHazard2",
+      "label": "❷ 잠재위험요소 (중점위험 포함)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요소 #2.",
+      "examples": [
+        "신호수 무전기 작동 여부"
+      ]
+    },
+    {
+      "key": "preCheckResult2",
+      "label": "❷ 조치여부 (예/아니오)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요소 #2 조치 완료 여부.",
+      "examples": [
+        "예"
+      ]
+    },
+    {
+      "key": "preCheckAction2",
+      "label": "❷ '아니오'인 경우 조치 내용",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    },
+    {
+      "key": "preCheckHazard3",
+      "label": "❸ 잠재위험요소 (중점위험 포함)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요소 #3.",
+      "examples": [
+        "단부 안전대 체결 여부"
+      ]
+    },
+    {
+      "key": "preCheckResult3",
+      "label": "❸ 조치여부 (예/아니오)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "위험요소 #3 조치 완료 여부.",
+      "examples": [
+        "아니오 — 1명 미체결 발견 → 즉시 시정"
+      ]
+    },
+    {
+      "key": "preCheckAction3",
+      "label": "❸ '아니오'인 경우 조치 내용",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    },
+    {
+      "key": "dailyInspectionResult",
+      "label": "작업 전 일일 안전점검 시행 결과",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "postWorkMeeting",
+      "label": "작업 후 종료 미팅 (중점대책의 실효성)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "작업 종료 후 중점대책 실효성 평가.",
+      "examples": [
+        "양중 협착 통제 효과적. 단부 안전대 체결 추가 교육 필요."
+      ]
+    },
+    {
+      "key": "participants_name",
+      "label": "이름",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "참석자 성명.",
+      "examples": [
+        "박작업"
+      ]
+    },
+    {
+      "key": "participants_signature",
+      "label": "서명",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "서명 또는 인장 날인. 전자서명 가능 시 디지털 인증서 정보 함께 기록.",
+      "examples": [
+        "홍길동 (인)",
+        "황룡 (서명) 2026-04-29"
+      ]
+    },
+    {
+      "key": "participantsList",
+      "label": "참석자 확인 (이름·서명)",
+      "source": "KOSHA TBM 양식",
+      "inputGuide": "참석자 명단 + 자필 서명. 외국인은 모국어 병기.",
+      "examples": [
+        "박작업 (자필) / 이작업 (자필) / NGUYEN VAN A (베트남어, 자필)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — TBM 일시·작업명·작업내용·장소",
+      "severity": "blocker",
+      "checkFields": [
+        "tbmDate",
+        "workName",
+        "workContent",
+        "tbmPlace"
+      ]
+    },
+    {
+      "rule": "필수 — 위험성평가 실시여부 확인",
+      "severity": "blocker",
+      "checkFields": [
+        "raDone"
+      ]
+    },
+    {
+      "rule": "필수 — 잠재위험요인 1~3개 + 대책 (제거→대체→통제 순서)",
+      "severity": "blocker",
+      "checkFields": [
+        "hazard1",
+        "control1"
+      ]
+    },
+    {
+      "rule": "필수 — 중점위험요인 선정 + 대책",
+      "severity": "blocker",
+      "checkFields": [
+        "criticalHazardSelection",
+        "criticalHazardControl"
+      ]
+    },
+    {
+      "rule": "필수 — TBM 리더 소속·직책·성명·서명",
+      "severity": "blocker",
+      "checkFields": [
+        "leaderOrg",
+        "leaderTitle",
+        "leaderName"
+      ]
+    },
+    {
+      "rule": "필수 — 작업 전 안전조치 재확인 (조치여부 예/아니오)",
+      "severity": "blocker",
+      "checkFields": [
+        "preCheckHazard1",
+        "preCheckResult1"
+      ]
+    },
+    {
+      "rule": "필수 — 참석자 전원 이름·서명",
+      "severity": "blocker",
+      "checkFields": [
+        "participantsList"
+      ]
+    },
+    {
+      "rule": "권장 — 작업 후 종료 미팅 (중점대책 실효성 확인)",
+      "severity": "warning",
+      "checkFields": [
+        "postWorkMeeting"
+      ]
+    },
+    {
+      "rule": "권장 — 참석 안 한 작업자 확인 + 미팅 참석 유도",
+      "severity": "warning"
+    },
+    {
+      "rule": "사람 검토 — 외국인 근로자 모국어 자료 제공 여부",
+      "severity": "manual_review"
+    }
+  ],
+  "retention": "3년 (위험성평가 고시 제14조 ②)",
+  "standardForm": {
+    "source": "KOSHA TBM 실행 시나리오 및 회의록 양식 — 위험성평가 고시 제15조 ④ 3호 + KOSHA 권장",
+    "sourceUrl": "https://www.kosha.or.kr/ebook/fcatalog/download.jsp?kd=feb&sdir=544&fn=TBM+실행+시나리오+및+회의록+양식.pdf",
+    "downloadUrl": "https://www.kosha.or.kr/ebook/fcatalog/download.jsp?kd=feb&sdir=544&fn=TBM%20%EC%8B%A4%ED%96%89%20%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4%20%EB%B0%8F%20%ED%9A%8C%EC%9D%98%EB%A1%9D%20%EC%96%91%EC%8B%9D.pdf",
+    "verifiedBy": "pdftotext + kordoc 검증 (2026-04-29)",
+    "requiredFields": [
+      "TBM 일시 (년 월 일 시:분 ~ 시:분) / 작업날짜와 동일함 (예/아니오)",
+      "작업명 / 작업내용 / TBM 장소 / 위험성평가 실시여부",
+      "잠재위험요인 1~3 + 대책 (제거→대체→통제)",
+      "중점위험요인 선정 + 대책",
+      "TBM 리더 소속·직책·성명·서명",
+      "작업 전 안전조치 확인 — 잠재위험요소(중점위험 포함) × 3 / 조치여부(예/아니오) / '아니오'인 경우 조치 내용",
+      "작업 전 일일 안전점검 시행 결과",
+      "작업 후 종료 미팅 (중점대책의 실효성)",
+      "참석자 확인 (이름·서명)"
+    ]
+  },
+  "relatedDocs": [
+    "doc:daily/pre_work_inspection",
+    "doc:monthly/monthly_risk_assessment",
+    "doc:daily/work_start_pre_check"
+  ],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§36",
+        "text": "위험성평가 의무"
+      },
+      {
+        "law": "위험성평가 고시 (제2024-76호)",
+        "article": "§15 제4항 제3호",
+        "text": "매 작업일마다 작업 전 안전점검회의를 통해 위험요인·주의사항 공유·주지"
+      },
+      {
+        "law": "위험성평가 고시",
+        "article": "§6",
+        "text": "근로자 참여 의무"
+      },
+      {
+        "law": "위험성평가 고시",
+        "article": "§13",
+        "text": "공유"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "잠재위험요인": "구체 시나리오. '추락' 같은 추상명사 X → '사다리 3m 작업 중 균형 상실 → 추락'",
+        "대책": "감소대책 위계 (제거→대체→공학적→관리적→보호구). 행동 지시형.",
+        "중점위험요인": "잠재위험요인 1~3 중 가장 중요한 1개 선정",
+        "조치여부 아니오": "조치 안 됐으면 즉시 조치 + 작업중지 권고"
+      },
+      "commonMistakes": [
+        "참석자 서명 누락 (특히 근로자 대표)",
+        "위험요인을 추상명사로 작성 ('주의해야 함' 등)",
+        "동일 양식 복사하지 않고 매일 다른 포맷 (감독 시 일관성 의심)",
+        "중점위험요인 미선정 (3개 위험요인 평면 나열만)"
+      ],
+      "bestPractices": [
+        "사진 첨부 (작업 위험 부위 시각화)",
+        "5분 / 10분 / 15~20분 작업 복잡도에 맞춰 선택",
+        "외국인 근로자 모국어 OPS 사전 배포",
+        "작업 후 종료 미팅으로 중점대책 실효성 확인"
+      ]
+    },
+    "examples": [
+      {
+        "title": "TBM 실행 시나리오 및 회의록 양식",
+        "source": "KOSHA",
+        "license": "공공누리"
+      }
+    ],
+    "relatedTools": [
+      "get_tbm_schema",
+      "compile_safety_references({workType, docType:'tbm'})",
+      "get_foreign_worker_resource_links({language})"
+    ],
+    "rebuiltAt": "2026-04-29",
+    "rebuildSource": "pdftotext on /tmp/official-forms/tbm-kosha.pdf (KOSHA TBM 양식 PDF)",
+    "rebuildVerifiedBy": "라텔웍스 (Ratelworks Inc.) — KOSHA 공식 양식 본문 1:1 정합 검증",
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:36",
+    "art:위험성평가-고시:15",
+    "art:위험성평가-고시:6",
+    "art:위험성평가-고시:13",
+    "art:산안법:29",
+    "art:위험성평가-고시:10"
+  ],
+  "appliesToActivities": [
+    "activity:tbm_daily",
+    "activity:risk_assessment_general"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. TBM 회의록 (Tool Box Meeting)",
+      "legalSource": "위험성평가 고시 제15조 ④ 3호 + KOSHA P-103",
+      "fields": [
+        {
+          "key": "tbmDate",
+          "label": "TBM 일시",
+          "required": true,
+          "inputGuide": "매 작업일 시작 전.",
+          "examples": [
+            "2026-04-29 07:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "presenter",
+          "label": "진행자 (관리감독자)",
+          "required": true,
+          "inputGuide": "관리감독자 또는 작업지휘자.",
+          "examples": [
+            "박감독"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "todayWork",
+          "label": "오늘의 작업",
+          "required": true,
+          "inputGuide": "오늘 시행할 작업·위치·인원.",
+          "examples": [
+            "A동 6층 외벽 도장 + B동 굴착, 작업자 12명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardsToday",
+          "label": "잠재 위험요인 (3건 이상)",
+          "required": true,
+          "inputGuide": "오늘 작업의 핵심 위험.",
+          "examples": [
+            [
+              {
+                "위험": "추락(외벽)",
+                "대책": "안전대 100% Tie-off + 추락방호망"
+              },
+              {
+                "위험": "화학물질(도장)",
+                "대책": "방독마스크 + 환기"
+              },
+              {
+                "위험": "매몰(굴착)",
+                "대책": "흙막이 점검 + 신호수"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "keyControl",
+          "label": "오늘의 중점 안전수칙",
+          "required": true,
+          "inputGuide": "한 가지 핵심 수칙.",
+          "examples": [
+            "100% Tie-off 원칙 (안전대 후크 절대 분리 금지)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "preWorkCheck",
+          "label": "작업 전 안전조치 확인 (3건)",
+          "required": true,
+          "inputGuide": "보호구·기계·환경.",
+          "examples": [
+            [
+              {
+                "항목": "풀하네스",
+                "결과": "양호"
+              },
+              {
+                "항목": "비계 단부 안전난간",
+                "결과": "양호"
+              },
+              {
+                "항목": "환기 송풍기",
+                "결과": "가동"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "participants",
+          "label": "참석자 명단·서명",
+          "required": true,
+          "inputGuide": "전원 자필 서명 (외국인 모국어).",
+          "examples": [
+            [
+              {
+                "name": "박감독",
+                "signed": true
+              },
+              {
+                "name": "이작업",
+                "signed": true
+              },
+              {
+                "name": "NGUYEN VAN A",
+                "signed": true,
+                "language": "베트남어"
+              }
+            ]
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_safety_education",
+    "control:admin_supervisor"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:trip_slip"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

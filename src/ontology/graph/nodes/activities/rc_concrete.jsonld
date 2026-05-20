@@ -1,0 +1,143 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:rc_concrete",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "철근콘크리트 작업",
+  "category": "structural",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-28",
+    "graphEnrichmentNote": "Activity 14개 신규 보강 — 건설 주요 공종 인벤토리 완성 (RC/철골/비계/거푸집/마감/방수/PHC/석면/토공/포장/타워조립/하수/지하매설)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "description": "철근 가공·조립·배근 + 거푸집 설치·해체 + 콘크리트 타설·양생을 포함하는 RC 구조물 시공 작업.\n\n**관련 키워드**: 철근콘크리트, 압축강도.",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:331",
+    "art:기준규칙:332",
+    "art:기준규칙:333",
+    "art:기준규칙:334",
+    "art:기준규칙:42",
+    "art:기준규칙:43"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/C-113-2020",
+    "doc:kosha_guide/C-18-2015",
+    "doc:kosha_guide/C-2-2020",
+    "doc:kosha_guide/C-25-2018",
+    "doc:kosha_guide/C-29-2017",
+    "doc:kosha_guide/C-41-2011",
+    "doc:kosha_guide/C-49-2012",
+    "doc:kosha_guide/C-5-2016",
+    "doc:kosha_guide/C-50-2012",
+    "doc:kosha_guide/C-52-2016",
+    "doc:kosha_guide/C-53-2012",
+    "doc:kosha_guide/C-55-2015",
+    "doc:kosha_guide/C-56-2017",
+    "doc:kosha_guide/C-57-2017",
+    "doc:kosha_guide/C-59-2022",
+    "doc:kosha_guide/C-60-2015",
+    "doc:kosha_guide/C-62-2012",
+    "doc:kosha_guide/C-64-2018",
+    "doc:kosha_guide/C-66-2016",
+    "doc:kosha_guide/C-68-2012",
+    "doc:kosha_guide/C-71-2012",
+    "doc:kosha_guide/C-75-2013",
+    "doc:kosha_guide/C-77-2013",
+    "doc:kosha_guide/C-78-2016",
+    "doc:kosha_guide/C-79-2015",
+    "doc:kosha_guide/C-80-2013",
+    "doc:kosha_guide/C-82-2020",
+    "doc:kosha_guide/C-85-2013",
+    "doc:kosha_guide/C-93-2013",
+    "doc:kosha_guide/C-96-2014",
+    "doc:kosha_guide/D-C-12-2026",
+    "doc:kosha_guide/D-C-15-2026"
+  ],
+  "searchKeywords": [
+    "철근콘크리트",
+    "RC",
+    "콘크리트 타설",
+    "양생",
+    "압축강도"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr03/03"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:struck_by",
+      "hazard:crushing",
+      "hazard:machine_entanglement",
+      "hazard:dust_exposure",
+      "hazard:chemical_exposure"
+    ],
+    "general": [
+      "hazard:noise_exposure",
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/concrete",
+  "workTypeLabel": {
+    "ko": "콘크리트 타설·구조 작업",
+    "en": "Concrete placement and structural work"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/drowning_phc_pile_driving",
+  "@type": [
+    "Event"
+  ],
+  "slug": "drowning_phc_pile_driving",
+  "title": "drowning × phc_pile_driving",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 drowning 작업유형 phc_pile_driving.",
+  "koshaAccidentType": "drowning",
+  "hasHazard": [
+    "hazard:drowning"
+  ],
+  "causedBy": [
+    "activity:phc_pile_driving"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "우수 암거의 내부 보수 작업 중 익사 (사망2명)",
+    "크레인 하선작업 중 차도선과 함께 해상으로 침몰",
+    "파고계 점검ㆍ보수를 위해 잠수작업 중 익사"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

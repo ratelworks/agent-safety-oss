@@ -1,0 +1,653 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:semi_annual/work_environment_measurement",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_environment_measurement",
+  "title": "작업환경측정 결과보고서 (별지 82호)",
+  "alternativeNames": [
+    "작업환경측정 결과보고서",
+    "별지 제82호서식"
+  ],
+  "description": "산안법 제125조에 따라 사업주가 측정기관을 통해 작업환경을 측정한 결과를 시행규칙 제188조 ① 에 따라 관할 지방고용노동관서에 보고하는 별지 제82호서식. 본 노드는 별지 본문과 1:1 매핑 (pdftotext 검증 2026-04-29).",
+  "cycle": "cyc:semi_annual",
+  "trigger": "작업환경측정 후 30일 내 보고 (시행규칙 제188조 ①). 상·하반기 구분.",
+  "applicableWhen": {
+    "appliesTo": "applic:hazard_factor_exposed",
+    "scaleNotes": "시행규칙 별표 21의 유해인자(소음·분진·화학물질 등) 노출 작업장. 50억 미만 건설현장도 해당 인자 있을 시 의무."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "reportYear",
+      "label": "연도",
+      "source": "별지 제82호서식",
+      "inputGuide": "기준 연도.",
+      "examples": [
+        "2026"
+      ]
+    },
+    {
+      "key": "reportPeriod",
+      "label": "상/하반기",
+      "source": "별지 제82호서식",
+      "inputGuide": "상반기 / 하반기.",
+      "examples": [
+        "상반기"
+      ]
+    },
+    {
+      "key": "siteName",
+      "label": "사업장명",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "ceoName",
+      "label": "대표자",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "address",
+      "label": "소재지(우편번호)",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "도로명 주소 + 우편번호.",
+      "examples": [
+        "서울특별시 강남구 테헤란로 123 (06234)"
+      ]
+    },
+    {
+      "key": "phone",
+      "label": "전화번호",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "유선 또는 모바일 번호. 공식 24시간 연락 가능 번호 권장.",
+      "examples": [
+        "02-1234-5678",
+        "010-1234-5678"
+      ]
+    },
+    {
+      "key": "fax",
+      "label": "팩스번호",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "사업장 팩스 번호.",
+      "examples": [
+        "02-555-1235"
+      ]
+    },
+    {
+      "key": "totalWorkforce",
+      "label": "근로자 수",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "본 사업장 상시 근로자 수. 일용·계약 모두 포함.",
+      "examples": [
+        "52"
+      ]
+    },
+    {
+      "key": "industry",
+      "label": "업종",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "한국표준산업분류(KSIC) 코드 또는 산재보험 사업종류 코드.",
+      "examples": [
+        "41122 (종합건설업 - 주거용 건물 건설업)",
+        "F421 (토목 시설물 건설업)"
+      ]
+    },
+    {
+      "key": "mainProducts",
+      "label": "주요 생산품",
+      "source": "별지 제82호서식 1",
+      "inputGuide": "본 사업장 주요 생산품·서비스.",
+      "examples": [
+        "철근콘크리트 구조 건축물"
+      ]
+    },
+    {
+      "key": "measureAgency",
+      "label": "측정기관명",
+      "source": "별지 제82호서식 2",
+      "inputGuide": "작업환경측정기관 (고용노동부 지정).",
+      "examples": [
+        "한국산업안전보건공단 작업환경측정센터"
+      ]
+    },
+    {
+      "key": "measureDate",
+      "label": "측정일",
+      "source": "별지 제82호서식 3",
+      "inputGuide": "측정 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "hazardFactor",
+      "label": "유해인자",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "측정 대상 유해인자명. 시행규칙 별표 21.",
+      "examples": [
+        "분진 (호흡성), 톨루엔, 소음"
+      ]
+    },
+    {
+      "key": "measureProcessCount",
+      "label": "측정 공정수",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "측정 대상 공정 수.",
+      "examples": [
+        "6"
+      ]
+    },
+    {
+      "key": "measureMax",
+      "label": "측정 최고치",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "측정값 최고치 + 단위.",
+      "examples": [
+        "8.2 mg/㎥ (호흡성 분진)"
+      ]
+    },
+    {
+      "key": "exceedanceTotal",
+      "label": "노출기준 초과공정(부서) 수 — 계",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "고용노동부 고시 기준치. 시간가중평균(TWA) / 단시간(STEL).",
+      "examples": [
+        "분진 호흡성 5mg/㎥ TWA, 소음 90dB(A) TWA"
+      ]
+    },
+    {
+      "key": "exceedanceCompleted",
+      "label": "개선 완료",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "개선 완료 항목 수.",
+      "examples": [
+        "3"
+      ]
+    },
+    {
+      "key": "exceedanceInProgress",
+      "label": "개선 중",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "개선 진행 중 항목 수.",
+      "examples": [
+        "2"
+      ]
+    },
+    {
+      "key": "exceedanceNotImproved",
+      "label": "미개선",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "미조치 항목 수.",
+      "examples": [
+        "0"
+      ]
+    },
+    {
+      "key": "improvementDetail",
+      "label": "개선 내용",
+      "source": "별지 제82호서식 4",
+      "inputGuide": "조치·개선 사항 요약.",
+      "examples": [
+        "국소배기 설치 (5/15까지) + 호흡 보호구 지급"
+      ]
+    },
+    {
+      "key": "newOrChanged",
+      "label": "최근 1년간 작업장 또는 작업 공정의 신규 가동 또는 변경 여부",
+      "source": "별지 제82호서식 5",
+      "inputGuide": "최근 1년간 신규 작업장·공정 가동 또는 변경 사실 여부.",
+      "examples": [
+        "있음 — 5층 작업장 신규 가동 (2026-01) + 분진 발생 공정 변경"
+      ]
+    },
+    {
+      "key": "recentMeasureResult",
+      "label": "최근 2회 모든 공정 측정결과",
+      "source": "별지 제82호서식 5",
+      "inputGuide": "직전 2회 측정 결과 요약 (모든 공정 적합/부적합).",
+      "examples": [
+        "1회: 모두 적합 / 2회: 분진 1개 공정 부적합 (8.2 mg/㎥)"
+      ]
+    },
+    {
+      "key": "carcinogenExceedance",
+      "label": "발암성 물질 노출기준 초과",
+      "source": "별지 제82호서식 5",
+      "inputGuide": "발암성 물질 (1A·1B·2 등급) 노출기준 초과 여부.",
+      "examples": [
+        "아니오"
+      ]
+    },
+    {
+      "key": "chemicalDouble",
+      "label": "화학적 인자 노출기준 2배 초과",
+      "source": "별지 제82호서식 5",
+      "inputGuide": "화학적 인자 노출기준 2배 초과 여부 (시행규칙 제189조).",
+      "examples": [
+        "아니오"
+      ]
+    },
+    {
+      "key": "futureCycle",
+      "label": "향후 측정주기",
+      "source": "별지 제82호서식 5",
+      "inputGuide": "다음 측정 주기 (6개월/1년/2년) — 시행규칙 별표 21.",
+      "examples": [
+        "6개월"
+      ]
+    },
+    {
+      "key": "futureExpectedDate",
+      "label": "향후 측정 예상일",
+      "source": "별지 제82호서식 5",
+      "inputGuide": "다음 측정 예정일.",
+      "examples": [
+        "2026-10-29"
+      ]
+    },
+    {
+      "key": "reportDate",
+      "label": "년 월 일",
+      "source": "별지 제82호서식",
+      "inputGuide": "작성 일자. YYYY년 MM월 DD일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "ownerSignature",
+      "label": "사업주 (서명 또는 인)",
+      "source": "별지 제82호서식",
+      "inputGuide": "법인 대표 또는 안전보건책임자 서명·인감.",
+      "examples": [
+        "황룡 (인감)"
+      ]
+    },
+    {
+      "key": "submitTo",
+      "label": "지방고용노동청(지청)장 귀하",
+      "source": "별지 제82호서식",
+      "inputGuide": "관할 지방고용노동(지)청 명칭.",
+      "examples": [
+        "서울지방고용노동청 강남지청"
+      ]
+    },
+    {
+      "key": "attachment_resultTable",
+      "label": "별지 제83호서식의 작업환경측정 결과표",
+      "source": "별지 제82호서식 첨부",
+      "inputGuide": "별지 제83호서식 측정 결과표 첨부 — 측정 항목·위치·값·노출기준 비교.",
+      "examples": [
+        "첨부 (작업환경측정_결과표_2026-04-29.xlsx)"
+      ]
+    },
+    {
+      "key": "attachment_improvementProof",
+      "label": "노출기준 초과부서 개선 증명서류 또는 개선계획서",
+      "source": "별지 제82호서식 첨부",
+      "inputGuide": "고용노동부 고시 기준치. 시간가중평균(TWA) / 단시간(STEL).",
+      "examples": [
+        "분진 호흡성 5mg/㎥ TWA, 소음 90dB(A) TWA"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 사업장 개요 (사업장명·대표자·소재지·전화·근로자수·업종·주요 생산품)",
+      "severity": "blocker",
+      "checkFields": [
+        "siteName",
+        "ceoName",
+        "address",
+        "phone",
+        "totalWorkforce",
+        "industry",
+        "mainProducts"
+      ]
+    },
+    {
+      "rule": "필수 — 측정기관명·측정일",
+      "severity": "blocker",
+      "checkFields": [
+        "measureAgency",
+        "measureDate"
+      ]
+    },
+    {
+      "rule": "필수 — 측정 결과 (유해인자별 공정수·최고치·초과공정수)",
+      "severity": "blocker",
+      "checkFields": [
+        "hazardFactor",
+        "measureProcessCount",
+        "measureMax",
+        "exceedanceTotal"
+      ]
+    },
+    {
+      "rule": "필수 — 측정주기 4항 모두 (신규/변경·최근 2회·발암성·화학물질 2배)",
+      "severity": "blocker",
+      "checkFields": [
+        "newOrChanged",
+        "recentMeasureResult",
+        "carcinogenExceedance",
+        "chemicalDouble",
+        "futureCycle"
+      ]
+    },
+    {
+      "rule": "필수 — 사업주 서명·일자",
+      "severity": "blocker",
+      "checkFields": [
+        "ownerSignature",
+        "reportDate"
+      ]
+    },
+    {
+      "rule": "필수 — 별지 제83호서식 작업환경측정 결과표 첨부",
+      "severity": "blocker",
+      "checkFields": [
+        "attachment_resultTable"
+      ]
+    },
+    {
+      "rule": "필수 — 측정 후 30일 내 보고 (시행규칙 제188조 ①)",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:188"
+    },
+    {
+      "rule": "권장 — 노출기준 초과부서 개선 증명서류 첨부",
+      "severity": "warning",
+      "checkFields": [
+        "attachment_improvementProof"
+      ]
+    },
+    {
+      "rule": "사람 검토 — 작업환경측정 결과 근로자 통보 (산안법 제125조 ⑤·제126조)",
+      "severity": "manual_review"
+    }
+  ],
+  "retention": "5년 (시행규칙 제241조), 발암성·CMR 30년",
+  "standardForm": {
+    "source": "산업안전보건법 시행규칙 [별지 제82호서식] — 작업환경측정 결과보고서",
+    "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=113157969&bylClsCd=110202",
+    "verifiedBy": "pdftotext on /tmp/official-forms/env-measurement-result.pdf (2026-04-29)",
+    "requiredFields": [
+      "1. 사업장 개요: 사업장명·대표자·소재지(우편번호)·전화·팩스·근로자수·업종·주요 생산품",
+      "2. 측정기관명",
+      "3. 측정일 (년 월 일 ~ 년 월 일, N일간)",
+      "4. 측정 결과 (표): 유해인자·측정공정수·최고치·초과공정수(계/개선완료/개선중/미개선)·개선 내용",
+      "5. 측정주기: 신규/변경·최근 2회 결과·발암성 노출기준 초과·화학물질 2배 초과·향후 측정주기·향후 측정 예상일",
+      "사업주 서명/날인 + 작성일 + 지방고용노동청(지청)장 귀하",
+      "첨부: 별지 제83호서식 작업환경측정 결과표 + 개선 증명서류"
+    ]
+  },
+  "relatedDocs": [
+    "doc:monthly/work_environment_measurement_notification",
+    "doc:annual/health_examination_records",
+    "doc:monthly/noise_dust_protection_log"
+  ],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§125",
+        "text": "작업환경측정 의무"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§126",
+        "text": "작업환경측정 결과 통보"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§188",
+        "text": "작업환경측정 결과 보고 (30일 내, 별지 제82호서식)"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "별표 21",
+        "text": "작업환경측정 대상 유해인자"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§175",
+        "text": "미보고·거짓보고 300만원 이하 과태료"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§175",
+        "text": "미측정 1,000만원 이하 과태료"
+      }
+    ],
+    "rebuiltAt": "2026-04-29",
+    "rebuildSource": "pdftotext on /tmp/official-forms/env-measurement-result.pdf (별지 제82호서식)",
+    "rebuildVerifiedBy": "라텔웍스 (Ratelworks Inc.) — 별지 본문 1:1 정합 검증",
+    "documentCategory": "report",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:125",
+    "art:산안법:126",
+    "art:산안법시행규칙:188",
+    "annex:산안법시행규칙:별표21",
+    "art:산안법:175"
+  ],
+  "penaltyOnMissing": "art:산안법:175",
+  "appliesToActivities": [
+    "activity:hazardous_chemical_work"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 작업환경측정 결과보고서 (별지 82호)",
+      "legalSource": "산안법 제125조 + 시행규칙 제188조 + 별지 82호",
+      "fields": [
+        {
+          "key": "measurePeriod",
+          "label": "측정 기간",
+          "required": true,
+          "inputGuide": "반기 1회.",
+          "examples": [
+            "2026-04-15~04-19"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "measureAgency",
+          "label": "측정기관",
+          "required": true,
+          "inputGuide": "고용노동부 지정 기관.",
+          "examples": [
+            "(재)한국산업안전보건연구원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardItems",
+          "label": "측정 항목 (유해인자)",
+          "required": true,
+          "inputGuide": "소음·분진·화학물질 등.",
+          "examples": [
+            "소음·호흡성분진·톨루엔·자일렌"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "results",
+          "label": "측정 결과",
+          "required": true,
+          "inputGuide": "항목별 노출수준·노출기준·평가.",
+          "examples": [
+            [
+              {
+                "item": "소음",
+                "level": "85dB",
+                "limit": "90dB",
+                "eval": "기준미만"
+              },
+              {
+                "item": "톨루엔",
+                "level": "32ppm",
+                "limit": "50ppm",
+                "eval": "기준미만"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "exceedingItems",
+          "label": "기준 초과 항목",
+          "required": false,
+          "optional": true,
+          "inputGuide": "있다면 즉시 개선·재측정.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reportToMOEL",
+          "label": "고용노동부 보고 (KRAS)",
+          "required": true,
+          "inputGuide": "30일 내 KRAS 등록.",
+          "examples": [
+            "2026-04-29 KRAS 등록 (KR-2026-0429-001)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "annexReference": [
+    "annex:산안법시행규칙:서식82"
+  ],
+  "hasHazard": [
+    "hazard:dust",
+    "hazard:noise",
+    "hazard:chemical_exposure",
+    "hazard:vibration_exposure"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

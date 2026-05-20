@@ -1,0 +1,102 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:machine_entanglement",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "machine_entanglement",
+  "label": "끼임 (협착)",
+  "category": "physical",
+  "koshaAccidentType": "끼임",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "끼임",
+      "협착",
+      "프레스",
+      "롤러",
+      "컨베이어"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:admin_supervisor",
+    "control:admin_qualification",
+    "control:admin_safety_education",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:32",
+    "art:기준규칙:35"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-13-2026",
+    "doc:kosha_guide/C-48-2022",
+    "doc:kosha_guide/D-22-2012",
+    "doc:kosha_guide/E-158-2017",
+    "doc:kosha_guide/E-164-2017",
+    "doc:kosha_guide/E-184-2021",
+    "doc:kosha_guide/E-94-2011",
+    "doc:kosha_guide/E-96-2011",
+    "doc:kosha_guide/E-T-7-2026",
+    "doc:kosha_guide/G-111-2014",
+    "doc:kosha_guide/G-134-2023",
+    "doc:kosha_guide/G-14-2011",
+    "doc:kosha_guide/G-24-2011",
+    "doc:kosha_guide/H-103-2012",
+    "doc:kosha_guide/H-208-2020",
+    "doc:kosha_guide/H-97-2021",
+    "doc:kosha_guide/M-123-2012",
+    "doc:kosha_guide/M-137-2023",
+    "doc:kosha_guide/M-191-2017",
+    "doc:kosha_guide/M-192-2017",
+    "doc:kosha_guide/M-37-2012",
+    "doc:kosha_guide/M-39-2012",
+    "doc:kosha_guide/M-48-2012",
+    "doc:kosha_guide/M-5-2012",
+    "doc:kosha_guide/M-52-2012",
+    "doc:kosha_guide/M-67-2012",
+    "doc:kosha_guide/M-70-2013",
+    "doc:kosha_guide/M-74-2011",
+    "doc:kosha_guide/M-9-2023",
+    "doc:kosha_guide/M-90-2011",
+    "doc:kosha_guide/M-92-2013",
+    "doc:kosha_guide/M-93-2011",
+    "doc:kosha_guide/M-94-2011",
+    "doc:kosha_guide/M-98-2012",
+    "doc:kosha_guide/X-61-2013",
+    "doc:kosha_guide/B-M-37-2026"
+  ],
+  "description": "**원인**: 회전체 미방호 / 헐거운 의복·장갑 / 청소·정비 시 LOTO 미시행.\n**상황**: 연삭기·드릴·톱·컨베이어·믹서·바이브레이터 정비.\n**확인**: 회전체 방호덮개 / LOTO 시행 / 작업복 단정·소매끝 정리 / 정비 시 전원 차단·열쇠 보관.\n**중대성**: 신체 절단. 의복·장갑 말림 시 즉시 사망.",
+  "koshaArchiveFacets": [
+    "facet:ctgr02/16"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:heavy_lifting",
+    "activity:rc_concrete",
+    "activity:scaffolding_assembly",
+    "activity:tower_assembly",
+    "activity:vehicle_construction"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/B-M-37-2026",
+    "doc:kosha_guide/E-96-2011",
+    "doc:kosha_guide/M-123-2012"
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-96-2011",
+  "@type": "Document",
+  "docId": "kosha_guide_e-96-2011",
+  "title": "산업용 기계설비의 비상정지장치 설계에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-96-2011",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"산업용\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 5,
+      "3": 2,
+      "4": 2,
+      "5": 11,
+      "6": 19,
+      "7": 58,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "산업용",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_burn",
+    "hazard:machine_entanglement",
+    "hazard:cave_in",
+    "hazard:buried_alive",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:traffic_accident",
+    "hazard:noise_exposure",
+    "hazard:vibration_exposure",
+    "hazard:dust_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:admin_emergency_plan",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:sub_low_toxic",
+    "control:eng_isolation_barrier",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:sub_low_risk_method",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_qualification",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:elim_avoid_work"
+  ],
+  "appliesToActivities": [
+    "activity:earthwork_landfill"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:88",
+      "law": "기준규칙",
+      "articleNumber": "88",
+      "title": "기계의 동력차단장치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 산업안전보건기준에 관한 규칙 제88조(기계의 동력차단장치)",
+      "citedAsOf": "2011",
+      "temporalNote": "KOSHA Guide E-96-2011 본문 직접 인용 (2011년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:88",
+      "law": "기준규칙",
+      "articleNumber": "88",
+      "title": "기계의 동력차단장치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "이 지침은 산업안전보건기준에 관한 규칙(이하 “안전보건규칙”이라 한다.) 제88조",
+      "citedAsOf": "2011",
+      "temporalNote": "KOSHA Guide E-96-2011 본문 직접 인용 (2011년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_산업용 로봇의 사용 등에 관한 안전 기술지침_6",
+      "title": "산업용 로봇의 사용 등에 관한 안전 기술지침 - 사용",
+      "score": 76.141
+    },
+    {
+      "docId": "KOSHA07_산업용 로봇의 사용 등에 관한 안전 기술지침_5",
+      "title": "산업용 로봇의 사용 등에 관한 안전 기술지침 - 설치",
+      "score": 74.405
+    },
+    {
+      "docId": "KOSHA07_산업용 로봇의 사용 등에 관한 안전 기술지침_3",
+      "title": "산업용 로봇의 사용 등에 관한 안전 기술지침 - 용어의 정의",
+      "score": 73.474
+    },
+    {
+      "docId": "KOSHA07_산업용 로봇의 사용 등에 관한 안전 기술지침_1",
+      "title": "산업용 로봇의 사용 등에 관한 안전 기술지침 - 목 적",
+      "score": 72.413
+    },
+    {
+      "docId": "KOSHA07_산업용 로봇의 사용 등에 관한 안전 기술지침_8",
+      "title": "산업용 로봇의 사용 등에 관한 안전 기술지침 - 교육",
+      "score": 71.068
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000006000000000000000078000",
+      "title": "제78조 안전검사대상기계등",
+      "category": "2",
+      "score": 35.494
+    },
+    {
+      "docId": "KOSHA02_000006000000000000000077000",
+      "title": "제77조 자율안전확인대상기계등",
+      "category": "2",
+      "score": 30.918
+    },
+    {
+      "docId": "KOSHA02_[별표 16] 안전진단기관의 인력ㆍ시설 및 장비 등의 기준(제47조 관련)",
+      "title": "[별표 16] 안전진단기관의 인력ㆍ시설 및 장비 등의 기준(제47조 관련)",
+      "category": "2",
+      "score": 30.818
+    },
+    {
+      "docId": "KOSHA02_000006000000000000000074000",
+      "title": "제74조 안전인증대상기계등",
+      "category": "2",
+      "score": 30.08
+    },
+    {
+      "docId": "KOSHA02_[별표 25] 자율안전검사기관의 인력ㆍ시설 및 장비 기준(제81조 관련)",
+      "title": "[별표 25] 자율안전검사기관의 인력ㆍ시설 및 장비 기준(제81조 관련)",
+      "category": "2",
+      "score": 19.252
+    }
+  ]
+}

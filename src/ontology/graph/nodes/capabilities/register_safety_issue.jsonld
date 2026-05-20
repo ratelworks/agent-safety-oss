@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/register_safety_issue",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "현장에서 발견한 SafetyIssue 를 등록한다",
+      "@language": "ko"
+    },
+    {
+      "@value": "Register Safety Issue",
+      "@language": "en"
+    }
+  ],
+  "description": "현장에서 발견한 SafetyIssue 를 등록한다. relatedRisk 그래프의 mitigatedBy 사슬을 따라 추천 개선조치를 계산하고, 사진 증빙이 있으면 PhotoEvidence --evidences--> SafetyIssue 로 연결한다.",
+  "toolName": "register_safety_issue",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/register_safety_issue",
+  "maps_to_action": "safety:action/register_safety_issue",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-97-2022",
+  "@type": "Document",
+  "docId": "kosha_guide_e-97-2022",
+  "title": "석유화학공장의 전기설비 설치에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-97-2022",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"석유화학공장\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 3,
+      "6": 0,
+      "7": 5,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "석유화학공장",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_전기단선도 작성에 관한 기술지침_2",
+      "title": "전기단선도 작성에 관한 기술지침 - 적용범위",
+      "score": 58.831
+    },
+    {
+      "docId": "KOSHA07_설비 배치에 관한 기술지침_7",
+      "title": "설비 배치에 관한 기술지침 - 설비의 안전거리",
+      "score": 46.371
+    },
+    {
+      "docId": "KOSHA07_내화구조에 관한 기술지침_5",
+      "title": "내화구조에 관한 기술지침 - 내화성능",
+      "score": 35.481
+    },
+    {
+      "docId": "KOSHA07_사업장 지진 대비 비상대응 및 조치에 관한 지침_5",
+      "title": "사업장 지진 대비 비상대응 및 조치에 관한 지침 - 지진 발생 시 조치사항",
+      "score": 20.528
+    },
+    {
+      "docId": "KOSHA07_내화구조에 관한 기술지침_4",
+      "title": "내화구조에 관한 기술지침 - 내화구조의 대상 및 범위",
+      "score": 19.246
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA05_안전검사 고시000000004000000000000000000000008000",
+      "title": "안전검사 고시 제8조 검사기준",
+      "category": "5",
+      "score": 51.575
+    },
+    {
+      "docId": "KOSHA05_위험기계·기구 안전인증 고시000000004000001000000000000000008000",
+      "title": "위험기계·기구 안전인증 고시 제8조 정의",
+      "category": "5",
+      "score": 27.183
+    },
+    {
+      "docId": "KOSHA05_안전검사 고시000000004000000000000000000000007000",
+      "title": "안전검사 고시 제7조 정의",
+      "category": "5",
+      "score": 25.052
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA05_안전검사 고시000000004000000000000000000000008000",
+      "title": "안전검사 고시 제8조 검사기준",
+      "category": "5",
+      "score": 51.575
+    },
+    {
+      "docId": "KOSHA05_위험기계·기구 안전인증 고시000000004000001000000000000000008000",
+      "title": "위험기계·기구 안전인증 고시 제8조 정의",
+      "category": "5",
+      "score": 27.183
+    },
+    {
+      "docId": "KOSHA05_안전검사 고시000000004000000000000000000000007000",
+      "title": "안전검사 고시 제7조 정의",
+      "category": "5",
+      "score": 25.052
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:3장",
+      "law": "기준규칙",
+      "chapterTitle": "금지유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장 (전기로 인한 위험방지)"
+    },
+    {
+      "chapterNodeId": "chapter:기준규칙:3장",
+      "law": "기준규칙",
+      "chapterTitle": "금지유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "이 지침은 산업안전보건기준에 관한 규칙(이하 “안전보건규칙”이라 한다) 제2편 제3장"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장 (전기로 인한 위험방지)",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "이 지침은 산업안전보건기준에 관한 규칙(이하 “안전보건규칙”이라 한다) 제2편 제3장",
+      "needsNode": true
+    }
+  ]
+}

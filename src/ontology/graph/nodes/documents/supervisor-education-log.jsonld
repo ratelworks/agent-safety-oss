@@ -1,0 +1,310 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/supervisor_education_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "supervisor_education_log",
+  "title": "관리감독자 안전보건교육 일지",
+  "description": "관리감독자의 직무 수행 + 정기·신규채용·변경 시 교육 기록 (산안법 제32조 + 시행규칙 제35조)",
+  "cycle": "cyc:annual",
+  "trigger": "정기교육 분기 4시간(또는 연 16시간) + 신규채용 8시간 + 변경 시 2시간",
+  "legalBasis": [
+    "art:산안법:32",
+    "art:산안법시행규칙:35"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_교육_일시",
+      "label": "교육 일시",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "교육 실시 일시.",
+      "examples": [
+        "2026-04-29 14:00 ~ 15:30"
+      ]
+    },
+    {
+      "key": "f_1_교육_시간__연_16시",
+      "label": "교육 시간 (연 16시간)",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "교육 진행 시간 (시간 단위).",
+      "examples": [
+        "1.5"
+      ]
+    },
+    {
+      "key": "f_2_교육_장소",
+      "label": "교육 장소",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "교육 실시 장소.",
+      "examples": [
+        "현장 안전교육실"
+      ]
+    },
+    {
+      "key": "f_3_교육_강사",
+      "label": "교육 강사",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "강사 성명 + 자격(산업안전기사·안전관리자·KOSHA 등록 강사) + 등록번호.",
+      "examples": [
+        "김OO (산업안전기사 1234567호 / KOSHA 등록 강사 5678호)"
+      ]
+    },
+    {
+      "key": "f_4_교육_과목",
+      "label": "교육 과목",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "법정 의무 교육 과목명.",
+      "examples": [
+        "산업안전보건법 정기교육"
+      ]
+    },
+    {
+      "key": "f_5_교육_내용",
+      "label": "교육 내용",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "교육 주요 내용 (요약).",
+      "examples": [
+        "1) 위험성평가 결과 공유 / 2) 추락사고 사례 / 3) MSDS 신규 화학물질"
+      ]
+    },
+    {
+      "key": "f_6_관리감독자_명단_서명",
+      "label": "관리감독자 명단·서명",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "본인 자필 서명 또는 전자서명.",
+      "examples": [
+        "(자필 서명)"
+      ]
+    },
+    {
+      "key": "f_7_사업주_결재",
+      "label": "사업주 결재",
+      "source": "산안법 제29조 + 시행규칙 별표 4",
+      "inputGuide": "법인 대표 또는 위임받은 안전보건책임자.",
+      "examples": [
+        "황한일 (대표)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "직무 7항목 모두 수행 기록",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:32"
+    },
+    {
+      "rule": "정기교육 분기 4h 또는 연 16h 충족",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:32"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 관리감독자 교육 일지",
+      "legalSource": "산안법 제29조 ② + 시행규칙 별지 제79호",
+      "fields": [
+        {
+          "key": "educationDate",
+          "label": "교육 일시",
+          "required": true,
+          "inputGuide": "연 1회 이상 16시간.",
+          "examples": [
+            "2026-04-15 09:00~17:00 (8h × 2일)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "instructor",
+          "label": "강사·자격",
+          "required": true,
+          "inputGuide": "산업안전기사 이상 + KOSHA 강사양성 이수.",
+          "examples": [
+            "김안전 (산업안전기사, KOSHA 강사 2025년 이수)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "curriculum",
+          "label": "교육 내용 (시행규칙 별표 5)",
+          "required": true,
+          "inputGuide": "별표 5 관리감독자 교육과정 16시간.",
+          "examples": [
+            "1) 안전보건관리법 4h / 2) 위험성평가 4h / 3) 사고사례 4h / 4) 도급사업 안전 4h"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trainees",
+          "label": "이수자 명단 + 서명",
+          "required": true,
+          "inputGuide": "관리감독자 전원 자필 서명.",
+          "examples": [
+            [
+              {
+                "name": "박감독",
+                "signed": true,
+                "hours": 16
+              },
+              {
+                "name": "이감독",
+                "signed": true,
+                "hours": 16
+              }
+            ]
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:32",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "관리감독자 교육",
+      "관리감독자 직무"
+    ],
+    "guidedByExcludeKeywords": [
+      "지게차",
+      "차량계",
+      "근로자 안전교육"
+    ],
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "관리감독자 직무교육 + 산업안전보건교육 강사 자격 의무."
+  },
+  "searchKeywords": [
+    "관리감독자 교육",
+    "관리감독자 직무교육",
+    "관리감독자 보수교육"
+  ],
+  "appliesToActivities": [
+    "activity:safety_education"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Competence",
+  "annexReference": [
+    "annex:산안법시행규칙:서식79"
+  ],
+  "mitigatedBy": [
+    "control:admin_safety_education",
+    "control:admin_supervisor"
+  ],
+  "relatedDocs": [
+    "doc:monthly/supervisor_monthly_log",
+    "doc:monthly/monthly_education_log"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

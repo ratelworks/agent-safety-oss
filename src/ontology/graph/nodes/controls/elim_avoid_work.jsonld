@@ -1,0 +1,34 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:elim_avoid_work",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "elim_avoid_work",
+  "label": "위험작업 회피",
+  "description": "설계·공법·일정 변경으로 고소, 활선, 굴착, 화기 등 고위험 작업 자체를 피하는 제거 통제.",
+  "ericLevel": 1,
+  "category": "elimination",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:excavation_2m_plus",
+    "activity:facade_work",
+    "activity:finishing_paint",
+    "activity:roofing",
+    "activity:steel_structure",
+    "activity:tunnel_excavation",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

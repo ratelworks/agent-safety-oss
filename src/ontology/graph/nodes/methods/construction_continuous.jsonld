@@ -1,0 +1,36 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:construction_continuous",
+  "@type": "Method",
+  "label": "건설업 최초·상시·수시·정기 위험성평가",
+  "docId": "kras_construction_continuous",
+  "verificationStatus": "kosha_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras/evaluation/kras-method",
+    "formId": "10188",
+    "bodyFile": "kras-methods/construction-continuous.md",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "건설현장 4주기(최초·상시·수시·정기) 통합 위험성평가. 건설안전 표준 방법.",
+  "suitableFor": "construction_workplace",
+  "applicableTo": [
+    "activity:risk_assessment_general",
+    "activity:rc_concrete",
+    "activity:steel_structure",
+    "activity:scaffolding_assembly",
+    "activity:formwork_shoring",
+    "activity:excavation_2m_plus",
+    "activity:tunnel_excavation",
+    "activity:demolition",
+    "activity:bridge_5m_30m",
+    "activity:tower_crane"
+  ],
+  "isPreferredFor": "construction",
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

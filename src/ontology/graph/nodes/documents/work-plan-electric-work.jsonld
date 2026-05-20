@@ -1,0 +1,295 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_electric_work",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_electric_work",
+  "title": "전기작업 계획서",
+  "description": "전기작업 (50V 초과 또는 250VA 초과) 작업 전 (별표 4 5호)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "50V 초과 전기작업 전",
+  "applicableWhen": {
+    "workType": "electric_work_50v_plus",
+    "voltageGte": 50
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-5호",
+    "art:기준규칙:301",
+    "art:기준규칙:319"
+  ],
+  "requiredFields": [
+    {
+      "key": "purpose",
+      "label": "전기작업 목적·내용",
+      "source": "산안기준규칙 제38조 + 별표 4 5호",
+      "inputGuide": "전기작업 목적 + 작업 내용.",
+      "examples": [
+        "저압 분전반 신규 설치 / 200A × 2개소 / 활선 주변 작업"
+      ]
+    },
+    {
+      "key": "qualifications",
+      "label": "근로자 자격·적정 인원",
+      "source": "산안기준규칙 제38조 + 별표 4 5호",
+      "inputGuide": "전기작업 자격자 (전기기능사 이상) + 적정 인원.",
+      "examples": [
+        "전기기사 1명 + 전기기능사 2명 + 보조 1명 (총 4명)"
+      ]
+    },
+    {
+      "key": "f_2_작업_범위_작업책임자_",
+      "label": "작업 범위·작업책임자 임명·전격·섬락 보호구 착용",
+      "source": "산안기준규칙 제38조 + 별표 4 5호",
+      "inputGuide": "작업 범위 + 작업책임자 + 보호구 (절연장갑·절연화·헬멧).",
+      "examples": [
+        "작업범위: A동 1층 분전반 / 책임자: 김전기 (전기기사) / 절연장갑 7kV급 + 절연화 + 절연 헬멧"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "작업계획 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-5호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 전기작업 계획서 (별표 4 5호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 5호 + 제301조 + 제319조",
+      "fields": [
+        {
+          "key": "workScope",
+          "label": "작업 범위",
+          "required": true,
+          "inputGuide": "활선·정전·근접 작업.",
+          "examples": [
+            "분전반 정비 (380V 정전작업)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "voltageLevel",
+          "label": "전압 등급",
+          "required": true,
+          "inputGuide": "저압·고압·특고압.",
+          "examples": [
+            "저압 380V 3상"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "isolationProcedure",
+          "label": "차단·잠금 절차 (LOTO)",
+          "required": true,
+          "inputGuide": "제319조(정전전로에서의 전기작업) 잠금·표지 절차. 정전 확인 → 잠금 → 표지 → 작업.",
+          "examples": [
+            "1) 메인 차단 OFF, 2) LOTO 자물쇠 + 표지, 3) 무전압 검전, 4) 작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "qualifiedWorkers",
+          "label": "자격 작업자",
+          "required": true,
+          "inputGuide": "전기기능사 이상 자격.",
+          "examples": [
+            "박전기 (전기기사) + 김전기 (전기기능사)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "insulationPPE",
+          "label": "절연 보호구",
+          "required": true,
+          "inputGuide": "절연장갑·절연화·절연매트.",
+          "examples": [
+            "7kV 절연장갑·절연화 + 절연매트"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [
+    "doc:kosha_guide/E-100-2021",
+    "doc:kosha_guide/E-103-2011",
+    "doc:kosha_guide/E-111-2011",
+    "doc:kosha_guide/E-115-2011",
+    "doc:kosha_guide/E-58-2013",
+    "doc:kosha_guide/D-57-2016",
+    "doc:kosha_guide/D-6-2012",
+    "doc:kosha_guide/D-C-5-2025",
+    "doc:kosha_guide/B-E-1-2025",
+    "doc:kosha_guide/B-E-10-2026",
+    "doc:kosha_guide/B-E-11-2026",
+    "doc:kosha_guide/B-E-12-2026",
+    "doc:kosha_guide/B-E-13-2026",
+    "doc:kosha_guide/B-E-14-2026",
+    "doc:kosha_guide/B-E-15-2026",
+    "doc:kosha_guide/B-E-16-2026",
+    "doc:kosha_guide/B-E-19-2026",
+    "doc:kosha_guide/B-E-21-2026",
+    "doc:kosha_guide/B-E-3-2025",
+    "doc:kosha_guide/B-E-4-2025",
+    "doc:kosha_guide/B-E-6-2025",
+    "doc:kosha_guide/B-E-7-2025",
+    "doc:kosha_guide/B-E-9-2026"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "전기작업",
+      "활선",
+      "정전 작업",
+      "정전·잠금",
+      "정전전로",
+      "감전",
+      "절연 보호구"
+    ],
+    "guidedByExcludeKeywords": [
+      "정전기",
+      "정전도장"
+    ],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:electric_shock",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:electrocution"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "entity:kepco",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:eng_loto",
+    "control:eng_insulation",
+    "control:ppe_insulating_gloves"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_permit_loto",
+    "doc:weekly/temporary_electric_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

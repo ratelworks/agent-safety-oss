@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/asphyxiation_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "asphyxiation_general",
+  "title": "asphyxiation",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 10건 관측. 사고유형 asphyxiation.",
+  "koshaAccidentType": "asphyxiation",
+  "hasHazard": [
+    "hazard:asphyxiation",
+    "hazard:acute_toxic_gas"
+  ],
+  "causedBy": [],
+  "caseFrequency": 10,
+  "sampleKeywords": [
+    "용접작업중 배관 내부에 들어가 질식(산소결핍)",
+    "바지선 부력탱크 내부 확인중 질식",
+    "토운선(Barge)의 부력탱크 내부 점검중 질식"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

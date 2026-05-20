@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_general",
+  "title": "cave_in",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 31건 관측. 사고유형 cave_in.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [],
+  "caseFrequency": 31,
+  "sampleKeywords": [
+    "토류판 설치 작업 중 깔림",
+    "안전통로 무너짐에 깔림",
+    "절토사면 토사에 매몰"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

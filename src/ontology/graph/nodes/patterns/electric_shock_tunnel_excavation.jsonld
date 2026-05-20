@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/electric_shock_tunnel_excavation",
+  "@type": [
+    "Event"
+  ],
+  "slug": "electric_shock_tunnel_excavation",
+  "title": "electric_shock × tunnel_excavation",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 electric_shock 작업유형 tunnel_excavation.",
+  "koshaAccidentType": "electric_shock",
+  "hasHazard": [
+    "hazard:electric_shock"
+  ],
+  "causedBy": [
+    "activity:tunnel_excavation"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "터널 막장면 천공을 위해 양수기점검 중 감전",
+    "굴삭기 암석 상차 준비작업으로 후진중 굴삭기 운전사 전도, 사망",
+    "터널 천정 그라우팅 공사중 감전"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

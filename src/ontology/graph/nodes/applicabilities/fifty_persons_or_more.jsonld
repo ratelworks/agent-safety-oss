@@ -1,0 +1,22 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:fifty_persons_or_more",
+  "@type": "Applicability",
+  "label": "50인 이상 사업장 (산업안전보건위원회)",
+  "condition": {
+    "var": "workforce",
+    "op": ">=",
+    "value": 50
+  },
+  "legalBasis": [
+    "art:산안법:24",
+    "art:산안법시행령:34"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "50인 미만 — 산업안전보건위원회 설치 의무 면제",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

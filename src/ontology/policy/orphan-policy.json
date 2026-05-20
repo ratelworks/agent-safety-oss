@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "name": "orphan-policy",
+    "version": "1.2.1",
+    "added": "2026-05-19",
+    "rationale": "P1-2 — verify-graph (175 orphan) vs audit:strict (332 orphan) 정책 불일치 해소. 공통 정책 SSoT.",
+    "comment": "orphan(in-degree 0) 노드를 3분류: (a) allowedEntry — 도구 진입점·외부 참조 X 정상 / (b) intentionalStandalone — vocabulary·support 노드 / (c) unintended — 정상 아님, release blocker 후보."
+  },
+  "allowedEntryTypes": [
+    "Document",
+    "Act",
+    "Activity",
+    "Applicability",
+    "Capability",
+    "Pattern",
+    "Method",
+    "WorkType"
+  ],
+  "allowedEntryTypeLabels": [
+    "documents",
+    "acts",
+    "activities",
+    "applicabilities",
+    "capabilities",
+    "patterns",
+    "methods",
+    "work_types"
+  ],
+  "intentionalStandaloneTypes": [
+    "Cycle",
+    "Manual",
+    "Source",
+    "Entity",
+    "EvidenceType",
+    "ISO45001Class",
+    "Statistic"
+  ],
+  "intentionalStandaloneTypeLabels": [
+    "cycles",
+    "manuals",
+    "sources",
+    "entities",
+    "iso45001",
+    "statistics",
+    "events",
+    "interpretations",
+    "object_sets",
+    "facets"
+  ],
+  "releaseBlockerScope": "unintendedOnly",
+  "comment": "release blocker = unintended orphan (allowed entry · intentional standalone 외). v1.2.1 audit:strict 와 verify-graph 가 같은 정책 사용."
+}

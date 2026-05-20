@@ -1,0 +1,32 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_insulating_gloves",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_insulating_gloves",
+  "label": "절연장갑",
+  "description": "전기작업과 전기설비 인접 정비에서 손을 통한 감전 경로를 줄이는 개인보호구 통제.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:machinery_repair",
+    "activity:steel_structure",
+    "activity:tower_crane_maintenance",
+    "activity:underground_utility"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "절연장갑",
+      "절연 보호구"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

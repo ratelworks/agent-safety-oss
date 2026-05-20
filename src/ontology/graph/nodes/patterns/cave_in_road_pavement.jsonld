@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_road_pavement",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_road_pavement",
+  "title": "cave_in × road_pavement",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 cave_in 작업유형 road_pavement.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [
+    "activity:road_pavement"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "절토사면 보호용 PC판넬 설치작업 중 깔림",
+    "도로보수작업중 후진하는 백호에 → 포장공 깔림, 사망",
+    "텐덤 로울러 전락으로 운전기사 깔림"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

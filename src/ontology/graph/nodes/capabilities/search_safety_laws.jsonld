@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_safety_laws",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법령 조문 검색 (건설·산업안전)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Safety Laws",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 지침·자료실·법령 번들을 검색하거나 본문·facet·첨부 파일을 조회하는 capability. 번들된 건설·산업안전 법령 6개 (산안법·시행령·시행규칙·기준규칙·중처법·위험성평가 고시) 에서 키워드로 조문 검색. 로컬 번들이라 API 키 불필요. 응답은 Markdown — LLM 이 그대로 위험성평가·작업계획서·TBM 등 문서에 인용 가능. 저작권법 §7 비보호 저작물이라 인용·복제 자유.",
+  "toolName": "search_safety_laws",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/search_safety_laws",
+  "producesEntity": [
+    "safety:Article"
+  ],
+  "maps_to_action": "safety:action/search_safety_laws",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

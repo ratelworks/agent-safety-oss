@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_phc_pile_driving",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_phc_pile_driving",
+  "title": "cave_in × phc_pile_driving",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 cave_in 작업유형 phc_pile_driving.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [
+    "activity:phc_pile_driving"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "진동로울러 이동 중 도로 단부 경사면으로 전복",
+    "호수주변 가도에서 덤프트럭 후진 중 석축붕괴로 전복",
+    "덤프트럭 사토하역 후 이동 중 암사면 붕괴로 매몰"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

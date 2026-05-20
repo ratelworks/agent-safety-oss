@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/assemble_doc_context",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법정문서 그래프 컨텍스트 조립",
+      "@language": "ko"
+    },
+    {
+      "@value": "Assemble Doc Context",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. docId 하나로 그래프를 traversal 하여 작성에 필요한 모든 컨텍스트(법령근거·위험·통제·양식·연계문서·라이프사이클·필드)를 결정론적으로 조립한다. LLM 추측 없이 그래프에서 직접 도출. 그래프 무결성 검증 도구이자 법정문서 작성 지원의 핵심.",
+  "toolName": "assemble_doc_context",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/assemble_doc_context",
+  "producesEntity": [
+    "safety:DocumentContext"
+  ],
+  "maps_to_action": "safety:action/assemble_doc_context",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

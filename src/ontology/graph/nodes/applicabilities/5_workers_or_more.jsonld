@@ -1,0 +1,22 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:5_workers_or_more",
+  "@type": "Applicability",
+  "label": "5인 이상 사업장 (중처법 적용)",
+  "condition": {
+    "var": "workforce",
+    "op": ">=",
+    "value": 5
+  },
+  "legalBasis": [
+    "art:중처법:4",
+    "art:중처법시행령:4"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "5인 미만 사업장 — 중대재해처벌법 적용 제외 (시행령 §3)",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

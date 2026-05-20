@@ -1,0 +1,139 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/X-44-2016",
+  "@type": "Document",
+  "docId": "kosha_guide_x-44-2016",
+  "title": "고소작업대 작업의 리스크 확인지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "X-44-2016",
+    "guideCategory": "general_safety",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"고소작업대\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 3,
+      "3": 1,
+      "4": 1,
+      "5": 2,
+      "6": 292,
+      "7": 36,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "고소작업대",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 4건 (법령 0 / KOSHA Guide 4). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:crushing",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:eng_loto"
+  ],
+  "appliesToActivities": [
+    "activity:scaffolding_assembly"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_건설공사의 고소작업대 안전보건작업 지침_4",
+      "title": "건설공사의 고소작업대 안전보건작업 지침 - 건설공사의 고소작업대 종류",
+      "score": 277.157
+    },
+    {
+      "docId": "KOSHA07_이동식 고소작업대의 선정과 안전관리에 관한 기술지침_6",
+      "title": "이동식 고소작업대의 선정과 안전관리에 관한 기술지침 - 이동식 고소작업대 선정기준",
+      "score": 109.248
+    },
+    {
+      "docId": "KOSHA07_건설공사의 고소작업대 안전보건작업 지침_6",
+      "title": "건설공사의 고소작업대 안전보건작업 지침 - 고소작업대 안전작업 준수사항",
+      "score": 82.579
+    },
+    {
+      "docId": "KOSHA07_고소작업대 작업의 리스크 확인지침_3",
+      "title": "고소작업대 작업의 리스크 확인지침 - 용어의 정의",
+      "score": 78.847
+    },
+    {
+      "docId": "KOSHA07_이동식 고소작업대의 선정과 안전관리에 관한 기술지침_5",
+      "title": "이동식 고소작업대의 선정과 안전관리에 관한 기술지침 - 고소작업대 주요구성",
+      "score": 77.032
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 21] 대여자 등이 안전조치 등을 해야 하는 기계ㆍ기구ㆍ설비 및 건축물 등(제71조 관련)",
+      "title": "[별표 21] 대여자 등이 안전조치 등을 해야 하는 기계ㆍ기구ㆍ설비 및 건축물 등(제71조 관련)",
+      "category": "2",
+      "score": 41.615
+    },
+    {
+      "docId": "KOSHA02_000006000000000000000078000",
+      "title": "제78조 안전검사대상기계등",
+      "category": "2",
+      "score": 40.885
+    },
+    {
+      "docId": "KOSHA02_[별표 24] 안전검사기관의 인력ㆍ시설 및 장비 기준(제79조제2호 관련)",
+      "title": "[별표 24] 안전검사기관의 인력ㆍ시설 및 장비 기준(제79조제2호 관련)",
+      "category": "2",
+      "score": 23.278
+    },
+    {
+      "docId": "KOSHA03_000006000004000000000126000",
+      "title": "제126조 안전검사의 주기와 합격표시 및 표시방법",
+      "category": "3",
+      "score": 39.006
+    },
+    {
+      "docId": "KOSHA04_002000001000010000000000186000",
+      "title": "제186조 고소작업대 설치 등의 조치",
+      "category": "4",
+      "score": 41.914
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_loto",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_loto",
+  "label": "LOTO (정전·잠금·표찰)",
+  "description": "전기·기계·화학설비 정비에서 에너지원을 차단하고 잠금·표찰로 재가동을 방지하는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:chemical_handling",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:hazardous_chemical_work",
+    "activity:machinery_repair",
+    "activity:steel_structure",
+    "activity:tower_crane_maintenance",
+    "activity:underground_utility"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "LOTO",
+      "정전 작업",
+      "정전·잠금",
+      "정전전로",
+      "에너지 차단",
+      "잠금·표지"
+    ],
+    "excludeKeywords": [
+      "정전기",
+      "정전도장"
+    ],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

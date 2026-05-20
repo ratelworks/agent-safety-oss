@@ -1,0 +1,38 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "equipment:crane",
+  "@type": "Equipment",
+  "slug": "crane",
+  "name": "크레인",
+  "label": "크레인",
+  "category": "safety_certified",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건법/제80조",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "산안법 제80조 안전인증 대상 13종 (시행령 별표). 안전인증 받지 않으면 제169조 (3년/3천만)"
+  },
+  "description": "중량물 양중 기계. 낙하·전도·접촉 위험. 정격하중·신호수·작업반경 핵심.",
+  "hasHazard": [
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:crushing",
+    "hazard:machine_entanglement"
+  ],
+  "regulatedBy": [
+    "art:산안법:80",
+    "art:산안법:84"
+  ],
+  "alternativeNames": [
+    "타워크레인",
+    "이동식크레인",
+    "양중기",
+    "기중기"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr02/10"
+  ]
+}

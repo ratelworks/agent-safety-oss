@@ -1,0 +1,59 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:buried_alive",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "buried_alive",
+  "label": "매몰",
+  "category": "physical",
+  "koshaAccidentType": "매몰",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "매몰",
+      "굴착"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:admin_emergency_plan",
+    "control:admin_inspection",
+    "control:ppe_helmet"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-1-2025",
+    "doc:kosha_guide/H-191-2021",
+    "doc:kosha_guide/C-103-2014",
+    "doc:kosha_guide/D-C-11-2026"
+  ],
+  "description": "**원인**: 굴착사면 붕괴 / 흙막이 미시공·시공 부실 / 우천 후 토사 슬라이드.\n**상황**: 2m 이상 굴착 / 흙막이 가시설 시공 / 매설관 굴착.\n**확인**: 흙막이 시공상세도 + 계측 / 굴착사면 안전기울기 / 가설흙막이 일일점검 / 우천 시 작업중지.\n**중대성**: 단시간 매몰 시 질식·압사. 굴착 사망사고 주요 원인.",
+  "koshaArchiveFacets": [
+    "facet:ctgr03/04"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:drainage_sewerage",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:tunnel_excavation"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/D-C-1-2025",
+    "doc:kosha_guide/C-103-2014",
+    "doc:kosha_guide/D-C-11-2026"
+  ]
+}

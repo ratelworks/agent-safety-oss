@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:construction_under_50bn",
+  "@type": "Applicability",
+  "label": "건설공사 50억 미만 (중소건설현장)",
+  "condition": {
+    "all": [
+      {
+        "var": "industry",
+        "op": "==",
+        "value": "construction"
+      },
+      {
+        "var": "constructionValue",
+        "op": "<",
+        "value": 50
+      }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:36"
+  ],
+  "legalWeight": "recommended",
+  "exemptionNote": "본 OSS 1차 타겟 — 50억 미만 + 50인 미만 중소건설현장 (작성 보조 우선)",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

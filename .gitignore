@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+/build/
+/dist/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Test & coverage
+coverage/
+!src/taxonomy/coverage/
+.nyc_output/
+
+# OS
+Thumbs.db
+
+# Local KOSHA source files (downloaded XLSX/CSV — out of license scope to redistribute)
+data/
+
+# Development reference materials
+# 원본 PDF/HWP 등은 npm publish 에서 제외, 라텔웍스 자체 작성 분석 자료(.md)는 git에 포함
+dev-resources/**
+!dev-resources/README.md
+!dev-resources/*/
+!dev-resources/**/*.sh
+!dev-resources/**/.gitkeep
+!dev-resources/**/*.md
+!dev-resources/ontology-research/**
+
+# Claude Code internal (not for publish)
+.claude/
+CLAUDE.md
+deploy.json
+prep.md
+/dist/
+*.tgz
+
+# 개발용 — npm·git·외부 공개 모두 차단 (.internal/ 안에 PLAN·인수인계·dev/plan.md 보관)
+# package.json files 화이트리스트로 npm 자동 제외, .gitignore 로 git 추적 차단
+.internal/
+# Legacy 위치 안전망 (혹시 .internal/ 외부로 다시 생성 시 차단 유지)
+/plan.md
+/dev.md
+/NEXT_SESSION.md
+
+# Audit / test artifacts (개발 산출물 — npm publish 미포함, files 화이트리스트로 자동 제외)
+artifacts/
+audit-report.json
+audit-report-v2.json
+exhaustive-coverage.json
+test-results-*/
+quality-report*.json
+.auto-improve/
+test-results/

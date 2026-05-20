@@ -1,0 +1,68 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:gas_leak",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "gas_leak",
+  "label": "가스누출",
+  "category": "chemical",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "가스누출",
+      "가스"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_ventilation",
+    "control:eng_alarm",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_emergency_plan",
+    "control:admin_work_permit",
+    "control:admin_safety_education",
+    "control:ppe_respirator",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:sub_low_toxic",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:619"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-C-26-2026",
+    "doc:kosha_guide/C-C-87-2026",
+    "doc:kosha_guide/E-187-2021",
+    "doc:kosha_guide/G-29-2011"
+  ],
+  "description": "**원인**: 가스배관 절단·파손 / LPG·도시가스 누출.\n**상황**: 굴착 시 매설관 파손 / 가스 사용 시설 정비.\n**확인**: 매설관 사전조사 / 가스누출 검지기 / LOTO / 환기.\n**중대성**: 폭발 시 다수 사망. 일산화탄소 중독 시 의식 상실.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/16"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:drainage_sewerage",
+    "activity:excavation_2m_plus",
+    "activity:tunnel_excavation",
+    "activity:underground_utility"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-C-87-2026",
+    "doc:kosha_guide/C-C-26-2026",
+    "doc:kosha_guide/E-187-2021",
+    "doc:kosha_guide/G-29-2011"
+  ]
+}

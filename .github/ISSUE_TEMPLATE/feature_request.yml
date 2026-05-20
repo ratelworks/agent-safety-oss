@@ -1,0 +1,84 @@
+name: ✨ Feature Request (기능 제안)
+description: 새 도구·노드·게이트 등 기능 제안. IDENTITY 7 게이트 통과 여부를 함께 검토합니다.
+title: "[Feature] "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 기능 제안 전 확인
+
+        모든 신규 기능은 [`docs/IDENTITY.md`](../docs/IDENTITY.md) §12 의 **7 게이트** 를 통과해야 합니다.
+        제안 단계에서 게이트 적합성을 함께 검토해 주시면 머지까지 더 빠릅니다.
+
+        ```
+        1. 중소 건설사 부담 X        (npm 5분 / RAM <500MB / IT 인력 0)
+        2. SaaS·platform 흉내 X      (가벼운 의미 계층만)
+        3. 온톨로지 기반              (그래프 노드·관계로 표현)
+        4. 한국 건설 specific        (별표 4 / KOSHA / 법령)
+        5. 공공 인프라                (MIT / npm)
+        6. No-Lock-In                 (모델·하네스 무관, MCP 표준만 의존)
+        7. 매일 사용 가능             (현장 사이클 6 항목 통과)
+        ```
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 해결하려는 문제
+      description: 안전관리자·현장소장이 현장에서 겪는 어떤 마찰을 줄이는 기능인가요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 제안하는 기능
+      description: 새 MCP 도구·그래프 노드·게이트·문서 가이드 등 어떤 형태인지 구체적으로.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 영향 범위
+      multiple: true
+      options:
+        - 새 MCP 도구 (Tool)
+        - 그래프 노드 보강 (Activity / Hazard / Control / Article / KOSHA Guide)
+        - 새 클래스·관계 (T-Box)
+        - SHACL Shape / 검수 규칙
+        - 양식·docId 마스터
+        - 외부 API 통합 (KOSHA · 법제처 등)
+        - 다국어
+        - 문서·예제
+        - 기타
+    validations:
+      required: true
+
+  - type: textarea
+    id: gates
+    attributes:
+      label: IDENTITY 7 게이트 자체 평가
+      description: 각 게이트별로 PASS / SKIP / 검토 필요 중 어느 쪽인지 표시해 주세요.
+      placeholder: |
+        1. 중소 건설사 부담 X — PASS (예: 추가 의존성 없음, RAM 영향 X)
+        2. SaaS·platform 흉내 X — PASS
+        3. 온톨로지 기반 — PASS (새 노드 X 개 추가, 기존 관계 Y 활용)
+        4. 한국 건설 specific — PASS (별표 4·KOSHA Guide Z 근거)
+        5. 공공 인프라 — PASS
+        6. No-Lock-In — PASS (MCP 표준만 의존)
+        7. 매일 사용 가능 — 검토 필요 (어떤 현장 사이클 항목과 연결되는지)
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 검토한 대안
+      description: 기존 도구 조합·외부 도구·미루기 등 다른 선택지와 비교.
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 추가 컨텍스트 (선택)
+      description: 현장 사례·관련 법령·KOSHA Guide 번호·참고 링크 등.

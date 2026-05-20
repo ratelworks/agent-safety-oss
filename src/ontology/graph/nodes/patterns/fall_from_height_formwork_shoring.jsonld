@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fall_from_height_formwork_shoring",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fall_from_height_formwork_shoring",
+  "title": "fall_from_height × formwork_shoring",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 200건 관측. 사고유형 fall_from_height 작업유형 formwork_shoring.",
+  "koshaAccidentType": "fall_from_height",
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "causedBy": [
+    "activity:formwork_shoring"
+  ],
+  "caseFrequency": 200,
+  "sampleKeywords": [
+    "철근 배근 작업 중 떨어짐",
+    "거푸집 설치 작업 중 떨어짐",
+    "낙하하는 거푸집에 맞음"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

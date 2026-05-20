@@ -1,0 +1,270 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/excavation_daily_check",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "excavation_daily_check",
+  "title": "굴착 일일 점검표 (지반·매설물)",
+  "description": "굴착 일일 점검표 (지반·매설물) - 산안기준규칙:38 + 산안기준규칙:341 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:daily",
+  "trigger": "매일",
+  "legalBasis": [
+    "art:기준규칙:38",
+    "art:기준규칙:341"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_excavation_daily_check",
+    "officialName": "굴착 일일 점검표 (지반·매설물) (KOSHA)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 굴착 일일 점검표",
+      "legalSource": "산안기준규칙 제38조·제341조 + 별표 4 6호",
+      "fields": [
+        {
+          "key": "checkDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "매 작업일 + 강우·강설 후.",
+          "examples": [
+            "2026-04-29 07:30 (작업 전) + 17:00 (작업 후)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checker",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "작업지휘자 + 안전관리자.",
+          "examples": [
+            "박감독 (건설안전기사) + 김안전"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "groundCheck",
+          "label": "지반 상태",
+          "required": true,
+          "inputGuide": "균열·붕괴 조짐·용수.",
+          "examples": [
+            [
+              {
+                "항목": "균열",
+                "결과": "없음"
+              },
+              {
+                "항목": "용수",
+                "결과": "양호 (배수 가동)"
+              },
+              {
+                "항목": "인접 침하",
+                "결과": "없음"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "shoringCheck",
+          "label": "흙막이 지보공",
+          "required": true,
+          "inputGuide": "변위·계측·앵커.",
+          "examples": [
+            "변위 5mm 이내, 어스앵커 장력 적정, 계측 완료"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "buriedFacilities",
+          "label": "매설물 보호",
+          "required": true,
+          "inputGuide": "가스·전기·수도·통신.",
+          "examples": [
+            "[√] 도시가스 보호 박스 설치, 전기·수도·통신 3m 이격"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "weather",
+          "label": "기상조건",
+          "required": true,
+          "inputGuide": "강우 50mm 이상 시 작업 중지.",
+          "examples": [
+            "풍속 3m/s, 강우 없음, 작업 가능"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "이상·조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "이상 시 즉시 작업 중단.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:38",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:38",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "inspection",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "굴착 현장"
+  },
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive",
+    "hazard:struck_by",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:eng_shoring",
+    "control:admin_supervisor"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_plan_excavation",
+    "doc:daily/pre_work_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

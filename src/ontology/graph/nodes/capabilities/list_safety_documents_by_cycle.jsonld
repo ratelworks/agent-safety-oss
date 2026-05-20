@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_safety_documents_by_cycle",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "시간 주기별 안전관리 법정문서 색인",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Safety Documents By Cycle",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 안전관리자·현장소장이 일·주·월·분기·반기·연·수시·상시 단위로 작성해야 하는 법정문서 목록을 반환. 각 문서의 보존기간·법령 근거·적용 사업장 요약. 50억 미만·50인 미만 소규모 건설현장 + 안전관리자 겸임 현장소장의 'cycle 단위 작업 인지' 출발점. cycle='monthly' 등으로 특정 주기만 필터 가능. 상세 가이드는 get_safety_document_guide({docId}) 로 후속 호출.",
+  "toolName": "list_safety_documents_by_cycle",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/list_safety_documents_by_cycle",
+  "producesEntity": [
+    "safety:Document"
+  ],
+  "maps_to_action": "safety:action/list_safety_documents_by_cycle",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

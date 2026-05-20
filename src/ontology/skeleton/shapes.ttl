@@ -1,0 +1,334 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix cc: <https://construction.ratelworks.org/ontology/v1/> .
+@prefix safety: <https://safety.ratelworks.org/ontology/v1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Walking Skeleton SHACL Shapes v1
+# Source: docs/skeleton-v1.md § 5
+# License: MIT
+# Created: 2026-05-02
+#################################################################
+
+<https://safety.ratelworks.org/skeleton/v1/shapes>
+  a owl:Ontology ;
+  rdfs:label "Walking Skeleton SHACL Shapes v1"@en ,
+             "Walking Skeleton SHACL Shapes v1"@ko ;
+  rdfs:comment "12 NodeShape — Walking Skeleton MVP + 일상 안전관리 확장. sh:closed false (확장 친화)."@ko ;
+  dcterms:created "2026-05-02"^^xsd:date ;
+  dcterms:license <https://opensource.org/licenses/MIT> ;
+  owl:versionIRI <https://safety.ratelworks.org/skeleton/v1/shapes/1.0.0> .
+
+#################################################################
+# 1. WorkActivityShape — 작업은 최소 1개 위험요인을 가짐
+#################################################################
+
+safety:WorkActivityShape
+  a sh:NodeShape ;
+  sh:targetClass safety:WorkActivity ;
+  sh:closed false ;
+  rdfs:label "WorkActivity 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:hasHazard ;
+    sh:minCount 1 ;
+    sh:class safety:Hazard ;
+    sh:message "작업은 최소 1개 위험요인을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 2. HazardShape — 위험은 최소 1개 통제수단과 연결
+#################################################################
+
+safety:HazardShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Hazard ;
+  sh:closed false ;
+  rdfs:label "Hazard 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:mitigatedBy ;
+    sh:minCount 1 ;
+    sh:class safety:ControlMeasure ;
+    sh:message "위험은 최소 1개 통제수단과 연결되어야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 3. ControlMeasureShape — 통제수단은 label 의무
+#################################################################
+
+safety:ControlMeasureShape
+  a sh:NodeShape ;
+  sh:targetClass safety:ControlMeasure ;
+  sh:closed false ;
+  rdfs:label "ControlMeasure 무결성 Shape"@ko ;
+  sh:property [
+    sh:path rdfs:label ;
+    sh:minCount 1 ;
+    sh:message "통제수단은 최소 1개 label을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 4. KoshaGuideShape — 번호 형식 + legalAuthority='recommended'
+#################################################################
+
+safety:KoshaGuideShape
+  a sh:NodeShape ;
+  sh:targetClass safety:KoshaGuide ;
+  sh:closed false ;
+  rdfs:label "KoshaGuide 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:guideNumber ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:pattern "^[A-Z]+(-[A-Z]+)?-\\d+-\\d{4}$" ;
+    sh:message "KOSHA Guide 번호 형식: C-39-2023, D-C-11-2026 등."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:legalAuthority ;
+    sh:minCount 1 ;
+    sh:in ( "recommended" ) ;
+    sh:message "KOSHA Guide는 항상 'recommended' (법적 강제 X)."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 5. ArticleShape — 조문 번호 의무
+#################################################################
+
+safety:ArticleShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Article ;
+  sh:closed false ;
+  rdfs:label "Article 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:articleNumber ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "법조문은 조문 번호를 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 6. ActionShape — Action은 parameters + submission criterion + side effect + appliesTo 의무
+# (D7a 추가, 선언적 액션 패턴 — Parameters/Submission Criteria/Side Effects/Trace)
+#################################################################
+
+safety:ActionShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Action ;
+  sh:closed false ;
+  rdfs:label "Action 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:hasParameter ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Action은 파라미터 정의(JSON Schema)를 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:submissionCriterion ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Action은 제출 조건(비즈니스 규칙)을 명시해야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:sideEffect ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Action은 부수 효과를 명시해야 한다 (감사 추적용)."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:appliesTo ;
+    sh:minCount 1 ;
+    sh:class safety:WorkActivity ;
+    sh:message "Action은 적용 대상 작업을 명시해야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 7. SiteShape — 현장은 label + location 의무
+#################################################################
+
+cc:SiteShape
+  a sh:NodeShape ;
+  sh:targetClass cc:Site ;
+  sh:closed false ;
+  rdfs:label "Site 무결성 Shape"@ko ;
+  sh:property [
+    sh:path rdfs:label ;
+    sh:minCount 1 ;
+    sh:message "현장은 최소 1개 label을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path schema:location ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "현장은 location을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 8. WorkTypeShape — 공종은 label + slug 의무
+#################################################################
+
+cc:WorkTypeShape
+  a sh:NodeShape ;
+  sh:targetClass cc:WorkType ;
+  sh:closed false ;
+  rdfs:label "WorkType 무결성 Shape"@ko ;
+  sh:property [
+    sh:path rdfs:label ;
+    sh:minCount 1 ;
+    sh:message "공종은 최소 1개 label을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path skos:notation ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "공종은 slug 역할의 skos:notation을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 9. PhotoEvidenceShape — 사진 증빙은 fileUri + capturedAt + relatedTask 의무
+#################################################################
+
+safety:PhotoEvidenceShape
+  a sh:NodeShape ;
+  sh:targetClass safety:PhotoEvidence ;
+  sh:closed false ;
+  rdfs:label "PhotoEvidence 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:fileUri ;
+    sh:minCount 1 ;
+    sh:datatype xsd:anyURI ;
+    sh:message "사진 증빙은 fileUri를 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:capturedAt ;
+    sh:minCount 1 ;
+    sh:datatype xsd:dateTime ;
+    sh:message "사진 증빙은 capturedAt 촬영 시각을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:relatedTask ;
+    sh:minCount 1 ;
+    sh:class safety:WorkActivity ;
+    sh:message "사진 증빙은 관련 작업을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 10. SafetyIssueShape — 안전 이슈는 relatedTask + severity + status 의무
+#################################################################
+
+safety:SafetyIssueShape
+  a sh:NodeShape ;
+  sh:targetClass safety:SafetyIssue ;
+  sh:closed false ;
+  rdfs:label "SafetyIssue 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:relatedTask ;
+    sh:minCount 1 ;
+    sh:class safety:WorkActivity ;
+    sh:message "안전 이슈는 관련 작업을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:severity ;
+    sh:minCount 1 ;
+    sh:in ( "low" "medium" "high" "critical" ) ;
+    sh:message "안전 이슈 severity는 low/medium/high/critical 중 하나여야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:status ;
+    sh:minCount 1 ;
+    sh:in ( "open" "in_progress" "resolved" "verified" ) ;
+    sh:message "안전 이슈 status는 open/in_progress/resolved/verified 중 하나여야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 11. CorrectiveActionShape — 개선조치는 resolves + dueBy + status 의무
+#################################################################
+
+safety:CorrectiveActionShape
+  a sh:NodeShape ;
+  sh:targetClass safety:CorrectiveAction ;
+  sh:closed false ;
+  rdfs:label "CorrectiveAction 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:resolves ;
+    sh:minCount 1 ;
+    sh:class safety:SafetyIssue ;
+    sh:message "개선조치는 해소 대상 SafetyIssue를 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:dueBy ;
+    sh:minCount 1 ;
+    sh:datatype xsd:date ;
+    sh:message "개선조치는 dueBy 기한을 가져야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] ;
+  sh:property [
+    sh:path safety:status ;
+    sh:minCount 1 ;
+    sh:in ( "open" "in_progress" "resolved" "verified" ) ;
+    sh:message "개선조치 status는 open/in_progress/resolved/verified 중 하나여야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 12. SafetyReportShape — 안전 보고서는 1개 이상 SafetyIssue 포함
+#################################################################
+
+safety:SafetyReportShape
+  a sh:NodeShape ;
+  sh:targetClass safety:SafetyReport ;
+  sh:closed false ;
+  rdfs:label "SafetyReport 무결성 Shape"@ko ;
+  sh:property [
+    sh:path safety:includes ;
+    sh:minCount 1 ;
+    sh:class safety:SafetyIssue ;
+    sh:message "안전 보고서는 최소 1개 SafetyIssue를 포함해야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .
+
+#################################################################
+# 13. SafetyChecklistApplyShape — SafetyChecklist.appliesTo 형식 검증
+# safety:appliesTo 의 의도된 domain 은 union(Action, StandardDocument, SafetyChecklist).
+# Action 은 ActionShape 가 검증한다. SafetyChecklist 인스턴스에 appliesTo 가
+# 있다면 WorkActivity IRI 형식을 강제한다. (NEXT_SESSION §3.3 후속)
+#################################################################
+
+safety:SafetyChecklistApplyShape
+  a sh:NodeShape ;
+  sh:targetClass safety:SafetyChecklist ;
+  sh:closed false ;
+  rdfs:label "SafetyChecklist.appliesTo 형식 검증"@ko ;
+  sh:property [
+    sh:path safety:appliesTo ;
+    sh:nodeKind sh:IRI ;
+    sh:class safety:WorkActivity ;
+    sh:message "SafetyChecklist.appliesTo 가 있다면 WorkActivity IRI 여야 한다."@ko ;
+    sh:severity sh:Violation ;
+  ] .

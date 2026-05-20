@@ -1,0 +1,32 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:sub_low_risk_method",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "sub_low_risk_method",
+  "label": "저위험 공법 대체",
+  "description": "고위험 굴착·고소·해체·구조물 작업을 더 안전한 공법이나 시공 순서로 바꾸는 대체 통제.",
+  "ericLevel": 2,
+  "category": "substitution",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:excavation_2m_plus",
+    "activity:facade_work",
+    "activity:formwork_shoring",
+    "activity:roofing",
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:tunnel_excavation"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

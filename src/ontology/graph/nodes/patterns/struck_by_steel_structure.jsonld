@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_steel_structure",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_steel_structure",
+  "title": "struck_by × steel_structure",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 10건 관측. 사고유형 struck_by 작업유형 steel_structure.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:steel_structure"
+  ],
+  "caseFrequency": 10,
+  "sampleKeywords": [
+    "사다리 운반중 철골기둥 지지용 X-Bracing에  충돌",
+    "철골 도장 작업중 충전부에 페인트 롤러가 접촉",
+    "방청작업을 하기위하여  H-Beam을 뒤집는 중 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

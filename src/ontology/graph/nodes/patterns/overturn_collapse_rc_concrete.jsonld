@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/overturn_collapse_rc_concrete",
+  "@type": [
+    "Event"
+  ],
+  "slug": "overturn_collapse_rc_concrete",
+  "title": "overturn_collapse × rc_concrete",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 6건 관측. 사고유형 overturn_collapse 작업유형 rc_concrete.",
+  "koshaAccidentType": "overturn_collapse",
+  "hasHazard": [
+    "hazard:struck_by_overturn"
+  ],
+  "causedBy": [
+    "activity:rc_concrete"
+  ],
+  "caseFrequency": 6,
+  "sampleKeywords": [
+    "교량 상판 슬래브 도장작업 중 고소작업대차 전도",
+    "교량 상판 슬래브 도장작업 중 고소작업대차 전도",
+    "굴삭기를 이용하여 콘크리트 타설중 장비전도"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/tower_crane_inspection",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "tower_crane_inspection",
+  "title": "타워크레인 점검",
+  "description": "기준규칙 제142조 타워크레인 안전. 운전 시작 전 일일점검 + 강풍 후 + 정기점검(매월). KOSHA Guide C-21 권장 양식.",
+  "cycle": "cyc:daily",
+  "trigger": "운전 시작 전 매일 + 강풍 10m/s 이상 후 + 매월 정기점검",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "타워크레인 사용 모든 건설현장."
+  },
+  "legalBasis": [
+    "art:기준규칙:142",
+    "annex:기준규칙:별표4-1호",
+    "art:산안법:93",
+    "art:기준규칙:134",
+    "art:기준규칙:135",
+    "art:기준규칙:40",
+    "art:기준규칙:47"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/M-82-2011",
+    "doc:kosha_guide/M-89-2016",
+    "doc:kosha_guide/M-91-2012"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_점검_일자",
+      "label": "점검 일자",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "점검 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "f_1_점검자",
+      "label": "점검자",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "작성한 사람의 성명 + 직책 + (가능 시) 자격번호.",
+      "examples": [
+        "홍길동 (안전관리자, 산업안전기사 자격 1234567호)",
+        "김철수 (현장소장)"
+      ]
+    },
+    {
+      "key": "f_2_크레인_종류_정격하중",
+      "label": "크레인 종류·정격하중",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "타워크레인 모델 + 정격하중.",
+      "examples": [
+        "TC-7030 / 정격하중 6톤 (반경 70m)"
+      ]
+    },
+    {
+      "key": "f_3_마스트_붐_점검",
+      "label": "마스트·붐 점검",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "마스트·붐 변형·균열·체결 상태.",
+      "examples": [
+        "변형·균열 없음 / 체결 볼트 토크 확인 정상"
+      ]
+    },
+    {
+      "key": "f_4_와이어로프",
+      "label": "와이어로프",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "와이어로프 마모·소선절단·킹크.",
+      "examples": [
+        "마모 5% 이내 (한도 7%) / 소선절단 1소선 (한도 10%) / 킹크 없음"
+      ]
+    },
+    {
+      "key": "f_5_안전장치__과부하_풍속",
+      "label": "안전장치 (과부하·풍속경보)",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "과부하방지·풍속경보·권과방지 작동 확인.",
+      "examples": [
+        "전 장치 정상 작동 (과부하 모의시험 / 풍속경보 14m/s)"
+      ]
+    },
+    {
+      "key": "f_6_전기_시스템",
+      "label": "전기 시스템",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "전기 제어반·접지·절연·비상정지.",
+      "examples": [
+        "절연 1MΩ 이상 / 접지 5Ω 이하 / 비상정지 정상"
+      ]
+    },
+    {
+      "key": "f_7_결과",
+      "label": "결과",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "f_8_조치_내용",
+      "label": "조치 내용",
+      "source": "산안기준규칙 제142조 + KOSHA Guide",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 권과·과부하 방지장치 작동",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:134"
+    },
+    {
+      "rule": "필수 — 풍속 10m/s 이상 작업 중지",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    },
+    {
+      "rule": "필수 — 와이어로프 폐기기준 점검",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:63"
+    },
+    {
+      "rule": "필수 — 신호수 배치 + 안전인증서 부착",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:40"
+    }
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "scope": "construction",
+    "note": "건설안전 특화 의무문서 (Phase 3 wave1 — 기준규칙 + KCS + KOSHA C 시리즈 권장 양식 통합).",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "searchKeywords": [
+    "타워크레인 일일점검",
+    "TC 점검"
+  ],
+  "hasHazard": [
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:falling_object",
+    "hazard:crushing"
+  ],
+  "appliesToActivities": [
+    "activity:tower_crane"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 타워크레인 점검",
+      "legalSource": "산안법 제93조 + 시행규칙 제126조 + 산안기준규칙 제141조",
+      "fields": [
+        {
+          "key": "inspectionDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "월 1회 + 반기 정밀.",
+          "examples": [
+            "2026-04-29 (월 점검)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "craneId",
+          "label": "타워크레인 식별",
+          "required": true,
+          "inputGuide": "기종·일련번호·안전검사필증.",
+          "examples": [
+            "TC-A동, 제조번호 KO-2024-1234, 안전검사필증 2026-03"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspector",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "타워크레인 자격 점검자 + 안전관리자.",
+          "examples": [
+            "김점검 (타워크레인운전기능사) + 박안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checkItems",
+          "label": "점검 항목",
+          "required": true,
+          "inputGuide": "마스트·붐·와이어로프·감속기·전기·방호장치.",
+          "examples": [
+            [
+              {
+                "항목": "마스트 수직도",
+                "결과": "적정 (1/1000 이내)"
+              },
+              {
+                "항목": "와이어로프 마모",
+                "결과": "양호 (5% 이내)"
+              },
+              {
+                "항목": "권과방지장치",
+                "결과": "작동"
+              },
+              {
+                "항목": "과부하방지장치",
+                "결과": "작동"
+              },
+              {
+                "항목": "풍속계",
+                "결과": "작동"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "이상·조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "이상 시 즉시 사용 중지.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "entity:ats",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:eng_machine_guard"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

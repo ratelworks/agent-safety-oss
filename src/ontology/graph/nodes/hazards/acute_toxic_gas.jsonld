@@ -1,0 +1,43 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:acute_toxic_gas",
+  "@type": "Hazard",
+  "slug": "acute_toxic_gas",
+  "label": "급성 독성가스 노출",
+  "category": "chemical",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "건설 적용: 밀폐공간(맨홀·탱크·터널) 작업 시 황화수소·일산화탄소·메탄·이산화탄소 급성 노출. 산안기준규칙 제618조~제645조 밀폐공간 적용."
+  },
+  "description": "**원인**: 밀폐공간 내 황화수소·일산화탄소·메탄·이산화탄소·산화에틸렌 등 급성 독성가스 노출.\n**상황**: 맨홀 / 탱크 청소 / 정화조 / 터널 / 가스용접 / 용단 작업.\n**확인**: 산소·유해가스 측정 (작업 전 + 작업 중) / 환기 / 송기마스크 / 감시인 배치 / 작업허가제.\n**중대성**: 황화수소 700ppm = 즉시 사망 / CO 1000ppm = 1시간 내 사망.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/16"
+  ],
+  "mitigatedBy": [
+    "control:eng_explosion_proof",
+    "control:admin_emergency_plan",
+    "control:ppe_respirator"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "guidedBy": [
+    "doc:kosha_guide/D-57-2016",
+    "doc:kosha_guide/P-153-2016",
+    "doc:kosha_guide/E-G-18-2026"
+  ],
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:drainage_sewerage",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:chemical_handling",
+    "activity:hazardous_chemical_work"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/D-57-2016",
+    "doc:kosha_guide/P-153-2016",
+    "doc:kosha_guide/E-G-18-2026"
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-97-2021",
+  "@type": "Document",
+  "docId": "kosha_guide_h-97-2021",
+  "title": "조혈기계 검사 이상근로자의 관리지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-97-2021",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 6건 (법령 1 / KOSHA Guide 5). keyword=\"조혈기계\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 0,
+      "5": 0,
+      "6": 4,
+      "7": 16,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "조혈기계",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_조혈기계 검사 이상근로자의 관리지침_4",
+      "title": "조혈기계 검사 이상근로자의 관리지침 - 적혈구 이상",
+      "score": 87.941
+    },
+    {
+      "docId": "KOSHA07_조혈기계 검사 이상근로자의 관리지침_1",
+      "title": "조혈기계 검사 이상근로자의 관리지침 - 목적",
+      "score": 85.571
+    },
+    {
+      "docId": "KOSHA07_조혈기계 검사 이상근로자의 관리지침_2",
+      "title": "조혈기계 검사 이상근로자의 관리지침 - 적용범위",
+      "score": 85.53
+    },
+    {
+      "docId": "KOSHA07_조혈기계 검사 이상근로자의 관리지침_3",
+      "title": "조혈기계 검사 이상근로자의 관리지침 - 용어의 정의",
+      "score": 77.727
+    },
+    {
+      "docId": "KOSHA07_조혈기계 검사 이상근로자의 관리지침_5",
+      "title": "조혈기계 검사 이상근로자의 관리지침 - 백혈구 이상",
+      "score": 70.545
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법시행령:22",
+      "law": "산안법시행령",
+      "articleNumber": "22",
+      "title": "보건관리자의 업무 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행령 제22조(보건관리자의 업무 등)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-97-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:31",
+      "law": "산안법시행령",
+      "articleNumber": "31",
+      "title": "산업보건의의 직무 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행령 제31조(산업보건의의 직무 등)",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-97-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA03_[별표 24] 특수건강진단ㆍ배치전건강진단ㆍ수시건강진단의 검사항목(제206조 관련)",
+      "title": "[별표 24] 특수건강진단ㆍ배치전건강진단ㆍ수시건강진단의 검사항목(제206조 관련)",
+      "category": "3",
+      "score": 35.692
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_tower_crane",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_tower_crane",
+  "title": "타워크레인 작업계획서",
+  "description": "타워크레인 설치·조립·해체 작업 시작 전 작성 의무 (별표 4 1호)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "타워크레인 설치·조립·해체 작업 전",
+  "applicableWhen": {
+    "workType": "tower_crane"
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-1호"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_풍속",
+      "label": "풍속",
+      "source": "산안기준규칙 제38조 + 별표 4 1호",
+      "inputGuide": "풍속 작업 한도 (15m/s 이상 작업 중지).",
+      "examples": [
+        "작업 한도 10m/s / 설치·해체 한도 15m/s / 풍속계 실시간 계측"
+      ]
+    },
+    {
+      "key": "craneType",
+      "label": "타워크레인 종류·형식",
+      "source": "산안기준규칙 제38조 + 별표 4 1호",
+      "inputGuide": "타워크레인 종류 (T형·러핑형·셀프크라이밍) + 모델.",
+      "examples": [
+        "T형 / TC-7030 (자립고 70m, 정격 6톤)"
+      ]
+    },
+    {
+      "key": "assemblyOrder",
+      "label": "설치·조립·해체 순서",
+      "source": "산안기준규칙 제38조 + 별표 4 1호",
+      "inputGuide": "단계별 설치·조립·해체 순서.",
+      "examples": [
+        "1) 기초 설치 / 2) 마스트 단계별 인양 / 3) 운전실 / 4) 붐 / 5) 시운전"
+      ]
+    },
+    {
+      "key": "tools",
+      "label": "작업도구·장비·가설설비·방호설비",
+      "source": "산안기준규칙 제38조 + 별표 4 1호",
+      "inputGuide": "도구·보조 장비·가설설비·방호설비.",
+      "examples": [
+        "이동식크레인 100톤 (조립 보조) + 안전대 + 방호망 + 신호수"
+      ]
+    },
+    {
+      "key": "personnel",
+      "label": "작업인원 구성·역할 범위",
+      "source": "산안기준규칙 제38조 + 별표 4 1호",
+      "inputGuide": "작업 인원 구성 + 역할 분담.",
+      "examples": [
+        "타워크레인 기사 1명 + 신호수 2명 + 보조 작업자 4명 + 관리감독자 1명"
+      ]
+    },
+    {
+      "key": "f_5_지지방법",
+      "label": "지지방법",
+      "source": "산안기준규칙 제38조 + 별표 4 1호",
+      "inputGuide": "지지대 구조 + 벽지지·자립지지.",
+      "examples": [
+        "벽지지 (3개층마다, 30m 간격) / 지지대 H-300 강재"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "사전조사·작업계획 모두 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-1호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 타워크레인 작업계획서 (별표 4 1호)",
+      "legalSource": "산안기준규칙 제141조 + 별표 4 1호",
+      "fields": [
+        {
+          "key": "craneSpec",
+          "label": "기종·정격하중·작업반경",
+          "required": true,
+          "inputGuide": "제조사·모델·정격하중·작업반경별 허용하중.",
+          "examples": [
+            "LIEBHERR 280EC-H 12 (정격 12톤, 50m 반경 3톤)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "installLocation",
+          "label": "설치 위치·기초",
+          "required": true,
+          "inputGuide": "위치·기초 보강·정착.",
+          "examples": [
+            "A동 동측, 기초 4m × 4m × 1.5m RC + 정착철물"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "climbingPlan",
+          "label": "인양·자립·해체 계획",
+          "required": true,
+          "inputGuide": "단계별 시기·방법.",
+          "examples": [
+            "1단계: 자립 30m (4월) / 2단계: 인양 60m (5월) / 3단계: 해체 (9월)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "signalArea",
+          "label": "신호수 + 통신",
+          "required": true,
+          "inputGuide": "신호수 위치·교대·통신.",
+          "examples": [
+            "신호수 2명 (양중·운전자 시야간섭) + 무전기 Ch5"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "weatherLimit",
+          "label": "기상한계",
+          "required": true,
+          "inputGuide": "풍속 10m/s 이상 작업 중지.",
+          "examples": [
+            "10m/s 작업 중지, 15m/s 자동잠금"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspection",
+          "label": "점검 계획",
+          "required": true,
+          "inputGuide": "일상·월·반기.",
+          "examples": [
+            "일상 매일, 월간 1회, 반기 정밀 1회"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년 (산안법 시행규칙 제241조)",
+  "guidedBy": [
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/M-82-2011",
+    "doc:kosha_guide/M-89-2016",
+    "doc:kosha_guide/M-91-2012"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "타워크레인",
+      "이동식크레인",
+      "양중기"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fall_from_height",
+    "hazard:electric_shock",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [
+    "activity:tower_crane"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "entity:ats",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:admin_signal_person",
+    "control:eng_machine_guard"
+  ],
+  "relatedDocs": [
+    "doc:daily/tower_crane_inspection",
+    "doc:ad_hoc/work_permit_heavy_lifting"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

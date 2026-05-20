@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_photos_by_site",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "siteId 또는 since 기준으로 photos/ 로컬 저장소의 PhotoEvidence 목록을 조회하고 ",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Photos By Site",
+      "@language": "en"
+    }
+  ],
+  "description": "siteId 또는 since 기준으로 photos/ 로컬 저장소의 PhotoEvidence 목록을 조회하고 사진→작업→위험/이슈 그래프 사슬을 함께 반환한다.",
+  "toolName": "list_photos_by_site",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/list_photos_by_site",
+  "maps_to_action": "safety:action/list_photos_by_site",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:all_workplace_with_excavation",
+  "@type": "Applicability",
+  "label": "굴착 작업 사업장 (사전조사·작업계획서)",
+  "condition": {
+    "any": [
+      {
+        "var": "workType",
+        "op": "==",
+        "value": "excavation"
+      },
+      {
+        "var": "workDepth",
+        "op": ">=",
+        "value": 1.5
+      }
+    ]
+  },
+  "legalBasis": [
+    "art:기준규칙:38"
+  ],
+  "legalWeight": "mandatory",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

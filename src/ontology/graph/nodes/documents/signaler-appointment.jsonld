@@ -1,0 +1,301 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/signaler_appointment",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "signaler_appointment",
+  "title": "신호수 지정서",
+  "description": "기준규칙 제40조 + 제142조 크레인·차량계 건설기계 신호수 지정. 교육 8시간 이상 이수 + 신호기·무전기 지급.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "건설기계·크레인·중량물 인양 작업 시작 전",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "크레인·타워크레인·중량물 인양·차량계 건설기계 사용 작업."
+  },
+  "legalBasis": [
+    "art:기준규칙:40",
+    "art:기준규칙:142",
+    "art:기준규칙:79"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안기준규칙 제40조·제142조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "f_1_현장명",
+      "label": "현장명",
+      "source": "산안기준규칙 제40조·제142조",
+      "inputGuide": "발주처 계약서 상의 공식 공사명. 약식 표기 금지.",
+      "examples": [
+        "서울특별시 OO구 OO동 신축공사",
+        "OO지구 도시개발사업 1공구 토목공사"
+      ]
+    },
+    {
+      "key": "f_2_지정_일자",
+      "label": "지정 일자",
+      "source": "산안기준규칙 제40조·제142조",
+      "inputGuide": "신호수 지정일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "f_3_신호수__성명_자격_",
+      "label": "신호수 (성명·자격)",
+      "source": "산안기준규칙 제40조·제142조",
+      "inputGuide": "신호수 성명 + 자격 (산안기준규칙 제40조 신호수 자격).",
+      "examples": [
+        "이신호 (산안기준규칙 제40조 신호수 자격)"
+      ]
+    },
+    {
+      "key": "f_4_담당_작업__양중_차량",
+      "label": "담당 작업 (양중·차량계 등)",
+      "source": "산안기준규칙 제40조·제142조",
+      "inputGuide": "본 양식 작성·관리 책임자.",
+      "examples": [
+        "김안전 (안전관리자)"
+      ]
+    },
+    {
+      "key": "f_5_지정_사유",
+      "label": "지정 사유",
+      "source": "산안기준규칙 제40조·제142조",
+      "inputGuide": "신호수 배치 사유 (양중·차량계 건설기계 등).",
+      "examples": [
+        "타워크레인 양중 작업 시 시야 간섭 + 차량계 건설기계 후진 시 사각"
+      ]
+    },
+    {
+      "key": "f_6_사업주_서명",
+      "label": "사업주 서명",
+      "source": "산안기준규칙 제40조·제142조",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 신호수 8시간 교육 이수증 첨부",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:29"
+    },
+    {
+      "rule": "필수 — 표준수신호 + 무전기 지급",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:40"
+    },
+    {
+      "rule": "필수 — 운전자 - 신호수 1:1 매칭",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:40"
+    }
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "scope": "construction",
+    "note": "건설안전 특화 의무문서 (Phase 3 wave1 — 기준규칙 + KCS + KOSHA C 시리즈 권장 양식 통합).",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "guidedBy": [
+    "doc:kosha_guide/M-90-2011",
+    "doc:kosha_guide/M-91-2012"
+  ],
+  "appliesToActivities": [
+    "activity:tower_crane",
+    "activity:vehicle_construction",
+    "activity:heavy_lifting",
+    "activity:vehicle_cargo"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 신호수 지정",
+      "legalSource": "산안기준규칙 제40조",
+      "fields": [
+        {
+          "key": "signalerName",
+          "label": "신호수 성명",
+          "required": true,
+          "inputGuide": "지정 신호수 성명.",
+          "examples": [
+            "이신호"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "qualification",
+          "label": "자격 (교육 이수)",
+          "required": true,
+          "inputGuide": "신호수 안전교육 이수 증명.",
+          "examples": [
+            "KOSHA 신호수 안전교육 이수 (2026-02-15)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workScope",
+          "label": "담당 작업 범위",
+          "required": true,
+          "inputGuide": "중장비·차량 작업·교통.",
+          "examples": [
+            "타워크레인 양중작업 + 차량 진출입"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "communication",
+          "label": "통신장비",
+          "required": true,
+          "inputGuide": "무전기·수신호·기.",
+          "examples": [
+            "무전기 1대 (Ch5) + 적·녹색 신호기"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "appointmentDate",
+          "label": "지정 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "hasHazard": [
+    "hazard:struck_by",
+    "hazard:caught_in"
+  ],
+  "mitigatedBy": [
+    "control:admin_signal_person"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_plan_heavy_lifting",
+    "doc:daily/tower_crane_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

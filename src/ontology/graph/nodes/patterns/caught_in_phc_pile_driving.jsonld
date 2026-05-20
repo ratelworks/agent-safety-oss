@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_phc_pile_driving",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_phc_pile_driving",
+  "title": "caught_in × phc_pile_driving",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 35건 관측. 사고유형 caught_in 작업유형 phc_pile_driving.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:phc_pile_driving"
+  ],
+  "caseFrequency": 35,
+  "sampleKeywords": [
+    "파일 항타 작업을 위한 깔판 인양 중 깔판이 고리에서 탈락되어 협착(사망1명)",
+    "돌쌓기 작업 중 선회하던 굴삭기후면과 전석사이에 끼임(사망 1명)",
+    "골재포설 중 굴삭기 선회부에 협착(사망 1명)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

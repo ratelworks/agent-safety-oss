@@ -1,0 +1,112 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-C-58-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_c-c-58-2026",
+  "title": "최악 및 대안의 사고 시나리오 선정에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-C-58-2026",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"최악\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 3,
+      "6": 0,
+      "7": 15,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "최악",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법시행규칙:50",
+      "law": "산안법시행규칙",
+      "articleNumber": "50",
+      "title": "공정안전보고서의 세부 내용 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제50조(공정안전보고서의 세부내용 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide C-C-58-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_최악 및 대안의 사고 시나리오 선정에 관한 기술지침_1",
+      "title": "최악 및 대안의 사고 시나리오 선정에 관한 기술지침 - 목적",
+      "score": 49.804
+    },
+    {
+      "docId": "KOSHA07_공정안전보고서 등의 통합서식 작성방법에 관한 기술지침_16",
+      "title": "공정안전보고서 등의 통합서식 작성방법에 관한 기술지침 - 공정 위험성평가",
+      "score": 33.585
+    },
+    {
+      "docId": "KOSHA07_고주파 방사에 의한 점화 및 감전 방지에 관한 기술지침_3",
+      "title": "고주파 방사에 의한 점화 및 감전 방지에 관한 기술지침 - 일반사항",
+      "score": 24.053
+    },
+    {
+      "docId": "KOSHA07_공정안전보고서 등의 통합서식 작성방법에 관한 기술지침_18",
+      "title": "공정안전보고서 등의 통합서식 작성방법에 관한 기술지침 - 장외영향평가",
+      "score": 22.96
+    },
+    {
+      "docId": "KOSHA07_화학물질 취급 사업장에서의 보안 취약성평가에 관한 기술지침_3",
+      "title": "화학물질 취급 사업장에서의 보안 취약성평가에 관한 기술지침 - 용어의 정의",
+      "score": 20.204
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000004000004000000000000000053000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제53조 비상조치계획 심사",
+      "category": "5",
+      "score": 29.028
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000003000004000000000000000034000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제34조 도급업체 안전관리계획",
+      "category": "5",
+      "score": 26.43
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000003000005000000000000000040000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제40조 비상조치 계획의 작성",
+      "category": "5",
+      "score": 25.967
+    }
+  ]
+}

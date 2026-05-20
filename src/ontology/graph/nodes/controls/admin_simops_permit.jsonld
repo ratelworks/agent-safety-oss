@@ -1,0 +1,27 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_simops_permit",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_simops_permit",
+  "label": "굴착·동시작업 허가서 (Simultaneous Operations Permit)",
+  "description": "굴착 2m 이상 또는 인접 구역 동시작업 시 간섭·충돌·붕괴·낙하 위험 사전 확인 및 작업 분리 절차 명시. SimOps Permit 양식 발급.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:formwork_shoring"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "산안기준규칙 §38 (사전조사 및 작업계획서) + §347~§367 (굴착) + KOSHA Guide C-39-2011",
+    "verifiedAt": "2026-05-20",
+    "matchKeywords": ["굴착", "동시작업", "SimOps", "작업허가"],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "note": "v1.3.x Applicability rule 보강 — applic:excavation_2m_plus.enforces 지원"
+  },
+  "iso45001Class": "iso45001:Control"
+}

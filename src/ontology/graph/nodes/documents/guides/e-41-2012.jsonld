@@ -1,0 +1,141 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-41-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_e-41-2012",
+  "title": "이동형 저압 발전기의 안전점검에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-41-2012",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"이동형\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 2,
+      "6": 2,
+      "7": 45,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "이동형",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_이동형 저압 발전기의 안전점검에 관한 기술지침_1",
+      "title": "이동형 저압 발전기의 안전점검에 관한 기술지침 - 목적",
+      "score": 86.95
+    },
+    {
+      "docId": "KOSHA07_조선 및 선박수리산업에서의 임시전기설비에 관한 기술지침_6",
+      "title": "조선 및 선박수리산업에서의 임시전기설비에 관한 기술지침 - 휴대용 및 이동형 전기설비",
+      "score": 59.149
+    },
+    {
+      "docId": "KOSHA07_감전방지용 누전차단기 설치에 관한 기술지침_6",
+      "title": "감전방지용 누전차단기 설치에 관한 기술지침 - 누전차단기 설치장소",
+      "score": 54.853
+    },
+    {
+      "docId": "KOSHA07_가공목재 및 판재의 적재에 관한 안전기술지침_5",
+      "title": "가공목재 및 판재의 적재에 관한 안전기술지침 - 안전 작업",
+      "score": 45.171
+    },
+    {
+      "docId": "KOSHA07_차량 경정비 작업안전에 관한 기술지침_5",
+      "title": "차량 경정비 작업안전에 관한 기술지침 - 전기기계?기구",
+      "score": 44.138
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:308",
+      "law": "기준규칙",
+      "articleNumber": "308",
+      "title": "비상전원",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제308조(비상전원)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide E-41-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_002000003000001000000000304000",
+      "title": "제304조 누전차단기에 의한 감전방지",
+      "category": "4",
+      "score": 41.877
+    },
+    {
+      "docId": "KOSHA05_철강업에 있어서 수증기 폭발 및 고열물 접촉위험 방지를 위한 기술상의 지침000000002000000000000000000000002000",
+      "title": "철강업에 있어서 수증기 폭발 및 고열물 접촉위험 방지를 위한 기술상의 지침 제2조 핏트",
+      "category": "5",
+      "score": 36.15
+    },
+    {
+      "docId": "KOSHA05_위험기계·기구 자율안전확인 고시000000005000000000000000000000010000",
+      "title": "위험기계·기구 자율안전확인 고시 제10조 정의",
+      "category": "5",
+      "score": 35.813
+    }
+  ]
+}

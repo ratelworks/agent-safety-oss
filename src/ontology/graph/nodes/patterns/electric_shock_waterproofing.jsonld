@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/electric_shock_waterproofing",
+  "@type": [
+    "Event"
+  ],
+  "slug": "electric_shock_waterproofing",
+  "title": "electric_shock × waterproofing",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 electric_shock 작업유형 waterproofing.",
+  "koshaAccidentType": "electric_shock",
+  "hasHazard": [
+    "hazard:electric_shock"
+  ],
+  "causedBy": [
+    "activity:waterproofing"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "지하실 내부에서 라이터를 켜다 폭발",
+    "기계주차장 Pit 양수 작업중 사망",
+    "지하 공동구 내부에서 투광등을 가지고 이동중 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

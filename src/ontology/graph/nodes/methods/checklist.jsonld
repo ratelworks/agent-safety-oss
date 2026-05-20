@@ -1,0 +1,27 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:checklist",
+  "@type": "Method",
+  "label": "체크리스트법",
+  "docId": "kras_checklist",
+  "verificationStatus": "kosha_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras/evaluation/kras-method",
+    "formId": "10183",
+    "bodyFile": "kras-methods/checklist.md",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "사전에 정의된 체크리스트 항목을 따라 유해·위험요인을 점검. 주기적·반복 작업에 적합.",
+  "suitableFor": "routine_inspection",
+  "applicableTo": [
+    "activity:risk_assessment_general",
+    "activity:tbm_daily"
+  ],
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

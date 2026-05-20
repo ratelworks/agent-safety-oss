@@ -1,0 +1,72 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:struck_by",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "struck_by",
+  "label": "부딪힘 (충돌)",
+  "category": "physical",
+  "koshaAccidentType": "부딪힘",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "부딪힘",
+      "충돌"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_helmet",
+    "control:ppe_safety_shoes"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/G-100-2013",
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/G-10-2023",
+    "doc:kosha_guide/D-C-4-2025"
+  ],
+  "description": "**원인**: 차량계 건설기계·지게차·크레인 작업반경 무시 / 신호수 부재 / 후진경보 작동 X.\n**상황**: 굴삭기·로더·덤프트럭·지게차·크레인 인양 시.\n**확인**: 신호수 배치 + 무전기 / 작업반경 출입통제 / 후진경보·경광등 작동 / 운전자 자격증.\n**중대성**: 건설업 사망사고 2위. 차량 직접 충돌 시 즉사.",
+  "koshaArchiveFacets": [
+    "facet:ctgr03/14"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:earthwork_landfill",
+    "activity:formwork_shoring",
+    "activity:general_workplace_safety",
+    "activity:heavy_lifting",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:risk_assessment_general",
+    "activity:road_pavement",
+    "activity:safety_education",
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:tbm_daily",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:underground_utility",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/G-10-2023",
+    "doc:kosha_guide/D-C-4-2025"
+  ]
+}

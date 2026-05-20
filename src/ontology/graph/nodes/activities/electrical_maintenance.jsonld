@@ -1,0 +1,85 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:electrical_maintenance",
+  "@type": "Activity",
+  "label": "전기 정비",
+  "description": "전기 설비 정비·보수 작업",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장.",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "category": "electric",
+  "hasHazard": [
+    "hazard:electric_shock",
+    "hazard:fire_explosion",
+    "hazard:fire",
+    "hazard:thermal_burn",
+    "hazard:fall_from_height",
+    "hazard:machine_entanglement",
+    "hazard:trip_slip"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-16-2026",
+    "doc:kosha_guide/B-E-10-2026",
+    "doc:kosha_guide/B-E-11-2026",
+    "doc:kosha_guide/E-17-2012",
+    "doc:kosha_guide/E-18-2012",
+    "doc:kosha_guide/E-31-2014",
+    "doc:kosha_guide/E-77-2015"
+  ],
+  "regulatedBy": [
+    "art:산안법:38",
+    "art:기준규칙:318",
+    "art:기준규칙:319",
+    "art:기준규칙:320",
+    "art:기준규칙:321"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:electric_shock",
+      "hazard:fire_explosion",
+      "hazard:fire",
+      "hazard:thermal_burn",
+      "hazard:fall_from_height",
+      "hazard:machine_entanglement"
+    ],
+    "general": [
+      "hazard:trip_slip"
+    ]
+  },
+  "hasWorkType": "cc:worktype/electric",
+  "workTypeLabel": {
+    "ko": "정전·활선 전기작업",
+    "en": "De-energized and live electrical work"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_risk_assessment_schema",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "위험성평가서 스키마",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Risk Assessment Schema",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 위험성평가서 작성을 위한 법정 필수 필드·구조를 Markdown 으로 반환. 위험성평가 고시 제2024-76호(상시평가 체계 §15 ④) 기반. type 으로 최초·정기·수시·상시 선택, kras_method 로 KRAS 7방법 선택. LLM 은 이 스키마의 🔴 필수 필드를 반드시 채워 초안 작성. 법령 조문은 `get_safety_law_article` 로 인용·검증.",
+  "toolName": "get_risk_assessment_schema",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_risk_assessment_schema",
+  "producesEntity": [
+    "safety:DocumentSchema"
+  ],
+  "maps_to_action": "safety:action/get_risk_assessment_schema",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

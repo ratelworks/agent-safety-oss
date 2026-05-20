@@ -1,0 +1,100 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:finishing_paint",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "도장 작업",
+  "category": "finishing",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-28",
+    "graphEnrichmentNote": "Activity 14개 신규 보강 — 건설 주요 공종 인벤토리 완성 (RC/철골/비계/거푸집/마감/방수/PHC/석면/토공/포장/타워조립/하수/지하매설)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "description": "도료·페인트 도포 마감 작업. 화학물질 노출 + 화재·폭발 + 고소 위험.",
+  "hasHazard": [
+    "hazard:chemical_exposure",
+    "hazard:chemical_burn",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:asphyxiation",
+    "hazard:dust_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:239",
+    "art:산안법:110",
+    "art:산안법:114",
+    "art:기준규칙:42"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-17-2026",
+    "doc:kosha_guide/B-E-20-2026",
+    "doc:kosha_guide/D-C-13-2026",
+    "doc:kosha_guide/G-117-2014"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr03/23",
+    "facet:ctgr04/04"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:chemical_exposure",
+      "hazard:chemical_burn",
+      "hazard:fire",
+      "hazard:fire_explosion",
+      "hazard:fall_from_height",
+      "hazard:asphyxiation",
+      "hazard:dust_exposure"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive"
+    ]
+  },
+  "hasWorkType": "cc:worktype/finishing",
+  "workTypeLabel": {
+    "ko": "마감 작업",
+    "en": "Finishing work"
+  }
+}

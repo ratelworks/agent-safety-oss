@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/electric_shock_electric_work_50v_plus",
+  "@type": [
+    "Event"
+  ],
+  "slug": "electric_shock_electric_work_50v_plus",
+  "title": "electric_shock × electric_work_50v_plus",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 19건 관측. 사고유형 electric_shock 작업유형 electric_work_50v_plus.",
+  "koshaAccidentType": "electric_shock",
+  "hasHazard": [
+    "hazard:electric_shock"
+  ],
+  "causedBy": [
+    "activity:electric_work_50v_plus"
+  ],
+  "caseFrequency": 19,
+  "sampleKeywords": [
+    "배선 공사 작업 중 감전",
+    "지장전주 이설공사중 컷아웃 스위치 홀더에 배전전공 감전, 사망",
+    "철재 드릴작업을 위한 전선연결 작업 중 감전, 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

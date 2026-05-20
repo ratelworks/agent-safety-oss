@@ -1,0 +1,91 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-24-2011",
+  "@type": "Document",
+  "docId": "kosha_guide_g-24-2011",
+  "title": "기계류의 방사성 물질로부터 위험을 줄이기 위한 안전가이드",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-24-2011",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 7건 (법령 2 / KOSHA Guide 5). keyword=\"기계류\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 2,
+      "6": 581,
+      "7": 19,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "기계류",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 4건 (법령 0 / KOSHA Guide 4). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_기계류의 방사성 물질로부터 위험을 줄이기 위한 안전가이드_4",
+      "title": "기계류의 방사성 물질로부터 위험을 줄이기 위한 안전가이드 - 방사성 물질 발생원",
+      "score": 31.876
+    },
+    {
+      "docId": "KOSHA07_기계류의 방사성 물질로부터 위험을 줄이기 위한 안전가이드_5",
+      "title": "기계류의 방사성 물질로부터 위험을 줄이기 위한 안전가이드 - 방사성 물질의 확인",
+      "score": 29.225
+    },
+    {
+      "docId": "KOSHA07_스마트팩토리(Smart Factory) 안전시스템 평가에 관한 기술지침_5",
+      "title": "스마트팩토리(Smart Factory) 안전시스템 평가에 관한 기술지침 - 평가방법",
+      "score": 25.911
+    },
+    {
+      "docId": "KOSHA07_사고예상질문분석(WHAT-IF)에 관한 기술지침_6",
+      "title": "사고예상질문분석(WHAT-IF)에 관한 기술지침 - 작성기준",
+      "score": 22.867
+    },
+    {
+      "docId": "KOSHA07_유기도료 제조설비의 안전관리 기술지침_7",
+      "title": "유기도료 제조설비의 안전관리 기술지침 - 화재 방지",
+      "score": 19.005
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA05_저압산업용기계기구의 부속전기설비의 전기재해 예방을 위한 기술상의 지침000000001000000000000000000000002000",
+      "title": "저압산업용기계기구의 부속전기설비의 전기재해 예방을 위한 기술상의 지침 제2조 적용범위",
+      "category": "5",
+      "score": 30.848
+    },
+    {
+      "docId": "KOSHA05_저압산업용기계기구의 부속전기설비의 전기재해 예방을 위한 기술상의 지침000000003000000000000000000000010000",
+      "title": "저압산업용기계기구의 부속전기설비의 전기재해 예방을 위한 기술상의 지침 제10조 단로장치 형식",
+      "category": "5",
+      "score": 27.597
+    }
+  ]
+}

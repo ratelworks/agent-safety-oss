@@ -1,0 +1,37 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:safety_certification_13",
+  "@type": "Applicability",
+  "label": "안전인증 대상 13종 (산안법 §80)",
+  "condition": {
+    "any": [
+      { "var": "machineType", "op": "in", "value": [
+        "프레스", "전단기", "절곡기", "크레인", "리프트", "압력용기",
+        "롤러기", "사출성형기", "고소작업대", "곤돌라", "기계톱", "체인톱",
+        "교류아크용접기", "파쇄기", "산업용로봇"
+      ]},
+      { "var": "requiresSafetyCertification", "op": "==", "value": true }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:80",
+    "art:산안법시행령:74"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "무인증 시 산안법 §169 (3년 이하 징역 또는 3,000만원 이하 벌금)",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "고용노동부 + 한국산업안전보건공단",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건법",
+    "fetchedAt": "2026-04-28",
+    "updatedAt": "2026-05-20",
+    "items": [
+      "프레스", "전단기·절곡기", "크레인", "리프트", "압력용기", "롤러기",
+      "사출성형기", "고소작업대", "곤돌라", "기계톱(체인톱)",
+      "교류아크용접기", "파쇄기", "산업용로봇"
+    ],
+    "itemCount": 13,
+    "note": "v1.3.x condition + legalWeight 보강"
+  },
+  "description": "유해·위험 기계·기구·방호장치·보호구. KCs 마크 부착. 무인증 시 §169 (3년/3천만)."
+}

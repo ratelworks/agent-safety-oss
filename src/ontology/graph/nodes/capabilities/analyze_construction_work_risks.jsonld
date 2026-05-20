@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/analyze_construction_work_risks",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "건설 공종 위험요인 분석",
+      "@language": "ko"
+    },
+    {
+      "@value": "Analyze Construction Work Risks",
+      "@language": "en"
+    }
+  ],
+  "description": "건설 공종·세부공정·단계 의무·현장 위험 브리핑을 분석하는 capability. 건설 세부공정 기준으로 표준 공종 분류(15087828), hazard taxonomy, KOSHA Guide 매핑, SIF 아카이브 패턴(15140383)을 조합해 위험요인·위험등급·체크리스트·근본원인·저감대책·관련 지침·다음 단계 Tool 제안까지 통합 반환한다. TBM/위험성평가 체인의 시작점.",
+  "toolName": "analyze_construction_work_risks",
+  "category": "construction",
+  "inputSchema": "safety:schema/input/analyze_construction_work_risks",
+  "producesEntity": [
+    "safety:HazardAnalysis"
+  ],
+  "maps_to_action": "safety:action/analyze_construction_work_risks",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

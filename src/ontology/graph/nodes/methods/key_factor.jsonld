@@ -1,0 +1,28 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:key_factor",
+  "@type": "Method",
+  "label": "핵심요인 기술법 (OPS, One Point Sheet)",
+  "docId": "kras_key_factor",
+  "verificationStatus": "kosha_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras/evaluation/kras-method",
+    "formId": "10184",
+    "bodyFile": "kras-methods/key-factor.md",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "한 페이지에 핵심 위험요인·통제대책을 요약. TBM/현장 조회 시 활용.",
+  "suitableFor": "tbm_briefing",
+  "applicableTo": [
+    "activity:risk_assessment_general",
+    "activity:tbm_daily",
+    "activity:safety_education"
+  ],
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

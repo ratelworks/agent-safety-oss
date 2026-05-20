@@ -1,0 +1,665 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "# 위험요인별 안전조치: 추락 (떨어짐)\n\n- 위험요인 IRI: `hazard:fall_from_height`\n- 그래프 사슬: `hazard:fall_from_height` --mitigatedBy--> control\n\n## 안전조치\n- 위험작업 회피 (`control:elim_avoid_work`) - ERIC 1. 제거: 설계·공법·일정 변경으로 고소, 활선, 굴착, 화기 등 고위험 작업 자체를 피하는 제거 통제.\n- 저위험 공법 대체 (`control:sub_low_risk_method`) - ERIC 2. 대체: 고위험 굴착·고소·해체·구조물 작업을 더 안전한 공법이나 시공 순서로 바꾸는 대체 통제.\n- 추락방호망 (`control:eng_fall_net`) - ERIC 3. 공학적 통제: 비계·철골·거푸집·지붕 등 고소작업에서 추락 또는 낙하를 방호망으로 흡수·차단하는 공학적 통제.\n- 안전난간·안전대 부착설비 (`control:eng_guard_rail`) - ERIC 3. 공학적 통제: 고소작업·개구부·굴착 가장자리에서 추락을 물리적으로 막기 위해 안전난간과 부착설비를 설치하는 공학적 통제.\n- 비계·작업발판 (`control:eng_scaffold`) - ERIC 3. 공학적 통제: 고소 시공 작업에서 안정된 작업발판, 승강로, 비계 구조로 추락과 작업면 불안정을 줄이는 공학적 통제.\n- 작업허가제 (`control:admin_work_permit`) - ERIC 4. 관리적 통제: 화기·밀폐공간·전기·고소·화학물질 등 허가가 필요한 고위험 작업의 착수 조건을 확인하는 관리 통제.\n- 안전보건교육·TBM (`control:admin_safety_education`) - ERIC 4. 관리적 통제: 모든 작업에서 정기교육, 특별교육, TBM을 통해 작업자에게 위험요인과 통제수단을 전달하는 관리 통제.\n- 작업지휘자 배치 (`control:admin_supervisor`) - ERIC 4. 관리적 통제: 모든 작업에서 작업지휘자 또는 관리감독자가 작업 순서와 위험 통제 이행을 지휘하는 관리 통제.\n- 점검·기록 (`control:admin_inspection`) - ERIC 4. 관리적 통제: 모든 작업에서 작업 전·중·후 점검과 기록을 통해 통제수단의 이행 상태를 확인하는 관리 통제.\n- 안전대 (`control:ppe_harness`) - ERIC 5. 개인보호구: 비계·철골·지붕·외벽 등 고소작업에서 추락 시 신체를 지지하기 위해 착용하는 개인보호구 통제.\n- 안전난간·죔줄 (`control:ppe_fall_arrester`) - ERIC 5. 개인보호구: 고소작업에서 죔줄과 추락방지대를 사용해 작업자 추락 거리를 제한하는 개인보호구 통제.\n- 안전모 (`control:ppe_helmet`) - ERIC 5. 개인보호구: 모든 작업에서 낙하·비래물과 머리 충격을 줄이기 위해 기본 착용하는 개인보호구 통제.\n\n## 원문 링크\n- 추락방호망 설치 기술지원규정(수직형 추락방망 설치 기술지원규정 포함) (`doc:kosha_guide/A-G-1-2025`, recommended) - https://www.kosha.or.kr/kosha/data/guideExp.do\n- 작업장 내 통로(경사로, 계단, 발판사다리) 선정 및 설치에 관한 기술지원규정 (`doc:kosha_guide/A-G-2-2025`, recommended) - https://www.kosha.or.kr/kosha/data/guideExp.do\n- 이동식 사다리의 사용에 관한 기술지원규정 (`doc:kosha_guide/A-G-4-2025`, recommended) - https://www.kosha.or.kr/kosha/data/guideExp.do\n- 건설공사의 고소작업대 안전보건작업지침 (`doc:kosha_guide/C-74-2015`, recommended) - https://www.kosha.or.kr/kosha/data/guideExp.do\n- 엘리베이터 승강로용 고소 가설작업대 안전작업에 관한 기술지원규정 (`doc:kosha_guide/D-C-14-2026`, recommended) - https://www.kosha.or.kr/kosha/data/guideExp.do\n- 비계 구조 및 안전작업에 관한 기술지원규정 (`doc:kosha_guide/D-C-7-2026`, recommended) - https://www.kosha.or.kr/kosha/data/guideExp.do"
+    }
+  ],
+  "structuredContent": {
+    "query": {
+      "hazardId": "hazard:fall_from_height"
+    },
+    "found": true,
+    "matchedHazard": {
+      "iri": "hazard:fall_from_height",
+      "label": "추락 (떨어짐)",
+      "score": 100,
+      "matchedBy": "hazardId",
+      "specificity": "specific",
+      "category": "physical"
+    },
+    "graphTraversal": {
+      "start": "hazard:fall_from_height",
+      "relation": "mitigatedBy",
+      "targets": [
+        "control:elim_avoid_work",
+        "control:sub_low_risk_method",
+        "control:eng_fall_net",
+        "control:eng_guard_rail",
+        "control:eng_scaffold",
+        "control:admin_work_permit",
+        "control:admin_safety_education",
+        "control:admin_supervisor",
+        "control:admin_inspection",
+        "control:ppe_harness",
+        "control:ppe_fall_arrester",
+        "control:ppe_helmet"
+      ]
+    },
+    "measures": [
+      {
+        "iri": "control:elim_avoid_work",
+        "label": "위험작업 회피",
+        "description": "설계·공법·일정 변경으로 고소, 활선, 굴착, 화기 등 고위험 작업 자체를 피하는 제거 통제.",
+        "ericLevel": 1,
+        "ericLevelLabel": "1. 제거",
+        "category": "elimination",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:bridge_5m_30m",
+          "activity:demolition",
+          "activity:electric_work_50v_plus",
+          "activity:electrical_maintenance",
+          "activity:excavation_2m_plus",
+          "activity:facade_work",
+          "activity:finishing_paint",
+          "activity:roofing",
+          "activity:steel_structure",
+          "activity:tunnel_excavation",
+          "activity:waterproofing"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:elim_avoid_work",
+            "label": "위험작업 회피"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:sub_low_risk_method",
+        "label": "저위험 공법 대체",
+        "description": "고위험 굴착·고소·해체·구조물 작업을 더 안전한 공법이나 시공 순서로 바꾸는 대체 통제.",
+        "ericLevel": 2,
+        "ericLevelLabel": "2. 대체",
+        "category": "substitution",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:bridge_5m_30m",
+          "activity:demolition",
+          "activity:excavation_2m_plus",
+          "activity:facade_work",
+          "activity:formwork_shoring",
+          "activity:roofing",
+          "activity:scaffolding_assembly",
+          "activity:steel_structure",
+          "activity:tunnel_excavation"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:sub_low_risk_method",
+            "label": "저위험 공법 대체"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:eng_fall_net",
+        "label": "추락방호망",
+        "description": "비계·철골·거푸집·지붕 등 고소작업에서 추락 또는 낙하를 방호망으로 흡수·차단하는 공학적 통제.",
+        "ericLevel": 3,
+        "ericLevelLabel": "3. 공학적 통제",
+        "category": "engineering",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:bridge_5m_30m",
+          "activity:concrete_work",
+          "activity:demolition",
+          "activity:facade_work",
+          "activity:finishing_paint",
+          "activity:finishing_tile",
+          "activity:formwork_shoring",
+          "activity:precast_installation",
+          "activity:rc_concrete",
+          "activity:roofing",
+          "activity:scaffolding_assembly",
+          "activity:steel_erection",
+          "activity:steel_structure",
+          "activity:tower_assembly",
+          "activity:tower_crane"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:eng_fall_net",
+            "label": "추락방호망"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:eng_guard_rail",
+        "label": "안전난간·안전대 부착설비",
+        "description": "고소작업·개구부·굴착 가장자리에서 추락을 물리적으로 막기 위해 안전난간과 부착설비를 설치하는 공학적 통제.",
+        "ericLevel": 3,
+        "ericLevelLabel": "3. 공학적 통제",
+        "category": "engineering",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:bridge_5m_30m",
+          "activity:concrete_work",
+          "activity:demolition",
+          "activity:excavation_2m_plus",
+          "activity:facade_work",
+          "activity:finishing_paint",
+          "activity:finishing_tile",
+          "activity:formwork_shoring",
+          "activity:precast_installation",
+          "activity:rc_concrete",
+          "activity:roofing",
+          "activity:scaffolding_assembly",
+          "activity:steel_erection",
+          "activity:steel_structure",
+          "activity:tower_assembly",
+          "activity:tower_crane"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:eng_guard_rail",
+            "label": "안전난간·안전대 부착설비"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:eng_scaffold",
+        "label": "비계·작업발판",
+        "description": "고소 시공 작업에서 안정된 작업발판, 승강로, 비계 구조로 추락과 작업면 불안정을 줄이는 공학적 통제.",
+        "ericLevel": 3,
+        "ericLevelLabel": "3. 공학적 통제",
+        "category": "engineering",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:bridge_5m_30m",
+          "activity:concrete_work",
+          "activity:demolition",
+          "activity:facade_work",
+          "activity:finishing_paint",
+          "activity:finishing_tile",
+          "activity:formwork_shoring",
+          "activity:precast_installation",
+          "activity:rc_concrete",
+          "activity:roofing",
+          "activity:scaffolding_assembly",
+          "activity:steel_erection",
+          "activity:steel_structure"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:eng_scaffold",
+            "label": "비계·작업발판"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:admin_work_permit",
+        "label": "작업허가제",
+        "description": "화기·밀폐공간·전기·고소·화학물질 등 허가가 필요한 고위험 작업의 착수 조건을 확인하는 관리 통제.",
+        "ericLevel": 4,
+        "ericLevelLabel": "4. 관리적 통제",
+        "category": "administrative",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:chemical_handling",
+          "activity:drainage_sewerage",
+          "activity:electric_work_50v_plus",
+          "activity:electrical_maintenance",
+          "activity:facade_work",
+          "activity:finishing_paint",
+          "activity:formwork_shoring",
+          "activity:hazardous_chemical_work",
+          "activity:machinery_repair",
+          "activity:painting",
+          "activity:roofing",
+          "activity:scaffolding_assembly",
+          "activity:steel_structure",
+          "activity:tunnel_excavation",
+          "activity:underground_utility",
+          "activity:waterproofing"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:admin_work_permit",
+            "label": "작업허가제"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:admin_safety_education",
+        "label": "안전보건교육·TBM",
+        "description": "모든 작업에서 정기교육, 특별교육, TBM을 통해 작업자에게 위험요인과 통제수단을 전달하는 관리 통제.",
+        "ericLevel": 4,
+        "ericLevelLabel": "4. 관리적 통제",
+        "category": "administrative",
+        "controlSpecificity": "general",
+        "appliesToActivity": [],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:admin_safety_education",
+            "label": "안전보건교육·TBM"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:admin_supervisor",
+        "label": "작업지휘자 배치",
+        "description": "모든 작업에서 작업지휘자 또는 관리감독자가 작업 순서와 위험 통제 이행을 지휘하는 관리 통제.",
+        "ericLevel": 4,
+        "ericLevelLabel": "4. 관리적 통제",
+        "category": "administrative",
+        "controlSpecificity": "general",
+        "appliesToActivity": [],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:admin_supervisor",
+            "label": "작업지휘자 배치"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:admin_inspection",
+        "label": "점검·기록",
+        "description": "모든 작업에서 작업 전·중·후 점검과 기록을 통해 통제수단의 이행 상태를 확인하는 관리 통제.",
+        "ericLevel": 4,
+        "ericLevelLabel": "4. 관리적 통제",
+        "category": "administrative",
+        "controlSpecificity": "general",
+        "appliesToActivity": [],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:admin_inspection",
+            "label": "점검·기록"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:ppe_harness",
+        "label": "안전대",
+        "description": "비계·철골·지붕·외벽 등 고소작업에서 추락 시 신체를 지지하기 위해 착용하는 개인보호구 통제.",
+        "ericLevel": 5,
+        "ericLevelLabel": "5. 개인보호구",
+        "category": "ppe",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:bridge_5m_30m",
+          "activity:demolition",
+          "activity:facade_work",
+          "activity:finishing_paint",
+          "activity:finishing_tile",
+          "activity:formwork_shoring",
+          "activity:precast_installation",
+          "activity:rc_concrete",
+          "activity:roofing",
+          "activity:scaffolding_assembly",
+          "activity:steel_erection",
+          "activity:steel_structure",
+          "activity:tower_assembly",
+          "activity:tower_crane"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:ppe_harness",
+            "label": "안전대"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:ppe_fall_arrester",
+        "label": "안전난간·죔줄",
+        "description": "고소작업에서 죔줄과 추락방지대를 사용해 작업자 추락 거리를 제한하는 개인보호구 통제.",
+        "ericLevel": 5,
+        "ericLevelLabel": "5. 개인보호구",
+        "category": "ppe",
+        "controlSpecificity": "specific",
+        "appliesToActivity": [
+          "activity:bridge_5m_30m",
+          "activity:demolition",
+          "activity:facade_work",
+          "activity:finishing_paint",
+          "activity:finishing_tile",
+          "activity:formwork_shoring",
+          "activity:precast_installation",
+          "activity:rc_concrete",
+          "activity:roofing",
+          "activity:scaffolding_assembly",
+          "activity:steel_erection",
+          "activity:steel_structure",
+          "activity:tower_assembly",
+          "activity:tower_crane"
+        ],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:ppe_fall_arrester",
+            "label": "안전난간·죔줄"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      },
+      {
+        "iri": "control:ppe_helmet",
+        "label": "안전모",
+        "description": "모든 작업에서 낙하·비래물과 머리 충격을 줄이기 위해 기본 착용하는 개인보호구 통제.",
+        "ericLevel": 5,
+        "ericLevelLabel": "5. 개인보호구",
+        "category": "ppe",
+        "controlSpecificity": "general",
+        "appliesToActivity": [],
+        "chain": {
+          "fromHazard": {
+            "iri": "hazard:fall_from_height",
+            "label": "추락 (떨어짐)"
+          },
+          "relation": "mitigatedBy",
+          "toControl": {
+            "iri": "control:ppe_helmet",
+            "label": "안전모"
+          }
+        },
+        "sourceRefs": [
+          "doc:kosha_guide/A-G-1-2025",
+          "doc:kosha_guide/A-G-2-2025",
+          "doc:kosha_guide/A-G-4-2025",
+          "doc:kosha_guide/C-74-2015",
+          "doc:kosha_guide/D-C-14-2026",
+          "doc:kosha_guide/D-C-7-2026",
+          "doc:kosha_guide/M-155-2023",
+          "doc:kosha_guide/X-44-2016",
+          "doc:kosha_guide/D-C-11-2026",
+          "art:기준규칙:42",
+          "art:기준규칙:38"
+        ]
+      }
+    ],
+    "sourceLinks": [
+      {
+        "iri": "doc:kosha_guide/A-G-1-2025",
+        "label": "추락방호망 설치 기술지원규정(수직형 추락방망 설치 기술지원규정 포함)",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "A-G-1-2025",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/A-G-2-2025",
+        "label": "작업장 내 통로(경사로, 계단, 발판사다리) 선정 및 설치에 관한 기술지원규정",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "A-G-2-2025",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/A-G-4-2025",
+        "label": "이동식 사다리의 사용에 관한 기술지원규정",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "A-G-4-2025",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/C-74-2015",
+        "label": "건설공사의 고소작업대 안전보건작업지침",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "C-74-2015",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/D-C-14-2026",
+        "label": "엘리베이터 승강로용 고소 가설작업대 안전작업에 관한 기술지원규정",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "D-C-14-2026",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/D-C-7-2026",
+        "label": "비계 구조 및 안전작업에 관한 기술지원규정",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "D-C-7-2026",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/M-155-2023",
+        "label": "이동식 고소작업대의 선정과 안전관리에 관한 기술지침",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "M-155-2023",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/X-44-2016",
+        "label": "고소작업대 작업의 리스크 확인지침",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "X-44-2016",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "doc:kosha_guide/D-C-11-2026",
+        "label": "굴착 및 토공 안전작업에 관한 기술지원규정",
+        "sourceType": "kosha_guide",
+        "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+        "guideNo": "D-C-11-2026",
+        "legalWeight": "recommended"
+      },
+      {
+        "iri": "art:기준규칙:42",
+        "label": "추락의 방지",
+        "sourceType": "law_article",
+        "sourceUrl": "https://www.law.go.kr/법령/%EC%82%B0%EC%97%85%EC%95%88%EC%A0%84%EB%B3%B4%EA%B1%B4%EA%B8%B0%EC%A4%80%EC%97%90%20%EA%B4%80%ED%95%9C%20%EA%B7%9C%EC%B9%99/제42조",
+        "articleNumber": "42",
+        "legislationIdentifier": "산업안전보건기준에 관한 규칙",
+        "legalWeight": "mandatory"
+      },
+      {
+        "iri": "art:기준규칙:38",
+        "label": "사전조사 및 작업계획서의 작성 등",
+        "sourceType": "law_article",
+        "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제38조",
+        "articleNumber": "38",
+        "legislationIdentifier": "산업안전보건기준에 관한 규칙",
+        "legalWeight": "mandatory"
+      }
+    ],
+    "license": "MIT. 그래프 노드의 출처·라이선스는 각 node._meta.licenseHint 및 sourceUrl을 따른다.",
+    "_meta": {
+      "providedBy": "황룡건설(주)",
+      "developedBy": "주식회사 라텔웍스",
+      "license": "MIT (code) + 공공누리 (data)",
+      "projectInfoTool": "get_project_info"
+    }
+  }
+}

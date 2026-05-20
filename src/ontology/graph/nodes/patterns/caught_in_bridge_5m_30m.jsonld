@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_bridge_5m_30m",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_bridge_5m_30m",
+  "title": "caught_in × bridge_5m_30m",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 caught_in 작업유형 bridge_5m_30m.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:bridge_5m_30m"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "기초 철근 조립작업 중 수직철근이 전도되어 협착",
+    "강관박스 하부에서 협착",
+    "항타기의 Screw Rod 구동 Rope와 Casing 구동 Rope 사이에 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-C-10-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_d-c-10-2026",
+  "title": "건설장비(이동식크레인, 항타기 및 항발기, 타워크레인) 작업계획서 작성에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-C-10-2026",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"건설장비\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 10,
+      "7": 11,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "건설장비",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:noise_exposure",
+    "hazard:vibration_exposure",
+    "hazard:crushing",
+    "hazard:cave_in",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:fall_from_height",
+    "hazard:electric_shock"
+  ],
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_safer_equipment",
+    "control:eng_monitoring",
+    "control:eng_fall_net",
+    "control:admin_inspection",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:elim_automation",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:sub_low_risk_method",
+    "control:eng_shoring",
+    "control:ppe_safety_shoes",
+    "control:elim_avoid_work",
+    "control:eng_ventilation",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_insulation",
+    "control:eng_loto"
+  ],
+  "appliesToActivities": [
+    "activity:phc_pile_driving",
+    "activity:tower_crane"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_빌딩 건설현장에서의 배전설비에 관한 기술지침_9",
+      "title": "빌딩 건설현장에서의 배전설비에 관한 기술지침 - 현장 밖에서의 작업",
+      "score": 42.255
+    },
+    {
+      "docId": "KOSHA07_흙막이공사(지하연속벽) 안전보건작업 지침_5",
+      "title": "흙막이공사(지하연속벽) 안전보건작업 지침 - 작업전 검토 및 준비사항",
+      "score": 31.892
+    },
+    {
+      "docId": "KOSHA07_트러스거더 교량공사 안전보건작업지침_6",
+      "title": "트러스거더 교량공사 안전보건작업지침 - 공통 안전사항",
+      "score": 31.409
+    },
+    {
+      "docId": "KOSHA07_강박스 거더 교량공사 안전보건작업 지침_5",
+      "title": "강박스 거더 교량공사 안전보건작업 지침 - 일반적인 안전조치사항",
+      "score": 28.808
+    },
+    {
+      "docId": "KOSHA07_중소규모 관로공사의 안전보건작업지침_6",
+      "title": "중소규모 관로공사의 안전보건작업지침 - 작업전 검토 및 준비사항",
+      "score": 28.734
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:37",
+      "law": "기준규칙",
+      "articleNumber": "37",
+      "title": "악천후 및 강풍 시 작업 중지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제37조(악천후 및 강풍 시 작업 중지)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:38",
+      "law": "기준규칙",
+      "articleNumber": "38",
+      "title": "사전조사 및 작업계획서의 작성 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제38조(사전조사 및 작업계획서의 작성 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:39",
+      "law": "기준규칙",
+      "articleNumber": "39",
+      "title": "작업지휘자의 지정",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제39조(작업지휘자의 지정)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:40",
+      "law": "기준규칙",
+      "articleNumber": "40",
+      "title": "신호",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제40조(신호)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:92",
+      "law": "기준규칙",
+      "articleNumber": "92",
+      "title": "정비 등의 작업 시의 운전정지 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제92조(정비 등의 작업 시의 운전정지 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:98",
+      "law": "기준규칙",
+      "articleNumber": "98",
+      "title": "제한속도의 지정 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제98조(제한속도의 지정 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:99",
+      "law": "기준규칙",
+      "articleNumber": "99",
+      "title": "운전위치 이탈 시의 조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제99조(운전위치 이탈 시의 조치)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:37",
+      "law": "기준규칙",
+      "articleNumber": "37",
+      "title": "악천후 및 강풍 시 작업 중지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제37조(악천후 및 강풍 시 작업 중지)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:38",
+      "law": "기준규칙",
+      "articleNumber": "38",
+      "title": "사전조사 및 작업계획서의 작성 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제38조(사전조사 및 작업계획서의 작성 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:39",
+      "law": "기준규칙",
+      "articleNumber": "39",
+      "title": "작업지휘자의 지정",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제39조(작업지휘자의 지정)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:40",
+      "law": "기준규칙",
+      "articleNumber": "40",
+      "title": "신호",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제40조(신호)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:92",
+      "law": "기준규칙",
+      "articleNumber": "92",
+      "title": "정비 등의 작업 시의 운전정지 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제92조(정비 등의 작업 시의 운전정지 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:98",
+      "law": "기준규칙",
+      "articleNumber": "98",
+      "title": "제한속도의 지정 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제98조(제한속도의 지정 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:99",
+      "law": "기준규칙",
+      "articleNumber": "99",
+      "title": "운전위치 이탈 시의 조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제99조(운전위치 이탈 시의 조치)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-10-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

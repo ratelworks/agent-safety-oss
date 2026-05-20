@@ -1,0 +1,20 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:all_workplace",
+  "@type": "Applicability",
+  "label": "모든 사업장 (위험성평가 등 공통 의무)",
+  "condition": {
+    "var": "workforce",
+    "op": ">=",
+    "value": 1
+  },
+  "legalBasis": [
+    "art:산안법:36"
+  ],
+  "legalWeight": "mandatory",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/render_a2ui_form",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "A2UI 안전문서 입력 폼 렌더",
+      "@language": "ko"
+    },
+    {
+      "@value": "Render A2ui Form",
+      "@language": "en"
+    }
+  ],
+  "description": "프로젝트 메타, A2UI 렌더링, 로컬 초안·보관소 상태를 관리하는 capability. docId 를 받아 그래프 노드의 작성 필드를 A2UI v0.9 JSONL 폼 정의로 변환한다. profile.jsonld 자동 채움. Claude Desktop·MCP Inspector 등 A2UI 호환 클라이언트가 직접 렌더링하여 사용자 입력 → generate_safety_document 호출. 동적 입력 필드 협업의 진입점.",
+  "toolName": "render_a2ui_form",
+  "category": "meta",
+  "inputSchema": "safety:schema/input/render_a2ui_form",
+  "producesEntity": [
+    "safety:A2UIForm"
+  ],
+  "maps_to_action": "safety:action/render_a2ui_form",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

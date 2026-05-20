@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_bridge_5m_30m",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_bridge_5m_30m",
+  "title": "struck_by × bridge_5m_30m",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 struck_by 작업유형 bridge_5m_30m.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:bridge_5m_30m"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "가설교량 상부에서 운반중이던 합판에 충돌",
+    "이동식 크레인의 wire rope가 22.9kv 전선에 접촉되어 사망",
+    "교각보수작업 후 철길로 올라오다 전동차에"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "docId": "work_plan",
+  "cycle": "cyc:ad_hoc",
+  "title": "작업계획서 (산안기준규칙 제38조 별표4 13종)",
+  "alternativeNames": [
+    "작업계획서 13종",
+    "위험작업 작업계획서"
+  ],
+  "purpose": "산안기준규칙 제38조 별표4 가 정한 13종 작업 시 사업주가 사전조사·작업계획서를 작성하고 근로자에게 알려야 하는 의무. 13종 외에도 위험작업은 자체 작성 권장.",
+  "legalBasis": [
+    "art:기준규칙:38",
+    "art:기준규칙:39",
+    "art:산안법:38",
+    "art:산안법:164"
+  ],
+  "legalBasisDetails": [
+    {
+      "law": "산업안전보건기준에 관한 규칙",
+      "article": "§38",
+      "text": "사전조사 및 작업계획서의 작성 등 — 사업주는 별표 4의 작업을 할 때 작업계획서를 작성하고 그 계획에 따라 작업하도록 하여야 한다"
+    },
+    {
+      "law": "산안기준규칙",
+      "article": "별표 4",
+      "text": "작업계획서 작성 대상 13종 — 1.차량계 하역운반기계 등을 사용하는 작업, 2.차량계 건설기계 사용, 3.화학설비 정비·보수, 4.제406조 전기 작업, 5.굴착작업, 6.터널굴착작업, 7.교량 인장·교각·교대 작업, 8.채석작업, 9.해체작업, 10.중량물 취급, 11.궤도와 그 밖의 관련 설비의 보수·점검 작업, 12.입환작업, 13.그 밖에 (생략)"
+    }
+  ],
+  "appliesToActivity": [
+    "activity:tower_crane",
+    "activity:tower_assembly",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction",
+    "activity:machinery_repair",
+    "activity:chemical_handling",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:excavation_2m_plus",
+    "activity:tunnel_excavation",
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:phc_pile_driving",
+    "activity:formwork_shoring",
+    "activity:steel_erection",
+    "activity:precast_installation",
+    "activity:rc_concrete",
+    "activity:concrete_work"
+  ],
+  "requiredFields": [
+    {
+      "key": "required_01",
+      "label": "작업명",
+      "source": "art:기준규칙:38",
+      "description": "별표4 13종 중 어떤 작업인지 구체적으로 명시 (예: 굴착작업, 타워크레인 설치, 해체작업 등). 13종 외 자체 위험작업도 작업명에 구분 명시.",
+      "guidance": "단순 '굴착'이 아니라 '도심지 신축 현장 지하구조물 굴착 작업 (깊이 3m)'처럼 위치·규모·방법을 포함. 작업 범위가 명확해야 후속 사전조사·안전조치 정확.",
+      "example": "도심지 지하 1층 신축 굴착 작업 (깊이 3m, 면적 200㎡)",
+      "blanks": ["작업종류(별표4 13종 중)", "작업위치", "작업규모(깊이/높이/면적)", "주요공법"],
+      "commonErrors": ["13종 외 자체 위험작업을 누락", "작업 규모 미명시 시 안전조치 산정 불가"]
+    },
+    {
+      "key": "required_02",
+      "label": "작업일자·시간·장소",
+      "source": "art:기준규칙:38",
+      "description": "작업 시작일·종료일·일별 시간대·정확한 위치. 야간·악천후 작업 시 별도 추가 안전조치 의무 발생.",
+      "guidance": "시작·종료일을 명시해야 안전관리자 입회 시간·점검 주기 결정 가능. 야간(일몰~일출)·강우 작업 시 §339 추가 안전조치 의무.",
+      "example": "2026-05-19 ~ 05-23 (5일간), 08:00~17:00 / 서울 강남구 OO 신축현장 지하 1층",
+      "blanks": ["시작일", "종료일", "일별 작업시간", "정확한 위치(주소·구역)"],
+      "commonErrors": ["야간작업 시 추가 안전조치 누락", "위치를 '현장'만 적고 구역 미명시"]
+    },
+    {
+      "key": "required_03",
+      "label": "작업 책임자",
+      "source": "art:기준규칙:38",
+      "description": "작업지휘자(§340)와 작업책임자. 굴착작업 시 §340 의거 지휘자 배치 의무. 책임자는 안전관리자 자격 또는 해당 작업 경력 보유자.",
+      "guidance": "굴착작업·차량계 건설기계 등은 §340/§344 따라 지휘자 배치. 책임자와 지휘자가 다를 수 있음(책임자=관리감독, 지휘자=현장 신호·통제). 모두 성명+자격+연락처.",
+      "example": "작업책임자: 홍길동 (안전관리자 자격, 010-XXXX-XXXX) / 작업지휘자: 김철수 (10년 굴착 경력)",
+      "blanks": ["작업책임자 성명·자격·연락처", "작업지휘자 성명·자격(굴착/차량계 시)"],
+      "commonErrors": ["지휘자 미배치 시 §340 위반", "자격·경력 미기재 시 적격성 검증 불가"]
+    },
+    {
+      "key": "required_04",
+      "label": "작업자 명단",
+      "source": "art:기준규칙:38",
+      "description": "모든 작업 참여자 명단 + 특수면허 보유자(굴착기·기중기·신호수)는 면허번호 명시 + 보호구 착용 확인 서명.",
+      "guidance": "면허 필수 작업(굴착기/기중기/타워크레인 등)은 면허번호·유효기간 함께 명시. 미기재 시 무자격 작업 추정 → §168 위반.",
+      "example": "굴착작업자 5명 / 백호우 운전 1명 (건설기계 면허 21-XXXX-XXXX) / 신호수 2명 / 보호구 일괄 서명",
+      "blanks": ["작업자명단(인원수+성명)", "면허보유자(면허번호+유효기간)", "보호구 착용 확인 서명"],
+      "commonErrors": ["면허 미보유자가 면허 필요 작업 수행", "보호구 서명 누락"]
+    },
+    {
+      "key": "required_05",
+      "label": "사전조사 결과",
+      "source": "art:기준규칙:338",
+      "description": "기준규칙 §338(굴착작업 사전조사 등) — 지반 조사·매설물 조사·인근 시설 조사. 굴착작업 외 작업도 해당 작업 위험 사전조사 의무.",
+      "guidance": "굴착작업: ① 지반(토질·지하수위·인접구조물), ② 매설물(가스/전기/통신/상하수도 위치·도면 첨부), ③ 인근 시설(도로/보도/건물 5m 이내 통제 계획). 매설물 미조사 시 §341 위반 + 중대재해 위험.",
+      "example": "지반: 점성토, 지하수위 -1.5m, 인접 5층 건물 5m 이격 / 매설물: 가스관 2m 깊이 (한국가스공사 도면 첨부) / 인근 도보 1.5m 통제",
+      "blanks": ["지반조사(토질·지하수·인접구조물)", "매설물 조사(종류·위치·도면)", "인근시설(도로/건물 이격·통제계획)"],
+      "commonErrors": ["매설물 도면 없이 굴착 → 가스·전선 절단 사고", "지하수위 미조사 → 굴착면 붕괴 위험"]
+    },
+    {
+      "key": "required_06",
+      "label": "작업방법·순서",
+      "source": "art:기준규칙:38",
+      "description": "단계별 작업 방법과 순서. 굴착의 경우 안전기울기(§339)·흙막이 지보공(§345/§346) 등 핵심 안전 조치를 순서에 포함.",
+      "guidance": "단계별 번호 매기기. 각 단계마다 적용 법령 조문 명시. 굴착작업은: ①사전조사 → ②안전기울기/흙막이 시공 → ③단계 굴착 → ④지보공 → ⑤계측 → ⑥일일 점검 순.",
+      "example": "1) 매설물 표시 / 2) 흙막이 H-Pile 시공 (기울기 1:0.5, §339) / 3) 깊이 1m 단계 굴착 / 4) 토류판 설치 (§345) / 5) 계측기 설치 (C-103-2014) / 6) 일일 계측 기록",
+      "blanks": ["단계별 작업 순서(번호)", "각 단계 적용 법령 조문", "단계별 검측 포인트"],
+      "commonErrors": ["순서 없이 작업 → 단계 누락", "법령 미인용 → 검수 시 적정성 판단 불가"]
+    },
+    {
+      "key": "required_07",
+      "label": "안전조치·보호구",
+      "source": "art:기준규칙:38",
+      "description": "각 위험요인별 안전조치 + 작업자 보호구. 굴착작업은 §339~§350 전반 적용. 위험 종류별로 control(공학적·관리적·보호구) 매칭.",
+      "guidance": "위험요인 1개당 안전조치 최소 1개 매칭. 보호구는 작업별 필수 등급 명시(예: 안전모 MA형, 안전대 추락방지용). control 노드 활용해서 hierarchical (제거→대체→공학→관리→보호구) 순으로 적용.",
+      "example": "지반붕괴: 흙막이 지보공(§345), 안전기울기 1:0.5(§339), 계측 모니터링(C-103-2014) / 추락: 안전난간·안전대 / 매설물 충돌: §341 매설물 보호조치 / 보호구: 안전모(MA형), 안전화, 안전대(추락방지용), 보안경, 안전조끼",
+      "blanks": ["위험요인별 안전조치(공학·관리·보호구)", "보호구 종류·등급 명시", "근거 법령·KOSHA Guide"],
+      "commonErrors": ["보호구만 적고 공학적 대책 누락", "위험 1건당 조치 1건 미만"]
+    },
+    {
+      "key": "required_08",
+      "label": "비상 연락망",
+      "source": "art:기준규칙:38",
+      "description": "사고 발생 시 즉시 연락할 내부·외부 연락처. 24시간 가동 가능한 번호 필수.",
+      "guidance": "필수 포함: 안전관리자, 회사 본사 안전팀, 응급의료기관(인근 병원 주소+119), 작업종류별 전문기관(가스→한국가스공사, 전기→한전, 화재→119+소방서). 굴착작업은 매설물 사업자 비상번호 필수.",
+      "example": "안전관리자: 010-XXXX-XXXX / 응급의료: 강남세브란스병원(02-XXXX-XXXX), 119 / 한국가스공사: 1544-4500 / 한전: 123 / 본사 안전팀: 02-XXXX-XXXX",
+      "blanks": ["안전관리자 직통", "인근 응급의료기관", "작업별 전문기관(가스/전기/소방)", "회사 본사 안전팀"],
+      "commonErrors": ["119만 적고 매설물 사업자 누락", "안전관리자 휴대전화 누락"]
+    }
+  ],
+  "penaltyOnMissing": "art:산안법:175 (작업계획서 미작성·미보존 과태료) / art:산안법:168 (안전조치 위반 벌칙)",
+  "riskFactors": [
+    "별표4 대상작업의 추락·낙하·전도·붕괴",
+    "굴착 지반·매설물 위험",
+    "중량물·장비 작업 충돌 위험"
+  ],
+  "applicability": {
+    "appliesTo": "별표 4 의 13종 작업 수행 시 모든 사업장",
+    "exemptedFrom": [],
+    "scaleNotes": "50인 미만 + 50억 미만 건설현장도 동일 적용. 해당 작업 1건이라도 발생 시 의무."
+  },
+  "retention": "3년 (산안법 제164조)",
+  "standardForm": {
+    "source": "산안기준규칙 제38조 + KOSHA Guide 작업별 안내",
+    "sourceUrl": "https://www.law.go.kr/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=1029039625",
+    "requiredFields": [
+      "작업명 (별표 4 13종 중 해당)",
+      "작업일자·시간·장소",
+      "작업 책임자 (성명·자격)",
+      "작업자 명단",
+      "사전조사 결과 (작업장 상태·기상·지반·전선·매설물 등 작업별 조사항목)",
+      "작업방법·순서",
+      "주요 위험요인",
+      "안전조치·필요 장비·보호구",
+      "작업 중지 기준 (기상·이상 상황)",
+      "비상 연락망"
+    ]
+  },
+  "writingGuide": {
+    "fieldHints": {
+      "별표 4 13종 매핑": "tower_crane / vehicle_construction / chemical / electric / excavation / tunnel / bridge / quarry / demolition / heavy_lifting / railway_maintenance / railway_shunting / other",
+      "사전조사": "작업별 표준 항목 (예: 굴착 → 토질·지하수·매설물·기상)",
+      "작업 중지 기준": "강풍 10m/s 초과·강우 50mm/h 초과 등 정량 기준"
+    },
+    "commonMistakes": [
+      "작업 책임자 자격 미명시 (예: 굴착 → 굴착기 면허)",
+      "사전조사 항목을 '확인함' 만 적고 결과 미기재",
+      "작업 중지 기준을 '날씨 나쁘면' 같이 모호하게",
+      "13종 중 어느 것에 해당하는지 미명시"
+    ],
+    "bestPractices": [
+      "get_work_plan_schema({workType}) 로 13종별 표준 양식 호출",
+      "compile_safety_references({workType, docType:'work_plan'}) 로 관련 법령·KOSHA Guide 자동 묶음",
+      "작업 책임자 자격증 사본 첨부",
+      "작업 위치 도면 첨부 (지하매설물 표시)"
+    ]
+  },
+  "examples": [
+    {
+      "title": "KOSHA Guide 작업계획서 작성례 (작업별)",
+      "source": "안전보건공단",
+      "license": "공공누리 (자료별 확인 필요)"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 작업명 (별표 4 13종 중 해당)",
+      "severity": "blocker",
+      "legalBasis": "산안기준규칙 §38 + 별표 4"
+    },
+    {
+      "rule": "필수 — 작업 책임자 자격",
+      "severity": "blocker"
+    },
+    {
+      "rule": "필수 — 사전조사 결과 (작업별 표준 항목)",
+      "severity": "blocker",
+      "legalBasis": "산안기준규칙 §38"
+    },
+    {
+      "rule": "필수 — 작업 중지 기준 (정량)",
+      "severity": "blocker"
+    },
+    {
+      "rule": "필수 — 비상 연락망",
+      "severity": "blocker"
+    }
+  ],
+  "relatedTools": [
+    "get_work_plan_schema({workType})  // 13종별 양식",
+    "compile_safety_references({workType, docType:'work_plan'})",
+    "search_safety_laws({keyword:'제38조'})",
+    "search_kosha_archive({keyword, shpCd:'01'})  // 책자",
+    "review_safety_document({docId:'risk_assessment', draft})  // Phase B 에서 work_plan 확장 예정"
+  ]
+}

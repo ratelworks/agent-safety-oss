@@ -1,0 +1,277 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/legal_summary_posting",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "legal_summary_posting",
+  "title": "법령 요지 게시",
+  "description": "산안법 제34조에 따라 사업주가 산업안전보건법령 요지 + 안전보건관리규정 요지(해당 시)를 근로자가 항상 볼 수 있는 장소에 게시·비치. 50억 미만 건설현장도 의무.",
+  "cycle": "cyc:annual",
+  "trigger": "법령 개정 시 + 신규 사업장 + 연 1회 점검",
+  "legalBasis": [
+    "art:산안법:34",
+    "art:산안법시행규칙:11",
+    "art:산안법:175"
+  ],
+  "requiredFields": [
+    {
+      "key": "siteName",
+      "label": "사업장명",
+      "source": "산안법 제34조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "postingLocation",
+      "label": "게시 장소",
+      "source": "산안법 제34조",
+      "inputGuide": "근로자가 쉽게 볼 수 있는 장소 (출입구·휴게실·식당).",
+      "examples": [
+        "현장 출입구 + 1층 휴게실 + 2층 식당 (총 3개소)"
+      ]
+    },
+    {
+      "key": "lawSummary",
+      "label": "산업안전보건법령 요지",
+      "source": "산안법 제34조",
+      "inputGuide": "산안법령 요지 게시 (산안법 제34조).",
+      "examples": [
+        "산안법 + 시행령 + 시행규칙 요지 (한국산업안전보건공단 표준 양식 사용)"
+      ]
+    },
+    {
+      "key": "safetyHealthPolicy",
+      "label": "안전보건관리규정 요지 (해당 시)",
+      "source": "산안법 제34조",
+      "inputGuide": "안전보건관리규정 요지 (상시근로자 100명 이상 의무, 제25조).",
+      "examples": [
+        "해당 (상시 52명 — 의무 대상은 아니나 자율 게시)"
+      ]
+    },
+    {
+      "key": "postingDate",
+      "label": "게시 일자",
+      "source": "산안법 제34조",
+      "inputGuide": "게시 시작일.",
+      "examples": [
+        "2026-03-15"
+      ]
+    },
+    {
+      "key": "ownerSignature",
+      "label": "사업주 서명·날인",
+      "source": "산안법 제34조",
+      "inputGuide": "법인 대표 또는 위임받은 안전보건책임자.",
+      "examples": [
+        "황한일 (대표)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "산안법·기준규칙 모두 게시",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:34"
+    },
+    {
+      "rule": "법령 개정 반영 (1년 내)",
+      "severity": "warning"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 게시 법령 요지",
+      "legalSource": "산안법 제34조",
+      "fields": [
+        {
+          "key": "postingItems",
+          "label": "게시 항목",
+          "required": true,
+          "inputGuide": "산안법·시행령·시행규칙·기준규칙·중처법 요지 + 위반 시 처벌.",
+          "examples": [
+            "산안법 제29조 안전보건교육 / 제36조 위험성평가 / 제54조 사고 보고 / 제57조 산재 발생 보고"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "postingLocation",
+          "label": "게시 장소",
+          "required": true,
+          "inputGuide": "근로자 잘 보이는 장소.",
+          "examples": [
+            "A동 1층 출입구 안전보건 게시판 + 식당"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "postingDate",
+          "label": "게시 시작 일자",
+          "required": true,
+          "inputGuide": "현장 개설 시 즉시 게시.",
+          "examples": [
+            "2026-03-01"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "art:산안법:175",
+  "retention": "지속",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:34",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "법령 게시",
+      "법령 요지",
+      "근로자 알림"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "rebuiltAt": "2026-04-29",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "5인 이상 사업장 법령 요지 게시 의무."
+  },
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "src:law_go_kr",
+    "entity:moleg",
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "standardForm": {
+    "source": "산업안전보건법 제34조 + 시행규칙 제11조 (게시·비치 의무)",
+    "officialNote": "별지 양식 없음. KOSHA·고용노동부에서 권장 게시 자료 제공.",
+    "verifiedBy": "산안법 제34조 본문 매핑",
+    "requiredFields": [
+      "사업장명",
+      "게시 장소",
+      "산업안전보건법령 요지",
+      "안전보건관리규정 요지",
+      "게시 일자",
+      "사업주 서명"
+    ]
+  },
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_safety_education"
+  ],
+  "relatedDocs": [
+    "doc:monthly/monthly_education_log",
+    "doc:annual/safety_health_management_policy"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

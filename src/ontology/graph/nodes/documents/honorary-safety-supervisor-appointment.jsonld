@@ -1,0 +1,272 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/honorary_safety_supervisor_appointment",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "honorary_safety_supervisor_appointment",
+  "title": "명예산업안전감독관 위촉",
+  "description": "산안법 제23조 명예산업안전감독관 위촉. 근로자단체·사업주단체·산업재해 예방 관련 전문단체 추천. 임기 2년·갱신 가능.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "명예감독관 위촉·갱신 시",
+  "legalBasis": [
+    "art:산안법:23",
+    "art:산안법시행령:32"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "고용노동부장관 위촉. 근로자단체·사업주단체 추천."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "위촉 명령 없음 (자율 위촉 아님)"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안법 제23조 + 시행령 제32조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "appointmentDate",
+      "label": "위촉 일자",
+      "source": "산안법 제23조 + 시행령 제32조",
+      "inputGuide": "명예산업안전감독관 위촉 일자.",
+      "examples": [
+        "2026-04-01"
+      ]
+    },
+    {
+      "key": "f_2_위촉_대상__성명_소속",
+      "label": "위촉 대상 (성명·소속·직책)",
+      "source": "산안법 제23조 + 시행령 제32조",
+      "inputGuide": "위촉 대상 성명 + 소속 + 직책. 근로자 중 선출 (산안법 제23조).",
+      "examples": [
+        "이작업 (황룡건설(주) 철근반장, 근로자대표)"
+      ]
+    },
+    {
+      "key": "f_3_활동_범위",
+      "label": "활동 범위",
+      "source": "산안법 제23조 + 시행령 제32조",
+      "inputGuide": "명예산업안전감독관 활동 범위 (점검·신고·교육 참여).",
+      "examples": [
+        "주 1회 사업장 순회 점검 + 위험요인 신고 + 안전교육 강사 보조"
+      ]
+    },
+    {
+      "key": "f_4_임기",
+      "label": "임기",
+      "source": "산안법 제23조 + 시행령 제32조",
+      "inputGuide": "위촉 기간. 시작일 ~ 종료일 (보통 1년 또는 2년).",
+      "examples": [
+        "2026-04-01 ~ 2027-03-31 (1년)"
+      ]
+    },
+    {
+      "key": "f_5_사업주_서명",
+      "label": "사업주 서명",
+      "source": "산안법 제23조 + 시행령 제32조",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 위촉장 + 추천 단체 명시",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:23"
+    },
+    {
+      "rule": "필수 — 임기 2년 + 갱신 절차",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행령:32"
+    }
+  ],
+  "references": [
+    "annex:산안법시행규칙:서식90의2",
+    "annex:산안법시행규칙:서식90의3"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 명예산업안전감독관 위촉",
+      "legalSource": "산안법 시행령 제32조",
+      "fields": [
+        {
+          "key": "supervisorName",
+          "label": "감독관 성명",
+          "required": true,
+          "inputGuide": "위촉 대상자 성명.",
+          "examples": [
+            "홍감독"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "affiliation",
+          "label": "소속 / 직위",
+          "required": true,
+          "inputGuide": "근로자 측 대표 또는 노조.",
+          "examples": [
+            "황룡건설 근로자대표 / 작업반장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "term",
+          "label": "임기",
+          "required": true,
+          "inputGuide": "3년 (시행령 제32조 ②).",
+          "examples": [
+            "2026-05-01 ~ 2029-04-30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "duties",
+          "label": "직무 범위",
+          "required": true,
+          "inputGuide": "안전보건 점검·개선건의·재해 조사 참여.",
+          "examples": [
+            "월간 점검 입회·교육 자료 제공·재해 발생 조사"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_supervisor"
+  ],
+  "relatedDocs": [
+    "doc:quarterly/safety_health_committee"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

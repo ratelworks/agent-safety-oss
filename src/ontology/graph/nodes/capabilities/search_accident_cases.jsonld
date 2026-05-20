@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_accident_cases",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "국내재해사례 검색 (15121001)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Accident Cases",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 재해사례와 사고사망 데이터를 검색하고 사고 첨부 자료를 조회하는 capability. KOSHA 국내재해사례 게시판(15121001, /disaster_api)에서 업종·키워드로 유사 재해사례를 검색한다. 응답에 boardno 가 포함되며, 이를 get_accident_case_attachments 에 넘기면 첨부 이미지·도면을 추가 조회할 수 있다. (근거 등급: reference)",
+  "toolName": "search_accident_cases",
+  "category": "accident_search",
+  "inputSchema": "safety:schema/input/search_accident_cases",
+  "producesEntity": [
+    "safety:AccidentCase"
+  ],
+  "maps_to_action": "safety:action/search_accident_cases",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

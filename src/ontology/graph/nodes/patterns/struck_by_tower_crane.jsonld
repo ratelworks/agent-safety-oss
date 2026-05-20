@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_tower_crane",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_tower_crane",
+  "title": "struck_by × tower_crane",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 6건 관측. 사고유형 struck_by 작업유형 tower_crane.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:tower_crane"
+  ],
+  "caseFrequency": 6,
+  "sampleKeywords": [
+    "타워크레인 설치작업 중 전도",
+    "타워크레인 설치작업 중 전도",
+    "활선상태에서 작업중 감전"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

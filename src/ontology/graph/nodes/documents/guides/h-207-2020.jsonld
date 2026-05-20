@@ -1,0 +1,210 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-207-2020",
+  "@type": "Document",
+  "docId": "kosha_guide_h-207-2020",
+  "title": "납과 그 무기화학물 노출 근로자의 혈중 납 관리수준 평가지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-207-2020",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). keyword=\"납과 그 무기화\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 4,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "납과 그 무기화",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:39",
+      "law": "기준규칙",
+      "articleNumber": "39",
+      "title": "작업지휘자의 지정",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제 39조(보건조치), 산업안전보건기준에 관한 규칙",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:420",
+      "law": "기준규칙",
+      "articleNumber": "420",
+      "title": "정의",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "제 420조, 산업안전보건기준에 관한 규칙 [별표12] 제2호",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:15",
+      "law": "산안법",
+      "articleNumber": "15",
+      "title": "안전보건관리책임자",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제15조(안전보건관리책임자), 제18조(보건관리자)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:18",
+      "law": "산안법",
+      "articleNumber": "18",
+      "title": "보건관리자",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제15조(안전보건관리책임자), 제18조(보건관리자)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:22",
+      "law": "산안법",
+      "articleNumber": "22",
+      "title": "산업보건의",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제22조(산업보건의) 같은 법 시행령 제31조",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:31",
+      "law": "산안법",
+      "articleNumber": "31",
+      "title": "건설업 기초안전보건교육",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제22조(산업보건의) 같은 법 시행령 제31조",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:130",
+      "law": "산안법",
+      "articleNumber": "130",
+      "title": "특수건강진단 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제130조(특수건강진단 등) 같은 법 시행규칙 제200조",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:39",
+      "law": "기준규칙",
+      "articleNumber": "39",
+      "title": "작업지휘자의 지정",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제 39조(보건조치), 산업안전보건기준에 관한 규칙",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:420",
+      "law": "기준규칙",
+      "articleNumber": "420",
+      "title": "정의",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "제 420조, 산업안전보건기준에 관한 규칙 [별표12] 제2호",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:15",
+      "law": "산안법",
+      "articleNumber": "15",
+      "title": "안전보건관리책임자",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제15조(안전보건관리책임자), 제18조(보건관리자)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:18",
+      "law": "산안법",
+      "articleNumber": "18",
+      "title": "보건관리자",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제15조(안전보건관리책임자), 제18조(보건관리자)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:22",
+      "law": "산안법",
+      "articleNumber": "22",
+      "title": "산업보건의",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제22조(산업보건의) 같은 법 시행령 제31조",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:31",
+      "law": "산안법",
+      "articleNumber": "31",
+      "title": "건설업 기초안전보건교육",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제22조(산업보건의) 같은 법 시행령 제31조",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:130",
+      "law": "산안법",
+      "articleNumber": "130",
+      "title": "특수건강진단 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제130조(특수건강진단 등) 같은 법 시행규칙 제200조",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-207-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

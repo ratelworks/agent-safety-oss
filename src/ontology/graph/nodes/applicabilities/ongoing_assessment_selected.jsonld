@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:ongoing_assessment_selected",
+  "@type": "Applicability",
+  "label": "상시평가 선택 사업장 (위험성평가 고시 §15 ④)",
+  "condition": {
+    "all": [
+      { "var": "ongoingAssessmentSelected", "op": "==", "value": true }
+    ]
+  },
+  "legalBasis": [
+    "art:위험성평가-고시:15",
+    "art:산안법:36"
+  ],
+  "legalWeight": "recommended",
+  "exemptionNote": "최초·정기 평가 외 상시평가를 선택한 사업장만 적용",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-26",
+    "updatedAt": "2026-05-20",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "v1.3.x 결정론 룰 보강 — title/condition string → 정식 ApplicabilityShape 적합. 위험성평가 고시 §15 ④: 최초·정기·수시평가 외 상시평가 선택 시 매일·매주·매월 단위로 점검 가능"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-95-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_g-95-2012",
+  "title": "산업현장의 안전디자인 적용에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-95-2012",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 2건 (법령 0 / KOSHA Guide 2). keyword=\"산업현장\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 35,
+      "7": 2,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "산업현장"
+  },
+  "causedBy": [
+    "hazard:chemical_burn",
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_isolation_barrier",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:admin_emergency_plan",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_접지도체의 연결점에 관한 기술지침_1",
+      "title": "접지도체의 연결점에 관한 기술지침 - 목적",
+      "score": 36.205
+    },
+    {
+      "docId": "KOSHA07_리스크 관리 원칙 및 위험성평가 활용에 관한 지침_3",
+      "title": "리스크 관리 원칙 및 위험성평가 활용에 관한 지침 - 용어의 정의",
+      "score": 22.147
+    }
+  ]
+}

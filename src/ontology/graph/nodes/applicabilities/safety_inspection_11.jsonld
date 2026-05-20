@@ -1,0 +1,35 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:safety_inspection_11",
+  "@type": "Applicability",
+  "label": "안전검사 대상 11종 (산안법 §93)",
+  "condition": {
+    "any": [
+      { "var": "machineType", "op": "in", "value": [
+        "프레스", "전단기", "크레인", "리프트", "압력용기", "곤돌라",
+        "국소배기장치", "원심기", "롤러기", "사출성형기", "고소작업대"
+      ]},
+      { "var": "requiresSafetyInspection", "op": "==", "value": true }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:93",
+    "art:산안법시행령:78"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "정기 안전검사 미실시 시 산안법 §170 과태료",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "고용노동부 + 한국산업안전보건공단",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건법",
+    "fetchedAt": "2026-04-28",
+    "updatedAt": "2026-05-20",
+    "items": [
+      "프레스", "전단기", "크레인(2t 이상)", "리프트", "압력용기", "곤돌라",
+      "국소배기장치", "원심기", "롤러기", "사출성형기", "고소작업대"
+    ],
+    "itemCount": 11,
+    "note": "v1.3.x condition + legalWeight 보강"
+  },
+  "description": "사용 사업주가 정기적으로 받는 안전검사. 합격증(검사필증) 부착 의무."
+}

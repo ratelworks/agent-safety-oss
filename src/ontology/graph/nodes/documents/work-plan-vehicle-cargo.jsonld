@@ -1,0 +1,245 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_vehicle_cargo",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_vehicle_cargo",
+  "title": "차량계 하역운반 작업계획서",
+  "description": "지게차·트럭 등 차량계 하역운반기계 사용 작업 (도로 주행 제외, 별표 4 2호)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "차량계 하역운반기계 사용 작업 전",
+  "applicableWhen": {
+    "workType": "vehicle_cargo"
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-2호",
+    "art:기준규칙:168"
+  ],
+  "requiredFields": [
+    {
+      "key": "preventionMeasures",
+      "label": "추락·낙하·전도·협착·붕괴 위험 예방대책",
+      "source": "산안기준규칙 제38조 + 별표 4 2호",
+      "inputGuide": "5대 위험 예방대책.",
+      "examples": [
+        "추락: 안전대 / 낙하: 두 줄 걸이 / 전도: 아우트리거 / 협착: 통제선 / 붕괴: 지반 다짐"
+      ]
+    },
+    {
+      "key": "routeAndMethod",
+      "label": "운행경로 및 작업방법",
+      "source": "산안기준규칙 제38조 + 별표 4 2호",
+      "inputGuide": "차량계 하역운반기계 운행경로 + 작업방법.",
+      "examples": [
+        "운행경로: 정문 → 야적장 → 작업장 (도면 첨부) / 작업방법: 후진 시 신호수 1명 동반"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "작업계획 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-2호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 차량계 하역운반기계 작업계획서 (별표 4 2호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 2호",
+      "fields": [
+        {
+          "key": "machineList",
+          "label": "투입 하역운반기계",
+          "required": true,
+          "inputGuide": "지게차·트럭크레인·하역장비.",
+          "examples": [
+            "지게차 3톤 × 2대, 트럭크레인 5톤 × 1대"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "cargoInfo",
+          "label": "하역 대상물 (중량·치수)",
+          "required": true,
+          "inputGuide": "자재·기계 등.",
+          "examples": [
+            "철근 코일 2톤 × 30개 + 시멘트 50kg × 200포"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "routeAndMethod",
+          "label": "운반 경로·방법",
+          "required": true,
+          "inputGuide": "적재→이동→하역 경로.",
+          "examples": [
+            "자재창고 → 굴착장 → 1층 적재구역, 편도 80m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "signalPlan",
+          "label": "신호수·통제",
+          "required": true,
+          "inputGuide": "교차로·후진 시.",
+          "examples": [
+            "교차로 신호수 1 + 작업조 안전관리자 입회"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [
+    "doc:kosha_guide/G-100-2013",
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/D-55-2016",
+    "doc:kosha_guide/D-57-2016",
+    "doc:kosha_guide/A-G-18-2026",
+    "doc:kosha_guide/M-153-2012",
+    "doc:kosha_guide/M-49-2023"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "지게차",
+      "차량계 하역",
+      "운반기계"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:fall_object",
+    "hazard:falling_object",
+    "hazard:traffic_accident"
+  ],
+  "appliesToActivities": [
+    "activity:vehicle_cargo"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:admin_signal_person"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

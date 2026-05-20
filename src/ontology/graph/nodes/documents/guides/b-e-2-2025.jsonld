@@ -1,0 +1,114 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/B-E-2-2025",
+  "@type": "Document",
+  "docId": "kosha_guide_b-e-2-2025",
+  "title": "지중전선로의 시공 및 작업 안전에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "B-E-2-2025",
+    "guideCategory": "electric",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 2 / KOSHA Guide 3). keyword=\"지중전선로\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 2,
+      "5": 0,
+      "6": 10,
+      "7": 3,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "지중전선로",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:electric_shock"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm"
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA04_002000001000012000000000221000",
+      "title": "제221조 가스배관 등의 손상 방지",
+      "category": "4",
+      "score": 59.923
+    },
+    {
+      "docId": "KOSHA04_002000004000002000000000342000",
+      "title": "제342조 굴착기계등에 의한 위험방지",
+      "category": "4",
+      "score": 53.373
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_지중케이블 시공시의 작업자 안전에 관한 기술지침_6",
+      "title": "지중케이블 시공시의 작업자 안전에 관한 기술지침 - 지중전선로 이격거리",
+      "score": 34.288
+    },
+    {
+      "docId": "KOSHA07_전선로 및 통신선로의 안전작업에 관한 기술지침_5",
+      "title": "전선로 및 통신선로의 안전작업에 관한 기술지침 - 작업자에 대한 안전규칙",
+      "score": 15.549
+    },
+    {
+      "docId": "KOSHA07_건설기계 안전보건작업지침_5",
+      "title": "건설기계 안전보건작업지침 - 기초공사용 건설기계",
+      "score": 13.396
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_002000001000012000000000221000",
+      "title": "제221조 가스배관 등의 손상 방지",
+      "category": "4",
+      "score": 59.923
+    },
+    {
+      "docId": "KOSHA04_002000004000002000000000342000",
+      "title": "제342조 굴착기계등에 의한 위험방지",
+      "category": "4",
+      "score": 53.373
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:3장",
+      "law": "기준규칙",
+      "chapterTitle": "금지유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장 (전기로 인한 위험방지)"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제3장 (전기로 인한 위험방지)",
+      "needsNode": true
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+# Dependabot 설정 — 보안 패치 자동 PR
+# 본 OSS 는 한국 건설 안전 데이터를 다루므로 의존성 보안 회귀 차단이 본질적 의무.
+# 주간 batch 로 PR 묶음을 받아 noise 를 줄임.
+
+version: 2
+updates:
+  # npm 의존성 (production + dev)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    groups:
+      # 보안 패치는 묶지 않고 개별 PR (빠른 머지)
+      production-deps:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-deps:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Major 업데이트는 수동 검토 (breaking change 위험)
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "chore(ci)"

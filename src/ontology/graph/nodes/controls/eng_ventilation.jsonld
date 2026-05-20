@@ -1,0 +1,40 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_ventilation",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_ventilation",
+  "label": "환기 설비",
+  "description": "밀폐공간·화학물질·분진 발생 작업에서 국소배기와 전체환기로 산소결핍, 유해가스, 분진 노출을 낮추는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:cement_handling",
+    "activity:chemical_handling",
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:drainage_sewerage",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:rc_concrete",
+    "activity:road_pavement",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "환기",
+      "송풍"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

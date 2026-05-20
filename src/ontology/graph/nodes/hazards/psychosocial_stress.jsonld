@@ -1,0 +1,54 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:psychosocial_stress",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "psychosocial_stress",
+  "label": "직무스트레스·정신건강 (직장내괴롭힘 포함)",
+  "category": "psychosocial",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "직무스트레스",
+      "정신건강",
+      "근로자 스트레스"
+    ],
+    "excludeKeywords": [
+      "급성 스트레스",
+      "조기대응",
+      "PTSD 사후"
+    ],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "constructionApplicability": "건설업 적용 — 산안법 제51조 직장내괴롭힘은 모든 사업장 (건설 포함). KOSHA H-36 중대재해 후 급성 스트레스 / H-37 자살·우울 / H-204 직장 따돌림 가이드는 건설업에 직접 적용.",
+    "updatedAt": "2026-04-28",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:admin_health_check",
+    "control:admin_safety_education",
+    "control:admin_supervisor"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/E-G-2-2025",
+    "doc:kosha_guide/E-G-5-2025",
+    "doc:kosha_guide/H-204-2018"
+  ],
+  "description": "**원인**: 직장 내 괴롭힘 / 과로·장시간 근로 / 중대재해 목격 후 외상 / 고객 폭언.\n**상황**: 건설근로자 자살률 높음 / 야간·연속 근로 / 사망사고 다발 현장 / 고객 응대 직군.\n**확인**: 산안법 제51조 (직장 내 괴롭힘 예방) / 제41조 (고객 폭언 — 감정노동) / KOSHA H-37 (자살·우울증 예방) / H-204 (직장 따돌림).\n**중대성**: 우울 / 자살 / PTSD / 만성 스트레스성 질환.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/21"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/E-G-2-2025",
+    "doc:kosha_guide/E-G-5-2025",
+    "doc:kosha_guide/H-204-2018"
+  ]
+}

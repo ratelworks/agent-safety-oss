@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_harness",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_harness",
+  "label": "안전대",
+  "description": "비계·철골·지붕·외벽 등 고소작업에서 추락 시 신체를 지지하기 위해 착용하는 개인보호구 통제.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:facade_work",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:formwork_shoring",
+    "activity:precast_installation",
+    "activity:rc_concrete",
+    "activity:roofing",
+    "activity:scaffolding_assembly",
+    "activity:steel_erection",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "안전대"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

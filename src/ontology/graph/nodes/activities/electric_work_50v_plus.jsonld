@@ -1,0 +1,160 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:electric_work_50v_plus",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "전기작업 (50V 또는 250VA 초과)",
+  "category": "electric",
+  "annexReference": "annex:기준규칙:별표4-5호",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/별표4",
+    "fetchedAt": "2026-04-26",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "건설 안전 도메인 매트릭스 기반 hasHazard/regulatedBy 일괄 채움. 작업 활동(work activity) 만 채움.",
+    "graphAugmentedAt": "2026-04-28",
+    "graphAugmentationNote": "일반 hazard 보강 — trip_slip/heat/cold/ergonomic/msd 추가 (모든 작업에 해당하는 일반 위험요인)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire_explosion"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-1-2025",
+    "doc:kosha_guide/B-E-10-2026",
+    "doc:kosha_guide/B-E-11-2026",
+    "doc:kosha_guide/B-E-12-2026",
+    "doc:kosha_guide/B-E-13-2026",
+    "doc:kosha_guide/B-E-14-2026",
+    "doc:kosha_guide/B-E-15-2026",
+    "doc:kosha_guide/B-E-16-2026",
+    "doc:kosha_guide/B-E-19-2026",
+    "doc:kosha_guide/B-E-21-2026",
+    "doc:kosha_guide/B-E-3-2025",
+    "doc:kosha_guide/B-E-4-2025",
+    "doc:kosha_guide/B-E-6-2025",
+    "doc:kosha_guide/B-E-7-2025",
+    "doc:kosha_guide/B-E-9-2026",
+    "doc:kosha_guide/D-57-2016",
+    "doc:kosha_guide/D-6-2012",
+    "doc:kosha_guide/D-C-5-2025",
+    "doc:kosha_guide/E-100-2021",
+    "doc:kosha_guide/E-103-2011",
+    "doc:kosha_guide/E-104-2011",
+    "doc:kosha_guide/E-111-2011",
+    "doc:kosha_guide/E-121-2012",
+    "doc:kosha_guide/E-123-2012",
+    "doc:kosha_guide/E-134-2013",
+    "doc:kosha_guide/E-142-2013",
+    "doc:kosha_guide/E-158-2017",
+    "doc:kosha_guide/E-163-2017",
+    "doc:kosha_guide/E-164-2017",
+    "doc:kosha_guide/E-168-2018",
+    "doc:kosha_guide/E-171-2018",
+    "doc:kosha_guide/E-173-2018",
+    "doc:kosha_guide/E-178-2020",
+    "doc:kosha_guide/E-179-2020",
+    "doc:kosha_guide/E-181-2020",
+    "doc:kosha_guide/E-182-2021",
+    "doc:kosha_guide/E-184-2021",
+    "doc:kosha_guide/E-186-2021",
+    "doc:kosha_guide/E-188-2021",
+    "doc:kosha_guide/E-19-2012",
+    "doc:kosha_guide/E-2-2012",
+    "doc:kosha_guide/E-20-2012",
+    "doc:kosha_guide/E-3-2012",
+    "doc:kosha_guide/E-36-2012",
+    "doc:kosha_guide/E-41-2012",
+    "doc:kosha_guide/E-44-2012",
+    "doc:kosha_guide/E-46-2013",
+    "doc:kosha_guide/E-58-2013",
+    "doc:kosha_guide/E-6-2012",
+    "doc:kosha_guide/E-66-2012",
+    "doc:kosha_guide/E-77-2015",
+    "doc:kosha_guide/E-80-2011",
+    "doc:kosha_guide/E-85-2017",
+    "doc:kosha_guide/E-94-2011",
+    "doc:kosha_guide/E-97-2022",
+    "doc:kosha_guide/H-92-2012",
+    "doc:kosha_guide/M-137-2023",
+    "doc:kosha_guide/M-153-2012",
+    "doc:kosha_guide/T-16-2021"
+  ],
+  "hasHazard": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:319"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr02/20",
+    "facet:ctgr02/21",
+    "facet:ctgr01/12"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:electric_shock",
+      "hazard:fire",
+      "hazard:fire_explosion",
+      "hazard:fall_from_height",
+      "hazard:thermal_burn"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/electric",
+  "workTypeLabel": {
+    "ko": "정전·활선 전기작업",
+    "en": "De-energized and live electrical work"
+  }
+}

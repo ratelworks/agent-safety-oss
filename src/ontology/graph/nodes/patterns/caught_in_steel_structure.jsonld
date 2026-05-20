@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_steel_structure",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_steel_structure",
+  "title": "caught_in × steel_structure",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 5건 관측. 사고유형 caught_in 작업유형 steel_structure.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:steel_structure"
+  ],
+  "caseFrequency": 5,
+  "sampleKeywords": [
+    "기계식 주차설비 공사 중 균형추와 철골부재 사이에 끼임",
+    "고소작업대에 탑승하여 후진하던 중 철골보에 협착",
+    "주차타워 내부 소방설비 배관작업중 상승하는 평형추와 빔 사이에"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

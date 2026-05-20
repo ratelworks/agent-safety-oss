@@ -1,0 +1,157 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-12-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_d-12-2012",
+  "title": "분진폭발방지에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-12-2012",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 1건 (법령 0 / KOSHA Guide 1). keyword=\"분진폭발방지\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 2,
+      "7": 1,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "분진폭발방지",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:dust_exposure",
+    "hazard:fire_explosion"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_low_risk_method",
+    "control:eng_ventilation",
+    "control:admin_health_check",
+    "control:admin_safety_education",
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_FRP 제조시 화재폭발 위험관리 기술지침_4",
+      "title": "FRP 제조시 화재폭발 위험관리 기술지침 - 제조공정의 위험요인",
+      "score": 27.799
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:232",
+      "law": "기준규칙",
+      "articleNumber": "232",
+      "title": "폭발 또는 화재 등의 예방",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "o 관련법규․규칙․고시 등 산업안전보건기준에 관한 규칙 제232조(폭발 또는 화재 등의 예방)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:236",
+      "law": "기준규칙",
+      "articleNumber": "236",
+      "title": "화재 위험이 있는 작업의 장소 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제236조(화재 위험이 있는 작업의 장소 등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:239",
+      "law": "기준규칙",
+      "articleNumber": "239",
+      "title": "위험물 등이 있는 장소에서 화기 등의 사용 금지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제239조(위험물 등이 있는 장소에서 화기 등 의 사용 금지)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:240",
+      "law": "기준규칙",
+      "articleNumber": "240",
+      "title": "유류 등이 있는 배관이나 용기의 용접 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제240조(유류 등이 있는 배관이나 용기의 용접등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:232",
+      "law": "기준규칙",
+      "articleNumber": "232",
+      "title": "폭발 또는 화재 등의 예방",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "o 관련법규․규칙․고시 등 산업안전보건기준에 관한 규칙 제232조(폭발 또는 화재 등의 예방)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:236",
+      "law": "기준규칙",
+      "articleNumber": "236",
+      "title": "화재 위험이 있는 작업의 장소 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제236조(화재 위험이 있는 작업의 장소 등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:239",
+      "law": "기준규칙",
+      "articleNumber": "239",
+      "title": "위험물 등이 있는 장소에서 화기 등의 사용 금지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제239조(위험물 등이 있는 장소에서 화기 등 의 사용 금지)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:240",
+      "law": "기준규칙",
+      "articleNumber": "240",
+      "title": "유류 등이 있는 배관이나 용기의 용접 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제240조(유류 등이 있는 배관이나 용기의 용접등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-12-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

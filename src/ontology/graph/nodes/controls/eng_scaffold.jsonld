@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_scaffold",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_scaffold",
+  "label": "비계·작업발판",
+  "description": "고소 시공 작업에서 안정된 작업발판, 승강로, 비계 구조로 추락과 작업면 불안정을 줄이는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:facade_work",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:formwork_shoring",
+    "activity:precast_installation",
+    "activity:rc_concrete",
+    "activity:roofing",
+    "activity:scaffolding_assembly",
+    "activity:steel_erection",
+    "activity:steel_structure"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "비계",
+      "작업발판"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

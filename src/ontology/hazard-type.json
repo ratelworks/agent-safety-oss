@@ -1,0 +1,91 @@
+{
+  "version": "0.1.0",
+  "licenseOrigin": "project-internal (MIT)",
+  "description": "산업안전보건 재해 유형 분류 — 프로젝트 자체 코드표. KOSHA 재해통계의 '떨어짐/맞음/끼임' 같은 공식 한글 용어를 기반 참고하지만, 내부 코드(FALL/STRUCK_BY 등)와 매핑 구조는 프로젝트 저작자가 설계한 것이며 MIT 라이선스하에 재사용·수정 자유.",
+  "hazards": [
+    {
+      "code": "FALL",
+      "ko": "떨어짐",
+      "en": "Fall from height",
+      "domains": ["construction", "industrial"],
+      "aliases": ["추락", "낙하"]
+    },
+    {
+      "code": "SLIP",
+      "ko": "넘어짐",
+      "en": "Slip, trip",
+      "domains": ["construction", "industrial"],
+      "aliases": ["전도", "미끄러짐"]
+    },
+    {
+      "code": "STRUCK_BY",
+      "ko": "맞음",
+      "en": "Struck by object",
+      "domains": ["construction", "industrial"],
+      "aliases": ["낙하물", "비래", "충돌"]
+    },
+    {
+      "code": "CAUGHT_IN",
+      "ko": "끼임",
+      "en": "Caught-in/between",
+      "domains": ["construction", "industrial"],
+      "aliases": ["협착", "말림"]
+    },
+    {
+      "code": "CRUSHED",
+      "ko": "깔림",
+      "en": "Crushed",
+      "domains": ["construction", "industrial"],
+      "aliases": ["전복", "뒤집힘"]
+    },
+    {
+      "code": "COLLAPSE",
+      "ko": "무너짐",
+      "en": "Collapse",
+      "domains": ["construction"],
+      "aliases": ["붕괴", "도괴"]
+    },
+    {
+      "code": "ELECTRIC",
+      "ko": "감전",
+      "en": "Electric shock",
+      "domains": ["construction", "industrial"],
+      "aliases": ["전기사고"]
+    },
+    {
+      "code": "FIRE_EXPLOSION",
+      "ko": "화재·폭발",
+      "en": "Fire and explosion",
+      "domains": ["construction", "industrial"],
+      "aliases": ["폭발", "화재"]
+    },
+    {
+      "code": "SUFFOCATION",
+      "ko": "질식",
+      "en": "Asphyxiation",
+      "domains": ["construction", "industrial"],
+      "aliases": ["산소결핍", "밀폐공간사고"]
+    },
+    {
+      "code": "CHEMICAL",
+      "ko": "화학물질 노출",
+      "en": "Chemical exposure",
+      "domains": ["industrial"],
+      "aliases": ["중독", "유해물질"]
+    },
+    {
+      "code": "CUT",
+      "ko": "베임·절단",
+      "en": "Cut/amputation",
+      "domains": ["industrial", "construction"],
+      "aliases": ["절단", "열상"]
+    },
+    {
+      "code": "MSD",
+      "ko": "근골격계 부담",
+      "en": "Musculoskeletal disorder",
+      "domains": ["industrial"],
+      "aliases": ["근골격계", "요통"]
+    }
+  ]
+}

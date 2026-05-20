@@ -1,0 +1,120 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-36-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_g-36-2012",
+  "title": "안전보건표지에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-36-2012",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"안전보건표지\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 1,
+      "2": 0,
+      "3": 1,
+      "4": 0,
+      "5": 1,
+      "6": 370,
+      "7": 23,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "안전보건표지",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:trip_slip",
+    "hazard:fall_object",
+    "hazard:struck_by"
+  ],
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_safety_education",
+    "control:ppe_safety_shoes",
+    "control:eng_fall_net",
+    "control:admin_signal_person",
+    "control:eng_alarm",
+    "control:admin_supervisor"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:12",
+      "law": "산안법",
+      "articleNumber": "12",
+      "title": "산업재해 예방의 재원",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제12조 안전․보건표지의 부착 등",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide G-36-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_안전보건표지 설치 및 유지관리에 관한 지침_4",
+      "title": "안전보건표지 설치 및 유지관리에 관한 지침 - 사업주의 책무와 안전보건표지의 종류",
+      "score": 88.606
+    },
+    {
+      "docId": "KOSHA07_안전보건표지 설치 및 유지관리에 관한 지침_5",
+      "title": "안전보건표지 설치 및 유지관리에 관한 지침 - 안전보건표지의 사용방법",
+      "score": 78.719
+    },
+    {
+      "docId": "KOSHA07_안전보건표지 설치 및 유지관리에 관한 지침_1",
+      "title": "안전보건표지 설치 및 유지관리에 관한 지침 - 목 적",
+      "score": 75.376
+    },
+    {
+      "docId": "KOSHA07_안전보건표지와 신호에 관한 기술지침_1",
+      "title": "안전보건표지와 신호에 관한 기술지침 - 목적",
+      "score": 56.047
+    },
+    {
+      "docId": "KOSHA07_타일(Tile)공사 안전보건작업 지침_4",
+      "title": "타일(Tile)공사 안전보건작업 지침 - 타일공사 작업계획 수립 시 검토사항",
+      "score": 47.627
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA01_000004000000000000000037000",
+      "title": "제37조 안전보건표지의 설치ㆍ부착",
+      "category": "1",
+      "score": 53.476
+    },
+    {
+      "docId": "KOSHA03_000004000000000000000040000",
+      "title": "제40조 안전보건표지의 제작",
+      "category": "3",
+      "score": 55.951
+    },
+    {
+      "docId": "KOSHA05_가설공사 표준안전 작업지침000000004000000000000000000000027000",
+      "title": "가설공사 표준안전 작업지침 제27조 표지 및 기구",
+      "category": "5",
+      "score": 50.529
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:burn",
+  "@type": "Hazard",
+  "slug": "burn",
+  "label": "화상",
+  "description": "고온·화학물질에 의한 화상",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장."
+  },
+  "iso45001Class": "iso45001:Hazard",
+  "category": "physical",
+  "mitigatedBy": [
+    "control:ppe_chemical_suit",
+    "control:eng_fire_suppression",
+    "control:ppe_eye_protection",
+    "control:admin_work_permit"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/H-187-2021"
+  ],
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:electric_work_50v_plus",
+    "activity:steel_structure",
+    "activity:waterproofing",
+    "activity:finishing_paint"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/H-187-2021"
+  ]
+}

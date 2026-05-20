@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_rc_concrete",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_rc_concrete",
+  "title": "cave_in × rc_concrete",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 25건 관측. 사고유형 cave_in 작업유형 rc_concrete.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [
+    "activity:rc_concrete"
+  ],
+  "caseFrequency": 25,
+  "sampleKeywords": [
+    "콘크리트 타설작업 중 잭서포트 및 데크플레이트 붕괴",
+    "콘크리트 타설작업 중 데크플레이트 붕괴",
+    "TU Deck 플레이트 콘크리트 타설 중 붕괴(부상 8명)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

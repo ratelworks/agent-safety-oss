@@ -1,0 +1,44 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_health_check",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_health_check",
+  "label": "건강진단",
+  "description": "분진·소음·화학물질·온열 등 노출 작업에서 일반·특수 건강진단과 사후관리를 수행하는 관리 통제.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:cement_handling",
+    "activity:chemical_handling",
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:drainage_sewerage",
+    "activity:earthwork_landfill",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:road_pavement",
+    "activity:steel_structure",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:vehicle_construction",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "건강진단",
+      "건강검진"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

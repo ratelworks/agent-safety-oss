@@ -1,0 +1,286 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_tunnel",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_tunnel",
+  "title": "터널 작업계획서",
+  "description": "터널굴착작업 (별표 4 7호)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "터널굴착 작업 전",
+  "applicableWhen": {
+    "workType": "tunnel_excavation"
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-7호",
+    "art:기준규칙:351",
+    "art:기준규칙:352",
+    "art:기준규칙:367"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_보링_등_적절한_방법으",
+      "label": "보링 등 적절한 방법으로 낙반·출수 및 가스폭발 위험 방지",
+      "source": "산안기준규칙 제38조 + 별표 4 7호",
+      "inputGuide": "터널 굴착 전 사전조사 (보링·물리탐사).",
+      "examples": [
+        "보링 5공 + 전기탐사 / 낙반 가능 구간 록볼트 / 출수 2개소 차수 / 가스 농도 측정 일 4회"
+      ]
+    },
+    {
+      "key": "method",
+      "label": "굴착 방법",
+      "source": "산안기준규칙 제38조 + 별표 4 7호",
+      "inputGuide": "굴착 공법 (NATM·TBM·발파·기계).",
+      "examples": [
+        "NATM 발파 + 록볼트 + 숏크리트 (쉘 두께 250mm)"
+      ]
+    },
+    {
+      "key": "f_2_터널지보공_및_복공의_",
+      "label": "터널지보공 및 복공의 시공방법과 용수의 처리방법",
+      "source": "산안기준규칙 제38조 + 별표 4 7호",
+      "inputGuide": "지보공·복공 시공 + 용수 처리.",
+      "examples": [
+        "1차 지보 (강아치 + 록볼트 + 숏크리트) / 2차 복공 (콘크리트 라이닝) / 용수 → 측구 + 펌프 배수"
+      ]
+    },
+    {
+      "key": "ventilation",
+      "label": "환기 또는 조명시설을 설치할 때에는 그 방법",
+      "source": "산안기준규칙 제38조 + 별표 4 7호",
+      "inputGuide": "환기·조명 시설 + 작동 방법.",
+      "examples": [
+        "환기 (송풍기 22kW + 환기덕트 Φ800) / 조명 (LED 50W × 50m 간격)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "사전조사·작업계획 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-7호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 터널 작업계획서 (별표 4 7호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 7호",
+      "fields": [
+        {
+          "key": "tunnelInfo",
+          "label": "터널 제원",
+          "required": true,
+          "inputGuide": "위치·길이·단면·지반.",
+          "examples": [
+            "A터널 길이 250m, 단면 10m × 8m, 화강암"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "excavationMethod",
+          "label": "굴착 공법",
+          "required": true,
+          "inputGuide": "발파·기계·NATM 등.",
+          "examples": [
+            "NATM 공법, 발파 + 숏크리트"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supportAndWater",
+          "label": "지보공·용수 처리",
+          "required": true,
+          "inputGuide": "강지보·록볼트·배수.",
+          "examples": [
+            "강지보 + 록볼트 6m × 4본/m + 배수공"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "ventilation",
+          "label": "환기 계획",
+          "required": true,
+          "inputGuide": "송기·배기 + CO·NO₂ 측정.",
+          "examples": [
+            "송풍기 1500CMH + 배기, 가스측정기 상시"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "emergency",
+          "label": "비상대응",
+          "required": true,
+          "inputGuide": "붕괴·가스·화재 대응.",
+          "examples": [
+            "대피 갱구 + 비상조명 + 119 직통"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [
+    "doc:kosha_guide/C-45-2012",
+    "doc:kosha_guide/C-61-2012",
+    "doc:kosha_guide/C-81-2013",
+    "doc:kosha_guide/C-88-2013",
+    "doc:kosha_guide/C-89-2013",
+    "doc:kosha_guide/D-C-6-2025",
+    "doc:kosha_guide/C-C-85-2026",
+    "doc:kosha_guide/C-C-87-2026"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "터널",
+      "낙반",
+      "지보공"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive",
+    "hazard:asphyxiation",
+    "hazard:gas_leak",
+    "hazard:struck_by",
+    "hazard:fire_explosion",
+    "hazard:noise_exposure",
+    "hazard:dust_exposure",
+    "hazard:dust",
+    "hazard:noise"
+  ],
+  "appliesToActivities": [
+    "activity:tunnel_excavation"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:eng_ventilation",
+    "control:eng_monitoring",
+    "control:eng_shoring"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_permit_confined_space"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

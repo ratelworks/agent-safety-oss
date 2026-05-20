@@ -1,0 +1,23 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:kras_step_3_estimate",
+  "@type": "Method",
+  "label": "3단계: 위험성 추정",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras",
+    "category": "kras_step",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "description": "각 유해·위험요인별 발생 빈도(F)·부상 강도(S) 추정. 빈도·강도법 매트릭스 적용. 위험성평가 고시 제7조 적용.",
+  "legalBasis": [
+    "art:위험성평가-고시:7"
+  ],
+  "isPartOf": "manual:risk_assessment_practical",
+  "informedBy": [
+    "method:risk_matrix_5x4",
+    "method:frequency_severity"
+  ]
+}

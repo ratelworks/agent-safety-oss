@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_corrective_action",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "개선조치 단건을 relatedIssue, before/after PhotoEvidence, safety:re",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Corrective Action",
+      "@language": "en"
+    }
+  ],
+  "description": "개선조치 단건을 relatedIssue, before/after PhotoEvidence, safety:resolves 그래프 사슬과 함께 조회한다.",
+  "toolName": "get_corrective_action",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_corrective_action",
+  "maps_to_action": "safety:action/get_corrective_action",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

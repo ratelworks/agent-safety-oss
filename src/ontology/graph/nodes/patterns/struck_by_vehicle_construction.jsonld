@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_vehicle_construction",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_vehicle_construction",
+  "title": "struck_by × vehicle_construction",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 21건 관측. 사고유형 struck_by 작업유형 vehicle_construction.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:vehicle_construction"
+  ],
+  "caseFrequency": 21,
+  "sampleKeywords": [
+    "후진 이동 중이던 굴삭기와 충돌·협착",
+    "토사반출을 위해 후진하던 덤프트럭에 충돌",
+    "자재하역 후 후진하던 지게차에 충돌"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

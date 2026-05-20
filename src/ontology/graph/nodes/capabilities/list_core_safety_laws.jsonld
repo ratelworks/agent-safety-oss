@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_core_safety_laws",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "번들된 법령 목록",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Core Safety Laws",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 지침·자료실·법령 번들을 검색하거나 본문·facet·첨부 파일을 조회하는 capability. 본 MCP 에 번들된 건설·산업안전 법령 6개와 각 법령의 조문 수를 반환. `includeArticles=true` 로 각 조문 목록(§N·제목) 까지 받을 수 있음. 전체 법령이 아니라 실무 빈번 인용 조문만 선별됨 — 없는 조문은 법제처 원문 확인.",
+  "toolName": "list_core_safety_laws",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/list_core_safety_laws",
+  "producesEntity": [
+    "safety:Act"
+  ],
+  "maps_to_action": "safety:action/list_core_safety_laws",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

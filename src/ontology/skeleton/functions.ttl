@@ -1,0 +1,290 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Ratelworks Inc.
+# 한국 건설안전 Function Type — 결정론적 SHACL Rules.
+
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix safety: <https://safety.ratelworks.org/ontology/v1/> .
+@prefix art: <https://safety.ratelworks.org/article/> .
+@prefix doc: <https://safety.ratelworks.org/document/> .
+@prefix activity: <https://safety.ratelworks.org/activity/> .
+@prefix control: <https://safety.ratelworks.org/control/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Function Type as SHACL Rules
+# License: MIT
+# Created: 2026-05-03
+#################################################################
+
+<https://safety.ratelworks.org/skeleton/v1/functions>
+  a owl:Ontology ;
+  rdfs:label "Function Type SHACL Rules"@en ,
+             "Function Type SHACL Rules — 결정론적 의무 도출 규칙"@ko ;
+  rdfs:comment "PLAN §0.7의 Function Type을 W3C SHACL Rules로 표현한다. LLM 추론에 의존하지 않고 작업·현장 속성에서 법정 의무, 문서, 통제수단을 결정론적으로 도출한다."@ko ;
+  dcterms:creator "Ratelworks Inc." ;
+  dcterms:created "2026-05-03"^^xsd:date ;
+  dcterms:license <https://opensource.org/licenses/MIT> ;
+  owl:versionIRI <https://safety.ratelworks.org/skeleton/v1/functions/1.0.0> ;
+  owl:versionInfo "1.0.0" .
+
+#################################################################
+# SPARQL Rule prefix 선언
+#################################################################
+
+safety:
+  sh:declare [
+    sh:prefix "safety" ;
+    sh:namespace "https://safety.ratelworks.org/ontology/v1/"^^xsd:anyURI ;
+  ] ;
+  sh:declare [
+    sh:prefix "art" ;
+    sh:namespace "https://safety.ratelworks.org/article/"^^xsd:anyURI ;
+  ] ;
+  sh:declare [
+    sh:prefix "doc" ;
+    sh:namespace "https://safety.ratelworks.org/document/"^^xsd:anyURI ;
+  ] ;
+  sh:declare [
+    sh:prefix "activity" ;
+    sh:namespace "https://safety.ratelworks.org/activity/"^^xsd:anyURI ;
+  ] ;
+  sh:declare [
+    sh:prefix "control" ;
+    sh:namespace "https://safety.ratelworks.org/control/"^^xsd:anyURI ;
+  ] ;
+  sh:declare [
+    sh:prefix "xsd" ;
+    sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ;
+  ] .
+
+#################################################################
+# 1. 굴착 깊이 ≥ 2m → 산안기준규칙 §38 의무
+#################################################################
+
+safety:ExcavationDepthRule
+  a sh:NodeShape ;
+  rdfs:label "굴착 깊이 ≥ 2m → 산안기준규칙 §38 의무"@ko ;
+  sh:targetClass safety:WorkActivity ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:prefixes safety: ;
+    sh:construct """
+      PREFIX safety: <https://safety.ratelworks.org/ontology/v1/>
+      PREFIX art: <https://safety.ratelworks.org/article/>
+      PREFIX doc: <https://safety.ratelworks.org/document/>
+      CONSTRUCT {
+        $this safety:requiresLegalDuty art:기준규칙:38 ;
+              safety:requiresDocument <https://safety.ratelworks.org/document/ad_hoc/work_plan> .
+      } WHERE {
+        $this safety:excavationDepth ?depth .
+        FILTER (?depth >= 2.0)
+      }
+    """ ;
+    sh:condition [
+      sh:property [
+        sh:path safety:excavationDepth ;
+        sh:minInclusive 2.0 ;
+      ] ;
+    ] ;
+    sh:message "굴착 깊이 ≥ 2m → 산안기준규칙 §38 의무: 사전조사 및 작업계획서 작성."@ko ;
+  ] .
+
+#################################################################
+# 2. 고소 ≥ 2m → 추락방지조치 의무
+#################################################################
+
+safety:WorkAtHeightRule
+  a sh:NodeShape ;
+  rdfs:label "고소 ≥ 2m → 산안기준규칙 §42 추락방지조치 의무"@ko ;
+  sh:targetClass safety:WorkActivity ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:prefixes safety: ;
+    sh:construct """
+      PREFIX safety: <https://safety.ratelworks.org/ontology/v1/>
+      PREFIX art: <https://safety.ratelworks.org/article/>
+      PREFIX control: <https://safety.ratelworks.org/control/>
+      CONSTRUCT {
+        $this safety:requiresLegalDuty art:기준규칙:42 ;
+              safety:requiresControl control:eng_guard_rail ,
+                                     control:ppe_harness .
+      } WHERE {
+        $this safety:height ?height .
+        FILTER (?height >= 2.0)
+      }
+    """ ;
+    sh:condition [
+      sh:property [
+        sh:path safety:height ;
+        sh:minInclusive 2.0 ;
+      ] ;
+    ] ;
+    sh:message "고소작업 높이 ≥ 2m → 산안기준규칙 §42 의무: 방호난간 또는 안전대 등 추락방지조치."@ko ;
+  ] .
+
+#################################################################
+# 3. 전기 ≥ 50V → 절연 + 검전 의무
+#################################################################
+
+safety:ElectricalVoltageRule
+  a sh:NodeShape ;
+  rdfs:label "전기 ≥ 50V → 산안기준규칙 §319 절연·검전 의무"@ko ;
+  sh:targetClass safety:WorkActivity ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:prefixes safety: ;
+    sh:construct """
+      PREFIX safety: <https://safety.ratelworks.org/ontology/v1/>
+      PREFIX art: <https://safety.ratelworks.org/article/>
+      PREFIX control: <https://safety.ratelworks.org/control/>
+      CONSTRUCT {
+        $this safety:requiresLegalDuty art:기준규칙:319 ;
+              safety:requiresControl control:eng_loto ,
+                                     control:ppe_insulating_gloves .
+      } WHERE {
+        $this safety:voltage ?voltage .
+        FILTER (?voltage >= 50.0)
+      }
+    """ ;
+    sh:condition [
+      sh:property [
+        sh:path safety:voltage ;
+        sh:minInclusive 50.0 ;
+      ] ;
+    ] ;
+    sh:message "전기작업 전압 ≥ 50V → 산안기준규칙 §319 의무: 전원차단·잠금표지·검전 및 절연보호구."@ko ;
+  ] .
+
+#################################################################
+# 4. 밀폐공간 → 산소측정 + 환기 의무
+#################################################################
+
+safety:ConfinedSpaceRule
+  a sh:NodeShape ;
+  rdfs:label "밀폐공간 → 산안기준규칙 §619 산소측정·환기 의무"@ko ;
+  sh:targetClass safety:WorkActivity ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:prefixes safety: ;
+    sh:construct """
+      PREFIX safety: <https://safety.ratelworks.org/ontology/v1/>
+      PREFIX art: <https://safety.ratelworks.org/article/>
+      PREFIX control: <https://safety.ratelworks.org/control/>
+      CONSTRUCT {
+        $this safety:requiresLegalDuty art:기준규칙:619 ;
+              safety:requiresControl control:eng_ventilation ,
+                                     control:admin_oxygen_meter .
+      } WHERE {
+        $this safety:confinedSpace ?confinedSpace .
+        FILTER (?confinedSpace = true)
+      }
+    """ ;
+    sh:condition [
+      sh:property [
+        sh:path safety:confinedSpace ;
+        sh:hasValue true ;
+      ] ;
+    ] ;
+    sh:message "밀폐공간 작업 → 산안기준규칙 §619 의무: 산소·유해가스 농도 측정 및 환기."@ko ;
+  ] .
+
+#################################################################
+# 5. 화학물질 취급 → MSDS 비치 + PPE 의무
+#################################################################
+
+safety:HazardousChemicalRule
+  a sh:NodeShape ;
+  rdfs:label "화학물질 취급 → 산안법 §114 MSDS 비치 및 PPE 의무"@ko ;
+  sh:targetClass safety:WorkActivity ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:prefixes safety: ;
+    sh:construct """
+      PREFIX safety: <https://safety.ratelworks.org/ontology/v1/>
+      PREFIX art: <https://safety.ratelworks.org/article/>
+      PREFIX doc: <https://safety.ratelworks.org/document/>
+      PREFIX control: <https://safety.ratelworks.org/control/>
+      CONSTRUCT {
+        $this safety:requiresLegalDuty art:산안법:114 ;
+              safety:requiresDocument <https://safety.ratelworks.org/document/continuous/msds_register> ;
+              safety:requiresControl control:ppe_respirator .
+      } WHERE {
+        $this safety:hazardousChemical ?hazardousChemical .
+        FILTER (?hazardousChemical = true)
+      }
+    """ ;
+    sh:condition [
+      sh:property [
+        sh:path safety:hazardousChemical ;
+        sh:hasValue true ;
+      ] ;
+    ] ;
+    sh:message "화학물질 취급 → 산안법 §114 의무: MSDS 게시·비치 및 호흡보호구 등 PPE."@ko ;
+  ] .
+
+#################################################################
+# 6. 50인 이상 사업장 → 안전보건위원회 의무
+#################################################################
+
+safety:HealthSafetyCommitteeRule
+  a sh:NodeShape ;
+  rdfs:label "50인 이상 사업장 → 산안법 §24 산업안전보건위원회 의무"@ko ;
+  sh:targetClass safety:Site ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:prefixes safety: ;
+    sh:construct """
+      PREFIX safety: <https://safety.ratelworks.org/ontology/v1/>
+      PREFIX art: <https://safety.ratelworks.org/article/>
+      PREFIX doc: <https://safety.ratelworks.org/document/>
+      CONSTRUCT {
+        $this safety:requiresLegalDuty art:산안법:24 ;
+              safety:requiresDocument <https://safety.ratelworks.org/document/monthly/health_safety_committee> .
+      } WHERE {
+        $this safety:workforce ?workforce .
+        FILTER (?workforce >= 50)
+      }
+    """ ;
+    sh:condition [
+      sh:property [
+        sh:path safety:workforce ;
+        sh:minInclusive 50 ;
+      ] ;
+    ] ;
+    sh:message "상시근로자 50인 이상 사업장 → 산안법 §24 의무: 산업안전보건위원회 운영 및 회의록 작성."@ko ;
+  ] .
+
+#################################################################
+# 7. 공사금액 50억 이상 → 안전관리자 선임 의무
+#################################################################
+
+safety:SafetyManagerAppointmentRule
+  a sh:NodeShape ;
+  rdfs:label "공사금액 50억 이상 → 산안법 §17 안전관리자 선임 의무"@ko ;
+  sh:targetClass safety:Site ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:prefixes safety: ;
+    sh:construct """
+      PREFIX safety: <https://safety.ratelworks.org/ontology/v1/>
+      PREFIX art: <https://safety.ratelworks.org/article/>
+      PREFIX doc: <https://safety.ratelworks.org/document/>
+      CONSTRUCT {
+        $this safety:requiresLegalDuty art:산안법:17 ;
+              safety:requiresDocument <https://safety.ratelworks.org/document/on_appointment/safety_health_manager_appointment> .
+      } WHERE {
+        $this safety:constructionValue ?constructionValue .
+        FILTER (?constructionValue >= 5000000000)
+      }
+    """ ;
+    sh:condition [
+      sh:property [
+        sh:path safety:constructionValue ;
+        sh:minInclusive 5000000000 ;
+      ] ;
+    ] ;
+    sh:message "공사금액 50억 원 이상 → 산안법 §17 의무: 안전관리자 선임 서류 작성."@ko ;
+  ] .

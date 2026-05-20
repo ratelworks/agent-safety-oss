@@ -1,0 +1,442 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/safety_health_mgmt_cost_plan",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_mgmt_cost_plan",
+  "title": "산업안전보건관리비 계획·집행·정산",
+  "description": "건설공사 산업안전보건관리비 (계상·집행·정산) 사용계획·내역서. 산안법 제72조 + 건설업 산업안전보건관리비 계상 및 사용기준 (고용노동부 고시 2022-43).",
+  "cycle": "cyc:monthly",
+  "trigger": "공사 착공 시 (계획) + 매월 (집행) + 준공 시 (정산)",
+  "legalBasis": [
+    "art:산안법:72",
+    "art:산안법시행규칙:88",
+    "art:산안법시행규칙:89"
+  ],
+  "officialFormSpec": {
+    "formId": "moel_safety_health_cost_plan",
+    "officialName": "건설업 산업안전보건관리비 계상 및 사용기준 (고용노동부 고시 제2022-43호) 별표 양식",
+    "formMatchType": "고용노동부 고시 별표 양식 + 별지 호 양식 매핑",
+    "license": "공공누리 - 출처 고용노동부"
+  },
+  "sections": [
+    {
+      "title": "1. 공사 정보",
+      "legalSource": "고시 제3조 (대상 공사)",
+      "fields": [
+        {
+          "key": "siteName",
+          "label": "공사명 / 현장명",
+          "required": true,
+          "inputGuide": "공사 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 ○○공동주택 신축공사"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "contractAmount",
+          "label": "도급금액 (계약금액)",
+          "required": true,
+          "inputGuide": "총 공사금액 (부가세 별도). 2천만원 미만은 적용 제외.",
+          "examples": [
+            "35억원 (3,500,000,000원, 부가세 별도)"
+          ],
+          "checkPoints": [
+            "2천만원 이상 공사 적용"
+          ]
+        },
+        {
+          "key": "contractPeriod",
+          "label": "공사 기간",
+          "required": true,
+          "inputGuide": "착공일 ~ 준공예정일.",
+          "examples": [
+            "2026-03-01 ~ 2026-09-30 (7개월)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "constructionType",
+          "label": "공사 종류",
+          "required": true,
+          "inputGuide": "건축·토목·전기·통신·기계 등.",
+          "examples": [
+            "건축 (공동주택 신축)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "constructionScale",
+          "label": "공사 규모 (연면적·층수·구조)",
+          "required": true,
+          "inputGuide": "연면적·층수·구조 형식.",
+          "examples": [
+            "연면적 5,800㎡, 지하 1층 + 지상 7층, 철근콘크리트 라멘조"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건관리비 계상",
+      "legalSource": "산안법 제72조 ② + 고시 제4조 별표 1 (요율)",
+      "fields": [
+        {
+          "key": "calcBaseAmount",
+          "label": "계상 기준 금액 (재료비 + 직접노무비 + 관급자재비)",
+          "required": true,
+          "inputGuide": "공사 종류별 계상 기준 금액. 도급금액과 다름.",
+          "examples": [
+            "3,200,000,000원 (재료비 2,200M + 직접노무비 800M + 관급자재 200M)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicableRate",
+          "label": "계상 요율 (%)",
+          "required": true,
+          "inputGuide": "공사 종류·규모별 요율. 일반건설(갑) 1.97%, (을) 2.15% 등. 고시 별표 1.",
+          "examples": [
+            "1.97% (일반건설(갑) 50억 미만)"
+          ],
+          "checkPoints": [
+            "공사종류별 요율 정확 적용"
+          ]
+        },
+        {
+          "key": "totalCost",
+          "label": "안전보건관리비 총액",
+          "required": true,
+          "inputGuide": "계상금액 = 기준금액 × 요율 + 가산금.",
+          "examples": [
+            "63,040,000원 (3,200M × 1.97%)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "additionalCost",
+          "label": "추가 가산 (해당 시)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "유해·위험작업 가산 (별표 1-2). 추락·붕괴 위험 작업.",
+          "examples": [
+            "[해당없음]",
+            "추락방호 가산 5,000,000원"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 사용 항목 / 계획 (9개 항목)",
+      "legalSource": "고시 제7조 별표 2 (사용항목 9분류)",
+      "fields": [
+        {
+          "key": "item1_safetyManager",
+          "label": "1. 안전관리자·보건관리자 인건비",
+          "required": true,
+          "inputGuide": "전임 안전관리자·보건관리자 인건비 + 4대보험.",
+          "examples": [
+            "전임 안전관리자 1명 × 7개월 × 4,500,000원 = 31,500,000원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "item2_safetyEducation",
+          "label": "2. 안전보건교육비 + 행사비",
+          "required": true,
+          "inputGuide": "교육비·강사료·교재·표창 등.",
+          "examples": [
+            "월간 안전교육 7회 × 200,000 + 안전의 날 행사 1,000,000 = 2,400,000원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "item3_ppe",
+          "label": "3. 보호구·안전장구 구입비",
+          "required": true,
+          "inputGuide": "안전모·안전대·안전화·보호장갑 등 구입.",
+          "examples": [
+            "풀하네스 안전대 30개 × 80,000 + 안전모 50개 × 25,000 + 안전화 50켤레 × 60,000 = 6,650,000원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "item4_safetyEquipment",
+          "label": "4. 안전점검비 + 진단비",
+          "required": false,
+          "optional": true,
+          "inputGuide": "외부 안전진단·기술지원 위탁비.",
+          "examples": [
+            "KOSHA 기술지원 1회 600,000원 / [해당없음]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "item5_safetyFacility",
+          "label": "5. 안전시설비 (방호시설·신호기·조명)",
+          "required": true,
+          "inputGuide": "안전난간·추락방호망·낙하물방지망·조명·신호기 임차/구입.",
+          "examples": [
+            "추락방호망 800㎡ × 8,500 + 낙하물방지망 1,200㎡ × 7,500 = 15,800,000원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "item6_healthCheck",
+          "label": "6. 근로자 건강진단·건강관리",
+          "required": false,
+          "optional": true,
+          "inputGuide": "특수건강진단·일반건강진단·산업보건의 위탁.",
+          "examples": [
+            "특수건강진단 30명 × 80,000 = 2,400,000원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "item7_techSupport",
+          "label": "7. 기술지원·자료 + 기타",
+          "required": false,
+          "optional": true,
+          "inputGuide": "안전관리 자료·도서·잡지·홈페이지 운영비.",
+          "examples": [
+            "KOSHA 자료실 가입 100,000 + 안전 도서 200,000 = 300,000원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "item8_smartSafety",
+          "label": "8. 스마트 안전장비 (50억 이상 의무)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "스마트 안전장비 (IoT 센서·영상·드론). 50억 이상 + 별표 2-3 의무. 50억 미만 선택.",
+          "examples": [
+            "[해당없음] 50억 미만 (선택)",
+            "스마트 안전모 IoT 30개 × 250,000 = 7,500,000원"
+          ],
+          "checkPoints": [
+            "50억 이상 공사 의무"
+          ]
+        },
+        {
+          "key": "item9_other",
+          "label": "9. 기타 안전보건 시설·활동",
+          "required": false,
+          "optional": true,
+          "inputGuide": "위 8개 항목 외 안전보건 활동.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 월별 집행 / 정산",
+      "legalSource": "고시 제10조 + 제11조 (월별 집행보고 + 정산)",
+      "fields": [
+        {
+          "key": "monthlyExecution",
+          "label": "월별 집행 내역 (배열)",
+          "required": true,
+          "inputGuide": "각 월별 [집행월·항목·금액·증빙·잔액] 5개 필드.",
+          "examples": [
+            [
+              {
+                "month": "2026-04",
+                "item": "안전관리자 인건비",
+                "amount": 4500000,
+                "evidence": "급여명세서·이체증빙",
+                "balance": 58540000
+              },
+              {
+                "month": "2026-04",
+                "item": "PPE 구입",
+                "amount": 6650000,
+                "evidence": "세금계산서 + 입고증빙",
+                "balance": 51890000
+              },
+              {
+                "month": "2026-04",
+                "item": "안전시설 (추락방호망)",
+                "amount": 6800000,
+                "evidence": "세금계산서 + 시공사진",
+                "balance": 45090000
+              }
+            ]
+          ],
+          "checkPoints": [
+            "증빙 보존 의무"
+          ]
+        },
+        {
+          "key": "totalExecuted",
+          "label": "누적 집행액",
+          "required": true,
+          "inputGuide": "착공일 ~ 보고일 누적 집행액.",
+          "examples": [
+            "17,950,000원 (착공 2026-03 ~ 2026-04)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "executionRate",
+          "label": "집행률 (%)",
+          "required": true,
+          "inputGuide": "누적집행액 ÷ 총액 × 100.",
+          "examples": [
+            "28.5% (17,950,000 / 63,040,000)"
+          ],
+          "checkPoints": [
+            "공사진척률과 비교"
+          ]
+        },
+        {
+          "key": "remainingBalance",
+          "label": "잔액",
+          "required": true,
+          "inputGuide": "총액 - 집행액.",
+          "examples": [
+            "45,090,000원"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "5. 결재선",
+      "legalSource": "산안법 제72조 + 고시 제10조",
+      "fields": [
+        {
+          "key": "compilerSign",
+          "label": "작성자 (안전관리자) 서명",
+          "required": true,
+          "inputGuide": "안전관리자 성명·서명.",
+          "examples": [
+            "김안전 (안전관리자, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisorSign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "공사 관리감독자 서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principalSign",
+          "label": "사업주 / 현장소장 서명",
+          "required": true,
+          "inputGuide": "사업주 또는 현장소장(안전보건관리책임자) 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "계획·집행·정산 작성"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토 + 증빙 확인"
+    },
+    {
+      "role": "사업주 / 현장소장",
+      "action": "최종 승인 + 발주처 보고"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "공사종류별 요율 정확 적용 + 계상금액",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:72",
+      "checkFields": [
+        "calcBaseAmount",
+        "applicableRate",
+        "totalCost"
+      ]
+    },
+    {
+      "rule": "9개 사용 항목 분류 명시 (필수 항목 1·2·3·5)",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:88",
+      "checkFields": [
+        "item1_safetyManager",
+        "item2_safetyEducation",
+        "item3_ppe",
+        "item5_safetyFacility"
+      ]
+    },
+    {
+      "rule": "월별 집행 + 증빙 + 누적 집행액",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:89",
+      "checkFields": [
+        "monthlyExecution",
+        "totalExecuted"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:72",
+      "checkFields": [
+        "compilerSign",
+        "principalSign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "5년 (공사 준공 후)",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:72",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "산업안전보건관리비",
+      "안전관리비",
+      "계상",
+      "집행"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "plan",
+    "licenseHint": "공공누리 - 출처 고용노동부",
+    "alignedAt": "2026-04-29",
+    "alignSource": "산안법 제72조 + 고용노동부 고시 제2022-43호 별표 1·2 매핑"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "건설공사 2천만원 이상 모든 현장. 50억 미만 + 5인 이상 사업장 동일 의무 (스마트 안전장비만 50억 이상 의무)."
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [
+    "entity:moel"
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_inspection"
+  ],
+  "relatedDocs": [
+    "doc:on_construction_open/construction_safety_management_plan"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

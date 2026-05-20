@@ -1,0 +1,36 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:excavation_2m_plus",
+  "@type": "Applicability",
+  "label": "굴착 2m 이상 (붕괴방호·작업계획서)",
+  "condition": {
+    "all": [
+      {
+        "var": "workType",
+        "op": "==",
+        "value": "excavation"
+      },
+      {
+        "var": "workDepth",
+        "op": ">=",
+        "value": 2,
+        "unit": "m"
+      }
+    ]
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "art:기준규칙:347"
+  ],
+  "legalWeight": "mandatory",
+  "enforces": [
+    "control:eng_shoring",
+    "control:admin_simops_permit"
+  ],
+  "exemptionNote": "굴착 2m 미만 — 작업계획서 의무 완화 (단 안전조치는 별도)",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

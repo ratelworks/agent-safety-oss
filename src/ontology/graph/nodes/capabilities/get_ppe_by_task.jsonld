@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_ppe_by_task",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작업 활동 IRI 또는 한글 라벨로 activity --hasHazard--> hazard --mitigat",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Ppe By Task",
+      "@language": "en"
+    }
+  ],
+  "description": "작업 활동 IRI 또는 한글 라벨로 activity --hasHazard--> hazard --mitigatedBy--> control 사슬을 따라가며 ERIC 5단계 개인보호구를 집계한다. 각 보호구의 IRI, label, 적용 작업, 관련 위험요인을 함께 반환한다.",
+  "toolName": "get_ppe_by_task",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_ppe_by_task",
+  "maps_to_action": "safety:action/get_ppe_by_task",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

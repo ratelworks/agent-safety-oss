@@ -1,0 +1,53 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "cc:worktype/vehicle_cargo",
+  "@type": "cc:WorkType",
+  "slug": "vehicle_cargo",
+  "label": {
+    "ko": "차량계 하역운반기계 작업",
+    "en": "Vehicle cargo-handling machinery work"
+  },
+  "legalBasis": [
+    "annex:기준규칙:별표4-2호"
+  ],
+  "legalBasisLabel": {
+    "ko": "산업안전보건기준에 관한 규칙 별표 4 제2호",
+    "en": "OSH Standards Rule Annex 4 Item 2"
+  },
+  "hasTask": [
+    "activity:vehicle_cargo"
+  ],
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "graphMigratedAt": "2026-05-03",
+    "graphMigrationNote": "WorkType 정체성 SSoT 보강. 별표 4 법정 작업분류와 현장 실무 대분류를 activity 상위 공종으로 연결."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:electrocution",
+  "@type": "Hazard",
+  "slug": "electrocution",
+  "label": "감전",
+  "description": "전기에 의한 감전 재해",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장."
+  },
+  "iso45001Class": "iso45001:Hazard",
+  "category": "physical",
+  "mitigatedBy": [
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:ppe_insulating_gloves"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-12-2026",
+    "doc:kosha_guide/E-115-2011",
+    "doc:kosha_guide/E-189-2022"
+  ],
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/B-E-12-2026",
+    "doc:kosha_guide/E-115-2011",
+    "doc:kosha_guide/E-189-2022"
+  ]
+}

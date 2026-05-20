@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/overturn_collapse_vehicle_construction",
+  "@type": [
+    "Event"
+  ],
+  "slug": "overturn_collapse_vehicle_construction",
+  "title": "overturn_collapse × vehicle_construction",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 8건 관측. 사고유형 overturn_collapse 작업유형 vehicle_construction.",
+  "koshaAccidentType": "overturn_collapse",
+  "hasHazard": [
+    "hazard:struck_by_overturn"
+  ],
+  "causedBy": [
+    "activity:vehicle_construction"
+  ],
+  "caseFrequency": 8,
+  "sampleKeywords": [
+    "덤프트럭 적재함 상승 중 깔림",
+    "덤프트럭 골재하역 작업 중 전도",
+    "스키드로더 주행 중 전도"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

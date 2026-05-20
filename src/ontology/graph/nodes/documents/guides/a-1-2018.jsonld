@@ -1,0 +1,147 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/A-1-2018",
+  "@type": "Document",
+  "docId": "kosha_guide_a-1-2018",
+  "title": "구리에 대한 작업환경측정,분석 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "A-1-2018",
+    "guideCategory": "occupational_hygiene",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"구리\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 2,
+      "4": 2,
+      "5": 1,
+      "6": 0,
+      "7": 32,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "구리",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법시행규칙:93",
+      "law": "산안법시행규칙",
+      "articleNumber": "93",
+      "title": "노사협의체 협의사항 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제93조 (작업환경측정 대상 작업장 등)",
+      "citedAsOf": "2018",
+      "temporalNote": "KOSHA Guide A-1-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_산소 배관 및 배관설비에 관한 기술지침_3",
+      "title": "산소 배관 및 배관설비에 관한 기술지침 - 정의",
+      "score": 74.385
+    },
+    {
+      "docId": "KOSHA07_인쇄공정에서 유기용제의 화재폭발 위험 관리에 관한 기술지침_3",
+      "title": "인쇄공정에서 유기용제의 화재폭발 위험 관리에 관한 기술지침 - 정의",
+      "score": 58.07
+    },
+    {
+      "docId": "KOSHA07_건조염소 배관시스템에 관한 기술지침_10",
+      "title": "건조염소 배관시스템에 관한 기술지침 - 비철금속 튜빙 시스템",
+      "score": 36.739
+    },
+    {
+      "docId": "KOSHA07_위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침_9",
+      "title": "위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침 - 화학설비의 재질에 따른 주의사항",
+      "score": 36.104
+    },
+    {
+      "docId": "KOSHA07_공기 중 제조나노물질의 노출평가에 대한 기술지침_3",
+      "title": "공기 중 제조나노물질의 노출평가에 대한 기술지침 - 용어의정의",
+      "score": 33.582
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA03_[별표 22] 특수건강진단 대상 유해인자(제201조 관련)",
+      "title": "[별표 22] 특수건강진단 대상 유해인자(제201조 관련)",
+      "category": "3",
+      "score": 32.647
+    },
+    {
+      "docId": "KOSHA03_[별표 21] 작업환경측정 대상 유해인자(제186조제1항 관련)",
+      "title": "[별표 21] 작업환경측정 대상 유해인자(제186조제1항 관련)",
+      "category": "3",
+      "score": 31.042
+    },
+    {
+      "docId": "KOSHA04_002000002000006000000000294000",
+      "title": "제294조 구리의 사용 제한",
+      "category": "4",
+      "score": 49.853
+    },
+    {
+      "docId": "KOSHA04_[별표 12] 관리대상 유해물질의 종류(제420조, 제439조 및 제440조 관련)",
+      "title": "[별표 12] 관리대상 유해물질의 종류(제420조, 제439조 및 제440조 관련)",
+      "category": "4",
+      "score": 30.798
+    },
+    {
+      "docId": "KOSHA05_발파작업표준안전작업지침000000003000000000000000000000014000",
+      "title": "발파작업표준안전작업지침 제14조 장전기의 사용",
+      "category": "5",
+      "score": 35.61
+    }
+  ]
+}

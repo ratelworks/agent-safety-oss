@@ -1,0 +1,34 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_insulation",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_insulation",
+  "label": "절연·접지",
+  "description": "전기작업과 전기설비 인접 작업에서 절연, 접지, 누전 차단으로 감전 경로를 차단하는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:machinery_repair",
+    "activity:steel_structure",
+    "activity:tower_crane",
+    "activity:tower_crane_maintenance",
+    "activity:underground_utility"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "절연",
+      "접지",
+      "누전차단"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

@@ -1,0 +1,243 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/first_aid_training_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "first_aid_training_log",
+  "title": "응급처치 교육 일지",
+  "description": "응급처치 교육 일지 - 산안법:29 + 산안기준규칙:639 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:annual",
+  "trigger": "연",
+  "legalBasis": [
+    "art:산안법:29",
+    "art:기준규칙:639"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_first_aid_training_log",
+    "officialName": "응급처치 교육 일지 (KOSHA)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 응급처치 교육 일지",
+      "legalSource": "산안법 제29조 + 산안기준규칙 제639조",
+      "fields": [
+        {
+          "key": "educationDate",
+          "label": "교육 일시",
+          "required": true,
+          "inputGuide": "연 1회 이상.",
+          "examples": [
+            "2026-04-20 14:00~17:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "instructor",
+          "label": "강사",
+          "required": true,
+          "inputGuide": "응급구조사 또는 의료인.",
+          "examples": [
+            "박응급 (응급구조사 1급)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "curriculum",
+          "label": "교육 내용",
+          "required": true,
+          "inputGuide": "심폐소생술·기도확보·지혈·골절·화상.",
+          "examples": [
+            "1) CPR 60분 / 2) AED 30분 / 3) 지혈·골절 60분 / 4) 화상·중독 30분"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "practice",
+          "label": "실습 실시",
+          "required": true,
+          "inputGuide": "마네킹·AED 실습.",
+          "examples": [
+            "[√] CPR 마네킹 1대 + AED 트레이너 1대 실습"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trainees",
+          "label": "이수자 명단·서명",
+          "required": true,
+          "inputGuide": "위험사업장 근로자 권장 + 안전관리자 필수.",
+          "examples": [
+            [
+              {
+                "name": "김안전",
+                "signed": true
+              },
+              {
+                "name": "박감독",
+                "signed": true
+              }
+            ]
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:29",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:29",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "retention": "3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:29",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "education",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "위험사업장"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:electrocution",
+    "hazard:burn"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Competence",
+  "mitigatedBy": [
+    "control:admin_emergency_plan",
+    "control:admin_safety_education"
+  ],
+  "relatedDocs": [
+    "doc:quarterly/evacuation_drill_record",
+    "doc:on_construction_open/emergency_response_manual"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

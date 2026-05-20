@@ -1,0 +1,245 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:on_construction_open/construction_safety_management_plan",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "construction_safety_management_plan",
+  "title": "안전관리계획서 (건설기술진흥법)",
+  "description": "안전관리계획서 (건설기술진흥법) - 건진법:62 + 건진법시행령:98 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:on_construction_open",
+  "trigger": "현장개설",
+  "legalBasis": [
+    "art:건진법:62",
+    "art:건진법시행령:98",
+    "art:건진법시행규칙:58"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_construction_safety_management_plan",
+    "officialName": "안전관리계획서 (건설기술진흥법) (국토부 / 건설안전관리정보망 (CSI))",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전관리계획서 (건설기술진흥법)",
+      "legalSource": "건진법 제62조 + 시행령 제98조 + 시행규칙 제58조 (별표 7 안전관리계획 수립기준)",
+      "fields": [
+        {
+          "key": "projectInfo",
+          "label": "공사 개요",
+          "required": true,
+          "inputGuide": "공사명·금액·공기·발주자·시공자.",
+          "examples": [
+            "황룡건설(주) 삼성동 공동주택, 35억원, 2026-03~2026-09"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "riskAnalysis",
+          "label": "공종별 위험요인 분석",
+          "required": true,
+          "inputGuide": "공종(굴착·골조·외장 등) × 위험요인.",
+          "examples": [
+            "굴착: 매몰·붕괴 / 골조: 추락·낙하 / 외장: 추락"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "controlMeasures",
+          "label": "공종별 안전관리 대책",
+          "required": true,
+          "inputGuide": "각 위험요인별 감소대책.",
+          "examples": [
+            "굴착: 흙막이 1H + 신호수 / 골조: 안전대 100% Tie-off + 추락방호망 / 외장: 시스템비계 + 낙하방지망"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "organization",
+          "label": "안전관리조직",
+          "required": true,
+          "inputGuide": "안전관리자·관리감독자·근로자대표 조직도.",
+          "examples": [
+            "현장소장 1, 안전관리자 1, 관리감독자 3, 근로자대표 1"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "emergencyPlan",
+          "label": "비상대응 계획",
+          "required": true,
+          "inputGuide": "사고 시 대응·연락망·대피.",
+          "examples": [
+            "119 + 본사 + 강남세브란스, 대피로·집결지 매뉴얼 별첨"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "submissionStatus",
+          "label": "발주처 제출·승인",
+          "required": true,
+          "inputGuide": "착공 전 발주처에 제출.",
+          "examples": [
+            "2026-02-15 발주처 제출, 2026-02-25 승인"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:건진법:62",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:건진법:62",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "retention": "공사 완료시까지",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "report",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "건진법 시행령 §98 ①항 대상 공사 — 1·2종 시설물 / 지하 10m 이상 굴착 / 폭발물 사용 (20m 내 시설 또는 100m 내 가축) / 10층 이상 건축물 / 10층 이상 리모델링·해체 + 수직증축형 리모델링 / 천공기(10m+)·항타·항발기·타워크레인 사용 / 전력시설물 건설·개량 / 가설구조물 사용 / 발주청·인허가기관 인정 공사"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:cave_in"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Audit",
+  "legalBasisExternalNote": "건진법 §62 본조 + 시행령 §98 (수립 대상·절차·검토결과 3등급) + 시행규칙 §58 (별표 7 수립기준 + 별지 제48호서식) 모두 그래프 내부 article 노드로 SSoT 편입. 외부 인용 0건.",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:admin_emergency_plan"
+  ],
+  "relatedDocs": [
+    "doc:quarterly/construction_safety_inspection_record",
+    "doc:ad_hoc/construction_safety_health_register"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

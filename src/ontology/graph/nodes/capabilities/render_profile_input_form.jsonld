@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/render_profile_input_form",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "공통 메타 입력 폼 (모든 양식 자동 채움)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Render Profile Input Form",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 94종 법정문서가 공통으로 사용하는 핵심 14 필드만 받는 A2UI v0.9 폼. 사업장 5(사업장명·사업자번호·주소·업종코드·대표자) + 현재 공사 5(공사명·기간·금액·공종) + 결재선 4명(안전관리자·관리감독자·현장소장·근로자대표 성명). 한 번 저장하면 모든 양식이 자동 채움. 부가 정보는 register_* 도구로 별도 등록.",
+  "toolName": "render_profile_input_form",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/render_profile_input_form",
+  "producesEntity": [
+    "safety:A2UIForm"
+  ],
+  "maps_to_action": "safety:action/render_profile_input_form",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

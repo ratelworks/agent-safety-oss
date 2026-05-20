@@ -1,0 +1,101 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:fire_explosion",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "fire_explosion",
+  "label": "폭발·파열",
+  "category": "physical",
+  "koshaAccidentType": "폭발·파열",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "폭발",
+      "파열",
+      "압력용기"
+    ],
+    "excludeKeywords": [
+      "폭발 방지",
+      "폭발 예방"
+    ],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier",
+    "control:eng_ventilation",
+    "control:admin_work_permit",
+    "control:admin_emergency_plan",
+    "control:admin_msds",
+    "control:admin_safety_education",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:239",
+    "art:기준규칙:338"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/B-E-17-2026",
+    "doc:kosha_guide/C-70-2012",
+    "doc:kosha_guide/C-91-2015",
+    "doc:kosha_guide/C-C-1-2025",
+    "doc:kosha_guide/C-C-22-2026",
+    "doc:kosha_guide/C-C-3-2025",
+    "doc:kosha_guide/C-C-83-2020",
+    "doc:kosha_guide/D-12-2012",
+    "doc:kosha_guide/D-16-2012",
+    "doc:kosha_guide/D-22-2012",
+    "doc:kosha_guide/D-28-2012",
+    "doc:kosha_guide/D-33-2012",
+    "doc:kosha_guide/D-4-2012",
+    "doc:kosha_guide/D-43-2012",
+    "doc:kosha_guide/D-46-2013",
+    "doc:kosha_guide/E-141-2013",
+    "doc:kosha_guide/E-171-2018",
+    "doc:kosha_guide/E-178-2020",
+    "doc:kosha_guide/E-181-2020",
+    "doc:kosha_guide/E-182-2021",
+    "doc:kosha_guide/E-186-2021",
+    "doc:kosha_guide/E-187-2021",
+    "doc:kosha_guide/E-22-2012",
+    "doc:kosha_guide/E-74-2011",
+    "doc:kosha_guide/F-3-2014",
+    "doc:kosha_guide/G-1-2023",
+    "doc:kosha_guide/X-62-2013",
+    "doc:kosha_guide/X-63-2013",
+    "doc:kosha_guide/X-78-2018",
+    "doc:kosha_guide/C-C-26-2026",
+    "doc:kosha_guide/C-C-87-2026"
+  ],
+  "description": "**원인**: 용접 불꽃·점화원 + 가연물 / 인화성 액체 누출 / 산소 농도 과다.\n**상황**: 화기작업 (용접·용단·연삭) / 화학설비·도장·방수 작업 / 가스 사용.\n**확인**: 화기작업 허가서 / 방화포·소화기 비치 / 산소 18~23.5% / 가스 누출 검지 / 인화물 5m 이내 제거.\n**중대성**: 폭발 시 다수 사망·전소. 화재 시 산소결핍·일산화탄소 중독.",
+  "koshaArchiveFacets": [
+    "facet:ctgr01/12",
+    "facet:ctgr01/13"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:electric_work_50v_plus",
+    "activity:finishing_paint",
+    "activity:risk_assessment_general",
+    "activity:underground_utility"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/D-28-2012",
+    "doc:kosha_guide/D-33-2012",
+    "doc:kosha_guide/X-63-2013"
+  ]
+}

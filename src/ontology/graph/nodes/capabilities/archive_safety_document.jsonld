@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/archive_safety_document",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "완성 문서 영구 보관",
+      "@language": "ko"
+    },
+    {
+      "@value": "Archive Safety Document",
+      "@language": "en"
+    }
+  ],
+  "description": "프로젝트 메타, A2UI 렌더링, 로컬 초안·보관소 상태를 관리하는 capability. generate_safety_document·export_drafted_document·submit_safety_document(archive=true) 결과를 ~/.agent-safety-oss/documents/{docId}/{YYYY-MM-DD-HHmmss-SSS}.{html,md,json} 에 보관. 같은 millisecond 충돌 시 -01 suffix 로 덮어쓰기를 방지한다. cleanupDraft=true 시 초안 자동 삭제.",
+  "toolName": "archive_safety_document",
+  "category": "meta",
+  "inputSchema": "safety:schema/input/archive_safety_document",
+  "producesEntity": [
+    "safety:ArchivedDocument"
+  ],
+  "maps_to_action": "safety:action/archive_safety_document",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

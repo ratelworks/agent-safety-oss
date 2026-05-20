@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_road_pavement",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_road_pavement",
+  "title": "caught_in × road_pavement",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 9건 관측. 사고유형 caught_in 작업유형 road_pavement.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:road_pavement"
+  ],
+  "caseFrequency": 9,
+  "sampleKeywords": [
+    "수목이식 공사 중 쓰러진 나무에 협착",
+    "도로포장공사중 협착",
+    "포장작업중 후진중인 타이어 로울러에 협착"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

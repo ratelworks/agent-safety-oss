@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_safety_materials",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "안전보건자료 링크 검색 (15139398)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Safety Materials",
+      "@language": "en"
+    }
+  ],
+  "description": "안전보건자료, MSDS, 보호구 인증, 외국인 근로자 자료 링크를 다루는 capability. KOSHA 안전보건자료 링크 서비스(15139398, /selectMediaList01)에서 책자·OPS·교안·영상·외국인 자료를 검색한다. 안전교육 자료 추천, 외국인 근로자 대상 TBM 자료 확보에 사용. (근거 등급: reference)",
+  "toolName": "search_safety_materials",
+  "category": "safety_materials",
+  "inputSchema": "safety:schema/input/search_safety_materials",
+  "producesEntity": [
+    "safety:SafetyMaterial"
+  ],
+  "maps_to_action": "safety:action/search_safety_materials",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

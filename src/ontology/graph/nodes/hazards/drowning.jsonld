@@ -1,0 +1,53 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:drowning",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "drowning",
+  "label": "빠짐·익사",
+  "category": "physical",
+  "koshaAccidentType": "빠짐",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "빠짐",
+      "익사"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_guard_rail",
+    "control:eng_isolation_barrier",
+    "control:admin_emergency_plan",
+    "control:admin_supervisor",
+    "control:admin_safety_education",
+    "control:ppe_fall_arrester"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-2-2020",
+    "doc:kosha_guide/E-G-13-2026",
+    "doc:kosha_guide/H-187-2021"
+  ],
+  "description": "**원인**: 수상 작업 / 추락 시 수면 / 침수 갱내.\n**상황**: 교량·선박·해상 시공 / 우물·지하 갱내 시공.\n**확인**: 구명조끼 / 안전망 / 구조선·구명환 / 수상작업 안전대.\n**중대성**: 익사 (즉시 사망).",
+  "koshaArchiveFacets": [
+    "facet:ctgr03/20"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:drainage_sewerage"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-2-2020",
+    "doc:kosha_guide/E-G-13-2026",
+    "doc:kosha_guide/H-187-2021"
+  ]
+}

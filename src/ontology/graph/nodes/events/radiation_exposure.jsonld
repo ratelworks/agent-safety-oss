@@ -1,0 +1,21 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:radiation_exposure",
+  "@type": "Event",
+  "label": "방사선 노출",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "고용노동부 + 한국산업안전보건공단",
+    "koshaAccidentTypeCode": "19",
+    "fetchedAt": "2026-04-28",
+    "sourceRef": "산업재해 발생현황 통계 분류",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "description": "KOSHA 산업재해통계 분류 19호 — 방사선 노출",
+  "causedBy": [
+    "hazard:radiation_exposure"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr04/18"
+  ]
+}

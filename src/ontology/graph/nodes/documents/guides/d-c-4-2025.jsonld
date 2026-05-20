@@ -1,0 +1,231 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-C-4-2025",
+  "@type": "Document",
+  "docId": "kosha_guide_d-c-4-2025",
+  "title": "굴착기 안전보건작업 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-C-4-2025",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 9건 (법령 4 / KOSHA Guide 5). keyword=\"굴착기\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 3,
+      "5": 1,
+      "6": 90,
+      "7": 33,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "굴착기",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:buried_alive",
+    "hazard:cave_in",
+    "hazard:fall_from_height",
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:electric_shock",
+    "hazard:gas_leak",
+    "hazard:asphyxiation",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:admin_emergency_plan",
+    "control:sub_low_risk_method",
+    "control:elim_avoid_work",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:sub_safer_equipment",
+    "control:eng_isolation_barrier",
+    "control:admin_signal_person",
+    "control:admin_inspection",
+    "control:admin_safety_education",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:admin_work_permit",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:ppe_safety_shoes",
+    "control:elim_automation"
+  ],
+  "appliesToActivities": [
+    "activity:excavation_2m_plus"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:20",
+      "law": "기준규칙",
+      "articleNumber": "20",
+      "title": "출입의 금지 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제20조, 제38조, 제40조(총칙)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:38",
+      "law": "기준규칙",
+      "articleNumber": "38",
+      "title": "사전조사 및 작업계획서의 작성 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제20조, 제38조, 제40조(총칙)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:40",
+      "law": "기준규칙",
+      "articleNumber": "40",
+      "title": "신호",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제20조, 제38조, 제40조(총칙)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:196",
+      "law": "기준규칙",
+      "articleNumber": "196",
+      "title": "차량계 건설기계의 정의",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제196조∼제206조(차량계 건설기계 등)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:206",
+      "law": "기준규칙",
+      "articleNumber": "206",
+      "title": "수리 등의 작업 시 조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제196조∼제206조(차량계 건설기계 등)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:221",
+      "law": "기준규칙",
+      "articleNumber": "221",
+      "title": "가스배관 등의 손상 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제221조의2～5(굴착기)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:338",
+      "law": "기준규칙",
+      "articleNumber": "338",
+      "title": "굴착작업 사전조사 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제338조∼제347조(굴착작업 등의 위험방지)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:347",
+      "law": "기준규칙",
+      "articleNumber": "347",
+      "title": "붕괴 등의 위험 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제338조∼제347조(굴착작업 등의 위험방지)",
+      "citedAsOf": "2025",
+      "temporalNote": "KOSHA Guide D-C-4-2025 본문 직접 인용 (2025년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_수목작업에서의 굴삭기 안전작업에 대한 기술지침_6",
+      "title": "수목작업에서의 굴삭기 안전작업에 대한 기술지침 - 안전작업",
+      "score": 100.445
+    },
+    {
+      "docId": "KOSHA07_굴착기 안전보건작업 지침_3",
+      "title": "굴착기 안전보건작업 지침 - 용어의 정의",
+      "score": 99.724
+    },
+    {
+      "docId": "KOSHA07_굴착기 안전보건작업 지침_6",
+      "title": "굴착기 안전보건작업 지침 - 굴착기 안전작업 절차",
+      "score": 97.973
+    },
+    {
+      "docId": "KOSHA07_굴착기 안전보건작업 지침_5",
+      "title": "굴착기 안전보건작업 지침 - 굴착기 작업중 위험요인 및 안전대책",
+      "score": 92.02
+    },
+    {
+      "docId": "KOSHA07_굴착기 안전보건작업 지침_4",
+      "title": "굴착기 안전보건작업 지침 - 굴착기의 종류 및 선택 작업장치의 분류",
+      "score": 82.401
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_[별표 6] 차량계 건설기계(제196조 관련)",
+      "title": "[별표 6] 차량계 건설기계(제196조 관련)",
+      "category": "4",
+      "score": 81.365
+    },
+    {
+      "docId": "KOSHA04_001000002000000000000000020000",
+      "title": "제20조 출입의 금지 등",
+      "category": "4",
+      "score": 48.568
+    },
+    {
+      "docId": "KOSHA04_002000001000012000000000198000",
+      "title": "제198조 낙하물 보호구조",
+      "category": "4",
+      "score": 44.239
+    },
+    {
+      "docId": "KOSHA05_터널공사표준안전작업지침-NATM공법000000003000000000000000000000014000",
+      "title": "터널공사표준안전작업지침-NATM공법 제14조 기계굴착",
+      "category": "5",
+      "score": 48.824
+    }
+  ]
+}

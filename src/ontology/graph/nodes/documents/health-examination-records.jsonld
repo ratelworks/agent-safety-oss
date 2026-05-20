@@ -1,0 +1,425 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/health_examination_records",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "health_examination_records",
+  "title": "일반·특수건강진단 결과",
+  "alternativeNames": [
+    "건강검진 결과",
+    "특수건강진단표"
+  ],
+  "description": "산안법 제129조·제130조·제131조 의 건강진단 의무 이행. 일반건강진단(연 1회) + 특수건강진단(유해인자 노출 작업자) + 임시·수시·배치전.",
+  "cycle": "cyc:annual",
+  "trigger": "산안법 제129조·제130조·제131조 의 건강진단 의무 이행. 일반건강진단(연 1회) + 특수건강진단(유해인자 노출 작업자) + 임시·수시·배치전.",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "일반건강진단: 모든 근로자. 특수건강진단: 시행규칙 별표 22 의 유해인자 (소음·분진·화학물질 등) 노출 작업자."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "examDate",
+      "label": "검진 일자",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "건강검진 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "examType",
+      "label": "검진 종류 (일반/특수/배치전/수시/임시)",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "산안법 제129조~131 — 일반·특수·배치전·수시·임시 분류.",
+      "examples": [
+        "특수 (분진·소음 노출)"
+      ]
+    },
+    {
+      "key": "examiner",
+      "label": "검진 의료기관·의사",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "지정 의료기관 + 검진의사.",
+      "examples": [
+        "(주)한국건강검진센터 / 김의사 (산업의학 전문의)"
+      ]
+    },
+    {
+      "key": "workerInfo",
+      "label": "근로자 인적사항·직무",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "수행 업무.",
+      "examples": [
+        "안전관리"
+      ]
+    },
+    {
+      "key": "exposureFactor",
+      "label": "유해인자 노출 정보",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "측정 대상 유해인자명. 시행규칙 별표 21.",
+      "examples": [
+        "분진 (호흡성), 톨루엔, 소음"
+      ]
+    },
+    {
+      "key": "f_5_검진_결과__A_B_C",
+      "label": "검진 결과 (A/B/C/C1/C2/CN/D/D1/D2/DN/R/R1)",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "산업안전보건법 시행규칙 별표 7 판정 분류.",
+      "examples": [
+        "A (정상): 8명 / C1 (직업성 요관찰): 2명 / D1 (직업성 유소견): 1명"
+      ]
+    },
+    {
+      "key": "f_6_판정_의사_소견__사후",
+      "label": "판정 의사 소견 (사후관리)",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "의사 소견 + 사후관리 권고 (작업전환·근로금지·치료 등).",
+      "examples": [
+        "D1 1명 진폐증 의심 → 분진 작업 전환 권고 + 정밀검사 의뢰"
+      ]
+    },
+    {
+      "key": "notificationDate",
+      "label": "근로자 통보 일자",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "결과 근로자 본인 통보일.",
+      "examples": [
+        "2026-05-15"
+      ]
+    },
+    {
+      "key": "f_8_보존__5년_CMR_3",
+      "label": "보존 (5년·CMR 30년)",
+      "source": "산안법 제129조·제130조·제131조 + 시행규칙 제201조·제241조",
+      "inputGuide": "보존 기간 (일반 5년 / 발암성·생식독성·변이원성 30년).",
+      "examples": [
+        "일반 5년 (~2031-04) / CMR 노출자 30년 (~2056-04)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 일반건강진단 주기 (사무직 2년·비사무직 1년)",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:129"
+    },
+    {
+      "rule": "필수 — 특수건강진단 (유해인자 노출자)",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:130"
+    },
+    {
+      "rule": "필수 — 지정기관 진단 (시행규칙 제198조)",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 유소견자(D) 사후관리",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 결과 보존 5년 / CMR 30년",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:241"
+    }
+  ],
+  "retention": "5년 (시행규칙 제241조) / **CMR 물질 30년**",
+  "standardForm": {
+    "source": "산안법 시행규칙 별지 + 건강진단기관",
+    "sourceUrl": "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&joNo=020100000",
+    "requiredFields": [
+      "근로자 인적사항 (성명·생년월일·소속·직종)",
+      "진단 종류 (일반·특수·임시·수시·배치전)",
+      "진단 일자",
+      "건강진단기관 (지정기관 — 시행규칙 제198조)",
+      "진단 항목 (별표 24 일반·별표 25 특수)",
+      "결과 판정 (정상 A / 정상 B / 요관찰 C / 유소견 D)",
+      "사후관리 조치 (작업전환·근로시간 단축·치료 등)",
+      "유소견자 발생 시 작업환경 재측정 트리거"
+    ]
+  },
+  "relatedDocs": [],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§129",
+        "text": "일반건강진단 — 사무직 2년 1회·비사무직 1년 1회"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§130",
+        "text": "특수건강진단 — 유해인자 노출 근로자, 시행규칙 별표 22 주기"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§131",
+        "text": "임시·수시·배치전 건강진단"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§201~",
+        "text": "건강진단 종류·주기·항목"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§241",
+        "text": "보존 (5년 / 발암성·CMR 물질 30년)"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "결과 판정": "A 정상·B 일반관리 정상·C 직업관련 요관찰·D 직업병 유소견·R 일반질환 유소견",
+        "사후관리": "유소견자(D) 시 작업전환·근로시간 단축·정기 추적관찰·치료 의뢰",
+        "보존": "특수건강진단 결과는 5년. 단 발암물질·CMR 노출자는 30년"
+      },
+      "commonMistakes": [
+        "일반·특수 진단 주기 미준수 (위반 시 과태료)",
+        "유소견자(D) 사후관리 미실시 → 산재 보상 시 사업주 불리",
+        "지정 의료기관 외에서 진단 (시행규칙 제198조 위반)",
+        "CMR 노출자 결과 5년만 보존 → 30년 의무 위반"
+      ],
+      "bestPractices": [
+        "건강진단기관과 연간 계약",
+        "결과는 근로자 본인에게 통보 (산안법 제129조 ⑤)",
+        "유소견자 발생 시 작업환경측정 재실시 + 위험성평가 수시"
+      ]
+    },
+    "examples": [
+      {
+        "title": "KOSHA 건강진단 가이드",
+        "source": "안전보건공단",
+        "license": "공공누리 (자료별 확인)"
+      }
+    ],
+    "relatedTools": [
+      "search_safety_laws({keyword:'제129조'})",
+      "search_safety_laws({keyword:'건강진단'})",
+      "search_msds({chemNm})  // CMR 물질 식별"
+    ],
+    "convertedAt": "2026-04-26",
+    "note": "guides/*.json 에서 자동 변환된 노드. legalBasis 의 Article 노드 IRI 매핑은 P1 수작업 보강 예정.",
+    "predictedLegalBasisIris": [],
+    "unresolvedLegalBasisRefs": [],
+    "enrichedAt": "2026-04-26",
+    "stubLinkedIris": [],
+    "reviewedAt": "2026-04-26",
+    "reviewer": "라텔웍스 (Ratelworks Inc., 황룡건설(주) 자문)",
+    "reviewLevel": "1차 도메인 검토 — 19종 docId entity 의 legalBasisRefs · requiredFields · reviewRules 정합성 확인",
+    "reviewNotes": "Phase 5 가이드라인 준수 (JSON-LD 1.1 + schema.org Legislation + ELI). 본문은 KOSHA 표준 양식·법제처 본문 기반. 황룡건설 dogfooding 완료 시 'verified' 로 최종 승급 예정.",
+    "autoPromotedAt": "2026-04-26",
+    "promotedBy": "scripts/promote-document-status.ts (자동 스크립트, 사람 검토 미실시)",
+    "promoteRationale": "1) standardForm 출처가 KOSHA 표준 / 2) legalBasisRefs 가 법제처 verified Article 노드와 매칭 / 3) reviewRules 가 인용 조문과 정합. 단 사람 도메인 전문가 직접 검토는 미실시 — 황룡건설 dogfooding 완료 후 'verified' 승급 예정.",
+    "dogfoodingNote": "본 verified 라벨은 자동 시뮬레이션에 의한 1차 합격. 진짜 사람 도메인 전문가(안전관리자) 사용 후 추가 검증 필요.",
+    "simulationPassedAt": "2026-04-26",
+    "simulationPassedBy": "scripts/dogfooding-simulation.ts (자동 시뮬레이션 — 그래프 정합성 + review 도구 통과)",
+    "promotionNote": "자동 시뮬레이션 통과 — review_safety_document 도구 호출 + 그래프 정합성 확인. 진짜 사람 도메인 검토(황룡건설 dogfooding) 후 verified 승급 예정.",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:129",
+    "art:산안법:130",
+    "art:산안법:131",
+    "art:산안법시행규칙:201",
+    "art:산안법시행규칙:241"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:asbestos_removal",
+    "activity:finishing_paint",
+    "activity:waterproofing"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 일반·특수 건강진단 결과",
+      "legalSource": "산안법 제129조·제130조 + 시행규칙 별지 제85호",
+      "fields": [
+        {
+          "key": "examType",
+          "label": "진단 종류",
+          "required": true,
+          "inputGuide": "일반(연1회) / 특수(6개월) / 임시 / 수시.",
+          "examples": [
+            "일반 + 특수 (소음·분진 노출)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "examPeriod",
+          "label": "진단 기간",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD ~ YYYY-MM-DD.",
+          "examples": [
+            "2026-04-15 ~ 2026-04-19"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "examAgency",
+          "label": "진단기관 (지정)",
+          "required": true,
+          "inputGuide": "고용노동부 지정 의료기관.",
+          "examples": [
+            "서울의료원 (지정 제2018-001호)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "examTargets",
+          "label": "대상 근로자",
+          "required": true,
+          "inputGuide": "전 근로자 (일반) + 노출 근로자 (특수).",
+          "examples": [
+            "일반 50명 + 특수 12명 (소음·분진 노출)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "results",
+          "label": "진단 결과 (등급)",
+          "required": true,
+          "inputGuide": "A/C/D 등급별 인원.",
+          "examples": [
+            "A 45명, C1 4명, C2 3명, D 0명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "followUp",
+          "label": "사후관리 (D·C 등급)",
+          "required": true,
+          "inputGuide": "D는 작업전환·요양, C는 추적관찰.",
+          "examples": [
+            "C1 4명 - 작업환경 개선 + 추적관찰, C2 3명 - 보호구 강화"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "entity:nhic",
+    "src:nhic:1577-1000",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Worker",
+  "annexReference": [
+    "annex:산안법시행규칙:서식85"
+  ],
+  "hasHazard": [
+    "hazard:chemical_exposure",
+    "hazard:dust",
+    "hazard:noise",
+    "hazard:radiation_exposure",
+    "hazard:vibration_exposure",
+    "hazard:msd_repetitive"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

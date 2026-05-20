@@ -1,0 +1,411 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/contractor_round_inspection_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "contractor_round_inspection_log",
+  "title": "작업장 순회점검 일지",
+  "alternativeNames": [
+    "작업장 순회점검",
+    "수급인 작업장 순회"
+  ],
+  "description": "도급인이 자신의 사업장에서 관계수급인의 근로자가 작업할 때 실시하는 작업장 순회점검 일지. 산안법 제64조 ① 2호 + 시행규칙 제80조 ② 에 따라 건설업은 2일에 1회 이상 실시 의무. 50억 미만 도급 사업장 적용.",
+  "cycle": "cyc:every_2_days",
+  "trigger": "도급사업주는 관계수급인 근로자 작업 시 2일에 1회 이상 작업장 순회점검을 실시 (산안법 제64조 ① 2호, 시행규칙 제80조 ②).",
+  "applicableWhen": {
+    "appliesTo": "applic:contractor",
+    "scaleNotes": "건설업 도급사업주는 2일에 1회 이상. 일반 도급사업주는 1주에 1회 이상."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "inspectionDate",
+      "label": "순회점검 일시",
+      "source": "산안법 제64조 + 시행규칙 제80조 ②",
+      "inputGuide": "순회점검 일시.",
+      "examples": [
+        "2026-04-29 10:00 ~ 12:00"
+      ]
+    },
+    {
+      "key": "inspector",
+      "label": "점검자 성명·직위",
+      "source": "법령 의무",
+      "inputGuide": "관리감독자 또는 작업지휘자 직책 + 성명.",
+      "examples": [
+        "박감독 (관리감독자)"
+      ]
+    },
+    {
+      "key": "primaryContractor",
+      "label": "도급인 사업장명",
+      "source": "법령 의무",
+      "inputGuide": "도급 발주 사업장.",
+      "examples": [
+        "황룡건설(주) 삼성동 현장"
+      ]
+    },
+    {
+      "key": "subContractor",
+      "label": "관계수급인 사업장명·작업범위",
+      "source": "법령 의무",
+      "inputGuide": "수급·하수급 사업장.",
+      "examples": [
+        "광산기계(주) 양중작업팀"
+      ]
+    },
+    {
+      "key": "inspectionAreas",
+      "label": "점검 대상 작업장·구간",
+      "source": "법령 의무",
+      "inputGuide": "점검 구역·작업장 식별.",
+      "examples": [
+        "A동 4층 골조작업장 + B동 외부비계"
+      ]
+    },
+    {
+      "key": "findings",
+      "label": "발견 사항 (불안전 상태·행동)",
+      "source": "법령 의무",
+      "inputGuide": "발견된 불안전 상태·행동 — 사실 위주 서술.",
+      "examples": [
+        "1) 단부 안전난간 누락 (A동 4층) / 2) 안전대 미체결 1명 / 3) 안전모 끈 미체결 2명"
+      ]
+    },
+    {
+      "key": "improvementRequest",
+      "label": "개선 요구 사항",
+      "source": "법령 의무",
+      "inputGuide": "시정 요구 항목 + 일정 + 책임자.",
+      "examples": [
+        "1) 안전난간 즉시 설치 (박감독, 당일) / 2) 안전대 체결 교육 (김안전, 5/1)"
+      ]
+    },
+    {
+      "key": "subContractorResponse",
+      "label": "수급인 조치 사항·이행일자",
+      "source": "법령 의무",
+      "inputGuide": "도급 계약 받은 시공사.",
+      "examples": [
+        "황룡건설(주)"
+      ]
+    },
+    {
+      "key": "verifiedBy",
+      "label": "이행 확인자 (도급인) 서명",
+      "source": "법령 의무",
+      "inputGuide": "본인 자필 서명 또는 전자서명.",
+      "examples": [
+        "(자필 서명)"
+      ]
+    },
+    {
+      "key": "approvalChain",
+      "label": "결재선",
+      "source": "행정",
+      "inputGuide": "작성 → 검토 → 승인 순. 직책 + 성명 + 서명.",
+      "examples": [
+        "작성: 김안전 / 검토: 박감독 / 승인: 황룡"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 점검 일시 (2일에 1회 이상 누락 없음)",
+      "severity": "blocker",
+      "checkFields": [
+        "inspectionDate"
+      ]
+    },
+    {
+      "rule": "필수 — 점검자 성명·직위 (도급인 측)",
+      "severity": "blocker",
+      "checkFields": [
+        "inspector"
+      ]
+    },
+    {
+      "rule": "필수 — 발견사항·개선요구·수급인 조치 3종 모두 기재",
+      "severity": "blocker",
+      "checkFields": [
+        "findings",
+        "improvementRequest",
+        "subContractorResponse"
+      ]
+    },
+    {
+      "rule": "필수 — 결재선",
+      "severity": "blocker",
+      "checkFields": [
+        "approvalChain"
+      ]
+    },
+    {
+      "rule": "권장 — 사진 첨부 (불안전 상태 시각 입증)",
+      "severity": "warning"
+    },
+    {
+      "rule": "사람 검토 — 미이행 시 작업중지 여부",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 위반 시 제175조 500만원 과태료",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:175"
+    }
+  ],
+  "retention": "3년 (산안법 제164조)",
+  "standardForm": {
+    "source": "산안법 제64조 + 시행규칙 제80조 ② — 도급사업 작업장 순회점검 (자체 양식)",
+    "officialNote": "별지 양식 없음. 사업장 자체 양식. KOSHA 권장 항목 + 법령 의무 항목 통합.",
+    "verifiedBy": "산안법 제64조 + 시행규칙 제80조 본문 1:1 매핑 (2026-04-29)"
+  },
+  "relatedDocs": [
+    "doc:monthly/contractor_safety_council",
+    "doc:monthly/contractor_consultative_body",
+    "doc:weekly/weekly_joint_inspection"
+  ],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§64",
+        "text": "도급에 따른 산업재해 예방조치 — 작업장 순회점검"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§80",
+        "text": "건설업 2일에 1회 이상, 그 외 1주에 1회 이상"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§175",
+        "text": "위반 시 500만원 과태료"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "발견사항": "불안전한 상태(예: 토류벽 미설치, 안전난간 결손) + 불안전한 행동(예: 안전대 미착용, 사각지대 진입) 모두 작성",
+        "개선요구": "구체적 행동 + 이행 기한 (예: '북측 단부 안전난간 즉시 설치 / 4/30 17:00까지')",
+        "수급인 조치": "수급인 측 응답 + 이행 일시 + 이행자 성명·서명"
+      },
+      "commonMistakes": [
+        "건설업 2일 1회 누락 (1주 1회로 작성)",
+        "발견사항·개선요구·조치 3종 중 일부 누락",
+        "수급인 조치 확인 안 함 (도급인 책임 미이행)"
+      ],
+      "bestPractices": [
+        "동선·구간 사전 계획 (전 구간 분할)",
+        "사진·동영상 첨부",
+        "위반 사항 즉시 작업중지 권고"
+      ]
+    },
+    "examples": [
+      {
+        "title": "도급사업 안전보건 가이드",
+        "source": "KOSHA",
+        "license": "공공누리"
+      }
+    ],
+    "createdAt": "2026-04-29",
+    "createdBy": "라텔웍스 (Ratelworks Inc.) — 50억 미만 의무 매트릭스 누락 노드 신규 작성",
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:64",
+    "art:산안법시행규칙:80",
+    "art:산안법:175"
+  ],
+  "penaltyOnMissing": "art:산안법:175",
+  "appliesToActivities": [
+    "activity:contractor_management"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 작업장 순회점검 일지",
+      "legalSource": "산안법 제64조 ① 2호 + 시행규칙 제80조 (건설 2일1회)",
+      "fields": [
+        {
+          "key": "inspectionDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "건설업 2일 1회 / 기타 주 1회.",
+          "examples": [
+            "2026-04-29 09:00~10:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspector",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "도급인 안전관리자.",
+          "examples": [
+            "김안전 (도급인 안전관리자)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspectedAreas",
+          "label": "점검 구역",
+          "required": true,
+          "inputGuide": "전 작업 구역 (도급인+수급인).",
+          "examples": [
+            "A동 굴착 / B동 골조 / 자재창고"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "findings",
+          "label": "발견 위험요인",
+          "required": true,
+          "inputGuide": "건수·내용·위험도.",
+          "examples": [
+            [
+              {
+                "구역": "A동",
+                "내용": "안전난간 누락 5m",
+                "조치": "즉시 설치"
+              },
+              {
+                "구역": "B동",
+                "내용": "안전대 미착용 1명",
+                "조치": "즉시 착용 + 주의"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "improvements",
+          "label": "시정 요구·이행",
+          "required": true,
+          "inputGuide": "수급인에 시정 요구 + 이행 확인.",
+          "examples": [
+            "우송설비(주)에 안전난간 설치 요구 (2026-04-29 16:00 이행 완료)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_supervisor",
+    "control:admin_inspection"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

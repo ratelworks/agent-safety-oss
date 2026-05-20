@@ -1,0 +1,159 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-C-15-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_d-c-15-2026",
+  "title": "콘크리트공사(단순 슬래브 포함) 안전작업에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-C-15-2026",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"콘크리트공사\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 5,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "콘크리트공사",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:noise_exposure",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:sub_low_toxic",
+    "control:admin_msds",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:rc_concrete"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_소규모 철근콘크리트 교량공사 거푸집 동바리 안전작업 지침_8",
+      "title": "소규모 철근콘크리트 교량공사 거푸집 동바리 안전작업 지침 - 기타 거푸집 동바리 안전작업 준수사항",
+      "score": 53.488
+    },
+    {
+      "docId": "KOSHA07_콘크리트공사의 안전보건작업 지침_6",
+      "title": "콘크리트공사의 안전보건작업 지침 - 콘크리트 타설공사",
+      "score": 31.904
+    },
+    {
+      "docId": "KOSHA07_탑다운(Top down)공법 안전작업 지침_6",
+      "title": "탑다운(Top down)공법 안전작업 지침 - 구조물 작업 안전",
+      "score": 22.093
+    },
+    {
+      "docId": "KOSHA07_콘크리트공사의 안전보건작업 지침_4",
+      "title": "콘크리트공사의 안전보건작업 지침 - 거푸집 및 거푸집동바리 공사",
+      "score": 18.215
+    },
+    {
+      "docId": "KOSHA07_터널공사(Shield-T.B.M공법) 안전보건작업 지침_5",
+      "title": "터널공사(Shield-T.B.M공법) 안전보건작업 지침 - 공사 단계별 안전작업 사항",
+      "score": 15.801
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:334",
+      "law": "기준규칙",
+      "articleNumber": "334",
+      "title": "콘크리트의 타설작업",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제334조(콘크리트의 타설작업)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-15-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:335",
+      "law": "기준규칙",
+      "articleNumber": "335",
+      "title": "콘크리트 타설장비 사용 시의 준수사항",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제335조(콘크리트 타설장비 사용시의 준수사항)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-15-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:334",
+      "law": "기준규칙",
+      "articleNumber": "334",
+      "title": "콘크리트의 타설작업",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제334조(콘크리트의 타설작업)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-15-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:335",
+      "law": "기준규칙",
+      "articleNumber": "335",
+      "title": "콘크리트 타설장비 사용 시의 준수사항",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제335조(콘크리트 타설장비 사용시의 준수사항)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-15-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

@@ -1,0 +1,432 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/health_safety_committee",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "health_safety_committee",
+  "title": "산업안전보건위원회 운영규정",
+  "alternativeNames": [
+    "산안위 회의록",
+    "안전보건위원회 의사록"
+  ],
+  "description": "산안법 제24조 의 산업안전보건위원회 분기 1회 이상 운영 의무 이행 기록. 노사 동수 위원회로 안전보건 사항 심의·의결.",
+  "cycle": "cyc:monthly",
+  "trigger": "산안법 제24조 의 산업안전보건위원회 분기 1회 이상 운영 의무 이행 기록. 노사 동수 위원회로 안전보건 사항 심의·의결.",
+  "applicableWhen": {
+    "appliesTo": "applic:fifty_persons_or_more",
+    "scaleNotes": "건설업은 시행령 별표 9 의 공사금액 기준 적용. 50억 미만 + 50인 미만 일반 면제."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "건설업 — 상시근로자 100인 미만 또는 공사금액 120억 미만 면제",
+      "5인 미만 사업장"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "meetingDate",
+      "label": "개최 일시",
+      "source": "시행령 제37조 ④ 1호",
+      "inputGuide": "산업안전보건위원회 개최 일시.",
+      "examples": [
+        "2026-04-29 14:00"
+      ]
+    },
+    {
+      "key": "meetingLocation",
+      "label": "개최 장소",
+      "source": "시행령 제37조 ④ 1호",
+      "inputGuide": "회의 개최 장소.",
+      "examples": [
+        "황룡건설(주) 본사 회의실 (또는 현장 안전교육실)"
+      ]
+    },
+    {
+      "key": "meetingType",
+      "label": "회의 종류 (정기 분기·임시)",
+      "source": "시행령 제37조 ④ 1호",
+      "inputGuide": "정기 (분기 1회) / 임시.",
+      "examples": [
+        "정기 (2분기)"
+      ]
+    },
+    {
+      "key": "workerMembers",
+      "label": "출석 근로자위원 (과반수 출석)",
+      "source": "시행령 제37조 ④ 2호 + ② 의결 정족수",
+      "inputGuide": "근로자위원 출석 명단 (과반수 의결정족수).",
+      "examples": [
+        "이작업 (근로자대표), 박작업 (안전위원), NGUYEN VAN A 외 2명 / 총 5명 중 5명 출석"
+      ]
+    },
+    {
+      "key": "employerMembers",
+      "label": "출석 사용자위원 (과반수 출석)",
+      "source": "시행령 제37조 ④ 2호 + ② 의결 정족수",
+      "inputGuide": "사용자위원 출석 명단.",
+      "examples": [
+        "황한일 (대표), 김안전 (안전관리자), 박감독 외 2명 / 총 5명 중 5명 출석"
+      ]
+    },
+    {
+      "key": "agenda",
+      "label": "심의 안건 (산안법 제24조 ① 1~10호)",
+      "source": "시행령 제37조 ④ 3호 + ② 의결 정족수",
+      "inputGuide": "산안법 제64조·제65조 도급사업주 협의체 안건. 위험성평가·안전점검·재해 사례 공유 포함.",
+      "examples": [
+        "1. 4월 위험성평가 결과 공유 / 2. 합동점검 결과 / 3. 재해사례 (인근 현장 추락) 학습"
+      ]
+    },
+    {
+      "key": "discussion",
+      "label": "심의 내용",
+      "source": "시행령 제37조 ④ 3호 + ② 의결 정족수",
+      "inputGuide": "심의 안건 (산안법 제24조 ① 1~10호).",
+      "examples": [
+        "1) 분기 위험성평가 결과 / 2) 합동 안전점검 결과 / 3) 보호구 변경 / 4) 재해사례 학습"
+      ]
+    },
+    {
+      "key": "decision",
+      "label": "의결·결정 사항 (출석위원 과반수 찬성)",
+      "source": "시행령 제37조 ④ 3호 + ② 의결 정족수",
+      "inputGuide": "참석자 만장일치/다수결 + 이행 책임자 + 이행 기한 + 차기 회의 검증.",
+      "examples": [
+        "만장일치: 4월 30일까지 모든 비계 안전난간 H1.2m 강화 (책임 OO건설 김OO, 다음 회의 검증)"
+      ]
+    },
+    {
+      "key": "documentId",
+      "label": "문서 번호 (예: WP-2026-0427-001)",
+      "source": "한국 안전관리 표준 양식 공통 메타",
+      "inputGuide": "현장 자체 부여 일련번호.",
+      "examples": [
+        "DOC-2026-0429-01"
+      ]
+    },
+    {
+      "key": "approvalChain",
+      "label": "결재 라인 — 사업주·관리감독자·근로자대표 서명·날짜",
+      "source": "한국 안전관리 표준 행정 양식 (법적 근거는 각 Document legalBasis 참조)",
+      "inputGuide": "작성 → 검토 → 승인 순. 직책 + 성명 + 서명.",
+      "examples": [
+        "작성: 김안전 / 검토: 박감독 / 승인: 황룡"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 회의일자·위원 명단·서명",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:24"
+    },
+    {
+      "rule": "필수 — 노사 동수 구성",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:24"
+    },
+    {
+      "rule": "필수 — 분기 1회 이상 개최",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:24"
+    },
+    {
+      "rule": "필수 — 시행령 제35조 심의의결 사항 다룸",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행령:35"
+    }
+  ],
+  "retention": "2년 (산안법 제164조)",
+  "standardForm": {
+    "source": "고용노동부 산안위 운영 매뉴얼 + KOSHA Guide",
+    "sourceUrl": "https://www.law.go.kr/lsLinkProc.do?chrClsCd=010202&datClsCd=010102&joNo=002400000",
+    "requiredFields": [
+      "회의일자·시간·장소",
+      "위원 명단 (사용자측·근로자측 각 N명, 직위·서명)",
+      "위원장·간사",
+      "회의 안건",
+      "심의·의결 사항 (시행령 제35조 각 호 대응)",
+      "  · 산업재해 예방계획 수립",
+      "  · 안전보건관리규정 작성·변경",
+      "  · 안전보건교육",
+      "  · 작업환경측정·건강진단·역학조사",
+      "  · 중대재해 원인 조사·재발방지",
+      "  · 산업재해 통계 기록·유지",
+      "표결 결과",
+      "다음 회의 일정"
+    ]
+  },
+  "relatedDocs": [
+    "doc:quarterly/safety_health_committee",
+    "doc:annual/safety_health_management_policy"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-R-1-2026",
+    "doc:kosha_guide/E-G-15-2026",
+    "doc:kosha_guide/E-G-17-2026",
+    "doc:kosha_guide/E-M-5-2025",
+    "doc:kosha_guide/G-96-2012"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§24",
+        "text": "산업안전보건위원회 — 사용자·근로자 동수 구성, 분기 1회 이상 회의"
+      },
+      {
+        "law": "산업안전보건법 시행령",
+        "article": "§34",
+        "text": "산업안전보건위원회 구성 대상 사업 (상시근로자 100인 이상 — 일부 업종은 50인 이상)"
+      },
+      {
+        "law": "산업안전보건법 시행령",
+        "article": "§35",
+        "text": "위원회 구성·심의의결 사항"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§164",
+        "text": "회의록 보존 (2년)"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "위원 구성": "노사 동수. 사용자측 9명 = 근로자측 9명 식. 근로자위원은 근로자대표 또는 근로자대표 추천",
+        "심의·의결": "시행령 제35조 각 호 항목별로 구분 기재"
+      },
+      "commonMistakes": [
+        "회의 분기당 1회 미실시 (제24조 위반)",
+        "노사 인원 비대칭",
+        "안전보건관리규정 변경 시 산안위 미경유"
+      ],
+      "bestPractices": [
+        "분기별 정기 회의 일정 사전 확정",
+        "안건은 회의 1주일 전 위원에게 사전 송부",
+        "심의·의결 사항은 안전보건관리규정에 반영"
+      ]
+    },
+    "examples": [
+      {
+        "title": "고용노동부 산업안전보건위원회 운영 매뉴얼",
+        "source": "고용노동부",
+        "license": "공공누리 (자료별 확인)"
+      }
+    ],
+    "relatedTools": [
+      "search_safety_laws({keyword:'제24조'})",
+      "search_safety_laws({keyword:'산업안전보건위원회'})"
+    ],
+    "convertedAt": "2026-04-26",
+    "note": "guides/*.json 에서 자동 변환된 노드. legalBasis 의 Article 노드 IRI 매핑은 P1 수작업 보강 예정.",
+    "predictedLegalBasisIris": [],
+    "unresolvedLegalBasisRefs": [],
+    "enrichedAt": "2026-04-26",
+    "stubLinkedIris": [],
+    "reviewedAt": "2026-04-26",
+    "reviewer": "라텔웍스 (Ratelworks Inc., 황룡건설(주) 자문)",
+    "reviewLevel": "1차 도메인 검토 — 19종 docId entity 의 legalBasisRefs · requiredFields · reviewRules 정합성 확인",
+    "reviewNotes": "Phase 5 가이드라인 준수 (JSON-LD 1.1 + schema.org Legislation + ELI). 본문은 KOSHA 표준 양식·법제처 본문 기반. 황룡건설 dogfooding 완료 시 'verified' 로 최종 승급 예정.",
+    "autoPromotedAt": "2026-04-26",
+    "promotedBy": "scripts/promote-document-status.ts (자동 스크립트, 사람 검토 미실시)",
+    "promoteRationale": "1) standardForm 출처가 KOSHA 표준 / 2) legalBasisRefs 가 법제처 verified Article 노드와 매칭 / 3) reviewRules 가 인용 조문과 정합. 단 사람 도메인 전문가 직접 검토는 미실시 — 황룡건설 dogfooding 완료 후 'verified' 승급 예정.",
+    "dogfoodingNote": "본 verified 라벨은 자동 시뮬레이션에 의한 1차 합격. 진짜 사람 도메인 전문가(안전관리자) 사용 후 추가 검증 필요.",
+    "simulationPassedAt": "2026-04-26",
+    "simulationPassedBy": "scripts/dogfooding-simulation.ts (자동 시뮬레이션 — 그래프 정합성 + review 도구 통과)",
+    "promotionNote": "자동 시뮬레이션 통과 — review_safety_document 도구 호출 + 그래프 정합성 확인. 진짜 사람 도메인 검토(황룡건설 dogfooding) 후 verified 승급 예정.",
+    "documentCategory": "administrative",
+    "guidedByExcludeKeywords": [
+      "굴착",
+      "타워크레인",
+      "동물실험윤리위원회",
+      "독성시험"
+    ],
+    "coreSectionsAddedAt": "2026-04-27",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법시행령:37",
+    "art:산안법:24",
+    "art:산안법시행령:34",
+    "art:산안법시행령:35",
+    "art:산안법:164"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 산업안전보건위원회 운영규정",
+      "legalSource": "산안법 제24조 + 시행규칙 제35조",
+      "fields": [
+        {
+          "key": "committeeOrganization",
+          "label": "위원회 조직",
+          "required": true,
+          "inputGuide": "위원장·간사·위원 구성.",
+          "examples": [
+            "위원장 사업주 1, 부위원장 근로자대표 1, 간사 안전관리자 1, 위원 8명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "meetingFrequency",
+          "label": "회의 주기",
+          "required": true,
+          "inputGuide": "분기 1회 이상 + 임시.",
+          "examples": [
+            "분기 1회 정기 + 중대재해 발생 시 임시"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "agendaScope",
+          "label": "심의·의결 범위",
+          "required": true,
+          "inputGuide": "산안법 제24조 ③ 8개 항목.",
+          "examples": [
+            "산재예방계획·관리규정·위험성평가·산재보고·관리비·도급·교육·안전보건진단"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "votingRule",
+          "label": "의결 정족수",
+          "required": true,
+          "inputGuide": "재적 과반수 출석 + 출석 과반수 찬성.",
+          "examples": [
+            "재적 10명 → 6명 이상 출석 + 출석 과반수 찬성"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "recordRule",
+          "label": "회의록 작성·보존",
+          "required": true,
+          "inputGuide": "3년 보존 + 게시.",
+          "examples": [
+            "회의 후 7일 내 작성, 게시판 게시, 3년 보존"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "searchKeywords": [
+    "산업안전보건위원회 회의록",
+    "산안위 회의록",
+    "노사 협의"
+  ],
+  "alternativeCycles": [
+    "cyc:quarterly"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

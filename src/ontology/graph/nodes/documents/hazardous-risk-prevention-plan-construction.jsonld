@@ -1,0 +1,326 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/hazardous_risk_prevention_plan_construction",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "hazardous_risk_prevention_plan_construction",
+  "title": "유해·위험방지계획서 (건설)",
+  "description": "대상 건설공사(시행령 제42조 ③) 유해위험방지계획서 (산안법 제42조 3호)",
+  "cycle": "cyc:ad_hoc",
+  "legalBasis": [
+    "art:산안법:42",
+    "art:산안법시행령:42"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "f_1_공사_종류_규모",
+      "label": "공사 종류·규모",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "공사 분류 + 연면적·공사금액·층수.",
+      "examples": [
+        "건축 — 연면적 12,000㎡, 지하 3·지상 15층, 공사금액 320억"
+      ]
+    },
+    {
+      "key": "f_2_착공_예정일",
+      "label": "착공 예정일",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "착공 신고 기준일.",
+      "examples": [
+        "2026-03-01"
+      ]
+    },
+    {
+      "key": "f_3_유해_위험요인",
+      "label": "유해·위험요인",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "발견·예상 유해·위험요인. KRAS 7방법 적용.",
+      "examples": [
+        "1) 추락 (2m 이상 단부) / 2) 협착 (양중 하부) / 3) 화재 (용접 불꽃)"
+      ]
+    },
+    {
+      "key": "f_4_공정별_안전대책",
+      "label": "공정별 안전대책",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "공정별 위험요인 + 감소대책.",
+      "examples": [
+        "골조: 추락 방호망 / 외장: 비계 안전난간 / 설비: LOTO 절차"
+      ]
+    },
+    {
+      "key": "f_5_흙막이_거푸집_해체_등",
+      "label": "흙막이·거푸집·해체 등 위험공종 별도 계획",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "위험공종별 별도 작업계획서 첨부.",
+      "examples": [
+        "흙막이 (work_plan_excavation) + 거푸집동바리 (work_plan_formwork) + 해체 (work_plan_demolition)"
+      ]
+    },
+    {
+      "key": "f_6_관리책임자",
+      "label": "관리책임자",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "법령상 책임 보유자 (안전보건관리책임자·관리감독자 등).",
+      "examples": [
+        "김안전 (안전보건관리책임자)"
+      ]
+    },
+    {
+      "key": "f_7_공단_제출일",
+      "label": "공단 제출일",
+      "source": "산안법 제42조 + 시행령 제42의3조",
+      "inputGuide": "한국산업안전보건공단 제출일 (착공 30일 전).",
+      "examples": [
+        "2026-02-01 (착공 2026-03-01 기준 30일 전)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "자격자 의견 첨부",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:42"
+    },
+    {
+      "rule": "고용노동부장관 제출·심사",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:42"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 유해·위험방지계획서 (건설)",
+      "legalSource": "산안법 제42조·제43조 + 시행령 별표 10",
+      "fields": [
+        {
+          "key": "projectScope",
+          "label": "공사 개요 (대상 공사)",
+          "required": true,
+          "inputGuide": "별표 10 대상 공사.",
+          "examples": [
+            "지하 10층 이상 또는 지상 31층 이상 / 깊이 10m 이상 굴착 / 길이 50m 이상 다리 등"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardAnalysis",
+          "label": "공종별 유해·위험 분석",
+          "required": true,
+          "inputGuide": "굴착·골조·해체 등.",
+          "examples": [
+            "굴착(매몰·붕괴), 골조(추락·낙하), 해체(석면·진동)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "controlMeasures",
+          "label": "방지 대책",
+          "required": true,
+          "inputGuide": "공종별 안전 시설 + 작업방법.",
+          "examples": [
+            "굴착: 흙막이 H-300 + 어스앵커 / 골조: 안전대 100% + 추락방호망 / 해체: 음압 격리 + HEPA"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "organization",
+          "label": "안전보건 조직",
+          "required": true,
+          "inputGuide": "인원·자격·역할.",
+          "examples": [
+            "전임 안전관리자 2 + 관리감독자 5 + 비상대응팀 3"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "kosha_review",
+          "label": "KOSHA 심사 결과",
+          "required": true,
+          "inputGuide": "공사 착공 30일 전 제출 + 심사필증.",
+          "examples": [
+            "2026-02-01 KOSHA 제출, 2026-02-25 심사필증 (필증 K-2026-0815)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "공사 종료 후 5년",
+  "guidedBy": [
+    "doc:kosha_guide/C-18-2015",
+    "doc:kosha_guide/C-2-2020",
+    "doc:kosha_guide/C-5-2016",
+    "doc:kosha_guide/C-52-2016",
+    "doc:kosha_guide/C-74-2015"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:42",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "유해위험방지계획서",
+      "건설공사"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:construction_50bn_plus",
+    "scaleNotes": "법 제42조 ① 건설공사 — 시행령 제42조 적용 대상 (지상 31m 이상·연면적 3만㎡ 이상 등)."
+  },
+  "trigger": "공사 착공 30일 전",
+  "searchKeywords": [
+    "유해위험방지계획서",
+    "건설공사",
+    "착공 30일 전",
+    "심사 신청",
+    "지상 31m 이상",
+    "연면적 3만㎡ 이상"
+  ],
+  "references": [
+    "annex:산안법시행규칙:서식101",
+    "annex:산안법시행규칙:서식103"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:risk_assessment_general"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:electrocution"
+  ],
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:admin_risk_assessment",
+    "control:admin_emergency_plan"
+  ],
+  "relatedDocs": [
+    "doc:on_construction_open/construction_safety_management_plan",
+    "doc:annual/regular_risk_assessment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

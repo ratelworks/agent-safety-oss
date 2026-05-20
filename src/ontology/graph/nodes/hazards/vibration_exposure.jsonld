@@ -1,0 +1,58 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:vibration_exposure",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "vibration_exposure",
+  "label": "진동 노출",
+  "category": "physical",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "진동"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:sub_safer_equipment",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:admin_supervisor",
+    "control:admin_safety_education"
+  ],
+  "regulatedBy": [
+    "art:산안법:125"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/H-77-2012",
+    "doc:kosha_guide/H-177-2015",
+    "doc:kosha_guide/E-G-23-2026"
+  ],
+  "description": "**원인**: 진동공구 장기 사용 (드릴·해머·톱).\n**상황**: 콘크리트 파쇄·해머드릴·연삭 작업.\n**확인**: 작업시간 제한 (휴식 주기) / 방진장갑 / 특수건강진단.\n**중대성**: 백색지(雷諾現象)·근골격 장애. 회복 어려움.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/11"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:earthwork_landfill",
+    "activity:phc_pile_driving",
+    "activity:road_pavement",
+    "activity:tunnel_excavation",
+    "activity:vehicle_construction"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/E-G-23-2026",
+    "doc:kosha_guide/H-77-2012",
+    "doc:kosha_guide/H-177-2015"
+  ]
+}

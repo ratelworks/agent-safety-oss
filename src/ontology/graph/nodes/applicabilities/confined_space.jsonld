@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:confined_space",
+  "@type": "Applicability",
+  "label": "밀폐공간 작업 (산소·유해가스 측정·환기)",
+  "condition": {
+    "var": "confinedSpace",
+    "op": "==",
+    "value": true
+  },
+  "legalBasis": [
+    "art:기준규칙:619",
+    "art:기준규칙:620"
+  ],
+  "legalWeight": "mandatory",
+  "enforces": [
+    "control:eng_ventilation",
+    "control:admin_o2_measure",
+    "control:ppe_air_respirator"
+  ],
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

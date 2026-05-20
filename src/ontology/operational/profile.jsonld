@@ -1,0 +1,1171 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "schema": "https://schema.org/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "agenthq": "https://agenthq.ratelworks.org/ontology/core/v1/",
+    "cc": "https://construction.ratelworks.org/ontology/v1/",
+    "safety": "https://safety.ratelworks.org/ontology/v1/",
+    "activity": "https://safety.ratelworks.org/activity/",
+    "art": "https://safety.ratelworks.org/article/",
+    "control": "https://safety.ratelworks.org/control/",
+    "doc": "https://safety.ratelworks.org/document/",
+    "hazard": "https://safety.ratelworks.org/hazard/",
+    "tool": "https://safety.ratelworks.org/mcp-tool/"
+  },
+  "@graph": [
+    {
+      "@id": "https://safety.ratelworks.org/operational-profile/v1",
+      "@type": [
+        "owl:Ontology",
+        "safety:OperationalProfile"
+      ],
+      "owl:versionIRI": {
+        "@id": "https://safety.ratelworks.org/operational-profile/v1.0.0"
+      },
+      "owl:versionInfo": "1.0.0 — lightweight operational ontology profile for Korean construction safety MCP",
+      "dcterms:created": {
+        "@value": "2026-05-04",
+        "@type": "xsd:date"
+      },
+      "dcterms:creator": "Ratelworks Inc.",
+      "dcterms:contributor": "Hwangryong Construction Co., Ltd. — Safety & Health Planning Department",
+      "dcterms:license": {
+        "@id": "https://opensource.org/licenses/MIT"
+      },
+      "rdfs:label": [
+        {
+          "@value": "Operational Ontology Profile for Construction Safety MCP",
+          "@language": "en"
+        },
+        {
+          "@value": "건설안전 MCP 운영 온톨로지 프로파일",
+          "@language": "ko"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "Vendor-neutral operational profile that binds the semantic graph, kinetic MCP actions, and dynamic LLM harness contract without adding graph database or platform lock-in.",
+          "@language": "en"
+        },
+        {
+          "@value": "그래프 DB나 특정 플랫폼 의존 없이 Semantic 그래프, Kinetic MCP 액션, Dynamic LLM 하네스 계약을 묶는 벤더 중립 운영 프로파일.",
+          "@language": "ko"
+        }
+      ],
+      "safety:profileGoal": "중소 건설사가 법령·문서·위험·통제·증거를 환각 없이 조회하고, MCP 도구로 작성·검토·증빙·조치를 실행할 수 있게 한다.",
+      "safety:dynamicBoundary": "LLM은 자연어 해석, 도구 조합, 설명, 누락 질문만 수행한다. 법령 근거·필수 의무·검증 결과는 그래프와 MCP 도구에서만 나온다.",
+      "safety:stackPosition": "L4 Reference Implementation",
+      "safety:governedBy": {
+        "@id": "agenthq:constitution/ontology-layer"
+      },
+      "safety:extendsCore": {
+        "@id": "https://agenthq.ratelworks.org/ontology/core/v1"
+      },
+      "safety:dependsOnPack": {
+        "@id": "agenthq:domain-pack/construction-common"
+      },
+      "safety:implementsDomainPack": {
+        "@id": "agenthq:domain-pack/safety"
+      },
+      "safety:notAuthorityFor": [
+        "AgentHQ Ontology Constitution",
+        "AgentHQ Core",
+        "construction-common foundation pack"
+      ],
+      "safety:promotionBoundary": "검증된 운영 패턴은 상위 Core 또는 construction-common으로 승격될 수 있지만 안전 법령·문서·위험 지식은 safety domain pack에 남는다."
+    },
+
+    {
+      "@id": "safety:Layer",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {
+          "@value": "Layer",
+          "@language": "en"
+        },
+        {
+          "@value": "레이어",
+          "@language": "ko"
+        }
+      ]
+    },
+    {
+      "@id": "safety:ObjectType",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {
+          "@value": "Object Type",
+          "@language": "en"
+        },
+        {
+          "@value": "객체 타입",
+          "@language": "ko"
+        }
+      ]
+    },
+    {
+      "@id": "safety:LinkType",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {
+          "@value": "Link Type",
+          "@language": "en"
+        },
+        {
+          "@value": "관계 타입",
+          "@language": "ko"
+        }
+      ]
+    },
+    {
+      "@id": "safety:ActionType",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {
+          "@value": "Action Type",
+          "@language": "en"
+        },
+        {
+          "@value": "액션 타입",
+          "@language": "ko"
+        }
+      ]
+    },
+    {
+      "@id": "safety:EvidenceType",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {
+          "@value": "Evidence Type",
+          "@language": "en"
+        },
+        {
+          "@value": "증거 타입",
+          "@language": "ko"
+        }
+      ]
+    },
+    {
+      "@id": "safety:HarnessPolicy",
+      "@type": "owl:Class",
+      "rdfs:label": [
+        {
+          "@value": "Harness Policy",
+          "@language": "en"
+        },
+        {
+          "@value": "하네스 정책",
+          "@language": "ko"
+        }
+      ]
+    },
+
+    {
+      "@id": "safety:layer/semantic",
+      "@type": [
+        "safety:Layer",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Semantic Layer",
+          "@language": "en"
+        },
+        {
+          "@value": "시멘틱 레이어",
+          "@language": "ko"
+        }
+      ],
+      "safety:responsibility": "무엇이 존재하고 어떻게 연결되는지 정의한다. ObjectType, LinkType, 표준 context, SHACL 검증이 이 레이어에 속한다."
+    },
+    {
+      "@id": "safety:layer/kinetic",
+      "@type": [
+        "safety:Layer",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Kinetic Layer",
+          "@language": "en"
+        },
+        {
+          "@value": "키네틱 레이어",
+          "@language": "ko"
+        }
+      ],
+      "safety:responsibility": "그래프 객체에 대해 실행 가능한 MCP ActionType, 입력 조건, 산출물, 증거, 감사 로그를 정의한다."
+    },
+    {
+      "@id": "safety:layer/dynamic",
+      "@type": [
+        "safety:Layer",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Dynamic Layer",
+          "@language": "en"
+        },
+        {
+          "@value": "다이내믹 레이어",
+          "@language": "ko"
+        }
+      ],
+      "safety:responsibility": "LLM과 하네스가 상황별 도구 조합, 설명, 누락 질문, human fallback 판단을 수행한다. 그래프 사실은 생성하지 않는다."
+    },
+
+    {
+      "@id": "safety:object/site",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Construction Site",
+          "@language": "en"
+        },
+        {
+          "@value": "현장",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "cc:Site"
+      },
+      "safety:sourceCategory": "site_profile",
+      "safety:minGraphNodes": 0,
+      "safety:operationalRole": "현장 경계와 규모, 공사금액, 인원, 공종을 묶는 기준 객체."
+    },
+    {
+      "@id": "safety:object/project",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Project",
+          "@language": "en"
+        },
+        {
+          "@value": "공사 프로젝트",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "schema:Project"
+      },
+      "safety:sourceCategory": "site_profile",
+      "safety:minGraphNodes": 0,
+      "safety:operationalRole": "현장별 의무 판단과 문서 작성의 사업 단위."
+    },
+    {
+      "@id": "safety:object/contractor",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Contractor",
+          "@language": "en"
+        },
+        {
+          "@value": "협력업체",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "schema:Organization"
+      },
+      "safety:sourceCategory": "site_profile",
+      "safety:minGraphNodes": 0,
+      "safety:operationalRole": "도급 협의체, 순회점검, 혼재작업 조정의 책임 주체."
+    },
+    {
+      "@id": "safety:object/worker_role",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Worker Role",
+          "@language": "en"
+        },
+        {
+          "@value": "근로자 역할",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "schema:Role"
+      },
+      "safety:sourceCategory": "site_profile",
+      "safety:minGraphNodes": 0,
+      "safety:operationalRole": "관리감독자, 신호수, 작업자, 안전관리자 등 서명·책임·교육 대상."
+    },
+    {
+      "@id": "safety:object/equipment",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Equipment",
+          "@language": "en"
+        },
+        {
+          "@value": "장비",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:Equipment"
+      },
+      "safety:sourceCategory": "equipment",
+      "safety:minGraphNodes": 8,
+      "safety:operationalRole": "건설기계, 보호구, 점검 대상 장비."
+    },
+    {
+      "@id": "safety:object/work_activity",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Work Activity",
+          "@language": "en"
+        },
+        {
+          "@value": "작업 활동",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:WorkActivity"
+      },
+      "safety:sourceCategory": "activities",
+      "safety:minGraphNodes": 30,
+      "safety:operationalRole": "위험·통제·가이드·문서 추론의 시작점."
+    },
+    {
+      "@id": "safety:object/hazard",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Hazard",
+          "@language": "en"
+        },
+        {
+          "@value": "위험요인",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:Hazard"
+      },
+      "safety:sourceCategory": "hazards",
+      "safety:minGraphNodes": 30,
+      "safety:operationalRole": "작업에서 발생 가능한 사고 원인과 노출 상태."
+    },
+    {
+      "@id": "safety:object/control",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Control Measure",
+          "@language": "en"
+        },
+        {
+          "@value": "통제수단",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:ControlMeasure"
+      },
+      "safety:sourceCategory": "controls",
+      "safety:minGraphNodes": 40,
+      "safety:operationalRole": "ERIC 계층에 따라 위험을 줄이는 조치."
+    },
+    {
+      "@id": "safety:object/legal_duty",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Legal Duty",
+          "@language": "en"
+        },
+        {
+          "@value": "법적 의무",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:Applicability"
+      },
+      "safety:sourceCategory": "applicabilities",
+      "safety:minGraphNodes": 14,
+      "safety:operationalRole": "50인·50억 등 현장 조건에 따른 적용 의무."
+    },
+    {
+      "@id": "safety:object/safety_document",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Safety Document",
+          "@language": "en"
+        },
+        {
+          "@value": "안전문서",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:Document"
+      },
+      "safety:sourceCategory": "documents",
+      "safety:minGraphNodes": 90,
+      "safety:operationalRole": "작성·검토·제출·보관 대상 문서와 양식."
+    },
+    {
+      "@id": "safety:object/evidence",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Evidence",
+          "@language": "en"
+        },
+        {
+          "@value": "증거",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "prov:Entity"
+      },
+      "safety:sourceCategory": "runtime_storage",
+      "safety:minGraphNodes": 0,
+      "safety:operationalRole": "사진, 서명, 문서 초안, 제출 기록처럼 판단과 조치를 증명하는 현장 산출물."
+    },
+    {
+      "@id": "safety:object/incident",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Incident",
+          "@language": "en"
+        },
+        {
+          "@value": "사고·이슈",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:SafetyIssue"
+      },
+      "safety:sourceCategory": "events",
+      "safety:minGraphNodes": 20,
+      "safety:operationalRole": "사고, 니어미스, 현장 안전 이슈와 조치 사이클."
+    },
+    {
+      "@id": "safety:object/legal_article",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {
+          "@value": "Legal Article",
+          "@language": "en"
+        },
+        {
+          "@value": "법령 조항",
+          "@language": "ko"
+        }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:Article"
+      },
+      "safety:sourceCategory": "articles",
+      "safety:minGraphNodes": 100,
+      "safety:operationalRole": "모든 법적 판단의 최소 인용 단위."
+    },
+    {
+      "@id": "safety:object/annex",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        { "@value": "Legal Annex", "@language": "en" },
+        { "@value": "법령 별표·서식", "@language": "ko" }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/semantic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:Annex"
+      },
+      "safety:sourceCategory": "annexes",
+      "safety:minGraphNodes": 50,
+      "safety:operationalRole": "법령 본문이 가리키는 별표·서식·기준 — Article 의 자매. annexReference 의 정확한 range. (v1.2.0 P0-4 신규)"
+    },
+    {
+      "@id": "safety:object/safety_issue",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        { "@value": "Safety Issue", "@language": "en" },
+        { "@value": "안전 이슈", "@language": "ko" }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:SafetyIssue"
+      },
+      "safety:sourceCategory": "runtime_storage",
+      "safety:minGraphNodes": 0,
+      "safety:operationalRole": "현장에서 발견된 안전 결함·니어미스·미준수 사항. CorrectiveAction 으로 해소 대상. (v1.2.0 P0-4 신규)"
+    },
+    {
+      "@id": "safety:object/corrective_action",
+      "@type": [
+        "safety:ObjectType",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        { "@value": "Corrective Action", "@language": "en" },
+        { "@value": "시정 조치", "@language": "ko" }
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:mapsToClass": {
+        "@id": "safety:CorrectiveAction"
+      },
+      "safety:sourceCategory": "runtime_storage",
+      "safety:minGraphNodes": 0,
+      "safety:operationalRole": "SafetyIssue 또는 Incident 를 해소하는 실행 작업. resolves 의 정확한 from. (v1.2.0 P0-4 신규)"
+    },
+
+    {
+      "@id": "safety:link/has_hazard",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "hasHazard",
+      "safety:minimumEdgeCount": 300,
+      "safety:fromObjectType": {
+        "@id": "safety:object/work_activity"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/hazard"
+      },
+      "safety:implementationStatus": "implemented"
+    },
+    {
+      "@id": "safety:link/mitigated_by",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "mitigatedBy",
+      "safety:minimumEdgeCount": 250,
+      "safety:fromObjectType": {
+        "@id": "safety:object/hazard"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/control"
+      },
+      "safety:implementationStatus": "implemented"
+    },
+    {
+      "@id": "safety:link/legal_basis",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "legalBasis",
+      "safety:minimumEdgeCount": 100,
+      "safety:fromObjectType": {
+        "@id": "safety:object/safety_document"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/legal_article"
+      },
+      "safety:implementationStatus": "implemented"
+    },
+    {
+      "@id": "safety:link/guided_by",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "guidedBy",
+      "safety:minimumEdgeCount": 500,
+      "safety:fromObjectType": {
+        "@id": "safety:object/work_activity"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/safety_document"
+      },
+      "safety:implementationStatus": "implemented"
+    },
+    {
+      "@id": "safety:link/related_docs",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "relatedDocs",
+      "safety:minimumEdgeCount": 20,
+      "safety:fromObjectType": {
+        "@id": "safety:object/safety_document"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/safety_document"
+      },
+      "safety:implementationStatus": "implemented"
+    },
+    {
+      "@id": "safety:link/annex_reference",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "annexReference",
+      "safety:minimumEdgeCount": 10,
+      "safety:fromObjectType": {
+        "@id": "safety:object/safety_document"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/annex"
+      },
+      "safety:implementationStatus": "implemented",
+      "rdfs:comment": "v1.2.0 P0-4: toObjectType safety_document→annex 수정. 실제 값은 annex:... IRI."
+    },
+    {
+      "@id": "safety:link/evidences",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "safety:evidences",
+      "safety:minimumEdgeCount": 0,
+      "safety:fromObjectType": {
+        "@id": "safety:object/evidence"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/safety_issue"
+      },
+      "safety:implementationStatus": "runtime_storage",
+      "rdfs:comment": "v1.2.0 P0-4: toObjectType incident→safety_issue 수정. evidence 가 입증하는 대상은 SafetyIssue (Incident 는 별도 LinkType 필요 시 추가)."
+    },
+    {
+      "@id": "safety:link/resolves",
+      "@type": [
+        "safety:LinkType",
+        "owl:NamedIndividual"
+      ],
+      "safety:implementedByPredicate": "safety:resolves",
+      "safety:minimumEdgeCount": 0,
+      "safety:fromObjectType": {
+        "@id": "safety:object/corrective_action"
+      },
+      "safety:toObjectType": {
+        "@id": "safety:object/safety_issue"
+      },
+      "safety:implementationStatus": "runtime_storage",
+      "rdfs:comment": "v1.2.0 P0-4: from control→corrective_action, to incident→safety_issue 수정. skeleton.jsonld 의 safety:resolves domain=CorrectiveAction, range=SafetyIssue 와 정합."
+    },
+
+    {
+      "@id": "safety:evidence/photo",
+      "@type": [
+        "safety:EvidenceType",
+        "owl:NamedIndividual"
+      ],
+      "safety:acceptedByAction": [
+        {
+          "@id": "safety:action/upload_photo_evidence"
+        },
+        {
+          "@id": "safety:action/register_safety_issue"
+        },
+        {
+          "@id": "safety:action/complete_action"
+        }
+      ],
+      "safety:lineageFields": [
+        "fileUri",
+        "capturedAt",
+        "relatedTask",
+        "relatedRisk"
+      ]
+    },
+    {
+      "@id": "safety:evidence/legal_basis",
+      "@type": [
+        "safety:EvidenceType",
+        "owl:NamedIndividual"
+      ],
+      "safety:acceptedByAction": [
+        {
+          "@id": "safety:action/verify_safety_basis"
+        },
+        {
+          "@id": "safety:action/assemble_doc_context"
+        }
+      ],
+      "safety:lineageFields": [
+        "articleIri",
+        "lawName",
+        "articleNumber",
+        "sourceUrl"
+      ]
+    },
+    {
+      "@id": "safety:evidence/document_draft",
+      "@type": [
+        "safety:EvidenceType",
+        "owl:NamedIndividual"
+      ],
+      "safety:acceptedByAction": [
+        {
+          "@id": "safety:action/review_safety_document"
+        },
+        {
+          "@id": "safety:action/export_drafted_document"
+        }
+      ],
+      "safety:lineageFields": [
+        "docId",
+        "requiredFields",
+        "legalBasis",
+        "contentHash"
+      ]
+    },
+
+    {
+      "@id": "safety:action/assess_my_obligations",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "assess_my_obligations",
+      "safety:kineticRole": "현장 프로파일에서 적용 법정의무와 필요 문서를 결정론적으로 산출한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/site"
+        },
+        {
+          "@id": "safety:object/project"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/legal_duty"
+        },
+        {
+          "@id": "safety:object/safety_document"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/assemble_doc_context",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "assemble_doc_context",
+      "safety:kineticRole": "docId에서 법령, 위험, 통제, 부속서, 연계문서, 필수 필드를 조립한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/safety_document"
+        },
+        {
+          "@id": "safety:object/legal_article"
+        },
+        {
+          "@id": "safety:object/hazard"
+        },
+        {
+          "@id": "safety:object/control"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/generate_safety_document",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "generate_safety_document",
+      "safety:kineticRole": "검증된 문서 context와 사용자 입력으로 안전문서 본문을 생성한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/safety_document"
+        },
+        {
+          "@id": "safety:object/site"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/review_safety_document",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "review_safety_document",
+      "safety:kineticRole": "초안의 필수 필드, 법령 근거, 누락 항목, 환각 가능성을 검토한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/safety_document"
+        },
+        {
+          "@id": "safety:object/legal_article"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/get_measures_by_risk",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "get_measures_by_risk",
+      "safety:kineticRole": "위험요인에서 mitigatedBy 사슬을 따라 통제수단과 ERIC 계층을 반환한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/hazard"
+        },
+        {
+          "@id": "safety:object/control"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/control"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/field_safety_briefing",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "field_safety_briefing",
+      "safety:kineticRole": "작업명에서 위험, 통제, 법령, 문서, KOSHA 자료를 한 화면 briefing으로 묶는다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/work_activity"
+        },
+        {
+          "@id": "safety:object/hazard"
+        },
+        {
+          "@id": "safety:object/control"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/verify_safety_basis",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "verify_safety_basis",
+      "safety:kineticRole": "LLM 또는 사용자가 제시한 법령 인용이 실제 그래프에 존재하는지 검증한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/legal_article"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/upload_photo_evidence",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "upload_photo_evidence",
+      "safety:kineticRole": "현장 사진을 PhotoEvidence로 저장하고 작업·위험·현장과 연결한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/work_activity"
+        },
+        {
+          "@id": "safety:object/hazard"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/register_safety_issue",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "register_safety_issue",
+      "safety:kineticRole": "현장 이슈를 등록하고 위험→통제 그래프를 사용해 추천 개선조치를 선택한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/work_activity"
+        },
+        {
+          "@id": "safety:object/hazard"
+        },
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/incident"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/record_corrective_action",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "record_corrective_action",
+      "safety:kineticRole": "SafetyIssue에 대한 담당자, 기한, 권장 통제수단, 조치 사슬을 기록한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/incident"
+        },
+        {
+          "@id": "safety:object/control"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+    {
+      "@id": "safety:action/complete_action",
+      "@type": [
+        "safety:ActionType",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/kinetic"
+      },
+      "safety:implementedByTool": "complete_action",
+      "safety:kineticRole": "개선조치 완료 메모와 after_action 사진 증빙을 연결하고 상태를 전환한다.",
+      "safety:readsObjectType": [
+        {
+          "@id": "safety:object/incident"
+        },
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:producesObjectType": [
+        {
+          "@id": "safety:object/evidence"
+        }
+      ],
+      "safety:requiresLineage": true
+    },
+
+    {
+      "@id": "safety:policy/no_generated_legal_basis",
+      "@type": [
+        "safety:HarnessPolicy",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/dynamic"
+      },
+      "safety:enforcement": "must",
+      "safety:policyText": "LLM은 법령 근거를 생성하지 않는다. 반드시 graph node, MCP tool result, 또는 verify_safety_basis 결과를 사용한다."
+    },
+    {
+      "@id": "safety:policy/cite_graph_sources",
+      "@type": [
+        "safety:HarnessPolicy",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/dynamic"
+      },
+      "safety:enforcement": "must",
+      "safety:policyText": "최종 답변은 docId, article IRI, KOSHA guide code, evidence id 중 하나 이상의 lineage를 포함한다."
+    },
+    {
+      "@id": "safety:policy/ask_missing_required_fields",
+      "@type": [
+        "safety:HarnessPolicy",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/dynamic"
+      },
+      "safety:enforcement": "must",
+      "safety:policyText": "필수 입력이 부족하면 LLM은 임의로 채우지 않고 사용자에게 짧은 질문을 하거나 A2UI 폼을 호출한다."
+    },
+    {
+      "@id": "safety:policy/human_fallback_threshold",
+      "@type": [
+        "safety:HarnessPolicy",
+        "owl:NamedIndividual"
+      ],
+      "safety:belongsToLayer": {
+        "@id": "safety:layer/dynamic"
+      },
+      "safety:enforcement": "must",
+      "safety:policyText": "사고보고, 법적 서명, 고위험 작업허가, 중대재해 가능성은 사람의 책임 확인을 요구한다."
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-37-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_g-37-2012",
+  "title": "근로자의 일반적인 건강관리에 관한 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-37-2012",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"근로자\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 13,
+      "2": 14,
+      "3": 49,
+      "4": 23,
+      "5": 45,
+      "6": 1373,
+      "7": 579,
+      "8": 1,
+      "9": 1,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "근로자"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_공정안전에 관한 근로자 교육훈련 지침_4",
+      "title": "공정안전에 관한 근로자 교육훈련 지침 - 교육훈련대상",
+      "score": 55.251
+    },
+    {
+      "docId": "KOSHA07_전기도금 사업장 근로자 보건관리 지침_7",
+      "title": "전기도금 사업장 근로자 보건관리 지침 - 근로자 건강관리",
+      "score": 50.624
+    },
+    {
+      "docId": "KOSHA07_근로자 안전보건 상담에 관한 기술지침_4",
+      "title": "근로자 안전보건 상담에 관한 기술지침 - 안전보건에 관한 근로자 상담의 필요성",
+      "score": 47.41
+    },
+    {
+      "docId": "KOSHA07_공정안전에 관한 근로자 교육훈련 지침_7",
+      "title": "공정안전에 관한 근로자 교육훈련 지침 - 교육훈련의 실시",
+      "score": 46.575
+    },
+    {
+      "docId": "KOSHA07_공정안전에 관한 근로자 교육훈련 지침_5",
+      "title": "공정안전에 관한 근로자 교육훈련 지침 - 교육훈련의 종류",
+      "score": 46.485
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA01_000008000002000000000130000",
+      "title": "제130조 특수건강진단 등",
+      "category": "1",
+      "score": 27.088
+    },
+    {
+      "docId": "KOSHA01_000008000001000000000128002",
+      "title": "제128조의2 휴게시설의 설치",
+      "category": "1",
+      "score": 27.082
+    },
+    {
+      "docId": "KOSHA01_000007000001000000000116000",
+      "title": "제116조 물질안전보건자료와 관련된 자료의 제공",
+      "category": "1",
+      "score": 25.258
+    },
+    {
+      "docId": "KOSHA01_000008000002000000000134000",
+      "title": "제134조 건강진단기관 등의 결과보고 의무",
+      "category": "1",
+      "score": 23.694
+    },
+    {
+      "docId": "KOSHA01_000011000000000000000166002",
+      "title": "제166조의2 현장실습생에 대한 특례",
+      "category": "1",
+      "score": 23.325
+    }
+  ]
+}

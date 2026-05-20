@@ -1,0 +1,21 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:chemicals_handling",
+  "@type": "Applicability",
+  "label": "화학물질 취급 사업장 (MSDS 비치)",
+  "condition": {
+    "var": "hazardousChemical",
+    "op": "==",
+    "value": true
+  },
+  "legalBasis": [
+    "art:산안법:114"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "화학물질 미취급 사업장 — MSDS 비치 의무 면제",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

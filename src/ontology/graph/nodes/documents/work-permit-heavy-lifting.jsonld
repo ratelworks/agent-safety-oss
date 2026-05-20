@@ -1,0 +1,531 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_permit_heavy_lifting",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_permit_heavy_lifting",
+  "title": "중량물 작업허가서 (중장비)",
+  "description": "중량물 인양·운반 또는 고소작업대·이동식크레인 등 중장비 작업 안전작업허가서. KOSHA-안전작업허가지침-P94 통합양식 (중장비작업) 기반.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "중량물·중장비 작업 전 (매 작업마다 발급)",
+  "legalBasis": [
+    "art:기준규칙:38",
+    "art:기준규칙:39",
+    "art:기준규칙:40",
+    "art:기준규칙:141",
+    "art:기준규칙:168"
+  ],
+  "officialFormSpec": {
+    "formId": "kosha_p94_heavy_lifting",
+    "officialName": "KOSHA 안전작업허가지침 (P-94) 붙임1 - 안전작업 허가서 (중장비작업)",
+    "formFile": "KOSHA-안전작업허가지침-P94.pdf",
+    "formMatchType": "통합양식 일부 (화기·밀폐공간·중장비 통합 중 중장비 부분)",
+    "license": "공공누리 - 출처 KOSHA"
+  },
+  "sections": [
+    {
+      "title": "1. 작업 정보",
+      "legalSource": "KOSHA P-94 양식 헤더",
+      "fields": [
+        {
+          "key": "permitNumber",
+          "label": "허가서 번호",
+          "required": true,
+          "inputGuide": "현장 자체 부여 일련번호. 양식: 'PERMIT-HL-YYMMDD-NN'.",
+          "examples": [
+            "PERMIT-HL-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "department",
+          "label": "부 서 명",
+          "required": true,
+          "inputGuide": "허가 발급 부서명.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장 안전관리팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant",
+          "label": "신 청 인",
+          "required": true,
+          "inputGuide": "작업 책임자 성명.",
+          "examples": [
+            "박감독 (작업반장)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "contractorName",
+          "label": "수 급 업 체 명",
+          "required": false,
+          "optional": true,
+          "inputGuide": "도급 작업 시 수급업체명.",
+          "examples": [
+            "광산기계(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workName",
+          "label": "작 업 명",
+          "required": true,
+          "inputGuide": "구체적 작업명.",
+          "examples": [
+            "3층 발코니 거푸집 양중 작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workContent",
+          "label": "작 업 내 용",
+          "required": true,
+          "inputGuide": "작업 절차·범위·방법 1~2문장.",
+          "examples": [
+            "50톤 이동식크레인으로 3층 발코니 거푸집(개당 1.2톤) 12개 양중. 신호수 1명, 운전자 1명, 줄걸이작업자 2명 배치."
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workLocation",
+          "label": "작업 장소",
+          "required": true,
+          "inputGuide": "동·층·작업반경 + 인접 시설.",
+          "examples": [
+            "A동 동측 외부 (작업반경 15m, 인접: 공도 10m, 가설사무실 8m)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workStartTime",
+          "label": "작 업 시 간 (시작)",
+          "required": true,
+          "inputGuide": "작업 개시 일시.",
+          "examples": [
+            "2026-04-29 13:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workEndTime",
+          "label": "완 료 시 간 (예정)",
+          "required": true,
+          "inputGuide": "작업 종료 예정 일시.",
+          "examples": [
+            "2026-04-29 17:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workerCount",
+          "label": "작 업 자 / 인 원",
+          "required": true,
+          "inputGuide": "운전자·신호수·줄걸이작업자·감독자 합계.",
+          "examples": [
+            "운전자 1 + 신호수 1 + 줄걸이 2 + 감독 1 = 5명"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 장비·하중 정보",
+      "legalSource": "산안기준규칙 제141조 + KOSHA P-94 5.4.1",
+      "fields": [
+        {
+          "key": "equipmentType",
+          "label": "장비 종류·규격·정격하중",
+          "required": true,
+          "inputGuide": "이동식크레인/타워크레인/고소작업대 등 + 정격하중 + 작업반경별 허용하중.",
+          "examples": [
+            "이동식크레인 KOBELCO RK-500 (50톤, 12m 반경 25톤)"
+          ],
+          "checkPoints": [
+            "정격하중 80% 이내 작업"
+          ]
+        },
+        {
+          "key": "loadWeight",
+          "label": "양중물 중량 / 치수",
+          "required": true,
+          "inputGuide": "양중물 단위중량(kg) × 개수 + 가로·세로·높이.",
+          "examples": [
+            "거푸집 1.2톤 × 12개 (1m × 3m × 0.3m)"
+          ],
+          "checkPoints": [
+            "정격하중의 80% 이내"
+          ]
+        },
+        {
+          "key": "operator",
+          "label": "운전자 자격",
+          "required": true,
+          "inputGuide": "장비 면허 + 자격증 사본 첨부. 무자격 운전 절대 금지.",
+          "examples": [
+            "박운전 (이동식크레인운전기능사 2010-12345)"
+          ],
+          "checkPoints": [
+            "자격증 사본 첨부"
+          ]
+        },
+        {
+          "key": "rigger",
+          "label": "줄걸이 작업자 자격",
+          "required": true,
+          "inputGuide": "줄걸이 작업자 + 사용 줄걸이 종류·정격하중.",
+          "examples": [
+            "김줄걸 (줄걸이 안전교육 이수 2026-02) / 슬링벨트 5톤급 4본"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "signaler",
+          "label": "신호수 (지정 + 통신장비)",
+          "required": true,
+          "inputGuide": "지정 신호수 1명 이상 + 통신장비 휴대. 시야간섭 시 필수. KOSHA P-94 5.4.1.2.",
+          "examples": [
+            "이신호 (산안기준규칙 제40조 신호수 자격), 무전기 1대 (Ch7)"
+          ],
+          "checkPoints": [
+            "지정 신호수 외 신호 절대 금지"
+          ]
+        },
+        {
+          "key": "groundCondition",
+          "label": "지반 / 받침 조치",
+          "required": true,
+          "inputGuide": "장비 설치 지반 다짐도·아우트리거 받침. 연약지반 금지. KOSHA P-94 5.4.1.3.",
+          "examples": [
+            "콘크리트 포장 + 아우트리거 받침대 (1m × 1m × 50mm 강판) 4매"
+          ],
+          "checkPoints": [
+            "연약지반·협소공간 작업 금지"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. 공통 안전조치 점검 (P-94 5.1)",
+      "legalSource": "KOSHA P-94 5.1 허가 전 공통 점검사항",
+      "fields": [
+        {
+          "key": "common1_ppe",
+          "label": "1. 규정된 복장 및 보호구 착용 확인",
+          "required": true,
+          "inputGuide": "안전모·안전화·안전대(고소시).",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common2_supervisor",
+          "label": "2. 관리감독자 배치 + 작업지역 위험성 확인",
+          "required": true,
+          "inputGuide": "관리감독자 또는 작업지휘자 1명 이상 상주.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common3_machinery",
+          "label": "3. 위험기계·기구 방호조치 확인",
+          "required": true,
+          "inputGuide": "장비 방호장치(과부하방지·권과방지) 작동 확인.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common4_electric",
+          "label": "4. 전기기구 접지·절연·누전차단기",
+          "required": true,
+          "inputGuide": "장비 외함 접지 + 가공선 이격거리 확인.",
+          "examples": [
+            "[√] 가공선 22.9kV 4m 이격"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common5_signage",
+          "label": "5. 작업장소 안내·차단 식별표시 설치",
+          "required": true,
+          "inputGuide": "작업반경 펜스·콘 + '양중작업 중' 표지.",
+          "examples": [
+            "[√] 라바콘 8개 + 안전테이프 30m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common6_lighting",
+          "label": "6. 작업장소 조명 상태",
+          "required": true,
+          "inputGuide": "주간 자연광 또는 야간 작업등 75 lux 이상.",
+          "examples": [
+            "[√] 자연광"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 중장비 추가 안전조치 점검 (P-94 5.4)",
+      "legalSource": "KOSHA P-94 5.4.1 + 산안기준규칙 제141조 ~ 제168조",
+      "fields": [
+        {
+          "key": "hl1_qualifiedOperator",
+          "label": "1. 자격을 갖춘 지정 운전자 + 작업감독자",
+          "required": true,
+          "inputGuide": "면허 운전자 + 감독자 배치. KOSHA P-94 5.4.1.1.",
+          "examples": [
+            "[√] 운전자 박운전, 감독자 이감독"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hl2_loadAndRadius",
+          "label": "2. 정격하중 + 붐 안전각도 + 작업반경 준수",
+          "required": true,
+          "inputGuide": "정격하중 80% 이내 + 붐 각도 60° 이상. KOSHA P-94 5.4.1.4.",
+          "examples": [
+            "[√] 양중물 1.2톤 < 정격 25톤 (반경 12m)"
+          ],
+          "checkPoints": [
+            "정격하중 초과 절대 금지"
+          ]
+        },
+        {
+          "key": "hl3_inspection",
+          "label": "3. 전문기관 안전검사 / 일상점검",
+          "required": true,
+          "inputGuide": "장비 안전검사필증(산안법 제93조) + 작업 전 일상점검표.",
+          "examples": [
+            "[√] 안전검사필증 2026-03 / 일상점검 2026-04-29 08:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hl4_signaler",
+          "label": "4. 유도원·작업지휘자 + 바닥 침하 방지",
+          "required": true,
+          "inputGuide": "신호수 1명 + 받침대로 침하 방지. KOSHA P-94 5.4.1.4.",
+          "examples": [
+            "[√] 신호수 이신호 + 강판 받침 4매"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hl5_riggingDevice",
+          "label": "5. 보조달기구 (정품) + 줄걸이 검사",
+          "required": true,
+          "inputGuide": "슬링벨트·체인블록 등 정품·정격. 금형품 금지.",
+          "examples": [
+            "[√] KOSHA 인증 슬링벨트 5톤급 4본"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hl6_workPlatform",
+          "label": "6. 작업대 떨어짐 방지조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "고소작업대·차량운반구 사용 시 안전대·난간. KOSHA P-94 5.4.1.6.",
+          "examples": [
+            "[√] 작업대 안전대 부착",
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "5. 결재선",
+      "legalSource": "KOSHA P-94 4.2.1.4",
+      "fields": [
+        {
+          "key": "applicant_dept",
+          "label": "의뢰자 부서/업체명",
+          "required": true,
+          "inputGuide": "작업 의뢰 부서 또는 수급업체명.",
+          "examples": [
+            "광산기계(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant_name",
+          "label": "의뢰자 성명",
+          "required": true,
+          "inputGuide": "신청인 성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "approver_name",
+          "label": "승인자 성명·서명",
+          "required": true,
+          "inputGuide": "안전감독자 직상 부서장(현장소장) 성명·서명. KOSHA P-94 4.2.1.4.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyChecker_dept",
+          "label": "안전조치 확인자 부서",
+          "required": true,
+          "inputGuide": "현장 안전관리부서.",
+          "examples": [
+            "황룡건설(주) 현장 안전관리팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyChecker_name",
+          "label": "안전조치 확인자 성명·서명",
+          "required": true,
+          "inputGuide": "안전관리자 성명·서명.",
+          "examples": [
+            "김안전 (안전관리자, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "actualEndTime",
+          "label": "작업완료시간 (실제)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "작업 종료 후 실제 완료 시각 기록.",
+          "examples": [
+            "2026-04-29 16:30"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "신청인 (수급업체 작업책임자)",
+      "action": "허가 신청 + 양중계획서 제출"
+    },
+    {
+      "role": "안전감독자",
+      "action": "양중계획·안전조치 검토"
+    },
+    {
+      "role": "직상 부서장 (현장소장)",
+      "action": "최종 승인·발급"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "정격하중 80% 이내 + 붐 각도 + 작업반경 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:141",
+      "checkFields": [
+        "loadWeight",
+        "equipmentType"
+      ]
+    },
+    {
+      "rule": "운전자·신호수·줄걸이 자격 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:141",
+      "checkFields": [
+        "operator",
+        "signaler",
+        "rigger"
+      ]
+    },
+    {
+      "rule": "장비 안전검사 + 일상점검",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:93",
+      "checkFields": [
+        "hl3_inspection"
+      ]
+    },
+    {
+      "rule": "지반 받침 조치 + 작업반경 차단",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:141",
+      "checkFields": [
+        "groundCondition",
+        "common5_signage"
+      ]
+    },
+    {
+      "rule": "직상 부서장 최종 승인 서명",
+      "severity": "blocker",
+      "legalBasis": "kosha:P-94:4.2.1.4",
+      "checkFields": [
+        "approver_name"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년 (KOSHA P-94 + 산안법)",
+  "guidedBy": [
+    "doc:kosha_guide/D-C-6-2025",
+    "doc:kosha_guide/C-14-2012"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:141",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "중량물",
+      "양중",
+      "크레인",
+      "중장비"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "permit",
+    "licenseHint": "공공누리 - 출처 KOSHA + 황룡건설(주) + ㈜라텔웍스",
+    "alignedAt": "2026-04-29",
+    "alignSource": "KOSHA-안전작업허가지침-P94.pdf 통합양식 (kordoc parse_document)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "중량물·중장비 작업 모든 현장. 50억 미만 + 5인 이상 사업장도 동일 의무."
+  },
+  "hasHazard": [
+    "hazard:struck_by",
+    "hazard:caught_in",
+    "hazard:falling_object",
+    "hazard:crushing"
+  ],
+  "appliesToActivities": [
+    "activity:lifting_operation",
+    "activity:steel_erection",
+    "activity:precast_installation"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "iso45001Class": "iso45001:Permit",
+  "mitigatedBy": [
+    "control:admin_work_permit",
+    "control:admin_signal_person",
+    "control:eng_machine_guard",
+    "control:ppe_helmet"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_plan_heavy_lifting",
+    "doc:daily/tower_crane_inspection",
+    "doc:ad_hoc/work_plan_tower_crane"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

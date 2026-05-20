@@ -1,0 +1,58 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:biological_hazard",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "biological_hazard",
+  "label": "생물학적 위험",
+  "category": "biological",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "감염",
+      "혈액",
+      "곰팡이",
+      "병원체"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_health_check",
+    "control:admin_msds",
+    "control:admin_safety_education",
+    "control:ppe_chemical_suit",
+    "control:ppe_respirator"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/W-3-2021",
+    "doc:kosha_guide/W-21-2019",
+    "doc:kosha_guide/H-186-2016"
+  ],
+  "description": "**원인**: 병원체·세균·바이러스 노출 / 곰팡이 / 동물 매개.\n**상황**: 폐기물 처리 / 하수도·오수 / 의료시설 시공 / 식료품 시설.\n**확인**: 백신 / 보호의·장갑·마스크 / 손 위생.\n**중대성**: 감염병 발병.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/19"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:drainage_sewerage",
+    "activity:tunnel_excavation",
+    "activity:underground_utility"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/W-3-2021",
+    "doc:kosha_guide/W-21-2019",
+    "doc:kosha_guide/H-186-2016"
+  ]
+}

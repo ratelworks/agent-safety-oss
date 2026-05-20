@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/overturn_collapse_steel_structure",
+  "@type": [
+    "Event"
+  ],
+  "slug": "overturn_collapse_steel_structure",
+  "title": "overturn_collapse × steel_structure",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 overturn_collapse 작업유형 steel_structure.",
+  "koshaAccidentType": "overturn_collapse",
+  "hasHazard": [
+    "hazard:struck_by_overturn"
+  ],
+  "causedBy": [
+    "activity:steel_structure"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "이동식 크레인이 전도되면서 철골기둥을 타격",
+    "철골 볼트 조립후 사다리로 내려오던중 전도",
+    "공장 철골설치 작업중 철골기둥이 넘어지며 깔려 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

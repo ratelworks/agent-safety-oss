@@ -1,0 +1,68 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:crushing",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "crushing",
+  "label": "절단·베임·찔림",
+  "category": "physical",
+  "koshaAccidentType": "절단·베임·찔림",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "절단",
+      "베임",
+      "찔림",
+      "톱"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_safety_shoes",
+    "control:ppe_eye_protection"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:32"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-M-37-2026",
+    "doc:kosha_guide/M-22-2012",
+    "doc:kosha_guide/H-187-2021"
+  ],
+  "description": "**원인**: 컨베이어·롤러·프레스·기계 회전체 미방호 / 설비 사이 협소 공간 끼임.\n**상황**: 건설기계 작업반경 진입 / 양중 인양 하부 / 거푸집 해체 시.\n**확인**: 방호장치 (덮개·인터록) / 출입금지·LOTO / 작업지휘자 배치.\n**중대성**: 신체 절단·중대상해. 사망사고 다발.",
+  "koshaArchiveFacets": [
+    "facet:ctgr02/16"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:finishing_tile",
+    "activity:formwork_shoring",
+    "activity:heavy_lifting",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:scaffolding_assembly",
+    "activity:tower_assembly",
+    "activity:tower_crane"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/B-M-37-2026",
+    "doc:kosha_guide/M-22-2012",
+    "doc:kosha_guide/H-187-2021"
+  ]
+}

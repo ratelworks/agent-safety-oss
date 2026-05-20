@@ -1,0 +1,443 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:as_needed/ppe_register",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "ppe_register",
+  "title": "보호구 지급대장",
+  "alternativeNames": [
+    "보호구 지급·관리대장",
+    "PPE 지급대장",
+    "안전보호구 지급대장"
+  ],
+  "description": "산안기준규칙 제32조·제33조에 따라 사업주가 근로자에게 지급한 보호구를 기록·관리하는 대장. 안전모·안전화·안전대·보안경·방진마스크 등 인증품 지급 시 필수. 본 노드는 KOSHA·고용노동부 권장 양식 본문과 1:1 매핑 (kordoc parse_form 검증 2026-04-29).",
+  "cycle": "cyc:as_needed",
+  "trigger": "근로자에게 보호구 지급 시 (신규·교체·재지급).",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "전 사업장 의무 — 50억 미만도 동일."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "approval_charge",
+      "label": "담당",
+      "source": "공식 양식",
+      "inputGuide": "본 양식 작성·관리 책임자.",
+      "examples": [
+        "김안전 (안전관리자)"
+      ]
+    },
+    {
+      "key": "approval_review",
+      "label": "검토",
+      "source": "공식 양식",
+      "inputGuide": "검토 책임자 직책 + 성명 + 서명.",
+      "examples": [
+        "박감독 (관리감독자)"
+      ]
+    },
+    {
+      "key": "approval_owner",
+      "label": "사업주",
+      "source": "공식 양식",
+      "inputGuide": "법인 대표 또는 위임받은 안전보건책임자.",
+      "examples": [
+        "황한일 (대표)"
+      ]
+    },
+    {
+      "key": "occupation",
+      "label": "직종",
+      "source": "공식 양식",
+      "inputGuide": "건설업 직종 분류. 형틀목공·철근공·콘크리트공·전기공·미장공 등.",
+      "examples": [
+        "철근공"
+      ]
+    },
+    {
+      "key": "name",
+      "label": "성명",
+      "source": "공식 양식",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "ppeIssued_safety_helmet",
+      "label": "안전모",
+      "source": "공식 양식 — 지급 내역",
+      "inputGuide": "지급 수량·규격·인증.",
+      "examples": [
+        "52개 (KOSHA AB / KCs 인증)"
+      ]
+    },
+    {
+      "key": "ppeIssued_safety_shoes",
+      "label": "안전화",
+      "source": "공식 양식",
+      "inputGuide": "지급 수량·규격·인증.",
+      "examples": [
+        "52족 (KCs 인증, 발등보호 포함)"
+      ]
+    },
+    {
+      "key": "ppeIssued_safety_harness",
+      "label": "안전대",
+      "source": "공식 양식",
+      "inputGuide": "지급 수량·규격·인증.",
+      "examples": [
+        "12개 (풀하네스 전체식, KCs 인증)"
+      ]
+    },
+    {
+      "key": "ppeIssued_safety_glasses",
+      "label": "보안경",
+      "source": "공식 양식",
+      "inputGuide": "지급 수량·규격·인증.",
+      "examples": [
+        "20개 (충격·비산물 차단)"
+      ]
+    },
+    {
+      "key": "ppeIssued_other",
+      "label": "기타",
+      "source": "공식 양식",
+      "inputGuide": "추가 보호구 (귀마개·방진마스크·방한복 등).",
+      "examples": [
+        "귀마개 20세트 (소음 90dB 이상 작업) + 방진마스크 30개 (분진작업)"
+      ]
+    },
+    {
+      "key": "workerSignature",
+      "label": "지급 내역 (작업자 서명날인)",
+      "source": "공식 양식",
+      "inputGuide": "보호구 지급 작업자 명단 + 자필 서명.",
+      "examples": [
+        "박작업 (안전모·안전화 / 서명)"
+      ]
+    },
+    {
+      "key": "issueDate",
+      "label": "지급일",
+      "source": "공식 양식",
+      "inputGuide": "지급 일자.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "remarks",
+      "label": "비고",
+      "source": "공식 양식",
+      "inputGuide": "특이사항·추가 메모.",
+      "examples": [
+        "우천 시 작업 중지 / 외국인 근로자 통역 동석"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 직종·성명·지급일·작업자 서명",
+      "severity": "blocker",
+      "checkFields": [
+        "occupation",
+        "name",
+        "issueDate",
+        "workerSignature"
+      ]
+    },
+    {
+      "rule": "필수 — 지급 내역 1개 이상 (안전모·안전화·안전대·보안경·기타 중)",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "권장 — KCs 안전인증품만 지급 (산안법 제83조·제84조)",
+      "severity": "warning"
+    },
+    {
+      "rule": "권장 — 교체 주기 관리 (안전대 1년·안전모 5년 권장)",
+      "severity": "warning"
+    },
+    {
+      "rule": "필수 — 결재선 (담당·사업주 서명)",
+      "severity": "blocker",
+      "checkFields": [
+        "approvalChain"
+      ]
+    },
+    {
+      "rule": "사람 검토 — 미착용 시 작업중지·경고",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 위반 시 산안법 제175조 500만원 과태료",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:175"
+    }
+  ],
+  "retention": "3년 (산안법 제164조)",
+  "standardForm": {
+    "source": "KOSHA·고용노동부 권장 양식 — 산안기준규칙 제32조·제33조 (보호구 지급)",
+    "sourceUrl": "https://www.moel.go.kr/local/ansan/common/downloadFile.do?file_seq=21171049286&bbs_seq=64410&bbs_id=LOCAL5",
+    "verifiedBy": "kordoc parse_form on /tmp/official-forms/ppe-register.hwp (2026-04-29)",
+    "requiredFields": [
+      "보호구 지급대장 (양식 제목)",
+      "결재 (담당·검토·사업주)",
+      "직종 / 성명 / 지급 내역(작업자 서명날인) / 지급일 / 비고",
+      "지급 내역: 안전모·안전화·안전대·보안경·기타"
+    ]
+  },
+  "relatedDocs": [
+    "doc:monthly/safety_harness_inspection",
+    "doc:daily/fall_prevention_net_inspection",
+    "doc:monthly/monthly_education_log"
+  ],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건기준에 관한 규칙",
+        "article": "§32",
+        "text": "보호구 지급 의무"
+      },
+      {
+        "law": "산업안전보건기준에 관한 규칙",
+        "article": "§33",
+        "text": "보호구 점검·수리·교환"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§83",
+        "text": "안전인증"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§84",
+        "text": "안전인증 표시"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§175",
+        "text": "보호구 미지급 500만원 과태료"
+      }
+    ],
+    "rebuiltAt": "2026-04-29",
+    "rebuildSource": "kordoc parse_form on /tmp/official-forms/ppe-register.hwp",
+    "rebuildVerifiedBy": "라텔웍스 (Ratelworks Inc.) — 공식 양식 1:1 정합 검증",
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:기준규칙:32",
+    "art:기준규칙:33",
+    "art:산안법:83",
+    "art:산안법:84",
+    "art:산안법:175"
+  ],
+  "penaltyOnMissing": "art:산안법:175",
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "entity:moel"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 보호구 지급 대장",
+      "legalSource": "산안기준규칙 제32조 + KOSHA",
+      "fields": [
+        {
+          "key": "recipient",
+          "label": "지급 대상자",
+          "required": true,
+          "inputGuide": "근로자 성명·소속·사번.",
+          "examples": [
+            "박작업 (우송설비, 사번 W2026-001)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "ppeItems",
+          "label": "지급 보호구 (배열)",
+          "required": true,
+          "inputGuide": "안전모·안전화·안전대·장갑·보안경·방진/방독·이어플러그.",
+          "examples": [
+            [
+              {
+                "type": "안전모",
+                "model": "KOSHA AB",
+                "size": "L",
+                "qty": 1
+              },
+              {
+                "type": "풀하네스 안전대",
+                "model": "KOSHA-2300kg",
+                "qty": 1
+              },
+              {
+                "type": "안전화",
+                "size": "265",
+                "qty": 1
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "issueDate",
+          "label": "지급 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "signature",
+          "label": "수령자 서명",
+          "required": true,
+          "inputGuide": "수령자 자필 서명.",
+          "examples": [
+            "박작업 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "replacementCycle",
+          "label": "교체 주기·이력",
+          "required": true,
+          "inputGuide": "보호구별 교체 주기.",
+          "examples": [
+            "안전모 3년 / 안전대 2년 / 안전화 1년"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "mitigatedBy": [
+    "control:eric_ppe",
+    "control:ppe_helmet",
+    "control:ppe_harness",
+    "control:ppe_safety_shoes",
+    "control:ppe_eye_protection"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:electric_shock",
+    "hazard:chemical_exposure",
+    "hazard:noise"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,21 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:dust_exposure",
+  "@type": "Event",
+  "label": "분진 노출",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "고용노동부 + 한국산업안전보건공단",
+    "koshaAccidentTypeCode": "18",
+    "fetchedAt": "2026-04-28",
+    "sourceRef": "산업재해 발생현황 통계 분류",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "description": "KOSHA 산업재해통계 분류 18호 — 분진 노출",
+  "causedBy": [
+    "hazard:dust_exposure"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr04/13"
+  ]
+}

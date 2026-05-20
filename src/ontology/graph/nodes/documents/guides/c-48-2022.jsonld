@@ -1,0 +1,216 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-48-2022",
+  "@type": "Document",
+  "docId": "kosha_guide_c-48-2022",
+  "title": "건설기계 안전보건작업 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-48-2022",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"건설기계\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 1,
+      "3": 1,
+      "4": 4,
+      "5": 1,
+      "6": 116,
+      "7": 48,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "건설기계",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:machine_entanglement",
+    "hazard:traffic_accident",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:noise_exposure",
+    "hazard:vibration_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_qualification",
+    "control:admin_supervisor",
+    "control:admin_safety_education",
+    "control:eng_monitoring",
+    "control:eng_fall_net",
+    "control:admin_inspection",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:ppe_safety_shoes",
+    "control:elim_avoid_work",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:vehicle_construction"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_건설기계 안전보건작업지침_2",
+      "title": "건설기계 안전보건작업지침 - 적용범위",
+      "score": 98.842
+    },
+    {
+      "docId": "KOSHA07_건설기계 안전보건작업지침_1",
+      "title": "건설기계 안전보건작업지침 - 목적",
+      "score": 93.846
+    },
+    {
+      "docId": "KOSHA07_건설기계 안전보건작업지침_3",
+      "title": "건설기계 안전보건작업지침 - 용어의 정의",
+      "score": 89.423
+    },
+    {
+      "docId": "KOSHA07_건설기계 안전보건작업지침_4",
+      "title": "건설기계 안전보건작업지침 - 차량계 건설기계",
+      "score": 83.461
+    },
+    {
+      "docId": "KOSHA07_건설기계 안전보건작업지침_5",
+      "title": "건설기계 안전보건작업지침 - 기초공사용 건설기계",
+      "score": 68.097
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA02_000005000000000000000053002",
+      "title": "제53조의2 도급에 따른 산업재해 예방조치",
+      "category": "2",
+      "score": 40.278
+    },
+    {
+      "docId": "KOSHA03_000001000000000000000004000",
+      "title": "제4조 협조 요청",
+      "category": "3",
+      "score": 35.182
+    },
+    {
+      "docId": "KOSHA04_[별표 6] 차량계 건설기계(제196조 관련)",
+      "title": "[별표 6] 차량계 건설기계(제196조 관련)",
+      "category": "4",
+      "score": 96.31
+    },
+    {
+      "docId": "KOSHA04_002000001000012000000000198000",
+      "title": "제198조 낙하물 보호구조",
+      "category": "4",
+      "score": 50.189
+    },
+    {
+      "docId": "KOSHA04_002000001000012000000000196000",
+      "title": "제196조 차량계 건설기계의 정의",
+      "category": "4",
+      "score": 45.835
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000005000000000000000053002",
+      "title": "제53조의2 도급에 따른 산업재해 예방조치",
+      "category": "2",
+      "score": 40.278
+    },
+    {
+      "docId": "KOSHA03_000001000000000000000004000",
+      "title": "제4조 협조 요청",
+      "category": "3",
+      "score": 35.182
+    },
+    {
+      "docId": "KOSHA04_[별표 6] 차량계 건설기계(제196조 관련)",
+      "title": "[별표 6] 차량계 건설기계(제196조 관련)",
+      "category": "4",
+      "score": 96.31
+    },
+    {
+      "docId": "KOSHA04_002000001000012000000000198000",
+      "title": "제198조 낙하물 보호구조",
+      "category": "4",
+      "score": 50.189
+    },
+    {
+      "docId": "KOSHA04_002000001000012000000000196000",
+      "title": "제196조 차량계 건설기계의 정의",
+      "category": "4",
+      "score": 45.835
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:1장",
+      "law": "기준규칙",
+      "chapterTitle": "관리대상 유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제1장 제1절·제9절․제12절"
+    },
+    {
+      "chapterNodeId": "chapter:기준규칙:1장",
+      "law": "기준규칙",
+      "chapterTitle": "관리대상 유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "이 지침은 「산업안전보건기준에 관한 규칙」(이하 “안전보건규칙”이라 한다) 제2편 제1장"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제1장 제1절·제9절․제12절",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "절",
+      "num": 9,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제1장 제1절·제9절․제12절",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "절",
+      "num": 12,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제1장 제1절·제9절․제12절",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "이 지침은 「산업안전보건기준에 관한 규칙」(이하 “안전보건규칙”이라 한다) 제2편 제1장",
+      "needsNode": true
+    }
+  ]
+}

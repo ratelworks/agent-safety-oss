@@ -1,0 +1,193 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-158-2017",
+  "@type": "Document",
+  "docId": "kosha_guide_e-158-2017",
+  "title": "방폭전기기계기구 제조자 품질경영시스템 적용에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-158-2017",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 3건 (법령 0 / KOSHA Guide 3). keyword=\"방폭전기기계기구\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 3,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "방폭전기기계기구",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:machine_entanglement",
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:eng_explosion_proof",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_공정안전보고서 등의 통합서식 작성방법에 관한 기술지침_13",
+      "title": "공정안전보고서 등의 통합서식 작성방법에 관한 기술지침 - 공정안전정보",
+      "score": 21.706
+    },
+    {
+      "docId": "KOSHA07_가스상 급성 독성물질의 하역 및 출하 시 안전기준에 관한 기술지침_5",
+      "title": "가스상 급성 독성물질의 하역 및 출하 시 안전기준에 관한 기술지침 - 하역 및 출하장소 안전기준",
+      "score": 15.373
+    },
+    {
+      "docId": "KOSHA07_독성가스 취급시설 등의 안전관리에 관한 기술지침_6",
+      "title": "독성가스 취급시설 등의 안전관리에 관한 기술지침 - 설비별 대책",
+      "score": 9.099
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법시행규칙:58",
+      "law": "산안법시행규칙",
+      "articleNumber": "58",
+      "title": "안전보건진단기관의 평가 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제58조의4(안전인증 심사의 종류 및 방법)제1항제3호",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:58",
+      "law": "산안법시행규칙",
+      "articleNumber": "58",
+      "title": "안전보건진단기관의 평가 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "이 지침은 산업안전보건법 시행규칙 제58조의4(안전인증 심사의 종류 및 방법)제1항",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:34",
+      "law": "산안법",
+      "articleNumber": "34",
+      "title": "법령 요지 등의 게시 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "이 지침은 산업안전보건법 제34조(안전인증)에 따른 안전인증 대상인 ‘방폭전기기계·",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:58",
+      "law": "산안법시행규칙",
+      "articleNumber": "58",
+      "title": "안전보건진단기관의 평가 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제58조의4(안전인증 심사의 종류 및 방법)제1항제3호에 따",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법시행규칙:58",
+      "law": "산안법시행규칙",
+      "articleNumber": "58",
+      "title": "안전보건진단기관의 평가 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 시행규칙 제58조의4(안전인증 심사의 종류 및 방법)제1항제3호",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:58",
+      "law": "산안법시행규칙",
+      "articleNumber": "58",
+      "title": "안전보건진단기관의 평가 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "이 지침은 산업안전보건법 시행규칙 제58조의4(안전인증 심사의 종류 및 방법)제1항",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:34",
+      "law": "산안법",
+      "articleNumber": "34",
+      "title": "법령 요지 등의 게시 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "이 지침은 산업안전보건법 제34조(안전인증)에 따른 안전인증 대상인 ‘방폭전기기계·",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:58",
+      "law": "산안법시행규칙",
+      "articleNumber": "58",
+      "title": "안전보건진단기관의 평가 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제58조의4(안전인증 심사의 종류 및 방법)제1항제3호에 따",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide E-158-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

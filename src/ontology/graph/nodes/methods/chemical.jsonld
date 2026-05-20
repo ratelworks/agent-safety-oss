@@ -1,0 +1,28 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:chemical",
+  "@type": "Method",
+  "label": "화학물질 위험성평가 (CHARM)",
+  "docId": "kras_chemical",
+  "verificationStatus": "kosha_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras/evaluation/kras-method",
+    "formId": "10187",
+    "bodyFile": "kras-methods/chemical.md",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "화학물질 노출량(Exposure) × 유해성(Hazard) 평가. MSDS 기반 + KOSHA CHARM 도구.",
+  "suitableFor": "chemical_assessment",
+  "applicableTo": [
+    "activity:risk_assessment_general",
+    "activity:finishing_paint",
+    "activity:asbestos_removal"
+  ],
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

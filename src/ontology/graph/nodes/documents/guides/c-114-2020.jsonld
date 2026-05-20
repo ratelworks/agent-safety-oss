@@ -1,0 +1,157 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-114-2020",
+  "@type": "Document",
+  "docId": "kosha_guide_c-114-2020",
+  "title": "덤프트럭 및 화물자동차 안전작업지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-114-2020",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"덤프트럭\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 2,
+      "5": 1,
+      "6": 21,
+      "7": 16,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "덤프트럭",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:traffic_accident",
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:manual_handling",
+    "hazard:struck_by_overturn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:machine_entanglement",
+    "hazard:noise_exposure",
+    "hazard:vibration_exposure"
+  ],
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_qualification",
+    "control:admin_supervisor",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_inspection",
+    "control:admin_safety_education",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_monitoring",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_noise_barrier"
+  ],
+  "appliesToActivities": [
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:171",
+      "law": "기준규칙",
+      "articleNumber": "171",
+      "title": "전도 등의 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제171조∼178조(차량계 하역운반기계 등), 제187조∼190",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide C-114-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:187",
+      "law": "기준규칙",
+      "articleNumber": "187",
+      "title": "승강설비",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에관한규칙 제171조∼178조(차량계 하역운반기계 등), 제187조∼190",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide C-114-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_덤프트럭 및 화물자동차 안전보건 지침_4",
+      "title": "덤프트럭 및 화물자동차 안전보건 지침 - 덤프트럭과 화물자동차의 종류",
+      "score": 92.256
+    },
+    {
+      "docId": "KOSHA07_덤프트럭 및 화물자동차 안전보건 지침_5",
+      "title": "덤프트럭 및 화물자동차 안전보건 지침 - 덤프트럭과 화물자동차 중점 위험요인 및 안전대책",
+      "score": 83.567
+    },
+    {
+      "docId": "KOSHA07_덤프트럭 및 화물자동차 안전보건 지침_3",
+      "title": "덤프트럭 및 화물자동차 안전보건 지침 - 용어의 정의",
+      "score": 74.241
+    },
+    {
+      "docId": "KOSHA07_덤프트럭 및 화물자동차 안전보건 지침_6",
+      "title": "덤프트럭 및 화물자동차 안전보건 지침 - 덤프트럭과 화물자동차의 안전작업 절차",
+      "score": 55.833
+    },
+    {
+      "docId": "KOSHA07_가공전선로에서의 위험방지에 관한 기술지침_5",
+      "title": "가공전선로에서의 위험방지에 관한 기술지침 - 가공전선로에서의 위험",
+      "score": 43.948
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_002000001000012000000000198000",
+      "title": "제198조 낙하물 보호구조",
+      "category": "4",
+      "score": 45.257
+    },
+    {
+      "docId": "KOSHA04_[별표 6] 차량계 건설기계(제196조 관련)",
+      "title": "[별표 6] 차량계 건설기계(제196조 관련)",
+      "category": "4",
+      "score": 40.41
+    },
+    {
+      "docId": "KOSHA05_굴착공사표준안전작업지침000000003000002000000000000000010000",
+      "title": "굴착공사표준안전작업지침 제10조 준비",
+      "category": "5",
+      "score": 35.996
+    }
+  ]
+}

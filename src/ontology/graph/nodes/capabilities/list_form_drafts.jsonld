@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_form_drafts",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작성 중인 초안 목록",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Form Drafts",
+      "@language": "en"
+    }
+  ],
+  "description": "프로젝트 메타, A2UI 렌더링, 로컬 초안·보관소 상태를 관리하는 capability. drafts/ 디렉토리의 모든 docId 와 마지막 수정 시각 나열.",
+  "toolName": "list_form_drafts",
+  "category": "meta",
+  "inputSchema": "safety:schema/input/list_form_drafts",
+  "producesEntity": [
+    "safety:DraftIndex"
+  ],
+  "maps_to_action": "safety:action/list_form_drafts",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

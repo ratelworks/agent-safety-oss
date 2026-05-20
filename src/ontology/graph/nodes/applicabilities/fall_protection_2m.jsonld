@@ -1,0 +1,38 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:fall_protection_2m",
+  "@type": "Applicability",
+  "label": "추락방호 의무 (높이 2m 이상 + 개구부)",
+  "condition": {
+    "all": [
+      {
+        "var": "workHeight",
+        "op": ">=",
+        "value": 2,
+        "unit": "m"
+      },
+      {
+        "var": "edgeOpen",
+        "op": "==",
+        "value": true
+      }
+    ]
+  },
+  "legalBasis": [
+    "art:기준규칙:42",
+    "art:기준규칙:43",
+    "art:기준규칙:44"
+  ],
+  "legalWeight": "mandatory",
+  "enforces": [
+    "control:ppe_harness",
+    "control:eng_guard_rail",
+    "control:eng_fall_net"
+  ],
+  "exemptionNote": "높이 2m 미만 또는 개구부 없음 — 추락방호 의무 완화 (단 위험성평가는 별도)",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

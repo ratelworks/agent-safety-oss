@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/generate_safety_document",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "안전관리 법정문서 생성",
+      "@language": "ko"
+    },
+    {
+      "@value": "Generate Safety Document",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 법정 안전관리 문서의 *완성 본문*을 결정론적으로 생성한다. v0.7 — Document.sections 기반 generic renderer로 모든 docId 자동 처리. 그래프 추론(KOSHA·Hazard·Control·법령) + 작업 조건 합성 → Markdown. PDF·docx 변환은 클라이언트.",
+  "toolName": "generate_safety_document",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/generate_safety_document",
+  "producesEntity": [
+    "safety:Document"
+  ],
+  "maps_to_action": "safety:action/generate_safety_document",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

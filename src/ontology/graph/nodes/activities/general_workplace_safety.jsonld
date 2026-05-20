@@ -1,0 +1,100 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:general_workplace_safety",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "사업장 일반 안전관리",
+  "category": "general",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichmentNote": "KOSHA 분류체계(A/B/B-E/B-M/C/E/H/M/P) 비건설 도메인 활동 추가 — KOSHA 1039 의미적 분류용",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "description": "통로·계단·조명·표지·정리정돈·창고 등 사업장 공통 안전관리. 산안법 제37조 안전보건표지 + 제38조 안전조치.",
+  "hasHazard": [
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:trip_slip"
+  ],
+  "regulatedBy": [
+    "art:산안법:37",
+    "art:산안법:38"
+  ],
+  "appliesTo": [
+    "applic:all_workplace"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-10-2025",
+    "doc:kosha_guide/A-G-11-2025",
+    "doc:kosha_guide/A-G-12-2026",
+    "doc:kosha_guide/A-G-15-2026",
+    "doc:kosha_guide/A-G-16-2026",
+    "doc:kosha_guide/A-G-19-2026",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-20-2026",
+    "doc:kosha_guide/A-G-3-2025",
+    "doc:kosha_guide/A-G-5-2025",
+    "doc:kosha_guide/A-G-6-2025",
+    "doc:kosha_guide/A-G-7-2025",
+    "doc:kosha_guide/A-G-8-2025",
+    "doc:kosha_guide/A-G-9-2025",
+    "doc:kosha_guide/C-70-2012",
+    "doc:kosha_guide/C-C-29-2026",
+    "doc:kosha_guide/G-26-2013",
+    "doc:kosha_guide/G-36-2012",
+    "doc:kosha_guide/H-26-2020",
+    "doc:kosha_guide/M-89-2016"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr01/05",
+    "facet:ctgr01/06"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_object",
+      "hazard:struck_by"
+    ],
+    "general": [
+      "hazard:trip_slip"
+    ]
+  },
+  "hasWorkType": "cc:worktype/general",
+  "workTypeLabel": {
+    "ko": "일반 안전관리 작업",
+    "en": "General safety management work"
+  }
+}

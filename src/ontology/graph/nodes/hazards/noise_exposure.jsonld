@@ -1,0 +1,58 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:noise_exposure",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "noise_exposure",
+  "label": "소음 노출",
+  "category": "physical",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "소음",
+      "청력",
+      "난청"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:sub_safer_equipment",
+    "control:eng_noise_barrier",
+    "control:eng_isolation_barrier",
+    "control:admin_health_check",
+    "control:admin_inspection",
+    "control:ppe_hearing_protection"
+  ],
+  "regulatedBy": [
+    "art:산안법:125"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/E-M-1-2025",
+    "doc:kosha_guide/E-M-2-2025",
+    "doc:kosha_guide/H-160-2014",
+    "doc:kosha_guide/H-56-2023",
+    "doc:kosha_guide/M-37-2012",
+    "doc:kosha_guide/M-51-2023",
+    "doc:kosha_guide/W-23-2016"
+  ],
+  "description": "**원인**: 85dB 이상 소음 노출 + 청력 보호구 미착용.\n**상황**: 발파·항타·연삭·콘크리트 절단·해머링.\n**확인**: 작업환경측정 (8h TWA 85dB 이하) / 귀마개·귀덮개 / 특수건강진단 (청력).\n**중대성**: 영구 청력 손실 (회복 불가).",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/10"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/M-51-2023",
+    "doc:kosha_guide/W-23-2016",
+    "doc:kosha_guide/H-160-2014"
+  ]
+}

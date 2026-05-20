@@ -1,0 +1,10 @@
+[agent-safety-oss v1.0.2] 제공: 황룡건설(주) · 개발: 주식회사 라텔웍스 (Ratelworks Inc.)
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"code\": \"AGENTHQ_API_KEY_REQUIRED\",\n  \"message\": \"라텔웍스 발행 AgentHQ API 키가 등록되지 않았습니다. KOSHA Live API (재해사례·MSDS·KOSHA Guide 본문 등) 호출에 필수입니다. 발급: https://ratelworks.co.kr/agenthq/api-key → 가입 후 이메일로 발송되는 키를 (a) link_company_key MCP 도구로 등록하거나 (b) AGENTHQ_API_KEY 환경변수에 설정.\",\n  \"details\": {\n    \"signupUrl\": \"https://ratelworks.co.kr/agenthq/api-key\",\n    \"envVar\": \"AGENTHQ_API_KEY\",\n    \"mcpTool\": \"link_company_key\",\n    \"keyFile\": \"~/.agent-safety-oss/company-key.json\"\n  }\n}"
+    }
+  ],
+  "isError": true
+}

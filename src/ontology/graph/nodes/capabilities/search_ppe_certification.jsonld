@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_ppe_certification",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "보호구 안전인증 검색 (15139497)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Ppe Certification",
+      "@language": "en"
+    }
+  ],
+  "description": "안전보건자료, MSDS, 보호구 인증, 외국인 근로자 자료 링크를 다루는 capability. KOSHA 보호구 안전인증 현황(15139497, /oshci/getoshci, 적용분야 BH 고정)에서 안전대·안전모·안전화·방진마스크 등 인증 통과 보호구를 조회한다. 특정 작업 위험요인과 매칭하여 TBM/위험성평가의 PPE 권고에 사용. XML 전용.",
+  "toolName": "search_ppe_certification",
+  "category": "safety_materials",
+  "inputSchema": "safety:schema/input/search_ppe_certification",
+  "producesEntity": [
+    "safety:PPECertification"
+  ],
+  "maps_to_action": "safety:action/search_ppe_certification",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

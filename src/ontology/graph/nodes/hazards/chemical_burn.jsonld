@@ -1,0 +1,61 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:chemical_burn",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "chemical_burn",
+  "label": "화학적 화상",
+  "category": "chemical",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "부식",
+      "산",
+      "알칼리",
+      "약품"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_isolation_barrier",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:admin_emergency_plan",
+    "control:admin_safety_education",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection"
+  ],
+  "regulatedBy": [
+    "art:산안법:110"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/E-T-1-2025",
+    "doc:kosha_guide/T-20-2020",
+    "doc:kosha_guide/H-42-2021"
+  ],
+  "description": "**원인**: 강산·강알칼리·산화제 직접 접촉 / 보호구 미착용 / 흘림·누출.\n**상황**: 화학설비 청소·정비 / 도장 시 시너 사용 / 콘크리트 양생 시 강알칼리 노출.\n**확인**: 화학물질 보호의 / 보안경·페이스실드 / 비상샤워·세안설비 / MSDS 응급조치 게시.\n**중대성**: 피부 화상·실명. 흡입 시 호흡기 화상.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/04"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:finishing_paint",
+    "activity:waterproofing"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/E-T-1-2025",
+    "doc:kosha_guide/T-20-2020",
+    "doc:kosha_guide/H-42-2021"
+  ]
+}

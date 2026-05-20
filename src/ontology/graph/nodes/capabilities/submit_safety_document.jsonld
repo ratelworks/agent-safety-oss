@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/submit_safety_document",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "A2UI 안전문서 제출·생성",
+      "@language": "ko"
+    },
+    {
+      "@value": "Submit Safety Document",
+      "@language": "en"
+    }
+  ],
+  "description": "A2UI action.name 과 실제 MCP tool contract 를 연결하는 capability. docId 와 draft 를 받아 generate_safety_document 를 실행하고, 요청 시 로컬 documents 보관소에 저장한다.",
+  "toolName": "submit_safety_document",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/submit_safety_document",
+  "producesEntity": [
+    "safety:Document"
+  ],
+  "maps_to_action": "safety:action/submit_safety_document",
+  "_meta": {
+    "created": "2026-05-04",
+    "creator": "safety:agent/ratelworks"
+  }
+}

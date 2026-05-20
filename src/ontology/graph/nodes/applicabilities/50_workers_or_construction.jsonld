@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:50_workers_or_construction",
+  "@type": "Applicability",
+  "label": "50인 이상 또는 건설업 (안전관리자 선임)",
+  "condition": {
+    "any": [
+      {
+        "var": "workforce",
+        "op": ">=",
+        "value": 50
+      },
+      {
+        "var": "industry",
+        "op": "==",
+        "value": "construction"
+      }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:17",
+    "art:산안법시행령:16"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "50인 미만 비건설업 — 안전관리자 선임 의무 면제 (사업주·현장소장 직접 관리)",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

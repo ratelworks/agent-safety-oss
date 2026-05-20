@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_kosha_guide_md",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "번들 KOSHA Guide 본문 MD 1,039건 단일 통합 조회 ",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Kosha Guide Md",
+      "@language": "en"
+    }
+  ],
+  "description": "번들 KOSHA Guide 본문 MD 1,039건 단일 통합 조회 (AGENTHQ_API_KEY 없이 동작, offline). 단건 조회 (techGdlnNo='A-1-2018') / 키워드 검색 (keyword='굴착') / 전체 인덱스 (인수 없음). 본문은 PDF → kordoc 추출 (HTML 표 보존, v1.1.18+, 정확 원본은 sourceUrl). v1.1.19 부터 KOSHA Guide 단일 진입점 (Live API 도구 통합·제거).",
+  "toolName": "get_kosha_guide_md",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/get_kosha_guide_md",
+  "maps_to_action": "safety:action/get_kosha_guide_md",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

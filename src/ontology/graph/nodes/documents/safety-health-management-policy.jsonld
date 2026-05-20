@@ -1,0 +1,335 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/safety_health_management_policy",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_management_policy",
+  "title": "안전보건경영 방침서",
+  "description": "사업주의 안전보건 경영방침 (중처법 시행령 제4조)",
+  "cycle": "cyc:annual",
+  "legalBasis": [
+    "art:중처법:4",
+    "art:중처법시행령:4",
+    "art:산안법:38",
+    "art:산안법:39"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안법 제14조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "f_1_경영방침_수립일",
+      "label": "경영방침 수립일",
+      "source": "산안법 제14조",
+      "inputGuide": "안전보건경영방침 수립·개정 일자.",
+      "examples": [
+        "2026-01-02"
+      ]
+    },
+    {
+      "key": "f_2_안전보건_경영방침_본문",
+      "label": "안전보건 경영방침 본문",
+      "source": "산안법 제14조",
+      "inputGuide": "회사 안전보건경영 의지·약속 본문 (대표 서명).",
+      "examples": [
+        "\"안전은 모든 일에 우선한다. 황룡건설(주)는 사망사고 0, 위험성평가 100% 실시, 종사자 의견 청취를 약속한다.\" (대표 황한일 서명)"
+      ]
+    },
+    {
+      "key": "f_3_안전보건관리_조직_구성",
+      "label": "안전보건관리 조직 구성",
+      "source": "산안법 제14조",
+      "inputGuide": "안전보건관리책임자·관리감독자·안전관리자·보건관리자 구성.",
+      "examples": [
+        "관리책임자: 황룡(대표) / 안전관리자: 김안전 / 보건관리자: 이건강 / 관리감독자: 박감독 외 3명"
+      ]
+    },
+    {
+      "key": "f_4_예산_시설_현황",
+      "label": "예산·시설 현황",
+      "source": "산안법 제14조",
+      "inputGuide": "연간 안전보건 예산 + 안전보건 시설 (안전교육실·진료실·휴게실).",
+      "examples": [
+        "연 8,500만원 (총공사비 0.27%) + 안전교육실 60㎡ + 진료실 30㎡ + 휴게실 100㎡"
+      ]
+    },
+    {
+      "key": "f_5_전년도_안전보건활동_실",
+      "label": "전년도 안전보건활동 실적",
+      "source": "산안법 제14조",
+      "inputGuide": "직전 연도 위험성평가·교육·점검·재해율 실적.",
+      "examples": [
+        "위험성평가 12회 / 교육 이수 96% / 합동점검 4회 / 재해율 0.18 (업종 평균 0.45)"
+      ]
+    },
+    {
+      "key": "f_6_다음_연도_활동계획",
+      "label": "다음 연도 활동계획",
+      "source": "산안법 제14조",
+      "inputGuide": "다음 연도 안전보건 목표 + 활동 계획.",
+      "examples": [
+        "목표: 사망사고 0, 재해율 0.15 / 활동: 위험성평가 매월 + 외국인 모국어 교육 + 스마트 안전장비 도입"
+      ]
+    },
+    {
+      "key": "f_7_이사회_보고일",
+      "label": "이사회 보고일",
+      "source": "산안법 제14조",
+      "inputGuide": "이사회 또는 경영진 회의 보고 일자.",
+      "examples": [
+        "2026-02-15"
+      ]
+    },
+    {
+      "key": "f_8_대표이사_서명",
+      "label": "대표이사 서명",
+      "source": "산안법 제14조",
+      "inputGuide": "본인 자필 서명 또는 전자서명.",
+      "examples": [
+        "(자필 서명)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "CEO 서명 + 사업장 게시",
+      "severity": "manual_review",
+      "legalBasis": "art:중처법시행령:4"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건경영 방침",
+      "legalSource": "산안법 제14조",
+      "fields": [
+        {
+          "key": "vision",
+          "label": "안전보건 비전",
+          "required": true,
+          "inputGuide": "사업장 안전보건의 핵심 가치·목표.",
+          "examples": [
+            "근로자 생명·건강 최우선, 무재해 100% 달성"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "commitment",
+          "label": "사업주 의지·약속",
+          "required": true,
+          "inputGuide": "사업주가 직접 서명·공표한 약속.",
+          "examples": [
+            "사업주는 모든 위험을 적극 제거하고 안전한 작업환경을 제공한다"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "goals",
+          "label": "연간 목표 (정량)",
+          "required": true,
+          "inputGuide": "재해율·아차사고·교육이수율 등 정량 목표.",
+          "examples": [
+            "재해율 0%, 위험성평가 100% 이행, 안전교육 12회/년"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "strategy",
+          "label": "실행 전략",
+          "required": true,
+          "inputGuide": "위험성평가·교육·점검·도급관리 등 전략.",
+          "examples": [
+            "1) 매월 위험성평가 2) 매주 안전교육 3) 매일 TBM 4) 매분기 점검"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "resources",
+          "label": "자원 배분 (인력·예산)",
+          "required": true,
+          "inputGuide": "안전관리자 인원·산안비 비율.",
+          "examples": [
+            "전임 안전관리자 1명, 산안비 1.97% (6,300만원)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reviewCycle",
+          "label": "방침 검토 주기",
+          "required": true,
+          "inputGuide": "연 1회 이상 재검토.",
+          "examples": [
+            "연 1회 (12월) 또는 중대 변경 시"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:중처법:6",
+  "retention": "지속",
+  "guidedBy": [
+    "doc:kosha_guide/A-R-1-2026"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:중처법:4",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "안전보건관리체계",
+      "경영방침",
+      "자율안전보건"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "administrative",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "중처법 제4조 ① 안전보건경영방침 — 5억 이상 + 50인 이상 또는 50억 이상 건설."
+  },
+  "trigger": "중처법 시행 후 + 연 1회 검토",
+  "searchKeywords": [
+    "안전보건경영방침",
+    "중처법",
+    "안전보건관리체계",
+    "9대 의무",
+    "경영책임자"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:risk_assessment_general"
+  ],
+  "cited_in": [
+    "stat:construction_fatal_top_5",
+    "stat:industrial_accident_construction_share"
+  ],
+  "informedBy": [
+    "manual:kosha_ms",
+    "manual:kosha_ms_domain_leadership",
+    "manual:kosha_ms_domain_planning",
+    "manual:kosha_ms_domain_operation",
+    "manual:kosha_ms_domain_check",
+    "manual:kosha_ms_domain_review",
+    "entity:moel",
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "relatedDocs": [
+    "doc:annual/safety_health_regulation",
+    "doc:monthly/health_safety_committee",
+    "doc:on_appointment/safety_health_manager_appointment",
+    "doc:semi_annual/severe_accident_compliance"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

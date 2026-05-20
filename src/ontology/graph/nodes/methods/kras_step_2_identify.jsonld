@@ -1,0 +1,23 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:kras_step_2_identify",
+  "@type": "Method",
+  "label": "2단계: 유해·위험요인 파악",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras",
+    "category": "kras_step",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "description": "작업분류·관찰·청취·과거 재해사례·KOSHA 통계·MSDS 활용하여 유해·위험요인 식별. 위험성평가 고시 제6조 적용.",
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "manual:risk_assessment_practical",
+  "informedBy": [
+    "stat:sif_archive_kosha",
+    "stat:construction_fatal_top_5"
+  ]
+}

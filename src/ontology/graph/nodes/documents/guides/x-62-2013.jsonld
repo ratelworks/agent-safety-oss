@@ -1,0 +1,87 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/X-62-2013",
+  "@type": "Document",
+  "docId": "kosha_guide_x-62-2013",
+  "title": "생산설비 화재 대응시의 리스크 평가지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "X-62-2013",
+    "guideCategory": "general_safety",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 6건 (법령 1 / KOSHA Guide 5). keyword=\"생산설비\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 1,
+      "6": 2,
+      "7": 19,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "생산설비",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 4건 (법령 0 / KOSHA Guide 4). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:chemical_burn",
+    "hazard:fire",
+    "hazard:fire_explosion"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_생산설비 보전작업시의 \n리스크 평가지침_5",
+      "title": "생산설비 보전작업시의 \n리스크 평가지침 - 보전작업시 리스크 평가지침",
+      "score": 75.629
+    },
+    {
+      "docId": "KOSHA07_생산설비 보전작업시의 \n리스크 평가지침_4",
+      "title": "생산설비 보전작업시의 \n리스크 평가지침 - 보전의 일반적 절차",
+      "score": 72.972
+    },
+    {
+      "docId": "KOSHA07_생산설비 화재 대응시의 \n리스크 평가지침_4",
+      "title": "생산설비 화재 대응시의 \n리스크 평가지침 - 화재 리스크의 사전 평가",
+      "score": 52.47
+    },
+    {
+      "docId": "KOSHA07_생산설비 화재 대응시의 \n리스크 평가지침_5",
+      "title": "생산설비 화재 대응시의 \n리스크 평가지침 - 화재 발생시 대응단계별 리스크 평가",
+      "score": 51.992
+    },
+    {
+      "docId": "KOSHA07_생산설비 폭발 대응시의\n리스크 평가지침_5",
+      "title": "생산설비 폭발 대응시의\n리스크 평가지침 - 폭발사고 발생시 대응단계별 리스크 평가",
+      "score": 45.478
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA05_제조업 등 유해·위험방지계획서 제출·심사·확인에 관한 고시000000000000000000000000000000002000",
+      "title": "제조업 등 유해·위험방지계획서 제출·심사·확인에 관한 고시 제2조 정의",
+      "category": "5",
+      "score": 23.55
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_measures_by_risk",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "위험요인 IRI 또는 한글 라벨로 그래프를 조회해 hazard --mitigatedBy--> control ",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Measures By Risk",
+      "@language": "en"
+    }
+  ],
+  "description": "위험요인 IRI 또는 한글 라벨로 그래프를 조회해 hazard --mitigatedBy--> control 사슬의 안전조치, ERIC 위계, KOSHA Guide·법령 원문 링크를 반환한다. 외부 호출 없이 저장소 JSON-LD 사실만 사용한다.",
+  "toolName": "get_measures_by_risk",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_measures_by_risk",
+  "maps_to_action": "safety:action/get_measures_by_risk",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

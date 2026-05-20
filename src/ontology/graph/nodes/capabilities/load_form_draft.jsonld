@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/load_form_draft",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "저장된 폼 초안 복원",
+      "@language": "ko"
+    },
+    {
+      "@value": "Load Form Draft",
+      "@language": "en"
+    }
+  ],
+  "description": "프로젝트 메타, A2UI 렌더링, 로컬 초안·보관소 상태를 관리하는 capability. 이전에 작성한 폼 초안을 docId 로 복원. 다시 폼 띄울 때 prefill 용.",
+  "toolName": "load_form_draft",
+  "category": "meta",
+  "inputSchema": "safety:schema/input/load_form_draft",
+  "producesEntity": [
+    "safety:DraftRecord"
+  ],
+  "maps_to_action": "safety:action/load_form_draft",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

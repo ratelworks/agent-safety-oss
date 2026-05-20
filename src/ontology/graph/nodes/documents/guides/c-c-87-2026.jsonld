@@ -1,0 +1,152 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-C-87-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_c-c-87-2026",
+  "title": "가스누출감지경보기 설치 및 유지보수에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-C-87-2026",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 8건 (법령 3 / KOSHA Guide 5). keyword=\"가스누출감지경보기\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 3,
+      "6": 1,
+      "7": 14,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "가스누출감지경보기",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:gas_leak",
+    "hazard:fire_explosion",
+    "hazard:cave_in",
+    "hazard:buried_alive",
+    "hazard:asphyxiation",
+    "hazard:dust_exposure",
+    "hazard:fall_object",
+    "hazard:electric_shock",
+    "hazard:noise_exposure",
+    "hazard:vibration_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:biological_hazard",
+    "hazard:struck_by"
+  ],
+  "mitigatedBy": [
+    "control:eng_alarm",
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:admin_emergency_plan",
+    "control:sub_low_risk_method",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:admin_work_permit",
+    "control:elim_automation",
+    "control:admin_health_check",
+    "control:admin_safety_education",
+    "control:eng_fall_net",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:sub_safer_equipment",
+    "control:eng_noise_barrier",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:tunnel_excavation",
+    "activity:underground_utility"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:225",
+      "law": "기준규칙",
+      "articleNumber": "225",
+      "title": "위험물질 등의 제조 등 작업 시의 조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제225조(위험물질 등의 제조 등 작업시의 조치) 등",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide C-C-87-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_가스누출감지경보기 설치 및 유지보수에 관한 기술지침_1",
+      "title": "가스누출감지경보기 설치 및 유지보수에 관한 기술지침 - 목적",
+      "score": 73.276
+    },
+    {
+      "docId": "KOSHA07_가스누출감지경보기 설치 및 유지보수에 관한 기술지침_2",
+      "title": "가스누출감지경보기 설치 및 유지보수에 관한 기술지침 - 적용범위",
+      "score": 71.703
+    },
+    {
+      "docId": "KOSHA07_가스누출감지경보기 설치 및 유지보수에 관한 기술지침_4",
+      "title": "가스누출감지경보기 설치 및 유지보수에 관한 기술지침 - 가스누출감지경보기 설치장소 및 배치기준",
+      "score": 66.285
+    },
+    {
+      "docId": "KOSHA07_가스누출감지경보기 설치 및 유지보수에 관한 기술지침_3",
+      "title": "가스누출감지경보기 설치 및 유지보수에 관한 기술지침 - 정의",
+      "score": 63.945
+    },
+    {
+      "docId": "KOSHA07_가스누출감지경보기 설치 및 유지보수에 관한 기술지침_7",
+      "title": "가스누출감지경보기 설치 및 유지보수에 관한 기술지침 - 가스누출감지경보기의 교정 및 유지보수",
+      "score": 50.258
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA05_가스누출감지경보기 설치에 관한 기술상의 지침000000000000000000000000000000002000",
+      "title": "가스누출감지경보기 설치에 관한 기술상의 지침 제2조 용어의 정의",
+      "category": "5",
+      "score": 51.163
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000004000001000000000000000041000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제41조 공정안전자료 심사기준",
+      "category": "5",
+      "score": 28.693
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000003000002000000000000000023000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제23조 건물ㆍ설비의 배치도 등",
+      "category": "5",
+      "score": 28.055
+    }
+  ]
+}

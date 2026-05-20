@@ -1,0 +1,135 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-46-2013",
+  "@type": "Document",
+  "docId": "kosha_guide_e-46-2013",
+  "title": "전기단선도 작성에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-46-2013",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 7건 (법령 2 / KOSHA Guide 5). keyword=\"전기단선도\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 0,
+      "5": 1,
+      "6": 10,
+      "7": 14,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "전기단선도",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:49",
+      "law": "산안법",
+      "articleNumber": "49",
+      "title": "안전보건개선계획의 수립ㆍ시행 명령",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "### 이 지침은 산업안전보건법(이하 “법”이라고 한다) 제 49조의 2(공정안전보고서의 제출 등),",
+      "citedAsOf": "2013",
+      "temporalNote": "KOSHA Guide E-46-2013 본문 직접 인용 (2013년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_가동전 안전점검에 관한 기술지침_10",
+      "title": "가동전 안전점검에 관한 기술지침 - 점검에 필요한 자료",
+      "score": 44.975
+    },
+    {
+      "docId": "KOSHA07_고장형태와 영향분석(FMEA)기법에 관한 지침_4",
+      "title": "고장형태와 영향분석(FMEA)기법에 관한 지침 - 일반사항",
+      "score": 39.969
+    },
+    {
+      "docId": "KOSHA07_전기단선도 작성에 관한 기술지침_1",
+      "title": "전기단선도 작성에 관한 기술지침 - 목적",
+      "score": 38.63
+    },
+    {
+      "docId": "KOSHA07_전기단선도 작성에 관한 기술지침_2",
+      "title": "전기단선도 작성에 관한 기술지침 - 적용범위",
+      "score": 38.501
+    },
+    {
+      "docId": "KOSHA07_전기단선도 작성에 관한 기술지침_7",
+      "title": "전기단선도 작성에 관한 기술지침 - 도면관리",
+      "score": 38.415
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA03_000004000000000000000050000",
+      "title": "제50조 공정안전보고서의 세부 내용 등",
+      "category": "3",
+      "score": 35.739
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000003000002000000000000000024000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제24조 폭발위험장소 구분도 및 전기단선도 등",
+      "category": "5",
+      "score": 42.611
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/safety_health_management_assistant_appointment",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_management_assistant_appointment",
+  "title": "안전보건관리담당자 선임 보고",
+  "description": "20인 이상 50인 미만 사업장 안전보건관리담당자 선임 (산안법 제19조 + 시행규칙 제43조)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "사업장 성립·변경·이직 시",
+  "applicableWhen": {
+    "workforceGte": 20,
+    "workforceLt": 50
+  },
+  "legalBasis": [
+    "art:산안법:19",
+    "art:산안법시행규칙:43"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안법 제19조 + 시행령 제24조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "appointmentDate",
+      "label": "선임 일자",
+      "source": "산안법 제19조 + 시행령 제24조",
+      "inputGuide": "선임·위촉 시작일.",
+      "examples": [
+        "2026-04-01"
+      ]
+    },
+    {
+      "key": "f_2_선임_대상__성명_소속",
+      "label": "선임 대상 (성명·소속)",
+      "source": "산안법 제19조 + 시행령 제24조",
+      "inputGuide": "선임 대상자 성명 + 소속 부서.",
+      "examples": [
+        "김안전 (황룡건설(주) 안전관리팀)"
+      ]
+    },
+    {
+      "key": "f_3_자격_요건",
+      "label": "자격 요건",
+      "source": "산안법 제19조 + 시행령 제24조",
+      "inputGuide": "산업안전기사·산업안전산업기사·안전관리자 자격증 등.",
+      "examples": [
+        "산업안전기사 (한국산업인력공단, 2018-09 발급)"
+      ]
+    },
+    {
+      "key": "f_4_직무_범위",
+      "label": "직무 범위",
+      "source": "산안법 제19조 + 시행령 제24조",
+      "inputGuide": "법령상 직무·실무 책임 범위.",
+      "examples": [
+        "산안법 제17조 안전관리자 직무 (위험성평가·교육·점검·재해조사 지원)"
+      ]
+    },
+    {
+      "key": "f_5_사업주_서명",
+      "label": "사업주 서명",
+      "source": "산안법 제19조 + 시행령 제24조",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "20~50인 사업장 의무 (이상은 제17·18조 별도)",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:19"
+    },
+    {
+      "rule": "자격 요건 충족 명시",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:43"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건관리담당자 선임 (별지 제24호)",
+      "legalSource": "산안법 제19조 + 시행령 제24조 + 별지 제24호",
+      "fields": [
+        {
+          "key": "appointeeName",
+          "label": "선임 담당자 성명",
+          "required": true,
+          "inputGuide": "안전보건관리담당자 (20~49인 한정업종 의무).",
+          "examples": [
+            "박담당"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "qualification",
+          "label": "자격",
+          "required": true,
+          "inputGuide": "산안법 시행령 별표 4 자격기준.",
+          "examples": [
+            "산업안전보건교육 8h 이수 + 1년 이상 경력"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "appointmentDate",
+          "label": "선임 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reportToMOEL",
+          "label": "고용노동부 보고 (14일 내)",
+          "required": true,
+          "inputGuide": "별지 제24호 제출.",
+          "examples": [
+            "2026-05-10 강남고용노동지청 제출"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "지속",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:19",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "안전보건관리담당자",
+      "선임"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "administrative",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "annexReference": [
+    "annex:산안법시행규칙:서식24"
+  ],
+  "relatedDocs": [
+    "doc:on_appointment/safety_health_manager_appointment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

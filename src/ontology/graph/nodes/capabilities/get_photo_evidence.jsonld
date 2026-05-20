@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_photo_evidence",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "photoId 로 PhotoEvidence 단건을 조회하고 fileUri, 관련 작업, 관련 위험요인, 연결",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Photo Evidence",
+      "@language": "en"
+    }
+  ],
+  "description": "photoId 로 PhotoEvidence 단건을 조회하고 fileUri, 관련 작업, 관련 위험요인, 연결된 SafetyIssue 그래프 사슬을 반환한다.",
+  "toolName": "get_photo_evidence",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/get_photo_evidence",
+  "maps_to_action": "safety:action/get_photo_evidence",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

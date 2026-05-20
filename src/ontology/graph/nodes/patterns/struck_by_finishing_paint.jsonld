@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_finishing_paint",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_finishing_paint",
+  "title": "struck_by × finishing_paint",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 struck_by 작업유형 finishing_paint.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:finishing_paint"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "변압기 주위 바닥 청소작업중 충전부에 접촉",
+    "고소작업대차에 탑승하여 도장작업 중",
+    "특고압 전로에 근접한 H-BEAM에 은분 락카 도장작업 중 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

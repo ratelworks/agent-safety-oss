@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_underground_utility",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_underground_utility",
+  "title": "cave_in × underground_utility",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 9건 관측. 사고유형 cave_in 작업유형 underground_utility.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [
+    "activity:underground_utility"
+  ],
+  "caseFrequency": 9,
+  "sampleKeywords": [
+    "우수관로 설치작업 중 붕괴",
+    "관로 매설 작업 중 토사 붕괴",
+    "관로 매설작업 중 토사가 붕괴되어 매몰"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

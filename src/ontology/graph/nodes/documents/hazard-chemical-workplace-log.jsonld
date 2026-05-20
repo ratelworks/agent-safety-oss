@@ -1,0 +1,269 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/hazard_chemical_workplace_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "hazard_chemical_workplace_log",
+  "title": "유해·위험 작업장 작업기록 (건설현장 도장·방수·용접·해체·분진작업)",
+  "description": "유해·위험 작업장 작업기록 - 산안기준규칙:511 + 산안기준규칙:607 + 산안기준규칙:439 + 산안기준규칙:451 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:daily",
+  "trigger": "매일",
+  "legalBasis": [
+    "art:기준규칙:511",
+    "art:기준규칙:607",
+    "art:기준규칙:439",
+    "art:기준규칙:451"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_hazard_chemical_workplace_log",
+    "officialName": "유해·위험 작업장 작업기록 (자체)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 유해·위험 작업장 작업기록",
+      "legalSource": "산안기준규칙 제511조·제607조·제439조·제451조",
+      "fields": [
+        {
+          "key": "workDate",
+          "label": "작업 일자",
+          "required": true,
+          "inputGuide": "매일.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workArea",
+          "label": "작업장 (유해인자)",
+          "required": true,
+          "inputGuide": "화학·소음·분진·진동·고온 등.",
+          "examples": [
+            "A동 도장작업 (톨루엔)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "chemicals",
+          "label": "취급 화학물질",
+          "required": true,
+          "inputGuide": "제품명·CAS·취급량.",
+          "examples": [
+            "락카신너 20L (CAS 108-88-3 톨루엔)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workers",
+          "label": "작업자 명단",
+          "required": true,
+          "inputGuide": "노출 근로자 + 시간.",
+          "examples": [
+            [
+              {
+                "name": "박도장",
+                "hours": 6,
+                "exposure": "6h 톨루엔"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "protection",
+          "label": "보호구·환기 조치",
+          "required": true,
+          "inputGuide": "방독마스크·환기.",
+          "examples": [
+            "방독마스크(유기증기용) + 환기 송풍기 작동"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "healthMonitoring",
+          "label": "건강 영향 관찰",
+          "required": true,
+          "inputGuide": "두통·어지러움·메스꺼움.",
+          "examples": [
+            "[√] 작업 후 자각증상 없음"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:511",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:511",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "30년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:511",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "register",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "유해인자 노출"
+  },
+  "hasHazard": [
+    "hazard:chemical_exposure",
+    "hazard:chemical_burn",
+    "hazard:acute_toxic_gas",
+    "hazard:dust"
+  ],
+  "appliesToActivities": [
+    "activity:painting",
+    "activity:waterproofing",
+    "activity:asbestos_removal",
+    "activity:hazardous_chemical_work"
+  ],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Hazard",
+  "mitigatedBy": [
+    "control:admin_msds",
+    "control:ppe_chemical_suit",
+    "control:ppe_respirator",
+    "control:eng_ventilation"
+  ],
+  "relatedDocs": [
+    "doc:continuous/msds_register",
+    "doc:as_needed/msds_education_log",
+    "doc:semi_annual/work_environment_measurement"
+  ],
+  "purpose": "건설현장에서 발생하는 유해인자(도장 VOC·방수 이소시아네이트·용접 흄·콘크리트 분진·석면 등) 노출 작업의 일별 기록. 산안법 제164조 보존 의무 30년 (CMR 발암성·생식독성·변이원성).",
+  "industry": "construction",
+  "_applicableWorkLabels": [
+    "도장작업",
+    "방수작업",
+    "용접작업",
+    "석면해체",
+    "분진발생작업",
+    "특별관리물질취급"
+  ]
+}

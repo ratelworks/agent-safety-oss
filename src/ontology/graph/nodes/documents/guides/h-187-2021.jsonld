@@ -1,0 +1,159 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-187-2021",
+  "@type": "Document",
+  "docId": "kosha_guide_h-187-2021",
+  "title": "산업재해 형태별 응급처치 요령",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-187-2021",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"산업재해\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 37,
+      "2": 26,
+      "3": 13,
+      "4": 1,
+      "5": 18,
+      "6": 178,
+      "7": 57,
+      "8": 1,
+      "9": 1,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "산업재해",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_burn",
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:admin_emergency_plan",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_산업재해 기록?분류에 관한 지침_5",
+      "title": "산업재해 기록?분류에 관한 지침 - 산업재해 특성 분석항목",
+      "score": 71.53
+    },
+    {
+      "docId": "KOSHA07_현장 응급대응체계 원칙 및 관리지침_5",
+      "title": "현장 응급대응체계 원칙 및 관리지침 - 산업재해 응급대응 행동수칙",
+      "score": 68.811
+    },
+    {
+      "docId": "KOSHA07_산업재해 기록?분류에 관한 지침_2",
+      "title": "산업재해 기록?분류에 관한 지침 - 적용범위",
+      "score": 65.908
+    },
+    {
+      "docId": "KOSHA07_산업재해 기록?분류에 관한 지침_1",
+      "title": "산업재해 기록?분류에 관한 지침 - 목적",
+      "score": 64.28
+    },
+    {
+      "docId": "KOSHA07_산업재해 기록?분류에 관한 지침_7",
+      "title": "산업재해 기록?분류에 관한 지침 - 재해자 특성 분석항목의 분류체계 및 기준",
+      "score": 60.599
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:2",
+      "law": "산안법",
+      "articleNumber": "2",
+      "title": "정의",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제2조(정의), 제5조(사업주의 의무), 고용노동부",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-187-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:5",
+      "law": "산안법",
+      "articleNumber": "5",
+      "title": "사업주 등의 의무",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제2조(정의), 제5조(사업주의 의무), 고용노동부",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-187-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:22",
+      "law": "산안법시행령",
+      "articleNumber": "22",
+      "title": "보건관리자의 업무 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행령 제22조(보건관리자의 업무 등), 고용노동부",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-187-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:5",
+      "law": "산안법시행령",
+      "articleNumber": "5",
+      "title": "산업 안전 및 보건 의식을 북돋우기 위한 시책 마련",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "이 지침은 산업안전보건법 제5조(사업주 등의 의무) 및 산업안전보건법 시행령 제22",
+      "citedAsOf": "2021",
+      "temporalNote": "KOSHA Guide H-187-2021 본문 직접 인용 (2021년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA01_000001000000000000000011000",
+      "title": "제11조 산업재해 예방시설의 설치ㆍ운영",
+      "category": "1",
+      "score": 79.702
+    },
+    {
+      "docId": "KOSHA01_000001000000000000000012000",
+      "title": "제12조 산업재해 예방의 재원",
+      "category": "1",
+      "score": 79.191
+    },
+    {
+      "docId": "KOSHA01_000011000000000000000158000",
+      "title": "제158조 산업재해 예방활동의 보조ㆍ지원",
+      "category": "1",
+      "score": 77.828
+    },
+    {
+      "docId": "KOSHA01_000001000000000000000009000",
+      "title": "제9조 산업재해 예방 통합정보시스템 구축ㆍ운영 등",
+      "category": "1",
+      "score": 76.955
+    },
+    {
+      "docId": "KOSHA01_000005000003000000000073000",
+      "title": "제73조 건설공사의 산업재해 예방 지도",
+      "category": "1",
+      "score": 75.792
+    }
+  ]
+}

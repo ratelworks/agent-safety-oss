@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_retention_status",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법정문서 보관·갱신 상태",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Retention Status",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 특정 법정문서의 작성일 기준으로 남은 보관기간·다음 갱신일·갱신 임박 여부를 산출한다. 라이프사이클 §1.6 보관 단계.",
+  "toolName": "get_retention_status",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_retention_status",
+  "producesEntity": [
+    "safety:RetentionStatus"
+  ],
+  "maps_to_action": "safety:action/get_retention_status",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

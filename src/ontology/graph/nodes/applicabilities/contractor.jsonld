@@ -1,0 +1,22 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:contractor",
+  "@type": "Applicability",
+  "label": "도급 사업장 (도급 안전관리)",
+  "condition": {
+    "var": "contractor",
+    "op": "==",
+    "value": true
+  },
+  "legalBasis": [
+    "art:산안법:62",
+    "art:산안법:63"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "직영 사업장 — 도급 안전관리 의무 면제",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

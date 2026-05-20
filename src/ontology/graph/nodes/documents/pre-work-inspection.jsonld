@@ -1,0 +1,465 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/pre_work_inspection",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "pre_work_inspection",
+  "title": "작업 전 안전점검",
+  "alternativeNames": [
+    "일일 점검표",
+    "일상점검표",
+    "작업전 점검 체크리스트"
+  ],
+  "description": "관리감독자가 매일 작업 시작 전 안전보건규칙 제35조 별표3 점검사항을 점검하고 이상 시 즉시 조치하기 위한 체크리스트.",
+  "cycle": "cyc:daily",
+  "trigger": "관리감독자가 매일 작업 시작 전 안전보건규칙 제35조 별표3 점검사항을 점검하고 이상 시 즉시 조치하기 위한 체크리스트.",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "보존기간 명시 근거 없음. 위험성평가 증빙으로 활용 시 3년, 중처법 증빙 시 5년 권장."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "f_0_점검_일자",
+      "label": "점검 일자",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "점검 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "f_1_작업명",
+      "label": "작업명",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "본 작업 식별 명칭. 작업계획서 ID 일치.",
+      "examples": [
+        "3층 발코니 거푸집 양중 작업"
+      ]
+    },
+    {
+      "key": "f_2_점검자__관리감독자_",
+      "label": "점검자 (관리감독자)",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "관리감독자 또는 작업지휘자 직책 + 성명.",
+      "examples": [
+        "박감독 (관리감독자)"
+      ]
+    },
+    {
+      "key": "f_3_기계_설비_기구_점검",
+      "label": "기계·설비·기구 점검",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "당일 사용 기계·설비·기구 정상 작동 확인.",
+      "examples": [
+        "굴삭기 22톤 + 타워크레인 + 콘크리트펌프카 정상"
+      ]
+    },
+    {
+      "key": "f_4_안전장치_작동_점검",
+      "label": "안전장치 작동 점검",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "안전장치 (과부하·비상정지·누전차단) 작동 확인.",
+      "examples": [
+        "전체 정상 / 누전차단기 1개소 트립 → 교체"
+      ]
+    },
+    {
+      "key": "f_5_보호구_착용_점검",
+      "label": "보호구 착용 점검",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "근로자 보호구 (안전모·안전화·안전대) 착용 확인.",
+      "examples": [
+        "전체 정상 / 안전모 끈 미체결 1명 → 시정"
+      ]
+    },
+    {
+      "key": "f_6_점검_결과__적합_부적",
+      "label": "점검 결과 (적합/부적합)",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "적합 / 부적합 + 부적합 시 시정 사항.",
+      "examples": [
+        "적합"
+      ]
+    },
+    {
+      "key": "f_7_부적합_시_조치",
+      "label": "부적합 시 조치",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "감소대책 우선순위 (제거→대체→공학적→관리적→보호구) 기준으로 위험 등급 표기. 즉시 시정 / 7일 내 / 시정완료 분류.",
+      "examples": [
+        "[즉시] 안전대 미체결 작업 발견 → 작업중지 / [7일] 가설전기 분전반 접지 부재"
+      ]
+    },
+    {
+      "key": "f_8_근로자_통보",
+      "label": "근로자 통보",
+      "source": "산안기준규칙 제35조",
+      "inputGuide": "점검 결과 + 위험요인 + 작업방법 근로자 통보.",
+      "examples": [
+        "TBM 시 전체 통보 + 게시판 부착"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 점검일자·작업명·점검자",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:35"
+    },
+    {
+      "rule": "필수 — 별표 3 표준 항목 포함",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표3"
+    },
+    {
+      "rule": "필수 — 이상 발견 시 조치",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:35"
+    },
+    {
+      "rule": "권장 — 사진 첨부",
+      "severity": "warning"
+    }
+  ],
+  "retention": "법정 명시 없음. 위험성평가 증빙: 3년 / 중처법 증빙: 5년 권장",
+  "standardForm": {
+    "source": "산안기준규칙 별표 3 + KOSHA Guide",
+    "sourceUrl": "https://www.law.go.kr/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=1000996608",
+    "requiredFields": [
+      "점검일자",
+      "작업명·공종",
+      "점검자 (관리감독자) 성명·서명",
+      "점검 항목 (별표 3 해당 작업별 표준)",
+      "각 항목 적정/보완/해당없음",
+      "이상 발견 시 조치 내용",
+      "조치 책임자·완료 시각"
+    ]
+  },
+  "relatedDocs": [
+    "doc:daily/work_start_pre_check",
+    "doc:daily/daily_tbm",
+    "doc:daily/construction_machinery_inspection"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-13-2026",
+    "doc:kosha_guide/C-C-48-2026",
+    "doc:kosha_guide/C-C-52-2026",
+    "doc:kosha_guide/E-135-2013",
+    "doc:kosha_guide/E-41-2012",
+    "doc:kosha_guide/G-133-2020",
+    "doc:kosha_guide/G-134-2023",
+    "doc:kosha_guide/C-70-2012",
+    "doc:kosha_guide/C-C-29-2026",
+    "doc:kosha_guide/A-G-10-2025",
+    "doc:kosha_guide/A-G-11-2025",
+    "doc:kosha_guide/A-G-12-2026",
+    "doc:kosha_guide/A-G-15-2026",
+    "doc:kosha_guide/A-G-16-2026",
+    "doc:kosha_guide/A-G-19-2026",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-20-2026",
+    "doc:kosha_guide/A-G-3-2025",
+    "doc:kosha_guide/A-G-5-2025",
+    "doc:kosha_guide/A-G-6-2025",
+    "doc:kosha_guide/A-G-7-2025",
+    "doc:kosha_guide/A-G-8-2025",
+    "doc:kosha_guide/A-G-9-2025",
+    "doc:kosha_guide/G-26-2013",
+    "doc:kosha_guide/G-36-2012",
+    "doc:kosha_guide/H-26-2020",
+    "doc:kosha_guide/M-89-2016",
+    "doc:kosha_guide/C-C-21-2026",
+    "doc:kosha_guide/C-C-22-2026",
+    "doc:kosha_guide/C-C-30-2026",
+    "doc:kosha_guide/C-C-36-2026",
+    "doc:kosha_guide/C-C-37-2026",
+    "doc:kosha_guide/C-C-41-2026",
+    "doc:kosha_guide/C-C-67-2026",
+    "doc:kosha_guide/C-C-7-2026",
+    "doc:kosha_guide/C-C-73-2026",
+    "doc:kosha_guide/C-C-75-2026",
+    "doc:kosha_guide/A-1-2018",
+    "doc:kosha_guide/A-10-2018",
+    "doc:kosha_guide/A-100-2018",
+    "doc:kosha_guide/A-101-2018",
+    "doc:kosha_guide/A-102-2018",
+    "doc:kosha_guide/A-103-2018",
+    "doc:kosha_guide/A-104-2018",
+    "doc:kosha_guide/A-105-2018",
+    "doc:kosha_guide/A-106-2018",
+    "doc:kosha_guide/A-107-2018"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건기준에 관한 규칙",
+        "article": "§35",
+        "text": "관리감독자의 유해·위험 방지 업무 등 — 작업 시작 전 점검 의무"
+      },
+      {
+        "law": "산안기준규칙 별표 3",
+        "article": "별표3",
+        "text": "작업 시작 전 점검사항 (작업·설비별 표준 항목)"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§16",
+        "text": "관리감독자의 업무"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "점검 항목": "작업·설비별로 별표 3 표준 항목 적용. 자체 추가 가능하나 표준 항목 누락 X",
+        "이상 발견": "단순 '이상' X → '강관비계 결속 풀림 3개소 발견' 등 구체적"
+      },
+      "commonMistakes": [
+        "점검자 서명 누락",
+        "체크리스트가 너무 단순 (예: '안전한가? Yes/No')",
+        "이상 발견 시 조치 미기재",
+        "별표 3 의 표준 항목을 사업장 자체 항목으로 대체하면서 누락"
+      ],
+      "bestPractices": [
+        "작업·설비별 표준 체크리스트 비치 (KOSHA Guide 활용)",
+        "이상 발견 시 사진 첨부",
+        "TBM 일지와 연동 (당일 점검 결과를 TBM 에서 공유)"
+      ]
+    },
+    "examples": [
+      {
+        "title": "KOSHA Guide 작업시작 전 점검 (작업·설비별)",
+        "source": "안전보건공단",
+        "license": "공공누리 (자료별 확인 필요)"
+      }
+    ],
+    "relatedTools": [
+      "compile_safety_references({workType, docType:'daily_inspection'})",
+      "search_safety_laws({keyword:'제35조'})",
+      "search_kosha_archive({keyword:'점검표', shpCd:'01'})  // 책자 검색"
+    ],
+    "convertedAt": "2026-04-26",
+    "note": "guides/*.json 에서 자동 변환된 노드. legalBasis 의 Article 노드 IRI 매핑은 P1 수작업 보강 예정.",
+    "predictedLegalBasisIris": [],
+    "unresolvedLegalBasisRefs": [],
+    "enrichedAt": "2026-04-26",
+    "stubLinkedIris": [],
+    "reviewedAt": "2026-04-26",
+    "reviewer": "라텔웍스 (Ratelworks Inc., 황룡건설(주) 자문)",
+    "reviewLevel": "1차 도메인 검토 — 19종 docId entity 의 legalBasisRefs · requiredFields · reviewRules 정합성 확인",
+    "reviewNotes": "Phase 5 가이드라인 준수 (JSON-LD 1.1 + schema.org Legislation + ELI). 본문은 KOSHA 표준 양식·법제처 본문 기반. 황룡건설 dogfooding 완료 시 'verified' 로 최종 승급 예정.",
+    "autoPromotedAt": "2026-04-26",
+    "promotedBy": "scripts/promote-document-status.ts (자동 스크립트, 사람 검토 미실시)",
+    "promoteRationale": "1) standardForm 출처가 KOSHA 표준 / 2) legalBasisRefs 가 법제처 verified Article 노드와 매칭 / 3) reviewRules 가 인용 조문과 정합. 단 사람 도메인 전문가 직접 검토는 미실시 — 황룡건설 dogfooding 완료 후 'verified' 승급 예정.",
+    "dogfoodingNote": "본 verified 라벨은 자동 시뮬레이션에 의한 1차 합격. 진짜 사람 도메인 전문가(안전관리자) 사용 후 추가 검증 필요.",
+    "simulationPassedAt": "2026-04-26",
+    "simulationPassedBy": "scripts/dogfooding-simulation.ts (자동 시뮬레이션 — 그래프 정합성 + review 도구 통과)",
+    "promotionNote": "자동 시뮬레이션 통과 — review_safety_document 도구 호출 + 그래프 정합성 확인. 진짜 사람 도메인 검토(황룡건설 dogfooding) 후 verified 승급 예정.",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:기준규칙:35",
+    "annex:기준규칙:별표3",
+    "art:산안법:16",
+    "art:기준규칙:21",
+    "art:기준규칙:23",
+    "art:기준규칙:49",
+    "art:기준규칙:50",
+    "art:기준규칙:46",
+    "art:기준규칙:48"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:risk_assessment_general"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 작업 전 안전점검",
+      "legalSource": "산안기준규칙 제35조",
+      "fields": [
+        {
+          "key": "inspectionDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "매 작업일 시작 전.",
+          "examples": [
+            "2026-04-29 07:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspector",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "관리감독자 또는 작업지휘자.",
+          "examples": [
+            "박감독 (관리감독자)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workArea",
+          "label": "점검 구역·작업",
+          "required": true,
+          "inputGuide": "오늘 시행할 작업.",
+          "examples": [
+            "A동 6층 외벽 도장 + B동 굴착"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checkItems",
+          "label": "점검 항목·결과",
+          "required": true,
+          "inputGuide": "보호구·기계·전기·화재·환경.",
+          "examples": [
+            [
+              {
+                "항목": "안전대 착용",
+                "결과": "양호"
+              },
+              {
+                "항목": "비계 안전난간",
+                "결과": "보통"
+              },
+              {
+                "항목": "전기설비 누전차단기",
+                "결과": "양호"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "발견 위험·시정 조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "미흡 사항 즉시 조치.",
+          "examples": [
+            "[해당없음] 모두 양호",
+            "비계 단부 안전난간 누락 → 즉시 설치"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:admin_supervisor"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:caught_in"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

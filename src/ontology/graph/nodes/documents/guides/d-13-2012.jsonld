@@ -1,0 +1,122 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-13-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_d-13-2012",
+  "title": "염소저장설비에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-13-2012",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 1건 (법령 0 / KOSHA Guide 1). keyword=\"염소저장설비\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 1,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "염소저장설비",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fire",
+    "hazard:thermal_burn",
+    "hazard:electric_shock",
+    "hazard:noise_exposure",
+    "hazard:radiation_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:sub_safer_equipment",
+    "control:eng_monitoring",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:admin_qualification",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:steel_structure"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_염소저장설비에 관한 기술지침 _5",
+      "title": "염소저장설비에 관한 기술지침  - 저장설비",
+      "score": 50.935
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:229",
+      "law": "기준규칙",
+      "articleNumber": "229",
+      "title": "산화에틸렌 등의 취급",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제229조(독성이 있는 물질의 누출 방",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-13-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:229",
+      "law": "기준규칙",
+      "articleNumber": "229",
+      "title": "산화에틸렌 등의 취급",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제229조(독성이 있는 물질의 누출 방",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide D-13-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

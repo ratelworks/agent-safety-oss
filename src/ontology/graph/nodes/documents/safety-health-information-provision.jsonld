@@ -1,0 +1,290 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/safety_health_information_provision",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_information_provision",
+  "title": "안전보건정보 제공",
+  "description": "산안법 제11조 도급계약 체결 시 도급인이 수급인에게 제공해야 하는 안전보건정보 (작업환경·유해위험요인·예방조치) 제공서. 시행규칙 제73조 별표 11 양식.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "도급계약 체결 시",
+  "legalBasis": [
+    "art:산안법:11",
+    "art:산안법시행규칙:73"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "도급계약 체결 모든 사업장 (제조·건설·서비스). 도급인 → 수급인."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "도급 없음",
+      "단순 물품 매매 (노무 제공 아님)"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "f_0_정보_제공_일시",
+      "label": "정보 제공 일시",
+      "source": "산안법 제65조",
+      "inputGuide": "도급인이 수급인에게 정보 제공한 일시 (산안법 제63조).",
+      "examples": [
+        "2026-04-15 14:00"
+      ]
+    },
+    {
+      "key": "f_1_도급인_사업장명",
+      "label": "도급인 사업장명",
+      "source": "산안법 제65조",
+      "inputGuide": "도급 발주 사업장.",
+      "examples": [
+        "황룡건설(주) 삼성동 현장"
+      ]
+    },
+    {
+      "key": "f_2_관계수급인_사업장명",
+      "label": "관계수급인 사업장명",
+      "source": "산안법 제65조",
+      "inputGuide": "수급·하수급 사업장.",
+      "examples": [
+        "광산기계(주) 양중작업팀"
+      ]
+    },
+    {
+      "key": "f_3_유해성_위험성_화학물질",
+      "label": "유해성·위험성 화학물질 정보",
+      "source": "산안법 제65조",
+      "inputGuide": "취급 화학물질 유해성·위험성 정보 (MSDS).",
+      "examples": [
+        "톨루엔·자일렌·이소시아네이트 (MSDS 첨부) — 발암성·생식독성 표시"
+      ]
+    },
+    {
+      "key": "f_4_질식_붕괴_위험_작업_",
+      "label": "질식·붕괴 위험 작업 정보",
+      "source": "산안법 제65조",
+      "inputGuide": "질식·붕괴 위험 정보 (밀폐공간·굴착).",
+      "examples": [
+        "지하 1층 밀폐공간 작업 — 산소 농도 18% 이하 위험 / 굴착 사면 1:1.5 안전기울기 미준수 시 붕괴 위험"
+      ]
+    },
+    {
+      "key": "f_5_MSDS_별첨",
+      "label": "MSDS 별첨",
+      "source": "산안법 제65조",
+      "inputGuide": "MSDS 첨부 자료.",
+      "examples": [
+        "톨루엔 MSDS / 자일렌 MSDS / 이소시아네이트 MSDS (각 16개 항목 완성)"
+      ]
+    },
+    {
+      "key": "f_6_안전보건_작업절차서",
+      "label": "안전보건 작업절차서",
+      "source": "산안법 제65조",
+      "inputGuide": "작업절차서 (안전한 작업방법).",
+      "examples": [
+        "양중 작업 절차서 / 화기 작업 절차서 / 밀폐공간 작업 절차서"
+      ]
+    },
+    {
+      "key": "f_7_수급인_확인_서명",
+      "label": "수급인 확인 서명",
+      "source": "산안법 제65조",
+      "inputGuide": "도급 계약 받은 시공사.",
+      "examples": [
+        "황룡건설(주)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 도급인·수급인 식별정보 + 작업범위",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:11"
+    },
+    {
+      "rule": "필수 — 작업장 유해·위험요인 + 예방조치 명시",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:73"
+    },
+    {
+      "rule": "권고 — 비상연락망 + 안전보건 책임자 지정",
+      "severity": "warning",
+      "legalBasis": "art:산안법시행규칙:73"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/H-158-2021"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건정보 제공 내역",
+      "legalSource": "산안법 제73조 + 시행규칙 제86조",
+      "fields": [
+        {
+          "key": "recipient",
+          "label": "수급인명",
+          "required": true,
+          "inputGuide": "정보 제공 대상 수급업체.",
+          "examples": [
+            "우송건설(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "providedInfo",
+          "label": "제공 정보 내용",
+          "required": true,
+          "inputGuide": "위험성평가 결과·MSDS·도면·작업조건 등.",
+          "examples": [
+            "1) 위험성평가 결과 5건, 2) MSDS 12종, 3) 도면 3매"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "providedDate",
+          "label": "제공 일자",
+          "required": true,
+          "inputGuide": "작업 개시 전.",
+          "examples": [
+            "2026-04-25 (작업 개시 4일 전)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "deliveryMethod",
+          "label": "제공 방법",
+          "required": true,
+          "inputGuide": "문서·전자·회의 등.",
+          "examples": [
+            "서면 + 안전보건협의체 회의 시 설명"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "relatedDocs": [
+    "doc:on_construction_open/contract_safety_health_clause",
+    "doc:annual/safety_health_regulation",
+    "doc:continuous/msds_register"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

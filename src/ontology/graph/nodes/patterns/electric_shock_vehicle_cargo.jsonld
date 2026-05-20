@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/electric_shock_vehicle_cargo",
+  "@type": [
+    "Event"
+  ],
+  "slug": "electric_shock_vehicle_cargo",
+  "title": "electric_shock × vehicle_cargo",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 5건 관측. 사고유형 electric_shock 작업유형 vehicle_cargo.",
+  "koshaAccidentType": "electric_shock",
+  "hasHazard": [
+    "hazard:electric_shock"
+  ],
+  "causedBy": [
+    "activity:vehicle_cargo"
+  ],
+  "caseFrequency": 5,
+  "sampleKeywords": [
+    "원형전기톱을 이용하여 목재판넬을 절단하던 중 감전",
+    "22.9kv 배전선로 교체작업중 사망",
+    "공장내 부지 아스팔트 포장중 타이어 로울러에 깔림"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

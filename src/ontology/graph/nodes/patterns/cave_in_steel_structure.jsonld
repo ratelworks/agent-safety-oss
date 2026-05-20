@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_steel_structure",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_steel_structure",
+  "title": "cave_in × steel_structure",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 4건 관측. 사고유형 cave_in 작업유형 steel_structure.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [
+    "activity:steel_structure"
+  ],
+  "caseFrequency": 4,
+  "sampleKeywords": [
+    "철골 구조물 조립작업 중 구조물 무너짐(사망2명, 부상9명)",
+    "○○창고 신축공사 중 철골구조물 붕괴(사망1,부상4)",
+    "체육관 철골구조물 조립중 붕괴"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

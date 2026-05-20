@@ -1,0 +1,142 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-199-2018",
+  "@type": "Document",
+  "docId": "kosha_guide_h-199-2018",
+  "title": "석면해체 제거작업 감리지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-199-2018",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"석면해체\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 6,
+      "7": 12,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "석면해체",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 1건 (법령 0 / KOSHA Guide 1). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure",
+    "hazard:dust_exposure",
+    "hazard:fall_from_height",
+    "hazard:cave_in",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:fire",
+    "hazard:asphyxiation",
+    "hazard:noise_exposure",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education",
+    "control:elim_automation",
+    "control:sub_low_risk_method",
+    "control:admin_health_check",
+    "control:elim_avoid_work",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:sub_safer_equipment",
+    "control:admin_signal_person",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:admin_work_permit",
+    "control:eng_noise_barrier"
+  ],
+  "appliesToActivities": [
+    "activity:asbestos_removal",
+    "activity:demolition"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_면해체?제거작업 감리지침_4",
+      "title": "면해체?제거작업 감리지침 - 석면해체?제거작업 감리의 업무범위",
+      "score": 108.557
+    },
+    {
+      "docId": "KOSHA07_석면해체?제거 작업지침_5",
+      "title": "석면해체?제거 작업지침 - 석면해체?제거작업 전 준비사항",
+      "score": 105.673
+    },
+    {
+      "docId": "KOSHA07_석면해체?제거 작업지침_3",
+      "title": "석면해체?제거 작업지침 - 용어의정의",
+      "score": 104.131
+    },
+    {
+      "docId": "KOSHA07_석면해체?제거 작업지침_7",
+      "title": "석면해체?제거 작업지침 - 석면의 제거?청소 및 처리 시 유의사항",
+      "score": 71.827
+    },
+    {
+      "docId": "KOSHA07_석면해체?제거 작업지침_6",
+      "title": "석면해체?제거 작업지침 - 석면해체?제거작업 수행 시 유의사항",
+      "score": 68.929
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:38",
+      "law": "산안법",
+      "articleNumber": "38",
+      "title": "안전조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제38조의3(석면 해체․제거 작업기준의 준수)",
+      "citedAsOf": "2018",
+      "temporalNote": "KOSHA Guide H-199-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:38",
+      "law": "산안법",
+      "articleNumber": "38",
+      "title": "안전조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제38조의3(석면 해체․제거 작업기준의 준수)",
+      "citedAsOf": "2018",
+      "temporalNote": "KOSHA Guide H-199-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

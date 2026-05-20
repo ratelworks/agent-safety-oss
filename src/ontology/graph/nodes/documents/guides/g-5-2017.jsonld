@@ -1,0 +1,147 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-5-2017",
+  "@type": "Document",
+  "docId": "kosha_guide_g-5-2017",
+  "title": "업무상 사고조사에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-5-2017",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"업무상\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 3,
+      "3": 7,
+      "4": 3,
+      "5": 2,
+      "6": 61,
+      "7": 145,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "업무상",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:4",
+      "law": "산안법",
+      "articleNumber": "4",
+      "title": "정부의 책무",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "「산업안전보건법」 시행규칙 제4조의 2 (산업재해 기록 등)",
+      "citedAsOf": "2017",
+      "temporalNote": "KOSHA Guide G-5-2017 본문 직접 인용 (2017년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_과전류 보호장치의 선정 및 설치에 관한 기술지침_6",
+      "title": "과전류 보호장치의 선정 및 설치에 관한 기술지침 - 전원공급회로의 보호",
+      "score": 25.255
+    },
+    {
+      "docId": "KOSHA07_곤돌라(Gondola) 안전보건작업 지침_4",
+      "title": "곤돌라(Gondola) 안전보건작업 지침 - 구성 및 구조",
+      "score": 23.448
+    },
+    {
+      "docId": "KOSHA07_크레인 작업시 수공구 사용에 관한 기술지침_4",
+      "title": "크레인 작업시 수공구 사용에 관한 기술지침 - 준안전수공구의 종류 및 제원",
+      "score": 22.352
+    },
+    {
+      "docId": "KOSHA07_아스팔트 도로포장 작업자의 보건관리지침_9",
+      "title": "아스팔트 도로포장 작업자의 보건관리지침 - 아스팔트 도로포장 작업자들의 유해요인 노출 경로",
+      "score": 21.047
+    },
+    {
+      "docId": "KOSHA07_전기작업안전에 관한 기술지침_8",
+      "title": "전기작업안전에 관한 기술지침 - 전기작업안전절차",
+      "score": 21.01
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000005000000000000000069000",
+      "title": "제69조 산업재해 예방 조치 시행 대상",
+      "category": "2",
+      "score": 22.997
+    },
+    {
+      "docId": "KOSHA02_[별표 16] 안전진단기관의 인력ㆍ시설 및 장비 등의 기준(제47조 관련)",
+      "title": "[별표 16] 안전진단기관의 인력ㆍ시설 및 장비 등의 기준(제47조 관련)",
+      "category": "2",
+      "score": 17.844
+    },
+    {
+      "docId": "KOSHA02_[별표 24] 안전검사기관의 인력ㆍ시설 및 장비 기준(제79조제2호 관련)",
+      "title": "[별표 24] 안전검사기관의 인력ㆍ시설 및 장비 기준(제79조제2호 관련)",
+      "category": "2",
+      "score": 14.208
+    },
+    {
+      "docId": "KOSHA03_[서식 82] 작업환경측정 결과보고서(상, 하반기)",
+      "title": "[서식 82] 작업환경측정 결과보고서(상, 하반기)",
+      "category": "3",
+      "score": 40.699
+    },
+    {
+      "docId": "KOSHA03_[서식 83] 작업환경측정 결과표(상, 하반기)",
+      "title": "[서식 83] 작업환경측정 결과표(상, 하반기)",
+      "category": "3",
+      "score": 35.455
+    }
+  ]
+}

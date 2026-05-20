@@ -1,0 +1,96 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-G-11-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_e-g-11-2026",
+  "title": "공기잠수 감압에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-G-11-2026",
+    "guideCategory": "general_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"공기잠수\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction_partial",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 1,
+      "7": 6,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "공기잠수",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_공기잠수 기록에 관한 지침_7",
+      "title": "공기잠수 기록에 관한 지침 - 공기 잠수 감압프로그램",
+      "score": 100.112
+    },
+    {
+      "docId": "KOSHA07_공기잠수 기록에 관한 지침_1",
+      "title": "공기잠수 기록에 관한 지침 - 목적",
+      "score": 97.712
+    },
+    {
+      "docId": "KOSHA07_공기잠수 기록에 관한 지침_4",
+      "title": "공기잠수 기록에 관한 지침 - 잠수계획 시 고려사항",
+      "score": 71.274
+    },
+    {
+      "docId": "KOSHA07_공기잠수 기록에 관한 지침_5",
+      "title": "공기잠수 기록에 관한 지침 - 잠수기록 방법",
+      "score": 62.569
+    },
+    {
+      "docId": "KOSHA07_공기잠수 기록에 관한 지침_6",
+      "title": "공기잠수 기록에 관한 지침 - 감압계획 변경",
+      "score": 38.529
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:5장",
+      "law": "기준규칙",
+      "chapterTitle": "이상기압에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 보건기준 제5장 이상기압에 의한 건강장해의 예방"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 3,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 보건기준 제5장 이상기압에 의한 건강장해의 예방",
+      "needsNode": true
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_rc_concrete",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_rc_concrete",
+  "title": "caught_in × rc_concrete",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 25건 관측. 사고유형 caught_in 작업유형 rc_concrete.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:rc_concrete"
+  ],
+  "caseFrequency": 25,
+  "sampleKeywords": [
+    "지붕 슬래브 해체 작업 중 붕괴",
+    "지게차가 곡선 주행로를 돌던 중 전도, 피재자를 덮쳐 끼임(사망 1명)",
+    "집수정 인양 중 전도되는 백호우에 협착"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

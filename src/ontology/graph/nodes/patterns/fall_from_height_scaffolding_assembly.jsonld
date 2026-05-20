@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fall_from_height_scaffolding_assembly",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fall_from_height_scaffolding_assembly",
+  "title": "fall_from_height × scaffolding_assembly",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 985건 관측. 사고유형 fall_from_height 작업유형 scaffolding_assembly.",
+  "koshaAccidentType": "fall_from_height",
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "causedBy": [
+    "activity:scaffolding_assembly"
+  ],
+  "caseFrequency": 985,
+  "sampleKeywords": [
+    "외벽 석재 마감 작업 중 추락",
+    "시스템비계 설치 작업 중 추락",
+    "갱폼작업 발판으로 이동 중 추락"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

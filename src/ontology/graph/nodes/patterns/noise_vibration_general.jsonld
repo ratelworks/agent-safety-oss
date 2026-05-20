@@ -1,0 +1,24 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/noise_vibration_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "noise_vibration_general",
+  "title": "noise_vibration (저빈도 사고유형 — 건설업 ≤2건)",
+  "description": "KOSHA 건설업 사고사례에서 빈도 매우 낮은 사고유형 — 일반적 위험 요소·통제 매핑.",
+  "koshaAccidentType": "noise_vibration",
+  "hasHazard": [
+    "hazard:noise_exposure",
+    "hazard:vibration_exposure"
+  ],
+  "caseFrequency": 0,
+  "sampleKeywords": [],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 — 건설업 빈도 분석)",
+    "fetchedAt": "2026-04-29",
+    "license": "황룡건설(주) + ㈜라텔웍스 (분석 유도 노드)",
+    "note": "건설업 사고사례 빈도 < 3 — 카테고리 보장 패턴"
+  }
+}

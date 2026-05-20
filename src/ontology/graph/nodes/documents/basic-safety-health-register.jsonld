@@ -1,0 +1,300 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/basic_safety_health_register",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "basic_safety_health_register",
+  "title": "기본 안전보건대장",
+  "description": "건설공사 발주자가 계획단계에서 작성하는 기본안전보건대장 (산안법 제67조 + 시행규칙 제86조 ①)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "건설공사 계획단계",
+  "legalBasis": [
+    "art:산안법:67",
+    "art:산안법시행규칙:86"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_공사명",
+      "label": "공사명",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "발주처 계약서 상의 공식 공사명. 약식 표기 금지.",
+      "examples": [
+        "서울특별시 OO구 OO동 신축공사",
+        "OO지구 도시개발사업 1공구 토목공사"
+      ]
+    },
+    {
+      "key": "f_1_발주자",
+      "label": "발주자",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "공사 발주 주체. 공공·민간 구분 + 정식 명칭.",
+      "examples": [
+        "LH 한국토지주택공사",
+        "서울특별시 강남구청",
+        "(주)OO개발"
+      ]
+    },
+    {
+      "key": "f_2_공사규모_예산_기간",
+      "label": "공사규모·예산·기간",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "도급금액 + 부가세 별도 + 안전관리비 (비목·비율·계 단위 명시). 산안법 제72조 시행규칙 별표 3.",
+      "examples": [
+        "도급금액 5,000,000,000원 / 안전관리비 일반건설 1.97% = 98,500,000원"
+      ]
+    },
+    {
+      "key": "f_3_공사현장_제반정보",
+      "label": "공사현장 제반정보",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "공사현장 핵심 정보 (위치·규모·발주처).",
+      "examples": [
+        "삼성동 OO 신축공사 / 320억 / 발주: 강남구청"
+      ]
+    },
+    {
+      "key": "f_4_유해_위험요인",
+      "label": "유해·위험요인",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "발견·예상 유해·위험요인. KRAS 7방법 적용.",
+      "examples": [
+        "1) 추락 (2m 이상 단부) / 2) 협착 (양중 하부) / 3) 화재 (용접 불꽃)"
+      ]
+    },
+    {
+      "key": "f_5_감소대책",
+      "label": "감소대책",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "식별된 위험요인별 감소대책 (제거→대체→공학적→관리적→보호구).",
+      "examples": [
+        "추락 → 안전난간 / 협착 → 통제선 / 화재 → 소화기 + 감시자"
+      ]
+    },
+    {
+      "key": "f_6_설계_조건",
+      "label": "설계 조건",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "구조 설계 기준·하중 조건·지반·기상 가정 + 건진법 안전관리계획 연계.",
+      "examples": [
+        "RC 구조 / 풍하중 30m/s / N치 평균 25 / 우기 4-9월 강수량 1200mm 가정"
+      ]
+    },
+    {
+      "key": "f_7_발주자_서명",
+      "label": "발주자 서명",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "발주처 결재선 (서명 + 일자 + 직책 + 인장 또는 전자서명).",
+      "examples": [
+        "○○공사 (발주처) / 사업본부장 김OO (서명) 2026-04-29"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "제86조 ① 4항목 모두 작성",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:86"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 기본 안전보건대장",
+      "legalSource": "산안법 제67조 + 시행규칙 제84조",
+      "fields": [
+        {
+          "key": "clientInfo",
+          "label": "발주자 정보",
+          "required": true,
+          "inputGuide": "발주자명·대표·연락처.",
+          "examples": [
+            "황룡건설(주) / 황룡 / 02-1234-5678"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "projectInfo",
+          "label": "공사 기본정보",
+          "required": true,
+          "inputGuide": "공사명·위치·금액·공기.",
+          "examples": [
+            "삼성동 공동주택, 서울 강남구 삼성동 100-1, 35억, 2026-03~2026-09"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardScreening",
+          "label": "공사 위험성 사전검토",
+          "required": true,
+          "inputGuide": "발주자가 사전검토한 주요 위험.",
+          "examples": [
+            "1) 지하 8m 굴착 (도시가스 인접) / 2) 50인 동시 작업 / 3) 야간 작업 일부"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyBudget",
+          "label": "안전보건관리비 계상",
+          "required": true,
+          "inputGuide": "산안법 제72조 요율 적용.",
+          "examples": [
+            "계상금 32억 × 1.97% = 6,304만원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "submissionDate",
+          "label": "등록일자",
+          "required": true,
+          "inputGuide": "발주 시점 등록.",
+          "examples": [
+            "2026-02-01"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "공사 종료 후 3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:67",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "발주자",
+      "건설공사 안전보건대장"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "administrative",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:construction_50bn_plus",
+    "scaleNotes": "건설공사 발주자 의무 — 50억 이상."
+  },
+  "searchKeywords": [
+    "기본안전보건대장",
+    "안전보건대장 3종",
+    "발주자 의무",
+    "50억 이상 건설",
+    "기본 단계",
+    "사업개요"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "relatedDocs": [
+    "doc:ad_hoc/design_safety_health_register",
+    "doc:ad_hoc/construction_safety_health_register"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

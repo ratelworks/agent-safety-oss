@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/export_drafted_document",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작성문서 출력 (HTML / Markdown)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Export Drafted Document",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. draft 를 표현 포맷(html/markdown)으로 결정론적 변환. 결재선·메타·법령근거 자동 포함. 의존성 0 (Node 표준만). PDF 는 HTML → 브라우저 인쇄. HWPX 는 Agent_HWPX 별도.",
+  "toolName": "export_drafted_document",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/export_drafted_document",
+  "producesEntity": [
+    "safety:DocumentArtifact"
+  ],
+  "maps_to_action": "safety:action/export_drafted_document",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

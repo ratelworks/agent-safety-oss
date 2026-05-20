@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/query_applicability",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법정문서·조문 적용성 자동 판정 (50인·50억·작업조건)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Query Applicability",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 사업장 규모(workforce/constructionValue/industry) + 작업 조건(depthM/heightM/workType) 입력 시 특정 법정문서(docId)의 적용 의무 여부 + 면제 근거 + 동시 발동되는 cross-cutting 의무를 자동 안내. Document.applicableWhen + exemptedWhen 평가 + 산안법 50인·50억 매트릭스. 작업 시작 전 사전 점검에 활용.",
+  "toolName": "query_applicability",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/query_applicability",
+  "producesEntity": [
+    "safety:Applicability"
+  ],
+  "maps_to_action": "safety:action/query_applicability",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

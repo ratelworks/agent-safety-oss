@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_pending_actions",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "requested 또는 in_progress 상태의 개선조치를 만기일 오름차순으로 조회한다",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Pending Actions",
+      "@language": "en"
+    }
+  ],
+  "description": "requested 또는 in_progress 상태의 개선조치를 만기일 오름차순으로 조회한다. siteId 또는 dueWithin 필터를 사용할 수 있다.",
+  "toolName": "list_pending_actions",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/list_pending_actions",
+  "maps_to_action": "safety:action/list_pending_actions",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

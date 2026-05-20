@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/overturn_collapse_formwork_shoring",
+  "@type": [
+    "Event"
+  ],
+  "slug": "overturn_collapse_formwork_shoring",
+  "title": "overturn_collapse × formwork_shoring",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 14건 관측. 사고유형 overturn_collapse 작업유형 formwork_shoring.",
+  "koshaAccidentType": "overturn_collapse",
+  "hasHazard": [
+    "hazard:struck_by_overturn"
+  ],
+  "causedBy": [
+    "activity:formwork_shoring"
+  ],
+  "caseFrequency": 14,
+  "sampleKeywords": [
+    "전도되는 콘크리트 구조물에 깔림",
+    "보 거푸집 높이 조정 중 파이프 써포트에 맞음",
+    "옹벽 벽체거푸집 조립작업 중 넘어짐(사망1명)"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

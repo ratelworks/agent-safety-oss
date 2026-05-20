@@ -1,0 +1,41 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_fall_net",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_fall_net",
+  "label": "추락방호망",
+  "description": "비계·철골·거푸집·지붕 등 고소작업에서 추락 또는 낙하를 방호망으로 흡수·차단하는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:facade_work",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:formwork_shoring",
+    "activity:precast_installation",
+    "activity:rc_concrete",
+    "activity:roofing",
+    "activity:scaffolding_assembly",
+    "activity:steel_erection",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "추락방호망",
+      "방망"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

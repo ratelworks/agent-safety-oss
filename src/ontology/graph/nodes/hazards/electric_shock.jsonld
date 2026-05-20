@@ -1,0 +1,100 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:electric_shock",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "electric_shock",
+  "label": "감전",
+  "category": "physical",
+  "koshaAccidentType": "감전",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "감전",
+      "활선",
+      "충전전로",
+      "누전",
+      "정전 작업",
+      "정전·잠금",
+      "정전전로"
+    ],
+    "excludeKeywords": [
+      "정전기",
+      "정전도장"
+    ],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:eng_isolation_barrier",
+    "control:admin_qualification",
+    "control:admin_work_permit",
+    "control:admin_safety_education",
+    "control:admin_inspection",
+    "control:ppe_insulating_gloves",
+    "control:ppe_helmet",
+    "control:eng_interlock"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:319"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-1-2025",
+    "doc:kosha_guide/B-E-13-2026",
+    "doc:kosha_guide/B-E-14-2026",
+    "doc:kosha_guide/B-E-18-2026",
+    "doc:kosha_guide/B-E-19-2026",
+    "doc:kosha_guide/B-E-2-2025",
+    "doc:kosha_guide/B-E-22-2026",
+    "doc:kosha_guide/B-E-3-2025",
+    "doc:kosha_guide/B-E-5-2025",
+    "doc:kosha_guide/B-E-8-2026",
+    "doc:kosha_guide/B-E-9-2026",
+    "doc:kosha_guide/C-54-2012",
+    "doc:kosha_guide/E-1-2012",
+    "doc:kosha_guide/E-100-2021",
+    "doc:kosha_guide/E-103-2011",
+    "doc:kosha_guide/E-163-2017",
+    "doc:kosha_guide/E-65-2012",
+    "doc:kosha_guide/E-79-2011",
+    "doc:kosha_guide/B-E-12-2026",
+    "doc:kosha_guide/E-115-2011",
+    "doc:kosha_guide/E-189-2022",
+    "doc:kosha_guide/G-29-2011"
+  ],
+  "description": "**원인**: 활선 직접 접촉 / 누전 / 가설전기 누전차단기 미설치 / 절연 파손 / 접지 불량.\n**상황**: 가설전기·전기설비·용접 작업·우천 시 옥외 작업.\n**확인**: 누전차단기 매주 시험 / 접지저항 100Ω 이하 / 활선 검전 / LOTO / 절연용 보호구 (절연장갑·절연화).\n**중대성**: 220V 이상 즉시 사망 가능. 화상·심정지·낙상 동반.",
+  "koshaArchiveFacets": [
+    "facet:ctgr02/20",
+    "facet:ctgr02/21"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:electric_work_50v_plus",
+    "activity:excavation_2m_plus",
+    "activity:risk_assessment_general",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:tunnel_excavation",
+    "activity:underground_utility"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/B-E-12-2026",
+    "doc:kosha_guide/E-115-2011",
+    "doc:kosha_guide/E-189-2022",
+    "doc:kosha_guide/G-29-2011"
+  ]
+}

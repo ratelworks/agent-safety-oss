@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_sif_archive",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "사망사고 고위험요인 아카이브 (15140383)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Sif Archive",
+      "@language": "en"
+    }
+  ],
+  "description": "사망사고 고위험요인(SIF) 아카이브의 공종·재해유형·원인·대책 패턴을 검색하는 capability. KOSHA 사망사고 고위험요인(SIF) 아카이브(15140383) — 건설 중대재해를 '공종 × 재해유형 × 근본원인 × 저감대책' 4축으로 구조화한 **로컬 번들 데이터**. 기본 번들은 비어 있으며(KOGL 변경금지 준수), npm run sync-kosha 로 사용자 PC에 공식 XLSX 를 파싱해 저장한다. **구분:** 건별 실제 사고 기록은 search_construction_fatal_accidents(건설) / search_all_fatal_accidents(전 업종).",
+  "toolName": "search_sif_archive",
+  "category": "sif_archive",
+  "inputSchema": "safety:schema/input/search_sif_archive",
+  "producesEntity": [
+    "safety:SifPattern"
+  ],
+  "maps_to_action": "safety:action/search_sif_archive",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

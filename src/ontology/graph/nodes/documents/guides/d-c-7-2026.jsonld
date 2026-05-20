@@ -1,0 +1,260 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-C-7-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_d-c-7-2026",
+  "title": "비계 구조 및 안전작업에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-C-7-2026",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"비계\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 2,
+      "3": 2,
+      "4": 18,
+      "5": 13,
+      "6": 322,
+      "7": 154,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "비계",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:crushing",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:eng_scaffold",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:eng_loto"
+  ],
+  "appliesToActivities": [
+    "activity:scaffolding_assembly"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:27",
+      "law": "산안법",
+      "articleNumber": "27",
+      "title": "안전보건관리규정의 준수",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제27조,",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:9",
+      "law": "기준규칙",
+      "articleNumber": "9",
+      "title": "작업발판 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한규칙 제9조, 제13조, 제42조, 제45조, 제55조 제1항, 제56조,",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:13",
+      "law": "기준규칙",
+      "articleNumber": "13",
+      "title": "안전난간의 구조 및 설치요건",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한규칙 제9조, 제13조, 제42조, 제45조, 제55조 제1항, 제56조,",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:42",
+      "law": "기준규칙",
+      "articleNumber": "42",
+      "title": "추락의 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한규칙 제9조, 제13조, 제42조, 제45조, 제55조 제1항, 제56조,",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:45",
+      "law": "기준규칙",
+      "articleNumber": "45",
+      "title": "지붕 위에서의 위험 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한규칙 제9조, 제13조, 제42조, 제45조, 제55조 제1항, 제56조,",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:55",
+      "law": "기준규칙",
+      "articleNumber": "55(1)",
+      "title": "작업발판의 최대적재하중",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한규칙 제9조, 제13조, 제42조, 제45조, 제55조 제1항, 제56조,",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:56",
+      "law": "기준규칙",
+      "articleNumber": "56",
+      "title": "작업발판의 구조",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한규칙 제9조, 제13조, 제42조, 제45조, 제55조 제1항, 제56조,",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:35",
+      "law": "기준규칙",
+      "articleNumber": "35",
+      "title": "관리감독자의 유해ㆍ위험 방지 업무 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제35조(관리감독자의 유해·위험 방지 업무 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:45",
+      "law": "기준규칙",
+      "articleNumber": "45",
+      "title": "지붕 위에서의 위험 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제45조(지붕 위에서의 위험 방지)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-7-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_작업의자형 달비계 안전작업 지침_1",
+      "title": "작업의자형 달비계 안전작업 지침 - 목적",
+      "score": 200.574
+    },
+    {
+      "docId": "KOSHA07_시스템 비계 안전작업 지침_4",
+      "title": "시스템 비계 안전작업 지침 - 시스템비계 설치?해체 안전작업 절차",
+      "score": 173.203
+    },
+    {
+      "docId": "KOSHA07_강관비계 안전작업 지침_1",
+      "title": "강관비계 안전작업 지침 - 목적",
+      "score": 129.295
+    },
+    {
+      "docId": "KOSHA07_강관비계 안전작업 지침_3",
+      "title": "강관비계 안전작업 지침 - 용어의 정의",
+      "score": 120.558
+    },
+    {
+      "docId": "KOSHA07_강관비계 안전작업 지침_7",
+      "title": "강관비계 안전작업 지침 - 조립",
+      "score": 112.731
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000005000000000000000058000",
+      "title": "제58조 설계변경 요청 대상 및 전문가의 범위",
+      "category": "2",
+      "score": 34.503
+    },
+    {
+      "docId": "KOSHA02_000001000000000000000011000",
+      "title": "제11조 도급인이 지배ㆍ관리하는 장소",
+      "category": "2",
+      "score": 32.154
+    },
+    {
+      "docId": "KOSHA03_[별표 7] 안전보건표지의 종류별 용도, 설치ㆍ부착 장소, 형태 및 색채(제38조제1항, 제39조제1항 및 제40조제1항 관련)",
+      "title": "[별표 7] 안전보건표지의 종류별 용도, 설치ㆍ부착 장소, 형태 및 색채(제38조제1항, 제39조제1항 및 제40조제1항 관련)",
+      "category": "3",
+      "score": 14.626
+    },
+    {
+      "docId": "KOSHA03_[별표 10] 유해위험방지계획서 첨부서류(제42조제3항 관련)",
+      "title": "[별표 10] 유해위험방지계획서 첨부서류(제42조제3항 관련)",
+      "category": "3",
+      "score": 14.626
+    },
+    {
+      "docId": "KOSHA04_001000007000002000000000057000",
+      "title": "제57조 비계 등의 조립ㆍ해체 및 변경",
+      "category": "4",
+      "score": 114.435
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:7장",
+      "law": "기준규칙",
+      "chapterTitle": "방사선에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제7장 제4절(달비계, 달대비계 및 걸침비계)"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "절",
+      "num": 4,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제7장 제4절(달비계, 달대비계 및 걸침비계)",
+      "needsNode": true
+    }
+  ]
+}

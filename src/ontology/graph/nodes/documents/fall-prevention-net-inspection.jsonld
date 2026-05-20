@@ -1,0 +1,400 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:daily/fall_prevention_net_inspection",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "fall_prevention_net_inspection",
+  "title": "추락방호망 점검",
+  "description": "기준규칙 제42조-제45조 추락방지 의무. 안전방망 설치·점검. KOSHA Guide C-3 권장 양식. 그물코·인장강도·설치각도·경사 점검.",
+  "cycle": "cyc:daily",
+  "trigger": "안전방망 설치 후 + 매일 작업 시작 전 + 충격 받은 후",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "추락 위험 2m 이상 작업."
+  },
+  "legalBasis": [
+    "art:기준규칙:42",
+    "art:기준규칙:43",
+    "art:기준규칙:44",
+    "art:기준규칙:45"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-1-2025",
+    "doc:kosha_guide/C-11-2012",
+    "doc:kosha_guide/C-74-2015",
+    "doc:kosha_guide/D-C-14-2026",
+    "doc:kosha_guide/D-C-7-2026",
+    "doc:kosha_guide/D-C-8-2026",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-4-2025",
+    "doc:kosha_guide/X-44-2016",
+    "doc:kosha_guide/M-155-2023",
+    "doc:kosha_guide/C-17-2011",
+    "doc:kosha_guide/C-53-2012",
+    "doc:kosha_guide/D-1-2021",
+    "doc:kosha_guide/D-13-2012",
+    "doc:kosha_guide/D-2-2012",
+    "doc:kosha_guide/D-20-2017",
+    "doc:kosha_guide/D-21-2012",
+    "doc:kosha_guide/D-24-2012",
+    "doc:kosha_guide/D-27-2021",
+    "doc:kosha_guide/D-3-2012",
+    "doc:kosha_guide/D-32-2012",
+    "doc:kosha_guide/D-37-2012",
+    "doc:kosha_guide/D-38-2012",
+    "doc:kosha_guide/D-42-2021",
+    "doc:kosha_guide/D-5-2012",
+    "doc:kosha_guide/D-51-2020",
+    "doc:kosha_guide/D-52-2013",
+    "doc:kosha_guide/D-53-2013",
+    "doc:kosha_guide/D-56-2016",
+    "doc:kosha_guide/D-58-2016",
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/C-113-2020",
+    "doc:kosha_guide/C-18-2015",
+    "doc:kosha_guide/C-2-2020",
+    "doc:kosha_guide/C-25-2018",
+    "doc:kosha_guide/C-29-2017",
+    "doc:kosha_guide/C-41-2011",
+    "doc:kosha_guide/C-49-2012",
+    "doc:kosha_guide/C-5-2016",
+    "doc:kosha_guide/C-50-2012",
+    "doc:kosha_guide/C-52-2016",
+    "doc:kosha_guide/C-55-2015",
+    "doc:kosha_guide/C-56-2017",
+    "doc:kosha_guide/C-57-2017",
+    "doc:kosha_guide/C-59-2022",
+    "doc:kosha_guide/C-60-2015",
+    "doc:kosha_guide/C-62-2012",
+    "doc:kosha_guide/C-64-2018",
+    "doc:kosha_guide/C-66-2016",
+    "doc:kosha_guide/C-36-2011",
+    "doc:kosha_guide/D-C-9-2026",
+    "doc:kosha_guide/C-54-2012",
+    "doc:kosha_guide/C-98-2014",
+    "doc:kosha_guide/C-14-2012",
+    "doc:kosha_guide/C-7-2012"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_점검_일자",
+      "label": "점검 일자",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "점검 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "inspector",
+      "label": "점검자",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "작성한 사람의 성명 + 직책 + (가능 시) 자격번호.",
+      "examples": [
+        "홍길동 (안전관리자, 산업안전기사 자격 1234567호)",
+        "김철수 (현장소장)"
+      ]
+    },
+    {
+      "key": "f_2_방호망_위치",
+      "label": "방호망 위치",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "추락방호망 설치 위치 (층·구역).",
+      "examples": [
+        "A동 5층 단부 + B동 외부 비계"
+      ]
+    },
+    {
+      "key": "f_3_방호망_사양__망목_인",
+      "label": "방호망 사양 (망목·인장강도)",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "망목 (그물코 크기) + 인장강도. KCs 기준.",
+      "examples": [
+        "망목 100mm × 100mm / 인장강도 235kgf 이상 (KCs 인증)"
+      ]
+    },
+    {
+      "key": "f_4_고정_상태",
+      "label": "고정 상태",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "지지점 고정 상태 (지지로프·고리·체결구).",
+      "examples": [
+        "전 구역 정상 / 1개소 지지로프 마모 → 교체"
+      ]
+    },
+    {
+      "key": "f_5_처짐_정도",
+      "label": "처짐 정도",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "방호망 처짐 (지지점 간격 1/10 이하).",
+      "examples": [
+        "평균 처짐 0.4m (지지점 간격 4.5m, 1/11) — 정상"
+      ]
+    },
+    {
+      "key": "f_6_결손_손상",
+      "label": "결손·손상",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "망 결손·찢어짐 점검.",
+      "examples": [
+        "전체 정상 / 1개소 직경 5cm 손상 → 즉시 교체"
+      ]
+    },
+    {
+      "key": "f_7_낙하물_누적",
+      "label": "낙하물 누적",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "망 위 낙하물 누적 점검 (즉시 제거).",
+      "examples": [
+        "소량 누적 → 즉시 제거 (4/29 청소 작업)"
+      ]
+    },
+    {
+      "key": "f_8_결과__적합_부적합_",
+      "label": "결과 (적합/부적합)",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "적합 / 부적합 + 부적합 시 시정 사항.",
+      "examples": [
+        "적합"
+      ]
+    },
+    {
+      "key": "f_9_조치_내용",
+      "label": "조치 내용",
+      "source": "산안기준규칙 제42조·제43조 + KOSHA 권장",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 그물코 10cm 이내 + 인장강도 검사 결과",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:44"
+    },
+    {
+      "rule": "필수 — 충격 받은 망은 즉시 교체 또는 재시험",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:45"
+    }
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "scope": "construction",
+    "note": "건설안전 특화 의무문서 (Phase 3 wave1 — 기준규칙 + KCS + KOSHA C 시리즈 권장 양식 통합).",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "searchKeywords": [
+    "추락방지망 점검",
+    "안전방망 점검"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:rc_concrete",
+    "activity:formwork_shoring",
+    "activity:tower_assembly",
+    "activity:waterproofing"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 추락방호망 점검",
+      "legalSource": "산안기준규칙 제42조",
+      "fields": [
+        {
+          "key": "inspectionDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "매일 + 강풍·중량물 낙하 후.",
+          "examples": [
+            "2026-04-29 07:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspector",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "관리감독자.",
+          "examples": [
+            "박감독"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "netLocation",
+          "label": "방호망 설치 위치",
+          "required": true,
+          "inputGuide": "동·층·외측.",
+          "examples": [
+            "A동 외부 1층 외측 1개층"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checkItems",
+          "label": "점검 항목",
+          "required": true,
+          "inputGuide": "망폭 5cm 이하 + 인장강도 + 부착·고정.",
+          "examples": [
+            [
+              {
+                "항목": "망폭 ≤5cm",
+                "결과": "양호"
+              },
+              {
+                "항목": "테두리 5m 이내",
+                "결과": "양호"
+              },
+              {
+                "항목": "손상·낙하물",
+                "결과": "양호"
+              },
+              {
+                "항목": "고정·결속",
+                "결과": "양호"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "이상·조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "손상 시 즉시 교체.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:eng_fall_net"
+  ],
+  "relatedDocs": [
+    "doc:monthly/safety_harness_inspection",
+    "doc:weekly/scaffolding_inspection_checklist",
+    "doc:ad_hoc/work_permit_high_altitude"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

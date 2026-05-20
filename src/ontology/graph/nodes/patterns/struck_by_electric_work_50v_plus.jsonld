@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_electric_work_50v_plus",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_electric_work_50v_plus",
+  "title": "struck_by × electric_work_50v_plus",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 26건 관측. 사고유형 struck_by 작업유형 electric_work_50v_plus.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:electric_work_50v_plus"
+  ],
+  "caseFrequency": 26,
+  "sampleKeywords": [
+    "노후된 전기 인입선 교체공사 중 감전",
+    "미장 작업중 변압기의 고압결선 BAR에 접촉 감전",
+    "콘센트에서 플러그를 뽑던중 파손된 콘센트 충전부에 접촉 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

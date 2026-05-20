@@ -1,0 +1,105 @@
+name: 🐛 Bug Report (버그 신고)
+description: 동작 오류, 예기치 않은 결과, 게이트 위반 등 재현 가능한 문제를 신고합니다.
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 신고 전 확인
+
+        - 보안 취약점은 본 양식이 아닌 [`SECURITY.md`](../SECURITY.md) 경로로 신고해 주세요 (`alphamale@ratelworks.co.kr`).
+        - 사용자 PII (작업자 성명·연락처·사업자등록번호·현장 사진 등) 가 포함된 재현 데이터를 본 이슈에 첨부하지 말아 주세요.
+        - 동일 이슈가 이미 있는지 [열린 이슈 목록](https://github.com/ratelworks/agent-safety-oss/issues?q=is%3Aissue+is%3Aopen+label%3Abug) 을 먼저 검색해 주세요.
+
+  - type: input
+    id: version
+    attributes:
+      label: 패키지 버전
+      description: "`node build/cli.js --version` 또는 `package.json` 의 version"
+      placeholder: "예: 1.1.5"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: harness
+    attributes:
+      label: 사용 환경 (Agent harness)
+      multiple: true
+      options:
+        - Claude Desktop
+        - Codex CLI
+        - 직접 CLI (`node build/cli.js`)
+        - 기타
+    validations:
+      required: true
+
+  - type: input
+    id: node
+    attributes:
+      label: Node.js 버전
+      description: "`node -v`"
+      placeholder: "예: v22.11.0"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: "예: macOS 14.4 / Windows 11 / Ubuntu 22.04"
+    validations:
+      required: true
+
+  - type: textarea
+    id: tool
+    attributes:
+      label: 어떤 MCP 도구 / 명령에서 발생했나요?
+      description: 도구 이름 (`get_kosha_guide_md`, `generate_safety_document` 등) 또는 실행 명령
+      placeholder: "예: generate_safety_document, docId=daily_tbm"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대한 동작
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 실제 동작 / 에러 메시지
+      description: 가능하면 stderr / MCP 응답 / trace 로그를 함께 붙여 주세요. PII 는 마스킹해 주세요.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 최소 재현 절차
+      description: 1·2·3 번호로 단계별 명령·입력값을 적어 주세요.
+      placeholder: |
+        1. `git clone ... && npm ci && npm run build`
+        2. `node build/cli.js call <tool_name> --inputJson '{...}'`
+        3. 다음과 같이 실패함...
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 추가 컨텍스트 (선택)
+      description: 관련 로그·스크린샷·CI URL 등. PII 마스킹 필수.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 확인
+      options:
+        - label: 본 이슈에 PII (작업자 성명·연락처·사업자등록번호·현장 사진 등) 가 포함되지 않았음을 확인합니다.
+          required: true
+        - label: 보안 취약점이 아님을 확인합니다. (취약점은 [`SECURITY.md`](../SECURITY.md) 경로로 신고)
+          required: true

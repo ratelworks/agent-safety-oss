@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/assess_my_obligations",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "사업장 법정의무 진단",
+      "@language": "ko"
+    },
+    {
+      "@value": "Assess My Obligations",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 현재 등록된 사이트 프로파일을 기준으로 94종 법정의무문서 중 적용 의무를 진단한다. 인원·도급금액·업종·도급관계로 자동 평가하고, 매칭이 불확실한 항목은 'depends_on_review' 로 분류한다. 각 의무의 제출처·마감·보관·전자제출 URL 동시 출력. (라이프사이클 §1.1 인식 단계)",
+  "toolName": "assess_my_obligations",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/assess_my_obligations",
+  "producesEntity": [
+    "safety:ObligationAssessment"
+  ],
+  "maps_to_action": "safety:action/assess_my_obligations",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

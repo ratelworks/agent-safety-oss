@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:frequency_severity",
+  "@type": "Method",
+  "label": "빈도·강도법",
+  "docId": "kras_frequency_severity",
+  "verificationStatus": "kosha_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras/evaluation/kras-method",
+    "formId": "10185",
+    "bodyFile": "kras-methods/frequency-severity.md",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "발생 빈도(F) × 부상 강도(S) 정량 매트릭스 평가. 정기 위험성평가 표준.",
+  "suitableFor": "regular_assessment",
+  "applicableTo": [
+    "activity:risk_assessment_general"
+  ],
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

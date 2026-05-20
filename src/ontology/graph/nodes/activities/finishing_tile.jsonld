@@ -1,0 +1,94 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:finishing_tile",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "타일·미장 작업",
+  "category": "finishing",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-28",
+    "graphEnrichmentNote": "Activity 14개 신규 보강 — 건설 주요 공종 인벤토리 완성 (RC/철골/비계/거푸집/마감/방수/PHC/석면/토공/포장/타워조립/하수/지하매설)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "description": "타일 부착, 미장, 조적 등 마감 작업. 단순 반복 + 자재 운반 + 분진 위험.",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:dust_exposure",
+    "hazard:manual_handling",
+    "hazard:crushing",
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:42",
+    "art:산안법:38"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-16-2016",
+    "doc:kosha_guide/C-6-2015",
+    "doc:kosha_guide/C-64-2018",
+    "doc:kosha_guide/C-57-2017",
+    "doc:kosha_guide/C-66-2016"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr01/01"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:dust_exposure",
+      "hazard:manual_handling",
+      "hazard:crushing",
+      "hazard:chemical_exposure"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive"
+    ]
+  },
+  "hasWorkType": "cc:worktype/finishing",
+  "workTypeLabel": {
+    "ko": "마감 작업",
+    "en": "Finishing work"
+  }
+}

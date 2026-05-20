@@ -1,0 +1,652 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_permit_confined_space",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_permit_confined_space",
+  "title": "밀폐공간 작업허가서",
+  "description": "밀폐공간(맨홀·탱크·배수로·터널·배관 등) 작업 시 산소·유해가스·질식 방지 안전작업허가서. 산안기준규칙 제619조 ② 의무, KOSHA-안전작업허가지침-P94 양식 기반.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "밀폐공간 진입 작업 전 (매 작업마다 발급)",
+  "legalBasis": [
+    "art:기준규칙:619",
+    "art:기준규칙:620",
+    "art:기준규칙:621",
+    "art:기준규칙:622",
+    "art:기준규칙:623",
+    "art:기준규칙:624",
+    "art:기준규칙:625",
+    "art:기준규칙:626",
+    "art:기준규칙:627",
+    "art:기준규칙:618"
+  ],
+  "officialFormSpec": {
+    "formId": "kosha_p94_confined_space",
+    "officialName": "KOSHA 안전작업허가지침 (P-94) 붙임1 - 안전작업 허가서 (밀폐공간작업)",
+    "formFile": "KOSHA-안전작업허가지침-P94.pdf",
+    "formMatchType": "통합양식 일부 (화기·밀폐공간·중장비 통합 중 밀폐공간 부분)",
+    "license": "공공누리 - 출처 KOSHA"
+  },
+  "sections": [
+    {
+      "title": "1. 작업 정보",
+      "legalSource": "KOSHA P-94 양식 헤더",
+      "fields": [
+        {
+          "key": "permitNumber",
+          "label": "허가서 번호",
+          "required": true,
+          "inputGuide": "현장 자체 부여 일련번호. 양식: 'PERMIT-CS-YYMMDD-NN'. 작업장 비치 + 사본 1년 보존.",
+          "examples": [
+            "PERMIT-CS-260429-01"
+          ],
+          "checkPoints": [
+            "중복 발급 금지",
+            "현장 비치"
+          ]
+        },
+        {
+          "key": "department",
+          "label": "부 서 명",
+          "required": true,
+          "inputGuide": "허가 발급 부서명 (현장 안전관리부 / 발주부서).",
+          "examples": [
+            "황룡건설(주) 삼성동 현장 안전관리팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant",
+          "label": "신 청 인",
+          "required": true,
+          "inputGuide": "작업을 수행하는 수급업체 또는 자체인력의 작업책임자 성명.",
+          "examples": [
+            "박감독 (작업반장)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "contractorName",
+          "label": "수 급 업 체 명",
+          "required": false,
+          "optional": true,
+          "inputGuide": "도급 작업 시 수급업체명. 자체 작업 시 비워두거나 '자체작업'.",
+          "examples": [
+            "우송설비(주)",
+            "자체작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workName",
+          "label": "작 업 명",
+          "required": true,
+          "inputGuide": "구체적 작업명. 추상명사 금지.",
+          "examples": [
+            "B1 집수정 청소 작업",
+            "지하 1층 오수받이 점검작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workContent",
+          "label": "작 업 내 용",
+          "required": true,
+          "inputGuide": "작업 절차·범위·방법을 1~2문장으로. 누가 어디서 무엇을 어떻게 하는지.",
+          "examples": [
+            "B1 집수정(가로 2m × 세로 2m × 깊이 3m)에 진입하여 슬러지 제거 후 펌프 점검. 진입자 1명, 외부 감시자 2명 배치."
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workLocation",
+          "label": "작업 장소 (밀폐공간 위치)",
+          "required": true,
+          "inputGuide": "동·층·실내 위치 + 밀폐공간 종류 (맨홀/탱크/배수로/배관/터널 등).",
+          "examples": [
+            "A동 지하 1층 기계실 집수정 1번 (별표 18 제2호)"
+          ],
+          "checkPoints": [
+            "산안기준규칙 별표 18 해당 여부 확인"
+          ]
+        },
+        {
+          "key": "workStartTime",
+          "label": "작 업 시 간 (시작)",
+          "required": true,
+          "inputGuide": "작업 개시 일시 (YYYY-MM-DD HH:MM). 허가 유효기간은 이 시각부터.",
+          "examples": [
+            "2026-04-29 09:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workEndTime",
+          "label": "완 료 시 간 (예정)",
+          "required": true,
+          "inputGuide": "작업 종료 예정 일시. 유효기간 초과 시 재발급 필요.",
+          "examples": [
+            "2026-04-29 12:00"
+          ],
+          "checkPoints": [
+            "유효기간은 허가 시간에 한함"
+          ]
+        },
+        {
+          "key": "workerCount",
+          "label": "작 업 자 / 인 원",
+          "required": true,
+          "inputGuide": "진입자·감시자 인원 합계 + 명단(별첨 가능).",
+          "examples": [
+            "진입 1명 + 외부 감시 2명 = 3명"
+          ],
+          "checkPoints": [
+            "감시자 1명 이상 필수 (제625조 ①)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. 가스 / 산소 농도 측정 (밀폐공간 의무)",
+      "legalSource": "산안기준규칙 제619조 ② / 제624조 / KOSHA P-94 5.3.1.3",
+      "fields": [
+        {
+          "key": "oxygenLevel",
+          "label": "산 소 농 도 (적정 18% 이상 23.5% 미만)",
+          "required": true,
+          "inputGuide": "디지털 산소측정기로 측정. 18% 미만이면 작업 금지·환기 후 재측정. 23.5% 이상도 화재위험으로 작업 금지.",
+          "examples": [
+            "20.9%"
+          ],
+          "checkPoints": [
+            "18% 미만: 작업 금지",
+            "23.5% 이상: 작업 금지"
+          ]
+        },
+        {
+          "key": "h2sLevel",
+          "label": "황화수소 (10 ppm 미만)",
+          "required": true,
+          "inputGuide": "오수·하수·발효 공간 필수. 10ppm 이상이면 즉시 환기·작업 금지.",
+          "examples": [
+            "0 ppm"
+          ],
+          "checkPoints": [
+            "10ppm 이상: 작업 금지"
+          ]
+        },
+        {
+          "key": "coLevel",
+          "label": "일산화탄소 (30 ppm 미만)",
+          "required": true,
+          "inputGuide": "용접·차량 배기 등 연소 발생 공간 필수. 30ppm 이상이면 즉시 작업 금지.",
+          "examples": [
+            "0 ppm"
+          ],
+          "checkPoints": [
+            "30ppm 이상: 작업 금지"
+          ]
+        },
+        {
+          "key": "lelLevel",
+          "label": "가연성가스 LEL (10% 미만)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "가연성가스(메탄·LPG 등) 누출 가능 공간만. 10% 이상 시 작업 금지·환기 + 방폭공구 사용.",
+          "examples": [
+            "0% LEL"
+          ],
+          "checkPoints": [
+            "10% LEL 이상: 작업 금지 + 환기"
+          ]
+        },
+        {
+          "key": "measureTime",
+          "label": "측 정 시 각",
+          "required": true,
+          "inputGuide": "작업 직전 측정 시각. 작업 중 1시간마다 또는 환기 정지 시 재측정.",
+          "examples": [
+            "2026-04-29 08:50 / 09:50 / 10:50"
+          ],
+          "checkPoints": [
+            "1시간 주기 재측정 권장"
+          ]
+        },
+        {
+          "key": "measurer",
+          "label": "측 정 자",
+          "required": true,
+          "inputGuide": "산소·유해가스 측정 교육 이수자 성명·자격.",
+          "examples": [
+            "박감독 (밀폐공간작업프로그램 교육이수, 2026-03)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 공통 안전조치 점검 (P-94 5.1)",
+      "legalSource": "KOSHA P-94 5.1 허가 전 공통 점검사항",
+      "fields": [
+        {
+          "key": "common1_ppe",
+          "label": "1. 규정된 복장 및 보호구 착용 확인",
+          "required": true,
+          "inputGuide": "안전모·안전화·안전대 + 밀폐공간 추가(공기호흡기·송기마스크·구조 로프). [√] 또는 [×]+조치.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common2_supervisor",
+          "label": "2. 관리감독자 배치 + 작업지역 위험성 확인",
+          "required": true,
+          "inputGuide": "관리감독자 또는 작업지휘자(밀폐공간작업 적격자) 1명 이상 상주.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common3_machinery",
+          "label": "3. 위험기계·기구 방호조치 확인",
+          "required": true,
+          "inputGuide": "송풍기·펌프·전동공구 등 사용 시 방호장치·접지 확인.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common4_electric",
+          "label": "4. 전기기구 접지, 절연상태, 누전차단기",
+          "required": true,
+          "inputGuide": "조명·송풍기·전동공구 누전차단기 + 접지 + 방수 케이블.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common5_signage",
+          "label": "5. 작업장소 안내 및 차단 식별표시 설치",
+          "required": true,
+          "inputGuide": "출입통제 펜스·안전표지(밀폐공간 출입금지) 설치.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common6_lighting",
+          "label": "6. 작업장소 조명 상태",
+          "required": true,
+          "inputGuide": "방폭형 조명 75 lux 이상. 가연성 가스 가능 공간은 방폭등 필수.",
+          "examples": [
+            "[√] 방폭 LED 100W 1대"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 밀폐공간 추가 안전조치 점검 (P-94 5.3)",
+      "legalSource": "산안기준규칙 제619조~제627조 + KOSHA P-94 5.3.1",
+      "fields": [
+        {
+          "key": "cs1_valveBlock",
+          "label": "1. 작업 전 입출구 밸브 차단조치 (배관 격리)",
+          "required": true,
+          "inputGuide": "밀폐기기와 연결된 배관 격리, 밸브 이중잠금(LOTO) 또는 명판 설치. 제619조 ② 4호.",
+          "examples": [
+            "[√] 급수밸브 잠금 + LOTO 적용"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "cs2_signage",
+          "label": "2. 출입금지·안전작업수칙·안전표지판 설치",
+          "required": true,
+          "inputGuide": "밀폐공간 입구에 출입금지 표지 + 작업 중 표지 + 비상연락처.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "cs3_cleaning",
+          "label": "3. 밀폐공간 내부 청소 실시",
+          "required": false,
+          "optional": true,
+          "inputGuide": "잔류 유해물질·슬러지 제거. 청소 자체가 작업이면 [해당없음].",
+          "examples": [
+            "[√] 작업 전 슬러지 50% 제거",
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "cs4_ventilation",
+          "label": "4. 환기 실시 (작업 전·작업 중)",
+          "required": true,
+          "inputGuide": "송풍기·환기팬으로 강제환기. 작업 전 30분 이상 + 작업 중 연속 환기. 제623조.",
+          "examples": [
+            "[√] 송풍기 500CMH × 30분 사전 환기 + 작업 중 연속 가동"
+          ],
+          "checkPoints": [
+            "환기 정지 시 재측정"
+          ]
+        },
+        {
+          "key": "cs5_atmosphere",
+          "label": "5. 산소·황화수소·CO 측정 (Section 2 참조)",
+          "required": true,
+          "inputGuide": "Section 2의 측정 결과를 여기에도 [√] + 측정값 요약. 제624조.",
+          "examples": [
+            "[√] O2 20.9 / H2S 0 / CO 0 / LEL 0"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "cs6_emergency",
+          "label": "6. 공기호흡기·로프·통신수단 비치",
+          "required": true,
+          "inputGuide": "송기마스크 또는 공기호흡기 + 구조용 로프 + 무전기/안전벨 + 119 직통. 제622조, 제625조.",
+          "examples": [
+            "[√] 송기마스크 1대 + 공기호흡기 1대 + 구조 로프 5m + 무전기 2대"
+          ],
+          "checkPoints": [
+            "감시자가 통신 상시 유지"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. 추가 보호장비",
+      "legalSource": "산안기준규칙 제622조 ~ 제625조",
+      "fields": [
+        {
+          "key": "ventilationEquipment",
+          "label": "환기 장비 (모델 + 용량)",
+          "required": true,
+          "inputGuide": "송풍기/환기팬 모델·용량(CMH) + 가동 시간.",
+          "examples": [
+            "송풍기 SF-500 500CMH, 작업 30분 전부터 작업 종료 시까지 연속 가동"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "respirator",
+          "label": "호흡 보호구 (송기마스크·공기호흡기)",
+          "required": true,
+          "inputGuide": "송기마스크 또는 공기호흡기. 진입자별 1대씩. 제622조.",
+          "examples": [
+            "송기마스크 1대 (진입자) + 공기호흡기 1대 (감시자 비상용)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "rescueRope",
+          "label": "구조용 로프 + 안전대",
+          "required": true,
+          "inputGuide": "진입자 신체결박 가능한 구조용 로프(최소 5m, 인장강도 2,300kg 이상).",
+          "examples": [
+            "KOSHA 인증 구조 로프 5m × 1조"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "communication",
+          "label": "통신 수단 (무전기·안전벨·인터컴)",
+          "required": true,
+          "inputGuide": "진입자 ↔ 감시자 양방향. 무전기 2대(채널 별도) 또는 안전벨.",
+          "examples": [
+            "무전기 2대 (Ch 5)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "6. 감시인 / 비상대응",
+      "legalSource": "산안기준규칙 제625조 + 제626조 + KOSHA P-94 5.3.1.8",
+      "fields": [
+        {
+          "key": "watcher",
+          "label": "감시인 (밀폐공간 외부 상시 배치)",
+          "required": true,
+          "inputGuide": "밀폐공간 출입 시 외부에 감시자 1인 이상 상시 배치. 밀폐공간 작업 프로그램 교육 이수자. 제625조 ①.",
+          "examples": [
+            "김감시 (밀폐공간프로그램 교육이수, 2026-02)"
+          ],
+          "checkPoints": [
+            "감시자는 진입자가 들어가있는 동안 자리 이탈 절대 금지"
+          ]
+        },
+        {
+          "key": "emergencyContact",
+          "label": "비상연락 체계",
+          "required": true,
+          "inputGuide": "119 + 회사 안전관리책임자 + 가까운 응급실 + 본사 안전팀 전화번호.",
+          "examples": [
+            "119 / 황룡건설(주) 안전팀 02-1234-5678 / 강남세브란스 응급실 02-2019-3333"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "emergencyResponse",
+          "label": "비상시 대응 절차",
+          "required": true,
+          "inputGuide": "산소결핍·유해가스 감지 시 즉시 작업 중단·진입자 구출·119 신고. 구조 시 외부에서 로프로 견인 (구조자 진입 금지). 산안기준규칙 제625조.",
+          "examples": [
+            "1) 가스경보 시 진입자 후퇴 명령, 2) 외부에서 구조 로프 견인, 3) 119 + 회사 동시 신고, 4) 구조자 절대 진입 금지"
+          ],
+          "checkPoints": [
+            "구조자 진입 사망사고 다발 - 절대 금지"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "7. 결재선",
+      "legalSource": "KOSHA P-94 4.2.1.4 (안전감독자 직상 부서장 최종 승인)",
+      "fields": [
+        {
+          "key": "applicant_dept",
+          "label": "의뢰자 부서/업체명",
+          "required": true,
+          "inputGuide": "작업 의뢰 부서 또는 수급업체명.",
+          "examples": [
+            "우송설비(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant_name",
+          "label": "의뢰자 성명",
+          "required": true,
+          "inputGuide": "신청인 성명 (서명).",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "approver_name",
+          "label": "승인자 성명·서명",
+          "required": true,
+          "inputGuide": "안전감독자 직상 부서장(현장소장 또는 안전보건관리책임자) 성명·서명. KOSHA P-94 4.2.1.4.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": [
+            "반드시 안전감독자 직상 부서장이 최종 승인"
+          ]
+        },
+        {
+          "key": "safetyChecker_dept",
+          "label": "안전조치 확인자 부서(소관부서)",
+          "required": true,
+          "inputGuide": "현장 안전관리부서 또는 안전관리자.",
+          "examples": [
+            "황룡건설(주) 현장 안전관리팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyChecker_name",
+          "label": "안전조치 확인자 성명·서명",
+          "required": true,
+          "inputGuide": "안전관리자 또는 안전감독자 성명·서명.",
+          "examples": [
+            "김안전 (안전관리자, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "actualEndTime",
+          "label": "작업완료시간 (실제)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "작업 종료 후 실제 완료 시각 기록. 작업 종료 보고 시 채움.",
+          "examples": [
+            "2026-04-29 11:45"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "신청인 (수급업체 작업책임자)",
+      "action": "허가 신청 + 안전관리계획서 제출 (작업 전일까지)"
+    },
+    {
+      "role": "안전감독자",
+      "action": "안전관리계획·안전조치사항 검토·확인"
+    },
+    {
+      "role": "직상 부서장 (현장소장 / 안전보건관리책임자)",
+      "action": "최종 승인·발급 (KOSHA P-94 4.2.1.4)"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "산소 농도 18% 이상 23.5% 미만 측정값 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:619",
+      "checkFields": [
+        "oxygenLevel",
+        "measureTime",
+        "measurer"
+      ]
+    },
+    {
+      "rule": "황화수소·일산화탄소 측정값 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:624",
+      "checkFields": [
+        "h2sLevel",
+        "coLevel"
+      ]
+    },
+    {
+      "rule": "감시인 외부 배치 + 통신·구조 장비 비치",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:625",
+      "checkFields": [
+        "watcher",
+        "communication",
+        "rescueRope"
+      ]
+    },
+    {
+      "rule": "강제 환기 작업 전·중 실시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:623",
+      "checkFields": [
+        "cs4_ventilation",
+        "ventilationEquipment"
+      ]
+    },
+    {
+      "rule": "직상 부서장 최종 승인 서명",
+      "severity": "blocker",
+      "legalBasis": "kosha:P-94:4.2.1.4",
+      "checkFields": [
+        "approver_name"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년 (KOSHA P-94 4.2.1.7 + 산안법)",
+  "guidedBy": [
+    "doc:kosha_guide/C-14-2012",
+    "doc:kosha_guide/E-G-18-2026",
+    "doc:kosha_guide/X-68-2015",
+    "doc:kosha_guide/C-C-26-2026",
+    "doc:kosha_guide/C-C-85-2026",
+    "doc:kosha_guide/C-C-87-2026",
+    "doc:kosha_guide/C-45-2012",
+    "doc:kosha_guide/C-61-2012",
+    "doc:kosha_guide/C-81-2013",
+    "doc:kosha_guide/C-88-2013",
+    "doc:kosha_guide/C-89-2013",
+    "doc:kosha_guide/D-C-6-2025"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:619",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "밀폐공간",
+      "산소결핍",
+      "질식",
+      "유해가스"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "permit",
+    "licenseHint": "공공누리 - 출처 KOSHA + 황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "KOSHA-안전작업허가지침-P94.pdf 통합양식 (kordoc parse_document)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "밀폐공간(맨홀·탱크·터널·배관·집수정 등 별표 18 해당) 작업 모든 현장. 50억 미만 + 5인 이상 사업장도 동일 의무."
+  },
+  "hasHazard": [
+    "hazard:asphyxiation",
+    "hazard:acute_toxic_gas",
+    "hazard:fire_explosion",
+    "hazard:gas_leak"
+  ],
+  "appliesToActivities": [
+    "activity:underground_utility",
+    "activity:tunnel_excavation",
+    "activity:drainage_sewerage"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:fire:119",
+    "src:kosha_portal"
+  ],
+  "iso45001Class": "iso45001:Permit",
+  "mitigatedBy": [
+    "control:admin_work_permit",
+    "control:admin_emergency_plan",
+    "control:eng_ventilation",
+    "control:eng_monitoring",
+    "control:ppe_respirator"
+  ],
+  "relatedDocs": [
+    "doc:on_construction_open/confined_space_program",
+    "doc:semi_annual/work_environment_measurement"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

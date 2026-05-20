@@ -1,0 +1,228 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:as_needed/voluntary_inspection_program",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "voluntary_inspection_program",
+  "title": "자율검사프로그램 인정 신청 (타워크레인·건설용 리프트·곤돌라 자체검사)",
+  "description": "자율검사프로그램 인정 신청 - 산안법:99 + 산안법시행규칙:132 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:as_needed",
+  "trigger": "수시",
+  "legalBasis": [
+    "art:산안법:99",
+    "art:산안법시행규칙:132"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_voluntary_inspection_program",
+    "officialName": "자율검사프로그램 인정 신청 (고용노동부)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 자율검사프로그램 인정 신청",
+      "legalSource": "산안법 제99조 + 시행규칙 제132조",
+      "fields": [
+        {
+          "key": "applicantInfo",
+          "label": "신청 사업장",
+          "required": true,
+          "inputGuide": "사업장명·사업자번호.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "programScope",
+          "label": "프로그램 범위",
+          "required": true,
+          "inputGuide": "자율검사 대상 기계 종류·수량.",
+          "examples": [
+            "타워크레인 1대 + 이동식크레인 2대 자율검사"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "qualifiedInspectors",
+          "label": "자격 검사원",
+          "required": true,
+          "inputGuide": "산업안전기사·기계공학기사 등 자격자.",
+          "examples": [
+            "박검사 (산업안전기사) + 김검사 (기계공학기사)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspectionMethod",
+          "label": "검사 방법·주기",
+          "required": true,
+          "inputGuide": "매월·반기·연 1회.",
+          "examples": [
+            "타워크레인 반기 1회, 이동식크레인 연 1회"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "recordKeeping",
+          "label": "기록 보존 계획",
+          "required": true,
+          "inputGuide": "검사 기록 5년 이상.",
+          "examples": [
+            "전산 시스템 (5년 보존)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:99",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:99",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "5년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:99",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "application",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "자율검사 적용 사업장"
+  },
+  "hasHazard": [],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Workplace",
+  "relatedDocs": [
+    "doc:ad_hoc/safety_inspection_application"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능.",
+  "purpose": "안전검사 대상기계(산안법 제93조)를 사업주가 자체 검사로 대체하기 위한 프로그램 인정 신청. 건설업에서는 타워크레인·건설용 리프트·곤돌라·고소작업대 보유 시 적용. 중소건설현장(50억/50인 미만)에서는 거의 사용 안 함 — 보통 공단 검사 위탁이 더 흔함.",
+  "useFrequency": "low_for_small_construction",
+  "useFrequencyNote": "대형 건설사·타워크레인 임대사 위주 사용. 중소건설현장은 공단 검사 위탁 권장."
+}

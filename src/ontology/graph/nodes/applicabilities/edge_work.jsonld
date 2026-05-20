@@ -1,0 +1,33 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:edge_work",
+  "@type": "Applicability",
+  "label": "개구부·단부 작업 (안전난간·덮개)",
+  "condition": {
+    "any": [
+      {
+        "var": "edgeOpen",
+        "op": "==",
+        "value": true
+      },
+      {
+        "var": "workType",
+        "op": "==",
+        "value": "edge_work"
+      }
+    ]
+  },
+  "legalBasis": [
+    "art:기준규칙:43"
+  ],
+  "legalWeight": "mandatory",
+  "enforces": [
+    "control:eng_guard_rail",
+    "control:eng_cover"
+  ],
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

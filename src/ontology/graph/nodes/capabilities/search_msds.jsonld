@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_msds",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "MSDS 조회 (15001197)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Msds",
+      "@language": "en"
+    }
+  ],
+  "description": "안전보건자료, MSDS, 보호구 인증, 외국인 근로자 자료 링크를 다루는 capability. KOSHA 물질안전보건자료(15001197, /B552468/msdschem). searchWrd로 화학물질명(한글/영문) 또는 CAS 번호 검색. sections=[2,8] 같은 배열을 주면 상위 5건에 대해 해당 MSDS 섹션(1=제품정보/2=유해성·위험성/3=구성성분/4=응급조치/5=폭발·화재/6=누출/7=취급저장/8=노출방지·보호구/9=물리화학특성/10=안정성·반응성/11=독성/12=환경/13=폐기/14=운송/15=법적규제/16=기타) 상세를 chemId로 병합 조회한다. XML 전용. 모든 응답에 참고용 고지 자동 첨부.",
+  "toolName": "search_msds",
+  "category": "safety_materials",
+  "inputSchema": "safety:schema/input/search_msds",
+  "producesEntity": [
+    "safety:MSDS"
+  ],
+  "maps_to_action": "safety:action/search_msds",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

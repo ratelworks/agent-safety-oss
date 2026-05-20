@@ -1,0 +1,35 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "equipment:aerial_work_platform",
+  "@type": "Equipment",
+  "slug": "aerial_work_platform",
+  "name": "고소작업대",
+  "label": "고소작업대",
+  "category": "safety_certified",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건법/제80조",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "산안법 제80조 안전인증 대상 13종 (시행령 별표). 안전인증 받지 않으면 제169조 (3년/3천만)"
+  },
+  "description": "고소 작업용 이동식 작업대. 추락·전도·끼임 위험.",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by_overturn",
+    "hazard:machine_entanglement"
+  ],
+  "regulatedBy": [
+    "art:산안법:80",
+    "art:산안법:84"
+  ],
+  "alternativeNames": [
+    "고소작업대",
+    "이동식 고소작업대",
+    "스카이리프트"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr02/22"
+  ]
+}

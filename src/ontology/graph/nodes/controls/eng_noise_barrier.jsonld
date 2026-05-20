@@ -1,0 +1,37 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_noise_barrier",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_noise_barrier",
+  "label": "방음·방진 설비",
+  "description": "항타·파쇄·절단·장비 운전 등 소음·진동 발생 작업에서 방음벽과 방진 설비로 노출을 낮추는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:machinery_repair",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:road_pavement",
+    "activity:steel_structure",
+    "activity:tunnel_excavation",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "방음",
+      "방진"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

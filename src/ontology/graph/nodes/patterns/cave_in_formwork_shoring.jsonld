@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/cave_in_formwork_shoring",
+  "@type": [
+    "Event"
+  ],
+  "slug": "cave_in_formwork_shoring",
+  "title": "cave_in × formwork_shoring",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 25건 관측. 사고유형 cave_in 작업유형 formwork_shoring.",
+  "koshaAccidentType": "cave_in",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive"
+  ],
+  "causedBy": [
+    "activity:formwork_shoring"
+  ],
+  "caseFrequency": 25,
+  "sampleKeywords": [
+    "콘크리트 타설 중 거푸집동바리 붕괴",
+    "콘크리트 타설작업 중 거푸집동바리 및 데크플레이트 붕괴",
+    "콘크리트 타설작업 중 시스템동바리 및 데크플레이트 붕괴"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

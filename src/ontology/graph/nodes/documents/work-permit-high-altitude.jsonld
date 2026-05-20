@@ -1,0 +1,497 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_permit_high_altitude",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_permit_high_altitude",
+  "title": "고소작업 허가서",
+  "description": "2m 이상 고소작업 안전작업허가서. 산안기준규칙 제42조 (추락방지) + 제13조 (안전난간) + KOSHA P-94 양식 표준 준용.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "2m 이상 고소작업 전 (매 작업마다 발급)",
+  "legalBasis": [
+    "art:기준규칙:42",
+    "art:기준규칙:43",
+    "art:기준규칙:13",
+    "art:기준규칙:57"
+  ],
+  "officialFormSpec": {
+    "formId": "kosha_high_altitude_permit",
+    "officialName": "KOSHA 안전작업허가지침 (P-94) 양식 준용 - 고소작업 허가서",
+    "formFile": "KOSHA-안전작업허가지침-P94.pdf",
+    "formMatchType": "P-94 통합양식 구조 + 산안기준규칙 제42조 안전조치 항목 적용",
+    "license": "공공누리 - 출처 KOSHA"
+  },
+  "sections": [
+    {
+      "title": "1. 작업 정보",
+      "legalSource": "KOSHA P-94 양식 헤더",
+      "fields": [
+        {
+          "key": "permitNumber",
+          "label": "허가서 번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호. 'PERMIT-HA-YYMMDD-NN'.",
+          "examples": [
+            "PERMIT-HA-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "department",
+          "label": "부 서 명",
+          "required": true,
+          "inputGuide": "허가 발급 부서명.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장 안전관리팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant",
+          "label": "신 청 인",
+          "required": true,
+          "inputGuide": "작업 책임자 성명.",
+          "examples": [
+            "박감독"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "contractorName",
+          "label": "수 급 업 체 명",
+          "required": false,
+          "optional": true,
+          "inputGuide": "도급 작업 시 수급업체명.",
+          "examples": [
+            "우송건설(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workName",
+          "label": "작 업 명",
+          "required": true,
+          "inputGuide": "구체적 작업명.",
+          "examples": [
+            "A동 6층 외벽 도장 작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workContent",
+          "label": "작 업 내 용",
+          "required": true,
+          "inputGuide": "작업 절차·범위·방법 1~2문장.",
+          "examples": [
+            "A동 6층(높이 18m) 외벽 도장 작업. 비계 + 안전대 + 추락방호망 설치 후 작업자 2명 투입."
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workLocation",
+          "label": "작업 장소 + 높이",
+          "required": true,
+          "inputGuide": "동·층 + 작업 높이(m).",
+          "examples": [
+            "A동 6층 외벽 (지상으로부터 18m)"
+          ],
+          "checkPoints": [
+            "2m 이상 고소작업 의무 적용"
+          ]
+        },
+        {
+          "key": "workStartTime",
+          "label": "작 업 시 간 (시작)",
+          "required": true,
+          "inputGuide": "작업 개시 일시.",
+          "examples": [
+            "2026-04-29 08:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workEndTime",
+          "label": "완 료 시 간 (예정)",
+          "required": true,
+          "inputGuide": "작업 종료 예정 일시.",
+          "examples": [
+            "2026-04-29 17:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workerCount",
+          "label": "작 업 자 / 인 원",
+          "required": true,
+          "inputGuide": "고소작업자 + 보조자 + 감시자.",
+          "examples": [
+            "고소작업자 2 + 감시자 1 = 3명"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 추락 방지 시설",
+      "legalSource": "산안기준규칙 제42조 + 제13조 + 제43조",
+      "fields": [
+        {
+          "key": "fallProtection",
+          "label": "추락방지 시설 (안전난간·추락방호망)",
+          "required": true,
+          "inputGuide": "안전난간(상부 90~120cm, 중간 45~60cm) 또는 추락방호망(테두리 5m 이내, 망폭 5cm 이하). 산안기준규칙 제13조 + 제42조.",
+          "examples": [
+            "안전난간 H1.0m + 중간대 H0.5m, 강관비계 외측 + 추락방호망 망폭 5cm × 1개층"
+          ],
+          "checkPoints": [
+            "안전난간 상부 90~120cm + 중간대 45~60cm"
+          ]
+        },
+        {
+          "key": "openingProtection",
+          "label": "개구부 방호조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "엘리베이터·계단실·창호 개구부에 안전난간 또는 덮개. 산안기준규칙 제43조.",
+          "examples": [
+            "엘리베이터 개구부 H1.2m 안전난간 + 안전표지",
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "scaffolding",
+          "label": "비계 / 작업발판",
+          "required": true,
+          "inputGuide": "강관비계 또는 시스템비계. 작업발판 폭 40cm 이상, 틈새 3cm 이내. 산안기준규칙 제57조.",
+          "examples": [
+            "시스템비계 (작업발판 폭 60cm, 안전난간 H1.0m, 추락방호망 1개층)"
+          ],
+          "checkPoints": [
+            "작업발판 폭 ≥40cm, 틈새 ≤3cm"
+          ]
+        },
+        {
+          "key": "harnessHook",
+          "label": "안전대 부착설비",
+          "required": true,
+          "inputGuide": "안전대 걸이 와이어로프 또는 구명줄. 인장강도 2,300kg 이상.",
+          "examples": [
+            "KOSHA 인증 와이어로프 6mm × 2조 (외벽 수평 설치)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 공통 안전조치 점검 (P-94 5.1)",
+      "legalSource": "KOSHA P-94 5.1",
+      "fields": [
+        {
+          "key": "common1_ppe",
+          "label": "1. 규정된 복장·보호구 + 안전대 착용 확인",
+          "required": true,
+          "inputGuide": "안전모·안전화·안전대(전체식 풀하네스). 2m 이상 의무.",
+          "examples": [
+            "[√] 풀하네스 전체식 안전대"
+          ],
+          "checkPoints": [
+            "2m 이상: 안전대 의무"
+          ]
+        },
+        {
+          "key": "common2_supervisor",
+          "label": "2. 관리감독자 배치 + 위험성 확인",
+          "required": true,
+          "inputGuide": "관리감독자 1명 이상 상주.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common3_machinery",
+          "label": "3. 위험기계·기구 방호조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "고소작업대 사용 시 방호장치 작동 확인.",
+          "examples": [
+            "[√] 고소작업대 자동수평·과부하방지"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common4_electric",
+          "label": "4. 전기기구 접지·절연·누전차단기",
+          "required": true,
+          "inputGuide": "전동공구 접지 + 누전차단기 + 가공선 이격거리.",
+          "examples": [
+            "[√] 가공선 22.9kV 4m 이격"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common5_signage",
+          "label": "5. 작업장소 안내·차단 식별표시",
+          "required": true,
+          "inputGuide": "작업하부 출입통제 펜스 + 낙하물 주의 표지.",
+          "examples": [
+            "[√] 하부 라바콘 + 낙하물 주의 표지"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common6_lighting",
+          "label": "6. 작업장소 조명 상태",
+          "required": true,
+          "inputGuide": "주간 자연광 또는 야간 작업등 75 lux 이상.",
+          "examples": [
+            "[√] 자연광"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 고소작업 추가 안전조치",
+      "legalSource": "산안기준규칙 제42조 + 제13조 + KOSHA 가이드",
+      "fields": [
+        {
+          "key": "ha1_weather",
+          "label": "1. 기상조건 (강풍·강우 작업 중지)",
+          "required": true,
+          "inputGuide": "10분 평균 풍속 10m/s 이상 / 1시간 강우 1mm 이상 / 1일 강설 10cm 이상 작업 중지. 산안기준규칙 제37조.",
+          "examples": [
+            "[√] 풍속 3m/s, 강우 없음 (작업 가능)"
+          ],
+          "checkPoints": [
+            "풍속 10m/s 이상: 작업 중지"
+          ]
+        },
+        {
+          "key": "ha2_harnessAttachment",
+          "label": "2. 안전대 후크 부착 (이동 시에도)",
+          "required": true,
+          "inputGuide": "이동·작업 중 100% 안전대 후크 부착. 100% Tie-off 원칙.",
+          "examples": [
+            "[√] 이중후크 안전대 100% Tie-off"
+          ],
+          "checkPoints": [
+            "100% Tie-off 원칙"
+          ]
+        },
+        {
+          "key": "ha3_fallNet",
+          "label": "3. 추락방호망 또는 안전대 부착설비",
+          "required": true,
+          "inputGuide": "방호망 1개층 이내 + 부착설비 인장강도 확보.",
+          "examples": [
+            "[√] 추락방호망 망폭 5cm × 1개층 + 부착설비 와이어로프 6mm"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "ha4_ladder",
+          "label": "4. 사다리 / 작업발판 안정성",
+          "required": false,
+          "optional": true,
+          "inputGuide": "사다리는 75° 각도·상부 1m 돌출. 작업발판 틈새 3cm 이내.",
+          "examples": [
+            "[√] 시스템비계 발판"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "ha5_lifeline",
+          "label": "5. 구명줄 / 추락 충격흡수 장비",
+          "required": true,
+          "inputGuide": "수직구명줄 + 추락 충격흡수 랜야드. 고소작업대 격리식 안전대.",
+          "examples": [
+            "[√] 수직구명줄 + 충격흡수 랜야드 1.5m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "ha6_fallingObject",
+          "label": "6. 낙하물 방지 (방호선반·방망)",
+          "required": true,
+          "inputGuide": "작업 하부 출입통제 + 낙하물 방지 방호선반 또는 낙하물방지망.",
+          "examples": [
+            "[√] 낙하물방지망 망폭 0.5cm × 1개층 (1층 외측)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "5. 결재선",
+      "legalSource": "KOSHA P-94 4.2.1.4",
+      "fields": [
+        {
+          "key": "applicant_dept",
+          "label": "의뢰자 부서/업체명",
+          "required": true,
+          "inputGuide": "작업 의뢰 부서.",
+          "examples": [
+            "우송건설(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant_name",
+          "label": "의뢰자 성명·서명",
+          "required": true,
+          "inputGuide": "신청인 성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "approver_name",
+          "label": "승인자 성명·서명",
+          "required": true,
+          "inputGuide": "현장소장 또는 안전보건관리책임자 성명·서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyChecker_dept",
+          "label": "안전조치 확인자 부서",
+          "required": true,
+          "inputGuide": "현장 안전관리부서.",
+          "examples": [
+            "황룡건설(주) 현장 안전관리팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyChecker_name",
+          "label": "안전조치 확인자 성명·서명",
+          "required": true,
+          "inputGuide": "안전관리자 성명·서명.",
+          "examples": [
+            "김안전 (안전관리자, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "신청인 (수급업체 작업책임자)",
+      "action": "허가 신청 + 추락방지계획서 제출"
+    },
+    {
+      "role": "안전감독자",
+      "action": "추락방지·안전대·기상조건 검토"
+    },
+    {
+      "role": "직상 부서장 (현장소장)",
+      "action": "최종 승인·발급"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "추락방지 시설 + 안전대 부착설비 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:42",
+      "checkFields": [
+        "fallProtection",
+        "harnessHook"
+      ]
+    },
+    {
+      "rule": "안전대 100% Tie-off 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:42",
+      "checkFields": [
+        "ha2_harnessAttachment"
+      ]
+    },
+    {
+      "rule": "기상조건 작업 가능 여부 확인",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:37",
+      "checkFields": [
+        "ha1_weather"
+      ]
+    },
+    {
+      "rule": "낙하물 방지 + 하부 출입통제",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:14",
+      "checkFields": [
+        "ha6_fallingObject",
+        "common5_signage"
+      ]
+    },
+    {
+      "rule": "직상 부서장 최종 승인 서명",
+      "severity": "blocker",
+      "legalBasis": "kosha:P-94:4.2.1.4",
+      "checkFields": [
+        "approver_name"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년",
+  "guidedBy": [
+    "doc:kosha_guide/E-G-18-2026",
+    "doc:kosha_guide/C-14-2012"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:42",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "고소작업",
+      "추락",
+      "안전대",
+      "비계"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "permit",
+    "licenseHint": "공공누리 - 출처 KOSHA + 황룡건설(주) + ㈜라텔웍스",
+    "alignedAt": "2026-04-29",
+    "alignSource": "KOSHA P-94 양식 구조 + 산안기준규칙 제42조·제13조 안전조치 매핑"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "2m 이상 고소작업 모든 현장. 50억 미만 + 5인 이상 사업장도 동일 의무."
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [
+    "activity:facade_work",
+    "activity:steel_erection",
+    "activity:roofing"
+  ],
+  "informedBy": [
+    "entity:kosha"
+  ],
+  "iso45001Class": "iso45001:Permit",
+  "mitigatedBy": [
+    "control:admin_work_permit",
+    "control:admin_supervisor",
+    "control:eng_fall_net",
+    "control:ppe_fall_arrester",
+    "control:ppe_harness"
+  ],
+  "relatedDocs": [
+    "doc:daily/fall_prevention_net_inspection",
+    "doc:monthly/safety_harness_inspection",
+    "doc:weekly/scaffolding_inspection_checklist"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,42 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:radiation_uv",
+  "@type": "Hazard",
+  "slug": "radiation_uv",
+  "label": "자외선·아크광 (비전리방사선)",
+  "category": "physical",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "건설 적용: 용접·용단 아크광 / 옥외작업 햇빛 자외선. 화기작업허가서·옥외작업 보건관리 적용."
+  },
+  "description": "**원인**: 용접·용단 아크광 / 자외선 소독기 / 옥외 직사광 / 자외선 경화 도료.\n**상황**: 아크용접 / 가스용단 / 외벽 도장 / 옥외 장기 노출 작업.\n**확인**: 차광면(필터 #10~14) / 차광막 / 자외선 차단 보호구 / 작업시간 제한 / 일사병 예방.\n**중대성**: 전기성 안염(아크안) / 피부화상 / 만성 노출 시 백내장·피부암.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/18"
+  ],
+  "mitigatedBy": [
+    "control:ppe_eye_protection",
+    "control:admin_work_permit",
+    "control:eng_isolation_barrier",
+    "control:admin_safety_education"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "guidedBy": [
+    "doc:kosha_guide/H-78-2012",
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/E-76-2013"
+  ],
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:steel_structure",
+    "activity:painting",
+    "activity:facade_work"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/H-78-2012",
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/E-76-2013"
+  ]
+}

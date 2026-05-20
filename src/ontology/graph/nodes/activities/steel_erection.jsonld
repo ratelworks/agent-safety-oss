@@ -1,0 +1,90 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:steel_erection",
+  "@type": "Activity",
+  "label": "철골 조립",
+  "description": "철골 구조물 조립 작업",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장.",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "category": "structural",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fire",
+    "hazard:thermal_burn",
+    "hazard:electric_shock",
+    "hazard:radiation_exposure",
+    "hazard:noise_exposure",
+    "hazard:trip_slip"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-3-2025",
+    "doc:kosha_guide/C-17-2011",
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/M-67-2012",
+    "doc:kosha_guide/H-73-2015"
+  ],
+  "regulatedBy": [
+    "art:산안법:38",
+    "art:기준규칙:380",
+    "art:기준규칙:381",
+    "art:기준규칙:382",
+    "art:기준규칙:384"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:struck_by",
+      "hazard:struck_by_overturn",
+      "hazard:fire",
+      "hazard:thermal_burn",
+      "hazard:electric_shock",
+      "hazard:radiation_exposure"
+    ],
+    "general": [
+      "hazard:noise_exposure",
+      "hazard:trip_slip"
+    ]
+  },
+  "hasWorkType": "cc:worktype/heavy_lifting",
+  "workTypeLabel": {
+    "ko": "중량물 취급 작업",
+    "en": "Heavy object handling work"
+  }
+}

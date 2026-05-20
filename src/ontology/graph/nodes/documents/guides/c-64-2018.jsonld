@@ -1,0 +1,132 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-64-2018",
+  "@type": "Document",
+  "docId": "kosha_guide_c-64-2018",
+  "title": "조적공사 안전보건작업 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-64-2018",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 3건 (법령 0 / KOSHA Guide 3). keyword=\"조적공사\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 1,
+      "7": 3,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "조적공사",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:noise_exposure",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:sub_low_toxic",
+    "control:admin_msds",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:rc_concrete"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_조적공사 안전보건작업 기술지침_4",
+      "title": "조적공사 안전보건작업 기술지침 - 조적작업 안전사항",
+      "score": 76.197
+    },
+    {
+      "docId": "KOSHA07_조적공사 안전보건작업 기술지침_3",
+      "title": "조적공사 안전보건작업 기술지침 - 용어의 정의",
+      "score": 73.331
+    },
+    {
+      "docId": "KOSHA07_조적공사 안전보건작업 기술지침_2",
+      "title": "조적공사 안전보건작업 기술지침 - 적용범위",
+      "score": 41.461
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:2장",
+      "law": "기준규칙",
+      "chapterTitle": "허가대상 유해물질 및 석면에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "「산업안전보건기준에 관한 규칙」제1편 제2장 작업장, 제6장 추락 또는 붕괴에"
+    },
+    {
+      "chapterNodeId": "chapter:기준규칙:6장",
+      "law": "기준규칙",
+      "chapterTitle": "온도ㆍ습도에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "「산업안전보건기준에 관한 규칙」제1편 제2장 작업장, 제6장 추락 또는 붕괴에"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 1,
+      "rawCitation": "「산업안전보건기준에 관한 규칙」제1편 제2장 작업장, 제6장 추락 또는 붕괴에",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 1,
+      "rawCitation": "이 지침은「산업안전보건기준에 관한 규칙」(이하 “안전보건규칙”이라 한다) 제1편",
+      "needsNode": true
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:object_set/fall_risk_activities",
+  "@type": [
+    "safety:ObjectSet",
+    "prov:Collection"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "추락 위험 활동",
+      "@language": "ko"
+    },
+    {
+      "@value": "Fall Risk Activities",
+      "@language": "en"
+    }
+  ],
+  "description": "고소·외벽·거푸집·양중·교량 등 추락 위험이 높은 작업 활동 집합 — 추락방호망, 안전난간, 안전대, 작업발판 통제 탐색용.",
+  "category": "WorkActivity",
+  "sparqlFilter": "?activity a safety:WorkActivity . VALUES ?activity { activity:facade_work activity:formwork_shoring activity:lifting_operation activity:heavy_lifting activity:bridge_5m_30m activity:scaffolding_assembly activity:roofing }",
+  "members": [
+    {
+      "@id": "activity:facade_work"
+    },
+    {
+      "@id": "activity:formwork_shoring"
+    },
+    {
+      "@id": "activity:lifting_operation"
+    },
+    {
+      "@id": "activity:heavy_lifting"
+    },
+    {
+      "@id": "activity:bridge_5m_30m"
+    },
+    {
+      "@id": "activity:scaffolding_assembly"
+    },
+    {
+      "@id": "activity:roofing"
+    }
+  ],
+  "memberCount": 7,
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks",
+    "intendedUse": "LLM이 추락 위험이 높은 작업을 모아 hasHazard=fall_from_height 및 mitigatedBy 공학적 통제를 우선 탐색한다.",
+    "sourcePattern": "declarative named object-set query pattern"
+  }
+}

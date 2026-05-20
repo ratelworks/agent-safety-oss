@@ -1,0 +1,797 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "schema": "https://schema.org/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "vann": "http://purl.org/vocab/vann/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0/",
+    "bfo": "http://purl.obolibrary.org/obo/",
+    "iao": "http://purl.obolibrary.org/obo/",
+    "iso45001": "https://safety.ratelworks.org/iso45001#",
+    "cc": "https://construction.ratelworks.org/ontology/v1/",
+    "safety": "https://safety.ratelworks.org/ontology/v1/"
+  },
+  "@graph": [
+    {
+      "@id": "https://safety.ratelworks.org/skeleton/v1",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {"@id": "https://safety.ratelworks.org/skeleton/v1.0.0"},
+      "owl:versionInfo": "0.8.0 — Walking Skeleton MVP + daily safety object expansion",
+      "dcterms:creator": "Ratelworks Inc.",
+      "dcterms:contributor": "Hwangryong Construction Co., Ltd. — Safety & Health Planning Department",
+      "dcterms:created": {"@value": "2026-05-01", "@type": "xsd:date"},
+      "dcterms:modified": {"@value": "2026-05-03", "@type": "xsd:date"},
+      "dcterms:license": {"@id": "https://opensource.org/licenses/MIT"},
+      "vann:preferredNamespacePrefix": "safety",
+      "vann:preferredNamespaceUri": "https://safety.ratelworks.org/ontology/v1/",
+      "rdfs:label": [
+        {"@value": "Construction Safety Ontology — Walking Skeleton v1", "@language": "en"},
+        {"@value": "건설안전 온톨로지 — Walking Skeleton v1", "@language": "ko"}
+      ],
+      "rdfs:comment": [
+        {"@value": "Korean construction safety ontology MVP. 12 classes + daily safety predicates + instance chain. LLM-readable, traversal-ready, citation-ready.", "@language": "en"},
+        {"@value": "한국 건설안전 온톨로지 MVP. 12 클래스 + 일상 안전관리 predicate + 인스턴스 사슬. LLM이 환각 0으로 그래프 traversal 가능.", "@language": "ko"}
+      ],
+      "owl:imports": [
+        {"@id": "http://purl.obolibrary.org/obo/bfo.owl"},
+        {"@id": "http://purl.obolibrary.org/obo/iao.owl"},
+        {"@id": "http://www.w3.org/ns/prov-o#"},
+        {"@id": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0/"},
+        {"@id": "http://www.w3.org/2004/02/skos/core#"},
+        {"@id": "http://purl.org/dc/terms/"}
+      ]
+    },
+
+    {
+      "@id": "cc:Site",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "bfo:BFO_0000027"},
+        {"@id": "schema:Place"}
+      ],
+      "skos:closeMatch": {"@id": "schema:ConstructionSite"},
+      "rdfs:label": [
+        {"@value": "현장", "@language": "ko"},
+        {"@value": "Construction Site", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "건설 공사가 수행되는 현장 경계. 작업분류·작업·사진·이슈·조치·보고의 기준점이며 construction-ontology 공통 cc 네임스페이스를 사용한다.", "@language": "ko"},
+        {"@value": "Site boundary where construction work is performed. Reference point for work types, tasks, photos, issues, actions, and reports; uses the shared construction-ontology cc namespace.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "cc:WorkType",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "skos:Concept"}
+      ],
+      "rdfs:label": [
+        {"@value": "공종", "@language": "ko"},
+        {"@value": "Work Type", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업을 묶는 분류 개념. 산업안전보건기준에 관한 규칙 별표 4의 작업분류를 기반으로 하며 Site와 실제 WorkActivity 사이의 분류 계층으로 사용한다.", "@language": "ko"},
+        {"@value": "Classification concept grouping construction tasks. Based on Annex 4 work categories of the Korean Standard Regulation on OSH and used as the classification layer between Site and WorkActivity.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:PhotoEvidence",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "prov:Entity"},
+        {"@id": "foaf:Image"}
+      ],
+      "rdfs:label": [
+        {"@value": "사진 증빙", "@language": "ko"},
+        {"@value": "Photo Evidence", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "현장 안전 이슈를 증빙하는 이미지 엔티티. 파일 URI와 촬영 시각을 가지며 관련 작업 및 발견된 SafetyIssue와 연결된다.", "@language": "ko"},
+        {"@value": "Image entity evidencing a field safety issue. Carries file URI and capture time and links to the related work activity and discovered SafetyIssue.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:SafetyIssue",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "prov:Entity"}
+      ],
+      "rdfs:label": [
+        {"@value": "안전 이슈", "@language": "ko"},
+        {"@value": "Safety Issue", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "현장에서 발견된 위험 사실. 판단이나 계획이 아니라 사진·점검·작업 맥락에서 확인된 사실 엔티티이며 심각도와 처리 상태를 가진다.", "@language": "ko"},
+        {"@value": "Discovered safety fact in the field. An entity confirmed through photos, inspection, or task context rather than a plan; carries severity and resolution status.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:CorrectiveAction",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "prov:Activity"}
+      ],
+      "rdfs:label": [
+        {"@value": "개선조치", "@language": "ko"},
+        {"@value": "Corrective Action", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "안전 이슈를 해결하기 위해 실행되는 조치 활동. 담당 실행·기한·상태를 추적하며 완료 후 SafetyIssue를 해소한다.", "@language": "ko"},
+        {"@value": "Activity executed to resolve a safety issue. Tracks execution, due date, and status, and resolves the linked SafetyIssue when completed.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:SafetyReport",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "cc:Document"},
+        {"@id": "prov:Entity"}
+      ],
+      "rdfs:label": [
+        {"@value": "안전 보고서", "@language": "ko"},
+        {"@value": "Safety Report", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "안전 이슈와 개선조치를 묶는 운영 보고 문서. 19개 법정 양식과 분리되는 주간·월간 안전관리 합본 보고로 사용한다.", "@language": "ko"},
+        {"@value": "Operational report document aggregating safety issues and corrective actions. Used for weekly or monthly safety management reporting, separate from the 19 statutory forms.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:WorkActivity",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "bfo:BFO_0000015"},
+        {"@id": "cc:ConstructionActivity"}
+      ],
+      "skos:closeMatch": {"@id": "iso45001:Activity"},
+      "rdfs:label": [
+        {"@value": "작업 활동", "@language": "ko"},
+        {"@value": "Work Activity", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "한국 건설현장에서 수행되는 작업 활동. 위험·통제·점검과 연결되어 작업계획서 작성의 기본 단위가 된다. BFO 2020 Process(BFO_0000015)의 sub-class.", "@language": "ko"},
+        {"@value": "Work activity in Korean construction sites. Linked to hazards, controls, inspections as the base unit for work-plan generation. Sub-class of BFO 2020 Process (BFO_0000015).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:Hazard",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "bfo:BFO_0000016"}
+      ],
+      "skos:closeMatch": {"@id": "iso45001:Hazard"},
+      "rdfs:label": [
+        {"@value": "위험요인", "@language": "ko"},
+        {"@value": "Hazard", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "물리적·화학적·생물학적·환경적 위험요인. ISO 45001:2018 § 3.19 hazard와 등가. BFO 2020 Disposition(BFO_0000016)의 sub-class — bearer가 있는 잠재 발현 성질.", "@language": "ko"},
+        {"@value": "Physical, chemical, biological, or environmental hazard. Equivalent to ISO 45001:2018 § 3.19 hazard. Sub-class of BFO 2020 Disposition (BFO_0000016) — a latent realizable property of a bearer.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:ControlMeasure",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "bfo:BFO_0000016"}
+      ],
+      "skos:closeMatch": {"@id": "iso45001:Control"},
+      "rdfs:label": [
+        {"@value": "통제 수단", "@language": "ko"},
+        {"@value": "Control Measure", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "위험을 통제하는 수단. ERIC 5계층(제거·대체·공학적·관리적·개인보호구). Engineering control은 bearer(예: 방호난간)의 방호 기능으로 BFO Disposition. Walking Skeleton 후속 확장에서 sub-class 분리 예정.", "@language": "ko"},
+        {"@value": "Means to control hazards. ERIC five levels (Elimination, Substitution, Engineering, Administrative, PPE). Engineering control is a Disposition of its bearer (e.g., guardrail's protective function). Sub-class separation planned in post-Skeleton expansion.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:KoshaGuide",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "cc:Document"},
+        {"@id": "iao:IAO_0000030"},
+        {"@id": "prov:Entity"}
+      ],
+      "skos:closeMatch": {"@id": "iso45001:TechnicalGuideline"},
+      "rdfs:label": [
+        {"@value": "KOSHA Guide", "@language": "ko"},
+        {"@value": "KOSHA Technical Guideline", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "한국산업안전보건공단(KOSHA) 기술지원규정. 법적 강제 X, 기술적 권고 (legalAuthority='recommended'). IAO InformationContentEntity(IAO_0000030)의 sub-class — IAO/BFO alignment에 의해 BFO_0000031(GenericallyDependentContinuant)에 indirect subClassOf.", "@language": "ko"},
+        {"@value": "KOSHA Technical Guideline. Not legally enforced — recommended. Sub-class of IAO InformationContentEntity (IAO_0000030), which is itself sub-class of BFO_0000031 (GenericallyDependentContinuant) per IAO/BFO alignment.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:Article",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "cc:Document"},
+        {"@id": "iao:IAO_0000030"},
+        {"@id": "prov:Entity"}
+      ],
+      "rdfs:seeAlso": {"@id": "akn:Article"},
+      "rdfs:label": [
+        {"@value": "조문", "@language": "ko"},
+        {"@value": "Legal Article", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "법령의 조문 단위 (산업안전보건법·시행령·시행규칙·기준규칙). Akoma Ntoso v1.0의 akn:article XML element와 의미적 정렬 (rdfs:seeAlso로 참조). akn:Article은 OWL class로 보장되지 않으므로 rdfs:subClassOf 사용 X. 법령 위계의 최소 인용 단위.", "@language": "ko"},
+        {"@value": "Legal article unit (OSH Act, Enforcement Decree, Rules, Standard Regulation). Semantically aligned with Akoma Ntoso v1.0 akn:article XML element via rdfs:seeAlso. Note: akn:Article is not guaranteed as an OWL class, hence not used as rdfs:subClassOf. Minimum citation unit of legal hierarchy.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "cc:hasWorkType",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "cc:Site"},
+      "rdfs:range": {"@id": "cc:WorkType"},
+      "rdfs:label": [
+        {"@value": "공종을 가짐", "@language": "ko"},
+        {"@value": "has work type", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "현장에서 수행되는 공종 분류를 연결한다.", "@language": "ko"},
+        {"@value": "Links a site to the work type classifications performed there.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "cc:hasTask",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "cc:WorkType"},
+      "rdfs:range": {"@id": "safety:WorkActivity"},
+      "rdfs:label": [
+        {"@value": "작업을 가짐", "@language": "ko"},
+        {"@value": "has task", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "공종 분류가 포함하는 실제 작업 활동을 연결한다.", "@language": "ko"},
+        {"@value": "Links a work type classification to the concrete work activities it contains.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:relatedTask",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {"@id": "safety:WorkActivity"},
+      "rdfs:label": [
+        {"@value": "관련 작업", "@language": "ko"},
+        {"@value": "related task", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "사진 증빙 또는 안전 이슈가 연결되는 작업 활동. domain은 PhotoEvidence/SafetyIssue union이므로 명시하지 않고 Shape에서 검증한다.", "@language": "ko"},
+        {"@value": "Work activity related to photo evidence or a safety issue. Domain is the PhotoEvidence/SafetyIssue union, so it is validated in SHACL Shapes rather than asserted here.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:hasHazard",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:WorkActivity"},
+      "rdfs:range": {"@id": "safety:Hazard"},
+      "rdfs:label": [
+        {"@value": "위험을 가짐", "@language": "ko"},
+        {"@value": "has hazard", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업이 가지는 위험요인을 표현. SHACL: minCount 1 (모든 작업은 최소 1개 위험을 가져야 한다).", "@language": "ko"},
+        {"@value": "Indicates hazards a work activity has. SHACL: minCount 1 (every activity must have at least one hazard).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:hasAccidentType",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:Hazard"},
+      "rdfs:range": {"@id": "safety:Event"},
+      "rdfs:label": [
+        {"@value": "재해유형을 가짐", "@language": "ko"},
+        {"@value": "has accident type", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "위험요인이 현실화될 때 연결되는 재해유형을 표현한다.", "@language": "ko"},
+        {"@value": "Links a hazard to the accident event type that may result when it is realized.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:mitigatedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:Hazard"},
+      "rdfs:range": {"@id": "safety:ControlMeasure"},
+      "rdfs:label": [
+        {"@value": "통제됨", "@language": "ko"},
+        {"@value": "mitigated by", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "위험을 통제하는 수단과 연결. SHACL: minCount 1 (모든 위험은 최소 1개 통제수단과 연결).", "@language": "ko"},
+        {"@value": "Links a hazard to its mitigating control measures. SHACL: minCount 1 (every hazard must have at least one control).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:requiresPPE",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:WorkActivity"},
+      "rdfs:range": {"@id": "safety:ControlMeasure"},
+      "rdfs:label": [
+        {"@value": "보호구를 요구함", "@language": "ko"},
+        {"@value": "requires PPE", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업에 필요한 개인보호구 통제수단을 연결한다. PPE는 ControlMeasure 중 ericLevel=5로 필터링한다.", "@language": "ko"},
+        {"@value": "Links a work activity to required personal protective equipment controls. PPE is represented as ControlMeasure filtered by ericLevel=5.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:TBM",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "prov:Activity"},
+        {"@id": "iao:IAO_0000030"}
+      ],
+      "rdfs:label": [
+        {"@value": "TBM (Tool Box Meeting)", "@language": "ko"},
+        {"@value": "TBM (Tool Box Meeting)", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업 전 안전회의. 일자별·작업별 위험요인·통제수단·보호구·참석자 확인. 산안법 §29 작업 전 안전조치 의무에 근거. 일일 SafetyChecklist (별지 daily_tbm) 와 별도 추상 클래스 (instance: 매일 회의 = TBM 1건).", "@language": "ko"},
+        {"@value": "Pre-work safety meeting. Per-day/per-task hazards·controls·PPE·attendees confirmation. Based on OSH Act §29 pre-work safety duty. Distinct abstract class from daily SafetyChecklist (instance: each daily meeting = 1 TBM).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:SafetyChecklist",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "cc:Document"},
+        {"@id": "iao:IAO_0000030"}
+      ],
+      "rdfs:label": [
+        {"@value": "안전점검표", "@language": "ko"},
+        {"@value": "Safety Checklist", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업별 위험요인·안전조치 점검 항목 모음. 19 법정 양식 중 pre_work_inspection / weekly_joint_inspection / fall_prevention_net_inspection / scaffolding_inspection 등 instance.", "@language": "ko"},
+        {"@value": "Set of inspection items for hazards·controls per work activity. Instances include pre_work_inspection, weekly_joint_inspection, fall_prevention_net_inspection, scaffolding_inspection (subset of 19 legal forms).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:requiresTBM",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:WorkActivity"},
+      "rdfs:range": {"@id": "safety:TBM"},
+      "rdfs:label": [
+        {"@value": "TBM을 요구함", "@language": "ko"},
+        {"@value": "requires TBM", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업 전에 필요한 TBM 활동 (Tool Box Meeting). range 는 safety:TBM (a-codex 11차 review 정정).", "@language": "ko"},
+        {"@value": "Links a work activity to the required TBM (Tool Box Meeting) activity before work starts. Range is safety:TBM (a-codex 11th review correction).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:requiresChecklist",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:WorkActivity"},
+      "rdfs:range": {"@id": "safety:SafetyChecklist"},
+      "rdfs:label": [
+        {"@value": "안전점검표를 요구함", "@language": "ko"},
+        {"@value": "requires checklist", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업 전 또는 주기적으로 작성해야 할 안전점검표. IDENTITY §5 14 관계 #8 (a-codex 11차 review 추가).", "@language": "ko"},
+        {"@value": "Safety checklist required before or periodically during the work activity. IDENTITY §5 relation #8 (added per a-codex 11th review).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:guidedBy",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:WorkActivity"},
+      "rdfs:range": {"@id": "safety:KoshaGuide"},
+      "rdfs:label": [
+        {"@value": "안내됨", "@language": "ko"},
+        {"@value": "guided by", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "작업이 어느 KOSHA Guide의 안내를 받는지 표현. 작업계획서 작성 시 자동 인용 출발점.", "@language": "ko"},
+        {"@value": "Links a work activity to applicable KOSHA Guide(s). Entry point for automated citation in work-plan generation.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:provides",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "cc:Document"},
+      "rdfs:range": {"@id": "safety:ControlMeasure"},
+      "rdfs:label": [
+        {"@value": "제공함", "@language": "ko"},
+        {"@value": "provides", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "문서가 제시하거나 제공하는 통제수단을 연결한다.", "@language": "ko"},
+        {"@value": "Links a document to the control measures it provides or prescribes.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:supportedByGuide",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:Hazard"},
+      "rdfs:range": {"@id": "safety:KoshaGuide"},
+      "rdfs:label": [
+        {"@value": "Guide에 의해 다뤄짐", "@language": "ko"},
+        {"@value": "supported by guide", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "위험요인이 어느 KOSHA Guide에서 다뤄지는지 표현. Guide ↔ Hazard 양방향 추론용.", "@language": "ko"},
+        {"@value": "Links a hazard to KOSHA Guide(s) that address it. Used for bidirectional Guide ↔ Hazard reasoning.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:evidences",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:PhotoEvidence"},
+      "rdfs:range": {"@id": "safety:SafetyIssue"},
+      "rdfs:label": [
+        {"@value": "증빙함", "@language": "ko"},
+        {"@value": "evidences", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "사진 증빙이 확인하는 안전 이슈를 연결한다.", "@language": "ko"},
+        {"@value": "Links photo evidence to the safety issue it substantiates.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:requiresAction",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:SafetyIssue"},
+      "rdfs:range": {"@id": "safety:CorrectiveAction"},
+      "rdfs:label": [
+        {"@value": "조치를 요구함", "@language": "ko"},
+        {"@value": "requires action", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "안전 이슈가 요구하는 개선조치를 연결한다.", "@language": "ko"},
+        {"@value": "Links a safety issue to the corrective action it requires.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:resolves",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:CorrectiveAction"},
+      "rdfs:range": {"@id": "safety:SafetyIssue"},
+      "rdfs:label": [
+        {"@value": "해소함", "@language": "ko"},
+        {"@value": "resolves", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "개선조치가 해소하는 안전 이슈를 연결한다.", "@language": "ko"},
+        {"@value": "Links a corrective action to the safety issue it resolves.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:includes",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": {"@id": "safety:SafetyReport"},
+      "rdfs:range": {"@id": "safety:SafetyIssue"},
+      "rdfs:label": [
+        {"@value": "포함함", "@language": "ko"},
+        {"@value": "includes", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "안전 보고서가 포함하는 안전 이슈를 연결한다.", "@language": "ko"},
+        {"@value": "Links a safety report to the safety issues it includes.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:legalBasis",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {"@id": "safety:Article"},
+      "rdfs:label": [
+        {"@value": "법적 근거", "@language": "ko"},
+        {"@value": "legal basis", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "Document 또는 WorkActivity의 법적 근거 조문을 표현. domain은 union(KoshaGuide, WorkActivity)이라 명시 X — SHACL Shape에서 case별 검증.", "@language": "ko"},
+        {"@value": "Legal basis article for a Document or WorkActivity. Domain is union (KoshaGuide, WorkActivity), unspecified — case-specific validation in SHACL Shapes.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:guideNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:KoshaGuide"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "지침 번호", "@language": "ko"},
+        {"@value": "guide number", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "KOSHA Guide 공식 번호 (예: C-39-2023, D-C-11-2026). SHACL pattern: ^[A-Z]+(-[A-Z]+)?-\\d+-\\d{4}$", "@language": "ko"},
+        {"@value": "Official KOSHA Guide number (e.g., C-39-2023, D-C-11-2026). SHACL pattern: ^[A-Z]+(-[A-Z]+)?-\\d+-\\d{4}$", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:articleNumber",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:Article"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "조문 번호", "@language": "ko"},
+        {"@value": "article number", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "법령 조문 번호 (예: 38, 347, 별표4). 한국 법령 위계: 편-장-절-조-별표.", "@language": "ko"},
+        {"@value": "Law article number (e.g., 38, 347, Annex 4). Korean legal hierarchy: Part-Chapter-Section-Article-Annex.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:legalAuthority",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "법적 권위", "@language": "ko"},
+        {"@value": "legal authority", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "Document의 법적 권위 등급. Enum: 'enforced'(법적 강제), 'recommended'(KOSHA Guide 등 권고), 'informational'(해석례·사례). KoshaGuide는 항상 'recommended' (SHACL constraint).", "@language": "ko"},
+        {"@value": "Legal authority level of a Document. Enum: 'enforced' (legally binding), 'recommended' (KOSHA Guide etc.), 'informational' (interpretations, cases). KoshaGuide always 'recommended' (SHACL constraint).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:severity",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:SafetyIssue"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "심각도", "@language": "ko"},
+        {"@value": "severity", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "안전 이슈의 심각도. Enum: low, medium, high, critical.", "@language": "ko"},
+        {"@value": "Severity level of a safety issue. Enum: low, medium, high, critical.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:status",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "상태", "@language": "ko"},
+        {"@value": "status", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "안전 이슈 또는 개선조치의 처리 상태. Enum: open, in_progress, resolved, verified.", "@language": "ko"},
+        {"@value": "Processing status of a safety issue or corrective action. Enum: open, in_progress, resolved, verified.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:fileUri",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:PhotoEvidence"},
+      "rdfs:range": {"@id": "xsd:anyURI"},
+      "rdfs:label": [
+        {"@value": "파일 URI", "@language": "ko"},
+        {"@value": "file URI", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "사진 증빙 이미지 파일의 URI.", "@language": "ko"},
+        {"@value": "URI of the photo evidence image file.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:capturedAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:PhotoEvidence"},
+      "rdfs:range": {"@id": "xsd:dateTime"},
+      "rdfs:label": [
+        {"@value": "촬영 시각", "@language": "ko"},
+        {"@value": "captured at", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "사진 증빙이 촬영된 시각.", "@language": "ko"},
+        {"@value": "Time when the photo evidence was captured.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:dueBy",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:CorrectiveAction"},
+      "rdfs:range": {"@id": "xsd:date"},
+      "rdfs:label": [
+        {"@value": "조치 기한", "@language": "ko"},
+        {"@value": "due by", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "개선조치를 완료해야 하는 기한.", "@language": "ko"},
+        {"@value": "Due date by which a corrective action must be completed.", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:contentHash",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "내용 해시", "@language": "ko"},
+        {"@value": "content hash", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "SHA-256 해시. PROV-O 출처 추적 보강 — 동일 콘텐츠 멱등 식별. 형식: 'sha256:...'", "@language": "ko"},
+        {"@value": "SHA-256 hash. Reinforces PROV-O provenance tracking — idempotent content identification. Format: 'sha256:...'", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:Action",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {"@id": "prov:Plan"},
+        {"@id": "iao:IAO_0000030"}
+      ],
+      "rdfs:label": [
+        {"@value": "안전 액션 (실행 가능 행동)", "@language": "ko"},
+        {"@value": "Safety Action (Executable Capability)", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "한국 안전관리자가 LLM에게 위임할 수 있는 실행 가능 행동. 작업계획서 생성·점검 기록·사고 보고 등. 선언적 액션 패턴 — Parameters + Submission Criteria + Side Effects + Trace 로 의도·검증·부수효과·이력을 명시. PROV-O Plan 의 sub-class (의도된 행동 절차).", "@language": "ko"},
+        {"@value": "Executable capability that a Korean safety manager can delegate to an LLM. E.g., generate work plan, record inspection, report accident. Declarative action pattern — Parameters + Submission Criteria + Side Effects + Trace explicitly define intent, validation, side effects, and provenance. Sub-class of PROV-O Plan (intended action procedure).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:hasParameter",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:Action"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "파라미터 (JSON Schema)", "@language": "ko"},
+        {"@value": "parameter (JSON Schema)", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "Action 호출 시 LLM이 채워야 할 파라미터 정의 (JSON Schema 형식 stringify).", "@language": "ko"},
+        {"@value": "Parameter definition that an LLM must fill when invoking the Action (JSON Schema, stringified).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:submissionCriterion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:Action"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "제출 조건 (검증 규칙)", "@language": "ko"},
+        {"@value": "submission criterion (validation rule)", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "Action 실행 전 자동 검증되는 비즈니스 규칙 (예: depth >= 2m → 산안기준규칙 §38 의무).", "@language": "ko"},
+        {"@value": "Business rule auto-validated before Action execution (e.g., depth >= 2m → Standard Regulation §38 mandatory).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:sideEffect",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:domain": {"@id": "safety:Action"},
+      "rdfs:range": {"@id": "xsd:string"},
+      "rdfs:label": [
+        {"@value": "부수 효과", "@language": "ko"},
+        {"@value": "side effect", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "Action 실행 시 발생하는 부수 효과 (markdown 반환·draft 저장·결재 알림 등).", "@language": "ko"},
+        {"@value": "Side effects upon Action execution (return markdown, save draft, send approval notification, etc.).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:appliesTo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {"@id": "safety:WorkActivity"},
+      "rdfs:label": [
+        {"@value": "적용 대상 작업", "@language": "ko"},
+        {"@value": "applies to work activity", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "도메인은 union(Action, StandardDocument, SafetyChecklist) — Action·기준문서·점검표 모두 작업에 적용 가능 (a-codex 11차 review 정정: domain 제거하고 SHACL 별 검증).", "@language": "ko"},
+        {"@value": "Domain is union(Action, StandardDocument, SafetyChecklist) — actions, standard documents, and checklists all apply to work activities. Domain removed; SHACL validates per case (a-codex 11th review correction).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    },
+
+    {
+      "@id": "safety:hasRisk",
+      "@type": "owl:ObjectProperty",
+      "owl:equivalentProperty": {"@id": "safety:hasHazard"},
+      "rdfs:domain": {"@id": "safety:WorkActivity"},
+      "rdfs:range": {"@id": "safety:Hazard"},
+      "rdfs:label": [
+        {"@value": "위험을 가짐 (alias)", "@language": "ko"},
+        {"@value": "has risk (alias)", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "IDENTITY §5 14 관계 #3 'Task hasRisk SafetyRisk' 의 alias. 실 IRI 는 safety:hasHazard 이며 SafetyRisk ≅ safety:Hazard. owl:equivalentProperty 로 정합 (a-codex 11차 review 정정).", "@language": "ko"},
+        {"@value": "Alias for IDENTITY §5 relation #3 'Task hasRisk SafetyRisk'. Actual IRI is safety:hasHazard; SafetyRisk ≅ safety:Hazard. Defined via owl:equivalentProperty (a-codex 11th review correction).", "@language": "en"}
+      ],
+      "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+    }
+  ]
+}

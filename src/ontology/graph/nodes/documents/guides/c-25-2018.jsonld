@@ -1,0 +1,171 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-25-2018",
+  "@type": "Document",
+  "docId": "kosha_guide_c-25-2018",
+  "title": "재사용 가설기자재 성능기준에 관한 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-25-2018",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 7건 (법령 2 / KOSHA Guide 5). keyword=\"재사용\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 2,
+      "6": 368,
+      "7": 58,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "재사용",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:noise_exposure",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:sub_low_toxic",
+    "control:admin_msds",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:rc_concrete"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:34",
+      "law": "산안법",
+      "articleNumber": "34",
+      "title": "법령 요지 등의 게시 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제34조(안전인증) 및 제35조(자율안전확인의 신고)",
+      "citedAsOf": "2018",
+      "temporalNote": "KOSHA Guide C-25-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:35",
+      "law": "산안법",
+      "articleNumber": "35",
+      "title": "근로자대표의 통지 요청",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제34조(안전인증) 및 제35조(자율안전확인의 신고)",
+      "citedAsOf": "2018",
+      "temporalNote": "KOSHA Guide C-25-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:27",
+      "law": "산안법시행령",
+      "articleNumber": "27",
+      "title": "안전관리전문기관 등의 지정 요건",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행령 제27조(방호조치를 하여야 할 유해하거나 위험한 기계․기구 등)",
+      "citedAsOf": "2018",
+      "temporalNote": "KOSHA Guide C-25-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행규칙:47",
+      "law": "산안법시행규칙",
+      "articleNumber": "47",
+      "title": "자체심사 및 확인업체의 확인 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행규칙 제47조(성능유지)",
+      "citedAsOf": "2018",
+      "temporalNote": "KOSHA Guide C-25-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_재사용 가설기자재 성능기준에 관한 지침_3",
+      "title": "재사용 가설기자재 성능기준에 관한 지침 - 용어의 정의",
+      "score": 82.816
+    },
+    {
+      "docId": "KOSHA07_재사용 가설기자재 성능기준에 관한 지침_5",
+      "title": "재사용 가설기자재 성능기준에 관한 지침 - 판정시기",
+      "score": 81.524
+    },
+    {
+      "docId": "KOSHA07_재사용 가설기자재 성능기준에 관한 지침_1",
+      "title": "재사용 가설기자재 성능기준에 관한 지침 - 목적",
+      "score": 78.358
+    },
+    {
+      "docId": "KOSHA07_재사용 가설기자재 성능기준에 관한 지침_4",
+      "title": "재사용 가설기자재 성능기준에 관한 지침 - 폐기기준",
+      "score": 78.286
+    },
+    {
+      "docId": "KOSHA07_재사용 가설기자재 성능기준에 관한 지침_8",
+      "title": "재사용 가설기자재 성능기준에 관한 지침 - 표시",
+      "score": 75.216
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA05_콘크리트공사표준안전작업지침000000002000000000000000000000009000",
+      "title": "콘크리트공사표준안전작업지침 제9조 해체",
+      "category": "5",
+      "score": 32.507
+    },
+    {
+      "docId": "KOSHA05_보호구 안전인증 고시000000013000001000002000000000032000",
+      "title": "보호구 안전인증 고시 제32조 정의",
+      "category": "5",
+      "score": 28.255
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:precast_installation",
+  "@type": "Activity",
+  "label": "PC 설치",
+  "description": "프리캐스트 콘크리트 설치 작업",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장.",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "category": "concrete",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:crushing",
+    "hazard:manual_handling"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-53-2012",
+    "doc:kosha_guide/C-41-2011",
+    "doc:kosha_guide/C-83-2013",
+    "doc:kosha_guide/C-85-2013",
+    "doc:kosha_guide/C-82-2020",
+    "doc:kosha_guide/D-C-15-2026"
+  ],
+  "regulatedBy": [
+    "art:산안법:38",
+    "art:기준규칙:42",
+    "art:기준규칙:43",
+    "art:기준규칙:46",
+    "art:기준규칙:385"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:struck_by",
+      "hazard:struck_by_overturn",
+      "hazard:crushing",
+      "hazard:manual_handling"
+    ],
+    "general": []
+  },
+  "hasWorkType": "cc:worktype/concrete",
+  "workTypeLabel": {
+    "ko": "콘크리트 타설·구조 작업",
+    "en": "Concrete placement and structural work"
+  }
+}

@@ -1,0 +1,507 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_permit_loto",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_permit_loto",
+  "title": "정비·보수 작업허가서 (LOTO)",
+  "description": "기계·전기 설비 정비·보수 시 에너지원 차단·잠금·표지 (LOTO: Lockout/Tagout) 안전작업허가서. 산안기준규칙 제92조·제93조 + KOSHA P-94 양식 표준 준용.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "기계·전기 설비 정비·보수 작업 전",
+  "legalBasis": [
+    "art:기준규칙:92",
+    "art:기준규칙:93",
+    "art:기준규칙:94",
+    "art:기준규칙:118",
+    "art:기준규칙:300",
+    "art:기준규칙:319"
+  ],
+  "officialFormSpec": {
+    "formId": "kosha_loto_permit",
+    "officialName": "KOSHA 안전작업허가지침 (P-94) 양식 준용 - 정비·보수 작업허가서 (LOTO)",
+    "formFile": "KOSHA-안전작업허가지침-P94.pdf",
+    "formMatchType": "P-94 통합양식 구조 + 산안기준규칙 제92조·제93조 LOTO 안전조치 항목 적용",
+    "license": "공공누리 - 출처 KOSHA"
+  },
+  "sections": [
+    {
+      "title": "1. 작업 정보",
+      "legalSource": "KOSHA P-94 양식 헤더",
+      "fields": [
+        {
+          "key": "permitNumber",
+          "label": "허가서 번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호. 'PERMIT-LOTO-YYMMDD-NN'.",
+          "examples": [
+            "PERMIT-LOTO-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "department",
+          "label": "부 서 명",
+          "required": true,
+          "inputGuide": "허가 발급 부서명.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장 전기·기계팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant",
+          "label": "신 청 인",
+          "required": true,
+          "inputGuide": "정비·보수 작업 책임자 성명.",
+          "examples": [
+            "박정비"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "contractorName",
+          "label": "수 급 업 체 명",
+          "required": false,
+          "optional": true,
+          "inputGuide": "도급 작업 시 수급업체명.",
+          "examples": [
+            "우송설비(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workName",
+          "label": "작 업 명",
+          "required": true,
+          "inputGuide": "구체적 정비·보수 작업명.",
+          "examples": [
+            "타워크레인 권상모터 점검·교체 작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workContent",
+          "label": "작 업 내 용",
+          "required": true,
+          "inputGuide": "정비 절차·범위·방법 1~2문장.",
+          "examples": [
+            "타워크레인 권상모터 점검 후 카본브러시 교체. 전원 차단·잠금·표지 후 작업 진행. 작업자 2명, 감독자 1명 배치."
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "equipmentName",
+          "label": "대상 설비명·번호",
+          "required": true,
+          "inputGuide": "정비 대상 기계·전기 설비 명칭·일련번호.",
+          "examples": [
+            "타워크레인 TC-A동 (제조번호 KO-2024-1234)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workStartTime",
+          "label": "작 업 시 간 (시작)",
+          "required": true,
+          "inputGuide": "작업 개시 일시.",
+          "examples": [
+            "2026-04-29 09:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workEndTime",
+          "label": "완 료 시 간 (예정)",
+          "required": true,
+          "inputGuide": "작업 종료 예정 일시.",
+          "examples": [
+            "2026-04-29 12:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workerCount",
+          "label": "작 업 자 / 인 원",
+          "required": true,
+          "inputGuide": "정비작업자 + 감독자.",
+          "examples": [
+            "정비 2 + 감독 1 = 3명"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 에너지원 차단 (LOTO Source Identification)",
+      "legalSource": "산안기준규칙 제92조 + 제93조 + 제300조",
+      "fields": [
+        {
+          "key": "energySources",
+          "label": "차단 대상 에너지원 (전기·기계·유압·공압·열·중력)",
+          "required": true,
+          "inputGuide": "복수 에너지원 모두 식별·차단. 전기 + 기계(관성) + 유압·공압(잔압) + 중력(낙하) + 열(고온부) 등.",
+          "examples": [
+            "전기 (380V 3상) + 기계 (관성회전) + 중력 (권상물 50m 상승)"
+          ],
+          "checkPoints": [
+            "복수 에너지원 모두 식별"
+          ]
+        },
+        {
+          "key": "isolationMethod",
+          "label": "차단 방법 (메인 스위치·밸브·핀)",
+          "required": true,
+          "inputGuide": "차단 위치·종류 + 잔류에너지 방출 절차.",
+          "examples": [
+            "메인 차단기 OFF + 어스도구 접지 + 권상물 지상 강하 후 작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "lockDevice",
+          "label": "잠금장치 (자물쇠·잠금태그)",
+          "required": true,
+          "inputGuide": "잠금 자물쇠 종류·개수 + 작업자 1인 1자물쇠 원칙. 산안기준규칙 제92조.",
+          "examples": [
+            "KOSHA 인증 LOTO 자물쇠 3개 (작업자 2 + 감독자 1)"
+          ],
+          "checkPoints": [
+            "1인 1자물쇠 원칙"
+          ]
+        },
+        {
+          "key": "tagDevice",
+          "label": "표지 (Danger 태그)",
+          "required": true,
+          "inputGuide": "위험표지 (작업자명·기간·연락처). 산안기준규칙 제92조 ②.",
+          "examples": [
+            "DANGER 태그 - 박정비 (010-1234-5678) - 2026-04-29 09:00~12:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "verifyZeroEnergy",
+          "label": "잔류 에너지 0 검증 (시운전 OFF)",
+          "required": true,
+          "inputGuide": "차단 후 시운전 시도 → 무전원 확인. 전압계·압력계 0 확인.",
+          "examples": [
+            "[√] 전압 0V 확인 (테스터 측정), 시운전 버튼 OFF 확인"
+          ],
+          "checkPoints": [
+            "시운전 OFF 확인 후 작업 시작"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. 공통 안전조치 점검 (P-94 5.1)",
+      "legalSource": "KOSHA P-94 5.1",
+      "fields": [
+        {
+          "key": "common1_ppe",
+          "label": "1. 규정된 복장·보호구 + 절연 보호구",
+          "required": true,
+          "inputGuide": "안전모·안전화·안전대 + 전기작업 시 절연장갑·절연화. 산안기준규칙 제319조.",
+          "examples": [
+            "[√] 절연장갑 7kV급 + 절연화"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common2_supervisor",
+          "label": "2. 관리감독자 배치 + 위험성 확인",
+          "required": true,
+          "inputGuide": "관리감독자 1명 이상 상주.",
+          "examples": [
+            "[√]"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common3_machinery",
+          "label": "3. 위험기계·기구 방호조치",
+          "required": true,
+          "inputGuide": "정비 대상 외 인접 설비 방호 + 가동 방지.",
+          "examples": [
+            "[√] 인접 권상모터 자물쇠 잠금"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common4_electric",
+          "label": "4. 전기기구 접지·절연·누전차단기",
+          "required": true,
+          "inputGuide": "정비용 전동공구 접지 + 누전차단기.",
+          "examples": [
+            "[√] 누전차단기 30mA"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common5_signage",
+          "label": "5. 작업장소 안내·차단 식별표시",
+          "required": true,
+          "inputGuide": "작업영역 펜스 + '정비 중 - 시운전 금지' 표지.",
+          "examples": [
+            "[√] 정비 중 표지 + 펜스"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "common6_lighting",
+          "label": "6. 작업장소 조명 상태",
+          "required": true,
+          "inputGuide": "정비 작업등 75 lux 이상.",
+          "examples": [
+            "[√] LED 작업등 100W"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. LOTO 추가 안전조치",
+      "legalSource": "산안기준규칙 제92조~제94조 + 제300조 + KOSHA 가이드",
+      "fields": [
+        {
+          "key": "loto1_authorizedOnly",
+          "label": "1. 잠금 권한자만 해제 가능",
+          "required": true,
+          "inputGuide": "본인 자물쇠는 본인만 해제. 타인 해제 금지. 책임자 부재 시 안전관리책임자 입회 후 해제.",
+          "examples": [
+            "[√] 자물쇠별 키 본인 보관 + 마스터키 안전관리책임자 보관"
+          ],
+          "checkPoints": [
+            "본인 외 해제 금지"
+          ]
+        },
+        {
+          "key": "loto2_groupLockBox",
+          "label": "2. 다중 작업자 그룹 잠금함 (Group Lock Box)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "다수 작업자 동시 작업 시 그룹 잠금함에 키 보관 + 작업자별 자물쇠.",
+          "examples": [
+            "[√] 그룹 잠금함 1개 + 작업자별 자물쇠 3개",
+            "[해당없음] 단일 작업"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "loto3_storedEnergy",
+          "label": "3. 잔류 에너지 방출 (스프링·압력·중력·관성)",
+          "required": true,
+          "inputGuide": "기계 스프링·유압·공압 잔압 + 중력 (권상물 강하) + 관성 (회전) 모두 방출. 산안기준규칙 제300조.",
+          "examples": [
+            "[√] 권상물 지상 강하 + 유압라인 압력 0 + 회전체 정지 30초 대기"
+          ],
+          "checkPoints": [
+            "회전체는 완전 정지 후 작업"
+          ]
+        },
+        {
+          "key": "loto4_sequenceVerification",
+          "label": "4. 작업 시작 전 무전원 재확인",
+          "required": true,
+          "inputGuide": "차단 → 잠금 → 표지 → 시운전 OFF → 본 작업. 5단계 순서 준수.",
+          "examples": [
+            "[√] 5단계 순서 준수, 시운전 OFF 09:05 확인"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "loto5_release",
+          "label": "5. 작업 종료 후 잠금 해제 절차",
+          "required": true,
+          "inputGuide": "정비 완료 → 자물쇠 해제 → 표지 제거 → 시운전 → 정상 운전. 단계별 책임자 확인.",
+          "examples": [
+            "[√] 작업자 자물쇠 해제 12:00, 감독자 최종 확인 후 시운전 12:10"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "loto6_emergency",
+          "label": "6. 비상시 대응 (감전·끼임 사고)",
+          "required": true,
+          "inputGuide": "사고 시 즉시 마스터 차단 + 119 + 사내 응급실. 산안기준규칙 제319조.",
+          "examples": [
+            "[√] 비상정지 버튼 1m 이내 + 119 + 응급조치 키트"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "5. 결재선",
+      "legalSource": "KOSHA P-94 4.2.1.4",
+      "fields": [
+        {
+          "key": "applicant_dept",
+          "label": "의뢰자 부서/업체명",
+          "required": true,
+          "inputGuide": "정비 의뢰 부서.",
+          "examples": [
+            "우송설비(주) 시공팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicant_name",
+          "label": "의뢰자 성명·서명",
+          "required": true,
+          "inputGuide": "신청인 성명·서명.",
+          "examples": [
+            "박정비 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "approver_name",
+          "label": "승인자 성명·서명",
+          "required": true,
+          "inputGuide": "현장소장 또는 안전보건관리책임자 성명·서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyChecker_dept",
+          "label": "안전조치 확인자 부서",
+          "required": true,
+          "inputGuide": "현장 안전관리부서.",
+          "examples": [
+            "황룡건설(주) 현장 안전관리팀"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyChecker_name",
+          "label": "안전조치 확인자 성명·서명",
+          "required": true,
+          "inputGuide": "안전관리자 성명·서명.",
+          "examples": [
+            "김안전 (안전관리자, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "신청인 (수급업체 작업책임자)",
+      "action": "허가 신청 + LOTO 절차서 제출"
+    },
+    {
+      "role": "안전감독자",
+      "action": "에너지원·잠금절차·잔류에너지 검증"
+    },
+    {
+      "role": "직상 부서장 (현장소장)",
+      "action": "최종 승인·발급"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "에너지원 식별 + 차단 방법 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:92",
+      "checkFields": [
+        "energySources",
+        "isolationMethod"
+      ]
+    },
+    {
+      "rule": "잠금장치 + 표지 + 1인 1자물쇠 원칙",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:92",
+      "checkFields": [
+        "lockDevice",
+        "tagDevice"
+      ]
+    },
+    {
+      "rule": "잔류 에너지 0 검증 (시운전 OFF)",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:300",
+      "checkFields": [
+        "verifyZeroEnergy",
+        "loto4_sequenceVerification"
+      ]
+    },
+    {
+      "rule": "본인 외 잠금 해제 금지",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:92",
+      "checkFields": [
+        "loto1_authorizedOnly"
+      ]
+    },
+    {
+      "rule": "직상 부서장 최종 승인 서명",
+      "severity": "blocker",
+      "legalBasis": "kosha:P-94:4.2.1.4",
+      "checkFields": [
+        "approver_name"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년",
+  "guidedBy": [
+    "doc:kosha_guide/D-C-6-2025"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:92",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "LOTO",
+      "잠금",
+      "표지",
+      "정비",
+      "보수"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "permit",
+    "licenseHint": "공공누리 - 출처 KOSHA + 황룡건설(주) + ㈜라텔웍스",
+    "alignedAt": "2026-04-29",
+    "alignSource": "KOSHA P-94 양식 구조 + 산안기준규칙 제92조·제93조 LOTO 매핑"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "기계·전기 설비 정비·보수 모든 현장. 50억 미만 + 5인 이상 사업장도 동일 의무."
+  },
+  "hasHazard": [
+    "hazard:electrocution",
+    "hazard:caught_in",
+    "hazard:struck_by",
+    "hazard:burn",
+    "hazard:machine_entanglement"
+  ],
+  "appliesToActivities": [
+    "activity:electrical_maintenance",
+    "activity:machinery_repair",
+    "activity:tower_crane_maintenance"
+  ],
+  "informedBy": [
+    "entity:kosha"
+  ],
+  "iso45001Class": "iso45001:Permit",
+  "mitigatedBy": [
+    "control:admin_work_permit",
+    "control:eng_loto",
+    "control:eng_isolation_barrier",
+    "control:eng_insulation"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_plan_electric_work",
+    "doc:weekly/temporary_electric_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

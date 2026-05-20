@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/review_safety_document",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "안전관리 법정문서 초안 검토 (감독관 시각의 사전 점검)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Review Safety Document",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 안전관리자/현장소장이 작성한 법정문서 초안(draft)을 점검. 모든 docId 가 L0(그래프 노드 존재) + L1(requiredFields·reviewRules·결재선 정합성·본문 인라인 법령 환각 스캔) 자동 검수 대상. **L2 풍부 의미 검수는 risk_assessment(§6 근로자 참여·ERIC-PP 우선순위·시나리오·인용 ref 실존)** 와 **work_plan_excavation(§38 ② notifiedToWorkers)** 만 명시 구현, 그 외 docId 의 L2 깊이는 그래프 노드 reviewRules 보강에 따라 점진 확대. scale.workforce/constructionValue/industry 입력 시 50인·50억 면제·의무 자동 안내. 환각 ref 발견 시 응답 첫 줄에 [HALLUCINATION_DETECTED] 마커 + isError:true 부착. 인용 법령 ref 는 npm 번들 6 본문(산안법/시행령/시행규칙/기준규칙/중처법/위험성평가 고시) + 중처법시행령 article 그래프 노드까지 7 출처와 양방향 대조로 검증.",
+  "toolName": "review_safety_document",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/review_safety_document",
+  "producesEntity": [
+    "safety:DocumentReview"
+  ],
+  "maps_to_action": "safety:action/review_safety_document",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

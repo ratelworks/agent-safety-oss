@@ -1,0 +1,544 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/regular_risk_assessment",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "regular_risk_assessment",
+  "title": "정기 위험성평가 (연 1회)",
+  "alternativeNames": [
+    "정기평가",
+    "연간 적정성 재검토"
+  ],
+  "description": "최초평가 결과의 적정성을 1년마다 재검토. 변동된 기계·인력·지식·감소대책 유효성을 종합 평가하여 허용 가능하지 않은 위험성에 대해 제12조 감소대책을 재수립.",
+  "cycle": "cyc:annual",
+  "trigger": "최초평가 결과의 적정성을 1년마다 재검토. 변동된 기계·인력·지식·감소대책 유효성을 종합 평가하여 허용 가능하지 않은 위험성에 대해 제12조 감소대책을 재수립.",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "appliesToNote": "최초평가 실시 후 1년 경과 사업장 (상시평가 미선택 시)",
+    "scaleNotes": "1년마다 재검토. 미실시 시 제36조 위반 — 과태료."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "상시평가 선택 + 제15조 ④ 1·2·3호 모두 이행 사업장 (수시·정기 평가 갈음 효과)"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "f_0_사업장_정보",
+      "label": "사업장 정보",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "사업장명·소재지·업종(KSIC)·상시근로자수·산재보험 사업장관리번호 통합 표기.",
+      "examples": [
+        "황룡건설(주) / 서울 강남구 테헤란로 123 / 41122 종합건설업 / 35명 / 산재 1234567890"
+      ]
+    },
+    {
+      "key": "f_1_사업장명",
+      "label": "사업장명",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "date",
+      "label": "평가 실시일",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "YYYY-MM-DD 형식. 작성·점검·평가 실제 시행 일자.",
+      "examples": [
+        "2026-04-29",
+        "2026-05-15"
+      ]
+    },
+    {
+      "key": "f_3_평가자",
+      "label": "평가자",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "평가 수행자 직책 + 성명 + 자격.",
+      "examples": [
+        "김안전 (안전관리자, 산업안전기사)"
+      ]
+    },
+    {
+      "key": "f_4_기계_기구_설비_성능_",
+      "label": "기계·기구·설비 성능 저하",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "정기 평가 대상 — 기계·기구·설비 성능 저하 여부.",
+      "examples": [
+        "타워크레인 와이어로프 마모 5% (한도 7%) — 6월 교체 예정"
+      ]
+    },
+    {
+      "key": "f_5_근로자_교체_지식_경험",
+      "label": "근로자 교체 지식·경험 변화",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "근로자 교체·신규 채용으로 인한 지식·경험 변화.",
+      "examples": [
+        "신규 외국인 4명 채용 (베트남) — 모국어 안전교육 + 멘토 배정"
+      ]
+    },
+    {
+      "key": "f_6_안전_보건_새로운_지식",
+      "label": "안전·보건 새로운 지식",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "안전보건 신규 지식·기술·기준 반영.",
+      "examples": [
+        "스마트 안전장비 (AI 영상분석) 도입 검토 / 산안기준규칙 제38조 별표4 개정 반영"
+      ]
+    },
+    {
+      "key": "f_7_감소대책_유효성",
+      "label": "감소대책 유효성",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "기존 감소대책 유효성 평가.",
+      "examples": [
+        "추락 안전난간 효과적 (재해 0건) / 화재 감시자 배치 효과적 / 협착 신호수 효과적"
+      ]
+    },
+    {
+      "key": "f_8_유해_위험요인_파악",
+      "label": "유해·위험요인 파악",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "KRAS 7방법 중 1개로 작업·공정·기계·물질별 유해·위험요인 식별. 외부 자료(사고사례/MSDS/KOSHA Guide) 반영.",
+      "examples": [
+        "고소작업: 추락(난간 미설치) / 자재 낙하(출입통제 부재)",
+        "용접: 화재·폭발(가연물 인근) / 일산화탄소 노출(밀폐공간)"
+      ]
+    },
+    {
+      "key": "f_9_위험성_결정",
+      "label": "위험성 결정",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "위험성평가 고시 제7조 KRAS 7방법으로 빈도×강도 산출. 결과는 무시가능/허용가능/즉시개선/작업중지 4단계 결정.",
+      "examples": [
+        "빈도 3 (월1회) × 강도 4 (사망) = 위험성 12 → 즉시개선",
+        "빈도 1 × 강도 2 = 2 → 무시가능"
+      ]
+    },
+    {
+      "key": "f_10_위험성_감소대책",
+      "label": "위험성 감소대책",
+      "source": "위험성평가 고시 제15조 ③",
+      "inputGuide": "감소대책 우선순위 (제거 → 대체 → 공학적 대책 → 관리적 대책 → 개인보호구) 적용. 비용·실행가능성 함께 평가.",
+      "examples": [
+        "E: 추락 위험 작업 자체 제거 / S: 안전성 높은 대체 설비 / E: 안전난간·추락방지망 / A: 작업절차서·교육 / PPE: 안전대"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 재검토 일자 (1년 내)",
+      "severity": "blocker",
+      "legalBasis": "art:위험성평가-고시:15",
+      "checkFields": [
+        "period"
+      ]
+    },
+    {
+      "rule": "필수 — 4개 검토 항목 모두 (제15조 ③ 1~4호)",
+      "severity": "blocker",
+      "checkFields": [
+        "reviewedItems",
+        "newHazards",
+        "updatedControls",
+        "assessmentScope"
+      ]
+    },
+    {
+      "rule": "필수 — 허용 불가 시 제12조 감소대책 재수립",
+      "severity": "blocker",
+      "checkFields": [
+        "riskRows",
+        "updatedControls"
+      ]
+    },
+    {
+      "rule": "필수 — 근로자 대표 참여·서명",
+      "severity": "blocker",
+      "legalBasis": "art:위험성평가-고시:6",
+      "checkFields": [
+        "assessmentTeam",
+        "workerRepSignature"
+      ]
+    }
+  ],
+  "retention": "3년 (위험성평가 고시 제14조 ②)",
+  "standardForm": {
+    "source": "KOSHA KRAS",
+    "sourceUrl": "https://kras.kosha.or.kr",
+    "requiredFields": [
+      "재검토 일자 (최초평가 후 1년)",
+      "최초평가 + 그간 수시평가 결과 종합",
+      "재검토 항목 (고시 제15조 ③ 1~4호):",
+      "  1. 기계·기구·설비 등의 기간 경과에 의한 성능 저하",
+      "  2. 근로자의 교체 등에 수반하는 안전·보건 지식·경험 변화",
+      "  3. 안전·보건 관련 새로운 지식의 습득",
+      "  4. 현재 수립되어 있는 위험성 감소대책의 유효성",
+      "재검토 결과 (위험성 수준 변경 여부)",
+      "허용 불가 판정 시 제12조 감소대책 재수립",
+      "참여자 명단·서명",
+      "다음 재검토 예정일"
+    ]
+  },
+  "relatedDocs": [
+    "doc:ad_hoc/initial_risk_assessment",
+    "doc:monthly/monthly_risk_assessment",
+    "doc:ad_hoc/ad_hoc_risk_assessment",
+    "doc:annual/risk_assessment_procedure"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-C-21-2026",
+    "doc:kosha_guide/C-C-22-2026",
+    "doc:kosha_guide/C-C-30-2026",
+    "doc:kosha_guide/C-C-36-2026",
+    "doc:kosha_guide/C-C-67-2026",
+    "doc:kosha_guide/C-C-7-2026",
+    "doc:kosha_guide/C-C-73-2026",
+    "doc:kosha_guide/C-C-75-2026",
+    "doc:kosha_guide/X-78-2018"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "위험성평가 고시 (제2024-76호)",
+        "article": "§15 제3항",
+        "text": "사업주는 제15조 제1항(최초평가) 의 결과의 적정성을 1년마다 정기적으로 재검토. 해당 기간 내 제15조 제2항(수시평가) 결과가 있으면 함께 적정성을 재검토. 재검토 결과 허용 가능한 위험성 수준이 아니라고 검토된 유해·위험요인은 제12조 감소대책 수립·실행"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "재검토 4항목": "고시 제15조 ③ 1~4호 모두 다뤄야 함",
+        "감소대책 유효성": "지난 1년간 사고·아차사고 빈도 감소 여부로 평가",
+        "다음 예정일": "이번 재검토 + 1년"
+      },
+      "commonMistakes": [
+        "최초평가 결과만 다시 첨부하고 재검토 결과 미기재",
+        "4개 검토 항목 중 일부 누락",
+        "재검토 일자를 1년 초과 (제15조 ③ 위반)",
+        "근로자 참여 누락"
+      ],
+      "bestPractices": [
+        "지난 1년 사고·아차사고·근로자 제안 종합 분석",
+        "신규 도입 설비·물질·작업방법 별도 항목",
+        "감소대책 미이행 항목 별도 추적"
+      ]
+    },
+    "examples": [
+      {
+        "title": "KOSHA KRAS 정기평가 안내",
+        "source": "안전보건공단",
+        "license": "공공누리 (자료별 확인 필요)"
+      }
+    ],
+    "relatedTools": [
+      "get_risk_assessment_schema({type:'regular'})",
+      "review_safety_document({docId:'risk_assessment', draft})",
+      "compile_safety_references({workType, docType:'risk_assessment'})"
+    ],
+    "convertedAt": "2026-04-26",
+    "note": "guides/*.json 에서 자동 변환된 노드. legalBasis 의 Article 노드 IRI 매핑은 P1 수작업 보강 예정.",
+    "predictedLegalBasisIris": [],
+    "unresolvedLegalBasisRefs": [],
+    "enrichedAt": "2026-04-26",
+    "stubLinkedIris": [],
+    "reviewedAt": "2026-04-26",
+    "reviewer": "라텔웍스 (Ratelworks Inc., 황룡건설(주) 자문)",
+    "reviewLevel": "1차 도메인 검토 — 19종 docId entity 의 legalBasisRefs · requiredFields · reviewRules 정합성 확인",
+    "reviewNotes": "Phase 5 가이드라인 준수 (JSON-LD 1.1 + schema.org Legislation + ELI). 본문은 KOSHA 표준 양식·법제처 본문 기반. 황룡건설 dogfooding 완료 시 'verified' 로 최종 승급 예정.",
+    "autoPromotedAt": "2026-04-26",
+    "promotedBy": "scripts/promote-document-status.ts (자동 스크립트, 사람 검토 미실시)",
+    "promoteRationale": "1) standardForm 출처가 KOSHA 표준 / 2) legalBasisRefs 가 법제처 verified Article 노드와 매칭 / 3) reviewRules 가 인용 조문과 정합. 단 사람 도메인 전문가 직접 검토는 미실시 — 황룡건설 dogfooding 완료 후 'verified' 승급 예정.",
+    "dogfoodingNote": "본 verified 라벨은 자동 시뮬레이션에 의한 1차 합격. 진짜 사람 도메인 전문가(안전관리자) 사용 후 추가 검증 필요.",
+    "simulationPassedAt": "2026-04-26",
+    "simulationPassedBy": "scripts/dogfooding-simulation.ts (자동 시뮬레이션 — 그래프 정합성 + review 도구 통과)",
+    "promotionNote": "자동 시뮬레이션 통과 — review_safety_document 도구 호출 + 그래프 정합성 확인. 진짜 사람 도메인 검토(황룡건설 dogfooding) 후 verified 승급 예정.",
+    "documentCategory": "report",
+    "coreSectionsAddedAt": "2026-04-27",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:36",
+    "art:위험성평가-고시:15"
+  ],
+  "requires": [
+    "activity:risk_assessment_general"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 정기 위험성평가 (연 1회)",
+      "legalSource": "위험성평가 고시 제15조 ④ 2호",
+      "fields": [
+        {
+          "key": "period",
+          "label": "평가 기간",
+          "required": true,
+          "inputGuide": "연 1회 정기.",
+          "examples": [
+            "2026-12-01 ~ 2026-12-15"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reviewedItems",
+          "label": "전년도 평가 검토",
+          "required": true,
+          "inputGuide": "전년도 위험요인 + 사고 이력 검토.",
+          "examples": [
+            "전년도 식별 15건 → 12건 감소대책 완료, 3건 후속 조치"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "newHazards",
+          "label": "신규 식별 위험요인",
+          "required": true,
+          "inputGuide": "공정·환경·기술 변화로 신규 발생.",
+          "examples": [
+            "타워크레인 신규 도입 → 양중작업 위험요인 5건 추가"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "updatedControls",
+          "label": "감소대책 갱신",
+          "required": true,
+          "inputGuide": "신규+기존 모두 통합.",
+          "examples": [
+            "신규 5건 + 갱신 3건 = 8건 추가 대책"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 평가 범위 / 방법 / 참여자",
+      "legalSource": "위험성평가 고시 제5조의2·제6조·제7조",
+      "fields": [
+        {
+          "key": "assessmentScope",
+          "label": "평가 범위",
+          "required": true,
+          "inputGuide": "이번 정기평가에 포함한 공정·작업·장소를 구체적으로 작성.",
+          "examples": [
+            "토공, 골조, 비계, 도장, 양중 작업 전 공정"
+          ],
+          "checkPoints": [
+            "사업장 전체 또는 현장 전체 범위가 누락되지 않았는지 확인"
+          ]
+        },
+        {
+          "key": "assessmentMethod",
+          "label": "평가 방법",
+          "required": true,
+          "inputGuide": "KRAS 7방법 중 실제 적용한 방법과 위험도 판정 기준.",
+          "examples": [
+            "KRAS 5x4 matrix. 위험도 12 이상 즉시개선, 8~11은 7일 내 개선"
+          ],
+          "checkPoints": [
+            "빈도·강도 또는 체크리스트 등 판단 기준 명시"
+          ]
+        },
+        {
+          "key": "assessmentTeam",
+          "label": "평가 참여자",
+          "required": true,
+          "inputGuide": "사업주 또는 현장소장, 안전관리자, 관리감독자, 근로자대표 참여자.",
+          "examples": [
+            "김안전, 이소장, 박반장, 근로자대표 정근로"
+          ],
+          "checkPoints": [
+            "근로자 참여 확인"
+          ]
+        },
+        {
+          "key": "workerRepSignature",
+          "label": "근로자대표 참여 확인",
+          "required": true,
+          "inputGuide": "근로자대표 성명과 서명 여부.",
+          "examples": [
+            "정근로 (근로자대표, 서명)"
+          ],
+          "checkPoints": [
+            "위험성평가 고시 제6조 참여 원칙"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "4. 위험성 결정 및 감소대책 이행계획",
+      "legalSource": "위험성평가 고시 제7조·제12조",
+      "fields": [
+        {
+          "key": "riskRows",
+          "label": "위험성평가 결과표",
+          "required": true,
+          "inputGuide": "작업별 유해위험요인, 현재위험도, 감소대책, 잔여위험도, 책임자, 완료기한을 행 단위로 작성.",
+          "standardFormat": "[작업] / [위험요인] / [현재위험도] / [감소대책] / [잔여위험도] / [책임자] / [기한]",
+          "examples": [
+            [
+              {
+                "task": "굴착",
+                "hazard": "가스관 접촉",
+                "currentRisk": "4x4=16",
+                "control": "가스공사 입회+인력굴착",
+                "residualRisk": "2x3=6",
+                "owner": "박반장",
+                "due": "2026-05-05"
+              }
+            ]
+          ],
+          "checkPoints": [
+            "위험도 12 이상 즉시개선",
+            "책임자와 완료기한 필수",
+            "잔여위험도 허용 가능 여부 확인"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "searchKeywords": [
+    "정기 위험성평가",
+    "연간 위험성평가",
+    "분기 정기 위험성평가"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "evaluatedBy": [
+    "method:3step",
+    "method:checklist",
+    "method:key_factor",
+    "method:frequency_severity",
+    "method:occupational_health",
+    "method:chemical",
+    "method:construction_continuous",
+    "method:kras_step_1_prep",
+    "method:kras_step_2_identify",
+    "method:kras_step_3_estimate",
+    "method:kras_step_4_decide",
+    "method:kras_step_5_control",
+    "method:risk_matrix_5x4"
+  ],
+  "informedBy": [
+    "manual:risk_assessment_practical",
+    "entity:kosha",
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_risk_assessment",
+    "control:admin_inspection"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

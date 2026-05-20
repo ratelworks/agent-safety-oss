@@ -1,0 +1,118 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-16-2016",
+  "@type": "Document",
+  "docId": "kosha_guide_c-16-2016",
+  "title": "미장공사 안전보건작업 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-16-2016",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"미장공사\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 6,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "미장공사",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:dust_exposure",
+    "hazard:manual_handling",
+    "hazard:crushing",
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:elim_automation",
+    "control:eng_ventilation",
+    "control:admin_health_check",
+    "control:admin_safety_education",
+    "control:sub_safer_equipment",
+    "control:admin_supervisor",
+    "control:admin_signal_person",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:sub_low_toxic",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:finishing_tile"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_미장공사 안전보건작업 지침_2",
+      "title": "미장공사 안전보건작업 지침 - 적용범위",
+      "score": 104.541
+    },
+    {
+      "docId": "KOSHA07_미장공사 안전보건작업 지침_1",
+      "title": "미장공사 안전보건작업 지침 - 목적",
+      "score": 97.873
+    },
+    {
+      "docId": "KOSHA07_미장공사 안전보건작업 지침_5",
+      "title": "미장공사 안전보건작업 지침 - 벽 미장공사 중 안전조치사항",
+      "score": 90.974
+    },
+    {
+      "docId": "KOSHA07_미장공사 안전보건작업 지침_6",
+      "title": "미장공사 안전보건작업 지침 - 바닥 미장공사 중 안전조치 사항",
+      "score": 89.41
+    },
+    {
+      "docId": "KOSHA07_미장공사 안전보건작업 지침_7",
+      "title": "미장공사 안전보건작업 지침 - 작업완료 후 안전조치사항",
+      "score": 88.056
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 1,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제1편(총칙) 제1절(추락에 의한 위험방지)",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "절",
+      "num": 1,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제1편(총칙) 제1절(추락에 의한 위험방지)",
+      "needsNode": true
+    }
+  ]
+}

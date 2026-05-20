@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_demolition",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_demolition",
+  "title": "struck_by × demolition",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 22건 관측. 사고유형 struck_by 작업유형 demolition.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:demolition"
+  ],
+  "caseFrequency": 22,
+  "sampleKeywords": [
+    "조적벽체 철거작업 중 조적벽체가 전도되면서 머리부분을 충돌 당하여 사망(사망1명)",
+    "움직이는 덤프트럭을 정지시키려던 중 협착",
+    "천막 철거작업 중 특고압전선(22.9kV)에 접촉ㆍ감전"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_bridge",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_bridge",
+  "title": "교량 작업계획서",
+  "description": "교량 (높이 5m 이상 또는 지간 30m 이상 금속·콘크리트) 설치·해체·변경 (별표 4 8호)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "교량 설치·해체·변경 작업 전",
+  "applicableWhen": {
+    "workType": "bridge_5m_30m",
+    "heightGte": 5,
+    "spanGte": 30
+  },
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-8호",
+    "art:기준규칙:367",
+    "art:기준규칙:369"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_작업_방법_및_순서",
+      "label": "작업 방법 및 순서",
+      "source": "산안기준규칙 제38조 + 별표 4 8호",
+      "inputGuide": "교량 가설 작업 방법 + 단계별 순서.",
+      "examples": [
+        "1) 기초 설치 / 2) 거푸집·동바리 / 3) 철근 배근 / 4) 콘크리트 타설 / 5) 양생"
+      ]
+    },
+    {
+      "key": "f_1_부재의_낙하_전도_또는",
+      "label": "부재의 낙하·전도 또는 붕괴 방지 방법",
+      "source": "산안기준규칙 제38조 + 별표 4 8호",
+      "inputGuide": "부재 낙하·전도·붕괴 방지 조치.",
+      "examples": [
+        "크레인 양중 시 두 줄 걸이 + 신호수 / 임시 지지대 + 거푸집 검사"
+      ]
+    },
+    {
+      "key": "fallSafety",
+      "label": "근로자 추락 위험 방지 안전조치",
+      "source": "산안기준규칙 제38조 + 별표 4 8호",
+      "inputGuide": "감소대책. 제거 → 대체 → 공학적 → 관리적 → 보호구 순.",
+      "examples": [
+        "1) 안전난간 설치 (공학적) / 2) 작업구역 통제 (관리적) / 3) 안전대 착용 (보호구)"
+      ]
+    },
+    {
+      "key": "f_3_가설_철구조물의_설치_",
+      "label": "가설 철구조물의 설치·사용·해체 시 안전성 검토 방법",
+      "source": "산안기준규칙 제38조 + 별표 4 8호",
+      "inputGuide": "가설 철구조물 안전성 검토 방법 (구조계산·검사).",
+      "examples": [
+        "구조기술사 구조계산 + 설치 후 정밀 검사 + 사용 중 일일 점검"
+      ]
+    },
+    {
+      "key": "f_4_사용하는_기계등의_종류",
+      "label": "사용하는 기계등의 종류 및 성능",
+      "source": "산안기준규칙 제38조 + 별표 4 8호",
+      "inputGuide": "사용 기계 + 성능 (정격하중·인양능력).",
+      "examples": [
+        "타워크레인 TC-7030 (정격 6톤) + 이동식크레인 200톤 + 콘크리트펌프카 60m"
+      ]
+    },
+    {
+      "key": "supervisor",
+      "label": "작업지휘자 배치계획",
+      "source": "산안기준규칙 제38조 + 별표 4 8호",
+      "inputGuide": "감리 회사명 + 책임감리원 성명 + 자격번호.",
+      "examples": [
+        "(주)도화엔지니어링 / 김감리 (건축사 1234호)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "작업계획 6항목 작성",
+      "severity": "manual_review",
+      "legalBasis": "annex:기준규칙:별표4-8호"
+    },
+    {
+      "rule": "근로자 통지 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 교량 작업계획서 (별표 4 8호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 8호",
+      "fields": [
+        {
+          "key": "bridgeInfo",
+          "label": "교량 제원",
+          "required": true,
+          "inputGuide": "경간·교각·교폭.",
+          "examples": [
+            "경간 30m × 5경간, 교각 8m, 교폭 20m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "constructionMethod",
+          "label": "가설 공법",
+          "required": true,
+          "inputGuide": "FCM·MSS·ILM·가설벤트.",
+          "examples": [
+            "MSS 공법 (이동식 동바리)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "falseworkPlan",
+          "label": "가설 동바리·서포트",
+          "required": true,
+          "inputGuide": "동바리·강관파이프·서포트.",
+          "examples": [
+            "MSS 동바리 + 강관파이프 보강"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyMeasures",
+          "label": "안전 시설",
+          "required": true,
+          "inputGuide": "안전난간·추락방호망·낙하방지망.",
+          "examples": [
+            "안전난간 H1.0m + 추락방호망 + 낙하방지망 (하부 도로)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trafficControl",
+          "label": "하부 교통 통제",
+          "required": true,
+          "inputGuide": "공도·하천 등.",
+          "examples": [
+            "하부 공도 4차선, 야간 차량 통제 + 안내표지"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [
+    "doc:kosha_guide/A-G-1-2025",
+    "doc:kosha_guide/C-11-2012",
+    "doc:kosha_guide/C-21-2011",
+    "doc:kosha_guide/C-22-2011",
+    "doc:kosha_guide/C-25-2018",
+    "doc:kosha_guide/C-36-2011",
+    "doc:kosha_guide/C-41-2011",
+    "doc:kosha_guide/C-73-2012",
+    "doc:kosha_guide/C-83-2013",
+    "doc:kosha_guide/C-84-2013",
+    "doc:kosha_guide/C-94-2013",
+    "doc:kosha_guide/C-96-2014",
+    "doc:kosha_guide/D-C-14-2026",
+    "doc:kosha_guide/D-C-2-2025"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:38",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "교량",
+      "가설",
+      "추락"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:drowning",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [
+    "activity:bridge_5m_30m"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:eng_fall_net",
+    "control:ppe_fall_arrester"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_permit_high_altitude",
+    "doc:daily/fall_prevention_net_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

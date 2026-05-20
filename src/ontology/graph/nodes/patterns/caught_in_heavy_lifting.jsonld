@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/caught_in_heavy_lifting",
+  "@type": [
+    "Event"
+  ],
+  "slug": "caught_in_heavy_lifting",
+  "title": "caught_in × heavy_lifting",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 7건 관측. 사고유형 caught_in 작업유형 heavy_lifting.",
+  "koshaAccidentType": "caught_in",
+  "hasHazard": [
+    "hazard:machine_entanglement",
+    "hazard:crushing"
+  ],
+  "causedBy": [
+    "activity:heavy_lifting"
+  ],
+  "caseFrequency": 7,
+  "sampleKeywords": [
+    "테트라포트 인양작업 중 끼임",
+    "트럭크레인 선회부가 파단되면서 붐대에 협착",
+    "덕트 보온작업 중 천정크레인에 협착"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

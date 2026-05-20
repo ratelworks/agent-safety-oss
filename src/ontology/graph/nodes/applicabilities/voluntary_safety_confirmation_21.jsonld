@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:voluntary_safety_confirmation_21",
+  "@type": "Applicability",
+  "label": "자율안전확인 대상 21종 (산안법 §89)",
+  "condition": {
+    "any": [
+      { "var": "machineType", "op": "in", "value": [
+        "동력식 수동대패", "연삭기", "혼합기", "파쇄기", "분쇄기",
+        "식품가공기계", "컨베이어", "산업용로봇", "자동차정비용 리프트",
+        "공작기계", "고정식 목재가공기", "인쇄기", "기압조절실",
+        "용접기", "절단기", "포장기계"
+      ]},
+      { "var": "requiresVoluntarySafetyConfirmation", "op": "==", "value": true }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:89",
+    "art:산안법시행령:77"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "신고 누락 시 산안법 §170 과태료",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "고용노동부 + 한국산업안전보건공단",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건법",
+    "fetchedAt": "2026-04-28",
+    "updatedAt": "2026-05-20",
+    "items": [
+      "동력식 수동대패", "연삭기", "혼합기", "파쇄기·분쇄기", "식품가공기계",
+      "컨베이어", "산업용로봇", "자동차정비용 리프트", "공작기계",
+      "고정식 목재가공기", "인쇄기", "기압조절실", "용접기", "절단기",
+      "포장기계", "기타 안전인증대상이 아닌 위험기계기구"
+    ],
+    "itemCount": 16,
+    "note": "v1.3.x condition + legalWeight 보강"
+  },
+  "description": "안전인증대상 외 유해·위험 기계기구. 제조·수입자가 신고. KCs(s) 마크."
+}

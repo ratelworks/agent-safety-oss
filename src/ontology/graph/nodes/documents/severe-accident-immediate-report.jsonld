@@ -1,0 +1,413 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/severe_accident_immediate_report",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "severe_accident_immediate_report",
+  "title": "중대재해 즉시보고",
+  "description": "중대재해(사망 1명 이상 / 3개월 이상 부상 2명 이상 / 직업성질병 1년 내 3명 이상) 발생 시 지방고용노동청에 지체 없이 전화·팩스·전자우편으로 즉시보고. 산안법 제54조 + 중처법 제4조·제5조.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "중대재해 발생 즉시 (지체 없이)",
+  "legalBasis": [
+    "art:산안법:54",
+    "art:산안법시행규칙:67",
+    "art:중처법:4",
+    "art:중처법:5",
+    "art:중처법:6"
+  ],
+  "officialFormSpec": {
+    "formId": "moel_severe_accident_report",
+    "officialName": "고용노동부 중대재해 발생보고 표준 양식 (산안법 제54조 + 시행규칙 제67조)",
+    "formMatchType": "고용노동부 표준 양식 (양식 자율 + 의무 항목 8개)",
+    "license": "공공누리 - 출처 고용노동부"
+  },
+  "sections": [
+    {
+      "title": "1. 보고 정보 (즉시보고 메타)",
+      "legalSource": "산안법 제54조 + 시행규칙 제67조 ① (지체 없이)",
+      "fields": [
+        {
+          "key": "reportNumber",
+          "label": "보고서 번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호. 'SAR-YYYYMMDD-NN'.",
+          "examples": [
+            "SAR-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reportTime",
+          "label": "보고 일시 (전화·팩스 기준)",
+          "required": true,
+          "inputGuide": "재해 발생 인지 후 지체 없이 보고 (1차: 전화). 산안법 제54조 의무.",
+          "examples": [
+            "2026-04-29 15:32 (재해 발생 15:00 → 32분 후 1차 전화 보고)"
+          ],
+          "checkPoints": [
+            "지체 없이 보고 의무 (사실상 1시간 내)"
+          ]
+        },
+        {
+          "key": "reportMethod",
+          "label": "보고 방법",
+          "required": true,
+          "inputGuide": "전화 (1차) + 팩스/이메일 (2차 서면) + 119 (인명구조). 시행규칙 제67조 ②.",
+          "examples": [
+            "1차 전화 02-1234-5678 (강남고용노동지청), 2차 팩스 02-1234-5679 + 이메일 gangnam@moel.go.kr"
+          ],
+          "checkPoints": [
+            "전화 + 서면 모두 필요"
+          ]
+        },
+        {
+          "key": "reportTo",
+          "label": "보고처 (관할 지방고용노동청)",
+          "required": true,
+          "inputGuide": "사업장 관할 지방고용노동청 또는 지청.",
+          "examples": [
+            "서울지방고용노동청 강남지청 (02-1234-5678)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 사업장 / 재해자 정보",
+      "legalSource": "시행규칙 제67조 ① 1·2호",
+      "fields": [
+        {
+          "key": "siteName",
+          "label": "사업장명 / 현장명",
+          "required": true,
+          "inputGuide": "재해 발생 사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 ○○공동주택 신축공사 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "businessNumber",
+          "label": "사업자등록번호",
+          "required": true,
+          "inputGuide": "10자리 사업자등록번호.",
+          "examples": [
+            "123-45-67890"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteAddress",
+          "label": "사업장 소재지",
+          "required": true,
+          "inputGuide": "재해 발생 위치 (도로명 주소 + 동·층·작업장).",
+          "examples": [
+            "서울특별시 강남구 삼성동 100-1 / A동 6층 외벽"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principalName",
+          "label": "사업주 성명·연락처",
+          "required": true,
+          "inputGuide": "사업주 또는 안전보건관리책임자(현장소장) 성명·연락처.",
+          "examples": [
+            "황룡 (현장소장, 010-1234-5678)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "victimList",
+          "label": "재해자 정보 (배열)",
+          "required": true,
+          "inputGuide": "재해자별 [성명·생년월일·국적·소속·직종·고용형태·재해유형·상해정도·치료병원] 9개 필드.",
+          "examples": [
+            [
+              {
+                "name": "박작업",
+                "birthDate": "1985-06-15",
+                "nationality": "한국",
+                "employer": "우송건설(주)",
+                "occupation": "도장공",
+                "employmentType": "일용",
+                "accidentType": "추락 (높이 18m)",
+                "injurySeverity": "사망",
+                "hospital": "강남세브란스병원 (사망 진단 15:25)"
+              }
+            ]
+          ],
+          "checkPoints": [
+            "사망 1명 이상 = 중대재해",
+            "3개월 이상 부상 2명 이상 = 중대재해",
+            "직업성질병 1년 3명 이상 = 중대재해"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. 재해 발생 상황",
+      "legalSource": "시행규칙 제67조 ① 3·4호",
+      "fields": [
+        {
+          "key": "accidentDateTime",
+          "label": "재해 발생 일시",
+          "required": true,
+          "inputGuide": "정확한 일시 (분 단위).",
+          "examples": [
+            "2026-04-29 15:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "accidentLocation",
+          "label": "재해 발생 장소",
+          "required": true,
+          "inputGuide": "동·층·작업위치.",
+          "examples": [
+            "A동 6층 외벽 (지상 18m 시스템비계 위)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "accidentSummary",
+          "label": "재해 발생 경위 (요약)",
+          "required": true,
+          "inputGuide": "1) 재해 직전 작업 / 2) 재해 발생 동작 / 3) 재해 결과 시간순 3문장.",
+          "examples": [
+            "A동 6층 외벽 도장 작업 중 (15:00) → 안전대 후크 미부착 상태에서 비계 단부 이동 중 추락 (15:00) → 1층 지면 충돌, 119 신고 후 응급실 이송 중 사망 (15:25)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "accidentType",
+          "label": "재해 유형 (KOSHA 24종 코드)",
+          "required": true,
+          "inputGuide": "KOSHA 표준 24종 (추락·낙하·전도·충돌 등).",
+          "examples": [
+            "추락 (Code 01)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "rootCause",
+          "label": "재해 원인 (추정)",
+          "required": true,
+          "inputGuide": "1차 추정 원인 4분류 (인적·설비·작업환경·관리적). 정밀 분석은 산재조사표.",
+          "examples": [
+            "인적: 안전대 후크 미부착 / 관리적: 100% Tie-off 교육 미흡"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 즉시 조치",
+      "legalSource": "산안법 제54조 ② + 중처법 제4조 (안전보건 확보 의무)",
+      "fields": [
+        {
+          "key": "emergencyResponse",
+          "label": "응급조치 내역",
+          "required": true,
+          "inputGuide": "사고 발생 즉시 119 신고·인명구조·작업중지·관계기관 통보.",
+          "examples": [
+            "1) 119 신고 15:00 / 2) 사고지점 작업중지 + 출입통제 15:01 / 3) 회사 안전팀 통보 15:05 / 4) 1차 전화 보고 강남지청 15:32"
+          ],
+          "checkPoints": [
+            "응급조치 시간순 기록"
+          ]
+        },
+        {
+          "key": "workSuspension",
+          "label": "작업 중지 명령 / 범위",
+          "required": true,
+          "inputGuide": "사업주 자체 작업중지 + 사고 인접 작업 중지. 산안법 제54조 ②.",
+          "examples": [
+            "사고지점(A동 6층 외벽) + 인접 작업(A동 5~7층) 즉시 작업중지, 사고원인 규명·재발방지 대책 수립 후 재개"
+          ],
+          "checkPoints": [
+            "관할 지청 작업중지 명령 가능"
+          ]
+        },
+        {
+          "key": "preservationOfScene",
+          "label": "현장 보존 (조사관 도착 시까지)",
+          "required": true,
+          "inputGuide": "사고 현장 그대로 보존. 사진·영상 촬영 후 출입통제. 산안법 제54조 ③.",
+          "examples": [
+            "[√] 사진 촬영 + 영상 + 출입통제 펜스 + 안전관리자 1명 상주, 조사관 도착 16:30 인계"
+          ],
+          "checkPoints": [
+            "원형 변경 금지"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. 첨부 / 후속 보고",
+      "legalSource": "시행규칙 제67조 + 산재조사표 제73조",
+      "fields": [
+        {
+          "key": "attachments",
+          "label": "첨부 자료 (사진·영상·도면)",
+          "required": true,
+          "inputGuide": "현장 사진 + 사고 동선 도면 + CCTV.",
+          "examples": [
+            "1) 현장 사진 5매 (사고지점·비계·바닥), 2) 사고 동선 도면, 3) CCTV 영상 (15:00~15:10 10분)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "subsequentReport",
+          "label": "후속 보고 일정 (산재조사표)",
+          "required": true,
+          "inputGuide": "1개월 이내 산업재해조사표(별지 제30호) 제출. 시행규칙 제73조.",
+          "examples": [
+            "2026-05-15 산업재해조사표 제출 예정 (현 1차 즉시보고만)"
+          ],
+          "checkPoints": [
+            "1개월 내 산재조사표 별도 제출"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "6. 결재",
+      "legalSource": "산안법 제54조 (사업주 보고 의무)",
+      "fields": [
+        {
+          "key": "reporterSign",
+          "label": "보고자 (안전관리자) 서명",
+          "required": true,
+          "inputGuide": "보고자 성명·서명·연락처.",
+          "examples": [
+            "김안전 (안전관리자, 010-9876-5432, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principalSign",
+          "label": "사업주 / 안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "사업주 또는 현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "보고자 (안전관리자)",
+      "action": "1차 전화 보고 + 서면 작성"
+    },
+    {
+      "role": "관리감독자",
+      "action": "현장 보존·조사 협조"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 서명 + 관할 지청 보고"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "재해 발생 후 지체 없이 1차 전화 보고",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:54",
+      "checkFields": [
+        "reportTime",
+        "reportMethod"
+      ]
+    },
+    {
+      "rule": "재해자 정보 (성명·재해유형·상해정도) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:67",
+      "checkFields": [
+        "victimList"
+      ]
+    },
+    {
+      "rule": "재해 발생 경위 + 즉시 조치 (응급·작업중지·현장보존)",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:54",
+      "checkFields": [
+        "accidentSummary",
+        "emergencyResponse",
+        "workSuspension",
+        "preservationOfScene"
+      ]
+    },
+    {
+      "rule": "관할 지방고용노동청 보고 + 후속 산재조사표 일정",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:67",
+      "checkFields": [
+        "reportTo",
+        "subsequentReport"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:54",
+      "checkFields": [
+        "reporterSign",
+        "principalSign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": ["penalty:산안법:175", "penalty:중처법:6"],
+  "penaltyNote": "사업주 형사처벌 1년 이상 또는 10억 이하 벌금 가능",
+  "retention": "5년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:54",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "중대재해",
+      "사망",
+      "산재",
+      "즉시보고"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "report",
+    "licenseHint": "공공누리 - 출처 고용노동부 + 법제처",
+    "alignedAt": "2026-04-29",
+    "alignSource": "산안법 제54조 + 시행규칙 제67조 + 중처법 제4조·제5조 표준 양식 매핑"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "중대재해 발생 시 모든 사업장 의무. 50억 미만 + 5인 이상 사업장 + 1인 미만 사업장도 동일 의무. 중처법은 50억 이상·50인 이상 사업장 + 건설공사 50억 이상 도급에 추가 적용."
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:caught_in",
+    "hazard:electrocution",
+    "hazard:asphyxiation",
+    "hazard:fire_explosion"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [
+    "entity:moel",
+    "src:fire:119"
+  ],
+  "iso45001Class": "iso45001:Incident",
+  "mitigatedBy": [
+    "control:admin_emergency_plan"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/industrial_accident_report",
+    "doc:semi_annual/severe_accident_compliance",
+    "doc:ad_hoc/work_stop_order_report"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

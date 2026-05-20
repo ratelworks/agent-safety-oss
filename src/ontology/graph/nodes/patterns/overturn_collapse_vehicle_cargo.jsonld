@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/overturn_collapse_vehicle_cargo",
+  "@type": [
+    "Event"
+  ],
+  "slug": "overturn_collapse_vehicle_cargo",
+  "title": "overturn_collapse × vehicle_cargo",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 3건 관측. 사고유형 overturn_collapse 작업유형 vehicle_cargo.",
+  "koshaAccidentType": "overturn_collapse",
+  "hasHazard": [
+    "hazard:struck_by_overturn"
+  ],
+  "causedBy": [
+    "activity:vehicle_cargo"
+  ],
+  "caseFrequency": 3,
+  "sampleKeywords": [
+    "핸드팔레트로 자재운반중 전도",
+    "지하철 개착정거장 가설재 설치중, 용접공이 인양물에 깔려 사망",
+    "쓰레기 운반용 구내운반차량의 전복"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

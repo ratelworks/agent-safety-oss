@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "equipment:welding_cutting_apparatus",
+  "@type": "Equipment",
+  "slug": "welding_cutting_apparatus",
+  "name": "용접·용단·접합기구",
+  "label": "용접·용단·접합기구",
+  "category": "safety_certified",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건법/제80조",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "산안법 제80조 안전인증 대상 13종 (시행령 별표). 안전인증 받지 않으면 제169조 (3년/3천만)"
+  },
+  "description": "가스용접기·산소용단기 등 화염·고압가스 사용 기구.",
+  "hasHazard": [
+    "hazard:fire_explosion",
+    "hazard:fire",
+    "hazard:thermal_burn",
+    "hazard:gas_leak"
+  ],
+  "regulatedBy": [
+    "art:산안법:80",
+    "art:산안법:84"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-C-91-2026"
+  ],
+  "alternativeNames": [
+    "용접·용단 기구",
+    "가스용접기",
+    "산소용단기"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr02/20"
+  ]
+}

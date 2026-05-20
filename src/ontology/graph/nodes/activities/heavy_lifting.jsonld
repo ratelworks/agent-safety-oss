@@ -1,0 +1,112 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:heavy_lifting",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "중량물 취급작업",
+  "category": "lifting",
+  "annexReference": "annex:기준규칙:별표4-11호",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/별표4",
+    "fetchedAt": "2026-04-26",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "건설 안전 도메인 매트릭스 기반 hasHazard/regulatedBy 일괄 채움. 작업 활동(work activity) 만 채움.",
+    "graphAugmentedAt": "2026-04-28",
+    "graphAugmentationNote": "일반 hazard 보강 — trip_slip/heat/cold/ergonomic/msd 추가 (모든 작업에 해당하는 일반 위험요인)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "causedBy": [
+    "hazard:struck_by",
+    "hazard:crushing"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/G-91-2012",
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/M-90-2011",
+    "doc:kosha_guide/G-133-2020",
+    "doc:kosha_guide/G-134-2023",
+    "doc:kosha_guide/A-G-13-2026"
+  ],
+  "hasHazard": [
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:fall_from_height",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:산안법:38",
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-11호",
+    "art:기준규칙:385"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr02/10",
+    "facet:ctgr02/13",
+    "facet:ctgr02/14"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_object",
+      "hazard:struck_by",
+      "hazard:struck_by_overturn",
+      "hazard:crushing",
+      "hazard:machine_entanglement",
+      "hazard:fall_from_height"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/heavy_lifting",
+  "workTypeLabel": {
+    "ko": "중량물 취급 작업",
+    "en": "Heavy object handling work"
+  }
+}

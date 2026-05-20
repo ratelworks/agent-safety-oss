@@ -1,0 +1,206 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-133-2020",
+  "@type": "Document",
+  "docId": "kosha_guide_g-133-2020",
+  "title": "와이어로프 슬링 사용 점검 등에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-133-2020",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"와이어로프\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 2,
+      "3": 0,
+      "4": 11,
+      "5": 13,
+      "6": 24,
+      "7": 108,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "와이어로프",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_그로맷(Grommet) 및 케이블레이드 슬링(Cable-laid sling)에 관한 기술지침_2",
+      "title": "그로맷(Grommet) 및 케이블레이드 슬링(Cable-laid sling)에 관한 기술지침 - 적용범위",
+      "score": 90.855
+    },
+    {
+      "docId": "KOSHA07_크레인 달기기구 및 줄걸이 작업용 와이어로프의 사용에 관한 기술지침_1",
+      "title": "크레인 달기기구 및 줄걸이 작업용 와이어로프의 사용에 관한 기술지침 - 목 적",
+      "score": 89.749
+    },
+    {
+      "docId": "KOSHA07_와이어로프 슬링 사용·점검 등에 관한 기술지침_4",
+      "title": "와이어로프 슬링 사용·점검 등에 관한 기술지침 - 와이어로프 슬링의 종류",
+      "score": 76.823
+    },
+    {
+      "docId": "KOSHA07_와이어로프 슬링 사용·점검 등에 관한 기술지침_3",
+      "title": "와이어로프 슬링 사용·점검 등에 관한 기술지침 - 용어의 정의",
+      "score": 75.653
+    },
+    {
+      "docId": "KOSHA07_와이어로프 슬링 사용·점검 등에 관한 기술지침_7",
+      "title": "와이어로프 슬링 사용·점검 등에 관한 기술지침 - 와이어로프 슬링의 점검 및 폐기기준",
+      "score": 75.561
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:38",
+      "law": "산안법",
+      "articleNumber": "38",
+      "title": "안전조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제38조 (안전조치)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide G-133-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:55",
+      "law": "기준규칙",
+      "articleNumber": "55",
+      "title": "작업발판의 최대적재하중",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제55조 (작업발판의 최대적재하중)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide G-133-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:58",
+      "law": "기준규칙",
+      "articleNumber": "58",
+      "title": "비계의 점검 및 보수",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제58조 (비계의 점검 및 보수)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide G-133-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:63",
+      "law": "기준규칙",
+      "articleNumber": "63",
+      "title": "달비계의 구조",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제63조 (달비계의 구조)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide G-133-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 25] 자율안전검사기관의 인력ㆍ시설 및 장비 기준(제81조 관련)",
+      "title": "[별표 25] 자율안전검사기관의 인력ㆍ시설 및 장비 기준(제81조 관련)",
+      "category": "2",
+      "score": 17.745
+    },
+    {
+      "docId": "KOSHA02_[별표 12] 직무교육기관의 인력ㆍ시설 및 장비 기준(제40조제3항제2호 관련)",
+      "title": "[별표 12] 직무교육기관의 인력ㆍ시설 및 장비 기준(제40조제3항제2호 관련)",
+      "category": "2",
+      "score": 15.223
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000163000",
+      "title": "제163조 와이어로프 등 달기구의 안전계수",
+      "category": "4",
+      "score": 72.472
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000164000",
+      "title": "제164조 고리걸이 훅 등의 안전계수",
+      "category": "4",
+      "score": 42.978
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000137000",
+      "title": "제137조 해지장치의 사용",
+      "category": "4",
+      "score": 36.173
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:1장",
+      "law": "기준규칙",
+      "chapterTitle": "관리대상 유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제1장 제9절 제7관(양중기의 와이어로프 등)"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 2,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제1장 제9절 제7관(양중기의 와이어로프 등)",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "절",
+      "num": 9,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제2편 제1장 제9절 제7관(양중기의 와이어로프 등)",
+      "needsNode": true
+    }
+  ]
+}

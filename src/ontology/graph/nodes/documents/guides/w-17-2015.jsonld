@@ -1,0 +1,113 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/W-17-2015",
+  "@type": "Document",
+  "docId": "kosha_guide_w-17-2015",
+  "title": "한랭작업환경 관리 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "W-17-2015",
+    "guideCategory": "thermal",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"한랭작업환경\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 1,
+      "7": 5,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "한랭작업환경",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:admin_health_check",
+    "control:admin_supervisor",
+    "control:admin_safety_education"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_고령근로자 작업에 관한 안전지침 _5",
+      "title": "고령근로자 작업에 관한 안전지침  - 사업주의 의무",
+      "score": 28.884
+    },
+    {
+      "docId": "KOSHA07_한랭작업환경 관리 지침_1",
+      "title": "한랭작업환경 관리 지침 - 목적",
+      "score": 24.732
+    },
+    {
+      "docId": "KOSHA07_한랭작업환경 관리 지침_3",
+      "title": "한랭작업환경 관리 지침 - 정의",
+      "score": 24.732
+    },
+    {
+      "docId": "KOSHA07_한랭작업환경 관리 지침_6",
+      "title": "한랭작업환경 관리 지침 - 기록보존",
+      "score": 23.621
+    },
+    {
+      "docId": "KOSHA07_한랭작업환경 관리 지침_2",
+      "title": "한랭작업환경 관리 지침 - 적용범위",
+      "score": 23.621
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:24",
+      "law": "산안법",
+      "articleNumber": "24",
+      "title": "산업안전보건위원회",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제24조 (보건조치)",
+      "citedAsOf": "2015",
+      "temporalNote": "KOSHA Guide W-17-2015 본문 직접 인용 (2015년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:24",
+      "law": "산안법",
+      "articleNumber": "24",
+      "title": "산업안전보건위원회",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제24조 (보건조치)",
+      "citedAsOf": "2015",
+      "temporalNote": "KOSHA Guide W-17-2015 본문 직접 인용 (2015년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:6장",
+      "law": "기준규칙",
+      "chapterTitle": "온도ㆍ습도에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제6장 (온도․습도에 의한 건강장해의 예방)"
+    }
+  ]
+}

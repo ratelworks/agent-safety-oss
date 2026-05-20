@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_fall_arrester",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_fall_arrester",
+  "label": "안전난간·죔줄",
+  "description": "고소작업에서 죔줄과 추락방지대를 사용해 작업자 추락 거리를 제한하는 개인보호구 통제.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:facade_work",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:formwork_shoring",
+    "activity:precast_installation",
+    "activity:rc_concrete",
+    "activity:roofing",
+    "activity:scaffolding_assembly",
+    "activity:steel_erection",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "죔줄"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

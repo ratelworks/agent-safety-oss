@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/update_issue_status",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "SafetyIssue 상태를 open/in_progress/resolved/verified 중 하나로 갱신하",
+      "@language": "ko"
+    },
+    {
+      "@value": "Update Issue Status",
+      "@language": "en"
+    }
+  ],
+  "description": "SafetyIssue 상태를 open/in_progress/resolved/verified 중 하나로 갱신하고 note 를 상태 이력에 남긴다. 연결된 CorrectiveAction 상태도 함께 맞춘다.",
+  "toolName": "update_issue_status",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/update_issue_status",
+  "maps_to_action": "safety:action/update_issue_status",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-11-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_c-11-2012",
+  "title": "가설계단 설치 및 사용 안전보건작업 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-11-2012",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"가설계단\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 1,
+      "7": 6,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "가설계단",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:crushing",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:eng_loto"
+  ],
+  "appliesToActivities": [
+    "activity:scaffolding_assembly"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_가설계단의 설치 및 사용 안전보건작업 지침_7",
+      "title": "가설계단의 설치 및 사용 안전보건작업 지침 - 기성품 가설계단의 응용",
+      "score": 60.96
+    },
+    {
+      "docId": "KOSHA07_흙막이공사(엄지말뚝 공법) 안전보건작업 지침_6",
+      "title": "흙막이공사(엄지말뚝 공법) 안전보건작업 지침 - 굴착작업 시 안전조치 사항",
+      "score": 48.459
+    },
+    {
+      "docId": "KOSHA07_흙막이공사(엄지말뚝 공법) 안전보건작업 지침_4",
+      "title": "흙막이공사(엄지말뚝 공법) 안전보건작업 지침 - 흙막이공사 전 안전조치 사항",
+      "score": 36.22
+    },
+    {
+      "docId": "KOSHA07_시스템 비계 안전작업 지침_4",
+      "title": "시스템 비계 안전작업 지침 - 시스템비계 설치?해체 안전작업 절차",
+      "score": 36.152
+    },
+    {
+      "docId": "KOSHA07_가설계단의 설치 및 사용 안전보건작업 지침_8",
+      "title": "가설계단의 설치 및 사용 안전보건작업 지침 - 가설계단 설치작업 중 안전 준수사항",
+      "score": 29.208
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:21",
+      "law": "기준규칙",
+      "articleNumber": "21",
+      "title": "통로의 조명",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:22",
+      "law": "기준규칙",
+      "articleNumber": "22",
+      "title": "통로의 설치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:23",
+      "law": "기준규칙",
+      "articleNumber": "23",
+      "title": "가설통로의 구조",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:24",
+      "law": "기준규칙",
+      "articleNumber": "24",
+      "title": "사다리식 통로 등의 구조",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:25",
+      "law": "기준규칙",
+      "articleNumber": "25",
+      "title": "갱내통로 등의 위험 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:26",
+      "law": "기준규칙",
+      "articleNumber": "26",
+      "title": "계단의 강도",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:27",
+      "law": "기준규칙",
+      "articleNumber": "27",
+      "title": "계단의 폭",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:28",
+      "law": "기준규칙",
+      "articleNumber": "28",
+      "title": "계단참의 설치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:29",
+      "law": "기준규칙",
+      "articleNumber": "29",
+      "title": "천장의 높이",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:30",
+      "law": "기준규칙",
+      "articleNumber": "30",
+      "title": "계단의 난간",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:21",
+      "law": "기준규칙",
+      "articleNumber": "21",
+      "title": "통로의 조명",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:22",
+      "law": "기준규칙",
+      "articleNumber": "22",
+      "title": "통로의 설치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:23",
+      "law": "기준규칙",
+      "articleNumber": "23",
+      "title": "가설통로의 구조",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:24",
+      "law": "기준규칙",
+      "articleNumber": "24",
+      "title": "사다리식 통로 등의 구조",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:25",
+      "law": "기준규칙",
+      "articleNumber": "25",
+      "title": "갱내통로 등의 위험 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:26",
+      "law": "기준규칙",
+      "articleNumber": "26",
+      "title": "계단의 강도",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:27",
+      "law": "기준규칙",
+      "articleNumber": "27",
+      "title": "계단의 폭",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:28",
+      "law": "기준규칙",
+      "articleNumber": "28",
+      "title": "계단참의 설치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:29",
+      "law": "기준규칙",
+      "articleNumber": "29",
+      "title": "천장의 높이",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:30",
+      "law": "기준규칙",
+      "articleNumber": "30",
+      "title": "계단의 난간",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-11-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:3장",
+      "law": "기준규칙",
+      "chapterTitle": "금지유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 1,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제21∼30조(제1편 총칙 제3장 통로)",
+      "needsNode": true
+    }
+  ]
+}

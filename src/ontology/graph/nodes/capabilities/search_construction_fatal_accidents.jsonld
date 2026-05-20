@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/search_construction_fatal_accidents",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "건설업 중대재해 검색 (15133935)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Search Construction Fatal Accidents",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 재해사례와 사고사망 데이터를 검색하고 사고 첨부 자료를 조회하는 capability. KOSHA **건설업 일별 중대재해 현황**(15133935, /constDsstr01) — **건설업 한정 건별 실제 기록**. 공개 범위 2017~2021 고정 (실시간 갱신 아님). **구분:** 전 업종(건설 포함) 최신 기록은 search_all_fatal_accidents, 구조화된 원인-대책 패턴은 search_sif_archive. 응답 필드: 작업공종(wrkTypNm), 기인물(cauObjNm), 재해종류(acdntTypNm), 재해개요(acdntCtnt), 위험성 감소대책(rskRdctPln).",
+  "toolName": "search_construction_fatal_accidents",
+  "category": "accident_search",
+  "inputSchema": "safety:schema/input/search_construction_fatal_accidents",
+  "producesEntity": [
+    "safety:FatalAccidentCase"
+  ],
+  "maps_to_action": "safety:action/search_construction_fatal_accidents",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

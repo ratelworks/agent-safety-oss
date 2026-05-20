@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_photos_by_task",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "activityId 기준으로 관련 PhotoEvidence 목록을 조회한다",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Photos By Task",
+      "@language": "en"
+    }
+  ],
+  "description": "activityId 기준으로 관련 PhotoEvidence 목록을 조회한다. 작업 활동에서 사진 증빙과 안전 이슈로 이어지는 현장 사슬 확인에 사용한다.",
+  "toolName": "list_photos_by_task",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/list_photos_by_task",
+  "maps_to_action": "safety:action/list_photos_by_task",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

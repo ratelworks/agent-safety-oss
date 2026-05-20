@@ -1,0 +1,167 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: typecheck · build · smoke
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ["20.19.0", "22.x"]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: npm audit (high 이상 회귀 차단)
+        run: npm audit --audit-level=high
+
+      - name: TypeScript strict check (src — build 의존 없음)
+        run: npm run typecheck:src
+
+      - name: Build (tsc + taxonomy copy)
+        run: npm run build
+
+      - name: TypeScript strict check (scripts — build 산출물 import 가능)
+        run: npm run typecheck:scripts
+
+      - name: Graph integrity — IRI 형식 / 도메인 외 참조 / JSON-LD expand
+        run: |
+          # 형식 위반 / 도메인 외 / expand 에러는 strict (회귀 차단)
+          # dangling / orphan 은 누락 노드 보강 진행 중 — non-strict 로 보고만
+          out=$(npm run verify-graph --silent 2>&1)
+          echo "$out"
+          fmt=$(echo "$out" | grep -E "IRI 형식 위반:" | grep -oE "[0-9]+" | head -1)
+          ood=$(echo "$out" | grep -E "도메인 외 참조:" | grep -oE "[0-9]+" | head -1)
+          exp=$(echo "$out" | grep -E "JSON-LD expand 에러:" | grep -oE "[0-9]+" | head -1)
+          if [ "$fmt" != "0" ] || [ "$ood" != "0" ] || [ "$exp" != "0" ]; then
+            echo "::error::Graph integrity regression — format=$fmt out-of-domain=$ood expand-error=$exp"
+            exit 1
+          fi
+          echo "Graph integrity (strict gates): OK ✅"
+
+      - name: SHACL shapes — declarative 룰 검증 (회귀 차단)
+        run: npm run validate-shapes:strict
+
+      - name: Ontology audit — 그래프 건강성 (dangling / 19종 추론 / DAG / 매트릭스 밀도)
+        run: |
+          # 임계값:
+          #   · dangling > 1.5%
+          #   · 19종 추론 < 80%
+          #   · DAG cycle > 0
+          #   · Hazard↔Control 매트릭스 밀도 < 10%
+          # 임계값 위반 시 fail. critical article 누락은 별도 게이트(--critical) 로 분리.
+          npm run audit:strict
+
+      - name: Smoke — list tools (JSON)
+        run: |
+          count=$(node build/cli.js tools --json 2>/dev/null | node -e "
+            let s = '';
+            process.stdin.on('data', d => s += d);
+            process.stdin.on('end', () => {
+              const t = JSON.parse(s);
+              console.log(t.length);
+            });
+          ")
+          # SSoT: tool-registry.ts 의 TOOLS 배열 길이. 회귀 감지용 하한 게이트.
+          # v1.2.1+ 실측 88 (KOSHA Live get_kosha_guide_content/search_kosha_guides 2개를
+          # get_kosha_guide_md 1개로 통합). 도구 추가 시 PASS, 의도치 않은 감소만 차단.
+          if [ "$count" -lt "88" ]; then
+            echo "::error::Expected at least 88 tools, got $count"
+            exit 1
+          fi
+          echo "Tool count: $count ✅"
+
+      - name: SSoT drift — doc ↔ code (release version + 도구 수 + KOSHA 번들 + 메인 host)
+        run: |
+          # 매 release 시 README/SECURITY/docs 의 version 표기가 package.json 과 동기화됐는지
+          # 자동 차단. release-v badge / Package version / "현재 안정판" 모두 검증.
+          npm run check:doc-sync
+
+      - name: SSoT drift — Tool ↔ Capability (TOOLS == CAPABILITY_REGISTRY == .jsonld)
+        run: npm run verify:tool-capability
+
+      - name: SSoT drift — context.jsonld @id terms ↔ EDGE_FIELDS
+        run: npm run verify:edge-context
+
+      - name: Smoke — search_safety_laws
+        run: |
+          out=$(node build/cli.js call search_safety_laws --keyword 위험성평가 2>/dev/null)
+          if ! echo "$out" | grep -q "산안법"; then
+            echo "::error::search_safety_laws failed to return 산안법 matches"
+            echo "$out" | head -30
+            exit 1
+          fi
+          echo "search_safety_laws: OK ✅"
+
+      - name: Smoke — get_safety_law_article
+        run: |
+          out=$(node build/cli.js call get_safety_law_article --inputJson '{"ref":"산안기준규칙 §38"}' 2>/dev/null)
+          for needle in "별표 4에 따라" "해야 한다" "타워크레인" "구축물등"; do
+            if ! echo "$out" | grep -q "$needle"; then
+              echo "::error::get_safety_law_article §38 missing: $needle"
+              exit 1
+            fi
+          done
+          echo "get_safety_law_article §38 원문 drift 없음 ✅"
+
+      - name: Smoke — analyze_construction_work_risks
+        run: |
+          out=$(node build/cli.js call analyze_construction_work_risks --inputJson '{"workType":"거푸집 해체"}' 2>/dev/null)
+          if ! echo "$out" | grep -q "FORMWORK_DISMANTLE"; then
+            echo "::error::analyze failed to match 거푸집 해체"
+            exit 1
+          fi
+          echo "analyze_construction_work_risks: OK ✅"
+
+      - name: Smoke — compile_safety_references
+        run: |
+          out=$(node build/cli.js call compile_safety_references --inputJson '{"workType":"거푸집 해체","docType":"risk_assessment","limitPerSource":3}' 2>/dev/null)
+          if ! echo "$out" | grep -q "mandatory 근거"; then
+            echo "::error::compile_safety_references missing law basis section"
+            exit 1
+          fi
+          # Validator 참조가 살아남지 않았는지 확인 (P0 회귀 방지)
+          if echo "$out" | grep -q "validate_risk_assessment_draft\|validate_work_plan_draft"; then
+            echo "::error::compile_safety_references still references removed validators"
+            exit 1
+          fi
+          echo "compile_safety_references: OK ✅"
+
+      - name: Smoke — verify_safety_basis (mandatory trigger)
+        run: |
+          # v1.1.12 fix: evidence 에 reference 필드 추가 — basisType=regulation 인데
+          # reference 비어있으면 [HALLUCINATION_DETECTED] 검출 → exit 1 (의도된 보호).
+          # 본 smoke 는 정상 mandatory case 검증이므로 reference 명시. grep 패턴도
+          # status:"supported" 까지 매칭하여 "supported": 0 false-pass 방지.
+          out=$(node build/cli.js call verify_safety_basis --inputJson '{"claims":[{"claim":"산안기준규칙 §38에 따라 거푸집 해체는 작업계획서 작성이 법적 의무입니다","evidence":[{"basisType":"regulation","legalWeight":"mandatory","title":"산안기준규칙 §38","reference":"산안기준규칙 §38","source":"KOSHA"}]}]}' 2>/dev/null)
+          if ! echo "$out" | grep -q '"status": "supported"'; then
+            echo "::error::verify_safety_basis failed supported case"
+            echo "$out" | head -40
+            exit 1
+          fi
+          echo "verify_safety_basis: OK ✅"
+
+      - name: npm pack dry-run
+        run: |
+          npm pack --dry-run 2>&1 | grep -E "package size|total files"
+          # 2023-19 (폐지된 고시) 파일이 packaging 에 들어가지 않는지 확인
+          if npm pack --dry-run 2>&1 | grep -q "2023-19"; then
+            echo "::error::Stale 2023-19 notice file found in package"
+            exit 1
+          fi
+          echo "npm pack: OK ✅"

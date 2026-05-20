@@ -1,0 +1,160 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-155-2019",
+  "@type": "Document",
+  "docId": "kosha_guide_h-155-2019",
+  "title": "비파괴 작업근로자의 방사선 노출 관리지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-155-2019",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"비파괴\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 5,
+      "7": 29,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "비파괴",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:radiation_exposure",
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fire",
+    "hazard:thermal_burn",
+    "hazard:electric_shock",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_isolation_barrier",
+    "control:eng_monitoring",
+    "control:admin_health_check",
+    "control:admin_qualification",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:sub_safer_equipment",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:steel_structure"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_비파괴 작업근로자의 방사선 노출 관리지침_8",
+      "title": "비파괴 작업근로자의 방사선 노출 관리지침 - 피폭관리체제와 역할",
+      "score": 61.41
+    },
+    {
+      "docId": "KOSHA07_비파괴 작업근로자의 방사선 노출 관리지침_4",
+      "title": "비파괴 작업근로자의 방사선 노출 관리지침 - 방사선 비파괴검사",
+      "score": 56.576
+    },
+    {
+      "docId": "KOSHA07_고령화 설비의 손상평가와 수명예측에 관한 기술지침_4",
+      "title": "고령화 설비의 손상평가와 수명예측에 관한 기술지침 - 설비수명 일반",
+      "score": 46.862
+    },
+    {
+      "docId": "KOSHA07_건조염소 배관시스템에 관한 기술지침_14",
+      "title": "건조염소 배관시스템에 관한 기술지침 - 검사 및 정비",
+      "score": 45.805
+    },
+    {
+      "docId": "KOSHA07_온도계측장치의 설치에 관한 기술지침_5",
+      "title": "온도계측장치의 설치에 관한 기술지침 - 보호관",
+      "score": 40.635
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:24",
+      "law": "산안법",
+      "articleNumber": "24",
+      "title": "산업안전보건위원회",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제24조 (보건 조치)",
+      "citedAsOf": "2019",
+      "temporalNote": "KOSHA Guide H-155-2019 본문 직접 인용 (2019년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:24",
+      "law": "산안법",
+      "articleNumber": "24",
+      "title": "산업안전보건위원회",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제24조 (보건 조치)",
+      "citedAsOf": "2019",
+      "temporalNote": "KOSHA Guide H-155-2019 본문 직접 인용 (2019년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:7장",
+      "law": "기준규칙",
+      "chapterTitle": "방사선에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제7장 방사선에 의한 건강장해 예방"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 3,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제7장 방사선에 의한 건강장해 예방",
+      "needsNode": true
+    }
+  ]
+}

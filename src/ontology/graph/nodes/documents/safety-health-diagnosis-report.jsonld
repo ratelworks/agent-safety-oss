@@ -1,0 +1,294 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/safety_health_diagnosis_report",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_diagnosis_report",
+  "title": "안전보건진단 결과서",
+  "description": "산안법 제47조 고용노동부장관 명령에 따른 종합·안전·보건진단 결과보고서. 사업장 등급, 발견된 위험요인, 개선조치 사항.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "고용노동부 진단명령 후",
+  "legalBasis": [
+    "art:산안법:47",
+    "art:산안법시행규칙:55"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "고용노동부 진단명령 후. 자율 진단도 포함 가능."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "진단명령 없음 (자율 X)"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "orderDate",
+      "label": "고용노동부 명령 일자·사유",
+      "source": "산안법 제47조 + 시행규칙 제55조 (장관 명령)",
+      "inputGuide": "고용노동부장관 진단 명령 일자 + 사유 (산안법 제47조).",
+      "examples": [
+        "2026-04-15 / 사유: 사업장 재해율 상위 10% + 중대재해 발생"
+      ]
+    },
+    {
+      "key": "diagnosticAgency",
+      "label": "진단기관·자격",
+      "source": "산안법 제47조 + 시행규칙 제55조 (장관 명령)",
+      "inputGuide": "산업안전기사·산업안전산업기사·안전관리자 자격증 등.",
+      "examples": [
+        "산업안전기사 (한국산업인력공단, 2018-09 발급)"
+      ]
+    },
+    {
+      "key": "diagnosticDate",
+      "label": "진단 일자·기간",
+      "source": "산안법 제47조 + 시행규칙 제55조 (장관 명령)",
+      "inputGuide": "진단 실시 일자 + 기간.",
+      "examples": [
+        "2026-04-25 ~ 2026-04-29 (5일)"
+      ]
+    },
+    {
+      "key": "siteRating",
+      "label": "사업장 종합 등급",
+      "inputGuide": "A (양호) / B (보통) / C (미흡) / D (불량).",
+      "examples": [
+        "C (미흡)"
+      ]
+    },
+    {
+      "key": "findings",
+      "label": "발견 위험요인·결함 (분야별)",
+      "inputGuide": "감소대책 우선순위 (제거→대체→공학적→관리적→보호구) 기준으로 위험 등급 표기. 즉시 시정 / 7일 내 / 시정완료 분류.",
+      "examples": [
+        "[즉시] 안전대 미체결 작업 발견 → 작업중지 / [7일] 가설전기 분전반 접지 부재"
+      ]
+    },
+    {
+      "key": "recommendations",
+      "label": "개선조치 권고",
+      "inputGuide": "진단 결과 권고 사항 (중대·경미·권고).",
+      "examples": [
+        "중대: 추락방지시설 부적합 (1건) / 경미: 보호구 일부 미흡 (3건) / 권고: 위험성평가 강화 (2건)"
+      ]
+    },
+    {
+      "key": "improvementPlan",
+      "label": "개선 계획·기한",
+      "inputGuide": "권고 사항별 개선 계획 + 기한.",
+      "examples": [
+        "추락방지시설 5/15까지 / 보호구 5/30까지 / 위험성평가 6/30까지"
+      ]
+    },
+    {
+      "key": "reportSubmission",
+      "label": "고용노동부 제출 일자",
+      "inputGuide": "진단 결과 + 개선 계획 고용노동부 제출일.",
+      "examples": [
+        "2026-05-10"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 진단기관 등록번호 + 종류 + 기간",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:47"
+    },
+    {
+      "rule": "필수 — 발견 위험요인별 개선조치 + 이행기한",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:55"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-1-2018"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:risk_assessment_general"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건진단 결과서",
+      "legalSource": "산안법 제49조 + 시행규칙 제61조",
+      "fields": [
+        {
+          "key": "diagnosisType",
+          "label": "진단 종류",
+          "required": true,
+          "inputGuide": "종합/안전/보건진단.",
+          "examples": [
+            "종합진단 (산재 다발에 따른 명령)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "diagnosisAgency",
+          "label": "진단기관 (지정)",
+          "required": true,
+          "inputGuide": "고용노동부 지정 기관.",
+          "examples": [
+            "KOSHA 안전보건진단원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "diagnosisPeriod",
+          "label": "진단 기간",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD ~ YYYY-MM-DD.",
+          "examples": [
+            "2026-04-15 ~ 2026-04-29 (2주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "findings",
+          "label": "진단 결과 (지적 사항)",
+          "required": true,
+          "inputGuide": "위반·미흡·개선필요 사항.",
+          "examples": [
+            "[중대] 추락방지시설 부적합, [경미] 보호구 일부 미흡, [권고] 위험성평가 강화"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "improvementOrder",
+          "label": "개선 명령 사항",
+          "required": true,
+          "inputGuide": "고용노동부 시정명령.",
+          "examples": [
+            "1) 안전난간 보강 (15일내), 2) 풀하네스 안전대 전수 교체 (30일내)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:admin_risk_assessment"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/safety_health_improvement_plan",
+    "doc:annual/regular_risk_assessment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

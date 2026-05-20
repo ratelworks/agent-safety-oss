@@ -1,0 +1,125 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/M-9-2023",
+  "@type": "Document",
+  "docId": "kosha_guide_m-9-2023",
+  "title": "금속 가공용 수동 둥근톱 사용 시 안전에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "M-9-2023",
+    "guideCategory": "machine",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction_partial",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"금속\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 6,
+      "3": 6,
+      "4": 4,
+      "5": 12,
+      "6": 95,
+      "7": 337,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "금속",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:crushing",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:101",
+      "law": "기준규칙",
+      "articleNumber": "101",
+      "title": "원형톱기계의 톱날접촉예방장치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "안전보건기술지침의 개요 ◦ 작성자 : 한성대학교 최기흥 교수 ◦ 개정자 : 안전보건공단 안전연구실 안전보건공단 전문기술실 김명관 ◦ 제․개정경과 - 2009년 6월 기계안전분야 기준제정위원회 심의(제정) - 2012년 4월 기계안전분야 기준제정위원회 ",
+      "citedAsOf": "2023",
+      "temporalNote": "KOSHA Guide M-9-2023 본문 직접 인용 (2023년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_금속 절삭유 사용에 관한 기술지침_4",
+      "title": "금속 절삭유 사용에 관한 기술지침 - 금속 절삭유",
+      "score": 70.266
+    },
+    {
+      "docId": "KOSHA07_고압 금속 다이캐스팅기의 안전작업에 관한 기술지침_3",
+      "title": "고압 금속 다이캐스팅기의 안전작업에 관한 기술지침 - 용어의 정의",
+      "score": 70.175
+    },
+    {
+      "docId": "KOSHA07_스테인리스강의 아크 용접에서 발생되는 흄의 제어에 관한 기술지침_4",
+      "title": "스테인리스강의 아크 용접에서 발생되는 흄의 제어에 관한 기술지침 - 스테인리스강 용접 흄의 성분",
+      "score": 60.388
+    },
+    {
+      "docId": "KOSHA07_아크용접장치의 선정 및 사용에 관한 기술지침_3",
+      "title": "아크용접장치의 선정 및 사용에 관한 기술지침 - 정의",
+      "score": 59.848
+    },
+    {
+      "docId": "KOSHA07_금속 절삭유 사용에 관한 기술지침_2",
+      "title": "금속 절삭유 사용에 관한 기술지침 - 적용범위",
+      "score": 58.975
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000005000000000000000052000",
+      "title": "제52조 안전보건총괄책임자 지정 대상사업",
+      "category": "2",
+      "score": 30.661
+    },
+    {
+      "docId": "KOSHA02_[별표 9] 산업안전보건위원회를 구성해야 할 사업의 종류 및 사업장의 상시근로자 수(제34조 관련)",
+      "title": "[별표 9] 산업안전보건위원회를 구성해야 할 사업의 종류 및 사업장의 상시근로자 수(제34조 관련)",
+      "category": "2",
+      "score": 22.177
+    },
+    {
+      "docId": "KOSHA02_[별표 2] 안전보건관리책임자를 두어야 하는 사업의 종류 및 사업장의 상시근로자 수(제14조제1항 관련)",
+      "title": "[별표 2] 안전보건관리책임자를 두어야 하는 사업의 종류 및 사업장의 상시근로자 수(제14조제1항 관련)",
+      "category": "2",
+      "score": 21.077
+    },
+    {
+      "docId": "KOSHA02_000004000000000000000042000",
+      "title": "제42조 유해위험방지계획서 제출 대상",
+      "category": "2",
+      "score": 20.046
+    },
+    {
+      "docId": "KOSHA02_[별표 23] 안전인증기관의 인력ㆍ시설 및 장비 기준(제75조제2호 관련)",
+      "title": "[별표 23] 안전인증기관의 인력ㆍ시설 및 장비 기준(제75조제2호 관련)",
+      "category": "2",
+      "score": 15.805
+    }
+  ]
+}

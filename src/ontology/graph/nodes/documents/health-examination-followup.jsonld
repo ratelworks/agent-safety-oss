@@ -1,0 +1,320 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:annual/health_examination_followup",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "health_examination_followup",
+  "title": "건강진단 사후관리",
+  "description": "산안법 제134조 건강진단 결과에 따른 작업전환·근로시간 단축·작업환경 개선 등 사후조치 기록. 제138조 질병자 근로 금지 결정 포함.",
+  "cycle": "cyc:annual",
+  "trigger": "건강진단 결과 확인 후",
+  "legalBasis": [
+    "art:산안법:134",
+    "art:산안법:138",
+    "art:산안법시행규칙:220"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "건강진단 결과 D1·D2 판정 또는 특수질환 발견 시."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "A·C 판정 (정상)"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "f_1_관리_시작일",
+      "label": "관리 시작일",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "사후관리 개시일 (검진 결과 통보 직후).",
+      "examples": [
+        "2026-05-15"
+      ]
+    },
+    {
+      "key": "f_2_유소견자_명단__이니셜",
+      "label": "유소견자 명단 (이니셜·연령·직무)",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "이니셜·연령·직무 — 개인정보 보호.",
+      "examples": [
+        "김ㅇㅇ (M, 45세, 철근공) / 이ㅇㅇ (M, 52세, 형틀공)"
+      ]
+    },
+    {
+      "key": "f_3_판정__D_C_등_",
+      "label": "판정 (D/C 등)",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "산안 시행규칙 별표 7 판정.",
+      "examples": [
+        "D1 (직업성 진폐 의심) / C1 (요관찰)"
+      ]
+    },
+    {
+      "key": "f_4_사후조치__작업전환_근",
+      "label": "사후조치 (작업전환·근로시간 단축·치료 의뢰)",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "판정별 사후관리 조치.",
+      "examples": [
+        "D1: 분진 작업 전환 + 정밀검사 의뢰 / C1: 6개월 후 재검"
+      ]
+    },
+    {
+      "key": "f_5_이행_책임자",
+      "label": "이행 책임자",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "사후조치 이행 책임자.",
+      "examples": [
+        "이건강 (보건관리자)"
+      ]
+    },
+    {
+      "key": "f_6_이행_기한",
+      "label": "이행 기한",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "이행 완료 기한.",
+      "examples": [
+        "2026-06-15 (D1) / 2026-11-15 (C1 재검)"
+      ]
+    },
+    {
+      "key": "f_7_추적관찰_결과",
+      "label": "추적관찰 결과",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "f_8_사업주_서명",
+      "label": "사업주 서명",
+      "source": "산안법 제132조 + 시행규칙 제210조",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 판정 결과 + 산업보건의 소견 + 사후조치",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:134"
+    },
+    {
+      "rule": "필수 — D1/D2 판정 시 작업전환 또는 근로금지 결정",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:138"
+    },
+    {
+      "rule": "필수 — 5년(일반)/30년(특수) 보존",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:220"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/H-4-2021",
+    "doc:kosha_guide/H-50-2021"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety",
+    "activity:asbestos_removal"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 건강진단 사후관리",
+      "legalSource": "산안법 제132조 + 시행규칙 제220조",
+      "fields": [
+        {
+          "key": "caseDate",
+          "label": "관리 시작 일자",
+          "required": true,
+          "inputGuide": "진단 결과 통보 후.",
+          "examples": [
+            "2026-04-25"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workerInfo",
+          "label": "대상 근로자",
+          "required": true,
+          "inputGuide": "성명·소속·등급.",
+          "examples": [
+            "박작업 (도장공, C1 등급)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "diagnosisFinding",
+          "label": "이상 소견",
+          "required": true,
+          "inputGuide": "건강진단 의사 소견.",
+          "examples": [
+            "청력 저하 5dB 의심 → 6개월 추적관찰"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "followUpPlan",
+          "label": "사후관리 계획",
+          "required": true,
+          "inputGuide": "작업환경 개선·작업전환·치료.",
+          "examples": [
+            "1) 이어플러그 강화(NRR 30+) 2) 작업시간 단축(6h→4h) 3) 6개월 추적"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reEvaluation",
+          "label": "재평가 일정",
+          "required": true,
+          "inputGuide": "3~6개월 후 재진단.",
+          "examples": [
+            "2026-10-15 (6개월 후) 재진단"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "entity:nhic",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Worker",
+  "hasHazard": [
+    "hazard:chemical_exposure",
+    "hazard:dust",
+    "hazard:noise"
+  ],
+  "relatedDocs": [
+    "doc:annual/health_examination_records",
+    "doc:ad_hoc/industrial_physician_appointment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

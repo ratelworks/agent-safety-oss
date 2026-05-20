@@ -1,0 +1,27 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:hazard_factor_exposed",
+  "@type": "Applicability",
+  "label": "유해인자 노출 작업 (작업환경측정 의무, 산안법 §125)",
+  "condition": {
+    "any": [
+      { "var": "hazardousChemical", "op": "==", "value": true },
+      { "var": "noiseExposure", "op": "==", "value": true },
+      { "var": "dustExposure", "op": "==", "value": true },
+      { "var": "vibrationExposure", "op": "==", "value": true },
+      { "var": "hazardousExposure", "op": "==", "value": true }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:125",
+    "art:산안법시행규칙:186"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "유해인자 미노출 사업장 — 작업환경측정 의무 면제",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "updatedAt": "2026-05-20",
+    "createdBy": "auto-placeholder (a-codex 평가 후속) → v1.3.x 결정론 룰 보강",
+    "note": "산안법 §125: 사업주는 유해인자에 노출되는 근로자가 있는 작업장에 대하여 작업환경측정을 6개월마다 실시"
+  }
+}

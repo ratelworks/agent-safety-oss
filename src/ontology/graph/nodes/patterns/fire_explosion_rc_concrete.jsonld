@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fire_explosion_rc_concrete",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fire_explosion_rc_concrete",
+  "title": "fire_explosion × rc_concrete",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 5건 관측. 사고유형 fire_explosion 작업유형 rc_concrete.",
+  "koshaAccidentType": "fire_explosion",
+  "hasHazard": [
+    "hazard:fire_explosion",
+    "hazard:fire"
+  ],
+  "causedBy": [
+    "activity:rc_concrete"
+  ],
+  "caseFrequency": 5,
+  "sampleKeywords": [
+    "콘크리트 양생중 갈탄난로 연소가스에 질식",
+    "난로에 인화성물질(신나)을 붓는 순간 화염이 발생",
+    "아파트 옥탑 1층 콘크리트 양생작업중 보통인부, 질식 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

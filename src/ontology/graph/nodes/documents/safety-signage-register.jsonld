@@ -1,0 +1,307 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/safety_signage_register",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_signage_register",
+  "title": "안전·보건 표지 대장",
+  "description": "사업장 안전보건표지 부착 + 정기 점검·교체 (산안법 제37조 + 시행규칙 제38·39조 + 별표 6·7·8)",
+  "cycle": "cyc:monthly",
+  "trigger": "표지 신규 부착 + 분기 점검 + 훼손·교체 시",
+  "legalBasis": [
+    "art:산안법:37",
+    "art:산안법시행규칙:38"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_사업장명",
+      "label": "사업장명",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "signageType",
+      "label": "표지 종류 (금지·경고·지시·안내)",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "산안기준규칙 별표 6 — 금지·경고·지시·안내·구급·소방.",
+      "examples": [
+        "경고"
+      ]
+    },
+    {
+      "key": "f_2_표지_코드__별표_6_",
+      "label": "표지 코드 (별표 6)",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "표지 식별 코드 (별표 6 종류번호).",
+      "examples": [
+        "F-104 (낙하물 위험 경고)"
+      ]
+    },
+    {
+      "key": "f_3_설치_위치",
+      "label": "설치 위치",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "동·층·구역.",
+      "examples": [
+        "A동 1층 출입구 + B동 굴착장 진입로"
+      ]
+    },
+    {
+      "key": "f_4_설치_일자",
+      "label": "설치 일자",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "표지 설치일.",
+      "examples": [
+        "2026-03-15"
+      ]
+    },
+    {
+      "key": "f_5_점검_일자",
+      "label": "점검 일자",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "점검 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "f_6_결과__적합_부적합_",
+      "label": "결과 (적합/부적합)",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "적합 / 부적합 + 부적합 시 시정 사항.",
+      "examples": [
+        "적합"
+      ]
+    },
+    {
+      "key": "f_7_교체_보수_이력",
+      "label": "교체·보수 이력",
+      "source": "산안법 제37조 + 시행규칙 제38조·별표 6",
+      "inputGuide": "교체·보수 이력 (훼손·퇴색 시).",
+      "examples": [
+        "2026-04-10 색바램 교체 (1매) / 정기 점검 월 1회"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "4종 표지 모두 부착 (금지·경고·지시·안내)",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:37"
+    },
+    {
+      "rule": "분기 점검 기록",
+      "severity": "warning"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전·보건 표지 대장",
+      "legalSource": "산안기준규칙 제39조 + 별표 7",
+      "fields": [
+        {
+          "key": "signageList",
+          "label": "표지 목록",
+          "required": true,
+          "inputGuide": "금지·경고·지시·안내 4분류 모든 표지.",
+          "examples": [
+            [
+              {
+                "종류": "출입금지",
+                "위치": "A동 굴착장",
+                "수량": 2
+              },
+              {
+                "종류": "안전모 착용",
+                "위치": "전체 출입구",
+                "수량": 6
+              },
+              {
+                "종류": "비상구",
+                "위치": "각 동 계단",
+                "수량": 8
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "installLocation",
+          "label": "설치 위치도",
+          "required": true,
+          "inputGuide": "평면도·동선에 표시.",
+          "examples": [
+            "배치도 별첨 (각 동 1F~7F)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "installDate",
+          "label": "최초 설치·갱신 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "최초 2026-03-01, 갱신 2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "monthlyCheck",
+          "label": "월간 점검 결과",
+          "required": true,
+          "inputGuide": "손상·탈락·오염 점검.",
+          "examples": [
+            "1) 출입금지 1개 손상 → 교체 / 2) 비상구 1개 시야 가림 → 위치 조정"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "지속 (점검·교체 이력)",
+  "guidedBy": [
+    "doc:kosha_guide/G-36-2012"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:37",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "안전보건표지",
+      "안내표지",
+      "위험표지"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "모든 사업장. 외국인 근로자 사용 시 모국어 병기 의무."
+  },
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:admin_safety_education"
+  ],
+  "relatedDocs": [
+    "doc:daily/pre_work_inspection",
+    "doc:monthly/monthly_education_log"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

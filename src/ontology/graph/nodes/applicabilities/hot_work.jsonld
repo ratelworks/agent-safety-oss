@@ -1,0 +1,25 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:hot_work",
+  "@type": "Applicability",
+  "label": "화기작업 (작업허가서·소화기·신호)",
+  "condition": {
+    "var": "hotWork",
+    "op": "==",
+    "value": true
+  },
+  "legalBasis": [
+    "art:기준규칙:241",
+    "art:기준규칙:242"
+  ],
+  "legalWeight": "mandatory",
+  "enforces": [
+    "control:eng_fire_suppression",
+    "control:admin_hot_work_permit"
+  ],
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:traffic_accident",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "traffic_accident",
+  "label": "교통사고",
+  "category": "physical",
+  "koshaAccidentType": "교통사고",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "교통사고",
+      "도로주행",
+      "운전자"
+    ],
+    "excludeKeywords": [
+      "교통수단",
+      "운수업"
+    ],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_qualification",
+    "control:admin_supervisor",
+    "control:admin_safety_education",
+    "control:ppe_helmet",
+    "control:ppe_safety_shoes"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/G-10-2023",
+    "doc:kosha_guide/C-48-2022"
+  ],
+  "description": "**원인**: 작업장 차량 충돌 / 도로 인접 시공 / 차량 입출입.\n**상황**: 도로공사 / 야간 시공 / 출입구 부근.\n**확인**: 신호수·바리케이드·표지 / 반사조끼 / 회전등.\n**중대성**: 차량 충돌 시 즉사.",
+  "koshaArchiveFacets": [
+    "facet:ctgr02/19",
+    "facet:ctgr05/01"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:earthwork_landfill",
+    "activity:road_pavement",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/G-10-2023",
+    "doc:kosha_guide/C-48-2022"
+  ]
+}

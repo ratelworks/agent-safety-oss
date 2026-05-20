@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:construction_50bn_plus",
+  "@type": "Applicability",
+  "label": "건설공사 50억 이상 (안전보건대장)",
+  "condition": {
+    "all": [
+      {
+        "var": "industry",
+        "op": "==",
+        "value": "construction"
+      },
+      {
+        "var": "constructionValue",
+        "op": ">=",
+        "value": 50
+      }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:67",
+    "art:건진법:62"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "건설공사 50억 미만 — 안전보건대장 의무 면제",
+  "_meta": {
+    "createdAt": "2026-05-20",
+    "createdBy": "external-audit-2026-05-20 (deterministic rule layer)",
+    "ruleSchema": "JSON Logic + ApplicabilityContext"
+  }
+}

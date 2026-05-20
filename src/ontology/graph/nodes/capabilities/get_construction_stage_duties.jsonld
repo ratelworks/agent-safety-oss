@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_construction_stage_duties",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "공사 단계별 법정 의무",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Construction Stage Duties",
+      "@language": "en"
+    }
+  ],
+  "description": "건설 공종·세부공정·단계 의무·현장 위험 브리핑을 분석하는 capability. 착공 전(pre) / 시공 중(active) / 준공(post) 단계별 법정의무 패키지를 반환한다. isLargeScale 옵션으로 50억·50인 조건부 의무 자동 필터링. 라이프사이클 §5.2 공사 단계.",
+  "toolName": "get_construction_stage_duties",
+  "category": "construction",
+  "inputSchema": "safety:schema/input/get_construction_stage_duties",
+  "producesEntity": [
+    "safety:ConstructionStageDuty"
+  ],
+  "maps_to_action": "safety:action/get_construction_stage_duties",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:contractor_management",
+  "@type": "Activity",
+  "label": "도급 관리",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (a-codex 평가 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장.",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "category": "management",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:psychosocial_stress"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-R-1-2026",
+    "doc:kosha_guide/C-C-50-2026",
+    "doc:kosha_guide/C-C-68-2026"
+  ],
+  "regulatedBy": [
+    "art:산안법:63",
+    "art:산안법:64",
+    "art:산안법:65",
+    "art:산안법:67"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:struck_by",
+      "hazard:chemical_exposure",
+      "hazard:fire_explosion",
+      "hazard:electric_shock",
+      "hazard:psychosocial_stress"
+    ],
+    "general": []
+  },
+  "hasWorkType": "cc:worktype/general",
+  "workTypeLabel": {
+    "ko": "일반 안전관리 작업",
+    "en": "General safety management work"
+  }
+}

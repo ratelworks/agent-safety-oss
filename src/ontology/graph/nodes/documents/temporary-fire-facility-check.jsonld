@@ -1,0 +1,349 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/temporary_fire_facility_check",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "temporary_fire_facility_check",
+  "title": "가설 소방시설 점검",
+  "description": "건설현장 임시소방시설 (소화기·간이소화장치·비상경보·간이피난유도선·비상조명·방화포). 소방시설법 제15조 + 화재안전기준 NFSC 401-7. KOSHA C-113 취약시기 관리.",
+  "cycle": "cyc:monthly",
+  "trigger": "공사 착공 + 매월 정기 점검 + 화기작업 전",
+  "applicableWhen": {
+    "appliesTo": "applic:construction_50bn_plus",
+    "scaleNotes": "건설공사 면적 5천㎡ 이상 또는 지상 11층 이상."
+  },
+  "legalBasis": [
+    "art:기준규칙:236",
+    "art:기준규칙:237",
+    "art:기준규칙:238",
+    "art:기준규칙:239",
+    "art:기준규칙:240",
+    "art:기준규칙:232",
+    "art:기준규칙:428"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-113-2020",
+    "doc:kosha_guide/C-70-2012",
+    "doc:kosha_guide/C-C-29-2026",
+    "doc:kosha_guide/A-G-10-2025",
+    "doc:kosha_guide/A-G-11-2025",
+    "doc:kosha_guide/A-G-12-2026",
+    "doc:kosha_guide/A-G-15-2026",
+    "doc:kosha_guide/A-G-16-2026",
+    "doc:kosha_guide/A-G-19-2026",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-20-2026",
+    "doc:kosha_guide/A-G-3-2025",
+    "doc:kosha_guide/A-G-5-2025",
+    "doc:kosha_guide/A-G-6-2025",
+    "doc:kosha_guide/A-G-7-2025",
+    "doc:kosha_guide/A-G-8-2025",
+    "doc:kosha_guide/A-G-9-2025",
+    "doc:kosha_guide/G-26-2013",
+    "doc:kosha_guide/G-36-2012",
+    "doc:kosha_guide/H-26-2020",
+    "doc:kosha_guide/M-89-2016"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_점검_일자",
+      "label": "점검 일자",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "점검 실시일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "inspector",
+      "label": "점검자",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "작성한 사람의 성명 + 직책 + (가능 시) 자격번호.",
+      "examples": [
+        "홍길동 (안전관리자, 산업안전기사 자격 1234567호)",
+        "김철수 (현장소장)"
+      ]
+    },
+    {
+      "key": "f_2_소화기_위치_수량",
+      "label": "소화기 위치·수량",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "현장 소화기 위치 + 수량 (층별·구역별 비치).",
+      "examples": [
+        "A동 각 층 4대 + 외부 6대 + 위험구역 추가 8대 (총 30대)"
+      ]
+    },
+    {
+      "key": "f_3_소화기_점검__압력_",
+      "label": "소화기 점검 (압력)",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "소화기 압력 게이지 점검 (정상 영역 표시 확인).",
+      "examples": [
+        "전체 30대 정상 (게이지 녹색 영역) / 1대 압력 부족 → 충전"
+      ]
+    },
+    {
+      "key": "f_4_소화전_소화수조",
+      "label": "소화전·소화수조",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "소화전·소화수조 위치 + 수압·수량 정상 여부.",
+      "examples": [
+        "소화전 6개소 (수압 정상 5kgf/㎠) + 소화수조 50톤 1개소"
+      ]
+    },
+    {
+      "key": "f_5_비상연락__119_",
+      "label": "비상연락 (119)",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "비상연락망 게시 + 119 직통.",
+      "examples": [
+        "게시판 4개소 부착 + 안전관리자 직통 010-1234-5678"
+      ]
+    },
+    {
+      "key": "f_6_대피로_표지",
+      "label": "대피로 표지",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "대피로 안내 표지 + 비상조명.",
+      "examples": [
+        "층마다 4개소 / 비상조명 30분 작동 확인"
+      ]
+    },
+    {
+      "key": "f_7_결과",
+      "label": "결과",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "f_8_조치_내용",
+      "label": "조치 내용",
+      "source": "산안기준규칙 제239조·제242조 + KOSHA Guide",
+      "inputGuide": "발견 위험에 대한 즉시·계획 시정조치.",
+      "examples": [
+        "1) 안전난간 즉시 설치 / 2) 보호구 미착용자 1명 시정 지도 / 3) 7일 내 재점검"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 소화기 + 비상경보 + 비상조명 3종 설치 + 작동",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:236"
+    },
+    {
+      "rule": "필수 — 화기작업 전 방화포 + 소화기 비치",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:240"
+    },
+    {
+      "rule": "권고 — 매월 점검 사진 첨부",
+      "severity": "warning",
+      "legalBasis": "art:기준규칙:35"
+    }
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "scope": "construction",
+    "note": "건설안전 특화 의무문서 (Phase 3 wave1 — 기준규칙 + KCS + KOSHA C 시리즈 권장 양식 통합).",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "hasHazard": [
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:thermal_burn",
+    "hazard:burn"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 가설 소방시설 점검",
+      "legalSource": "소방시설법 + 산안기준규칙 제241조",
+      "fields": [
+        {
+          "key": "inspectionDate",
+          "label": "점검 일시",
+          "required": true,
+          "inputGuide": "매일 + 화기작업 후.",
+          "examples": [
+            "2026-04-29 17:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspector",
+          "label": "점검자",
+          "required": true,
+          "inputGuide": "소방감시자 또는 관리감독자.",
+          "examples": [
+            "박감시 (소방감시자 자격)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "checkItems",
+          "label": "점검 항목",
+          "required": true,
+          "inputGuide": "소화기·소화전·비상조명·피난로.",
+          "examples": [
+            [
+              {
+                "항목": "소화기 압력·수량",
+                "결과": "ABC 4kg 12개 양호"
+              },
+              {
+                "항목": "소화수조",
+                "결과": "200L 충수"
+              },
+              {
+                "항목": "피난로 폭 ≥0.9m",
+                "결과": "양호"
+              },
+              {
+                "항목": "비상조명",
+                "결과": "작동"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "corrections",
+          "label": "이상·조치",
+          "required": false,
+          "optional": true,
+          "inputGuide": "미흡 시 즉시 보충·교체.",
+          "examples": [
+            "[해당없음]"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "informedBy": [
+    "entity:nfa",
+    "src:fire:119",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "mitigatedBy": [
+    "control:admin_inspection",
+    "control:eng_fire_suppression",
+    "control:eng_alarm"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_permit_hot_work",
+    "doc:quarterly/evacuation_drill_record",
+    "doc:on_construction_open/emergency_response_manual"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

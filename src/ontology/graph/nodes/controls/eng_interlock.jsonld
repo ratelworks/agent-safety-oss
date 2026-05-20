@@ -1,0 +1,36 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_interlock",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_interlock",
+  "label": "인터록·연동장치",
+  "description": "기계·장비·양중 작업에서 방호문, 덮개, 동작 조건을 연동해 위험 상태에서 작동을 막는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:concrete_work",
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:machinery_repair",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:tower_crane",
+    "activity:tower_crane_maintenance",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "인터록",
+      "연동"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

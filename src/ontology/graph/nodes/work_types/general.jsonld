@@ -1,0 +1,57 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "cc:worktype/general",
+  "@type": "cc:WorkType",
+  "slug": "general",
+  "label": {
+    "ko": "일반 안전관리 작업",
+    "en": "General safety management work"
+  },
+  "legalBasis": [],
+  "legalBasisLabel": {
+    "ko": "별표 외 현장 실무 대분류 C호",
+    "en": "Field practice category C outside Annex 4"
+  },
+  "hasTask": [
+    "activity:contractor_management",
+    "activity:general_workplace_safety",
+    "activity:machinery_repair",
+    "activity:risk_assessment_general",
+    "activity:safety_education",
+    "activity:scaffolding_assembly",
+    "activity:tbm_daily"
+  ],
+  "verificationStatus": "field-practice",
+  "jurisdiction": "KR",
+  "_meta": {
+    "graphMigratedAt": "2026-05-03",
+    "graphMigrationNote": "WorkType 정체성 SSoT 보강. 별표 4 법정 작업분류와 현장 실무 대분류를 activity 상위 공종으로 연결."
+  }
+}

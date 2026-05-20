@@ -1,0 +1,33 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:sub_low_toxic",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "sub_low_toxic",
+  "label": "저독성 물질 대체",
+  "description": "도료·용제·방수재·시멘트 등 유해성이 큰 물질을 저독성 또는 저휘발성 물질로 바꾸는 대체 통제.",
+  "ericLevel": 2,
+  "category": "substitution",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:cement_handling",
+    "activity:chemical_handling",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:road_pavement",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "대체"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

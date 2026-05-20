@@ -1,0 +1,85 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:tower_crane_maintenance",
+  "@type": "Activity",
+  "label": "타워크레인 정비",
+  "description": "타워크레인 정비·점검 작업",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장.",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "category": "lifting",
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:electric_shock",
+    "hazard:machine_entanglement",
+    "hazard:trip_slip"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/M-82-2011",
+    "doc:kosha_guide/M-89-2016",
+    "doc:kosha_guide/M-90-2011",
+    "doc:kosha_guide/M-91-2012",
+    "doc:kosha_guide/G-133-2020"
+  ],
+  "regulatedBy": [
+    "art:산안법:38",
+    "art:산안법:80",
+    "art:산안법:82",
+    "art:기준규칙:91",
+    "art:기준규칙:142",
+    "art:기준규칙:143"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:struck_by",
+      "hazard:crushing",
+      "hazard:electric_shock",
+      "hazard:machine_entanglement"
+    ],
+    "general": [
+      "hazard:trip_slip"
+    ]
+  },
+  "hasWorkType": "cc:worktype/tower_crane",
+  "workTypeLabel": {
+    "ko": "타워크레인 설치·조립·해체 작업",
+    "en": "Tower crane erection, assembly, and dismantling work"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:trip_slip",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "trip_slip",
+  "label": "넘어짐 (전도)",
+  "category": "physical",
+  "koshaAccidentType": "넘어짐",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "넘어짐",
+      "전도",
+      "미끄러짐"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_safety_education",
+    "control:ppe_safety_shoes"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-11-2025",
+    "doc:kosha_guide/A-G-12-2026",
+    "doc:kosha_guide/A-G-15-2026",
+    "doc:kosha_guide/A-G-19-2026",
+    "doc:kosha_guide/A-G-20-2026",
+    "doc:kosha_guide/A-G-8-2025",
+    "doc:kosha_guide/B-E-20-2026",
+    "doc:kosha_guide/G-11-2017",
+    "doc:kosha_guide/M-60-2012",
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-4-2025",
+    "doc:kosha_guide/G-95-2012"
+  ],
+  "description": "**원인**: 작업장 정리정돈 부족 / 미끄러운 바닥 / 통로 자재 적재 / 조명 부족.\n**상황**: 작업장 통로·계단·작업면.\n**확인**: 통로 폭 90cm 이상·정리정돈 / 미끄럼 방지 / 조명 75럭스 이상 / 안전화.\n**중대성**: 골절·뇌진탕. 고소 통로에서 추락 동반 시 사망.",
+  "koshaArchiveFacets": [
+    "facet:ctgr01/01"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/A-G-2-2025",
+    "doc:kosha_guide/A-G-4-2025",
+    "doc:kosha_guide/G-95-2012"
+  ]
+}

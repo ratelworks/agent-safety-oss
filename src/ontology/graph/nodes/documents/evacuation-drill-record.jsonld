@@ -1,0 +1,234 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:quarterly/evacuation_drill_record",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "evacuation_drill_record",
+  "title": "대피훈련 결과 보고서",
+  "description": "대피훈련 결과 보고서 - 산안법:64:1:5 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:quarterly",
+  "trigger": "분기",
+  "legalBasis": [
+    "art:산안법:64"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_evacuation_drill_record",
+    "officialName": "대피훈련 결과 보고서 (자체)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 대피훈련 결과",
+      "legalSource": "산안법 제64조 ① 5호",
+      "fields": [
+        {
+          "key": "drillDate",
+          "label": "훈련 일시",
+          "required": true,
+          "inputGuide": "분기 1회 이상.",
+          "examples": [
+            "2026-04-29 14:00~15:30"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "drillScenario",
+          "label": "훈련 시나리오",
+          "required": true,
+          "inputGuide": "화재·폭발·지진 등 가정.",
+          "examples": [
+            "A동 5층 화기작업 중 화재 발생 가정"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "participants",
+          "label": "참여 인원",
+          "required": true,
+          "inputGuide": "도급인 + 수급인 전원.",
+          "examples": [
+            "도급인 5명 + 우송설비 8명 + 광산기계 3명 = 16명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "drillResults",
+          "label": "훈련 결과",
+          "required": true,
+          "inputGuide": "대피 시간·집결지 도달·인원점검.",
+          "examples": [
+            "사이렌 14:00 → 전원 정문 집결 14:04 (4분), 인원점검 16/16 완료"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "improvements",
+          "label": "개선사항",
+          "required": true,
+          "inputGuide": "훈련에서 발견된 미흡사항.",
+          "examples": [
+            "1) B동 후방 대피로 표지 추가 필요, 2) 무전기 일부 작동 불량 → 5/1까지 교체"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:64:1:5",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:64:1:5",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:64",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "council",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "도급사업 + 위험사업장"
+  },
+  "hasHazard": [
+    "hazard:fire_explosion",
+    "hazard:asphyxiation"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_emergency_plan",
+    "control:eng_fire_suppression",
+    "control:eng_alarm"
+  ],
+  "relatedDocs": [
+    "doc:on_construction_open/emergency_response_manual",
+    "doc:monthly/temporary_fire_facility_check",
+    "doc:annual/first_aid_training_log"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

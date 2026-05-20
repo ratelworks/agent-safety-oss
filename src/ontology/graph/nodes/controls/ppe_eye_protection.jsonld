@@ -1,0 +1,40 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_eye_protection",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_eye_protection",
+  "label": "보안경·차광안경",
+  "description": "화학물질 비산, 분진, 절단·연삭 비래물, 용접광이 있는 작업에서 눈 손상을 줄이는 개인보호구 통제.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:cement_handling",
+    "activity:chemical_handling",
+    "activity:concrete_work",
+    "activity:electric_work_50v_plus",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:hazardous_chemical_work",
+    "activity:machinery_repair",
+    "activity:painting",
+    "activity:rc_concrete",
+    "activity:road_pavement",
+    "activity:steel_erection",
+    "activity:steel_structure",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "보안경",
+      "차광"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

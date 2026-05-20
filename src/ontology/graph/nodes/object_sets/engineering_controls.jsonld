@@ -1,0 +1,78 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:object_set/engineering_controls",
+  "@type": [
+    "safety:ObjectSet",
+    "prov:Collection"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "공학적 통제 16건",
+      "@language": "ko"
+    },
+    {
+      "@value": "16 Engineering Controls",
+      "@language": "en"
+    }
+  ],
+  "description": "ERIC-PP 위계의 ericLevel=3 공학적 통제 집합 — 제거·대체가 어려운 위험에 대한 물리적·설비적 방호수단 named query.",
+  "category": "ControlMeasure",
+  "sparqlFilter": "?control a safety:ControlMeasure ; safety:ericLevel 3 .",
+  "members": [
+    {
+      "@id": "control:eng_alarm"
+    },
+    {
+      "@id": "control:eng_explosion_proof"
+    },
+    {
+      "@id": "control:eng_fall_net"
+    },
+    {
+      "@id": "control:eng_fire_suppression"
+    },
+    {
+      "@id": "control:eng_guard_rail"
+    },
+    {
+      "@id": "control:eng_insulation"
+    },
+    {
+      "@id": "control:eng_interlock"
+    },
+    {
+      "@id": "control:eng_isolation_barrier"
+    },
+    {
+      "@id": "control:eng_loto"
+    },
+    {
+      "@id": "control:eng_machine_guard"
+    },
+    {
+      "@id": "control:eng_monitoring"
+    },
+    {
+      "@id": "control:eng_noise_barrier"
+    },
+    {
+      "@id": "control:eng_scaffold"
+    },
+    {
+      "@id": "control:eng_shoring"
+    },
+    {
+      "@id": "control:eng_ventilation"
+    },
+    {
+      "@id": "control:eric_engineering"
+    }
+  ],
+  "memberCount": 16,
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks",
+    "intendedUse": "LLM이 위험요인별 방호대책을 찾을 때 ERIC-PP 3단계 공학적 통제를 우선 후보군으로 사용한다.",
+    "sourcePattern": "declarative named object-set query pattern"
+  }
+}

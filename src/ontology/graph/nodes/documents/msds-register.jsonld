@@ -1,0 +1,358 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:continuous/msds_register",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "msds_register",
+  "title": "MSDS 비치대장",
+  "description": "화학물질·유해인자 취급 사업장의 MSDS 비치·관리 대장. 산안법 제114조 ① + 시행규칙 제169조 (양식 자율, KOSHA 표준 권고). MSDS 16항 GHS 기준.",
+  "cycle": "cyc:continuous",
+  "trigger": "화학물질 취급 시 (취급 개시 + 변경 + 분기 점검)",
+  "legalBasis": [
+    "art:산안법:114",
+    "art:산안법:115",
+    "art:산안법시행규칙:169",
+    "art:산안법시행규칙:170"
+  ],
+  "officialFormSpec": {
+    "formId": "kosha_msds_register",
+    "officialName": "MSDS 비치 및 관리대장 (KOSHA 표준 양식)",
+    "formMatchType": "산안법 제114조 + 시행규칙 제169조 + GHS 16항 기준",
+    "license": "공공누리 - 출처 KOSHA"
+  },
+  "sections": [
+    {
+      "title": "1. 사업장 정보",
+      "legalSource": "산안법 제114조 ① (취급 사업주 의무)",
+      "fields": [
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "MSDS 비치 의무 사업장명.",
+          "examples": [
+            "황룡건설(주) 삼성동 ○○공동주택 신축공사 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "registerNumber",
+          "label": "대장 번호",
+          "required": true,
+          "inputGuide": "현장 자체 번호. 'MSDS-YYYY-NN'.",
+          "examples": [
+            "MSDS-2026-04"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "최초 작성 + 최종 갱신.",
+          "examples": [
+            "최초 2026-03-01 / 갱신 2026-04-29"
+          ],
+          "checkPoints": [
+            "분기 1회 이상 갱신 권장"
+          ]
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "작성자 성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "totalChemicals",
+          "label": "비치 화학물질 종류 수",
+          "required": true,
+          "inputGuide": "비치 중인 화학물질 총 종류 수.",
+          "examples": [
+            "12종 (도료 5 + 시멘트 2 + 접착제 3 + 세척제 2)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 화학물질 목록 (각 물질별 1행)",
+      "legalSource": "시행규칙 제169조 + GHS 16항",
+      "fields": [
+        {
+          "key": "chemicalList",
+          "label": "화학물질 목록 (배열)",
+          "required": true,
+          "inputGuide": "비치된 모든 화학물질을 배열로. 각 항목에 [제품명·CAS번호·제조사·취급량·비치위치·MSDS유효기한·노출기준·주요유해성·필수보호구·비고] 9개 필드.",
+          "examples": [
+            [
+              {
+                "productName": "락카 신너",
+                "casNumber": "108-88-3 (톨루엔 외 혼합)",
+                "manufacturer": "강남도장(주)",
+                "monthlyVolume": "20L",
+                "storageLocation": "A동 1층 도료창고",
+                "msdsValidUntil": "2027-12-31",
+                "exposureLimit": "TWA 50ppm (톨루엔)",
+                "mainHazard": "흡입유해·인화성",
+                "requiredPPE": "방독마스크 (유기증기용) + 보호장갑 + 보호안경",
+                "note": "GHS 카테고리 2 (인화성 액체)"
+              },
+              {
+                "productName": "포틀랜드시멘트",
+                "casNumber": "65997-15-1",
+                "manufacturer": "한국시멘트",
+                "monthlyVolume": "5톤",
+                "storageLocation": "B동 자재창고",
+                "msdsValidUntil": "2027-06-30",
+                "exposureLimit": "TWA 1mg/m3 (호흡성)",
+                "mainHazard": "분진 흡입·피부자극",
+                "requiredPPE": "방진마스크 + 보안경 + 장갑",
+                "note": ""
+              }
+            ]
+          ],
+          "checkPoints": [
+            "모든 화학물질 1행 1물질 등록",
+            "CAS 번호 정확",
+            "MSDS 유효기한 확인"
+          ]
+        },
+        {
+          "key": "msdsAttachment",
+          "label": "MSDS 원본 첨부 (현장 비치)",
+          "required": true,
+          "inputGuide": "각 화학물질 MSDS 원본을 현장에 비치. 작업자 접근 가능.",
+          "examples": [
+            "바인더 1권에 12종 모두 비치, 도료창고·자재창고에 사본 각 1부"
+          ],
+          "checkPoints": [
+            "근로자 접근 가능 위치 비치 의무"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. MSDS 게시 / 교육",
+      "legalSource": "산안법 제114조 ② + 제115조",
+      "fields": [
+        {
+          "key": "msdsPosting",
+          "label": "MSDS 게시 위치",
+          "required": true,
+          "inputGuide": "근로자 접근 가능한 곳에 게시 (사용 장소 + 회의실 등). 산안법 제114조 ②.",
+          "examples": [
+            "1) 도료창고 출입구 게시판, 2) 안전관리사무실 비치 바인더, 3) 각 작업조 작업지시서 첨부"
+          ],
+          "checkPoints": [
+            "사용 장소에 의무 게시"
+          ]
+        },
+        {
+          "key": "msdsTraining",
+          "label": "MSDS 교육 실시 (취급 작업자 전원)",
+          "required": true,
+          "inputGuide": "취급 근로자 전원 MSDS 교육. 채용 시·작업변경 시·매년 1회 이상. 산안법 제29조 + 제115조.",
+          "examples": [
+            "2026-04-15 도료작업자 8명 (1.5h, 강사: 김안전)"
+          ],
+          "checkPoints": [
+            "작업자 전원 교육 의무"
+          ]
+        },
+        {
+          "key": "trainingRecord",
+          "label": "교육 기록 (서명부 / 일지)",
+          "required": true,
+          "inputGuide": "교육 일자·이수자·교육내용·서명부.",
+          "examples": [
+            "msds_education_log 별첨 (2026-04-15 8명 자필 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 라벨 / 경고표지",
+      "legalSource": "산안법 제115조 + 시행규칙 제170조 (GHS)",
+      "fields": [
+        {
+          "key": "ghsLabel",
+          "label": "GHS 경고표지 부착",
+          "required": true,
+          "inputGuide": "용기·포장에 GHS 경고표지 (그림문자·신호어·유해위험문구·예방조치문구) 부착. 산안법 제115조.",
+          "examples": [
+            "[√] 모든 용기 GHS 라벨 부착, 분기 점검 통과"
+          ],
+          "checkPoints": [
+            "용기 라벨 손상 시 즉시 재부착"
+          ]
+        },
+        {
+          "key": "containerStandard",
+          "label": "용기·취급 기준",
+          "required": true,
+          "inputGuide": "전용 용기 사용 + 식별표지 + 격리보관 (인화성/독성).",
+          "examples": [
+            "[√] 인화성 도료 별도 격리창고, 환기 + 소화기 비치"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "5. 결재선",
+      "legalSource": "산안법 제114조 (사업주 의무)",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 (안전관리자) 서명",
+          "required": true,
+          "inputGuide": "안전관리자 성명·서명.",
+          "examples": [
+            "김안전 (안전관리자, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "취급 작업 관리감독자 서명.",
+          "examples": [
+            "박감독 (도장작업 감독자, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주 / 안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "사업주 또는 안전보건관리책임자(현장소장) 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "MSDS 수집·정리·대장 작성"
+    },
+    {
+      "role": "관리감독자",
+      "action": "현장 비치 + 라벨 점검"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인 + 비치 확인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "취급 화학물질 전수 대장 등록 + CAS·노출기준 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:114",
+      "checkFields": [
+        "chemicalList"
+      ]
+    },
+    {
+      "rule": "MSDS 원본 현장 비치 + 게시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:114",
+      "checkFields": [
+        "msdsAttachment",
+        "msdsPosting"
+      ]
+    },
+    {
+      "rule": "취급 작업자 전원 MSDS 교육",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:115",
+      "checkFields": [
+        "msdsTraining",
+        "trainingRecord"
+      ]
+    },
+    {
+      "rule": "GHS 경고표지 부착",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:115",
+      "checkFields": [
+        "ghsLabel"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:114",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "30년 (산안법 제164조 ② — 발암성·생식독성 물질 취급 시 30년)",
+  "guidedBy": [
+    "src:kosha:msds"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:114",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "MSDS",
+      "물질안전보건자료",
+      "화학물질"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "register",
+    "licenseHint": "공공누리 - 출처 KOSHA",
+    "alignedAt": "2026-04-29",
+    "alignSource": "산안법 제114조 + 시행규칙 제169조 + GHS 16항 + KOSHA MSDS 표준"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:chemicals_handling",
+    "scaleNotes": "화학물질 취급 사업장 (5인 미만 포함). 50억 미만 + 5인 이상 사업장도 동일 의무."
+  },
+  "hasHazard": [
+    "hazard:acute_toxic_gas",
+    "hazard:fire_explosion",
+    "hazard:chemical_burn",
+    "hazard:chemical_exposure"
+  ],
+  "appliesToActivities": [
+    "activity:chemical_handling",
+    "activity:painting",
+    "activity:cement_handling"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha:msds"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "mitigatedBy": [
+    "control:admin_msds",
+    "control:ppe_chemical_suit",
+    "control:ppe_respirator"
+  ],
+  "relatedDocs": [
+    "doc:as_needed/msds_education_log",
+    "doc:daily/hazard_chemical_workplace_log",
+    "doc:semi_annual/work_environment_measurement"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

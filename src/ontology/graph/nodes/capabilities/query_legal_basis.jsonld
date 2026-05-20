@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/query_legal_basis",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법정문서의 법적 근거 조문·별표·처벌 통합 조회",
+      "@language": "ko"
+    },
+    {
+      "@value": "Query Legal Basis",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 안전관리 법정문서(docId)의 법적 근거 조문·시행일·적용성·과태료를 한 번에 반환. 19종 docId 지원 (work_plan_excavation, monthly_risk_assessment, daily_tbm 등). 그래프 노드 reverse lookup — legalBasisRefs 메타에서 1차 응답, 정식 IRI 매핑된 Article 노드는 점진 추가.",
+  "toolName": "query_legal_basis",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/query_legal_basis",
+  "producesEntity": [
+    "safety:LegalBasis"
+  ],
+  "maps_to_action": "safety:action/query_legal_basis",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

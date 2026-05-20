@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_work_permit_schema",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작업허가서 스키마",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Work Permit Schema",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 위험작업 사전 허가제용 작업허가서 스키마. 5가지 유형 (화기·밀폐공간·정전/LOTO·고소·굴착) 각각 전용 체크리스트. KOSHA P-94-2021 참고 (원 지침의 기본·보충 허가 2단 구조는 단일 체크리스트로 평탄화 — 엄밀한 법적 서식은 원문 참조). 관련 법령 조문 인용 포함. 양측 서명 구조.",
+  "toolName": "get_work_permit_schema",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/get_work_permit_schema",
+  "producesEntity": [
+    "safety:DocumentSchema"
+  ],
+  "maps_to_action": "safety:action/create_work_permit",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_chemical_suit",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_chemical_suit",
+  "label": "화학물질 방호복",
+  "description": "화학물질·부식성 물질·유해분진 작업에서 피부와 의복 오염을 막기 위해 착용하는 개인보호구 통제.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:cement_handling",
+    "activity:chemical_handling",
+    "activity:drainage_sewerage",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:road_pavement",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "방호복",
+      "방독"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

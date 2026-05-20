@@ -1,0 +1,32 @@
+적용성 룰이 사용자 입력을 실제로 반영하도록 수정
+
+작업 조건(추락 높이·굴착 깊이·밀폐공간·화기·화학물질 등) 을 입력해도
+신규 5개 룰이 발동되지 않던 결함을 해소.
+
+같은 입력에 대한 비교 (15인/45억 + 추락 4m + 굴착 3m + 밀폐 + 화기 + 화학물질):
+
+이전:
+  - 발동된 룰: 5개 (사업장 규모만)
+  - 강제 통제수단: 0개
+  - 안내 항목: 6개
+
+이후:
+  - 발동된 룰: 12개 (사업장 규모 5 + 작업 조건 7)
+  - 강제 통제수단: 9개 (안전대·난간·송기마스크·산소측정·화기허가서 등)
+  - 안내 항목: 13개 (모든 항목 art:* 법령 인용 포함)
+
+수정 내용:
+- query_applicability·review_safety_document 의 scale·workConditions 에
+  workHeight/workDepth/edgeOpen/confinedSpace/hotWork/hazardousChemical/contractor 등 8개 키 추가
+- judgeCrossCutting·judgeApplicability 가 workConditions 를 받아
+  ApplicabilityContext 로 매핑 (depthM→workDepth, heightM→workHeight)
+- 적용 룰에 따라 자동 도출된 강제 통제수단을 사용자 안내 텍스트로 노출
+- 새로 평가하는 룰 4종 추가 (hazard_factor_exposed, safety_certification_13,
+  safety_inspection_11, voluntary_safety_confirmation_21, ongoing_assessment_selected)
+
+검증: ontology:gate HIGH 0 유지, 동일 시나리오 라이브 호출 비교.
+
+Session-Id: external-20260520-0903
+Agent-Source: manual
+Work-Scope: query-applicability.ts,review-safety-document.ts
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>

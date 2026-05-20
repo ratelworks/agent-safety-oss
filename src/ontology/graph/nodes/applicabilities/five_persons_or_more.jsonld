@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:five_persons_or_more",
+  "@type": "Applicability",
+  "label": "5인 이상 사업장 (중처법 적용)",
+  "condition": {
+    "all": [
+      { "var": "workforce", "op": ">=", "value": 5 }
+    ]
+  },
+  "legalBasis": [
+    "art:중처법:4",
+    "art:중처법시행령:4"
+  ],
+  "legalWeight": "mandatory",
+  "exemptionNote": "5인 미만 사업장은 중대재해처벌법 적용 제외 (중처법 §3)",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-26",
+    "updatedAt": "2026-05-20",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "v1.3.x 결정론 룰 보강 — title/condition string → 정식 ApplicabilityShape 적합. applic:5_workers_or_more 와 별칭 관계"
+  }
+}

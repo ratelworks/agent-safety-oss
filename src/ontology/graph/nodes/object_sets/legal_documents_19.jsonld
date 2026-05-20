@@ -1,0 +1,87 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:object_set/legal_documents_19",
+  "@type": [
+    "safety:ObjectSet",
+    "prov:Collection"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법정문서 19건",
+      "@language": "ko"
+    },
+    {
+      "@value": "19 Statutory Forms",
+      "@language": "en"
+    }
+  ],
+  "description": "산업안전보건법 시행규칙 별지 서식 중 안전관리자 선임, 유해위험방지계획서, 작업중지, 산업재해조사, 도급승인, 설계변경에 쓰이는 법정문서 19건 집합.",
+  "category": "LegalDocument",
+  "sparqlFilter": "?document a safety:Annex ; safety:annexKind '서식' . VALUES ?document { annex:산안법시행규칙:서식2 annex:산안법시행규칙:서식3 annex:산안법시행규칙:서식16 annex:산안법시행규칙:서식17 annex:산안법시행규칙:서식18 annex:산안법시행규칙:서식19 annex:산안법시행규칙:서식20 annex:산안법시행규칙:서식21 annex:산안법시행규칙:서식22 annex:산안법시행규칙:서식23 annex:산안법시행규칙:서식24 annex:산안법시행규칙:서식25 annex:산안법시행규칙:서식26 annex:산안법시행규칙:서식27 annex:산안법시행규칙:서식28 annex:산안법시행규칙:서식29 annex:산안법시행규칙:서식30 annex:산안법시행규칙:서식31 annex:산안법시행규칙:서식36 }",
+  "members": [
+    {
+      "@id": "annex:산안법시행규칙:서식2"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식3"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식16"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식17"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식18"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식19"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식20"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식21"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식22"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식23"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식24"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식25"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식26"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식27"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식28"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식29"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식30"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식31"
+    },
+    {
+      "@id": "annex:산안법시행규칙:서식36"
+    }
+  ],
+  "memberCount": 19,
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks",
+    "intendedUse": "LLM이 현장 법정 서식 후보를 한 번에 불러와 제출·심사·명령·해제·조사 흐름을 구성한다.",
+    "sourcePattern": "declarative named object-set query pattern"
+  }
+}

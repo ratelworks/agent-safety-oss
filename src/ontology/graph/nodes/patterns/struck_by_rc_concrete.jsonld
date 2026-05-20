@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_rc_concrete",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_rc_concrete",
+  "title": "struck_by × rc_concrete",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 36건 관측. 사고유형 struck_by 작업유형 rc_concrete.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:rc_concrete"
+  ],
+  "caseFrequency": 36,
+  "sampleKeywords": [
+    "해머로 콘크리트 파쇄작업 중 감전 사망(사망 1명)",
+    "후진하는 타이어로울러에 충돌",
+    "도로 포장작업 중 후진하는 타이어 로울러에 충돌"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

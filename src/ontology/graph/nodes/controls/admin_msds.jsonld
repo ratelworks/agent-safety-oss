@@ -1,0 +1,38 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_msds",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_msds",
+  "label": "MSDS 게시·교육",
+  "description": "화학물질·분진·유해물질 취급 작업에서 MSDS 게시, 경고표지, 취급 교육을 보장하는 관리 통제.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:cement_handling",
+    "activity:chemical_handling",
+    "activity:drainage_sewerage",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:road_pavement",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "MSDS",
+      "물질안전보건자료",
+      "경고표지"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

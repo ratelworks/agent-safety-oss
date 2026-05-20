@@ -1,0 +1,46 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_isolation_barrier",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_isolation_barrier",
+  "label": "격리·차폐",
+  "description": "차량·양중·화학물질·고소·굴착 작업에서 위험원과 작업자를 물리적으로 분리하는 격리·차폐 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:chemical_handling",
+    "activity:demolition",
+    "activity:drainage_sewerage",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:painting",
+    "activity:road_pavement",
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "격리",
+      "차폐"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

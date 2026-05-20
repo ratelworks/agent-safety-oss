@@ -1,0 +1,232 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-71-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_c-71-2012",
+  "title": "기성 콘크리트 파일 항타 안전보건작업 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-71-2012",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"기성\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 8,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "기성",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:noise_exposure",
+    "hazard:vibration_exposure",
+    "hazard:crushing",
+    "hazard:cave_in",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress",
+    "hazard:fall_from_height",
+    "hazard:machine_entanglement",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_safer_equipment",
+    "control:eng_monitoring",
+    "control:eng_fall_net",
+    "control:admin_inspection",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:elim_automation",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:sub_low_risk_method",
+    "control:eng_shoring",
+    "control:admin_work_plan",
+    "control:ppe_safety_shoes",
+    "control:elim_avoid_work",
+    "control:eng_ventilation",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_loto",
+    "control:sub_low_toxic",
+    "control:admin_msds"
+  ],
+  "appliesToActivities": [
+    "activity:phc_pile_driving",
+    "activity:rc_concrete"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_기성 콘크리트 파일 항타 작업의 안전보건작업 지침_4",
+      "title": "기성 콘크리트 파일 항타 작업의 안전보건작업 지침 - 항타기 주요 안전장치",
+      "score": 83.907
+    },
+    {
+      "docId": "KOSHA07_기성 콘크리트 파일 항타 작업의 안전보건작업 지침_7",
+      "title": "기성 콘크리트 파일 항타 작업의 안전보건작업 지침 - 파일 항타 작업 단계별 안전사항 절차",
+      "score": 74.581
+    },
+    {
+      "docId": "KOSHA07_기성 콘크리트 파일 항타 작업의 안전보건작업 지침_6",
+      "title": "기성 콘크리트 파일 항타 작업의 안전보건작업 지침 - 안전작업 공통 사항",
+      "score": 64.115
+    },
+    {
+      "docId": "KOSHA07_타일(Tile)공사 안전보건작업 지침_3",
+      "title": "타일(Tile)공사 안전보건작업 지침 - 용어의 정의",
+      "score": 34.656
+    },
+    {
+      "docId": "KOSHA07_기성 콘크리트 파일 항타 작업의 안전보건작업 지침_2",
+      "title": "기성 콘크리트 파일 항타 작업의 안전보건작업 지침 - 적용범위",
+      "score": 34.288
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:207",
+      "law": "기준규칙",
+      "articleNumber": "207",
+      "title": "조립ㆍ해체 시 점검사항",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제207조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:209",
+      "law": "기준규칙",
+      "articleNumber": "209",
+      "title": "무너짐의 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제209조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:217",
+      "law": "기준규칙",
+      "articleNumber": "217",
+      "title": "사용 시의 조치 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제217조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:220",
+      "law": "기준규칙",
+      "articleNumber": "220",
+      "title": "항타기 등의 이동",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제220조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:221",
+      "law": "기준규칙",
+      "articleNumber": "221",
+      "title": "가스배관 등의 손상 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제221조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:207",
+      "law": "기준규칙",
+      "articleNumber": "207",
+      "title": "조립ㆍ해체 시 점검사항",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제207조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:209",
+      "law": "기준규칙",
+      "articleNumber": "209",
+      "title": "무너짐의 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제209조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:217",
+      "law": "기준규칙",
+      "articleNumber": "217",
+      "title": "사용 시의 조치 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제217조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:220",
+      "law": "기준규칙",
+      "articleNumber": "220",
+      "title": "항타기 등의 이동",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제220조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:221",
+      "law": "기준규칙",
+      "articleNumber": "221",
+      "title": "가스배관 등의 손상 방지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건기준에 관한 규칙 제221조",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide C-71-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

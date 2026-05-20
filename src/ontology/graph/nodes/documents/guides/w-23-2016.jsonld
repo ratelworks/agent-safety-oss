@@ -1,0 +1,124 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/W-23-2016",
+  "@type": "Document",
+  "docId": "kosha_guide_w-23-2016",
+  "title": "작업장에서의 소음측정 및 평가방법",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "W-23-2016",
+    "guideCategory": "thermal",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"작업장에서\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 5,
+      "5": 4,
+      "6": 56,
+      "7": 147,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "작업장에서",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:noise_exposure"
+  ],
+  "mitigatedBy": [
+    "control:sub_safer_equipment",
+    "control:eng_noise_barrier",
+    "control:eng_isolation_barrier",
+    "control:admin_health_check",
+    "control:admin_inspection"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:42",
+      "law": "산안법",
+      "articleNumber": "42",
+      "title": "유해위험방지계획서의 작성ㆍ제출 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "### 이 지침은 작업장에서 소음에 노출되는 근로자를 대상으로 산업안전보건법 제42조,",
+      "citedAsOf": "2016",
+      "temporalNote": "KOSHA Guide W-23-2016 본문 직접 인용 (2016년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_작업장에서 라돈 보건관리에 관한 기술지침_1",
+      "title": "작업장에서 라돈 보건관리에 관한 기술지침 - 목적",
+      "score": 39.908
+    },
+    {
+      "docId": "KOSHA07_작업장에서 라돈 보건관리에 관한 기술지침_5",
+      "title": "작업장에서 라돈 보건관리에 관한 기술지침 - 라돈의 노출경로",
+      "score": 35.985
+    },
+    {
+      "docId": "KOSHA07_작업장에서 라돈 보건관리에 관한 기술지침_3",
+      "title": "작업장에서 라돈 보건관리에 관한 기술지침 - 용어의 정의",
+      "score": 31.164
+    },
+    {
+      "docId": "KOSHA07_작업장에서 라돈 보건관리에 관한 기술지침_4",
+      "title": "작업장에서 라돈 보건관리에 관한 기술지침 - 라돈의 물리화학적 특성, 건강 영향 및 노출기준",
+      "score": 29.041
+    },
+    {
+      "docId": "KOSHA07_작업장에서 라돈 보건관리에 관한 기술지침_6",
+      "title": "작업장에서 라돈 보건관리에 관한 기술지침 - 작업장 내 라돈 농도 측정",
+      "score": 26.622
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA03_000007000001000000000169000",
+      "title": "제169조 물질안전보건자료에 관한 교육의 시기ㆍ내용ㆍ방법 등",
+      "category": "3",
+      "score": 21.117
+    },
+    {
+      "docId": "KOSHA04_003000002000003000000000466000",
+      "title": "제466조 누출 시 조치",
+      "category": "4",
+      "score": 23.049
+    },
+    {
+      "docId": "KOSHA04_003000003000003000000000506000",
+      "title": "제506조 흡연 등의 금지",
+      "category": "4",
+      "score": 22.316
+    },
+    {
+      "docId": "KOSHA04_003000002000003000000000458000",
+      "title": "제458조 흡연 등의 금지",
+      "category": "4",
+      "score": 22.208
+    },
+    {
+      "docId": "KOSHA04_001000002000000000000000003000",
+      "title": "제3조 전도의 방지",
+      "category": "4",
+      "score": 20.894
+    }
+  ]
+}

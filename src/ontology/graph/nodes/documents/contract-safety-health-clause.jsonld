@@ -1,0 +1,233 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:on_construction_open/contract_safety_health_clause",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "contract_safety_health_clause",
+  "title": "도급계약서 안전보건 조항",
+  "description": "도급계약서 안전보건 조항 - 산안법:70 + 산안법시행규칙:43 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:on_construction_open",
+  "trigger": "현장개설",
+  "legalBasis": [
+    "art:산안법:70",
+    "art:산안법시행규칙:43"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_contract_safety_health_clause",
+    "officialName": "도급계약서 안전보건 조항 (고용노동부 도급사업 운영지침)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 도급계약 안전보건 조항",
+      "legalSource": "산안법 제70조 + 시행규칙 제43조",
+      "fields": [
+        {
+          "key": "contractorName",
+          "label": "수급인 (계약 상대방)",
+          "required": true,
+          "inputGuide": "수급업체명.",
+          "examples": [
+            "우송설비(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "contractAmount",
+          "label": "도급 금액",
+          "required": true,
+          "inputGuide": "계약금액 (안전관리비 포함).",
+          "examples": [
+            "8억원 (안전보건관리비 1.97% = 1,576만원 포함)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyClauses",
+          "label": "안전보건 의무 조항 (제70조 명시 5항)",
+          "required": true,
+          "inputGuide": "제70조 ② 1~5호 모두 계약서 명시.",
+          "examples": [
+            "1) 도급인·수급인 안전보건 의무, 2) 안전보건교육·점검 협조, 3) 안전보건관리비 사용, 4) 산재 발생 시 보고·대응, 5) 위약금 (안전 위반 시)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "safetyCostAllocation",
+          "label": "안전보건관리비 산정·지급",
+          "required": true,
+          "inputGuide": "산안법 제72조 요율 기준.",
+          "examples": [
+            "계약금 × 1.97% = 1,576만원, 월 분할 지급"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "penaltyForViolation",
+          "label": "위약금·해제 조항",
+          "required": true,
+          "inputGuide": "안전 의무 위반 시 위약금·해제.",
+          "examples": [
+            "안전 위반 1회 100만원, 3회 누적 시 해제"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:70",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:70",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "공사 완료시까지",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:70",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "council",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "도급계약 시"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_supervisor"
+  ],
+  "relatedDocs": [
+    "doc:monthly/contractor_safety_council",
+    "doc:monthly/contractor_consultative_body",
+    "doc:weekly/weekly_joint_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

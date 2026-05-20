@@ -1,0 +1,87 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:painting",
+  "@type": "Activity",
+  "label": "도장 작업",
+  "description": "건설 도장 (페인트·도료) 작업",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장.",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "category": "finishing",
+  "hasHazard": [
+    "hazard:chemical_exposure",
+    "hazard:chemical_burn",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:asphyxiation",
+    "hazard:dust_exposure",
+    "hazard:trip_slip",
+    "hazard:msd_repetitive"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-17-2026",
+    "doc:kosha_guide/B-E-20-2026",
+    "doc:kosha_guide/D-C-13-2026",
+    "doc:kosha_guide/G-117-2014",
+    "doc:kosha_guide/M-77-2011"
+  ],
+  "regulatedBy": [
+    "art:산안법:38",
+    "art:산안법:110",
+    "art:산안법:114",
+    "art:기준규칙:239",
+    "art:기준규칙:42"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:chemical_exposure",
+      "hazard:chemical_burn",
+      "hazard:fire",
+      "hazard:fire_explosion",
+      "hazard:fall_from_height",
+      "hazard:asphyxiation",
+      "hazard:dust_exposure"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:msd_repetitive"
+    ]
+  },
+  "hasWorkType": "cc:worktype/finishing",
+  "workTypeLabel": {
+    "ko": "마감 작업",
+    "en": "Finishing work"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "facet:ctgr04/20",
+  "@type": "Facet",
+  "slug": "ctgr04_20",
+  "title": "화학물질관계 설비",
+  "description": "KOSHA 자료실 직업건강 > 화학물질관계 설비. search_kosha_archive 호출 시 ctgr04='20' 사용.",
+  "facetGroup": "facet:group/ctgr04",
+  "koshaArchiveCode": "20",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceUrl": "https://portal.kosha.or.kr/archive/cent-archive/master-arch?ctgr04=20",
+    "ctgr": "ctgr04",
+    "ko": "직업건강",
+    "fetchedAt": "2026-04-28T14:43:41.149Z",
+    "licenseHint": "공공누리 출처표시 (KOSHA)"
+  },
+  "hasHazard": [
+    "hazard:ergonomic_overload",
+    "hazard:manual_handling",
+    "hazard:msd_repetitive"
+  ],
+  "references": [
+    "event:msd_overload"
+  ]
+}

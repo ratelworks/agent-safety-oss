@@ -1,0 +1,69 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:fire",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "fire",
+  "label": "화재",
+  "category": "physical",
+  "koshaAccidentType": "화재",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "화재",
+      "화기",
+      "용접",
+      "용단",
+      "불티"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_alarm",
+    "control:eng_explosion_proof",
+    "control:eng_ventilation",
+    "control:admin_work_permit",
+    "control:admin_emergency_plan",
+    "control:admin_inspection",
+    "control:admin_safety_education",
+    "control:ppe_chemical_suit"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:239"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/D-28-2012"
+  ],
+  "description": "**원인**: 화기작업 점화원 + 가연성 자재(스티로폼·우레탄·페인트). 우레탄 폼 다수 사망사고.\n**상황**: 신축건물 단열재 시공 시 용접·용단 동시작업 / 임시소방시설 미설치.\n**확인**: 화기작업 허가서 + 화재감시자 배치 / 임시소방시설 (소화기·간이소화수조·비상경보) / 가연자재 5m 이격 / 작업 후 1시간 화재 감시.\n**중대성**: 폐쇄공간 화재 시 다수 사망. 우레탄 폼 화재는 유독가스로 즉시 의식 상실.",
+  "koshaArchiveFacets": [
+    "facet:ctgr01/12"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:demolition",
+    "activity:electric_work_50v_plus",
+    "activity:finishing_paint",
+    "activity:steel_structure",
+    "activity:waterproofing"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/D-28-2012"
+  ]
+}

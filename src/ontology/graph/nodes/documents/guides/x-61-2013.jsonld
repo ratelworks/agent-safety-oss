@@ -1,0 +1,110 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/X-61-2013",
+  "@type": "Document",
+  "docId": "kosha_guide_x-61-2013",
+  "title": "생산 기계·설비 조립 및 설치시의 리스크 평가지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "X-61-2013",
+    "guideCategory": "general_safety",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"생산\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 1,
+      "2": 0,
+      "3": 4,
+      "4": 1,
+      "5": 2,
+      "6": 13,
+      "7": 110,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "생산",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:chemical_burn",
+    "hazard:machine_entanglement"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto"
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA01_000006000002000000000083000",
+      "title": "제83조 안전인증기준",
+      "category": "1",
+      "score": 37.699
+    },
+    {
+      "docId": "KOSHA03_[별표 13] 안전인증을 위한 심사종류별 제출서류(제108조제1항 관련)",
+      "title": "[별표 13] 안전인증을 위한 심사종류별 제출서류(제108조제1항 관련)",
+      "category": "3",
+      "score": 28.34
+    },
+    {
+      "docId": "KOSHA03_[서식 68] 국외제조자에 의한(선임서, 해임서)",
+      "title": "[서식 68] 국외제조자에 의한(선임서, 해임서)",
+      "category": "3",
+      "score": 24.622
+    },
+    {
+      "docId": "KOSHA03_[서식 30] 산업재해조사표",
+      "title": "[서식 30] 산업재해조사표",
+      "category": "3",
+      "score": 12.593
+    },
+    {
+      "docId": "KOSHA03_[별표 25] 건강관리카드의 발급 대상(제214조 관련)",
+      "title": "[별표 25] 건강관리카드의 발급 대상(제214조 관련)",
+      "category": "3",
+      "score": 12.443
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_도기 생산 시 건강 유해물질 관리 기술지침_2",
+      "title": "도기 생산 시 건강 유해물질 관리 기술지침 - 적용범위",
+      "score": 71.515
+    },
+    {
+      "docId": "KOSHA07_생산 기계·설비 조립 및 설치시의 리스크 평가지침_1",
+      "title": "생산 기계·설비 조립 및 설치시의 리스크 평가지침 - 목적",
+      "score": 67.496
+    },
+    {
+      "docId": "KOSHA07_생산 기계·설비 조립 및 설치시의 리스크 평가지침_2",
+      "title": "생산 기계·설비 조립 및 설치시의 리스크 평가지침 - 적용범위",
+      "score": 65.165
+    },
+    {
+      "docId": "KOSHA07_생산 기계·설비 조립 및 설치시의 리스크 평가지침_3",
+      "title": "생산 기계·설비 조립 및 설치시의 리스크 평가지침 - 용어의 정의",
+      "score": 56.335
+    },
+    {
+      "docId": "KOSHA07_생산 기계·설비 조립 및 설치시의 리스크 평가지침_4",
+      "title": "생산 기계·설비 조립 및 설치시의 리스크 평가지침 - 조립 및 설치 단계에서의 리스크 평가",
+      "score": 45.207
+    }
+  ]
+}

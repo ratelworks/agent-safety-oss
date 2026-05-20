@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_company_info",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "기업 정보 조회",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Company Info",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 현재 연동된 라텔웍스 키 + 기업 정보 조회. 키 미연동 시 가입 안내.",
+  "toolName": "get_company_info",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/get_company_info",
+  "producesEntity": [
+    "safety:CompanyProfile"
+  ],
+  "maps_to_action": "safety:action/get_company_info",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

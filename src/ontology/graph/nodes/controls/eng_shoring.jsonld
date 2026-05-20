@@ -1,0 +1,33 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_shoring",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_shoring",
+  "label": "흙막이 지보공",
+  "description": "굴착·터널·지하매설물 작업에서 토사와 지반 붕괴를 막기 위해 흙막이와 지보공을 설치하는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:drainage_sewerage",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:phc_pile_driving",
+    "activity:tunnel_excavation",
+    "activity:underground_utility"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "흙막이",
+      "지보공",
+      "토류판"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

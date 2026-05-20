@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/complete_action",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "개선조치 actionId 를 resolved 로 전환하고 완료 메모 및 after_action 사진 증빙을 ",
+      "@language": "ko"
+    },
+    {
+      "@value": "Complete Action",
+      "@language": "en"
+    }
+  ],
+  "description": "개선조치 actionId 를 resolved 로 전환하고 완료 메모 및 after_action 사진 증빙을 연결한다.",
+  "toolName": "complete_action",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/complete_action",
+  "maps_to_action": "safety:action/complete_action",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

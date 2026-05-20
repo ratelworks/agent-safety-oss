@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/electric_shock_excavation_2m_plus",
+  "@type": [
+    "Event"
+  ],
+  "slug": "electric_shock_excavation_2m_plus",
+  "title": "electric_shock × excavation_2m_plus",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 8건 관측. 사고유형 electric_shock 작업유형 excavation_2m_plus.",
+  "koshaAccidentType": "electric_shock",
+  "hasHazard": [
+    "hazard:electric_shock"
+  ],
+  "causedBy": [
+    "activity:excavation_2m_plus"
+  ],
+  "caseFrequency": 8,
+  "sampleKeywords": [
+    "핸드드릴 사용 중 감전",
+    "수중펌프 작동상태를 확인하던 중 감전",
+    "그라인더 잘단작업중 연마석 파편에 맞아 사망"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

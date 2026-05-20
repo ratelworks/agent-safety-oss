@@ -1,0 +1,330 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/safety_inspection_application",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_inspection_application",
+  "title": "안전검사 신청 (별지 48호)",
+  "description": "산안법 제93조 안전검사 대상 기계·기구(프레스·전단기·크레인·리프트·압력용기 등) 사용사업주가 정기적으로 받는 검사. 합격 표시(검사필증) 부착.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "검사주기 도래 시 (대상별 1~3년)",
+  "legalBasis": [
+    "art:산안법:93",
+    "art:산안법시행규칙:86"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "안전검사대상(프레스·전단기·크레인·리프트·압력용기 등) 사용사업주. 검사주기 1~3년."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "대상 외 기계",
+      "사용 종료 신고 후"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "applicantName",
+      "label": "사용 사업주 회사명·소재지",
+      "source": "산안법 제93조 + 시행규칙 제86조",
+      "inputGuide": "사업장·현장 도로명 주소.",
+      "examples": [
+        "서울특별시 강남구 삼성로 456"
+      ]
+    },
+    {
+      "key": "siteAddress",
+      "label": "검사 대상 사업장",
+      "source": "산안법 제93조 + 시행규칙 제86조",
+      "inputGuide": "본 안전검사 대상 사업장.",
+      "examples": [
+        "황룡건설(주) 삼성동 신축공사 현장"
+      ]
+    },
+    {
+      "key": "representative",
+      "label": "대표자·안전관리자",
+      "source": "산안법 제93조 + 시행규칙 제86조",
+      "inputGuide": "대표자 + 안전관리자 성명.",
+      "examples": [
+        "대표 황룡 / 안전관리자 김안전 (산업안전기사)"
+      ]
+    },
+    {
+      "key": "machineCategory",
+      "label": "안전검사 11종 분류",
+      "source": "산안법 제93조 + 시행령 제78조 (11종)",
+      "inputGuide": "산안법 제93조 + 시행령 제78조 — 안전검사대상 11종.",
+      "examples": [
+        "타워크레인 (제1호)"
+      ]
+    },
+    {
+      "key": "machineDetail",
+      "label": "기계명·제조사·정격",
+      "source": "산안법 제93조 + 시행령 제78조 (11종)",
+      "inputGuide": "대상 기계명 + 제조사 + 정격.",
+      "examples": [
+        "타워크레인 TC-7030 / (주)동양크레인 / 정격하중 6톤"
+      ]
+    },
+    {
+      "key": "installDate",
+      "label": "설치 일자·사용 기간",
+      "source": "산안법 제93조 + 시행령 제78조 (11종)",
+      "inputGuide": "설치일 + 사용 시작·종료.",
+      "examples": [
+        "2026-04-01 설치 / 2026-04~2027-08 (16개월 사용 예정)"
+      ]
+    },
+    {
+      "key": "inspectionDate",
+      "label": "검사 일자·기관",
+      "inputGuide": "안전검사 실시일 + 검사기관.",
+      "examples": [
+        "2026-04-25 / 한국산업안전보건공단"
+      ]
+    },
+    {
+      "key": "result",
+      "label": "결과 (합격/부적합)",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "certificateNo",
+      "label": "검사필증 번호",
+      "inputGuide": "안전검사필증 발급 번호.",
+      "examples": [
+        "SI-2026-04-0042"
+      ]
+    },
+    {
+      "key": "nextInspection",
+      "label": "차기 검사 예정일",
+      "inputGuide": "다음 안전검사 예정일 (장비별 주기 — 타워크레인 6개월).",
+      "examples": [
+        "2026-10-25"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 검사대상 식별 + 검사기관 + 결과",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:93"
+    },
+    {
+      "rule": "필수 — 검사필증 부착 + 다음 검사일 명시",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:86"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/M-137-2023",
+    "doc:kosha_guide/D-C-10-2026",
+    "doc:kosha_guide/M-82-2011",
+    "doc:kosha_guide/M-89-2016",
+    "doc:kosha_guide/M-91-2012",
+    "doc:kosha_guide/G-91-2012",
+    "doc:kosha_guide/C-54-2012",
+    "doc:kosha_guide/C-98-2014"
+  ],
+  "appliesToActivities": [
+    "activity:tower_crane",
+    "activity:heavy_lifting",
+    "activity:tower_assembly"
+  ],
+  "informedBy": [
+    "src:moel_safety_inspection",
+    "entity:kosha",
+    "entity:ats",
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "appliesTo": [
+    "applic:safety_inspection_11"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전검사 신청 (별지 제48호)",
+      "legalSource": "산안법 제95조 + 시행규칙 제125조 별지 제48호",
+      "fields": [
+        {
+          "key": "applicantInfo",
+          "label": "신청인 (사업주)",
+          "required": true,
+          "inputGuide": "사업장명·사업자번호.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "machineId",
+          "label": "검사 대상 기계",
+          "required": true,
+          "inputGuide": "안전검사 대상 (별표 22) + 일련번호.",
+          "examples": [
+            "타워크레인 TC-A동 (KO-2024-1234)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "inspectionType",
+          "label": "검사 종류",
+          "required": true,
+          "inputGuide": "최초 / 정기 (2년 또는 6개월).",
+          "examples": [
+            "정기검사 (2년 주기)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "prevInspection",
+          "label": "이전 검사 이력",
+          "required": false,
+          "optional": true,
+          "inputGuide": "이전 합격일자·번호.",
+          "examples": [
+            "2024-04 합격 (필증 K-2024-0815)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "applicationDate",
+          "label": "신청 일자",
+          "required": true,
+          "inputGuide": "검사 만료 전.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "annexReference": [
+    "annex:산안법시행규칙:서식48"
+  ],
+  "relatedDocs": [
+    "doc:as_needed/voluntary_inspection_program",
+    "doc:daily/construction_machinery_inspection",
+    "doc:ad_hoc/safety_certification_application"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능.",
+  "useFrequency": "low_for_small_construction",
+  "useFrequencyNote": "안전검사 신청 (대형 건설사 보유 장비)"
+}

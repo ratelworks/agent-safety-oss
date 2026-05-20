@@ -1,0 +1,40 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_respirator",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_respirator",
+  "label": "호흡보호구",
+  "description": "밀폐공간·분진·유해가스·화학물질 작업에서 흡입 노출을 낮추기 위해 착용하는 개인보호구 통제.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:asbestos_removal",
+    "activity:cement_handling",
+    "activity:chemical_handling",
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:drainage_sewerage",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:rc_concrete",
+    "activity:road_pavement",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "호흡보호",
+      "방진마스크"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

@@ -1,0 +1,61 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:object_set/all_kosha_guides_1039",
+  "@type": [
+    "safety:ObjectSet",
+    "prov:Collection"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "KOSHA Guide 1,039건",
+      "@language": "ko"
+    },
+    {
+      "@value": "1,039 KOSHA Guides",
+      "@language": "en"
+    }
+  ],
+  "description": "문서 그래프에 적재된 KOSHA Guide 1,039건 전체를 가리키는 메타 Object Set — guide code 기반 RAG, 규정 근거, 공종별 기술지침 traversal의 루트 노드.",
+  "category": "KoshaGuide",
+  "sparqlFilter": "?guide a safety:Document ; safety:docId ?docId . FILTER(STRSTARTS(STR(?docId), 'kosha_guide_'))",
+  "members": [
+    {
+      "@id": "doc:kosha_guide/A-G-1-2025"
+    },
+    {
+      "@id": "doc:kosha_guide/A-G-2-2025"
+    },
+    {
+      "@id": "doc:kosha_guide/A-G-4-2025"
+    },
+    {
+      "@id": "doc:kosha_guide/D-C-1-2025"
+    },
+    {
+      "@id": "doc:kosha_guide/D-C-4-2025"
+    },
+    {
+      "@id": "doc:kosha_guide/D-C-5-2025"
+    },
+    {
+      "@id": "doc:kosha_guide/D-C-11-2026"
+    },
+    {
+      "@id": "doc:kosha_guide/C-47-2023"
+    },
+    {
+      "@id": "doc:kosha_guide/C-55-2015"
+    },
+    {
+      "@id": "doc:kosha_guide/G-133-2020"
+    }
+  ],
+  "memberCount": 1039,
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks",
+    "intendedUse": "LLM이 KOSHA Guide 전체 카탈로그를 하나의 named query 루트로 잡고 공종·위험·통제별 하위 guide를 동적으로 선택한다.",
+    "memberMaterialization": "sparqlFilter가 전체 1,039건을 정의하며 members는 굴착·추락·해체·외벽·양중 관련 대표 anchor다.",
+    "sourcePattern": "declarative named object-set query pattern"
+  }
+}

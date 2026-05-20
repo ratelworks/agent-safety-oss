@@ -1,0 +1,767 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:on_appointment/safety_health_manager_appointment",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "safety_health_manager_appointment",
+  "title": "안전보건관리체제 지정·선임 보고",
+  "alternativeNames": [
+    "선임 보고서",
+    "안전관리자 선임 보고서"
+  ],
+  "description": "산안법 제17조(안전관리자)·제18조(보건관리자)·제22조(산업보건의)에 따라 사업주가 선임·교체·해임·증원·교체임명 시 14일 이내 관할 지방고용노동관서에 제출하는 법정 보고서. 일반업종(시행규칙 별지 양식)과 건설업(시행규칙 별지 양식) 2종.",
+  "cycle": "cyc:on_appointment",
+  "trigger": "안전관리자/보건관리자/산업보건의 선임·교체·해임 시 14일 내 보고 (시행규칙 제11조 — 선임 등 보고).",
+  "applicableWhen": {
+    "appliesTo": "applic:50_workers_or_construction",
+    "scaleNotes": "안전관리자 선임 의무: 50인 이상 또는 공사금액 50억 이상. 보건관리자: 50인 이상. 산업보건의: 50인 이상."
+  },
+  "exemptedWhen": {
+    "note": "50인 미만 + 공사금액 50억 미만 시 안전관리자 선임 면제 (안전보건관리책임자·관리감독자는 별도 의무)."
+  },
+  "requiredFields": [
+    {
+      "key": "siteName",
+      "label": "사업장명",
+      "source": "공식 양식 — 사업체",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "address",
+      "label": "소재지",
+      "source": "공식 양식 — 사업체",
+      "inputGuide": "도로명주소 우선. 지번주소 병기 가능. 우편번호 포함 권장.",
+      "examples": [
+        "서울특별시 강남구 테헤란로 123 (12345)",
+        "경기도 성남시 분당구 판교역로 456 (13494)"
+      ]
+    },
+    {
+      "key": "ownerName",
+      "label": "사업주 또는 대표자",
+      "source": "공식 양식 — 사업체 / 보고인",
+      "inputGuide": "법인 대표 또는 위임받은 안전보건책임자.",
+      "examples": [
+        "황한일 (대표)"
+      ]
+    },
+    {
+      "key": "phone",
+      "label": "전화번호",
+      "source": "공식 양식 — 사업체",
+      "inputGuide": "유선 또는 모바일 번호. 공식 24시간 연락 가능 번호 권장.",
+      "examples": [
+        "02-1234-5678",
+        "010-1234-5678"
+      ]
+    },
+    {
+      "key": "siteName_construction",
+      "label": "현장명",
+      "source": "공식 양식 (건설업) — 현장개요",
+      "inputGuide": "발주처 계약서 상의 공식 공사명. 약식 표기 금지.",
+      "examples": [
+        "서울특별시 OO구 OO동 신축공사",
+        "OO지구 도시개발사업 1공구 토목공사"
+      ]
+    },
+    {
+      "key": "developer",
+      "label": "발주자 또는 도급인",
+      "source": "공식 양식 (건설업) — 현장개요",
+      "inputGuide": "발주처 명칭.",
+      "examples": [
+        "서울특별시 강남구청"
+      ]
+    },
+    {
+      "key": "constructionPeriod",
+      "label": "공사기간",
+      "source": "공식 양식 (건설업) — 현장개요",
+      "inputGuide": "YYYY-MM-DD ~ YYYY-MM-DD 형식. 도급계약서 또는 작업계획서 상의 기간.",
+      "examples": [
+        "2026-03-01 ~ 2027-12-31",
+        "2026-04-01 ~ 2026-04-30"
+      ]
+    },
+    {
+      "key": "constructionAmount",
+      "label": "공사금액(상시근로자 수)",
+      "source": "공식 양식 (건설업) — 현장개요",
+      "inputGuide": "공사 도급금액 (원) 또는 상시근로자 수 — 산안법 시행령 제13조~17 선임 기준.",
+      "examples": [
+        "320억원 (상시근로자 52명)"
+      ]
+    },
+    {
+      "key": "totalWorkers",
+      "label": "( 명)",
+      "source": "공식 양식 (건설업)",
+      "inputGuide": "상시근로자 수 (명).",
+      "examples": [
+        "52"
+      ]
+    },
+    {
+      "key": "safetyManagerName",
+      "label": "성명",
+      "source": "공식 양식 — 안전관리자",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "safetyManagerEmail",
+      "label": "전자우편 주소",
+      "source": "공식 양식",
+      "inputGuide": "사업장 또는 본인 전자우편.",
+      "examples": [
+        "safety@hwangryong.co.kr"
+      ]
+    },
+    {
+      "key": "safetyManagerPhone",
+      "label": "전화번호",
+      "source": "공식 양식",
+      "inputGuide": "유선 또는 모바일 번호. 공식 24시간 연락 가능 번호 권장.",
+      "examples": [
+        "02-1234-5678",
+        "010-1234-5678"
+      ]
+    },
+    {
+      "key": "safetyManagerLicense",
+      "label": "자격/면허번호",
+      "source": "공식 양식",
+      "inputGuide": "자격증·면허 번호.",
+      "examples": [
+        "18-사기-12345"
+      ]
+    },
+    {
+      "key": "safetyManagerOrg",
+      "label": "기관명",
+      "source": "공식 양식",
+      "inputGuide": "발급·검사·인증 기관명.",
+      "examples": [
+        "한국산업안전보건공단"
+      ]
+    },
+    {
+      "key": "safetyManagerCareer_header",
+      "label": "경력",
+      "source": "공식 양식",
+      "inputGuide": "안전 관련 경력 연수 + 주요 이력.",
+      "examples": [
+        "10년 (대기업 안전관리자 5년 + 건설현장 5년)"
+      ]
+    },
+    {
+      "key": "safetyManagerCareer_org",
+      "label": "기관명",
+      "inputGuide": "safetyManager 유관 경력 — 기관명. 다 항목 가능.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "한국산업안전보건공단"
+      ]
+    },
+    {
+      "key": "safetyManagerCareer_period",
+      "label": "기간",
+      "inputGuide": "근무 기간 (YYYY-MM ~ YYYY-MM).",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "2018-03 ~ 2024-02 (6년)"
+      ]
+    },
+    {
+      "key": "safetyManagerEducation_header",
+      "label": "학력",
+      "source": "공식 양식",
+      "inputGuide": "최종 학력 + 전공.",
+      "examples": [
+        "○○대학교 안전공학과 졸업 (학사)"
+      ]
+    },
+    {
+      "key": "safetyManagerEducation_school",
+      "label": "학교",
+      "inputGuide": "최종 학력 학교명.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "○○대학교"
+      ]
+    },
+    {
+      "key": "safetyManagerEducation_dept",
+      "label": "학과",
+      "inputGuide": "최종 학력 학과명.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "안전공학과"
+      ]
+    },
+    {
+      "key": "healthManagerName",
+      "label": "성명",
+      "source": "공식 양식",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "healthManagerEmail",
+      "label": "전자우편 주소",
+      "source": "공식 양식",
+      "inputGuide": "사업장 또는 본인 전자우편.",
+      "examples": [
+        "safety@hwangryong.co.kr"
+      ]
+    },
+    {
+      "key": "healthManagerPhone",
+      "label": "전화번호",
+      "source": "공식 양식",
+      "inputGuide": "유선 또는 모바일 번호. 공식 24시간 연락 가능 번호 권장.",
+      "examples": [
+        "02-1234-5678",
+        "010-1234-5678"
+      ]
+    },
+    {
+      "key": "healthManagerLicense",
+      "label": "자격/면허번호",
+      "source": "공식 양식",
+      "inputGuide": "자격증·면허 번호.",
+      "examples": [
+        "18-사기-12345"
+      ]
+    },
+    {
+      "key": "healthManagerOrg",
+      "label": "기관명",
+      "source": "공식 양식",
+      "inputGuide": "발급·검사·인증 기관명.",
+      "examples": [
+        "한국산업안전보건공단"
+      ]
+    },
+    {
+      "key": "healthManagerCareer_header",
+      "label": "경력",
+      "source": "공식 양식",
+      "inputGuide": "안전 관련 경력 연수 + 주요 이력.",
+      "examples": [
+        "10년 (대기업 안전관리자 5년 + 건설현장 5년)"
+      ]
+    },
+    {
+      "key": "healthManagerCareer_org",
+      "label": "기관명",
+      "inputGuide": "healthManager 유관 경력 — 기관명. 다 항목 가능.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "한국산업안전보건공단"
+      ]
+    },
+    {
+      "key": "healthManagerCareer_period",
+      "label": "기간",
+      "inputGuide": "근무 기간 (YYYY-MM ~ YYYY-MM).",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "2018-03 ~ 2024-02 (6년)"
+      ]
+    },
+    {
+      "key": "healthManagerEducation_header",
+      "label": "학력",
+      "source": "공식 양식",
+      "inputGuide": "최종 학력 + 전공.",
+      "examples": [
+        "○○대학교 안전공학과 졸업 (학사)"
+      ]
+    },
+    {
+      "key": "healthManagerEducation_school",
+      "label": "학교",
+      "inputGuide": "최종 학력 학교명.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "○○대학교"
+      ]
+    },
+    {
+      "key": "healthManagerEducation_dept",
+      "label": "학과",
+      "inputGuide": "최종 학력 학과명.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "안전공학과"
+      ]
+    },
+    {
+      "key": "physicianName",
+      "label": "성명",
+      "source": "공식 양식",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "physicianEmail",
+      "label": "전자우편 주소",
+      "source": "공식 양식",
+      "inputGuide": "사업장 또는 본인 전자우편.",
+      "examples": [
+        "safety@hwangryong.co.kr"
+      ]
+    },
+    {
+      "key": "physicianPhone",
+      "label": "전화번호",
+      "source": "공식 양식",
+      "inputGuide": "유선 또는 모바일 번호. 공식 24시간 연락 가능 번호 권장.",
+      "examples": [
+        "02-1234-5678",
+        "010-1234-5678"
+      ]
+    },
+    {
+      "key": "physicianLicense",
+      "label": "자격/면허번호",
+      "source": "공식 양식",
+      "inputGuide": "자격증·면허 번호.",
+      "examples": [
+        "18-사기-12345"
+      ]
+    },
+    {
+      "key": "physicianOrg",
+      "label": "기관명",
+      "source": "공식 양식",
+      "inputGuide": "발급·검사·인증 기관명.",
+      "examples": [
+        "한국산업안전보건공단"
+      ]
+    },
+    {
+      "key": "physicianCareer_header",
+      "label": "경력",
+      "source": "공식 양식",
+      "inputGuide": "안전 관련 경력 연수 + 주요 이력.",
+      "examples": [
+        "10년 (대기업 안전관리자 5년 + 건설현장 5년)"
+      ]
+    },
+    {
+      "key": "physicianCareer_org",
+      "label": "기관명",
+      "inputGuide": "physician 유관 경력 — 기관명. 다 항목 가능.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "한국산업안전보건공단"
+      ]
+    },
+    {
+      "key": "physicianCareer_period",
+      "label": "기간",
+      "inputGuide": "근무 기간 (YYYY-MM ~ YYYY-MM).",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "2018-03 ~ 2024-02 (6년)"
+      ]
+    },
+    {
+      "key": "physicianEducation_header",
+      "label": "학력",
+      "source": "공식 양식",
+      "inputGuide": "최종 학력 + 전공.",
+      "examples": [
+        "○○대학교 안전공학과 졸업 (학사)"
+      ]
+    },
+    {
+      "key": "physicianEducation_school",
+      "label": "학교",
+      "inputGuide": "최종 학력 학교명.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "○○대학교"
+      ]
+    },
+    {
+      "key": "physicianEducation_dept",
+      "label": "학과",
+      "inputGuide": "최종 학력 학과명.",
+      "required": false,
+      "source": "공식 양식",
+      "examples": [
+        "안전공학과"
+      ]
+    },
+    {
+      "key": "reportDate",
+      "label": "년 월 일",
+      "source": "공식 양식",
+      "inputGuide": "작성 일자. YYYY년 MM월 DD일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "reporterSignature",
+      "label": "보고인(사업주 또는 대표자) (서명 또는 인)",
+      "source": "공식 양식",
+      "inputGuide": "사업주 또는 대표자 자필 서명·날인.",
+      "examples": [
+        "황한일 (대표, 인감)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 사업장 정보 (사업장명·소재지·사업주·전화)",
+      "severity": "blocker",
+      "checkFields": [
+        "siteName",
+        "address",
+        "ownerName"
+      ]
+    },
+    {
+      "rule": "필수 — 1인 이상 선임자 (안전관리자·보건관리자·산업보건의 중 해당 직책)",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 선임자 자격/면허번호 (시행령 별표 4·5·6 자격 충족)",
+      "severity": "manual_review"
+    },
+    {
+      "rule": "필수 — 14일 이내 제출 (시행규칙 제11조 — 안전관리자 등의 선임 등 보고)",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:11"
+    },
+    {
+      "rule": "필수 — 사업주 서명·날인",
+      "severity": "blocker",
+      "checkFields": [
+        "reporterSignature"
+      ]
+    },
+    {
+      "rule": "건설업 — 현장명·발주자·공사금액·공사기간·상시근로자 수 추가 작성",
+      "severity": "warning",
+      "checkFields": [
+        "siteName_construction",
+        "developer",
+        "constructionAmount",
+        "constructionPeriod"
+      ]
+    },
+    {
+      "rule": "사람 검토 — 자격증 사본 첨부 (발급기관 + 발급일자 확인)",
+      "severity": "manual_review"
+    }
+  ],
+  "retention": "선임은 사업 운영 동안 유지 + 변경 시 갱신 (시행규칙 제11조). 문서 보존 5년 권장 (산안법 제164조).",
+  "standardForm": {
+    "source": "산업안전보건법 시행규칙 [별지 양식] — 안전관리자·보건관리자·산업보건의 선임 등 보고서 (일반업종) / 건설업 별도 양식",
+    "sourceUrl": "https://www.moel.go.kr/local/seoulseobu/info/dataroom/view.do?bbs_seq=20200100799",
+    "downloadHwpGeneral": "https://www.moel.go.kr/local/seoulseobu/common/downloadFile.do?file_seq=20200101245&bbs_seq=20200100799&bbs_id=LOCAL5",
+    "downloadHwpConstruction": "https://www.moel.go.kr/local/seoulseobu/common/downloadFile.do?file_seq=20200101246&bbs_seq=20200100799&bbs_id=LOCAL5",
+    "verifiedBy": "kordoc parse_form (2026-04-29) — 두 양식(일반/건설업) HWP 본문과 1:1 매핑 확인",
+    "requiredFields": [
+      "사업체: 사업장명·소재지·사업주(대표자)·전화번호",
+      "[건설업 추가] 현장개요: 현장명·발주자(도급인)·소재지·공사기간·공사금액·상시근로자 수",
+      "안전관리자: 성명·기관명·전자우편·전화·자격/면허번호·경력(기관·기간)·학력(학교·학과)",
+      "보건관리자: 동일 8 필드",
+      "산업보건의: 동일 8 필드",
+      "년 월 일 / 보고인(사업주 또는 대표자) (서명 또는 인)"
+    ]
+  },
+  "relatedDocs": [
+    "doc:ad_hoc/safety_health_management_assistant_appointment",
+    "doc:ad_hoc/honorary_safety_supervisor_appointment",
+    "doc:ad_hoc/industrial_physician_appointment",
+    "doc:annual/safety_health_management_policy",
+    "doc:annual/supervisor_education_log"
+  ],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§17",
+        "text": "안전관리자 선임 의무"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§18",
+        "text": "보건관리자 선임 의무"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§22",
+        "text": "산업보건의 선임 의무"
+      },
+      {
+        "law": "산업안전보건법 시행령",
+        "article": "별표 3",
+        "text": "안전관리자 자격"
+      },
+      {
+        "law": "산업안전보건법 시행령",
+        "article": "별표 5",
+        "text": "보건관리자 자격"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§13",
+        "text": "선임 등 보고 — 14일 이내 제출"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "자격/면허번호": "산업안전기사·산업위생기사·산업보건의 자격증의 발급번호. 발급기관·발급일자도 확인",
+        "경력": "유관 분야 근무 경력 (기관명·기간). 학력만으로 안 되는 경우 경력 보강",
+        "기관명 (위탁)": "안전관리대행기관·보건관리대행기관에 위탁하는 경우 대행기관명. 자체 선임 시 빈칸",
+        "건설업 공사금액": "원수급 사업장 공사금액 (백만원 단위). 50억 이상 시 안전관리자 의무"
+      },
+      "commonMistakes": [
+        "14일 이내 미제출 시 제175조 과태료",
+        "건설업인데 일반 양식으로 보고 (현장명·공사금액 누락)",
+        "위탁 시 기관명 누락",
+        "사업주 서명 누락"
+      ],
+      "bestPractices": [
+        "선임 즉시 보고서 작성 + 자격증 사본 첨부",
+        "변경 시 즉시 변경 보고",
+        "본사·현장 별도 보고 (건설업)"
+      ]
+    },
+    "examples": [
+      {
+        "title": "선임 등 보고서 작성 안내 (서울지방고용노동청 서울서부지청)",
+        "source": "고용노동부",
+        "license": "공공누리"
+      }
+    ],
+    "relatedTools": [
+      "search_safety_laws({keyword:'제17조'})",
+      "search_safety_laws({keyword:'안전관리자'})"
+    ],
+    "rebuiltAt": "2026-04-29",
+    "rebuildSource": "kordoc parse_form on /tmp/official-forms/manager-general.hwp + manager-construction.hwp",
+    "rebuildVerifiedBy": "라텔웍스 (Ratelworks Inc.) — 공식 양식 본문 1:1 정합 검증",
+    "documentCategory": "report",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:17",
+    "art:산안법:18",
+    "art:산안법:22",
+    "annex:산안법시행령:별표3",
+    "annex:산안법시행령:별표5",
+    "art:산안법시행규칙:11",
+    "art:산안법시행규칙:12"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "src:moel:1350"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 안전보건관리체제 선임 (별지 24호)",
+      "legalSource": "산안법 제15·17·18·19조 + 시행규칙 제11조 + 별지 24호",
+      "fields": [
+        {
+          "key": "appointeeName",
+          "label": "선임자 성명",
+          "required": true,
+          "inputGuide": "안전관리자·보건관리자 성명.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "appointmentType",
+          "label": "선임 종류",
+          "required": true,
+          "inputGuide": "안전보건관리책임자/안전관리자/보건관리자/안전보건관리담당자.",
+          "examples": [
+            "안전관리자"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "qualification",
+          "label": "자격",
+          "required": true,
+          "inputGuide": "산안법 시행령 별표 4·5 자격기준.",
+          "examples": [
+            "산업안전기사 + 5년 경력"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "appointmentDate",
+          "label": "선임 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reportToMOEL",
+          "label": "고용노동부 보고",
+          "required": true,
+          "inputGuide": "별지 24호 14일 내 제출.",
+          "examples": [
+            "2026-05-10 강남고용노동지청 제출"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "annexReference": [
+    "annex:산안법시행규칙:서식24"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:kras_step_5_control",
+  "@type": "Method",
+  "label": "5단계: 감소대책 수립·이행",
+  "verificationStatus": "kosha_verified",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras",
+    "category": "kras_step",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "description": "ERIC-PP 위계(Eliminate→Substitute→Engineering→Administrative→PPE) 따른 통제대책 수립·이행·확인. 위험성평가 고시 제9조 적용.",
+  "legalBasis": [
+    "art:위험성평가-고시:9"
+  ],
+  "isPartOf": "manual:risk_assessment_practical",
+  "informedBy": [
+    "control:eric_eliminate",
+    "control:eric_substitute",
+    "control:eric_engineering",
+    "control:eric_administrative",
+    "control:eric_ppe"
+  ]
+}

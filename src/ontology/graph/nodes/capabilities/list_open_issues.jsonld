@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_open_issues",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "open 또는 in_progress 상태의 SafetyIssue 를 siteId 또는 severity 로 필",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Open Issues",
+      "@language": "en"
+    }
+  ],
+  "description": "open 또는 in_progress 상태의 SafetyIssue 를 siteId 또는 severity 로 필터링해 조회하고 이슈→작업→위험→조치 그래프 사슬을 반환한다.",
+  "toolName": "list_open_issues",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/list_open_issues",
+  "maps_to_action": "safety:action/list_open_issues",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

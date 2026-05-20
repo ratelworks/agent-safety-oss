@@ -1,0 +1,381 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/work_environment_measurement_notification",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_environment_measurement_notification",
+  "title": "작업환경측정 결과 통보 (별지 84호)",
+  "description": "작업환경측정 실시 결과를 근로자·산업보건의·노조에 통보하는 서식. 산안법 제125조 + 시행규칙 제188조 별지 제84호.",
+  "cycle": "cyc:semi_annual",
+  "trigger": "작업환경측정 실시 후 30일 이내 (반기 1회)",
+  "legalBasis": [
+    "art:산안법:125",
+    "art:산안법시행규칙:188",
+    "art:산안법시행규칙:189",
+    "art:산안법시행규칙:190"
+  ],
+  "officialFormSpec": {
+    "formId": "annex84_wem_notification",
+    "officialName": "산업안전보건법 시행규칙 [별지 제84호서식] 작업환경측정 결과 통보서",
+    "formMatchType": "법령 별지 호 양식 (작성·통보 의무)",
+    "license": "공공누리 - 출처 법제처 / 고용노동부"
+  },
+  "sections": [
+    {
+      "title": "1. 사업장 정보",
+      "legalSource": "별지 제84호 ① 사업장",
+      "fields": [
+        {
+          "key": "siteName",
+          "label": "사업장명",
+          "required": true,
+          "inputGuide": "측정 대상 사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 ○○공동주택 신축공사 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "businessNumber",
+          "label": "사업자등록번호",
+          "required": true,
+          "inputGuide": "10자리 사업자등록번호.",
+          "examples": [
+            "123-45-67890"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "address",
+          "label": "사업장 소재지",
+          "required": true,
+          "inputGuide": "도로명 주소 + 우편번호.",
+          "examples": [
+            "서울특별시 강남구 삼성동 100-1 (06234)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "industryCode",
+          "label": "업종 (한국표준산업분류)",
+          "required": true,
+          "inputGuide": "KSIC 5자리 코드.",
+          "examples": [
+            "41112 (건설업 / 주거용 건물 건설업)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workerCount",
+          "label": "근로자 수",
+          "required": true,
+          "inputGuide": "측정 시점 상시 근로자 수 (남·여 별도).",
+          "examples": [
+            "남 45 + 여 5 = 50명"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 측정 정보",
+      "legalSource": "별지 제84호 ② 측정 + ③ 측정기관",
+      "fields": [
+        {
+          "key": "measurePeriod",
+          "label": "측정 일자 / 기간",
+          "required": true,
+          "inputGuide": "측정 시작·종료 일자.",
+          "examples": [
+            "2026-04-15 ~ 2026-04-19 (5일간)"
+          ],
+          "checkPoints": [
+            "반기 1회 이상 의무"
+          ]
+        },
+        {
+          "key": "measureAgency",
+          "label": "측정기관명 + 지정번호",
+          "required": true,
+          "inputGuide": "고용노동부 지정 측정기관. 사업주 자체측정 또는 위탁.",
+          "examples": [
+            "(재)한국산업안전보건연구원 (지정번호 제2018-001호)"
+          ],
+          "checkPoints": [
+            "고용노동부 지정 기관"
+          ]
+        },
+        {
+          "key": "measurementType",
+          "label": "측정 종류",
+          "required": true,
+          "inputGuide": "정기·임시·작업환경 등.",
+          "examples": [
+            "정기측정 (반기 1회)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "measurementMethod",
+          "label": "측정 방법",
+          "required": true,
+          "inputGuide": "직독식·검지관·여과지·임핀저 등 + KS·KOSHA 표준 명시.",
+          "examples": [
+            "여과지 채취법 (소음 KS C IEC 61672, 분진 KOSHA M-167)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 측정 항목 / 결과",
+      "legalSource": "별지 제84호 ④ 측정결과 + 시행규칙 제189조",
+      "fields": [
+        {
+          "key": "measurementResults",
+          "label": "측정 결과 (배열)",
+          "required": true,
+          "inputGuide": "각 항목별 [측정대상물질·근로자수·측정시간·노출수준·노출기준·평가] 6개 필드. 모든 측정 항목 1행 1항목.",
+          "examples": [
+            [
+              {
+                "hazardName": "소음",
+                "exposedWorkers": 12,
+                "measureHours": 8,
+                "exposureLevel": "85.3 dB(A)",
+                "exposureLimit": "TWA 90 dB(A)",
+                "evaluation": "기준 미만"
+              },
+              {
+                "hazardName": "분진 (호흡성)",
+                "exposedWorkers": 8,
+                "measureHours": 8,
+                "exposureLevel": "0.7 mg/m³",
+                "exposureLimit": "TWA 1 mg/m³",
+                "evaluation": "기준 미만"
+              },
+              {
+                "hazardName": "톨루엔 (도장작업)",
+                "exposedWorkers": 5,
+                "measureHours": 6,
+                "exposureLevel": "32 ppm",
+                "exposureLimit": "TWA 50 ppm",
+                "evaluation": "기준 미만"
+              }
+            ]
+          ],
+          "checkPoints": [
+            "기준 초과 시 즉시 개선·재측정"
+          ]
+        },
+        {
+          "key": "exceededItems",
+          "label": "노출기준 초과 항목 + 조치 (있는 경우)",
+          "required": false,
+          "optional": true,
+          "inputGuide": "기준 초과 시 항목별 즉시 개선 조치 + 재측정 일정.",
+          "examples": [
+            "[해당없음] 모두 기준 미만",
+            "소음 95dB 초과 → 청력보호구 의무 + 환기 개선 + 60일 내 재측정"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "4. 측정 결과 통보 (의무)",
+      "legalSource": "산안법 제125조 ⑤ + 시행규칙 제188조 ② (30일 이내 통보)",
+      "fields": [
+        {
+          "key": "notifiedToWorkers",
+          "label": "근로자 통보 일자 + 방법",
+          "required": true,
+          "inputGuide": "측정 후 30일 이내 근로자 전원에게 통보. 게시판·교육·서면 등.",
+          "examples": [
+            "2026-04-29 게시판 게시 + 4월 안전보건교육 시 설명 + 작업조별 통보문 배포"
+          ],
+          "checkPoints": [
+            "30일 이내 통보 의무"
+          ]
+        },
+        {
+          "key": "notifiedToHealthMD",
+          "label": "산업보건의 통보",
+          "required": false,
+          "optional": true,
+          "inputGuide": "산업보건의 선임 사업장만. 50인 미만 + 50억 미만 현장 면제.",
+          "examples": [
+            "[해당없음] 산업보건의 미선임 (50인 미만)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "notifiedToUnion",
+          "label": "노조·근로자대표 통보",
+          "required": true,
+          "inputGuide": "노조 또는 근로자대표 통보.",
+          "examples": [
+            "2026-04-29 근로자대표 이근로 서면 통보"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "submittedToMOEL",
+          "label": "고용노동부 제출 (전산 입력)",
+          "required": true,
+          "inputGuide": "측정 후 30일 이내 고용노동부 전산 시스템 (kras.kosha.or.kr) 제출.",
+          "examples": [
+            "2026-04-29 KRAS 시스템 등록 (등록번호 KR-2026-0429-001)"
+          ],
+          "checkPoints": [
+            "30일 이내 KRAS 제출 의무"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. 결재 / 첨부",
+      "legalSource": "별지 제84호 ⑤ 작성자·결재",
+      "fields": [
+        {
+          "key": "compilerSign",
+          "label": "작성자 (측정 책임자) 서명",
+          "required": true,
+          "inputGuide": "측정기관 작성자 또는 사업주 안전관리자 서명.",
+          "examples": [
+            "박측정 (한국산업안전보건연구원, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principalSign",
+          "label": "사업주 (안전보건관리책임자) 서명",
+          "required": true,
+          "inputGuide": "사업주 또는 안전보건관리책임자(현장소장) 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "attachments",
+          "label": "첨부 (측정결과보고서·도면)",
+          "required": true,
+          "inputGuide": "별지 제82·83호 측정결과보고서·결과표 + 측정점 도면.",
+          "examples": [
+            "1) 별지 제82호 측정결과보고서, 2) 별지 제83호 측정결과표, 3) 측정점 도면"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (측정 책임자)",
+      "action": "측정 결과 작성·통보서 기안"
+    },
+    {
+      "role": "관리감독자 (안전관리자)",
+      "action": "검토 + 통보 절차 확인"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인 + 통보 발송"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "측정 결과 항목별 노출수준·노출기준·평가 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:125",
+      "checkFields": [
+        "measurementResults"
+      ]
+    },
+    {
+      "rule": "근로자 30일 이내 통보 + KRAS 제출",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:188",
+      "checkFields": [
+        "notifiedToWorkers",
+        "submittedToMOEL"
+      ]
+    },
+    {
+      "rule": "노조·근로자대표 통보",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:125",
+      "checkFields": [
+        "notifiedToUnion"
+      ]
+    },
+    {
+      "rule": "측정기관 (지정기관) + 측정 방법 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:189",
+      "checkFields": [
+        "measureAgency",
+        "measurementMethod"
+      ]
+    },
+    {
+      "rule": "사업주 서명 + 작성자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:125",
+      "checkFields": [
+        "compilerSign",
+        "principalSign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "5년 (산안법 제164조 ②)",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법시행규칙:188",
+    "verifiedAt": "2026-04-29",
+    "guidedByKeywords": [
+      "작업환경측정",
+      "노출",
+      "통보"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "report",
+    "licenseHint": "공공누리 - 출처 법제처 + 고용노동부",
+    "alignedAt": "2026-04-29",
+    "alignSource": "산안법 시행규칙 제188조 별지 제84호 서식 매핑"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:hazard_factor_exposed",
+    "scaleNotes": "유해인자 노출 작업장. 화학물질·소음·진동·분진 취급 시. 50억 미만 + 5인 이상 동일 의무."
+  },
+  "hasHazard": [
+    "hazard:noise",
+    "hazard:dust",
+    "hazard:acute_toxic_gas",
+    "hazard:chemical_exposure"
+  ],
+  "appliesToActivities": [
+    "activity:chemical_handling",
+    "activity:painting",
+    "activity:concrete_work"
+  ],
+  "informedBy": [
+    "entity:moel"
+  ],
+  "iso45001Class": "iso45001:Audit",
+  "annexReference": [
+    "annex:산안법시행규칙:서식84"
+  ],
+  "relatedDocs": [
+    "doc:semi_annual/work_environment_measurement",
+    "doc:continuous/msds_register"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

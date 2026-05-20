@@ -1,0 +1,99 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:tbm_daily",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "TBM 작업 전 안전점검회의",
+  "category": "management",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/별표4",
+    "fetchedAt": "2026-04-26",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "guidedBy": [
+    "doc:kosha_guide/G-93-2012",
+    "doc:kosha_guide/C-C-51-2026",
+    "doc:kosha_guide/H-158-2021",
+    "doc:kosha_guide/A-R-3-2026",
+    "doc:kosha_guide/G-100-2013"
+  ],
+  "regulatedBy": [
+    "art:산안법:29",
+    "art:기준규칙:35",
+    "art:산안법:36",
+    "art:산안법:38"
+  ],
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:trip_slip",
+    "hazard:msd_repetitive"
+  ],
+  "description": "\n\n**관련 키워드**: TBM, Tool Box Meeting, 도구상자 회의, 작업 전 안전점검회의, 조회, 일일조회, 매일 작업 전, 일일점검.",
+  "searchKeywords": [
+    "TBM",
+    "Tool Box Meeting",
+    "도구상자 회의",
+    "작업 전 안전점검회의",
+    "조회",
+    "일일조회",
+    "매일 작업 전",
+    "일일점검"
+  ],
+  "koshaArchiveFacets": [
+    "facet:group/ctgr01",
+    "facet:group/ctgr02",
+    "facet:group/ctgr03",
+    "facet:group/ctgr04",
+    "facet:group/ctgr05"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:struck_by"
+    ],
+    "general": [
+      "hazard:trip_slip",
+      "hazard:msd_repetitive"
+    ]
+  },
+  "hasWorkType": "cc:worktype/general",
+  "workTypeLabel": {
+    "ko": "일반 안전관리 작업",
+    "en": "General safety management work"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/B-E-3-2025",
+  "@type": "Document",
+  "docId": "kosha_guide_b-e-3-2025",
+  "title": "변전실 등의 양압유지에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "B-E-3-2025",
+    "guideCategory": "electric",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 7건 (법령 2 / KOSHA Guide 5). keyword=\"변전실\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 1,
+      "6": 0,
+      "7": 20,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "변전실",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA04_002000003000001000000000312000",
+      "title": "제312조 변전실 등의 위치",
+      "category": "4",
+      "score": 89.158
+    },
+    {
+      "docId": "KOSHA05_가스누출감지경보기 설치에 관한 기술상의 지침000000000000000000000000000000004000",
+      "title": "가스누출감지경보기 설치에 관한 기술상의 지침 제4조 설치장소",
+      "category": "5",
+      "score": 48.278
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_변전실 등의 양압유지에 관한 기술지침_2",
+      "title": "변전실 등의 양압유지에 관한 기술지침 - 적용범위",
+      "score": 98.561
+    },
+    {
+      "docId": "KOSHA07_변전실 등의 양압유지에 관한 기술지침_3",
+      "title": "변전실 등의 양압유지에 관한 기술지침 - 정의",
+      "score": 82.076
+    },
+    {
+      "docId": "KOSHA07_변전실 등의 양압유지에 관한 기술지침_5",
+      "title": "변전실 등의 양압유지에 관한 기술지침 - 양압설비의 설계 및 설치",
+      "score": 60.029
+    },
+    {
+      "docId": "KOSHA07_제어실의 위치선정 및 설계에 관한 기술지침_1",
+      "title": "제어실의 위치선정 및 설계에 관한 기술지침 - 목적",
+      "score": 48.824
+    },
+    {
+      "docId": "KOSHA07_개폐장치의 사용에 관한 기술지침_5",
+      "title": "개폐장치의 사용에 관한 기술지침 - 유입차단기의 관리 및 정비",
+      "score": 40.079
+    }
+  ]
+}

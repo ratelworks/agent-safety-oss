@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fall_from_height_heavy_lifting",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fall_from_height_heavy_lifting",
+  "title": "fall_from_height × heavy_lifting",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 73건 관측. 사고유형 fall_from_height 작업유형 heavy_lifting.",
+  "koshaAccidentType": "fall_from_height",
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "causedBy": [
+    "activity:heavy_lifting"
+  ],
+  "caseFrequency": 73,
+  "sampleKeywords": [
+    "L형 앵글 다발 인양 작업 중 맞음",
+    "P.C. 슬래브 위치 조정 중 인접 개구부로 추락",
+    "이동식크레인 벨트슬링에 발을 걸고 매달린 채 이동 중 추락"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

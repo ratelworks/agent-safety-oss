@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_kosha_archive_files",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "KOSHA 자료 첨부 파일 정보 + 다운로드 URL",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Kosha Archive Files",
+      "@language": "en"
+    }
+  ],
+  "description": "KOSHA 지침·자료실·법령 번들을 검색하거나 본문·facet·첨부 파일을 조회하는 capability. search_kosha_archive 의 contsAtcflNo 입력 시 해당 자료의 첨부 파일 bundle (웹용/인쇄용/원본 AI 등 atcflSeq 별 여러 파일) + 다운로드 URL 조립. 한 자료에 보통 2~3개 파일이 묶여있음. **API 키 불필요**.",
+  "toolName": "get_kosha_archive_files",
+  "category": "kosha_search",
+  "inputSchema": "safety:schema/input/get_kosha_archive_files",
+  "producesEntity": [
+    "safety:KoshaArchiveFile"
+  ],
+  "maps_to_action": "safety:action/get_kosha_archive_files",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

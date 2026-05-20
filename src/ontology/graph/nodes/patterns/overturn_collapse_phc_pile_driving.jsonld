@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/overturn_collapse_phc_pile_driving",
+  "@type": [
+    "Event"
+  ],
+  "slug": "overturn_collapse_phc_pile_driving",
+  "title": "overturn_collapse × phc_pile_driving",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 13건 관측. 사고유형 overturn_collapse 작업유형 phc_pile_driving.",
+  "koshaAccidentType": "overturn_collapse",
+  "hasHazard": [
+    "hazard:struck_by_overturn"
+  ],
+  "causedBy": [
+    "activity:phc_pile_driving"
+  ],
+  "caseFrequency": 13,
+  "sampleKeywords": [
+    "PHC파일 인양 중 와이어 로프 이탈로 전도",
+    "철골 부재(기둥과 보) 전도 (사망 2명)",
+    "이동식크레인으로 소나무 인양 중 전도"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

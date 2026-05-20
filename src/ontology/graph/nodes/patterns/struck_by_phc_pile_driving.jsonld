@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_phc_pile_driving",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_phc_pile_driving",
+  "title": "struck_by × phc_pile_driving",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 16건 관측. 사고유형 struck_by 작업유형 phc_pile_driving.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:phc_pile_driving"
+  ],
+  "caseFrequency": 16,
+  "sampleKeywords": [
+    "철도 위에서 궤도차량과 작업대차 충돌 (사망 1명, 부상 8명)",
+    "가설도로에서 항타기가 이동 중 지반침하로 전도(사망 1명, 부상 1명)",
+    "항타기 리더 지지대를 지탱하던 섬유벨트가 파단되어 충돌"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

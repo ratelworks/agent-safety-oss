@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/get_foreign_worker_resource_links",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "외국인 근로자 안전자료 URL",
+      "@language": "ko"
+    },
+    {
+      "@value": "Get Foreign Worker Resource Links",
+      "@language": "en"
+    }
+  ],
+  "description": "안전보건자료, MSDS, 보호구 인증, 외국인 근로자 자료 링크를 다루는 capability. KOSHA 가 공식 제공하는 **13개 언어 외국인 근로자 안전자료** 페이지의 검색 딥링크를 조립해서 반환한다. 네트워크 호출 없이 URL 계산만 수행 (API 키 불필요). LLM 또는 사용자가 브라우저·WebFetch 로 직접 열어 콘텐츠를 받는다. 공식 API 버전은 search_safety_materials (키 필요). 번들 데이터로 포함하지 않은 이유: 공공누리 변경금지·저작권 복잡성.",
+  "toolName": "get_foreign_worker_resource_links",
+  "category": "safety_materials",
+  "inputSchema": "safety:schema/input/get_foreign_worker_resource_links",
+  "producesEntity": [
+    "safety:SafetyMaterial"
+  ],
+  "maps_to_action": "safety:action/get_foreign_worker_resource_links",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-70-2020",
+  "@type": "Document",
+  "docId": "kosha_guide_h-70-2020",
+  "title": "석면 해체제거 작업 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-70-2020",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"석면\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 3,
+      "3": 14,
+      "4": 2,
+      "5": 7,
+      "6": 20,
+      "7": 26,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "석면",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_exposure",
+    "hazard:dust_exposure",
+    "hazard:fall_from_height",
+    "hazard:cave_in",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:fire",
+    "hazard:asphyxiation",
+    "hazard:noise_exposure",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education",
+    "control:elim_automation",
+    "control:sub_low_risk_method",
+    "control:admin_health_check",
+    "control:elim_avoid_work",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_shoring",
+    "control:eng_monitoring",
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:sub_safer_equipment",
+    "control:admin_signal_person",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:admin_work_permit",
+    "control:eng_noise_barrier"
+  ],
+  "appliesToActivities": [
+    "activity:asbestos_removal",
+    "activity:demolition"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:123",
+      "law": "산안법",
+      "articleNumber": "123",
+      "title": "석면해체ㆍ제거 작업기준의 준수",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제123조(석면 해체 제거 작업기준의 준수)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide H-70-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_석면 해제 제거 작업자의 건강관리 지침 _7",
+      "title": "석면 해제 제거 작업자의 건강관리 지침  - 석면 해체 제거 작업 업무 부적합자",
+      "score": 91.092
+    },
+    {
+      "docId": "KOSHA07_석면 해제 제거 작업자의 건강관리 지침 _5",
+      "title": "석면 해제 제거 작업자의 건강관리 지침  - 석면 관련질환 다른 위험인자",
+      "score": 84.417
+    },
+    {
+      "docId": "KOSHA07_석면 해제 제거 작업자의 건강관리 지침 _4",
+      "title": "석면 해제 제거 작업자의 건강관리 지침  - 석면 관련 질환",
+      "score": 79.522
+    },
+    {
+      "docId": "KOSHA07_석면 해제 제거 작업자의 건강관리 지침 _3",
+      "title": "석면 해제 제거 작업자의 건강관리 지침  - 용어의 정의",
+      "score": 78.065
+    },
+    {
+      "docId": "KOSHA07_석면 해제 제거 작업자의 건강관리 지침 _6",
+      "title": "석면 해제 제거 작업자의 건강관리 지침  - 석면 해체 제거 작업 업무시 시계열적인 건강 관리 지침",
+      "score": 77.621
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000007000000000000000087000",
+      "title": "제87조 제조 등이 금지되는 유해물질",
+      "category": "2",
+      "score": 56.63
+    },
+    {
+      "docId": "KOSHA02_[별표 26] 유해인자 허용기준 이하 유지 대상 유해인자(제84조 관련)",
+      "title": "[별표 26] 유해인자 허용기준 이하 유지 대상 유해인자(제84조 관련)",
+      "category": "2",
+      "score": 42.976
+    },
+    {
+      "docId": "KOSHA02_[별표 31] 지도사의 업무 영역별 업무 범위(제102조제2항 관련)",
+      "title": "[별표 31] 지도사의 업무 영역별 업무 범위(제102조제2항 관련)",
+      "category": "2",
+      "score": 28.245
+    },
+    {
+      "docId": "KOSHA03_000007000002000000000176000",
+      "title": "제176조 기관석면조사방법 등",
+      "category": "3",
+      "score": 50.063
+    },
+    {
+      "docId": "KOSHA03_000007000002000000000181000",
+      "title": "제181조 석면해체ㆍ제거작업 신고 절차 등",
+      "category": "3",
+      "score": 39.167
+    }
+  ]
+}

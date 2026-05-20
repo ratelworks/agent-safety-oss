@@ -1,0 +1,125 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:demolition",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "구축물·건축물 해체작업",
+  "category": "structure",
+  "annexReference": "annex:기준규칙:별표4-10호",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/별표4",
+    "fetchedAt": "2026-04-26",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "건설 안전 도메인 매트릭스 기반 hasHazard/regulatedBy 일괄 채움. 작업 활동(work activity) 만 채움.",
+    "graphAugmentedAt": "2026-04-28",
+    "graphAugmentationNote": "일반 hazard 보강 — trip_slip/heat/cold/ergonomic/msd 추가 (모든 작업에 해당하는 일반 위험요인)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "causedBy": [
+    "hazard:cave_in",
+    "hazard:fall_object",
+    "hazard:asphyxiation"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-36-2011",
+    "doc:kosha_guide/C-47-2023",
+    "doc:kosha_guide/E-G-7-2025",
+    "doc:kosha_guide/G-131-2020",
+    "doc:kosha_guide/G-6-2011",
+    "doc:kosha_guide/H-100-2012",
+    "doc:kosha_guide/H-199-2018",
+    "doc:kosha_guide/H-70-2020",
+    "doc:kosha_guide/M-82-2011"
+  ],
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:fall_object",
+    "hazard:fall_from_height",
+    "hazard:dust_exposure",
+    "hazard:struck_by",
+    "hazard:fire",
+    "hazard:asphyxiation",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:산안법:38",
+    "art:기준규칙:38",
+    "art:산안법:142",
+    "annex:기준규칙:별표4-10호"
+  ],
+  "description": "\n\n**관련 키워드**: 해체, 철거, 구조물 해체, 건축물 해체.",
+  "searchKeywords": [
+    "해체",
+    "철거",
+    "구조물 해체",
+    "건축물 해체"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr03/14"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:cave_in",
+      "hazard:fall_object",
+      "hazard:fall_from_height",
+      "hazard:dust_exposure",
+      "hazard:struck_by",
+      "hazard:fire",
+      "hazard:asphyxiation"
+    ],
+    "general": [
+      "hazard:noise_exposure",
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/demolition",
+  "workTypeLabel": {
+    "ko": "구축물·건축물 해체 작업",
+    "en": "Structure and building demolition work"
+  }
+}

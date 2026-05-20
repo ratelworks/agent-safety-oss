@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/record_corrective_action",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "SafetyIssue issueId 에 대한 개선조치를 요청 상태로 기록하고 safety:Corrective",
+      "@language": "ko"
+    },
+    {
+      "@value": "Record Corrective Action",
+      "@language": "en"
+    }
+  ],
+  "description": "SafetyIssue issueId 에 대한 개선조치를 요청 상태로 기록하고 safety:CorrectiveAction 그래프 사슬(resolves, recommendedMeasure)을 로컬 저장소에 저장한다.",
+  "toolName": "record_corrective_action",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/record_corrective_action",
+  "maps_to_action": "safety:action/record_corrective_action",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/X-49-2018",
+  "@type": "Document",
+  "docId": "kosha_guide_x-49-2018",
+  "title": "위험물 운송 시 탱크트럭의 정량적 리스크 분석에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "X-49-2018",
+    "guideCategory": "general_safety",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"위험물\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 1,
+      "2": 1,
+      "3": 3,
+      "4": 18,
+      "5": 5,
+      "6": 200,
+      "7": 170,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "위험물"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_위험물질 사고대응에 관한 기술지침_4",
+      "title": "위험물질 사고대응에 관한 기술지침 - 사고 대응계획",
+      "score": 71.191
+    },
+    {
+      "docId": "KOSHA07_위험물질 취급 작업장 위험표시에 관한 기술지침_5",
+      "title": "위험물질 취급 작업장 위험표시에 관한 기술지침 - 게시",
+      "score": 70.92
+    },
+    {
+      "docId": "KOSHA07_위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침_1",
+      "title": "위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침 - 목적",
+      "score": 70.665
+    },
+    {
+      "docId": "KOSHA07_위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침_6",
+      "title": "위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침 - 화학설비의 라이닝",
+      "score": 69.128
+    },
+    {
+      "docId": "KOSHA07_위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침_7",
+      "title": "위험물질 저장?취급 화학설비의 고무라이닝에 관한 기술지침 - 화학설비의 용접",
+      "score": 69
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA02_[별표 32] 지도사 자격시험 중 필기시험의 업무 영역별 과목 및 범위(제103조제2항 관련)",
+      "title": "[별표 32] 지도사 자격시험 중 필기시험의 업무 영역별 과목 및 범위(제103조제2항 관련)",
+      "category": "2",
+      "score": 23.645
+    },
+    {
+      "docId": "KOSHA01_000004000000000000000044000",
+      "title": "제44조 공정안전보고서의 작성ㆍ제출",
+      "category": "1",
+      "score": 36.385
+    },
+    {
+      "docId": "KOSHA03_000005000002000000000084000",
+      "title": "제84조 화학물질",
+      "category": "3",
+      "score": 38.956
+    },
+    {
+      "docId": "KOSHA03_000005000002000000000083000",
+      "title": "제83조 안전ㆍ보건 정보제공 등",
+      "category": "3",
+      "score": 31.877
+    },
+    {
+      "docId": "KOSHA03_000007000001000000000170000",
+      "title": "제170조 경고표시 방법 및 기재항목",
+      "category": "3",
+      "score": 25.434
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/G-60-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_g-60-2012",
+  "title": "건물 관리 작업 시 안전보건에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "G-60-2012",
+    "guideCategory": "general",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"건물\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 2,
+      "2": 5,
+      "3": 10,
+      "4": 9,
+      "5": 21,
+      "6": 128,
+      "7": 310,
+      "8": 0,
+      "9": 1,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "건물"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_건축물 등의 피뢰설비 설치에 관한 기술지침_2",
+      "title": "건축물 등의 피뢰설비 설치에 관한 기술지침 - 적용범위",
+      "score": 70.142
+    },
+    {
+      "docId": "KOSHA07_건축물 등의 석면조사 지침_2",
+      "title": "건축물 등의 석면조사 지침 - 적용범위",
+      "score": 69.441
+    },
+    {
+      "docId": "KOSHA07_건축물 등의 석면조사 지침_4",
+      "title": "건축물 등의 석면조사 지침 - 석면조사의 개요",
+      "score": 67.976
+    },
+    {
+      "docId": "KOSHA07_건축물 등의 석면조사 지침_5",
+      "title": "건축물 등의 석면조사 지침 - 조사계획 수립",
+      "score": 67.541
+    },
+    {
+      "docId": "KOSHA07_건축물 등의 피뢰설비 설치에 관한 기술지침_5",
+      "title": "건축물 등의 피뢰설비 설치에 관한 기술지침 - 내부 피뢰설비",
+      "score": 66.597
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA01_000006000001000000000081000",
+      "title": "제81조 기계ㆍ기구 등의 대여자 등의 조치",
+      "category": "1",
+      "score": 36.831
+    },
+    {
+      "docId": "KOSHA01_000012000000000000000175000",
+      "title": "제175조 과태료",
+      "category": "1",
+      "score": 21.695
+    },
+    {
+      "docId": "KOSHA02_[별표 21] 대여자 등이 안전조치 등을 해야 하는 기계ㆍ기구ㆍ설비 및 건축물 등(제71조 관련)",
+      "title": "[별표 21] 대여자 등이 안전조치 등을 해야 하는 기계ㆍ기구ㆍ설비 및 건축물 등(제71조 관련)",
+      "category": "2",
+      "score": 65.841
+    },
+    {
+      "docId": "KOSHA02_000006000000000000000071000",
+      "title": "제71조 대여자 등이 안전조치 등을 해야 하는 기계ㆍ기구 등",
+      "category": "2",
+      "score": 43.288
+    },
+    {
+      "docId": "KOSHA02_000008000000000000000096002",
+      "title": "제96조의2 휴게시설 설치ㆍ관리기준 준수 대상 사업장의 사업주",
+      "category": "2",
+      "score": 34.914
+    }
+  ]
+}

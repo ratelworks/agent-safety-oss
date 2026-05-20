@@ -1,0 +1,233 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/D-C-12-2026",
+  "@type": "Document",
+  "docId": "kosha_guide_d-c-12-2026",
+  "title": "조립 강주 안전작업에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "D-C-12-2026",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"조립\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 2,
+      "4": 7,
+      "5": 7,
+      "6": 32,
+      "7": 175,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "조립",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:noise_exposure",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:sub_low_toxic",
+    "control:admin_msds",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:rc_concrete"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:38",
+      "law": "기준규칙",
+      "articleNumber": "38",
+      "title": "사전조사 및 작업계획서의 작성 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제38조(사전조사 및 작업계획서의 작성 등)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:39",
+      "law": "기준규칙",
+      "articleNumber": "39",
+      "title": "작업지휘자의 지정",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제39조(작업지휘자의 지정)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:51",
+      "law": "기준규칙",
+      "articleNumber": "51",
+      "title": "구축물등의 안전 유지",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제51조(구축물등의 안전 유지)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:52",
+      "law": "기준규칙",
+      "articleNumber": "52",
+      "title": "구축물등의 안전성 평가",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제52조(구축물등의 안전성 평가)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:332",
+      "law": "기준규칙",
+      "articleNumber": "332",
+      "title": "동바리 조립 시의 안전조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제332조(동바리 조립 시의 안전조치)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:332",
+      "law": "기준규칙",
+      "articleNumber": "332",
+      "title": "동바리 조립 시의 안전조치",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제332조의2(동바리 유형에 따른 동바리 조립 시의",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:기준규칙:333",
+      "law": "기준규칙",
+      "articleNumber": "333",
+      "title": "조립ㆍ해체 등 작업 시의 준수사항",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제333조(조립ㆍ해체 등 작업 시의 준수사항)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:건진법:62",
+      "law": "건진법",
+      "articleNumber": "62",
+      "title": "건설공사의 안전관리",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "건설기술진흥법 제62조(안전관리계획)",
+      "citedAsOf": "2026",
+      "temporalNote": "KOSHA Guide D-C-12-2026 본문 직접 인용 (2026년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_전기작업용 기구, 장치 등의 용어에 관한 지침_14",
+      "title": "전기작업용 기구, 장치 등의 용어에 관한 지침 - 지지대 조립 장비(Support assembly equipment)",
+      "score": 93.126
+    },
+    {
+      "docId": "KOSHA07_생산 기계·설비 조립 및 설치시의 리스크 평가지침_3",
+      "title": "생산 기계·설비 조립 및 설치시의 리스크 평가지침 - 용어의 정의",
+      "score": 79.552
+    },
+    {
+      "docId": "KOSHA07_타워크레인의 설치?조립?해체작업에 관한 기술지침_4",
+      "title": "타워크레인의 설치?조립?해체작업에 관한 기술지침 - 설치?조립?해체작업의 기본 준수사항",
+      "score": 73.153
+    },
+    {
+      "docId": "KOSHA07_생산 기계·설비 조립 및 설치시의 리스크 평가지침_4",
+      "title": "생산 기계·설비 조립 및 설치시의 리스크 평가지침 - 조립 및 설치 단계에서의 리스크 평가",
+      "score": 68.507
+    },
+    {
+      "docId": "KOSHA07_타워크레인 설치?조립?해체 작업계획서 작성지침_4",
+      "title": "타워크레인 설치?조립?해체 작업계획서 작성지침 - 관계법령",
+      "score": 65.549
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA03_[별표 10] 유해위험방지계획서 첨부서류(제42조제3항 관련)",
+      "title": "[별표 10] 유해위험방지계획서 첨부서류(제42조제3항 관련)",
+      "category": "3",
+      "score": 32.523
+    },
+    {
+      "docId": "KOSHA03_[별표 5] 안전보건교육 교육대상별 교육내용(제26조제1항 등 관련)",
+      "title": "[별표 5] 안전보건교육 교육대상별 교육내용(제26조제1항 등 관련)",
+      "category": "3",
+      "score": 13.25
+    },
+    {
+      "docId": "KOSHA04_001000007000003000000000059000",
+      "title": "제59조 강관비계 조립 시의 준수사항",
+      "category": "4",
+      "score": 62.528
+    },
+    {
+      "docId": "KOSHA04_001000007000006000000000070000",
+      "title": "제70조 시스템비계의 조립 작업 시 준수사항",
+      "category": "4",
+      "score": 59.678
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000156000",
+      "title": "제156조 조립 등의 작업",
+      "category": "4",
+      "score": 40.161
+    }
+  ]
+}

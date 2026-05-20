@@ -1,0 +1,56 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:thermal_burn",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "thermal_burn",
+  "label": "이상온도 화상",
+  "category": "physical",
+  "koshaAccidentType": "이상온도",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "화상",
+      "동상"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/D-30-2012"
+  ],
+  "description": "**원인**: 고온체 직접 접촉 / 증기 노출 / 화재 노출.\n**상황**: 용접 후 모재 / 보일러·증기관 / 콘크리트 양생열.\n**확인**: 단열장갑 / 격리·표지 / 식힌 후 작업.\n**중대성**: 1·2·3도 화상.",
+  "koshaArchiveFacets": [
+    "facet:ctgr01/14"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:electric_work_50v_plus",
+    "activity:road_pavement",
+    "activity:steel_structure",
+    "activity:waterproofing"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/D-30-2012"
+  ]
+}

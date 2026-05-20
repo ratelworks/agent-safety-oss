@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "method:occupational_health",
+  "@type": "Method",
+  "label": "산업보건 위험성평가법",
+  "docId": "kras_occupational_health",
+  "verificationStatus": "kosha_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KRAS)",
+    "sourceUrl": "https://portal.kosha.or.kr/kras/evaluation/kras-method",
+    "formId": "10186",
+    "bodyFile": "kras-methods/occupational-health.md",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "KOSHA 자료 — 출처 표시 필수"
+  },
+  "description": "근로자 건강(소음·분진·화학·근골격계) 영향 위험성평가. 보건관리자·산업의사 활용.",
+  "suitableFor": "occupational_health_assessment",
+  "applicableTo": [
+    "activity:risk_assessment_general",
+    "activity:asbestos_removal",
+    "activity:finishing_paint",
+    "activity:tunnel_excavation"
+  ],
+  "legalBasis": [
+    "art:위험성평가-고시:6"
+  ],
+  "isPartOf": "src:kosha_portal"
+}

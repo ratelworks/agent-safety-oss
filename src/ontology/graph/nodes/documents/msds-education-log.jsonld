@@ -1,0 +1,410 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:as_needed/msds_education_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "msds_education_log",
+  "title": "MSDS 교육 일지",
+  "alternativeNames": [
+    "물질안전보건자료 교육일지",
+    "화학물질 취급 교육"
+  ],
+  "description": "산안법 제115조 + 시행규칙 제169조에 따라 사업주가 대상화학물질을 취급하는 근로자에게 실시한 MSDS 교육 기록. 취급 시작 전·내용 변경 시·신규 채용 시 의무. 일반 안전보건교육일지와 별도 작성 권장 (화학물질별 명확한 입증).",
+  "cycle": "cyc:as_needed",
+  "trigger": "대상화학물질 취급 시작 전, 작업내용 변경 시, 신규 채용 시 (시행규칙 제169조).",
+  "applicableWhen": {
+    "appliesTo": "applic:chemicals_handling",
+    "scaleNotes": "대상화학물질 취급하는 모든 사업장. 50억 미만 건설현장도 동일 적용 (도장·방수·용접·접착 등 화학물질 사용 시)."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "educationDate",
+      "label": "교육 일시",
+      "source": "시행규칙 제169조",
+      "inputGuide": "교육 실시 일시.",
+      "examples": [
+        "2026-04-29 14:00 ~ 15:30"
+      ]
+    },
+    {
+      "key": "chemicalName",
+      "label": "대상 화학물질명·CAS·MSDS 번호",
+      "source": "산안법 제115조 + 시행규칙 제169조",
+      "inputGuide": "대상 화학물질명 + CAS 번호 + MSDS 번호.",
+      "examples": [
+        "톨루엔 (CAS 108-88-3, MSDS-2026-A012)"
+      ]
+    },
+    {
+      "key": "educationTrigger",
+      "label": "교육 사유 (취급 시작 전 / 변경 시 / 신규 채용)",
+      "source": "시행규칙 제169조 ①",
+      "inputGuide": "산안법 제114조 — 취급 시작 전·MSDS 변경 시·신규 채용 시.",
+      "examples": [
+        "취급 시작 전 (4/30 톨루엔 신규 도입)"
+      ]
+    },
+    {
+      "key": "trainerName",
+      "label": "교육실시자 성명·자격",
+      "source": "시행규칙 제169조",
+      "inputGuide": "산업안전기사·산업안전산업기사·안전관리자 자격증 등.",
+      "examples": [
+        "산업안전기사 (한국산업인력공단, 2018-09 발급)"
+      ]
+    },
+    {
+      "key": "trainingPlace",
+      "label": "교육실시장소",
+      "source": "시행규칙 제169조",
+      "inputGuide": "교육 실시 장소.",
+      "examples": [
+        "황룡건설(주) 삼성동 현장 안전교육실"
+      ]
+    },
+    {
+      "key": "subjects",
+      "label": "교육과목 (시행규칙 제169조 ② 1~6호)",
+      "source": "시행규칙 제169조 ②",
+      "inputGuide": "법정 의무 교육 과목명.",
+      "examples": [
+        "산업안전보건법 정기교육 (관리감독자 16시간)"
+      ]
+    },
+    {
+      "key": "duration",
+      "label": "교육시간",
+      "source": "시행규칙 제169조 — 시간 명시 없음, 통상 1시간 이상",
+      "inputGuide": "산안법 제29조 정기교육 분기당 6시간 (사무직 3시간) / 신규 8시간 / 작업변경 2시간 / 특별 16시간 이상.",
+      "examples": [
+        "정기교육 6시간 (분기) / 신규채용 8시간 / 화기작업 특별교육 16시간"
+      ]
+    },
+    {
+      "key": "participantsList",
+      "label": "참석자 명단·서명 (대상 화학물질 취급자 전원)",
+      "source": "시행규칙 제169조",
+      "inputGuide": "대상 화학물질 취급자 전원 자필 서명. 외국인은 모국어 병기.",
+      "examples": [
+        "박작업 (자필) / 이작업 (자필) / NGUYEN VAN A (베트남어, 자필)"
+      ]
+    },
+    {
+      "key": "approvalChain",
+      "label": "결재선",
+      "source": "행정",
+      "inputGuide": "작성 → 검토 → 승인 순. 직책 + 성명 + 서명.",
+      "examples": [
+        "작성: 김안전 / 검토: 박감독 / 승인: 황룡"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 대상 화학물질명·CAS·MSDS 번호",
+      "severity": "blocker",
+      "checkFields": [
+        "chemicalName"
+      ]
+    },
+    {
+      "rule": "필수 — 교육과목 제169조 ② 1~6호 모두 포함 (명칭·구성성분·유해성·취급방법·응급조치·MSDS 게시 위치)",
+      "severity": "blocker",
+      "checkFields": [
+        "subjects"
+      ]
+    },
+    {
+      "rule": "필수 — 취급자 전원 서명",
+      "severity": "blocker",
+      "checkFields": [
+        "participantsList"
+      ]
+    },
+    {
+      "rule": "필수 — 교육 사유 (취급 시작 전 / 변경 시 / 신규)",
+      "severity": "blocker",
+      "checkFields": [
+        "educationTrigger"
+      ]
+    },
+    {
+      "rule": "필수 — 위반 시 제175조 500만원 과태료",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:175"
+    },
+    {
+      "rule": "권장 — MSDS 게시 위치·교육자료 별첨",
+      "severity": "warning"
+    },
+    {
+      "rule": "사람 검토 — 외국인 근로자 모국어 자료 제공 여부",
+      "severity": "manual_review"
+    }
+  ],
+  "retention": "3년 (산안법 제164조)",
+  "standardForm": {
+    "source": "산안법 제115조 + 시행규칙 제169조 — MSDS 교육 (자체 양식)",
+    "officialNote": "별지 양식 없음. 일반 안전보건교육일지에 통합하거나 별도 작성. 화학물질별 명확한 입증을 위해 별도 권장.",
+    "verifiedBy": "산안법 제115조 + 시행규칙 제169조 본문 1:1 매핑 (2026-04-29)"
+  },
+  "relatedDocs": [
+    "doc:continuous/msds_register",
+    "doc:monthly/monthly_education_log",
+    "doc:daily/hazard_chemical_workplace_log"
+  ],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§114",
+        "text": "MSDS 게시·비치 의무"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§115",
+        "text": "MSDS 교육 의무"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§169",
+        "text": "MSDS 교육 시기·과목"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§175",
+        "text": "위반 500만원 과태료"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "교육과목 §169 ②": "1호 명칭·구성성분 / 2호 유해·위험성 / 3호 안전·보건상 취급 주의사항 / 4호 응급조치 요령 / 5호 폭발·화재 시 대처 / 6호 MSDS 비치 위치·근로자 알권리",
+        "교육시간": "법정 시간 명시 없음 — 통상 1시간 이상. 화학물질 종류 많으면 화학물질당 30분 권장",
+        "취급 시작 전": "신규 도입 화학물질 첫 취급 작업 직전",
+        "변경 시": "화학물질 종류·구성·작업방법 변경 직후"
+      },
+      "commonMistakes": [
+        "일반 안전보건교육에 통합 — 화학물질별 입증 약함",
+        "취급자 일부 누락 (운반·저장 담당도 대상)",
+        "신규 화학물질 도입 후 교육 누락 (취급 시작 전 의무)",
+        "외국인 근로자 모국어 자료 미배포"
+      ],
+      "bestPractices": [
+        "화학물질별 별도 일지 (입증 강화)",
+        "MSDS 게시 위치 사진 별첨",
+        "응급조치 모의 훈련 동시",
+        "KOSHA MSDS 시스템(msds.kosha.or.kr) 16항 출력 별첨"
+      ]
+    },
+    "examples": [
+      {
+        "title": "MSDS 교육 가이드",
+        "source": "KOSHA",
+        "license": "공공누리"
+      }
+    ],
+    "createdAt": "2026-04-29",
+    "createdBy": "라텔웍스 (Ratelworks Inc.) — 50억 미만 의무 매트릭스 누락 노드 신규 작성",
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:114",
+    "art:산안법:115",
+    "art:산안법시행규칙:169",
+    "art:산안법:175"
+  ],
+  "penaltyOnMissing": "art:산안법:175",
+  "appliesToActivities": [
+    "activity:chemical_handling",
+    "activity:safety_education"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "src:kosha:msds"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. MSDS 교육 일지",
+      "legalSource": "산안법 제114조 ② + 시행규칙 제170조",
+      "fields": [
+        {
+          "key": "educationDate",
+          "label": "교육 일시",
+          "required": true,
+          "inputGuide": "채용 시 + 작업변경 시 + 연 1회.",
+          "examples": [
+            "2026-04-15 (정기 연 1회)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "chemicals",
+          "label": "교육 대상 화학물질",
+          "required": true,
+          "inputGuide": "비치 MSDS 12종 + 신규.",
+          "examples": [
+            "락카신너·시멘트·접착제 등 12종"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "curriculum",
+          "label": "교육 내용 (5개 항목)",
+          "required": true,
+          "inputGuide": "GHS·취급주의·노출경로·응급처치·MSDS 위치.",
+          "examples": [
+            "1) GHS 그림문자 / 2) 취급 주의 / 3) 노출 시 증상 / 4) 응급조치 / 5) MSDS 위치"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hours",
+          "label": "교육 시간",
+          "required": true,
+          "inputGuide": "1시간 이상.",
+          "examples": [
+            "1.5시간"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trainees",
+          "label": "이수자 명단·서명",
+          "required": true,
+          "inputGuide": "화학물질 취급 작업자 전원.",
+          "examples": [
+            [
+              {
+                "name": "박도장",
+                "signed": true
+              },
+              {
+                "name": "이도장",
+                "signed": true
+              }
+            ]
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Competence",
+  "hasHazard": [
+    "hazard:chemical_exposure",
+    "hazard:chemical_burn"
+  ],
+  "mitigatedBy": [
+    "control:admin_msds",
+    "control:admin_safety_education",
+    "control:ppe_chemical_suit",
+    "control:ppe_respirator"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,297 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/voluntary_safety_confirmation_filing",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "voluntary_safety_confirmation_filing",
+  "title": "자율안전확인 신고 (별지 45호)",
+  "description": "산안법 제89조 자율안전확인대상 기계·기구·설비를 제조·수입한 자가 안전기준 적합 여부를 확인하여 신고. KCs(s) 마크.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "자율안전확인 대상 제품 제조·수입 시",
+  "legalBasis": [
+    "art:산안법:89",
+    "art:산안법시행규칙:80"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-28",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
+    "verifiedAt": "2026-04-28",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "자율안전확인대상 (시행령 제77조). 인증대상 외 위험기계."
+  },
+  "exemptedWhen": {
+    "reasons": [
+      "대상 외 기계",
+      "수출 전용"
+    ]
+  },
+  "requiredFields": [
+    {
+      "key": "applicantName",
+      "label": "제조·수입자 회사명·주소",
+      "source": "산안법 제89조 + 시행규칙 제80조",
+      "inputGuide": "도로명 주소 우선. 지번 주소는 보조.",
+      "examples": [
+        "서울특별시 강남구 테헤란로 123"
+      ]
+    },
+    {
+      "key": "businessNo",
+      "label": "사업자등록번호",
+      "source": "산안법 제89조 + 시행규칙 제80조",
+      "inputGuide": "10자리 숫자 (사업자등록번호) 또는 13자리 숫자 (법인등록번호). 하이픈 포함 표기 권장.",
+      "examples": [
+        "123-45-67890",
+        "110111-0123456"
+      ]
+    },
+    {
+      "key": "representative",
+      "label": "대표자",
+      "source": "산안법 제89조 + 시행규칙 제80조",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "productCategory",
+      "label": "자율안전확인 21종 분류",
+      "source": "산안법 제89조 + 시행령 제77조 (21종)",
+      "inputGuide": "자율안전확인대상 기계·기구 21종 (산안법 제89조 + 시행령 제77조).",
+      "examples": [
+        "연삭기 (제1호 가목)"
+      ]
+    },
+    {
+      "key": "productName",
+      "label": "제품명·모델·규격",
+      "source": "산안법 제89조 + 시행령 제77조 (21종)",
+      "inputGuide": "제품명 + 모델 + 규격.",
+      "examples": [
+        "휴대용 연삭기 / Bosch GWS-9-100 / 정격 900W"
+      ]
+    },
+    {
+      "key": "selfTestReport",
+      "label": "자율안전 시험·검사 결과",
+      "source": "산안법 제89조 + 시행령 제77조 (21종)",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "filingDate",
+      "label": "신고 일자",
+      "inputGuide": "자율안전확인 신고 접수일.",
+      "examples": [
+        "2026-04-29"
+      ]
+    },
+    {
+      "key": "kcsNumber",
+      "label": "KCs(s) 신고번호",
+      "inputGuide": "자율안전확인 신고번호 (KCs(s)-XXXX).",
+      "examples": [
+        "KCs(s)-AB-2026-0042"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 자율안전기준 적합 자체시험 결과",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:89"
+    },
+    {
+      "rule": "필수 — KCs(s) 마크",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:80"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/M-137-2023"
+  ],
+  "appliesToActivities": [
+    "activity:tower_crane",
+    "activity:heavy_lifting",
+    "activity:tower_assembly"
+  ],
+  "informedBy": [
+    "src:moel_safety_inspection",
+    "entity:kosha",
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "appliesTo": [
+    "applic:voluntary_safety_confirmation_21"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 자율안전확인 신고 (별지 제45호)",
+      "legalSource": "산안법 제98조 + 시행규칙 제123조 별지 제45호",
+      "fields": [
+        {
+          "key": "applicantInfo",
+          "label": "신고인 (제조·수입자)",
+          "required": true,
+          "inputGuide": "회사명·대표자·사업자번호.",
+          "examples": [
+            "(주)한국방호장치, 대표 박대표"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "machineType",
+          "label": "기계·방호장치 종류 (별표 21)",
+          "required": true,
+          "inputGuide": "자율안전확인 대상.",
+          "examples": [
+            "가스용접기 (별표 21 5호)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "selfTestResults",
+          "label": "자율 시험 결과",
+          "required": true,
+          "inputGuide": "제조자 자체 시험 + 인증된 시험기관 결과.",
+          "examples": [
+            "KS B ISO 11611 적합 (한국공업표준원 시험성적서 첨부)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "filingDate",
+          "label": "신고 일자",
+          "required": true,
+          "inputGuide": "제조·수입 전.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "annexReference": [
+    "annex:산안법시행규칙:서식45"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/safety_certification_application",
+    "doc:ad_hoc/safety_inspection_application"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능.",
+  "useFrequency": "low_for_small_construction",
+  "useFrequencyNote": "자율안전확인 신고 (제조사·수입사)"
+}

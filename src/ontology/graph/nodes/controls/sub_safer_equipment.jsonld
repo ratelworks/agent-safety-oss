@@ -1,0 +1,32 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:sub_safer_equipment",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "sub_safer_equipment",
+  "label": "저위험 장비 대체",
+  "description": "차량계 장비·양중·기계 작업에서 위험도가 낮은 장비나 안전 기능이 강화된 장비로 바꾸는 대체 통제.",
+  "ericLevel": 2,
+  "category": "substitution",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:machinery_repair",
+    "activity:phc_pile_driving",
+    "activity:precast_installation",
+    "activity:road_pavement",
+    "activity:tower_crane",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

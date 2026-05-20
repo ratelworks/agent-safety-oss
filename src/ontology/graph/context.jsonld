@@ -1,0 +1,608 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "eli": "http://data.europa.eu/eli/ontology#",
+    "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0/",
+    "dc": "http://purl.org/dc/terms/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "time": "http://www.w3.org/2006/time#",
+    "iso45001": "https://safety.ratelworks.org/iso45001#",
+    "cc": "https://construction.ratelworks.org/ontology/v1/",
+    "safety": "https://safety.ratelworks.org/ontology/v1/",
+    "act": "https://safety.ratelworks.org/act/",
+    "art": "https://safety.ratelworks.org/article/",
+    "annex": "https://safety.ratelworks.org/annex/",
+    "doc": "https://safety.ratelworks.org/document/",
+    "penalty": "https://safety.ratelworks.org/penalty/",
+    "kosha": "https://safety.ratelworks.org/kosha/",
+    "activity": "https://safety.ratelworks.org/activity/",
+    "hazard": "https://safety.ratelworks.org/hazard/",
+    "event": "https://safety.ratelworks.org/event/",
+    "control": "https://safety.ratelworks.org/control/",
+    "method": "https://safety.ratelworks.org/method/",
+    "cyc": "https://safety.ratelworks.org/cycle/",
+    "applic": "https://safety.ratelworks.org/applicability/",
+    "interp": "https://safety.ratelworks.org/interpretation/",
+    "manual": "https://safety.ratelworks.org/manual/",
+    "stat": "https://safety.ratelworks.org/statistic/",
+    "src": "https://safety.ratelworks.org/source/",
+    "entity": "https://safety.ratelworks.org/entity/",
+    "equipment": "https://safety.ratelworks.org/equipment/",
+    "chapter": "https://safety.ratelworks.org/chapter/",
+    "section": "https://safety.ratelworks.org/section/",
+    "part": "https://safety.ratelworks.org/part/",
+    "Act": "safety:Act",
+    "Chapter": "safety:Chapter",
+    "Section": "safety:Section",
+    "Part": "safety:Part",
+    "Article": "safety:Article",
+    "Annex": "safety:Annex",
+    "Penalty": "safety:Penalty",
+    "Activity": "safety:WorkActivity",
+    "Hazard": "safety:Hazard",
+    "Event": "safety:Event",
+    "Control": "safety:ControlMeasure",
+    "Document": "safety:Document",
+    "Method": "safety:Method",
+    "Cycle": "safety:Cycle",
+    "Applicability": "safety:Applicability",
+    "Interpretation": "safety:Interpretation",
+    "Manual": "safety:Manual",
+    "Statistic": "safety:Statistic",
+    "Equipment": "safety:Equipment",
+    "Source": "safety:Source",
+    "Entity": "safety:Entity",
+    "Legislation": "schema:Legislation",
+    "Action": "schema:Action",
+    "DigitalDocument": "schema:DigitalDocument",
+    "Thing": "schema:Thing",
+    "delegates": {
+      "@id": "safety:delegates",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "references": {
+      "@id": "safety:references",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "hasArticle": {
+      "@id": "safety:hasArticle",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "hasChapter": {
+      "@id": "safety:hasChapter",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "hasSection": {
+      "@id": "safety:hasSection",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "delegationOf": {
+      "@id": "safety:delegationOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "partOf": {
+      "@id": "safety:partOf",
+      "@type": "@id"
+    },
+    "hasAnnex": {
+      "@id": "safety:hasAnnex",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "specifies": {
+      "@id": "safety:specifies",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "regulates": {
+      "@id": "safety:regulates",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "penalizedBy": {
+      "@id": "safety:penalizedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "appliesTo": {
+      "@id": "safety:appliesTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "requires": {
+      "@id": "safety:requires",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "mitigatedBy": {
+      "@id": "safety:mitigatedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "causedBy": {
+      "@id": "safety:causedBy",
+      "@type": "@id"
+    },
+    "evaluatedBy": {
+      "@id": "safety:evaluatedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "cycledAs": {
+      "@id": "safety:cycledAs",
+      "@type": "@id"
+    },
+    "legalBasisOf": {
+      "@id": "safety:legalBasisOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "legalBasis": {
+      "@id": "safety:legalBasis",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "legalWeight": {
+      "@id": "safety:legalWeight"
+    },
+    "exemptionNote": {
+      "@id": "safety:exemptionNote"
+    },
+    "enforces": {
+      "@id": "safety:enforces",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "condition": {
+      "@id": "safety:condition"
+    },
+    "guidedBy": {
+      "@id": "safety:guidedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "hasHazard": {
+      "@id": "safety:hasHazard",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "alternativeCycles": {
+      "@id": "safety:alternativeCycles",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "appliesToActivities": {
+      "@id": "safety:appliesToActivities",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "amendedTo": {
+      "@id": "safety:amendedTo",
+      "@type": "@id"
+    },
+    "interpretedBy": {
+      "@id": "safety:interpretedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "auditedBy": {
+      "@id": "safety:auditedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "informedBy": {
+      "@id": "safety:informedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "cited_in": {
+      "@id": "safety:citedIn",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "involves": {
+      "@id": "safety:involves",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "requiresCert": {
+      "@id": "safety:requiresCert",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "applicableTo": {
+      "@id": "safety:applicableTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "isPartOf": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    },
+    "docId": "safety:docId",
+    "title": "schema:name",
+    "alternativeNames": "schema:alternateName",
+    "description": "schema:description",
+    "articleNumber": "safety:articleNumber",
+    "annexNumber": "safety:annexNumber",
+    "delegationLevel": "safety:delegationLevel",
+    "verificationStatus": "safety:verificationStatus",
+    "legislationIdentifier": "schema:legislationIdentifier",
+    "legislationDate": {
+      "@id": "schema:legislationDate",
+      "@type": "xsd:date"
+    },
+    "legislationType": "schema:legislationType",
+    "legislationLegalForce": "schema:legislationLegalForce",
+    "legislationPassedBy": {
+      "@id": "schema:legislationPassedBy",
+      "@type": "@id"
+    },
+    "jurisdiction": "schema:jurisdiction",
+    "temporalCoverage": "schema:temporalCoverage",
+    "trigger": "safety:trigger",
+    "applicableWhen": {
+      "@id": "safety:applicableWhen",
+      "@type": "@json"
+    },
+    "exemptedWhen": {
+      "@id": "safety:exemptedWhen",
+      "@type": "@json"
+    },
+    "requiredFields": {
+      "@id": "safety:requiredFields",
+      "@type": "@json"
+    },
+    "reviewRules": {
+      "@id": "safety:reviewRules",
+      "@type": "@json"
+    },
+    "sections": {
+      "@id": "safety:sections",
+      "@type": "@json"
+    },
+    "regulatedBy": {
+      "@id": "safety:regulatedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "cycle": {
+      "@id": "safety:cycle",
+      "@type": "@id"
+    },
+    "penaltyOnMissing": {
+      "@id": "safety:penaltyOnMissing",
+      "@type": "@id"
+    },
+    "retention": "safety:retention",
+    "standardForm": {
+      "@id": "safety:standardForm",
+      "@type": "@json"
+    },
+    "relatedDocs": {
+      "@id": "safety:relatedDocs",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "penaltyType": "safety:penaltyType",
+    "amount": "safety:amount",
+    "amountUnit": "safety:amountUnit",
+    "condition": "safety:condition",
+    "controlLevel": "safety:controlLevel",
+    "ericLevel": "safety:ericLevel",
+    "category": "schema:category",
+    "severity": "safety:severity",
+    "threshold": "safety:threshold",
+    "thresholdUnit": "safety:thresholdUnit",
+    "slug": "safety:slug",
+    "label": "schema:name",
+    "name": "schema:name",
+    "koshaAccidentType": "safety:koshaAccidentType",
+    "publishedBy": "schema:publisher",
+    "sourceUrl": "schema:url",
+    "fetchedAt": "safety:fetchedAt",
+    "licenseHint": "safety:licenseHint",
+    "searchKeywords": {
+      "@id": "safety:searchKeywords",
+      "@container": "@set"
+    },
+    "annexReference": {
+      "@id": "safety:annexReference",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "annexKind": "safety:annexKind",
+    "amendmentHistory": {
+      "@id": "safety:amendmentHistory",
+      "@type": "@json"
+    },
+    "latestAmendment": {
+      "@id": "safety:latestAmendment",
+      "@type": "@json"
+    },
+    "constructionRelevance": "safety:constructionRelevance",
+    "userPersona": {
+      "@id": "safety:userPersona",
+      "@container": "@set"
+    },
+    "userVisible": "safety:userVisible",
+    "isAppendix": "safety:isAppendix",
+    "chapterNumber": "safety:chapterNumber",
+    "defaultIntervalDays": "safety:defaultIntervalDays",
+    "legalBasisExternal": {
+      "@id": "safety:legalBasisExternal",
+      "@type": "xsd:string",
+      "@container": "@set"
+    },
+    "legalBasisExternalNote": "safety:legalBasisExternalNote",
+    "caseName": "safety:caseName",
+    "caseNumber": "safety:caseNumber",
+    "questioningOrganization": "safety:questioningOrganization",
+    "respondingOrganization": "safety:respondingOrganization",
+    "responseDate": {
+      "@id": "safety:responseDate",
+      "@type": "xsd:date"
+    },
+    "relatedArticles": {
+      "@id": "safety:relatedArticles",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "suitableFor": {
+      "@id": "safety:suitableFor",
+      "@container": "@set"
+    },
+    "isPreferredFor": {
+      "@id": "safety:isPreferredFor",
+      "@container": "@set"
+    },
+    "validation": {
+      "@id": "safety:validation",
+      "@type": "@json"
+    },
+    "imprisonmentMaxYears": {
+      "@id": "safety:imprisonmentMaxYears",
+      "@type": "xsd:integer"
+    },
+    "caseFrequency": {
+      "@id": "safety:caseFrequency",
+      "@type": "xsd:integer"
+    },
+    "sampleKeywords": {
+      "@id": "safety:sampleKeywords",
+      "@container": "@set"
+    },
+    "externalRef": {
+      "@id": "safety:externalRef",
+      "@type": "@json"
+    },
+    "_meta": {
+      "@id": "safety:meta",
+      "@type": "@json"
+    },
+    "facet": "https://safety.ratelworks.org/facet/",
+    "shp": "https://safety.ratelworks.org/shp/",
+    "Facet": "safety:Facet",
+    "FacetGroup": "safety:FacetGroup",
+    "ContentForm": "safety:ContentForm",
+    "facetGroup": {
+      "@id": "safety:facetGroup",
+      "@type": "@id"
+    },
+    "koshaArchiveCode": "safety:koshaArchiveCode",
+    "koshaArchiveCount": "safety:koshaArchiveCount",
+    "koshaArchiveFacets": {
+      "@id": "safety:koshaArchiveFacets",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "hasFacet": {
+      "@id": "safety:hasFacet",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "hasPenalty": {
+      "@id": "safety:hasPenalty",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "creator": {
+      "@id": "dc:creator",
+      "@type": "@id"
+    },
+    "created": {
+      "@id": "dc:created",
+      "@type": "xsd:date"
+    },
+    "modified": {
+      "@id": "dc:modified",
+      "@type": "xsd:date"
+    },
+    "dcLicense": "dc:license",
+    "rights": "dc:rights",
+    "conformsTo": {
+      "@id": "dc:conformsTo",
+      "@type": "@id"
+    },
+    "isReferencedBy": {
+      "@id": "dc:isReferencedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "language": "dc:language",
+    "subject": {
+      "@id": "dc:subject",
+      "@container": "@set"
+    },
+    "wasGeneratedBy": {
+      "@id": "prov:wasGeneratedBy",
+      "@type": "@id"
+    },
+    "wasDerivedFrom": {
+      "@id": "prov:wasDerivedFrom",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "wasAttributedTo": {
+      "@id": "prov:wasAttributedTo",
+      "@type": "@id"
+    },
+    "generatedAtTime": {
+      "@id": "prov:generatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "equivalentClass": {
+      "@id": "owl:equivalentClass",
+      "@type": "@id"
+    },
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "comment": "rdfs:comment",
+    "broader": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    },
+    "narrower": {
+      "@id": "skos:narrower",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "altLabel": {
+      "@id": "skos:altLabel",
+      "@container": "@set"
+    },
+    "definition": "skos:definition",
+    "note": "skos:note",
+    "rdfs:label": "rdfs:label",
+    "_provenance": {
+      "@id": "safety:provenance",
+      "@type": "@json"
+    },
+    "dataQualityTier": "safety:dataQualityTier",
+    "iso45001Class": {
+      "@id": "safety:iso45001Class",
+      "@type": "@id"
+    },
+    "hazardScope": "safety:hazardScope",
+    "hasWorkType": {
+      "@id": "cc:hasWorkType",
+      "@type": "@id"
+    },
+    "hasTask": {
+      "@id": "cc:hasTask",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "workTypeLabel": {
+      "@id": "cc:workTypeLabel",
+      "@container": "@language"
+    },
+    "legalBasisLabel": {
+      "@id": "cc:legalBasisLabel",
+      "@container": "@language"
+    },
+    "toolName": "safety:toolName",
+    "inputSchema": {
+      "@id": "safety:inputSchema",
+      "@type": "@id"
+    },
+    "producesEntity": {
+      "@id": "safety:producesEntity",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "maps_to_action": {
+      "@id": "safety:mapsToAction",
+      "@type": "@id"
+    },
+    "controlSpecificity": "safety:controlSpecificity",
+    "appliesToActivity": {
+      "@id": "safety:appliesToActivity",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "approvalChain": {
+      "@id": "safety:approvalChain",
+      "@type": "@json"
+    },
+    "industry": "safety:industry",
+    "industryNote": "safety:industryNote",
+    "officialFormSpec": {
+      "@id": "safety:officialFormSpec",
+      "@type": "@json"
+    },
+    "purpose": "safety:purpose",
+    "_applicableWorkLabels": {
+      "@id": "safety:applicableWorkLabels",
+      "@type": "@json"
+    },
+    "useFrequency": "safety:useFrequency",
+    "useFrequencyNote": "safety:useFrequencyNote",
+    "penaltyNote": "safety:penaltyNote",
+    "specificity": "safety:specificity",
+    "supportedByGuide": {
+      "@id": "safety:supportedByGuide",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "sparqlFilter": "safety:sparqlFilter",
+    "members": {
+      "@id": "safety:members",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "memberCount": {
+      "@id": "safety:memberCount",
+      "@type": "xsd:integer"
+    },
+    "representedItemCount": {
+      "@id": "safety:representedItemCount",
+      "@type": "xsd:integer"
+    },
+    "delegatesNote": "safety:delegatesNote",
+    "partOfNote": "safety:partOfNote",
+    "hasAnnexNote": "safety:hasAnnexNote",
+    "implements": {
+      "@id": "safety:implements",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "relatedLaw": {
+      "@id": "safety:relatedLaw",
+      "@container": "@set"
+    },
+    "relatedKoshaGuide": {
+      "@id": "safety:relatedKoshaGuide",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "relatedChapter": {
+      "@id": "safety:relatedChapter",
+      "@container": "@set"
+    },
+    "rawChapterCitations": {
+      "@id": "safety:rawChapterCitations",
+      "@container": "@set"
+    },
+    "_legacyRelatedLaw": {
+      "@id": "safety:_legacyRelatedLaw",
+      "@container": "@set"
+    }
+  }
+}

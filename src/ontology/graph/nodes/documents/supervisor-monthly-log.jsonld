@@ -1,0 +1,240 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/supervisor_monthly_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "supervisor_monthly_log",
+  "title": "관리감독자 직무 일지 (월별)",
+  "description": "관리감독자 직무 일지 (월별) - 산안법:16 + 산안법시행규칙:35 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:monthly",
+  "trigger": "매월",
+  "legalBasis": [
+    "art:산안법:16",
+    "art:산안법시행규칙:35"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_supervisor_monthly_log",
+    "officialName": "관리감독자 직무 일지 (월별) (자체)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 관리감독자 월별 직무 일지",
+      "legalSource": "산안법 제16조 + 시행규칙 제35조",
+      "fields": [
+        {
+          "key": "period",
+          "label": "기록 기간",
+          "required": true,
+          "inputGuide": "월 단위.",
+          "examples": [
+            "2026-04"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisorName",
+          "label": "관리감독자",
+          "required": true,
+          "inputGuide": "관리감독자 성명·소속.",
+          "examples": [
+            "박감독 (A동 골조 작업조)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "dailyDuties",
+          "label": "일별 직무 수행",
+          "required": true,
+          "inputGuide": "매일 점검·지시·감독 기록.",
+          "examples": [
+            [
+              {
+                "date": "2026-04-29",
+                "duties": "TBM 진행 / 작업 전 점검 / 안전대 착용 점검"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardsHandled",
+          "label": "처리한 위험요인",
+          "required": true,
+          "inputGuide": "발견·즉시조치한 위험.",
+          "examples": [
+            "1) 안전난간 누락 즉시 설치 / 2) 보호구 미착용 1명 시정 지도"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "educationConducted",
+          "label": "실시한 교육",
+          "required": true,
+          "inputGuide": "매주 안전회의·TBM.",
+          "examples": [
+            "TBM 22회 + 매주 안전회의 4회"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:16",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법:16",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:16",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "appointment",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "전 사업장"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_supervisor",
+    "control:admin_inspection",
+    "control:admin_safety_education"
+  ],
+  "relatedDocs": [
+    "doc:annual/supervisor_education_log",
+    "doc:daily/daily_tbm",
+    "doc:monthly/monthly_risk_assessment"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/save_form_draft",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "폼 초안 저장 (자동/수동)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Save Form Draft",
+      "@language": "en"
+    }
+  ],
+  "description": "프로젝트 메타, A2UI 렌더링, 로컬 초안·보관소 상태를 관리하는 capability. 작성 중인 폼 입력값을 ~/.agent-safety-oss/drafts/{docId}.jsonld 에 영구 저장. autosave=true 면 5초 debounce 자동저장 마커, false 면 사용자 명시 저장. 기존 값과 머지.",
+  "toolName": "save_form_draft",
+  "category": "meta",
+  "inputSchema": "safety:schema/input/save_form_draft",
+  "producesEntity": [
+    "safety:DraftRecord"
+  ],
+  "maps_to_action": "safety:action/save_form_draft",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

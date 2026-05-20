@@ -1,0 +1,28 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/fall_from_height_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "fall_from_height_general",
+  "title": "fall_from_height",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 333건 관측. 사고유형 fall_from_height.",
+  "koshaAccidentType": "fall_from_height",
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "causedBy": [],
+  "caseFrequency": 333,
+  "sampleKeywords": [
+    "주차장 CCTV 설치 작업 중 추락",
+    "지붕 채광창 교체 작업 중 추락",
+    "이동통로 발판이 무너져 추락"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

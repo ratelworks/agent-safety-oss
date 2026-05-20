@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/query_delegation_chain",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "법령 위임 사슬 추적 (산안법 → 시행령 → 시행규칙 → 고시)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Query Delegation Chain",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. 출발 조문(art: 또는 act: IRI) 또는 docId 입력 시 위임 관계를 BFS 로 추적해 시행령·시행규칙·고시까지 연결된 법적 근거 사슬을 반환. 산안법 §36 → 위험성평가 고시 §15 처럼 본문에 명시 안 된 위임도 추적. Phase 1 P1 — Article 노드의 delegates 엣지가 채워지는 만큼 사슬 길이 확장.",
+  "toolName": "query_delegation_chain",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/query_delegation_chain",
+  "producesEntity": [
+    "safety:DelegationChain"
+  ],
+  "maps_to_action": "safety:action/query_delegation_chain",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

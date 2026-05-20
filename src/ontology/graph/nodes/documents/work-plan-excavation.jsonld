@@ -1,0 +1,502 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_plan_excavation",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_plan_excavation",
+  "title": "굴착 작업계획서",
+  "alternativeNames": [
+    "굴착 작업계획서",
+    "토공사 작업계획서"
+  ],
+  "description": "굴착면 높이 2m 이상의 굴착작업 시작 전 사업주가 작성·근로자에게 통지해야 하는 작업계획서. 산업안전보건기준에 관한 규칙 제38조 및 별표 4 제6호 근거.",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "굴착면 높이 2m 이상 굴착작업 시작 전",
+  "legalBasis": [
+    "art:기준규칙:38",
+    "annex:기준규칙:별표4-6호"
+  ],
+  "applicableWhen": {
+    "workType": "excavation",
+    "depthGte": 2,
+    "depthUnit": "m"
+  },
+  "exemptedWhen": {
+    "depthLt": 2,
+    "note": "굴착면 2m 미만은 제38조 미적용 (단 위험성평가는 별도 의무)"
+  },
+  "requiredFields": [
+    {
+      "key": "f_0_형상_지질_및_지층의_",
+      "label": "형상·지질 및 지층의 상태",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "굴착 대상지의 지층 분포·토질·암반 상태.",
+      "examples": [
+        "상부 풍화토 3m + 풍화암 2m + 연암 5m (지질조사보고서 첨부)"
+      ]
+    },
+    {
+      "key": "f_1_균열_함수_용수_및_동",
+      "label": "균열·함수·용수 및 동결의 유무 또는 상태",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "지반 균열·지하수·용수·동결 등 위험 인자.",
+      "examples": [
+        "굴착부 GL-3m 지하수 용출 / 균열 없음 / 동결 미발생"
+      ]
+    },
+    {
+      "key": "f_2_매설물_등의_유무_또는",
+      "label": "매설물 등의 유무 또는 상태",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "지하 매설물 (가스·전기·통신·상하수도) 위치·심도·상태.",
+      "examples": [
+        "전면 도로 GL-1.5m 도시가스 (Φ200) / GL-2m 통신 / GL-3m 상수도"
+      ]
+    },
+    {
+      "key": "f_3_지반의_지하수위_상태",
+      "label": "지반의 지하수위 상태",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "굴착부 지하수위 + 강우 시 변동.",
+      "examples": [
+        "평상시 GL-3m / 강우 시 GL-1.5m (계측 기준 1주 단위)"
+      ]
+    },
+    {
+      "key": "f_4_굴착방법_및_순서__토",
+      "label": "굴착방법 및 순서, 토사 등 반출 방법",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "굴착 공법 + 단계별 순서 + 토사 반출.",
+      "examples": [
+        "오픈컷 1:1.5 + 단계별 1m씩 / 굴삭기 22톤 2대 + 덤프 15톤 8대 / 일일 800㎥ 반출"
+      ]
+    },
+    {
+      "key": "f_5_필요한_인원_및_장비_",
+      "label": "필요한 인원 및 장비 사용계획",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "굴착 작업 투입 인원 + 장비 사용계획 (자격·안전검사필증).",
+      "examples": [
+        "굴삭기 운전 2명 + 신호수 2명 + 작업자 6명 / 굴삭기 안전검사필증 첨부"
+      ]
+    },
+    {
+      "key": "f_6_매설물_등에_대한_이설",
+      "label": "매설물 등에 대한 이설·보호대책",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "지하 매설물 이설 또는 보호 조치.",
+      "examples": [
+        "도시가스 한국가스공사 협의 후 보호조치 (강관 보호) / 통신 KT 입회"
+      ]
+    },
+    {
+      "key": "f_7_사업장_내_연락방법_및",
+      "label": "사업장 내 연락방법 및 신호방법",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "현장 내 무전·신호 체계.",
+      "examples": [
+        "무전기 채널 7 / 굴착부 호각 1회=주의·2회=중지 / 신호수 깃발 사용"
+      ]
+    },
+    {
+      "key": "f_8_흙막이_지보공_설치방법",
+      "label": "흙막이 지보공 설치방법 및 계측계획",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "흙막이 공법 + 일상·정밀 계측 계획.",
+      "examples": [
+        "엄지말뚝+토류판 (H-300, 간격 2m) / 일일 변위 측정 + 주 1회 정밀 (경사계·하중계)"
+      ]
+    },
+    {
+      "key": "f_9_작업지휘자의_배치계획",
+      "label": "작업지휘자의 배치계획",
+      "source": "산안기준규칙 제38조 + 별표 4 6호",
+      "inputGuide": "작업지휘자 (관리감독자) 배치 — 1명 이상 상주.",
+      "examples": [
+        "박감독 (관리감독자, 산업안전기사) 1명 상주 + 백업 1명"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "사전조사 4항목 모두 작성",
+      "severity": "blocker",
+      "checkFields": [
+        "preSurvey_shape",
+        "preSurvey_crack",
+        "preSurvey_buried",
+        "preSurvey_groundwater"
+      ],
+      "legalBasis": "art:기준규칙:38"
+    },
+    {
+      "rule": "작업계획 7항목 모두 작성",
+      "severity": "blocker",
+      "checkFields": [
+        "plan_method",
+        "plan_workers",
+        "plan_protection",
+        "plan_signal",
+        "plan_shoring",
+        "plan_director",
+        "notifiedToWorkers"
+      ],
+      "legalBasis": "annex:기준규칙:별표4-6호"
+    },
+    {
+      "rule": "근로자에게 작업계획서 알림 (제38조 ②)",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:38"
+    },
+    {
+      "rule": "지반 지하수위 정량 표시 (GL- 또는 mm/일)",
+      "severity": "manual_review",
+      "checkFields": [
+        "preSurvey_groundwater"
+      ]
+    },
+    {
+      "rule": "흙막이 지보공 계측 빈도·기준값 명시",
+      "severity": "manual_review",
+      "checkFields": [
+        "plan_shoring"
+      ]
+    },
+    {
+      "rule": "흙막이 구조계산서·조립도·계측 위치/빈도/관리기준 첨부",
+      "severity": "manual_review",
+      "checkFields": [
+        "plan_shoring"
+      ],
+      "legalBasis": "art:기준규칙:38"
+    },
+    {
+      "rule": "지하매설물 인접 시 운영사 협의·시굴·입회·작업중지 기준",
+      "severity": "manual_review",
+      "checkFields": [
+        "preSurvey_buried",
+        "plan_protection"
+      ],
+      "legalBasis": [
+        "art:기준규칙:38",
+        "annex:기준규칙:별표4-6호"
+      ],
+      "legalBasisNote": "산안기준규칙 제38조 별표 4 제6호 다목 — 도시가스사업법은 도메인 외 (별도 OSS 영역)"
+    },
+    {
+      "rule": "작업자 명단·면허·인원수 일관성 (서명부 vs 시나리오)",
+      "severity": "manual_review",
+      "checkFields": [
+        "plan_workers",
+        "notifiedToWorkers"
+      ],
+      "legalBasis": "art:기준규칙:38"
+    },
+    {
+      "rule": "ERIC-PP 대책 4단계 중 Engineering(공학적 대책) 명시",
+      "severity": "manual_review",
+      "checkFields": [
+        "plan_method",
+        "plan_shoring"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년 (산업안전보건법 시행규칙 제241조)",
+  "standardForm": {
+    "source": "KOSHA",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "note": "표준 양식 미고시 — KOSHA Guide C-103-2014(계측관리)·D-C-1-2025(흙막이)·D-C-5-2025(굴착면 안전기울기)·D-C-11-2026(굴착 및 토공)·G-29-2011(지하 매설물) 참조"
+  },
+  "guidedBy": [
+    "doc:kosha_guide/C-103-2014",
+    "doc:kosha_guide/D-C-1-2025",
+    "doc:kosha_guide/D-C-11-2026",
+    "doc:kosha_guide/D-C-4-2025",
+    "doc:kosha_guide/D-C-5-2025",
+    "doc:kosha_guide/G-29-2011"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제38조",
+    "fetchedAt": "2026-04-26",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "verifiedAt": "2026-04-26",
+    "guidedByKeywords": [
+      "굴착",
+      "흙막이",
+      "토공",
+      "매설물",
+      "사면",
+      "지반",
+      "터파기",
+      "굴착면",
+      "굴착기"
+    ],
+    "guidedByExcludeKeywords": [
+      "옹벽 공사",
+      "보강토 옹벽",
+      "콘크리트 옹벽",
+      "발파공사 기술"
+    ],
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "requires": [
+    "activity:excavation_2m_plus"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 굴착 작업계획서 (별표 4 6호)",
+      "legalSource": "산안기준규칙 제38조 + 별표 4 6호",
+      "fields": [
+        {
+          "key": "preSurvey_shape",
+          "label": "사전조사 - 형상·지질",
+          "required": true,
+          "inputGuide": "굴착 형상·지반 종류.",
+          "examples": [
+            "굴착 8m × 30m × 30m, 화강풍화토 + 풍화암"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "preSurvey_crack",
+          "label": "사전조사 - 균열·함수",
+          "required": true,
+          "inputGuide": "기존 균열·지하수.",
+          "examples": [
+            "인접 건물 균열 없음, 지하수위 GL-6m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "preSurvey_buried",
+          "label": "사전조사 - 매설물",
+          "required": true,
+          "inputGuide": "가스·전기·수도·통신 매설.",
+          "examples": [
+            "도시가스 GL-1.5m, 한전 22.9kV GL-2.0m, 상수도 GL-1.0m"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "preSurvey_groundwater",
+          "label": "사전조사 - 지하수",
+          "required": true,
+          "inputGuide": "용수 처리·배수.",
+          "examples": [
+            "배수 펌프 2대 + 집수정 4개"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "plan_method",
+          "label": "굴착 방법·순서",
+          "required": true,
+          "inputGuide": "기계·인력 + 단계별 깊이.",
+          "examples": [
+            "1단계 GL-3m (오픈컷) → 2단계 -8m (흙막이)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "plan_workers",
+          "label": "투입 인원",
+          "required": true,
+          "inputGuide": "근로자 수·자격.",
+          "examples": [
+            "굴착작업자 8명 + 신호수 1명 + 작업지휘자 1명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "plan_protection",
+          "label": "매설물 보호 조치",
+          "required": true,
+          "inputGuide": "노출·이설·보호.",
+          "examples": [
+            "가스: 보호 박스 + 도시가스공사 입회"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "plan_signal",
+          "label": "신호 방법",
+          "required": true,
+          "inputGuide": "신호수·통신.",
+          "examples": [
+            "신호수 1명 + 무전기 Ch5"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "plan_shoring",
+          "label": "지보공 (흙막이)",
+          "required": true,
+          "inputGuide": "공법·구조.",
+          "examples": [
+            "H-300 + 어스앵커 2단 (PS75kN/1개)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "plan_director",
+          "label": "작업지휘자",
+          "required": true,
+          "inputGuide": "건설안전기사 이상.",
+          "examples": [
+            "박감독 (건설안전기사)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "notifiedToWorkers",
+          "label": "근로자 통지 (제38조 ②)",
+          "required": true,
+          "inputGuide": "계획 전 작업자에게 주지.",
+          "examples": [
+            true
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "hasHazard": [
+    "hazard:buried_alive",
+    "hazard:cave_in",
+    "hazard:struck_by",
+    "hazard:struck_by_overturn",
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:gas_leak",
+    "hazard:drowning",
+    "hazard:asphyxiation",
+    "hazard:noise_exposure",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [
+    "activity:excavation_2m_plus"
+  ],
+  "informedBy": [
+    "entity:kogas",
+    "entity:kepco",
+    "entity:kt",
+    "entity:waterworks",
+    "src:kogas:1544-4500",
+    "src:kepco:123",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_work_plan",
+    "control:admin_supervisor",
+    "control:eng_shoring"
+  ],
+  "relatedDocs": [
+    "doc:daily/excavation_daily_check",
+    "doc:quarterly/construction_safety_inspection_record"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,26 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "applic:under_50_persons",
+  "@type": "Applicability",
+  "label": "50인 미만 사업장 (산업안전보건위원회 등 일부 면제)",
+  "condition": {
+    "all": [
+      { "var": "workforce", "op": "<", "value": 50 }
+    ]
+  },
+  "legalBasis": [
+    "art:산안법:24",
+    "art:산안법시행령:34"
+  ],
+  "legalWeight": "reference",
+  "exemptionNote": "50인 이상 적용되는 산업안전보건위원회·산업안전보건관리책임자 선임 등 일부 의무 면제. 위험성평가·중처법 5인 이상 적용 등 다른 의무는 별도",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "fetchedAt": "2026-04-26",
+    "updatedAt": "2026-05-20",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "v1.3.x 결정론 룰 보강 — title/condition string → 정식 ApplicabilityShape 적합"
+  }
+}

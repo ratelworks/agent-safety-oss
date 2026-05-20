@@ -1,0 +1,37 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:ppe_hearing_protection",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "ppe_hearing_protection",
+  "label": "청력보호구",
+  "description": "항타·파쇄·절단·장비 운전 등 85dB 이상 소음 노출 작업에서 청력 손상을 낮추는 개인보호구 통제.",
+  "ericLevel": 5,
+  "category": "ppe",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:machinery_repair",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:road_pavement",
+    "activity:steel_structure",
+    "activity:tunnel_excavation",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "청력보호",
+      "귀마개"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

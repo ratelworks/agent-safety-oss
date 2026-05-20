@@ -1,0 +1,193 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-49-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_c-49-2012",
+  "title": "안전대 사용지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-49-2012",
+    "guideCategory": "construction",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"안전대\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "construction",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 1,
+      "3": 0,
+      "4": 7,
+      "5": 12,
+      "6": 173,
+      "7": 122,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "안전대",
+    "relatedChapterUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:noise_exposure",
+    "hazard:dust_exposure",
+    "hazard:chemical_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:ppe_harness",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:eng_alarm",
+    "control:admin_supervisor",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:eng_ventilation",
+    "control:sub_low_toxic",
+    "control:admin_msds",
+    "control:ppe_safety_shoes"
+  ],
+  "appliesToActivities": [
+    "activity:rc_concrete"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_안전대 사용지침_1",
+      "title": "안전대 사용지침 - 목적",
+      "score": 74.326
+    },
+    {
+      "docId": "KOSHA07_안전대 사용지침_4",
+      "title": "안전대 사용지침 - 안전대의 종류 및 명칭",
+      "score": 70.61
+    },
+    {
+      "docId": "KOSHA07_안전대 사용지침_8",
+      "title": "안전대 사용지침 - 안전대의 점검",
+      "score": 70.182
+    },
+    {
+      "docId": "KOSHA07_안전대 사용지침_11",
+      "title": "안전대 사용지침 - 안전대의 폐기",
+      "score": 67.601
+    },
+    {
+      "docId": "KOSHA07_안전대 사용지침_2",
+      "title": "안전대 사용지침 - 적용범위",
+      "score": 42.29
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA02_000006000000000000000074000",
+      "title": "제74조 안전인증대상기계등",
+      "category": "2",
+      "score": 29.576
+    },
+    {
+      "docId": "KOSHA04_003000010000002000000000624000",
+      "title": "제624조 안전대 등",
+      "category": "4",
+      "score": 46.627
+    },
+    {
+      "docId": "KOSHA04_001000006000001000000000044000",
+      "title": "제44조 안전대의 부착설비 등",
+      "category": "4",
+      "score": 43.481
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000156000",
+      "title": "제156조 조립 등의 작업",
+      "category": "4",
+      "score": 31.97
+    },
+    {
+      "docId": "KOSHA04_[별표 4] 사전조사 및 작업계획서 내용(제38조제1항관련)",
+      "title": "[별표 4] 사전조사 및 작업계획서 내용(제38조제1항관련)",
+      "category": "4",
+      "score": 30.509
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA02_000006000000000000000074000",
+      "title": "제74조 안전인증대상기계등",
+      "category": "2",
+      "score": 29.576
+    },
+    {
+      "docId": "KOSHA04_003000010000002000000000624000",
+      "title": "제624조 안전대 등",
+      "category": "4",
+      "score": 46.627
+    },
+    {
+      "docId": "KOSHA04_001000006000001000000000044000",
+      "title": "제44조 안전대의 부착설비 등",
+      "category": "4",
+      "score": 43.481
+    },
+    {
+      "docId": "KOSHA04_002000001000009000000000156000",
+      "title": "제156조 조립 등의 작업",
+      "category": "4",
+      "score": 31.97
+    },
+    {
+      "docId": "KOSHA04_[별표 4] 사전조사 및 작업계획서 내용(제38조제1항관련)",
+      "title": "[별표 4] 사전조사 및 작업계획서 내용(제38조제1항관련)",
+      "category": "4",
+      "score": 30.509
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:6장",
+      "law": "기준규칙",
+      "chapterTitle": "온도ㆍ습도에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "－ 산업안전보건기준에 관한 규칙 제1편 제6장의 규정"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 1,
+      "rawCitation": "－ 산업안전보건기준에 관한 규칙 제1편 제6장의 규정",
+      "needsNode": true
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+#!/bin/bash
+# Git post-commit: 트레일러 없는 commit 자동 amend (a-git L2 enforce)
+# 외부 터미널/IDE/GUI에서 만든 commit도 트레일러 강제 부착
+# PreToolUse 훅이 잡지 못하는 우회 경로를 보완
+
+# 무한 재귀 방지 (amend 시 hook이 다시 호출됨)
+[ -n "$GIT_POST_COMMIT_AMENDING" ] && exit 0
+export GIT_POST_COMMIT_AMENDING=1
+
+# Merge commit 제외 (parent 2개 이상)
+PARENT_COUNT=$(git cat-file -p HEAD 2>/dev/null | grep -c "^parent ")
+[ "$PARENT_COUNT" -gt 1 ] && exit 0
+
+# 이미 Session-Id 트레일러 있으면 종료
+LAST_MSG=$(git log -1 --format=%B 2>/dev/null)
+echo "$LAST_MSG" | grep -q "^Session-Id: " && exit 0
+
+# 트레일러 자동 부착
+SID="external-$(date +%Y%m%d-%H%M)"
+SCOPE=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | head -3 | xargs -I{} basename {} | tr '\n' ',' | sed 's/,$//')
+[ -z "$SCOPE" ] && SCOPE="(unknown)"
+
+git commit --amend --no-edit \
+  --trailer "Session-Id: $SID" \
+  --trailer "Agent-Source: manual" \
+  --trailer "Work-Scope: $SCOPE" \
+  --trailer "Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>" \
+  >/dev/null 2>&1
+
+echo "[a-git post-commit] 트레일러 자동 부착 — Session-Id: $SID"

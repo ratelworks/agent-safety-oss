@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_excavation_2m_plus",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_excavation_2m_plus",
+  "title": "struck_by × excavation_2m_plus",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 50건 관측. 사고유형 struck_by 작업유형 excavation_2m_plus.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:excavation_2m_plus"
+  ],
+  "caseFrequency": 50,
+  "sampleKeywords": [
+    "인양 작업 중 굴착기 전도",
+    "굴착기 이동중 충돌",
+    "이동하던 굴착기와 충돌"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

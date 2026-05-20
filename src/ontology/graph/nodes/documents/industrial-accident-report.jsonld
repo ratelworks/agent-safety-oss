@@ -1,0 +1,1422 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/industrial_accident_report",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "industrial_accident_report",
+  "title": "산업재해조사표 (별지 30호)",
+  "alternativeNames": [
+    "산재조사표",
+    "별지 제30호서식"
+  ],
+  "description": "산업재해(휴업 3일 이상 또는 사망)가 발생한 경우 시행규칙 제73조 에 따라 1개월 이내 관할 지방고용노동관서에 제출하는 법정 보고서. 본 노드는 산안법 시행규칙 [별지 제30호서식] 본문을 1:1로 매핑한다 (kordoc parse_form 검증, 2026-04-29).",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "산업재해(휴업 3일 이상 또는 사망)가 발생한 경우 시행규칙 제73조 에 따라 1개월 이내 관할 지방고용노동관서에 제출. 중대재해는 제57조 에 따라 즉시 보고.",
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "중대재해 (사망·동시 부상자 2명 이상 등)는 제54조 즉시 보고 별도. 제73조 산업재해조사표는 1개월 내."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "industryCode",
+      "label": "산재관리번호(사업개시번호)",
+      "source": "별지 30호서식 Ⅰ",
+      "inputGuide": "근로복지공단 부여 사업개시번호. 16자리.",
+      "examples": [
+        "11-1234567-1-001"
+      ]
+    },
+    {
+      "key": "businessRegNo",
+      "label": "사업자등록번호",
+      "source": "별지 30호서식 Ⅰ",
+      "inputGuide": "10자리 숫자 (사업자등록번호) 또는 13자리 숫자 (법인등록번호). 하이픈 포함 표기 권장.",
+      "examples": [
+        "123-45-67890",
+        "110111-0123456"
+      ]
+    },
+    {
+      "key": "siteName",
+      "label": "사업장명",
+      "source": "별지 30호서식 Ⅰ",
+      "inputGuide": "법인등기부등본 또는 사업자등록증 상의 정식 명칭. 약칭·통칭 사용 금지.",
+      "examples": [
+        "황룡건설(주)",
+        "(주)라텔웍스",
+        "현대건설 주식회사"
+      ]
+    },
+    {
+      "key": "totalWorkforce",
+      "label": "근로자 수",
+      "source": "별지 30호서식 Ⅰ",
+      "inputGuide": "본 사업장 상시 근로자 수. 일용·계약 모두 포함.",
+      "examples": [
+        "52"
+      ]
+    },
+    {
+      "key": "industry",
+      "label": "업종",
+      "source": "별지 30호서식 Ⅰ",
+      "inputGuide": "한국표준산업분류(KSIC) 코드 또는 산재보험 사업종류 코드.",
+      "examples": [
+        "41122 (종합건설업 - 주거용 건물 건설업)",
+        "F421 (토목 시설물 건설업)"
+      ]
+    },
+    {
+      "key": "address",
+      "label": "소재지",
+      "source": "별지 30호서식 Ⅰ",
+      "inputGuide": "도로명주소 우선. 지번주소 병기 가능. 우편번호 포함 권장.",
+      "examples": [
+        "서울특별시 강남구 테헤란로 123 (12345)",
+        "경기도 성남시 분당구 판교역로 456 (13494)"
+      ]
+    },
+    {
+      "key": "subContractInfo",
+      "label": "⑤ 재해자가 사내 수급인 소속인 경우(건설업 제외) — 원도급인 사업장명·산재관리번호",
+      "source": "별지 30호서식 Ⅰ ⑤",
+      "optional": true,
+      "inputGuide": "재해자가 도급사 직원인 경우 (건설업 제외). 원도급인 사업장명 + 산재관리번호.",
+      "examples": [
+        "(주)대형기업 OO공장 / 11-7654321-1-001"
+      ]
+    },
+    {
+      "key": "dispatchInfo",
+      "label": "⑥ 재해자가 파견근로자인 경우 — 파견사업주 사업장명·산재관리번호",
+      "source": "별지 30호서식 Ⅰ ⑥",
+      "optional": true,
+      "inputGuide": "재해자가 파견 근로자인 경우. 파견사업주 사업장명 + 산재관리번호.",
+      "examples": [
+        "(주)인력파견 / 11-9876543-1-001"
+      ]
+    },
+    {
+      "key": "developerType",
+      "label": "발주자",
+      "source": "별지 30호서식 Ⅰ (건설업)",
+      "optional": true,
+      "inputGuide": "공사 발주 주체. 공공·민간 구분 + 정식 명칭.",
+      "examples": [
+        "LH 한국토지주택공사",
+        "서울특별시 강남구청",
+        "(주)OO개발"
+      ]
+    },
+    {
+      "key": "primaryContractorName",
+      "label": "원수급 사업장명",
+      "source": "별지 30호서식 Ⅰ ⑦",
+      "optional": true,
+      "inputGuide": "현장명 또는 본사명. 등기상 명칭 + 현장 식별자.",
+      "examples": [
+        "황룡건설(주) 삼성동 신축공사 현장"
+      ]
+    },
+    {
+      "key": "primaryContractorCode",
+      "label": "원수급 사업장 산재관리번호(사업개시번호)",
+      "source": "별지 30호서식 Ⅰ ⑧",
+      "optional": true,
+      "inputGuide": "건설업 원수급 사업장의 산재관리번호. 16자리.",
+      "examples": [
+        "11-1234567-1-001"
+      ]
+    },
+    {
+      "key": "constructionSiteName",
+      "label": "공사현장 명",
+      "source": "별지 30호서식 Ⅰ",
+      "optional": true,
+      "inputGuide": "현장 공식 명칭.",
+      "examples": [
+        "삼성동 OO 신축공사 현장"
+      ]
+    },
+    {
+      "key": "constructionType",
+      "label": "공사종류",
+      "source": "별지 30호서식 Ⅰ ⑨",
+      "optional": true,
+      "inputGuide": "건축 / 토목 / 전기 / 소방 / 기계설비 등.",
+      "examples": [
+        "건축"
+      ]
+    },
+    {
+      "key": "constructionProgress",
+      "label": "공정률",
+      "source": "별지 30호서식 Ⅰ ⑨",
+      "optional": true,
+      "inputGuide": "재해 발생 시점 공정 진척률 (%).",
+      "examples": [
+        "65"
+      ]
+    },
+    {
+      "key": "constructionAmount",
+      "label": "공사금액 백만원",
+      "source": "별지 30호서식 Ⅰ ⑨",
+      "optional": true,
+      "inputGuide": "도급 계약 총액 (원).",
+      "examples": [
+        "32,000,000,000"
+      ]
+    },
+    {
+      "key": "injuredName",
+      "label": "성명",
+      "source": "별지 30호서식 Ⅱ",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "injuredId",
+      "label": "주민등록번호(외국인등록번호)",
+      "source": "별지 30호서식 Ⅱ",
+      "inputGuide": "13자리. 개인정보 보안 — 마스킹 권장.",
+      "examples": [
+        "840315-1******"
+      ]
+    },
+    {
+      "key": "injuredGender",
+      "label": "성별",
+      "source": "별지 30호서식 Ⅱ",
+      "inputGuide": "남 / 여.",
+      "examples": [
+        "남"
+      ]
+    },
+    {
+      "key": "injuredNationality",
+      "label": "국적",
+      "source": "별지 30호서식 Ⅱ ⑩",
+      "inputGuide": "한국 / 베트남 / 중국 / 필리핀 등.",
+      "examples": [
+        "베트남"
+      ]
+    },
+    {
+      "key": "residenceStatus",
+      "label": "체류자격",
+      "source": "별지 30호서식 ⑩",
+      "inputGuide": "출입국관리법 비자 분류 (E-9·H-2·F-4 등).",
+      "examples": [
+        "E-9 (비전문취업)"
+      ]
+    },
+    {
+      "key": "injuredOccupation",
+      "label": "직업",
+      "source": "별지 30호서식 Ⅱ ⑪",
+      "inputGuide": "한국표준직업분류 + 현장 직종.",
+      "examples": [
+        "철근공"
+      ]
+    },
+    {
+      "key": "hireDate",
+      "label": "입사일",
+      "source": "별지 30호서식 Ⅱ",
+      "inputGuide": "본 사업장 입사일.",
+      "examples": [
+        "2024-03-01"
+      ]
+    },
+    {
+      "key": "sameWorkTenure",
+      "label": "같은 종류업무 근속기간",
+      "source": "별지 30호서식 Ⅱ ⑫",
+      "inputGuide": "동종 업무 누적 경력. 년·월 단위.",
+      "examples": [
+        "8년 6월"
+      ]
+    },
+    {
+      "key": "employmentType",
+      "label": "고용형태",
+      "source": "별지 30호서식 Ⅱ ⑬",
+      "inputGuide": "정규직 / 계약직 / 일용직 / 도급 / 파견.",
+      "examples": [
+        "일용직"
+      ]
+    },
+    {
+      "key": "workForm",
+      "label": "근무형태",
+      "source": "별지 30호서식 Ⅱ ⑭",
+      "inputGuide": "주간 / 야간 / 교대 / 일반.",
+      "examples": [
+        "주간"
+      ]
+    },
+    {
+      "key": "injuryType",
+      "label": "상해종류(질병명)",
+      "source": "별지 30호서식 Ⅱ ⑮",
+      "inputGuide": "한국산업안전보건공단 상해종류 분류 (골절·창상·찰과상·뇌진탕 등).",
+      "examples": [
+        "골절"
+      ]
+    },
+    {
+      "key": "injuryPart",
+      "label": "상해부위(질병부위)",
+      "source": "별지 30호서식 Ⅱ ⑮",
+      "inputGuide": "상해·질병 부위 (머리·목·등·팔·손·다리·발 등).",
+      "examples": [
+        "우측 다리 (대퇴골)"
+      ]
+    },
+    {
+      "key": "leaveDays",
+      "label": "휴업예상일수",
+      "source": "별지 30호서식 Ⅱ",
+      "inputGuide": "산업재해는 휴업 3일 이상 시 산안법 제57조 보고 의무. 진단서 기준.",
+      "examples": [
+        "휴업 7일 (2026-04-29 ~ 2026-05-05, OO병원 진단서)",
+        "휴업 90일 이상 → 중대재해 검토"
+      ]
+    },
+    {
+      "key": "fatalFlag",
+      "label": "사망 여부",
+      "source": "별지 30호서식 Ⅱ",
+      "inputGuide": "사망 / 부상. 사망 시 별도 즉시보고 필요 (산안법 제54조).",
+      "examples": [
+        "부상"
+      ]
+    },
+    {
+      "key": "occurrenceDate",
+      "label": "발생일시",
+      "source": "별지 30호서식 Ⅲ",
+      "inputGuide": "재해 발생 일시 (분 단위).",
+      "examples": [
+        "2026-04-25 14:32"
+      ]
+    },
+    {
+      "key": "occurrenceLocation",
+      "label": "발생장소",
+      "source": "별지 30호서식 Ⅲ",
+      "inputGuide": "재해 발생 위치 (동·층·구역). 도면 표시 권장.",
+      "examples": [
+        "A동 5층 단부 비계 (도면 #A5-12)"
+      ]
+    },
+    {
+      "key": "workTypeAtAccident",
+      "label": "재해관련 작업유형",
+      "source": "별지 30호서식 Ⅲ",
+      "inputGuide": "고용노동부 재해유형 분류 (추락·전도·충돌·낙하·협착·절단·감전·화재 등).",
+      "examples": [
+        "추락"
+      ]
+    },
+    {
+      "key": "circumstancesAtAccident",
+      "label": "재해발생 당시 상황",
+      "source": "별지 30호서식 Ⅲ",
+      "inputGuide": "재해 발생 직전부터의 상황 시간 순 서술.",
+      "examples": [
+        "14:30 단부 작업 중 안전대 미체결 / 14:32 균형 상실 → 5층 단부에서 4층으로 추락 / 14:34 119 신고"
+      ]
+    },
+    {
+      "key": "accidentCause",
+      "label": "재해발생원인",
+      "source": "별지 30호서식 Ⅲ",
+      "inputGuide": "직접 원인 + 근본 원인 (관리적·기술적·환경적).",
+      "examples": [
+        "직접: 안전대 미체결 / 근본: 작업 전 점검 누락 + 안전관리 감독 부실 + 단부 안전난간 미설치"
+      ]
+    },
+    {
+      "key": "preventionPlan",
+      "label": "재발 방지 계획",
+      "source": "별지 30호서식 Ⅳ + 산안법 제57조 ②",
+      "inputGuide": "원인별 시정조치 + 일정 + 책임자.",
+      "examples": [
+        "1) 작업 전 안전대 체결 점검 (매일 07:30, 박감독) / 2) 단부 안전난간 보강 (5/7까지, 김안전) / 3) 안전관리자 추가 배치 (5/15)"
+      ]
+    },
+    {
+      "key": "freeTechnicalSupportRequest",
+      "label": "즉시 기술지원 서비스 요청",
+      "source": "별지 30호서식",
+      "optional": true,
+      "inputGuide": "한국산업안전보건공단 즉시 기술지원 요청 여부 (예/아니오).",
+      "examples": [
+        "아니오"
+      ]
+    },
+    {
+      "key": "preparedByName",
+      "label": "작성자 성명",
+      "source": "별지 30호서식 Ⅴ",
+      "inputGuide": "본 양식 작성자 직책 + 성명.",
+      "examples": [
+        "김안전 (안전관리자)"
+      ]
+    },
+    {
+      "key": "preparedByPhone",
+      "label": "작성자 전화번호",
+      "source": "별지 30호서식 Ⅴ",
+      "inputGuide": "본 양식 작성자 직책 + 성명.",
+      "examples": [
+        "김안전 (안전관리자)"
+      ]
+    },
+    {
+      "key": "preparedDate",
+      "label": "작성일",
+      "source": "별지 30호서식 Ⅴ",
+      "inputGuide": "YYYY-MM-DD 형식. 작성·점검·평가 실제 시행 일자.",
+      "examples": [
+        "2026-04-29",
+        "2026-05-15"
+      ]
+    },
+    {
+      "key": "ownerSignature",
+      "label": "사업주 (서명 또는 인)",
+      "source": "별지 30호서식 Ⅴ",
+      "inputGuide": "법인 대표 또는 안전보건책임자 서명·인감.",
+      "examples": [
+        "황룡 (인감)"
+      ]
+    },
+    {
+      "key": "workerRepSignature",
+      "label": "근로자대표(재해자) (서명 또는 인)",
+      "source": "별지 30호서식 Ⅴ",
+      "inputGuide": "근로자대표 또는 재해자 본인 자필 서명·날인.",
+      "examples": [
+        "이작업 (근로자대표, 자필 서명)"
+      ]
+    },
+    {
+      "key": "submitTo",
+      "label": "( )지방고용노동청장(지청장) 귀하",
+      "source": "별지 30호서식 Ⅴ",
+      "inputGuide": "관할 지방고용노동(지)청 명칭.",
+      "examples": [
+        "서울지방고용노동청 강남지청"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — Ⅰ 사업장 정보 (산재관리번호·사업장명·근로자수·업종·소재지)",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:73",
+      "checkFields": [
+        "industryCode",
+        "siteName",
+        "totalWorkforce",
+        "industry",
+        "address"
+      ]
+    },
+    {
+      "rule": "필수 — Ⅱ 재해자 정보 (성명·주민번호·국적·직업·고용형태·근무형태·상해종류·휴업일수)",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:73",
+      "checkFields": [
+        "injuredName",
+        "injuredId",
+        "injuredOccupation",
+        "employmentType",
+        "workForm",
+        "injuryType",
+        "injuryPart"
+      ]
+    },
+    {
+      "rule": "필수 — Ⅲ 재해발생 개요·원인 (발생일시·장소·작업유형·당시상황·원인 4분류)",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:73",
+      "checkFields": [
+        "occurrenceDate",
+        "occurrenceLocation",
+        "workTypeAtAccident",
+        "circumstancesAtAccident",
+        "accidentCause"
+      ]
+    },
+    {
+      "rule": "필수 — Ⅳ 재발방지 계획",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:73",
+      "checkFields": [
+        "preventionPlan"
+      ]
+    },
+    {
+      "rule": "필수 — Ⅴ 작성자·사업주·근로자대표 서명",
+      "severity": "blocker",
+      "legalBasis": "art:산안법시행규칙:73",
+      "checkFields": [
+        "preparedByName",
+        "preparedDate",
+        "ownerSignature",
+        "workerRepSignature"
+      ]
+    },
+    {
+      "rule": "권장 — 발생원인 구체적 (인적·설비·작업환경·관리 4분류 모두 검토)",
+      "severity": "warning",
+      "checkFields": [
+        "accidentCause"
+      ]
+    },
+    {
+      "rule": "권장 — 건설업은 ⑦⑧⑨ 원수급·공사현장·공사종류·공정률·공사금액 작성",
+      "severity": "warning",
+      "checkFields": [
+        "primaryContractorName",
+        "primaryContractorCode",
+        "constructionSiteName",
+        "constructionType",
+        "constructionProgress",
+        "constructionAmount"
+      ]
+    },
+    {
+      "rule": "필수 — 산재 발생일부터 1개월 이내 제출",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:73"
+    },
+    {
+      "rule": "사람 검토 — 사망/3일 이상 휴업 객관적 진단 소견 첨부",
+      "severity": "manual_review"
+    }
+  ],
+  "retention": "보존 5년 (산안법 제164조) — 사고 기록은 산재 보상·소송 대비 5년 권장",
+  "standardForm": {
+    "source": "산업안전보건법 시행규칙 [별지 제30호서식]",
+    "sourceUrl": "https://www.law.go.kr/lsLinkCommonInfo.do?lspttninfSeq=154169&chrClsCd=010202",
+    "downloadHwp": "https://www.moel.go.kr/common/downloadFile.do?file_seq=20210600340&bbs_seq=20210600265&bbs_id=29&file_ext=hwp",
+    "verifiedBy": "kordoc parse_form (2026-04-29) — 별지 30호서식 HWP 본문과 1:1 매핑 확인",
+    "requiredFields": [
+      "Ⅰ. 사업장 정보 (① 산재관리번호 / 사업자등록번호 / ② 사업장명 / ③ 근로자 수 / ④ 업종 / 소재지)",
+      "사내수급인·파견근로자·건설업 (⑤ 사내수급인 / ⑥ 파견 / ⑦ 원수급 / ⑧ 원수급 산재관리번호 / 공사현장명 / ⑨ 공사종류·공정률·공사금액)",
+      "Ⅱ. 재해 정보 (성명 / 주민등록번호 / 성별 / 국적 / ⑩ 체류자격 / ⑪ 직업 / 입사일 / ⑫ 같은 종류업무 근속기간 / ⑬ 고용형태 / ⑭ 근무형태 / ⑮ 상해종류·부위 / 휴업예상일수 / 사망여부)",
+      "Ⅲ. 재해발생 개요 및 원인 (발생일시 / 발생장소 / 재해관련 작업유형 / 재해발생 당시 상황 / 재해발생원인)",
+      "Ⅳ. 재발방지 계획",
+      "즉시 기술지원 서비스 요청 (체크박스)",
+      "Ⅴ. 작성자 성명·전화번호 / 작성일 / 사업주 (서명 또는 인) / 근로자대표(재해자) (서명 또는 인) / 지방고용노동청장 귀하"
+    ],
+    "optionalFields": [
+      "재해 분류자 기입란 (사업장에서는 작성하지 않습니다 — 발생형태·기인물·작업지역·작업내용)"
+    ]
+  },
+  "relatedDocs": [
+    "doc:ad_hoc/severe_accident_immediate_report",
+    "doc:semi_annual/severe_accident_compliance",
+    "doc:ad_hoc/ad_hoc_risk_assessment"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-8-2025",
+    "doc:kosha_guide/E-182-2021",
+    "doc:kosha_guide/G-5-2017",
+    "doc:kosha_guide/G-94-2012"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§54",
+        "text": "중대재해 발생 시 즉시 보고 의무"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§57",
+        "text": "산업재해 발생 보고 + 재발방지대책 수립·이행"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§73",
+        "text": "산업재해 발생 보고 — 1개월 내 별지 제30호서식 제출"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "§74",
+        "text": "산업재해 기록 보존 (3년)"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§175",
+        "text": "보고 위반 과태료 1,500만원 이하"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "산재관리번호": "근로복지공단 산재보험 가입번호. 일괄적용 사업장은 산재관리번호+사업개시번호 모두 적음. 미가입 시 사업자등록번호만",
+        "업종": "통계청 KSIC 세세분류 5자리 (예: 건축물 일반 청소업). 모를 경우 업종명+주요 생산품 추가",
+        "체류자격": "출입국관리법 시행령 별표 1 기호 (예: E-1, E-7, E-9)",
+        "직업": "통계청 한국표준직업분류 세세분류 5자리 (예: 토목감리기술자, 철근공, 미장공, 프레스조작원)",
+        "같은 종류업무 근속기간": "과거 다른 회사 경력 + 현직 경력 합산 (질병의 경우 관련 작업 근무기간)",
+        "휴업예상일수": "재해발생일을 제외한 3일 이상 결근 일수. 의사 진단소견 참조",
+        "재해발생원인": "인적(무의식·착오·피로·연령·커뮤니케이션) + 설비(설계결함·방호장치 불량·작업표준화 부족·점검 부족) + 작업·환경(작업정보 부적절·자세·동작·작업방법·환경조건) + 관리적(관리조직 결함·매뉴얼 부재·교육 부족·지도감독 부족) 4분류"
+      },
+      "commonMistakes": [
+        "산재관리번호와 사업자등록번호를 혼동 (별개)",
+        "건설업 ⑦⑧⑨ 누락 (원수급·공사현장·공사종류·공정률·공사금액)",
+        "발생원인을 4분류로 나누지 않고 1줄로 작성",
+        "근로자대표 서명 누락 (이견 있으면 별지 첨부)",
+        "1개월 기한 초과 시 제175조 과태료"
+      ],
+      "bestPractices": [
+        "발생일시·장소·작업유형·당시상황을 시간순으로 구체 기재",
+        "사고 사진·도면·CCTV 캡처 별첨",
+        "유사 재해사례 (KOSHA SIF 아카이브) 인용",
+        "재발방지대책에 이행 책임자·기한·예산 명시"
+      ]
+    },
+    "examples": [
+      {
+        "title": "별지 30호서식 작성예시 (시행규칙 본문)",
+        "source": "고용노동부 산업재해조사표 작성 모범사례",
+        "license": "공공누리"
+      }
+    ],
+    "relatedTools": [
+      "search_safety_laws({keyword:'제57조'})",
+      "search_construction_fatal_accidents({})",
+      "search_sif_archive({})"
+    ],
+    "convertedAt": "2026-04-26",
+    "rebuiltAt": "2026-04-29",
+    "rebuildSource": "kordoc parse_form on /tmp/form30_real.hwp (별지 30호서식 HWP 원본)",
+    "rebuildVerifiedBy": "라텔웍스 (Ratelworks Inc.) — 별지 30호서식 본문과 1:1 정합 검증",
+    "documentCategory": "report",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "legalBasis": [
+    "art:산안법:54",
+    "art:산안법:57",
+    "art:산안법시행규칙:73",
+    "art:산안법시행규칙:74",
+    "art:산안법:164",
+    "art:산안법:175"
+  ],
+  "penaltyOnMissing": "art:산안법:175",
+  "hasHazard": [
+    "hazard:asphyxiation",
+    "hazard:biological_hazard",
+    "hazard:machine_entanglement",
+    "hazard:crushing",
+    "hazard:cave_in",
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:electrocution",
+    "hazard:caught_in",
+    "hazard:falling_object"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha",
+    "src:moel:1350",
+    "src:law_go_kr"
+  ],
+  "sections": [
+    {
+      "title": "Ⅰ. 사업장 정보",
+      "legalSource": "별지 30호서식 Ⅰ + 시행규칙 제73조",
+      "fields": [
+        {
+          "key": "industryCode",
+          "label": "산재관리번호(사업개시번호)",
+          "required": true,
+          "inputGuide": "근로복지공단 산재보험 가입번호 — 산재관리번호. 일괄적용 사업장은 사업개시번호 함께. 미가입 시 사업자등록번호만 (오른쪽 칸).",
+          "standardFormat": "산재관리번호 [9~12자리] / 사업개시번호 [4자리]",
+          "examples": [
+            "12345678901 / 0001 (일괄적용 건설업)",
+            "(미가입) — 사업자등록번호만"
+          ],
+          "checkPoints": [
+            "근로복지공단 발급 정확 확인",
+            "고용보험번호와 혼동 금지",
+            "일괄적용은 사업개시번호 누락 X"
+          ]
+        },
+        {
+          "key": "businessRegNo",
+          "label": "사업자등록번호",
+          "required": true,
+          "inputGuide": "국세청 사업자등록번호 (10자리, 하이픈 포함 가능).",
+          "standardFormat": "XXX-XX-XXXXX",
+          "examples": [
+            "123-45-67890"
+          ],
+          "checkPoints": [
+            "10자리 정확",
+            "사업자 명의 확인"
+          ]
+        },
+        {
+          "key": "siteName",
+          "label": "사업장명",
+          "required": true,
+          "inputGuide": "재해자가 사업주와 근로계약을 체결한 사업장명. 파견근로자는 실제 지휘·명령을 받는 사용사업주 사업장명. 하수급 근로자는 하수급 사업장명.",
+          "standardFormat": "[사업장명]",
+          "examples": [
+            "황룡건설(주)",
+            "(주)○○ — 하수급 (원수급은 ⑦에 별도)"
+          ],
+          "checkPoints": [
+            "근로계약 체결 사업장 확인",
+            "파견·도급 관계 정확 분리",
+            "본사·현장 구분"
+          ]
+        },
+        {
+          "key": "totalWorkforce",
+          "label": "근로자 수",
+          "required": true,
+          "inputGuide": "사업장 최근 근로자 수 (정규직·일용직·임시직·훈련생 모두 포함).",
+          "standardFormat": "[총인원] 명 (정규 N / 일용·임시 N / 훈련생 N)",
+          "examples": [
+            "85명 (정규 30 / 일용 50 / 훈련생 5)",
+            "120명"
+          ],
+          "checkPoints": [
+            "재해발생 당시 기준 인원",
+            "도급 근로자 별도 계산",
+            "외국인·파견 포함"
+          ]
+        },
+        {
+          "key": "industry",
+          "label": "업종",
+          "required": true,
+          "inputGuide": "통계청 KSIC 세세분류 5자리. 모를 경우 업종명+주요 생산품 추가.",
+          "standardFormat": "[5자리 코드] [업종명]",
+          "examples": [
+            "41210 아파트 건설업",
+            "42110 도로 건설업",
+            "(코드 모름) 시멘트제조업 — 시멘트"
+          ],
+          "checkPoints": [
+            "KSIC 세세분류 정확",
+            "통계청 사이트(kostat.go.kr) 검색",
+            "주된 사업 활동 기준"
+          ]
+        },
+        {
+          "key": "address",
+          "label": "소재지",
+          "required": true,
+          "inputGuide": "재해자 소속 사업장 소재지. 도로명 주소 + 우편번호.",
+          "standardFormat": "(우편번호) 도로명 주소",
+          "examples": [
+            "(06236) 서울 강남구 테헤란로 123, 황룡빌딩 5층",
+            "(18564) 경기 화성시 봉담읍 ... 신축현장"
+          ],
+          "checkPoints": [
+            "도로명 주소 사용",
+            "우편번호 정확",
+            "본사·현장 구분 명시"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ⅰ-1. 사내 수급인·파견근로자",
+      "legalSource": "별지 30호서식 Ⅰ ⑤ ⑥",
+      "fields": [
+        {
+          "key": "subContract_header",
+          "label": "재해자가 사내 수급인 소속인 경우(건설업 제외)",
+          "required": false,
+          "inputGuide": "별지 30호서식 ⑤",
+          "examples": [
+            "해당 없음 (건설업)"
+          ]
+        },
+        {
+          "key": "subContractor_name",
+          "label": "원도급인 사업장명",
+          "required": false,
+          "inputGuide": "건설업 외 도급. 원도급인 사업장명. 별지 30호서식 ⑤ 재해자가 사내 수급인 소속인 경우(건설업 제외).",
+          "examples": [
+            "(주)대원"
+          ]
+        },
+        {
+          "key": "subContractor_code",
+          "label": "사업장 산재관리번호(사업개시번호)",
+          "required": false,
+          "inputGuide": "원도급인 사업장의 산재관리번호. 일괄적용 시 사업개시번호도. 별지 30호서식 ⑤.",
+          "examples": [
+            "12345678901 / 0001"
+          ]
+        },
+        {
+          "key": "dispatch_header",
+          "label": "재해자가 파견근로자인 경우",
+          "required": false,
+          "inputGuide": "별지 30호서식 ⑥",
+          "examples": [
+            "해당 없음 (직접 고용)"
+          ]
+        },
+        {
+          "key": "dispatch_name",
+          "label": "파견사업주 사업장명",
+          "required": false,
+          "inputGuide": "재해자가 파견근로자인 경우 파견사업주 사업장명. 별지 30호서식 ⑥.",
+          "examples": [
+            "(주)○○인력"
+          ]
+        },
+        {
+          "key": "dispatch_code",
+          "label": "사업장 산재관리번호(사업개시번호)",
+          "required": false,
+          "inputGuide": "파견사업주 사업장의 산재관리번호. 별지 30호서식 ⑥.",
+          "examples": [
+            "22334455667"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ⅰ-2. 건설업만 작성",
+      "legalSource": "별지 30호서식 Ⅰ — 건설업 한정",
+      "fields": [
+        {
+          "key": "developerType",
+          "label": "발주자",
+          "required": false,
+          "inputGuide": "발주자 분류 체크. 민간 / 국가·지방자치단체 / 공공기관 중 1개.",
+          "standardFormat": "[ ]민간 [ ]국가·지방자치단체 [ ]공공기관",
+          "examples": [
+            "[√] 민간 — 황룡개발(주)",
+            "[√] 국가·지방자치단체 — 서울시"
+          ],
+          "checkPoints": [
+            "공공기관 = 공공기관운영법상 기관",
+            "민간 발주는 회사명 병기"
+          ]
+        },
+        {
+          "key": "primaryContractorName",
+          "label": "원수급 사업장명",
+          "required": false,
+          "inputGuide": "재해자가 하수급 사업장 소속인 경우만 작성. 원수급(원청) 사업장명.",
+          "standardFormat": "[원수급 사업장명]",
+          "examples": [
+            "(주)황룡건설"
+          ],
+          "checkPoints": [
+            "원·하도급 관계 정확",
+            "재해자 소속이 원수급이면 빈칸"
+          ]
+        },
+        {
+          "key": "primaryContractorCode",
+          "label": "원수급 사업장 산재관리번호(사업개시번호)",
+          "required": false,
+          "inputGuide": "원수급 사업장의 산재관리번호. 일괄적용이면 사업개시번호 함께.",
+          "standardFormat": "[산재관리번호] / [사업개시번호]",
+          "examples": [
+            "11111222223 / 0007"
+          ],
+          "checkPoints": [
+            "원수급 산재관리번호 정확",
+            "일괄적용 사업개시번호 누락 X"
+          ]
+        },
+        {
+          "key": "constructionSiteName",
+          "label": "공사현장 명",
+          "required": false,
+          "inputGuide": "공사명 + 위치 + 공구·구간.",
+          "standardFormat": "[공사명] ([위치], [공구])",
+          "examples": [
+            "삼성동 공동주택 신축공사 (서울 강남구, 1공구)",
+            "○○고속도로 ○구간 토공사"
+          ],
+          "checkPoints": [
+            "원수급 사업장 기준 공사현황 (단위공사 X)",
+            "공구·구간 명시"
+          ]
+        },
+        {
+          "key": "constructionType",
+          "label": "공사종류",
+          "required": false,
+          "inputGuide": "재해 당시 진행 중인 공사 종류. 원수급 사업장 공사 현황 기준.",
+          "standardFormat": "[공사종류]",
+          "examples": [
+            "아파트",
+            "도로",
+            "댐",
+            "플랜트시설",
+            "전기공사"
+          ],
+          "checkPoints": [
+            "원수급 기준 (단위공사 X)",
+            "복합공사 시 주된 공사"
+          ]
+        },
+        {
+          "key": "constructionProgress",
+          "label": "공정률",
+          "required": false,
+          "inputGuide": "재해 당시 건설현장 공사 진척도. 전체 공정률 (단위공정률 X).",
+          "standardFormat": "[N] %",
+          "examples": [
+            "45",
+            "78"
+          ],
+          "checkPoints": [
+            "전체 공정률 (재해 발생 단위공정 X)",
+            "0~100 정수"
+          ]
+        },
+        {
+          "key": "constructionAmount",
+          "label": "공사금액 백만원",
+          "required": false,
+          "inputGuide": "원수급 사업장의 공사금액. 백만원 단위.",
+          "standardFormat": "[N] 백만원",
+          "examples": [
+            "4500 (45억)",
+            "12500 (125억)"
+          ],
+          "checkPoints": [
+            "원수급 기준",
+            "백만원 단위 (억 단위 X)",
+            "VAT 포함 여부 일관"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ⅱ. 재해 정보",
+      "legalSource": "별지 30호서식 Ⅱ",
+      "fields": [
+        {
+          "key": "injuredName",
+          "label": "성명",
+          "required": true,
+          "inputGuide": "재해자 성명. 외국인은 한글표기+로마자병기 권장.",
+          "standardFormat": "[성명]",
+          "examples": [
+            "홍길동",
+            "Nguyen Van A (응웬반아)"
+          ],
+          "checkPoints": [
+            "주민등록상 성명",
+            "외국인 로마자 병기"
+          ]
+        },
+        {
+          "key": "injuredId",
+          "label": "주민등록번호(외국인등록번호)",
+          "required": true,
+          "inputGuide": "주민등록번호 13자리. 외국인은 외국인등록번호.",
+          "standardFormat": "XXXXXX-XXXXXXX",
+          "examples": [
+            "830101-1234567"
+          ],
+          "checkPoints": [
+            "13자리 정확",
+            "외국인등록번호 가능",
+            "개인정보 보호 — 작성 후 마스킹·결재본 별도"
+          ]
+        },
+        {
+          "key": "injuredGender",
+          "label": "성별",
+          "required": true,
+          "inputGuide": "[ ] 남 [ ] 여 중 1개 체크.",
+          "standardFormat": "[ ] 남 [ ] 여",
+          "examples": [
+            "[√] 남",
+            "[√] 여"
+          ],
+          "checkPoints": [
+            "주민번호 7번째 자리와 일치"
+          ]
+        },
+        {
+          "key": "injuredNationality",
+          "label": "국적",
+          "required": true,
+          "inputGuide": "내국인/외국인 체크. 외국인은 국적+체류자격(출입국관리법 시행령 별표 1 기호) 작성.",
+          "standardFormat": "[ ] 내국인 / [ ] 외국인 [국적: ___ ⑩체류자격: ___]",
+          "examples": [
+            "[√] 내국인",
+            "[√] 외국인 [국적: 베트남 / 체류자격: E-9]"
+          ],
+          "checkPoints": [
+            "체류자격 기호 (E-1, E-7, E-9 등)",
+            "출입국 시행령 별표 1 참조"
+          ]
+        },
+        {
+          "key": "residenceStatus",
+          "label": "체류자격",
+          "required": false,
+          "inputGuide": "출입국관리법 시행령 별표 1 기호 (E-1, E-7, E-9 등). 별지 30호서식 ⑩.",
+          "examples": [
+            "E-9 (비전문취업)",
+            "E-7 (특정활동)",
+            "F-4 (재외동포)"
+          ]
+        },
+        {
+          "key": "injuredOccupation",
+          "label": "직업",
+          "required": true,
+          "inputGuide": "통계청 한국표준직업분류 세세분류 5자리. 모를 경우 직업명+주요 업무내용·직위.",
+          "standardFormat": "[5자리 코드] [직업명]",
+          "examples": [
+            "철근공",
+            "미장공",
+            "프레스조작원",
+            "토목감리기술자"
+          ],
+          "checkPoints": [
+            "통계청 KSCO 세세분류 정확",
+            "kostat.go.kr 검색",
+            "재해자가 평소 수행 업무 기준"
+          ]
+        },
+        {
+          "key": "hireDate",
+          "label": "입사일",
+          "required": true,
+          "inputGuide": "재해자가 현 사업장에 입사한 일자.",
+          "standardFormat": "YYYY-MM-DD",
+          "examples": [
+            "2024-03-15"
+          ],
+          "checkPoints": [
+            "근로계약서 기준",
+            "수습 시작일이 아닌 정식 입사일"
+          ]
+        },
+        {
+          "key": "sameWorkTenure",
+          "label": "같은 종류업무 근속기간",
+          "required": true,
+          "inputGuide": "과거 다른 회사 경력 + 현직 경력 합산. 동일·유사 업무 근무기간. 질병의 경우 관련 작업 근무기간.",
+          "standardFormat": "[N년 N월]",
+          "examples": [
+            "8년 3월 (前 회사 5년 + 현직 3년 3월)",
+            "1년 2월"
+          ],
+          "checkPoints": [
+            "동종업무 경력만 합산",
+            "현 사업장 경력만 X — 전체 동종 경력",
+            "질병은 관련 작업 노출 기간"
+          ]
+        },
+        {
+          "key": "employmentType",
+          "label": "고용형태",
+          "required": true,
+          "inputGuide": "[ ] 상용 [ ] 임시 [ ] 일용 [ ] 무급가족종사자 [ ] 자영업자 [ ] 그 밖의 사항. 상용=계약기간 1년 이상, 임시=1개월~1년, 일용=1개월 미만 또는 일급제.",
+          "standardFormat": "[ ] 상용 [ ] 임시 [ ] 일용 [ ] 무급가족종사자 [ ] 자영업자 [ ] 그 밖의 사항 [___]",
+          "examples": [
+            "[√] 일용",
+            "[√] 그 밖의 사항 [교육·훈련생]"
+          ],
+          "checkPoints": [
+            "고용계약 형태 기준",
+            "건설일용은 일용 체크"
+          ]
+        },
+        {
+          "key": "workForm",
+          "label": "근무형태",
+          "required": true,
+          "inputGuide": "[ ] 정상 [ ] 2교대 [ ] 3교대 [ ] 4교대 [ ] 시간제 [ ] 그 밖의 사항. 정상=09~18시 통상 근무. 그 밖의 사항=고정 심야근무 등.",
+          "standardFormat": "[ ] 정상 [ ] 2교대 [ ] 3교대 [ ] 4교대 [ ] 시간제 [ ] 그 밖의 사항 [___]",
+          "examples": [
+            "[√] 정상",
+            "[√] 3교대",
+            "[√] 그 밖의 사항 [고정 야간근무]"
+          ],
+          "checkPoints": [
+            "재해자 평소 근무형태",
+            "사고 당일 근무형태가 다르면 비고"
+          ]
+        },
+        {
+          "key": "injuryType",
+          "label": "상해종류(질병명)",
+          "required": true,
+          "inputGuide": "재해로 발생된 신체 특성·상해 형태. 둘 이상이면 심한 것부터 적음.",
+          "standardFormat": "[상해종류 1] / [상해종류 2] (심한 것부터)",
+          "examples": [
+            "골절",
+            "절단 / 타박상",
+            "중독·질식"
+          ],
+          "checkPoints": [
+            "예시: 골절·절단·타박상·찰과상·중독·질식·화상·감전·뇌진탕·고혈압·뇌졸중·피부염·진폐·수근관증후군 등",
+            "질병의 경우 질병명",
+            "심한 것 우선"
+          ]
+        },
+        {
+          "key": "injuryPart",
+          "label": "상해부위(질병부위)",
+          "required": true,
+          "inputGuide": "재해로 피해 발생한 신체 부위. 둘 이상이면 심한 것부터.",
+          "standardFormat": "[상해부위 1] / [상해부위 2]",
+          "examples": [
+            "다리",
+            "머리 / 어깨",
+            "신체내부기관 (소화·신경·순환·호흡배설)"
+          ],
+          "checkPoints": [
+            "예시: 머리·눈·목·어깨·팔·손·손가락·등·척추·몸통·다리·발·발가락·전신·신체내부기관",
+            "심한 것 우선"
+          ]
+        },
+        {
+          "key": "leaveDays",
+          "label": "휴업예상일수",
+          "required": true,
+          "inputGuide": "재해발생일 제외 3일 이상 결근 일수. 의사 진단 소견 참조 (실제 휴업일 X — 의사 객관적 진단).",
+          "standardFormat": "휴업 [N] 일",
+          "examples": [
+            "휴업 30일",
+            "휴업 90일"
+          ],
+          "checkPoints": [
+            "재해발생일 제외",
+            "의사 진단소견 객관적 근거",
+            "실제 휴업일 X — 의사 진단 기준"
+          ]
+        },
+        {
+          "key": "fatalFlag",
+          "label": "사망 여부",
+          "required": true,
+          "inputGuide": "[ ] 사망 (사망 시 체크). 미사망 시 빈칸.",
+          "standardFormat": "[ ] 사망",
+          "examples": [
+            "[√] 사망",
+            "(미사망 — 휴업만)"
+          ],
+          "checkPoints": [
+            "사망 시 제54조 즉시 보고도 별도",
+            "휴업 중 사망 시 변경 보고"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ⅲ. 재해 발생 개요 및 원인",
+      "legalSource": "별지 30호서식 Ⅲ",
+      "fields": [
+        {
+          "key": "occurrenceDate",
+          "label": "발생일시",
+          "required": true,
+          "inputGuide": "년/월/일/요일/시(24시 기준)/분 모두 작성.",
+          "standardFormat": "YYYY-MM-DD (요일) HH:MM (24시)",
+          "examples": [
+            "2026-04-25 (금) 14:30",
+            "2026-04-30 (목) 03:15 (야간)"
+          ],
+          "checkPoints": [
+            "24시 기준 시각",
+            "요일 명시",
+            "사고 발생 시점 (응급조치 시점 X)"
+          ]
+        },
+        {
+          "key": "occurrenceLocation",
+          "label": "발생장소",
+          "required": true,
+          "inputGuide": "구체적 위치 + 공정. 사업장명만 X — 어느 공정의 어느 위치.",
+          "standardFormat": "[공정명] [세부 위치]",
+          "examples": [
+            "사출성형부 플라스틱 용기 생산 1팀 사출공정 — 2호기 앞",
+            "지하2층 굴착부 — 굴착사면 NW측 깊이 4.5m"
+          ],
+          "checkPoints": [
+            "공정 단위 구체",
+            "도면·현황 사진 별첨 권장"
+          ]
+        },
+        {
+          "key": "workTypeAtAccident",
+          "label": "재해관련 작업유형",
+          "required": true,
+          "inputGuide": "재해자(또는 동료)가 사고 직전 어떤 기계·설비로 무슨 작업을 하고 있었는지 구체적 명사 + 동사로 작성.",
+          "standardFormat": "[재해자 ○○○가] [장비·기계] [작업명]",
+          "examples": [
+            "재해자 ○○○가 사출성형기 2호기에서 플라스틱 용기를 꺼낸 후 금형을 점검하던 중",
+            "재해자 ○○○가 굴삭기 0.7㎥ 1대를 사용해 굴착사면 정리 작업을 하던 중"
+          ],
+          "checkPoints": [
+            "사고 직전 작업 (사고 자체 X)",
+            "기계·설비 모델·용량 명시",
+            "단독·공동 작업 구분"
+          ]
+        },
+        {
+          "key": "circumstancesAtAccident",
+          "label": "재해발생 당시 상황",
+          "required": true,
+          "inputGuide": "재해 발생 당시 (1) 기계·설비·구조물·작업환경의 불안전한 상태 + (2) 재해자·동료의 불안전한 행동을 모두 작성.",
+          "standardFormat": "[불안전한 상태] + [불안전한 행동]",
+          "examples": [
+            "재해자가 점검중임을 모르던 동료 근로자 ○○○가 사출성형기 조작 스위치를 가동하여 금형 사이에 재해자가 끼어 사망하였음",
+            "토류벽 미설치 구간에서 굴삭기 후방 사각지대로 작업자가 진입, 후진 굴삭기에 충돌"
+          ],
+          "checkPoints": [
+            "불안전한 상태(예: 떨어짐·무너짐) + 행동(예: 넘어짐·끼임) 모두",
+            "시간순 서술",
+            "추측·평가 없이 사실만"
+          ]
+        },
+        {
+          "key": "accidentCause",
+          "label": "재해발생원인",
+          "required": true,
+          "inputGuide": "1) 인적(무의식·착오·피로·연령·커뮤니케이션) 2) 설비(설계결함·방호장치 불량·작업표준화 부족·점검·정비 부족) 3) 작업·환경(작업정보 부적절·자세·동작·작업방법·환경조건) 4) 관리적(관리조직 결함·매뉴얼 부재·교육 부족·지도감독 부족). 4분류 중 해당사항 모두 작성.",
+          "standardFormat": "1. 인적: [내용] / 2. 설비: [내용] / 3. 작업·환경: [내용] / 4. 관리적: [내용]",
+          "examples": [
+            "1. 인적: 동료 근로자가 점검 중 표시(LOTO) 미확인 / 2. 설비: 사출성형기 안전스위치 무력화 / 3. 작업·환경: 점검작업 절차서 미게시 / 4. 관리적: LOTO 교육 부족, 안전점검표 운용 미흡",
+            "1. 인적: 사각지대 인지 부족 / 2. 설비: 후방감지기 미부착 / 3. 작업·환경: 출입통제선 미설치 / 4. 관리적: 신호수 미배치, 작업계획서 제38조 미작성"
+          ],
+          "checkPoints": [
+            "4분류 모두 검토 (해당 없는 항목은 '해당 없음')",
+            "추측 표현 X — 사실 기반",
+            "재발방지계획과 1:1 연결"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ⅳ. 재발 방지 계획",
+      "legalSource": "별지 30호서식 Ⅳ + 산안법 제57조 ②",
+      "fields": [
+        {
+          "key": "preventionPlan",
+          "label": "재발 방지 계획",
+          "required": true,
+          "inputGuide": "재해발생원인 4분류와 1:1 매칭되는 재발방지 대책. 구체적 행동 + 이행 기한 + 책임자.",
+          "standardFormat": "[원인 분류] → [대책] (이행기한 / 책임자)",
+          "examples": [
+            "1. 인적 → LOTO 절차 재교육(전원, 1개월 내, 안전관리자)\n2. 설비 → 안전스위치 정비·복원(2주 내, 시설팀장)\n3. 작업·환경 → 점검작업 절차서 게시·서명(즉시, 관리감독자)\n4. 관리적 → 안전점검표 신규 도입 + 월 1회 감사(분기 내, 사업주)"
+          ],
+          "checkPoints": [
+            "발생원인 4분류 모두 1:1 매칭",
+            "이행 기한·책임자 명시",
+            "예산·자원 명시 권장"
+          ]
+        },
+        {
+          "key": "freeTechnicalSupportRequest",
+          "label": "즉시 기술지원 서비스 요청",
+          "required": false,
+          "inputGuide": "KOSHA가 무료 제공하는 안전보건교육·기술지도 즉시 신청 의사 체크. 신청 시 별지 후속 안내.",
+          "standardFormat": "[ ] 요청",
+          "examples": [
+            "[√] 요청 — KOSHA 강남지사 02-3274-1144"
+          ],
+          "checkPoints": [
+            "재발방지계획 이행에 도움",
+            "KOSHA 1644-4544"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ⅴ. 작성자",
+      "legalSource": "별지 30호서식 Ⅴ + 시행규칙 제73조 ③",
+      "fields": [
+        {
+          "key": "preparedByName",
+          "label": "작성자 성명",
+          "required": true,
+          "inputGuide": "본 조사표를 실제 작성한 사람 성명·직위. 안전관리자·관리감독자 또는 사업주 직접.",
+          "standardFormat": "[성명] [직위]",
+          "examples": [
+            "황대리 (안전관리자)",
+            "박감독 (현장소장)"
+          ],
+          "checkPoints": [
+            "사업주와 다를 수 있음",
+            "직위 명시"
+          ]
+        },
+        {
+          "key": "preparedByPhone",
+          "label": "작성자 전화번호",
+          "required": true,
+          "inputGuide": "작성자 직통·휴대폰 번호 (감독관 문의 가능).",
+          "standardFormat": "010-XXXX-XXXX",
+          "examples": [
+            "010-1234-5678"
+          ],
+          "checkPoints": [
+            "감독관 연락 가능 번호",
+            "근무시간 외 응답 가능 권장"
+          ]
+        },
+        {
+          "key": "preparedDate",
+          "label": "작성일",
+          "required": true,
+          "inputGuide": "조사표 작성일자. 재해발생일부터 1개월 이내.",
+          "standardFormat": "YYYY-MM-DD",
+          "examples": [
+            "2026-05-15"
+          ],
+          "checkPoints": [
+            "재해발생일+1개월 이내",
+            "초과 시 제175조 과태료"
+          ]
+        },
+        {
+          "key": "ownerSignature",
+          "label": "사업주 (서명 또는 인)",
+          "required": true,
+          "inputGuide": "사업주 (또는 대표자) 서명 또는 인. 작성자와 별개.",
+          "standardFormat": "[사업주 성명] (서명 또는 인)",
+          "examples": [
+            "황룡 (인)",
+            "(주)○○건설 대표이사 ○○○ (서명)"
+          ],
+          "checkPoints": [
+            "작성자 서명과 별개",
+            "법인은 대표이사 또는 위임자",
+            "법인인 권장"
+          ]
+        },
+        {
+          "key": "workerRepSignature",
+          "label": "근로자대표(재해자) (서명 또는 인)",
+          "required": true,
+          "inputGuide": "근로자대표 (또는 재해자 본인) 서명. 산업재해가 사실임을 확인. 이견 있으면 별지 첨부.",
+          "standardFormat": "[근로자대표 성명] (서명 또는 인)",
+          "examples": [
+            "이작업 (근로자대표) (인)",
+            "재해자 본인 홍길동 (서명) — 근로자대표 부재 시"
+          ],
+          "checkPoints": [
+            "근로자대표 부재 시 재해자 본인",
+            "이견 시 별지 첨부 (재해자/대표 의견)",
+            "허위 작성 시 제175조 별도"
+          ]
+        },
+        {
+          "key": "submitTo",
+          "label": "( )지방고용노동청장(지청장) 귀하",
+          "required": true,
+          "inputGuide": "관할 지방고용노동청 또는 지청 명. 사업장 소재지 관할.",
+          "standardFormat": "(관할청·지청명) 지방고용노동청장(지청장) 귀하",
+          "examples": [
+            "(서울지방고용노동청 강남지청)",
+            "(중부지방고용노동청 화성지청)"
+          ],
+          "checkPoints": [
+            "사업장 소재지 관할",
+            "moel.go.kr 관할청 검색"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "재해 분류자 기입란 (사업장에서는 작성하지 않습니다)",
+      "legalSource": "별지 30호서식 — 재해 분류자(감독관) 기입",
+      "fields": [
+        {
+          "key": "classifierAccidentType",
+          "label": "발생형태",
+          "required": false,
+          "inputGuide": "재해 분류자(감독관)가 작성. 사업장 작성 X. KOSHA 24종 재해유형 코드 3자리.",
+          "standardFormat": "[3자리 코드]",
+          "examples": [
+            "(사업장 작성 X)"
+          ],
+          "checkPoints": [
+            "사업장 작성 금지",
+            "감독관 KOSHA 분류 코드"
+          ]
+        },
+        {
+          "key": "classifierAgentObject",
+          "label": "기인물",
+          "required": false,
+          "inputGuide": "재해 분류자 작성. 5자리 KOSHA 기인물 코드.",
+          "standardFormat": "[5자리 코드]",
+          "examples": [
+            "(사업장 작성 X)"
+          ],
+          "checkPoints": [
+            "사업장 작성 금지"
+          ]
+        },
+        {
+          "key": "classifierWorkArea",
+          "label": "작업지역·공정",
+          "required": false,
+          "inputGuide": "재해 분류자 작성. 3자리 코드.",
+          "standardFormat": "[3자리 코드]",
+          "examples": [
+            "(사업장 작성 X)"
+          ],
+          "checkPoints": [
+            "사업장 작성 금지"
+          ]
+        },
+        {
+          "key": "classifierWorkContent",
+          "label": "작업내용",
+          "required": false,
+          "inputGuide": "재해 분류자 작성. 3자리 코드.",
+          "standardFormat": "[3자리 코드]",
+          "examples": [
+            "(사업장 작성 X)"
+          ],
+          "checkPoints": [
+            "사업장 작성 금지"
+          ]
+        }
+      ]
+    }
+  ],
+  "iso45001Class": "iso45001:Incident",
+  "annexReference": [
+    "annex:산안법시행규칙:서식30"
+  ],
+  "mitigatedBy": [
+    "control:admin_emergency_plan"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

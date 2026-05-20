@@ -1,0 +1,259 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:on_construction_open/confined_space_program",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "confined_space_program",
+  "title": "밀폐공간 작업 프로그램 (사전)",
+  "description": "밀폐공간 작업 프로그램 (사전) - 산안기준규칙:619:3 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:on_construction_open",
+  "trigger": "현장개설",
+  "legalBasis": [
+    "art:기준규칙:619"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_confined_space_program",
+    "officialName": "밀폐공간 작업 프로그램 (사전) (KOSHA H-80)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 밀폐공간 작업 프로그램 (사전)",
+      "legalSource": "산안기준규칙 제619조 ③ + KOSHA H-80",
+      "fields": [
+        {
+          "key": "confinedSpaceList",
+          "label": "밀폐공간 식별 목록",
+          "required": true,
+          "inputGuide": "별표 18 해당 모든 공간 + 위치·치수.",
+          "examples": [
+            [
+              {
+                "id": "CS-001",
+                "위치": "B1 집수정",
+                "유해인자": "산소결핍",
+                "별표18호": "제2호"
+              },
+              {
+                "id": "CS-002",
+                "위치": "옥상 물탱크",
+                "유해인자": "황화수소",
+                "별표18호": "제3호"
+              }
+            ]
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hazardAssessment",
+          "label": "공간별 위험성평가",
+          "required": true,
+          "inputGuide": "산소·유해가스·화재·익사·기계 위험.",
+          "examples": [
+            "CS-001: 산소결핍(빈도4·강도4=16) / CS-002: H2S(빈도3·강도4=12)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "controlMeasures",
+          "label": "감소대책",
+          "required": true,
+          "inputGuide": "환기·보호구·감시인·구조장비.",
+          "examples": [
+            "환기 30분+ + 산소측정 + 송기마스크 + 외부 감시인 + 구조 로프"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trainingProgram",
+          "label": "교육 계획 (특별교육 8h)",
+          "required": true,
+          "inputGuide": "근로자·감시인·관리자.",
+          "examples": [
+            "근로자 8h, 감시인 8h, 관리감독자 16h"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "emergencyResponse",
+          "label": "비상대응 계획",
+          "required": true,
+          "inputGuide": "구조 절차 + 119.",
+          "examples": [
+            "1) 진입자 의식 잃음 - 즉시 후퇴 명령, 2) 외부 로프 견인, 3) 119 신고, 4) 구조자 절대 진입 금지"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "reviewCycle",
+          "label": "프로그램 검토 주기",
+          "required": true,
+          "inputGuide": "연 1회 이상.",
+          "examples": [
+            "연 1회 + 작업 변경 시"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:619:3",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:619:3",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:619",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "permit",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "밀폐공간 작업 사업장"
+  },
+  "hasHazard": [
+    "hazard:asphyxiation",
+    "hazard:acute_toxic_gas",
+    "hazard:gas_leak"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Permit",
+  "mitigatedBy": [
+    "control:admin_emergency_plan",
+    "control:admin_qualification",
+    "control:eng_ventilation",
+    "control:eng_monitoring",
+    "control:ppe_respirator"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/work_permit_confined_space",
+    "doc:semi_annual/work_environment_measurement"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,230 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:as_needed/worker_complaint_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "worker_complaint_log",
+  "title": "근로자 의견청취·고충처리 대장",
+  "description": "근로자 의견청취·고충처리 대장 - 위험성평가-고시:16 (자동 생성 스켈레톤. 후속 양식 정합 필요).",
+  "cycle": "cyc:as_needed",
+  "trigger": "수시",
+  "legalBasis": [
+    "art:위험성평가-고시:16"
+  ],
+  "officialFormSpec": {
+    "formId": "auto_skeleton_worker_complaint_log",
+    "officialName": "근로자 의견청취·고충처리 대장 (KOSHA)",
+    "formMatchType": "스켈레톤 자동 생성 — 양식 정합 후속 필요",
+    "license": "공공누리 + 황룡건설(주) + ㈜라텔웍스"
+  },
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 근로자 의견청취·고충처리 대장",
+      "legalSource": "위험성평가 고시 제16조",
+      "fields": [
+        {
+          "key": "complaintDate",
+          "label": "제기 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "complainant",
+          "label": "제기자",
+          "required": true,
+          "inputGuide": "성명·소속 (또는 익명).",
+          "examples": [
+            "박작업 (A동 골조작업조) / 익명"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "complaintContent",
+          "label": "의견·고충 내용",
+          "required": true,
+          "inputGuide": "위험요인·작업환경·보호구.",
+          "examples": [
+            "A동 5층 외벽 작업 시 비계 흔들림 → 보강 요청"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "action",
+          "label": "조치 사항",
+          "required": true,
+          "inputGuide": "즉시조치 + 책임자 + 기한.",
+          "examples": [
+            "박감독 - 5/1까지 비계 보강 + 사진 보고"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "feedback",
+          "label": "제기자 피드백",
+          "required": true,
+          "inputGuide": "조치 결과 통보.",
+          "examples": [
+            "2026-05-02 박작업에 보강 완료 통보 + 만족 확인"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "문서 메타 (사업장명·작성일자·작성자) 명시",
+      "severity": "blocker",
+      "legalBasis": "art:위험성평가-고시:16",
+      "checkFields": [
+        "siteName",
+        "compileDate",
+        "compiler"
+      ]
+    },
+    {
+      "rule": "사업주 + 안전관리자 서명",
+      "severity": "blocker",
+      "legalBasis": "art:위험성평가-고시:16",
+      "checkFields": [
+        "compiler_sign",
+        "principal_sign"
+      ]
+    }
+  ],
+  "retention": "3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:위험성평가-고시:16",
+    "createdAt": "2026-04-29",
+    "createdBy": "scaffold-missing-nodes.ts (마스터 리스트 자동 생성)",
+    "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
+    "documentCategory": "risk_assessment",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "전 사업장"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:struck_by"
+  ],
+  "appliesToActivities": [],
+  "informedBy": [],
+  "iso45001Class": "iso45001:Risk",
+  "mitigatedBy": [
+    "control:admin_supervisor"
+  ],
+  "relatedDocs": [
+    "doc:ad_hoc/ad_hoc_risk_assessment",
+    "doc:daily/daily_tbm"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

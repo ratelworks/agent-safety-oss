@@ -1,0 +1,341 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# safety-shapes.ttl
+#
+# agent-safety-oss-mcp 그래프 노드 타입별 SHACL shapes (declarative 검증 룰).
+# 노드 타입 9종: Act / Article / Annex / Penalty / Activity / Hazard / Control /
+#              Applicability / Document (sub-schema 2: General + Guide)
+#
+# 외부 기여자가 새 노드 추가 시 이 shapes 를 통과해야 PR merge.
+# 검증: npm run validate-shapes
+# ──────────────────────────────────────────────────────────────────────────────
+
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix safety: <https://safety.ratelworks.org/ontology/v1/> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ─── Act (법령 자체) ──────────────────────────────────────────────────────────
+safety:ActShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Act ;
+  rdfs:label "Act — 법령 (산안법, 중처법 등)" ;
+  sh:property [
+    sh:path schema:legislationIdentifier ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Act 노드는 schema:legislationIdentifier 필수 (예: '산업안전보건법')"
+  ] ;
+  sh:property [
+    sh:path schema:legislationDate ;
+    sh:minCount 1 ;
+    sh:datatype xsd:date ;
+    sh:message "Act 노드는 schema:legislationDate 필수 (시행일, ISO 8601)"
+  ] ;
+  sh:property [
+    sh:path schema:legislationType ;
+    sh:minCount 1 ;
+    sh:in ( "Act" "Decree" "Regulation" "Rule" "Notice" "Guideline" ) ;
+    sh:message "Act 노드의 legislationType 은 Act/Decree/Regulation/Rule/Notice/Guideline 중 하나"
+  ] .
+  # Act 노드의 표시명은 schema:legislationIdentifier 가 SSoT — schema:name 별도 요구 없음.
+
+# ─── Article (조문) ───────────────────────────────────────────────────────────
+safety:ArticleShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Article ;
+  rdfs:label "Article — 조문 (산안법 §38 등)" ;
+  sh:property [
+    sh:path safety:articleNumber ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Article 은 articleNumber 필수 (예: '38' 또는 '38의2')"
+  ] ;
+  sh:property [
+    sh:path safety:partOf ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Article 은 partOf (Act IRI) 필수"
+  ] ;
+  sh:property [
+    sh:path schema:description ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Article 은 본문 (schema:description) 필수 — 환각 차단 핵심"
+  ] ;
+  sh:property [
+    sh:path schema:legislationIdentifier ;
+    sh:minCount 1 ;
+    sh:message "Article 은 legislationIdentifier 권장 (Schema.org Legislation 호환)"
+  ] .
+
+# ─── Annex (별표/부칙) ────────────────────────────────────────────────────────
+safety:AnnexShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Annex ;
+  rdfs:label "Annex — 별표/부칙" ;
+  sh:property [
+    sh:path safety:annexNumber ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:message "Annex 는 annexNumber 필수 (예: '별표4' 또는 '별표4-6호-마목')"
+  ] ;
+  sh:property [
+    sh:path safety:partOf ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Annex 는 partOf (Act IRI) 필수"
+  ] ;
+  sh:property [
+    sh:path schema:description ;
+    sh:minCount 1 ;
+    sh:message "Annex 는 본문 또는 표 텍스트 (schema:description) 필수"
+  ] .
+
+# ─── Penalty (벌칙/과태료) ────────────────────────────────────────────────────
+safety:PenaltyShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Penalty ;
+  rdfs:label "Penalty — 벌칙/과태료" ;
+  sh:property [
+    sh:path safety:penaltyType ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:in ( "criminal" "administrative_fine" "civil" ) ;
+    sh:message "Penalty.penaltyType 은 criminal/administrative_fine/civil 중 하나"
+  ] ;
+  sh:property [
+    sh:path safety:amount ;
+    sh:minCount 1 ;
+    sh:datatype xsd:integer ;
+    sh:message "Penalty.amount 필수 (정수, 0 이상)"
+  ] ;
+  sh:property [
+    sh:path safety:amountUnit ;
+    sh:minCount 1 ;
+    sh:in ( "KRW" "USD" ) ;
+    sh:message "Penalty.amountUnit 필수 (KRW 등)"
+  ] ;
+  sh:property [
+    sh:path safety:condition ;
+    sh:minCount 1 ;
+    sh:message "Penalty.condition 필수 — 어떤 위반에 적용되는지"
+  ] ;
+  sh:property [
+    sh:path safety:partOf ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Penalty.partOf (Act IRI) 필수"
+  ] .
+
+# ─── Hazard (위험요인) ────────────────────────────────────────────────────────
+safety:HazardShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Hazard ;
+  rdfs:label "Hazard — 위험요인 (추락, 끼임, 화재 등)" ;
+  sh:property [
+    sh:path safety:slug ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Hazard.slug 필수 — 영문 식별자"
+  ] ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Hazard.label (schema:name) 필수 — 한국어 표시"
+  ] ;
+  sh:property [
+    sh:path schema:category ;
+    sh:minCount 1 ;
+    sh:message "Hazard.category 필수 — 분류 (physical/chemical/biological/ergonomic/psychosocial)"
+  ] ;
+  sh:property [
+    sh:path safety:mitigatedBy ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Hazard.mitigatedBy 최소 1건 필수 — 통제수단(Control IRI). ERIC-PP 위계 기반 위험요인↔통제 그래프 join 필수."
+  ] ;
+  sh:property [
+    sh:path safety:regulatedBy ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Hazard.regulatedBy — 관련 법령 조항(Article IRI), 권장."
+  ] .
+
+# ─── Control (제어수단) ───────────────────────────────────────────────────────
+safety:ControlShape
+  a sh:NodeShape ;
+  sh:targetClass safety:ControlMeasure ;
+  rdfs:label "ControlMeasure — 제어수단 (PPE, 행정통제, 공학적통제 등)" ;
+  sh:property [
+    sh:path safety:slug ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Control.slug 필수 — 영문 식별자"
+  ] ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Control.label (schema:name) 필수"
+  ] ;
+  sh:property [
+    sh:path safety:ericLevel ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:integer ;
+    sh:minInclusive 1 ;
+    sh:maxInclusive 5 ;
+    sh:message "Control.ericLevel 필수 (1=Elimination, 2=Substitution, 3=Engineering, 4=Administrative, 5=PPE)"
+  ] ;
+  sh:property [
+    sh:path schema:category ;
+    sh:minCount 1 ;
+    sh:in ( "elimination" "substitution" "engineering" "administrative" "ppe" ) ;
+    sh:message "Control.category 는 ERIC-PP 5 단계 중 하나"
+  ] .
+
+# ─── Equipment (위험기계·기구) ────────────────────────────────────────────────
+# 산안법 §80 안전인증 대상 13종 + 자율안전확인 19종 등.
+safety:EquipmentShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Equipment ;
+  rdfs:label "Equipment — 위험기계·기구 (안전인증 대상)" ;
+  sh:property [
+    sh:path safety:slug ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Equipment.slug 필수 — 영문 식별자"
+  ] ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Equipment.label (schema:name) 필수 — 한국어 표시"
+  ] ;
+  sh:property [
+    sh:path schema:category ;
+    sh:minCount 1 ;
+    sh:in ( "safety_certified" "self_safety_certified" "no_certification" ) ;
+    sh:message "Equipment.category — safety_certified(안전인증)/self_safety_certified(자율안전확인)/no_certification 중 하나"
+  ] ;
+  sh:property [
+    sh:path safety:regulatedBy ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Equipment.regulatedBy — 관련 법령 조항(Article IRI)"
+  ] .
+
+# ─── Activity (작업/공종) ─────────────────────────────────────────────────────
+# Activity 는 두 종류:
+#  · 작업 활동 (work activity) — 굴착·타워크레인·전기작업 등. hasHazard 채움 강제.
+#  · 절차 활동 (procedural activity) — TBM·위험성평가·안전교육 등. hasHazard 비어 있을 수 있음.
+# SHACL 은 minCount 0 으로 두되, hasHazard 가 있다면 IRI(Hazard) 여야 함.
+safety:ActivityShape
+  a sh:NodeShape ;
+  sh:targetClass safety:WorkActivity ;
+  rdfs:label "WorkActivity — 작업/공종 (굴착, 거푸집해체 등)" ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Activity.title 필수"
+  ] ;
+  sh:property [
+    sh:path safety:hasHazard ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Activity.hasHazard — 작업 활동(work activity) 은 최소 1건 위험요인(Hazard IRI) 채움 권장. 절차 활동은 비어 있을 수 있음."
+  ] ;
+  sh:property [
+    sh:path safety:regulatedBy ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Activity.regulatedBy — 관련 법령 조항(Article IRI), 권장."
+  ] .
+
+# ─── Applicability (적용 대상) ────────────────────────────────────────────────
+safety:ApplicabilityShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Applicability ;
+  rdfs:label "Applicability — 적용 대상 (50인 이상, 50억 미만 등)" ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Applicability.title 필수"
+  ] .
+
+# ─── Document (작성 양식 — 일반) ─────────────────────────────────────────────
+# 14종 법정문서 중심. KOSHA Guide 와 분리된 sub-schema.
+# documents/guides/ 하위 노드는 GuideShape 적용.
+safety:DocumentGeneralShape
+  a sh:NodeShape ;
+  sh:targetClass safety:DocumentGeneral ;
+  rdfs:label "Document(General) — 14종 법정문서 작성 양식" ;
+  sh:property [
+    sh:path safety:docId ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:string ;
+    sh:message "Document.docId 필수 — 영문 식별자"
+  ] ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Document.title 필수"
+  ] ;
+  sh:property [
+    sh:path safety:cycle ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Document.cycle 필수 (cycle:daily 등 IRI)"
+  ] ;
+  sh:property [
+    sh:path safety:legalBasis ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Document.legalBasis 최소 1건 (Article/Annex IRI) — 환각 차단 핵심"
+  ] ;
+  sh:property [
+    sh:path safety:applicableWhen ;
+    sh:minCount 1 ;
+    sh:message "Document.applicableWhen 필수 — 적용 조건 (50억/50인 매트릭스)"
+  ] ;
+  sh:property [
+    sh:path safety:requiredFields ;
+    sh:minCount 1 ;
+    sh:message "Document.requiredFields 최소 1개 — 작성해야 할 필드 목록"
+  ] .
+
+# ─── Document (KOSHA Guide — 참고 문서) ──────────────────────────────────────
+# documents/guides/*.jsonld 1039개 — 일반 Document 와 다른 sub-schema.
+# validate-shapes.ts 에서 파일 경로 기반으로 가상 sub-class 부여.
+safety:DocumentGuideShape
+  a sh:NodeShape ;
+  sh:targetClass safety:DocumentGuide ;
+  rdfs:label "Document(Guide) — KOSHA Guide 참고 문서" ;
+  sh:property [
+    sh:path safety:docId ;
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+  ] ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path safety:cycle ;
+    sh:minCount 1 ;
+    sh:message "Guide.cycle 필수 (cycle:reference 일반적)"
+  ] .
+
+# ─── StandardDocument.appliesTo 형식 검증 ─────────────────────────────────────
+# safety:appliesTo 의 의도된 domain 은 union(Action, StandardDocument, SafetyChecklist).
+# Action 은 src/ontology/skeleton/shapes.ttl 의 ActionShape 가 검증.
+# DocumentGeneral 노드에 appliesTo 가 있다면 WorkActivity IRI 형식을 강제한다.
+safety:StandardDocumentApplyShape
+  a sh:NodeShape ;
+  sh:targetClass safety:DocumentGeneral ;
+  rdfs:label "StandardDocument(=DocumentGeneral).appliesTo 형식 검증" ;
+  sh:property [
+    sh:path safety:appliesTo ;
+    sh:nodeKind sh:IRI ;
+    sh:class safety:WorkActivity ;
+    sh:message "DocumentGeneral.appliesTo 가 있다면 WorkActivity IRI 여야 함 — appliesTo domain union(Action, StandardDocument, SafetyChecklist)."
+  ] .

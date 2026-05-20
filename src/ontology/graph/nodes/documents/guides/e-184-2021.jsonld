@@ -1,0 +1,136 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/E-184-2021",
+  "@type": "Document",
+  "docId": "kosha_guide_e-184-2021",
+  "title": "휴대형 전기톱 사용 시 인체 보호구에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "E-184-2021",
+    "guideCategory": "electric_health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 9건 (법령 4 / KOSHA Guide 5). keyword=\"휴대형\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 2,
+      "5": 2,
+      "6": 40,
+      "7": 29,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "휴대형",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 4건 (법령 0 / KOSHA Guide 4). title 로 검색. 2026-05-12."
+  },
+  "causedBy": [
+    "hazard:crushing",
+    "hazard:machine_entanglement",
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:eng_machine_guard",
+    "control:eng_interlock",
+    "control:eng_loto",
+    "control:admin_safety_education",
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_휴대형 연삭기 안전작업에 관한 기술지침_9",
+      "title": "휴대형 연삭기 안전작업에 관한 기술지침 - 위험요인별 자체평가표",
+      "score": 84.696
+    },
+    {
+      "docId": "KOSHA07_휴대형 연삭기 안전작업에 관한 기술지침_2",
+      "title": "휴대형 연삭기 안전작업에 관한 기술지침 - 적용범위",
+      "score": 83.537
+    },
+    {
+      "docId": "KOSHA07_휴대형 연삭기 안전작업에 관한 기술지침_5",
+      "title": "휴대형 연삭기 안전작업에 관한 기술지침 - 방호조치",
+      "score": 79.984
+    },
+    {
+      "docId": "KOSHA07_휴대형 연삭기 안전작업에 관한 기술지침_6",
+      "title": "휴대형 연삭기 안전작업에 관한 기술지침 - 검사 및 유지보수",
+      "score": 79.826
+    },
+    {
+      "docId": "KOSHA07_휴대형 전기톱 사용 시 인체 보호구에 관한 기술지침_3",
+      "title": "휴대형 전기톱 사용 시 인체 보호구에 관한 기술지침 - 용어의 정의",
+      "score": 78.601
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA04_002000003000001000000000304000",
+      "title": "제304조 누전차단기에 의한 감전방지",
+      "category": "4",
+      "score": 44.874
+    },
+    {
+      "docId": "KOSHA04_002000003000001000000000302000",
+      "title": "제302조 전기 기계ㆍ기구의 접지",
+      "category": "4",
+      "score": 39.452
+    },
+    {
+      "docId": "KOSHA05_위험기계·기구 자율안전확인 고시000000003000000000000000000000006000",
+      "title": "위험기계·기구 자율안전확인 고시 제6조 정의",
+      "category": "5",
+      "score": 32.915
+    },
+    {
+      "docId": "KOSHA05_안전검사 고시000000013000000000000000000000025000",
+      "title": "안전검사 고시 제25조 정의",
+      "category": "5",
+      "score": 25.724
+    }
+  ]
+}

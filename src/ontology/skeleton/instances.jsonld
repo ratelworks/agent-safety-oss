@@ -1,0 +1,488 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "schema": "https://schema.org/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0/",
+    "bfo": "http://purl.obolibrary.org/obo/",
+    "iao": "http://purl.obolibrary.org/obo/",
+    "iso45001": "https://safety.ratelworks.org/iso45001#",
+    "cc": "https://construction.ratelworks.org/ontology/v1/",
+    "safety": "https://safety.ratelworks.org/ontology/v1/",
+
+    "_v1.2.0_canonical_prefixes": "v1.2.0 P0-1: runtime graph IRI prefix 와 정렬 — Walking Skeleton instance 는 runtime canonical IRI 를 사용하여 join·provenance·citation chain 강화. safety: 는 클래스·property·action·policy vocabulary 전용.",
+    "activity": "https://safety.ratelworks.org/activity/",
+    "hazard": "https://safety.ratelworks.org/hazard/",
+    "control": "https://safety.ratelworks.org/control/",
+    "art": "https://safety.ratelworks.org/article/",
+    "doc": "https://safety.ratelworks.org/document/"
+  },
+  "@graph": [
+    {
+      "@id": "https://safety.ratelworks.org/skeleton/instances/v1",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {"@id": "https://safety.ratelworks.org/skeleton/instances/v1.0.0"},
+      "owl:versionInfo": "0.7.0 — Walking Skeleton D2 instance chain",
+      "dcterms:creator": "Ratelworks Inc.",
+      "dcterms:created": {"@value": "2026-05-02", "@type": "xsd:date"},
+      "dcterms:license": {"@id": "https://opensource.org/licenses/MIT"},
+      "rdfs:label": [
+        {"@value": "Walking Skeleton — D-C-11-2026 Instance Chain", "@language": "en"},
+        {"@value": "Walking Skeleton — D-C-11-2026 인스턴스 사슬", "@language": "ko"}
+      ],
+      "owl:imports": [
+        {"@id": "https://safety.ratelworks.org/skeleton/v1"}
+      ]
+    },
+
+    {
+      "@id": "activity:excavation_2m_plus",
+      "@type": [
+        "safety:WorkActivity",
+        "bfo:BFO_0000015",
+        "iso45001:Activity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착 작업 (깊이 2m 이상)", "@language": "ko"},
+        {"@value": "Excavation Work (depth ≥2m)", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "건설현장에서 깊이 2m 이상 굴착하는 작업. 산업안전보건기준에 관한 규칙 제38조(사전조사 및 작업계획서 작성)·제347조(붕괴 등의 위험방지) 적용 대상.", "@language": "ko"},
+        {"@value": "Excavation work of depth ≥2m at construction sites. Subject to Standard Regulation on OSH Article 38 (Preliminary Survey and Work Plan) and Article 347 (Cave-in Prevention).", "@language": "en"}
+      ],
+      "safety:hasHazard": [
+        {"@id": "hazard:cave_in"}
+      ],
+      "safety:guidedBy": [
+        {"@id": "doc:kosha_guide/D-C-11-2026"}
+      ],
+      "safety:legalBasis": [
+        {"@id": "art:기준규칙:38"}
+      ],
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d2-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-02T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "doc:kosha_guide/D-C-11-2026"},
+      "prov:hadPrimarySource": {"@id": "https://www.law.go.kr/lsInfoP.do?lsiSeq=178530"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-activity-excavation-2m-plus-d2"
+    },
+
+    {
+      "@id": "hazard:cave_in",
+      "@type": [
+        "safety:Hazard",
+        "bfo:BFO_0000016",
+        "iso45001:Hazard",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착면 붕괴 위험", "@language": "ko"},
+        {"@value": "Excavation Face Cave-in Hazard", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "굴착면이 무너지면서 작업자가 매몰·압사되는 위험. 사망 위험요인. 굴착 2m 이상에서 발생 가능성 ↑.", "@language": "ko"},
+        {"@value": "Risk of workers being buried or crushed by excavation face collapse. Fatal hazard. Higher likelihood at depths ≥2m.", "@language": "en"}
+      ],
+      "safety:mitigatedBy": [
+        {"@id": "control:eng_shoring"}
+      ],
+      "safety:supportedByGuide": [
+        {"@id": "doc:kosha_guide/D-C-11-2026"}
+      ],
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d2-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-02T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "doc:kosha_guide/D-C-11-2026"},
+      "prov:hadPrimarySource": {"@id": "https://portal.kosha.or.kr/openapi/v1/file/down/CTC2026012914341697414755/1"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-hazard-cave-in-d2"
+    },
+
+    {
+      "@id": "control:eng_shoring",
+      "@type": [
+        "safety:ControlMeasure",
+        "bfo:BFO_0000016",
+        "iso45001:Control",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "흙막이 지보공 설치", "@language": "ko"},
+        {"@value": "Earth Retaining Shoring Installation", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "굴착 시 굴착면이 붕괴하지 않도록 흙막이 지보공(파일·버팀대·띠장 등)을 설치하는 공학적(Engineering) 통제수단. ERIC 5계층의 Engineering control. KOSHA Guide D-C-1-2025(흙막이공사 기술지원규정) 별도 인용.", "@language": "ko"},
+        {"@value": "Engineering control measure of installing earth retaining shoring (piles, struts, walers, etc.) to prevent excavation face collapse. Engineering level of ERIC hierarchy. Cross-referenced with KOSHA Guide D-C-1-2025 (Earth Retaining Construction Technical Guideline).", "@language": "en"}
+      ],
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d2-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-02T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "doc:kosha_guide/D-C-11-2026"},
+      "prov:hadPrimarySource": {"@id": "https://portal.kosha.or.kr/openapi/v1/file/down/CTC2026012914341697414755/1"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-control-eng-shoring-d2"
+    },
+
+    {
+      "@id": "doc:kosha_guide/D-C-11-2026",
+      "@type": [
+        "safety:KoshaGuide",
+        "iao:IAO_0000030",
+        "prov:Entity",
+        "iso45001:TechnicalGuideline",
+        "cc:Document",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착 및 토공 안전작업에 관한 기술지원규정", "@language": "ko"},
+        {"@value": "Technical Guideline on Excavation and Earthwork Safety Operations", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "한국산업안전보건공단(KOSHA)의 굴착·토공 안전작업 기술지원규정 (D-C-11-2026, 2026-01-30 공표). 산업안전보건기준에 관한 규칙 제2편 제4장 제2절 등 인용. 법적 강제 X, 기술적 권고.", "@language": "ko"},
+        {"@value": "KOSHA Technical Guideline on Excavation and Earthwork Safety Operations (D-C-11-2026, published 2026-01-30). References Standard Regulation on OSH Part 2, Chapter 4, Section 2 etc. Not legally enforced — recommended.", "@language": "en"}
+      ],
+      "safety:guideNumber": "D-C-11-2026",
+      "safety:legalAuthority": "recommended",
+      "safety:legalBasis": [
+        {"@id": "art:기준규칙:38"}
+      ],
+      "dcterms:issued": {"@value": "2026-01-30", "@type": "xsd:date"},
+      "dcterms:publisher": "한국산업안전보건공단 (KOSHA)",
+      "dcterms:license": "공공누리 출처표시-변경금지",
+      "prov:wasGeneratedBy": {"@id": "safety:process/kosha-editorial-2026-01-30"},
+      "prov:generatedAtTime": {"@value": "2026-01-30T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "https://www.data.go.kr/data/15144147/openapi.do"},
+      "prov:hadPrimarySource": {"@id": "https://portal.kosha.or.kr/openapi/v1/file/down/CTC2026012914341697414755/1"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-D-C-11-2026"
+    },
+
+    {
+      "@id": "art:기준규칙:38",
+      "@type": [
+        "safety:Article",
+        "akn:Article",
+        "iao:IAO_0000030",
+        "prov:Entity",
+        "cc:Document",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "산업안전보건기준에 관한 규칙 제38조 (사전조사 및 작업계획서의 작성 등)", "@language": "ko"},
+        {"@value": "Standard Regulation on OSH, Article 38 (Preliminary Survey and Work Plan Preparation)", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "고용노동부령 산업안전보건기준에 관한 규칙 제38조. 사업주는 별표 4의 작업을 하는 경우 근로자의 위험을 방지하기 위해 해당 작업·장소·기계기구·시설·설비 등 사전조사를 실시하고 작업계획서를 작성하여 작업을 지휘해야 한다.", "@language": "ko"},
+        {"@value": "Article 38 of the Standard Regulation on Occupational Safety and Health (Ministry of Employment and Labor Ordinance). For Annex 4 operations, employers must conduct preliminary surveys (work, location, machinery, facility, equipment), prepare a work plan, and direct operations to prevent worker hazards.", "@language": "en"}
+      ],
+      "safety:articleNumber": "38",
+      "safety:legalAuthority": "enforced",
+      "dcterms:publisher": "고용노동부",
+      "dcterms:license": "저작권법 제7조 (자유 인용)",
+      "prov:wasGeneratedBy": {"@id": "safety:process/law-go-kr-sync"},
+      "prov:generatedAtTime": {"@value": "2026-05-02T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "https://www.law.go.kr/lsInfoP.do?lsiSeq=178530"},
+      "prov:hadPrimarySource": {"@id": "https://www.law.go.kr/lsInfoP.do?lsiSeq=178530"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-기준규칙-§38"
+    },
+
+    {
+      "@id": "cc:site/asan-001",
+      "@type": [
+        "cc:Site",
+        "bfo:BFO_0000027",
+        "schema:Place",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "아산 배방 공동주택 신축 현장", "@language": "ko"},
+        {"@value": "Asan Baebang Apartment Construction Site", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "굴착 작업과 안전 이슈 샘플을 묶는 현장 기준점. 현장 등록 → 작업·위험 그래프 추론 사이클 검증용 인스턴스.", "@language": "ko"},
+        {"@value": "Site reference point tying together the excavation work and safety issue samples. Instance for validating the site registration to task-risk graph cycle.", "@language": "en"}
+      ],
+      "schema:location": "충청남도 아산시 배방읍 안전로 1",
+      "cc:hasWorkType": [
+        {"@id": "cc:worktype/excavation"}
+      ],
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-03T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "https://github.com/ratelworks/agent-safety-oss/blob/main/docs/IDENTITY.md"},
+      "prov:hadPrimarySource": {"@id": "https://github.com/ratelworks/agent-safety-oss/blob/main/docs/IDENTITY.md"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-site-asan-001"
+    },
+
+    {
+      "@id": "cc:worktype/excavation",
+      "@type": [
+        "cc:WorkType",
+        "skos:Concept",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착 공종", "@language": "ko"},
+        {"@value": "Excavation Work Type", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "산업안전보건기준에 관한 규칙 별표 4 작업분류에 기반한 굴착 공종. 실제 굴착 작업 활동과 연결된다.", "@language": "ko"},
+        {"@value": "Excavation work type based on Annex 4 work categories of the Korean Standard Regulation on OSH. Linked to the concrete excavation work activity.", "@language": "en"}
+      ],
+      "skos:notation": "excavation",
+      "cc:hasTask": [
+        {"@id": "activity:excavation_2m_plus"}
+      ],
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-03T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "art:기준규칙:38"},
+      "prov:hadPrimarySource": {"@id": "https://www.law.go.kr/lsInfoP.do?lsiSeq=178530"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-worktype-excavation"
+    },
+
+    {
+      "@id": "safety:photo_evidence/2026-05-03-001",
+      "@type": [
+        "safety:PhotoEvidence",
+        "prov:Entity",
+        "foaf:Image",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착면 균열 사진 증빙 2026-05-03-001", "@language": "ko"},
+        {"@value": "Excavation Face Crack Photo Evidence 2026-05-03-001", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "굴착면 상단 균열과 지보공 보강 필요를 확인한 현장 사진 증빙 샘플.", "@language": "ko"},
+        {"@value": "Sample field photo evidence confirming cracks near the excavation face top and the need for shoring reinforcement.", "@language": "en"}
+      ],
+      "safety:fileUri": {"@value": "file:///var/agent-safety-oss/photos/2026-05-03-001.jpg", "@type": "xsd:anyURI"},
+      "safety:capturedAt": {"@value": "2026-05-03T09:15:00+09:00", "@type": "xsd:dateTime"},
+      "safety:relatedTask": {"@id": "activity:excavation_2m_plus"},
+      "safety:evidences": {"@id": "safety:safety_issue/2026-05-03-001"},
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-03T00:15:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "cc:site/asan-001"},
+      "prov:hadPrimarySource": {"@id": "file:///var/agent-safety-oss/photos/2026-05-03-001.jpg"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-photo-evidence-2026-05-03-001"
+    },
+
+    {
+      "@id": "safety:safety_issue/2026-05-03-001",
+      "@type": [
+        "safety:SafetyIssue",
+        "prov:Entity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착면 균열 및 붕괴 우려 이슈", "@language": "ko"},
+        {"@value": "Excavation Face Crack and Cave-in Concern Issue", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "깊이 2m 이상 굴착 구간에서 굴착면 상단 균열이 발견되어 흙막이 보강 조치가 필요한 안전 이슈.", "@language": "ko"},
+        {"@value": "Safety issue where cracks were found near the excavation face top in a depth ≥2m excavation area, requiring shoring reinforcement.", "@language": "en"}
+      ],
+      "safety:relatedTask": {"@id": "activity:excavation_2m_plus"},
+      "safety:severity": "high",
+      "safety:status": "open",
+      "safety:requiresAction": {"@id": "safety:corrective_action/2026-05-03-001"},
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-03T00:20:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "safety:photo_evidence/2026-05-03-001"},
+      "prov:hadPrimarySource": {"@id": "file:///var/agent-safety-oss/photos/2026-05-03-001.jpg"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-safety-issue-2026-05-03-001"
+    },
+
+    {
+      "@id": "safety:corrective_action/2026-05-03-001",
+      "@type": [
+        "safety:CorrectiveAction",
+        "prov:Activity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착면 흙막이 보강 조치", "@language": "ko"},
+        {"@value": "Excavation Face Shoring Reinforcement Action", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "굴착면 균열 구간 작업을 통제하고 흙막이 지보공을 보강하는 개선조치 샘플.", "@language": "ko"},
+        {"@value": "Sample corrective action to control work near the cracked excavation face and reinforce earth retaining shoring.", "@language": "en"}
+      ],
+      "safety:resolves": {"@id": "safety:safety_issue/2026-05-03-001"},
+      "safety:dueBy": {"@value": "2026-05-04", "@type": "xsd:date"},
+      "safety:status": "in_progress",
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-03T00:30:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "safety:safety_issue/2026-05-03-001"},
+      "prov:hadPrimarySource": {"@id": "safety:photo_evidence/2026-05-03-001"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-corrective-action-2026-05-03-001"
+    },
+
+    {
+      "@id": "safety:safety_report/2026-05-W18",
+      "@type": [
+        "safety:SafetyReport",
+        "cc:Document",
+        "prov:Entity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "2026년 5월 18주차 주간 안전관리 보고", "@language": "ko"},
+        {"@value": "Weekly Safety Management Report, 2026 May W18", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "아산 배방 현장의 2026년 5월 18주차 안전 이슈와 개선조치를 묶은 운영 보고서 샘플. 19개 법정 양식과 분리된다.", "@language": "ko"},
+        {"@value": "Sample operational report aggregating safety issues and corrective actions for Asan Baebang site during 2026 May W18. Separate from the 19 statutory forms.", "@language": "en"}
+      ],
+      "safety:includes": [
+        {"@id": "safety:safety_issue/2026-05-03-001"}
+      ],
+      "dcterms:issued": {"@value": "2026-05-03", "@type": "xsd:date"},
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-03T01:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "safety:safety_issue/2026-05-03-001"},
+      "prov:hadPrimarySource": {"@id": "https://github.com/ratelworks/agent-safety-oss/blob/main/docs/IDENTITY.md"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-safety-report-2026-05-W18"
+    },
+
+    {
+      "@id": "safety:process/skeleton-d2-2026-05-02",
+      "@type": [
+        "prov:Activity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "Walking Skeleton D2 인스턴스 작성 활동", "@language": "ko"},
+        {"@value": "Walking Skeleton D2 Instance Authoring Activity", "@language": "en"}
+      ],
+      "prov:startedAtTime": {"@value": "2026-05-02T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasAssociatedWith": {"@id": "safety:agent/ratelworks"}
+    },
+
+    {
+      "@id": "safety:process/kosha-editorial-2026-01-30",
+      "@type": [
+        "prov:Activity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "KOSHA D-C-11-2026 발행 편집 활동", "@language": "ko"},
+        {"@value": "KOSHA D-C-11-2026 Editorial Publication Activity", "@language": "en"}
+      ],
+      "prov:startedAtTime": {"@value": "2025-12-01T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:endedAtTime": {"@value": "2026-01-30T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasAssociatedWith": {"@id": "safety:agent/kosha"}
+    },
+
+    {
+      "@id": "safety:process/law-go-kr-sync",
+      "@type": [
+        "prov:Activity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "법제처 국가법령정보센터 법령 동기화 활동", "@language": "ko"},
+        {"@value": "Korea Ministry of Government Legislation — Law Synchronization Activity", "@language": "en"}
+      ],
+      "prov:wasAssociatedWith": {"@id": "safety:agent/lawgokr"}
+    },
+
+    {
+      "@id": "safety:agent/ratelworks",
+      "@type": [
+        "prov:Agent",
+        "prov:Organization",
+        "foaf:Organization",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "주식회사 라텔웍스", "@language": "ko"},
+        {"@value": "Ratelworks Inc.", "@language": "en"}
+      ],
+      "foaf:homepage": {"@id": "https://ratelworks.co.kr"}
+    },
+
+    {
+      "@id": "safety:agent/kosha",
+      "@type": [
+        "prov:Agent",
+        "prov:Organization",
+        "foaf:Organization",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "한국산업안전보건공단", "@language": "ko"},
+        {"@value": "Korea Occupational Safety and Health Agency (KOSHA)", "@language": "en"}
+      ],
+      "foaf:homepage": {"@id": "https://www.kosha.or.kr"}
+    },
+
+    {
+      "@id": "safety:agent/lawgokr",
+      "@type": [
+        "prov:Agent",
+        "prov:Organization",
+        "foaf:Organization",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "법제처 국가법령정보센터", "@language": "ko"},
+        {"@value": "Korea Ministry of Government Legislation — National Law Information Center", "@language": "en"}
+      ],
+      "foaf:homepage": {"@id": "https://www.law.go.kr"}
+    },
+
+    {
+      "@id": "safety:action/create_work_plan_excavation",
+      "@type": [
+        "safety:Action",
+        "prov:Plan",
+        "iao:IAO_0000030",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "굴착 작업계획서 자동 생성 액션", "@language": "ko"},
+        {"@value": "Excavation Work Plan Auto-Generation Action", "@language": "en"}
+      ],
+      "rdfs:comment": [
+        {"@value": "한국 안전관리자가 LLM에게 위임하는 굴착 작업계획서 자동 생성. 산안기준규칙 §38 + 별표 4 6호 기준. 그래프 traversal로 위험·통제·법조문·KOSHA Guide 자동 인용. PROV-O로 출처 추적 + 환각 0 보장.", "@language": "ko"},
+        {"@value": "LLM-delegated automatic generation of excavation work plan. Based on Standard Regulation Article 38 + Annex 4 Item 6. Graph traversal auto-cites hazards, controls, legal articles, KOSHA Guides. PROV-O for provenance tracking + hallucination prevention.", "@language": "en"}
+      ],
+      "safety:appliesTo": {"@id": "activity:excavation_2m_plus"},
+      "safety:hasParameter": "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"type\":\"object\",\"properties\":{\"docId\":{\"type\":\"string\",\"const\":\"work_plan_excavation\"},\"draft\":{\"type\":\"object\",\"properties\":{\"siteName\":{\"type\":\"string\"},\"workDate\":{\"type\":\"string\",\"format\":\"date\"},\"workers\":{\"type\":\"integer\",\"minimum\":1},\"excavationDepth\":{\"type\":\"number\",\"minimum\":0,\"description\":\"meters\"},\"groundType\":{\"type\":\"string\"},\"groundwaterDepth\":{\"type\":\"number\",\"description\":\"meters\"},\"adjacentUtility\":{\"type\":\"string\"},\"workDuration\":{\"type\":\"integer\",\"description\":\"days\"}},\"required\":[\"siteName\",\"excavationDepth\"]},\"useProfile\":{\"type\":\"boolean\",\"default\":false},\"scale\":{\"type\":\"object\",\"properties\":{\"workforce\":{\"type\":\"integer\"},\"constructionValue\":{\"type\":\"number\"},\"industry\":{\"type\":\"string\"}}}},\"required\":[\"docId\",\"draft\"]}",
+      "safety:submissionCriterion": "draft.excavationDepth >= 2.0 → 산안기준규칙 §38 의무 적용 (별표 4 6호). draft.excavationDepth < 2.0 → 미적용 (단 위험성평가는 별도 의무).",
+      "safety:sideEffect": "{\"toolName\":\"generate_safety_document\",\"toolPath\":\"src/tools/generate-safety-document.ts\",\"inputMapping\":{\"docId\":\"$.parameters.docId\",\"draft\":\"$.parameters.draft\",\"useProfile\":\"$.parameters.useProfile\",\"scale\":\"$.parameters.scale\"},\"outputArtifact\":\"markdown\",\"provActivityClass\":\"prov:Activity\",\"auditLog\":\"prov:wasGeneratedBy + prov:generatedAtTime + prov:used\"}",
+      "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
+      "prov:generatedAtTime": {"@value": "2026-05-02T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasDerivedFrom": {"@id": "doc:kosha_guide/D-C-11-2026"},
+      "prov:hadPrimarySource": {"@id": "https://www.law.go.kr/lsInfoP.do?lsiSeq=178530"},
+      "safety:hashStatus": "not_computed",
+      "safety:contentHash": "sha256:not-computed-action-create-work-plan-excavation"
+    },
+
+    {
+      "@id": "safety:process/skeleton-d7a-2026-05-02",
+      "@type": [
+        "prov:Activity",
+        "owl:NamedIndividual"
+      ],
+      "rdfs:label": [
+        {"@value": "Walking Skeleton D7a 통합 + Action Contract 작성 활동", "@language": "ko"},
+        {"@value": "Walking Skeleton D7a Integration + Action Contract Authoring Activity", "@language": "en"}
+      ],
+      "prov:startedAtTime": {"@value": "2026-05-02T00:00:00Z", "@type": "xsd:dateTime"},
+      "prov:wasAssociatedWith": {"@id": "safety:agent/ratelworks"}
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/X-70-2016",
+  "@type": "Document",
+  "docId": "kosha_guide_x-70-2016",
+  "title": "운전원 행동분석(OAT)에 관한 기술지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "X-70-2016",
+    "guideCategory": "general_safety",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 10건 (법령 5 / KOSHA Guide 5). keyword=\"운전원\" (title 첫 단어 추출). 2026-05-12.",
+    "scope": "general_applicable",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 6,
+      "6": 15,
+      "7": 53,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "운전원"
+  },
+  "causedBy": [
+    "hazard:fall_from_height",
+    "hazard:struck_by",
+    "hazard:chemical_exposure",
+    "hazard:fire_explosion",
+    "hazard:electric_shock",
+    "hazard:msd_repetitive"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:eng_isolation_barrier",
+    "control:eng_alarm",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:admin_msds",
+    "control:eng_explosion_proof",
+    "control:eng_fire_suppression",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check"
+  ],
+  "appliesToActivities": [
+    "activity:risk_assessment_general"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_제어실 운전원 휴먼에러확률 예측기법(THERP)에 관한 기술지침_5",
+      "title": "제어실 운전원 휴먼에러확률 예측기법(THERP)에 관한 기술지침 - 분석절차",
+      "score": 70.79
+    },
+    {
+      "docId": "KOSHA07_운전원 행동분석(OAT)에 관한 기술지침_4",
+      "title": "운전원 행동분석(OAT)에 관한 기술지침 - 기법의 개요",
+      "score": 66.003
+    },
+    {
+      "docId": "KOSHA07_운전원 행동분석(OAT)에 관한 기술지침_5",
+      "title": "운전원 행동분석(OAT)에 관한 기술지침 - 분석절차",
+      "score": 63.691
+    },
+    {
+      "docId": "KOSHA07_택시, 버스 운전원의 직무스트레스 예방을 위한 관리감독자용 지침_3",
+      "title": "택시, 버스 운전원의 직무스트레스 예방을 위한 관리감독자용 지침 - 용어의정의",
+      "score": 46.965
+    },
+    {
+      "docId": "KOSHA07_안전운전절차서 작성에 관한 기술지침_10",
+      "title": "안전운전절차서 작성에 관한 기술지침 - 안전운전절차서의 관리 등",
+      "score": 42.845
+    }
+  ],
+  "relatedLaw": [
+    {
+      "docId": "KOSHA05_근로감독관 집무규정000000003000000000000000000000025000",
+      "title": "근로감독관 집무규정 제25조 재해조사 등의 관할 및 이송",
+      "category": "5",
+      "score": 34.902
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000004000003000000000000000046000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제46조 안전작업허가 및 절차",
+      "category": "5",
+      "score": 34.692
+    },
+    {
+      "docId": "KOSHA05_근로감독관 집무규정(산업안전보건)000000003000000000000000000000025000",
+      "title": "근로감독관 집무규정(산업안전보건) 제25조 재해조사 등의 관할 및 이송",
+      "category": "5",
+      "score": 30.334
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000004000002000000000000000043000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제43조 위험성평가 심사기준",
+      "category": "5",
+      "score": 28.141
+    },
+    {
+      "docId": "KOSHA05_공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정000000004000003000000000000000044000",
+      "title": "공정안전보고서의 제출·심사·확인 및 이행상태평가 등에 관한 규정 제44조 안전운전 지침과 절차",
+      "category": "5",
+      "score": 27.09
+    }
+  ]
+}

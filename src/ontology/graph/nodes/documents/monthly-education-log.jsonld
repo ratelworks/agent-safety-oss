@@ -1,0 +1,581 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/monthly_education_log",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "monthly_education_log",
+  "title": "정기 안전보건교육 일지",
+  "alternativeNames": [
+    "안전보건교육일지",
+    "교육일지",
+    "안전교육 일지"
+  ],
+  "description": "산안법 제29조 + 시행규칙 별표 4·5에 따른 안전보건교육 실시 후 작성하는 교육일지. 단일 양식이 6종 교육(정기·채용시·작업내용 변경시·특별·건설업 기초안전보건·기타)을 모두 cover. 50억 미만 건설현장 + 5인 이상 사업장 의무. 본 노드는 고용노동부 안전보건교육 일지(예시) 양식 본문과 1:1 매핑 (kordoc parse_document 검증 2026-04-29).",
+  "cycle": "cyc:as_needed",
+  "trigger": "교육 실시 시마다 작성. 정기교육은 분기마다 (사무직 3시간·그 외 6시간 / 관리감독자 연 16시간). 채용·변경 시 교육은 해당 일. 특별교육은 위험작업 사전.",
+  "applicableWhen": {
+    "appliesTo": "applic:5_workers_or_more",
+    "scaleNotes": "전 사업장 의무 (50억 미만 + 5인 이상 적용). 정기교육 위반 시 제175조 500만원 과태료, 특별교육 위반 시 제170조 3,000만원 과태료."
+  },
+  "exemptedWhen": {},
+  "requiredFields": [
+    {
+      "key": "preparedDate",
+      "label": "작성일자",
+      "source": "공식 양식",
+      "inputGuide": "YYYY-MM-DD 형식. 작성·점검·평가 실제 시행 일자.",
+      "examples": [
+        "2026-04-29",
+        "2026-05-15"
+      ]
+    },
+    {
+      "key": "preparer",
+      "label": "작성자",
+      "source": "공식 양식",
+      "inputGuide": "작성한 사람의 성명 + 직책 + (가능 시) 자격번호.",
+      "examples": [
+        "홍길동 (안전관리자, 산업안전기사 자격 1234567호)",
+        "김철수 (현장소장)"
+      ]
+    },
+    {
+      "key": "approval_education",
+      "label": "교육담당",
+      "source": "공식 양식",
+      "inputGuide": "교육 운영 책임자 직책 + 성명.",
+      "examples": [
+        "김안전 (안전관리자)"
+      ]
+    },
+    {
+      "key": "approval_review",
+      "label": "검토",
+      "source": "공식 양식",
+      "inputGuide": "검토 책임자 직책 + 성명 + 서명.",
+      "examples": [
+        "박감독 (관리감독자)"
+      ]
+    },
+    {
+      "key": "approval_ceo",
+      "label": "대표이사",
+      "source": "공식 양식",
+      "inputGuide": "법인 대표이사 또는 사업주.",
+      "examples": [
+        "황한일 (대표)"
+      ]
+    },
+    {
+      "key": "educationDivision",
+      "label": "교육의 구분 (체크)",
+      "source": "공식 양식",
+      "inputGuide": "교육 분류 (정기·신규채용·작업변경·특별교육).",
+      "examples": [
+        "정기"
+      ]
+    },
+    {
+      "key": "personnel_division",
+      "label": "구분",
+      "source": "공식 양식",
+      "inputGuide": "분류·카테고리.",
+      "examples": [
+        "정기"
+      ]
+    },
+    {
+      "key": "personnel_total",
+      "label": "계",
+      "source": "공식 양식",
+      "inputGuide": "합계 인원·수량.",
+      "examples": [
+        "12"
+      ]
+    },
+    {
+      "key": "personnel_male",
+      "label": "남",
+      "source": "공식 양식",
+      "inputGuide": "남성 인원수.",
+      "examples": [
+        "10"
+      ]
+    },
+    {
+      "key": "personnel_female",
+      "label": "여",
+      "source": "공식 양식",
+      "inputGuide": "여성 인원수.",
+      "examples": [
+        "2"
+      ]
+    },
+    {
+      "key": "totalTargets",
+      "label": "교육 대상자 수",
+      "source": "공식 양식",
+      "inputGuide": "교육 의무 대상 인원.",
+      "examples": [
+        "52"
+      ]
+    },
+    {
+      "key": "totalCompleted",
+      "label": "교육 실시자 수",
+      "source": "공식 양식",
+      "inputGuide": "교육 이수 인원.",
+      "examples": [
+        "48"
+      ]
+    },
+    {
+      "key": "totalNotCompleted",
+      "label": "교육 미실시자 수",
+      "source": "공식 양식",
+      "inputGuide": "미이수 인원.",
+      "examples": [
+        "4"
+      ]
+    },
+    {
+      "key": "subjects",
+      "label": "교육과목",
+      "source": "공식 양식",
+      "inputGuide": "법정 의무 교육 과목명.",
+      "examples": [
+        "산업안전보건법 정기교육 (관리감독자 16시간)"
+      ]
+    },
+    {
+      "key": "contents",
+      "label": "교육내용",
+      "source": "공식 양식",
+      "inputGuide": "교육 주요 내용 요약.",
+      "examples": [
+        "1) 위험성평가 결과 / 2) 추락사고 사례 / 3) MSDS 신규 화학물질"
+      ]
+    },
+    {
+      "key": "trainerName",
+      "label": "성명",
+      "source": "공식 양식",
+      "inputGuide": "법인등기부등본 상의 대표자 성명. 외국인은 영문 + 한글 병기.",
+      "examples": [
+        "황 룡",
+        "홍길동",
+        "John Smith (존 스미스)"
+      ]
+    },
+    {
+      "key": "trainerPosition",
+      "label": "직명",
+      "source": "공식 양식",
+      "inputGuide": "사내 공식 직책.",
+      "examples": [
+        "현장소장"
+      ]
+    },
+    {
+      "key": "trainingPlace",
+      "label": "교육실시장소",
+      "source": "공식 양식",
+      "inputGuide": "교육 실시 장소.",
+      "examples": [
+        "황룡건설(주) 삼성동 현장 안전교육실"
+      ]
+    },
+    {
+      "key": "participantsList",
+      "label": "안전교육 참석자 명단",
+      "source": "공식 양식",
+      "inputGuide": "참석자 명단 (성명·소속·자필 서명).",
+      "examples": [
+        "박작업 (철근, 자필) / 이작업 (형틀, 자필) / NGUYEN VAN A (베트남어, 자필) 외 9명"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "필수 — 교육 구분 1개 이상 체크",
+      "severity": "blocker",
+      "checkFields": [
+        "educationDivision"
+      ]
+    },
+    {
+      "rule": "필수 — 교육실시자 성명·직명·장소",
+      "severity": "blocker",
+      "checkFields": [
+        "trainerName",
+        "trainerPosition",
+        "trainingPlace"
+      ]
+    },
+    {
+      "rule": "필수 — 교육인원 + 미실시 사유",
+      "severity": "blocker",
+      "checkFields": [
+        "totalTargets",
+        "totalCompleted",
+        "totalNotCompleted"
+      ]
+    },
+    {
+      "rule": "필수 — 교육과목·내용",
+      "severity": "blocker",
+      "checkFields": [
+        "subjects",
+        "contents"
+      ]
+    },
+    {
+      "rule": "필수 — 참석자 전원 직종·성명·서명",
+      "severity": "blocker",
+      "checkFields": [
+        "participantsList"
+      ]
+    },
+    {
+      "rule": "필수 — 결재선 (교육담당·검토·대표이사 3단)",
+      "severity": "blocker",
+      "checkFields": [
+        "approvalChain"
+      ]
+    },
+    {
+      "rule": "권장 — 교육사진 첨부",
+      "severity": "warning",
+      "checkFields": [
+        "trainingPhotos"
+      ]
+    },
+    {
+      "rule": "권장 — 정기 교육시간 준수 (사무직 분기 3h·그 외 6h·관리감독자 연 16h)",
+      "severity": "warning"
+    },
+    {
+      "rule": "권장 — 특별교육은 시행규칙 별표 5의 2 39종 중 해당 작업 (16h / 단기 2h)",
+      "severity": "warning"
+    },
+    {
+      "rule": "권장 — 건설업 기초안전보건교육 일용 4h, 이수증 별첨",
+      "severity": "warning"
+    },
+    {
+      "rule": "사람 검토 — 외국인 근로자 모국어 통역·자료 제공 여부",
+      "severity": "manual_review"
+    }
+  ],
+  "retention": "3년 (산안법 제164조, 시행규칙 제241조)",
+  "standardForm": {
+    "source": "고용노동부 안전보건 교육일지 (예시) — 산안법 제29조 + 시행규칙 별표 4·5",
+    "sourceUrl": "https://www.moel.go.kr/info/etc/dataroom/view.do?bbs_seq=1483332742887",
+    "downloadUrlXlsx": "https://www.moel.go.kr/common/downloadFile.do?file_seq=21171218643&bbs_seq=1483332742887&bbs_id=29&file_ext=xlsx",
+    "downloadUrlHwp": "https://www.moel.go.kr/common/downloadFile.do?file_seq=21171218644&bbs_seq=1483332742887&bbs_id=29&file_ext=hwp",
+    "verifiedBy": "kordoc parse_document on /tmp/official-forms/education-log-1.xlsx (2026-04-29)",
+    "requiredFields": [
+      "결재 — 교육담당·검토·대표이사",
+      "메타 — 작성일자·작성자",
+      "교육의 구분 — 가.정기 / 나.채용시 / 다.변경시 / 라.특별 / 마.기초안전보건(4h) / 바.기타",
+      "교육인원 — 구분(계/남/여) × 대상자/실시자/미실시자 + 미실시 사유",
+      "교육과목 + 교육내용",
+      "교육실시자 — 성명·직명·교육실시장소·비고",
+      "특기사항",
+      "안전교육 참석자 명단 (NO·직종·성명·서명, 보통 42인분 표)",
+      "교육사진 (사진1·사진2)"
+    ]
+  },
+  "relatedDocs": [
+    "doc:annual/supervisor_education_log",
+    "doc:ad_hoc/new_hire_education_log",
+    "doc:ad_hoc/work_change_education_log",
+    "doc:ad_hoc/special_education_log"
+  ],
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "legalBasisRefs": [
+      {
+        "law": "산업안전보건법",
+        "article": "§29",
+        "text": "근로자 안전보건교육 의무 (정기·채용·변경·특별)"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§31",
+        "text": "건설업 기초안전보건교육 (일용근로자 4시간)"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§77",
+        "text": "특수형태근로종사자 교육 (건설기계 운전자 등 2시간)"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "별표 4",
+        "text": "교육과정별 교육시간"
+      },
+      {
+        "law": "산업안전보건법 시행규칙",
+        "article": "별표 5",
+        "text": "교육과정별 교육내용"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§175",
+        "text": "정기·채용·변경 교육 위반 500만원 과태료"
+      },
+      {
+        "law": "산업안전보건법",
+        "article": "§170",
+        "text": "특별교육 위반 3,000만원 과태료"
+      }
+    ],
+    "writingGuide": {
+      "fieldHints": {
+        "교육의 구분": "가. 정기교육(분기) / 나. 채용 시(8h, 일용 1h) / 다. 작업내용 변경 시(2h, 일용 1h) / 라. 특별교육(16h, 단기 2h) / 마. 건설업 기초안전보건(일용 4h) / 바. 기타. 한 일지에 여러 구분 동시 가능",
+        "교육인원": "계/남/여 각각 작성. 교육 미실시자는 사후 보충교육 일자 별도 기록",
+        "교육과목·내용": "시행규칙 별표 5 표준 — 산안법 요지·관리체계·재해사례·작업·기계·MSDS·근골격계 등",
+        "특별교육": "시행규칙 별표 5의 2 39종 중 해당 작업 선택 (예: 18호 굴착작업 / 21호 거푸집 / 25호 양중기 등)",
+        "참석자 명단": "NO·직종·성명·서명. 외국인 근로자 모국어 서명 인정. 근로자 대표 별도 표시 권장"
+      },
+      "commonMistakes": [
+        "교육시간 단축 (사무직 3h·그 외 6h 미준수 시 과태료)",
+        "참석자 서명 누락 (실시 입증 불가)",
+        "특별교육인데 정기교육으로 표시 (별표 5의 2 작업 누락)",
+        "건설업 일용근로자에 4시간 기초교육 미실시",
+        "교육사진 미첨부 (감독 시 실시 입증 약화)"
+      ],
+      "bestPractices": [
+        "분기 정기교육은 매 분기 첫째 주 통합 실시",
+        "특별교육은 위험작업 시작 전 별도 일지 작성",
+        "외국인 근로자 모국어 자료(KOSHA 13개 언어) 사전 배포",
+        "교육 후 시험·소감문 권장 (실효성 입증)"
+      ]
+    },
+    "examples": [
+      {
+        "title": "산업안전보건교육 일지(예시)",
+        "source": "고용노동부",
+        "license": "공공누리"
+      }
+    ],
+    "relatedTools": [
+      "search_safety_laws({keyword:'제29조'})",
+      "search_safety_laws({keyword:'별표 5'})",
+      "get_foreign_worker_resource_links({language})"
+    ],
+    "rebuiltAt": "2026-04-29",
+    "rebuildSource": "kordoc parse_document on /tmp/official-forms/education-log-1.xlsx + parse_form on education-log-2.hwp",
+    "rebuildVerifiedBy": "라텔웍스 (Ratelworks Inc.) — 고용노동부 공식 양식 본문 1:1 정합 검증",
+    "documentCategory": "register",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "legalBasis": [
+    "art:산안법:29",
+    "art:산안법:31",
+    "art:산안법:77",
+    "annex:산안법시행규칙:별표4",
+    "annex:산안법시행규칙:별표5",
+    "art:산안법:175",
+    "art:산안법:170"
+  ],
+  "penaltyOnMissing": "art:산안법:175",
+  "appliesToActivities": [
+    "activity:safety_education"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha"
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 정기 안전보건교육 일지 (별지 79호)",
+      "legalSource": "산안법 제29조 + 시행규칙 제26조 + 별지 79호",
+      "fields": [
+        {
+          "key": "educationDate",
+          "label": "교육 일시",
+          "required": true,
+          "inputGuide": "매월 + 시간.",
+          "examples": [
+            "2026-04-15 09:00~11:00 (2h)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "educationType",
+          "label": "교육 종류 (산안법 제29조 4종)",
+          "required": true,
+          "inputGuide": "정기/신규/작업변경/특별.",
+          "examples": [
+            "정기교육 (월 2시간)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "hours",
+          "label": "교육 시간",
+          "required": true,
+          "inputGuide": "건설 일용 매월 1시간 / 일반 매분기 6시간.",
+          "examples": [
+            "2시간"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "instructor",
+          "label": "강사",
+          "required": true,
+          "inputGuide": "안전관리자 또는 외부 강사.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "curriculum",
+          "label": "교육 내용 (시행규칙 별표 5)",
+          "required": true,
+          "inputGuide": "법령·위험요인·재해사례.",
+          "examples": [
+            "1) 산안법 개정사항 30분 / 2) 4월 위험성평가 결과 60분 / 3) 사고 사례 30분"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trainees",
+          "label": "이수자 명단·서명",
+          "required": true,
+          "inputGuide": "전원 자필 서명 (외국인은 모국어 서명).",
+          "examples": [
+            [
+              {
+                "name": "박작업",
+                "signed": true,
+                "hours": 2
+              },
+              {
+                "name": "이작업",
+                "signed": true,
+                "hours": 2
+              }
+            ]
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Competence",
+  "annexReference": [
+    "annex:산안법시행규칙:서식79"
+  ],
+  "mitigatedBy": [
+    "control:admin_safety_education"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

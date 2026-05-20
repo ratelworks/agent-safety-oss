@@ -1,0 +1,44 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:cold_stress",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "cold_stress",
+  "label": "저온 노출 (한랭)",
+  "category": "environmental",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "한랭",
+      "저온"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_isolation_barrier",
+    "control:admin_health_check",
+    "control:admin_supervisor",
+    "control:admin_safety_education"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/W-17-2015"
+  ],
+  "description": "**원인**: 한랭환경 + 보온의복 부족 + 노출 부위 동상.\n**상황**: 한파 옥외 작업 / 냉동·냉장 창고 / 결빙 노출.\n**확인**: 보온의복·방한장갑·방한화 / 작업·휴식 주기 / 따뜻한 음료.\n**중대성**: 동상·저체온증 → 의식 상실·사망.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/17"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/W-17-2015"
+  ]
+}

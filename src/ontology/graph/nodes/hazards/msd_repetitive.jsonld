@@ -1,0 +1,58 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:msd_repetitive",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "msd_repetitive",
+  "label": "근골격계 부담작업",
+  "category": "ergonomic",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "근골격",
+      "VDT",
+      "반복작업",
+      "들기"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:admin_safety_education",
+    "control:admin_supervisor"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-17-2026",
+    "doc:kosha_guide/E-G-1-2025",
+    "doc:kosha_guide/E-G-4-2025",
+    "doc:kosha_guide/G-10-2023",
+    "doc:kosha_guide/G-40-2012",
+    "doc:kosha_guide/G-44-2011",
+    "doc:kosha_guide/G-90-2015",
+    "doc:kosha_guide/K-1-2023",
+    "doc:kosha_guide/T-4-2022",
+    "doc:kosha_guide/X-36-2016"
+  ],
+  "description": "**원인**: 반복 동작 / 부적절한 자세 / 무거운 들기 / 진동.\n**상황**: 철근 결속 / 자재 운반 / 수공구 반복 사용 / 도배·미장.\n**확인**: 근골격계 부담작업 평가 (산안법 제39조) / 작업·휴식 주기 / 인력운반 한계 (성인 남성 25kg).\n**중대성**: 만성 근골격 질환 (요통·수근터널증후군). 직업병 보상 다수.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/20"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/E-G-1-2025",
+    "doc:kosha_guide/E-G-4-2025",
+    "doc:kosha_guide/A-G-17-2026"
+  ]
+}

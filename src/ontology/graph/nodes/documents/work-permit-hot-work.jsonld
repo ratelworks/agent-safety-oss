@@ -1,0 +1,445 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/work_permit_hot_work",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "work_permit_hot_work",
+  "title": "화기작업 허가서",
+  "description": "용접·용단·연삭 등 화기작업 시 위험 방지 허가서",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "화기작업 시작 전",
+  "legalBasis": [
+    "art:기준규칙:241",
+    "art:기준규칙:242"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_허가서_번호",
+      "label": "허가서 번호",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "현장 자체 부여 일련번호. PERMIT-{유형}-YYMMDD-NN.",
+      "examples": [
+        "PERMIT-HW-260429-01"
+      ]
+    },
+    {
+      "key": "f_1_작업명",
+      "label": "작업명",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "본 작업 식별 명칭. 작업계획서 ID 일치.",
+      "examples": [
+        "3층 발코니 거푸집 양중 작업"
+      ]
+    },
+    {
+      "key": "f_2_작업_위치",
+      "label": "작업 위치",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "현장 도면 좌표 또는 명확한 위치 (층/구역/CHAMB·OUTLINE 등).",
+      "examples": [
+        "3층 동측 외벽 (도면 A-3-EW) / 지하 2층 콘크리트 타설 구역 (B2-C-04)"
+      ]
+    },
+    {
+      "key": "f_3_작업_일시",
+      "label": "작업 일시",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "작업 시작 일시. YYYY-MM-DD HH:MM.",
+      "examples": [
+        "2026-04-29 08:00"
+      ]
+    },
+    {
+      "key": "f_4_작업_책임자",
+      "label": "작업 책임자",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "작업 지휘자 직책 + 성명.",
+      "examples": [
+        "박감독 (작업반장)"
+      ]
+    },
+    {
+      "key": "f_5_가스_측정_결과__LE",
+      "label": "가스 측정 결과 (LEL/O2/CO/H2S)",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "화기작업 전 가스 농도 측정 (산안기준규칙 제241조).",
+      "examples": [
+        "LEL 0% (기준 10%) / O2 20.9% (18~23.5%) / CO 0ppm / H2S 0ppm — 안전"
+      ]
+    },
+    {
+      "key": "f_6_측정_시각",
+      "label": "측정 시각",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "측정 시점 (HH:MM).",
+      "examples": [
+        "09:30"
+      ]
+    },
+    {
+      "key": "f_7_측정자",
+      "label": "측정자",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "측정 수행자 직책 + 성명 + 자격 (작업환경측정기관 자격자).",
+      "examples": [
+        "김측정 (산업위생관리기사)"
+      ]
+    },
+    {
+      "key": "f_8_소화기_비치",
+      "label": "소화기 비치",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "화기작업 인근 소화기 비치 (3m 이내, 분말 ABC 2대 이상).",
+      "examples": [
+        "ABC 분말 4kg 2대 + CO2 5kg 1대 (작업지점 2m 이내)"
+      ]
+    },
+    {
+      "key": "f_9_소방감시자_배치",
+      "label": "소방감시자 배치",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "소방감시자 1명 이상 배치 (작업 종료 후 30분 이상 감시 — 산안기준규칙 제241조 ②).",
+      "examples": [
+        "이감시 (소방감시자 자격) 1명 / 작업 종료 후 60분 잔불 감시"
+      ]
+    },
+    {
+      "key": "f_10_주변_가연물_제거",
+      "label": "주변 가연물 제거",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "주변 가연물 제거·차단 (반경 11m 이내 — KOSHA Guide).",
+      "examples": [
+        "반경 11m 이내 가연물 제거 + 불연성 시트 차단막 설치"
+      ]
+    },
+    {
+      "key": "f_11_위험요인",
+      "label": "위험요인",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "발견·예상 유해·위험요인. 행위·조건 명시.",
+      "examples": [
+        "용접 불꽃·점화원 + 가연물 / 인화성 액체 누출 / 산소 농도 과다"
+      ]
+    },
+    {
+      "key": "f_12_안전조치",
+      "label": "안전조치",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "감소대책. 제거 → 대체 → 공학적 → 관리적 → 보호구 순.",
+      "examples": [
+        "1) 안전난간 설치 (공학적) / 2) 작업구역 통제 (관리적) / 3) 안전대 착용 (보호구)"
+      ]
+    },
+    {
+      "key": "f_13_허가자",
+      "label": "허가자",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "작업 허가권자 직책 + 성명 + 서명.",
+      "examples": [
+        "박감독 (작업반장, 서명)"
+      ]
+    },
+    {
+      "key": "f_14_작업자_서명",
+      "label": "작업자 서명",
+      "source": "산안기준규칙 제239조 + KOSHA P-94",
+      "inputGuide": "본인 자필 서명 또는 전자서명.",
+      "examples": [
+        "(자필 서명)"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "화재감시인 배치 명시",
+      "severity": "manual_review",
+      "legalBasis": "art:기준규칙:241"
+    },
+    {
+      "rule": "주변 가연물 점검 결과 첨부",
+      "severity": "manual_review"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 화기작업 허가서 (P-94)",
+      "legalSource": "산안기준규칙 제239조 + KOSHA P-94",
+      "fields": [
+        {
+          "key": "permitNumber",
+          "label": "허가서 번호",
+          "required": true,
+          "inputGuide": "PERMIT-HW-YYMMDD-NN.",
+          "examples": [
+            "PERMIT-HW-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workName",
+          "label": "작업명",
+          "required": true,
+          "inputGuide": "용접·용단·연마·드릴.",
+          "examples": [
+            "A동 5층 철골 용접"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workLocation",
+          "label": "작업 위치",
+          "required": true,
+          "inputGuide": "동·층·위치.",
+          "examples": [
+            "A동 5층 동측 외벽"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "workTime",
+          "label": "작업 시간",
+          "required": true,
+          "inputGuide": "시작~종료.",
+          "examples": [
+            "2026-04-29 09:00~12:00"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "flammableRemoval",
+          "label": "가연물 제거·차폐",
+          "required": true,
+          "inputGuide": "5m 반경 가연물 제거 + 방화포.",
+          "examples": [
+            "[√] 5m 반경 정리 + 방화포 4매"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "fireExtinguisher",
+          "label": "소화기 비치 (2대 이상)",
+          "required": true,
+          "inputGuide": "ABC 분말 4kg 이상.",
+          "examples": [
+            "[√] ABC 4kg × 3대"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "fireWatcher",
+          "label": "소방감시자",
+          "required": true,
+          "inputGuide": "화기작업 중 + 작업 후 30분.",
+          "examples": [
+            "박감시 (소방감시자, 작업 중 + 30분 잔류)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "weldingProtection",
+          "label": "용접 보호조치",
+          "required": true,
+          "inputGuide": "전격방지·접지·역화방지.",
+          "examples": [
+            "[√] 전격방지기 + 외함 접지 + 역화방지기"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "approver",
+          "label": "승인자",
+          "required": true,
+          "inputGuide": "안전보건관리책임자.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "1년",
+  "guidedBy": [
+    "doc:kosha_guide/A-G-11-2025",
+    "doc:kosha_guide/A-G-14-2026",
+    "doc:kosha_guide/C-108-2017",
+    "doc:kosha_guide/C-70-2012",
+    "doc:kosha_guide/C-91-2015",
+    "doc:kosha_guide/D-46-2013",
+    "doc:kosha_guide/E-4-2012",
+    "doc:kosha_guide/E-76-2013",
+    "doc:kosha_guide/F-3-2014",
+    "doc:kosha_guide/G-1-2023",
+    "doc:kosha_guide/C-17-2011",
+    "doc:kosha_guide/C-53-2012",
+    "doc:kosha_guide/D-1-2021",
+    "doc:kosha_guide/D-13-2012",
+    "doc:kosha_guide/D-2-2012",
+    "doc:kosha_guide/D-20-2017",
+    "doc:kosha_guide/D-21-2012",
+    "doc:kosha_guide/D-24-2012",
+    "doc:kosha_guide/D-27-2021",
+    "doc:kosha_guide/D-3-2012",
+    "doc:kosha_guide/D-32-2012",
+    "doc:kosha_guide/D-37-2012",
+    "doc:kosha_guide/D-38-2012",
+    "doc:kosha_guide/D-42-2021",
+    "doc:kosha_guide/D-5-2012",
+    "doc:kosha_guide/D-51-2020",
+    "doc:kosha_guide/D-52-2013",
+    "doc:kosha_guide/D-53-2013",
+    "doc:kosha_guide/D-56-2016",
+    "doc:kosha_guide/D-58-2016"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:기준규칙:241",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "용접",
+      "용단",
+      "화기",
+      "화재예방"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "construction_work",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:all_workplace",
+    "scaleNotes": "용접·용단·연삭·화기 작업 모든 현장."
+  },
+  "hasHazard": [
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:thermal_burn",
+    "hazard:radiation_uv",
+    "hazard:burn",
+    "hazard:electric_shock"
+  ],
+  "appliesToActivities": [
+    "activity:steel_structure"
+  ],
+  "informedBy": [
+    "entity:kosha",
+    "entity:nfa",
+    "src:fire:119",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Permit",
+  "mitigatedBy": [
+    "control:admin_work_permit",
+    "control:admin_supervisor",
+    "control:eng_fire_suppression",
+    "control:eng_alarm",
+    "control:ppe_chemical_suit"
+  ],
+  "relatedDocs": [
+    "doc:monthly/temporary_fire_facility_check",
+    "doc:continuous/msds_register"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

@@ -1,0 +1,121 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:tunnel_excavation",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "터널굴착작업",
+  "category": "excavation",
+  "annexReference": "annex:기준규칙:별표4-7호",
+  "verificationStatus": "verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "라텔웍스 + 황룡건설(주)",
+    "sourceUrl": "https://www.law.go.kr/법령/산업안전보건기준에관한규칙/별표4",
+    "fetchedAt": "2026-04-26",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "건설 안전 도메인 매트릭스 기반 hasHazard/regulatedBy 일괄 채움. 작업 활동(work activity) 만 채움.",
+    "graphAugmentedAt": "2026-04-28",
+    "graphAugmentationNote": "일반 hazard 보강 — trip_slip/heat/cold/ergonomic/msd 추가 (모든 작업에 해당하는 일반 위험요인)",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "graphConsistencyAugmentedAt": "2026-05-03",
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+  },
+  "causedBy": [
+    "hazard:cave_in",
+    "hazard:asphyxiation",
+    "hazard:fall_object"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-45-2012",
+    "doc:kosha_guide/C-61-2012",
+    "doc:kosha_guide/C-81-2013",
+    "doc:kosha_guide/C-88-2013",
+    "doc:kosha_guide/C-89-2013",
+    "doc:kosha_guide/D-C-6-2025",
+    "doc:kosha_guide/C-C-85-2026",
+    "doc:kosha_guide/C-C-87-2026"
+  ],
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:buried_alive",
+    "hazard:asphyxiation",
+    "hazard:gas_leak",
+    "hazard:dust_exposure",
+    "hazard:fall_object",
+    "hazard:electric_shock",
+    "hazard:vibration_exposure",
+    "hazard:biological_hazard",
+    "hazard:noise_exposure",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:619",
+    "art:기준규칙:338"
+  ],
+  "koshaArchiveFacets": [
+    "facet:ctgr03/07",
+    "facet:ctgr03/09",
+    "facet:ctgr03/11"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:cave_in",
+      "hazard:buried_alive",
+      "hazard:asphyxiation",
+      "hazard:gas_leak",
+      "hazard:dust_exposure",
+      "hazard:fall_object",
+      "hazard:electric_shock",
+      "hazard:vibration_exposure",
+      "hazard:biological_hazard"
+    ],
+    "general": [
+      "hazard:noise_exposure",
+      "hazard:trip_slip",
+      "hazard:ergonomic_overload",
+      "hazard:msd_repetitive",
+      "hazard:heat_stress",
+      "hazard:cold_stress"
+    ]
+  },
+  "hasWorkType": "cc:worktype/tunnel",
+  "workTypeLabel": {
+    "ko": "터널 굴착작업",
+    "en": "Tunnel excavation work"
+  }
+}

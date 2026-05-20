@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/generate_tbm_topics",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작업 활동 IRI 또는 한글 라벨로 그래프를 탐색해 당일 TBM 회의용 markdown을 생성한다",
+      "@language": "ko"
+    },
+    {
+      "@value": "Generate Tbm Topics",
+      "@language": "en"
+    }
+  ],
+  "description": "작업 활동 IRI 또는 한글 라벨로 그래프를 탐색해 당일 TBM 회의용 markdown을 생성한다. 오늘의 작업, 주요 위험요인, 안전조치, 필요 보호구, KOSHA Guide, 법령 조문을 저장소 JSON-LD와 daily_tbm schema 사실만으로 구성한다.",
+  "toolName": "generate_tbm_topics",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/generate_tbm_topics",
+  "maps_to_action": "safety:action/generate_tbm_topics",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

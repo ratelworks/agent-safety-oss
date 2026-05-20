@@ -1,0 +1,119 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/C-C-83-2020",
+  "@type": "Document",
+  "docId": "kosha_guide_c-c-83-2020",
+  "title": "가스폭발 예방을 위한 폭연방출구 설치에 관한 기술지원규정",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "C-C-83-2020",
+    "guideCategory": "chemical",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "construction",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 9건 (법령 4 / KOSHA Guide 5). keyword=\"가스폭발\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 4,
+      "5": 0,
+      "6": 3,
+      "7": 14,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "가스폭발",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:gas_leak",
+    "hazard:fire_explosion"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:eng_explosion_proof",
+    "control:eng_alarm",
+    "control:eng_fire_suppression",
+    "control:eng_isolation_barrier"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:기준규칙:232",
+      "law": "기준규칙",
+      "articleNumber": "232",
+      "title": "폭발 또는 화재 등의 예방",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제232조(폭발 또는 화재 등의 예방)",
+      "citedAsOf": "2020",
+      "temporalNote": "KOSHA Guide C-C-83-2020 본문 직접 인용 (2020년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침_5",
+      "title": "가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침 - 가스 혼합물 밀폐공간에 설치하는 방출구 면적 설계",
+      "score": 75.519
+    },
+    {
+      "docId": "KOSHA07_가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침_4",
+      "title": "가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침 - 폭연 방출구 설계에 관한 일반사항",
+      "score": 61.406
+    },
+    {
+      "docId": "KOSHA07_가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침_6",
+      "title": "가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침 - 배관 등에 설치하는 폭연 방출구 설계",
+      "score": 59.857
+    },
+    {
+      "docId": "KOSHA07_가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침_7",
+      "title": "가스폭발 예방을 위한 폭연 방출구 설치에 관한 기술지침 - 폭연 방출구의 종류와 설치 방법",
+      "score": 54.605
+    },
+    {
+      "docId": "KOSHA07_방호구조의 설계 및 설치에 관한 기술지침_2",
+      "title": "방호구조의 설계 및 설치에 관한 기술지침 - 적용범위",
+      "score": 50.251
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "docId": "KOSHA04_002000003000001000000000312000",
+      "title": "제312조 변전실 등의 위치",
+      "category": "4",
+      "score": 55.652
+    },
+    {
+      "docId": "KOSHA04_002000003000001000000000311000",
+      "title": "제311조 폭발위험장소에서 사용하는 전기 기계ㆍ기구의 선정 등",
+      "category": "4",
+      "score": 53.643
+    },
+    {
+      "docId": "KOSHA04_002000002000001000000000230000",
+      "title": "제230조 폭발위험이 있는 장소의 설정 및 관리",
+      "category": "4",
+      "score": 49.368
+    },
+    {
+      "docId": "KOSHA04_002000002000004000000000270000",
+      "title": "제270조 내화기준",
+      "category": "4",
+      "score": 42.565
+    }
+  ]
+}

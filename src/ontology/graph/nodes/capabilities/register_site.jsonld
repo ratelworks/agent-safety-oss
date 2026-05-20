@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/register_site",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "사업장 등록",
+      "@language": "ko"
+    },
+    {
+      "@value": "Register Site",
+      "@language": "en"
+    }
+  ],
+  "description": "사업장·현장·인력·장비·수급업체 SSoT 및 라텔웍스 기업 키 연동을 관리하는 capability. 사용자 SSoT — 사업장 등록. 한 번 등록 후 모든 94종 양식이 자동 참조. 저장 위치: ~/.agent-safety-oss/profile.jsonld",
+  "toolName": "register_site",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/register_site",
+  "producesEntity": [
+    "safety:SiteProfile"
+  ],
+  "maps_to_action": "safety:action/register_site",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

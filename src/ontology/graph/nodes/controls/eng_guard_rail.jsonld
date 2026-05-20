@@ -1,0 +1,42 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_guard_rail",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_guard_rail",
+  "label": "안전난간·안전대 부착설비",
+  "description": "고소작업·개구부·굴착 가장자리에서 추락을 물리적으로 막기 위해 안전난간과 부착설비를 설치하는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:concrete_work",
+    "activity:demolition",
+    "activity:excavation_2m_plus",
+    "activity:facade_work",
+    "activity:finishing_paint",
+    "activity:finishing_tile",
+    "activity:formwork_shoring",
+    "activity:precast_installation",
+    "activity:rc_concrete",
+    "activity:roofing",
+    "activity:scaffolding_assembly",
+    "activity:steel_erection",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "안전난간",
+      "난간"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

@@ -1,0 +1,35 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_machine_guard",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_machine_guard",
+  "label": "기계 방호장치",
+  "description": "회전체·절단부·협착부가 있는 장비 작업에서 덮개와 방호장치로 신체 접촉을 막는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:cement_handling",
+    "activity:concrete_work",
+    "activity:machinery_repair",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:road_pavement",
+    "activity:tower_crane_maintenance",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "방호장치",
+      "방호덮개"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

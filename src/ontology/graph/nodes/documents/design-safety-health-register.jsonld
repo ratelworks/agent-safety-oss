@@ -1,0 +1,311 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:ad_hoc/design_safety_health_register",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "design_safety_health_register",
+  "title": "설계 안전보건대장",
+  "description": "설계자가 작성하는 설계안전보건대장 (산안법 제67조 + 시행규칙 제86조 ②)",
+  "cycle": "cyc:ad_hoc",
+  "trigger": "건설공사 설계단계",
+  "legalBasis": [
+    "art:산안법:67",
+    "art:산안법시행규칙:86"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_공사명",
+      "label": "공사명",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "발주처 계약서 상의 공식 공사명. 약식 표기 금지.",
+      "examples": [
+        "서울특별시 OO구 OO동 신축공사",
+        "OO지구 도시개발사업 1공구 토목공사"
+      ]
+    },
+    {
+      "key": "f_1_설계자",
+      "label": "설계자",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "설계 주관 회사명 + 책임설계자 성명.",
+      "examples": [
+        "(주)희림종합건축사사무소 / 책임 김건축",
+        "정림건축종합건축사사무소(주) / 박설계"
+      ]
+    },
+    {
+      "key": "f_2_기본안전보건대장_반영",
+      "label": "기본안전보건대장 반영",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "발주자 기본안전보건대장 반영 사항.",
+      "examples": [
+        "1) 추락 방지 설계 / 2) 화재 (스프링클러) / 3) MSDS 통합 관리 시스템"
+      ]
+    },
+    {
+      "key": "f_3_적정_공사기간",
+      "label": "적정 공사기간",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "적정 공사기간 산정 (단축 시 안전 위험).",
+      "examples": [
+        "18개월 (단축 시 추락·붕괴 위험 증가 — 산안법 제67조)"
+      ]
+    },
+    {
+      "key": "f_4_안전보건_금액_산출서",
+      "label": "안전보건 금액 산출서",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "안전보건관리비 금액 산출서.",
+      "examples": [
+        "총공사비 320억 × 2.65% = 8.5억 (건설업 산업안전보건관리비 계상기준)"
+      ]
+    },
+    {
+      "key": "f_5_유해_위험요인_감소_설",
+      "label": "유해·위험요인 감소 설계",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "발견·예상 유해·위험요인. KRAS 7방법 적용.",
+      "examples": [
+        "1) 추락 (2m 이상 단부) / 2) 협착 (양중 하부) / 3) 화재 (용접 불꽃)"
+      ]
+    },
+    {
+      "key": "f_6_설계자_서명",
+      "label": "설계자 서명",
+      "source": "산안법 제67조 + 건설공사 안전보건대장 작성 고시",
+      "inputGuide": "설계 주관 회사명 + 책임설계자 성명.",
+      "examples": [
+        "(주)희림종합건축사사무소 / 책임 김건축",
+        "정림건축종합건축사사무소(주) / 박설계"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "제86조 ② 3항목 모두 작성 (적정 공사기간·금액·감소방안·관리비 산출)",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:86"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 설계 안전보건대장",
+      "legalSource": "산안법 제67조 + 시행규칙 제84조",
+      "fields": [
+        {
+          "key": "projectInfo",
+          "label": "공사 개요",
+          "required": true,
+          "inputGuide": "공사명·금액·공기.",
+          "examples": [
+            "삼성동 공동주택 35억원"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "designerInfo",
+          "label": "설계사 정보",
+          "required": true,
+          "inputGuide": "설계사·대표·자격.",
+          "examples": [
+            "(주)건축설계 / 대표 김설계 / 건축사"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "designHazardAnalysis",
+          "label": "설계 단계 위험요인 분석",
+          "required": true,
+          "inputGuide": "설계도서별 위험요인 + 시공시 안전 고려사항.",
+          "examples": [
+            "1) 지하 굴착 8m → 흙막이 보강 / 2) 외벽 철골 → 추락 위험 / 3) 옥상 슬래브 → 단부 보호"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "designControlMeasures",
+          "label": "설계 단계 안전 대책",
+          "required": true,
+          "inputGuide": "설계 도면에 반영된 안전 시설.",
+          "examples": [
+            "흙막이 H-300 + 어스앵커 / 외벽 시스템비계 + 추락방호망 / 옥상 영구 안전난간"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "basicRegisterLink",
+          "label": "기본대장 연계",
+          "required": true,
+          "inputGuide": "기본대장 등록 정보 참조.",
+          "examples": [
+            "기본대장 (발주자 황룡건설, 2026-02-01) 참조"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "공사 종료 후 3년",
+  "guidedBy": [
+    "doc:kosha_guide/C-11-2012",
+    "doc:kosha_guide/C-18-2015",
+    "doc:kosha_guide/C-96-2014",
+    "doc:kosha_guide/C-C-18-2026",
+    "doc:kosha_guide/C-C-93-2026",
+    "doc:kosha_guide/D-21-2012",
+    "doc:kosha_guide/D-24-2012",
+    "doc:kosha_guide/D-3-2012",
+    "doc:kosha_guide/D-32-2012",
+    "doc:kosha_guide/D-33-2012",
+    "doc:kosha_guide/D-37-2012",
+    "doc:kosha_guide/D-38-2012",
+    "doc:kosha_guide/D-42-2021",
+    "doc:kosha_guide/D-52-2013",
+    "doc:kosha_guide/D-58-2016",
+    "doc:kosha_guide/D-60-2017",
+    "doc:kosha_guide/D-61-2018",
+    "doc:kosha_guide/D-63-2018",
+    "doc:kosha_guide/D-65-2018",
+    "doc:kosha_guide/D-7-2012",
+    "doc:kosha_guide/E-96-2011"
+  ],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:67",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "설계",
+      "발주자"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "administrative",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "applicableWhen": {
+    "appliesTo": "applic:construction_50bn_plus",
+    "scaleNotes": "건설공사 발주자가 설계 단계 작성."
+  },
+  "searchKeywords": [
+    "설계안전보건대장",
+    "안전보건대장 3종",
+    "설계 단계",
+    "발주자 의무"
+  ],
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "entity:kosha",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "relatedDocs": [
+    "doc:ad_hoc/construction_safety_health_register",
+    "doc:ad_hoc/basic_safety_health_register"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

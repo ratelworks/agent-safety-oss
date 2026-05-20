@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:dust",
+  "@type": "Hazard",
+  "slug": "dust",
+  "label": "분진",
+  "description": "분진 흡입에 의한 호흡기 질환",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장."
+  },
+  "iso45001Class": "iso45001:Hazard",
+  "category": "chemical",
+  "mitigatedBy": [
+    "control:ppe_respirator",
+    "control:eng_ventilation",
+    "control:sub_low_toxic",
+    "control:admin_health_check",
+    "control:admin_safety_education"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/G-106-2013",
+    "doc:kosha_guide/H-122-2013",
+    "doc:kosha_guide/E-G-19-2026"
+  ],
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:demolition",
+    "activity:cement_handling",
+    "activity:asbestos_removal",
+    "activity:tunnel_excavation"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/G-106-2013",
+    "doc:kosha_guide/H-122-2013",
+    "doc:kosha_guide/E-G-19-2026"
+  ]
+}

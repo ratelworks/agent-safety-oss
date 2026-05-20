@@ -1,0 +1,28 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_hot_work_permit",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_hot_work_permit",
+  "label": "화기작업허가서 (용접·용단·연마 등)",
+  "description": "용접·용단·연마·열처리 등 화기 발생 작업 착수 전 사업주가 발급하는 허가서. 인근 가연물 제거, 소화기 비치, 화재감시자 배치, 작업 후 점검까지 의무 명시.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:steel_structure",
+    "activity:machinery_repair",
+    "activity:underground_utility",
+    "activity:tunnel_excavation"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 + 산안기준규칙 §241·§241-2·§242 (화재예방 등)",
+    "verifiedAt": "2026-05-20",
+    "matchKeywords": ["화기", "용접", "용단", "Hot Work"],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "note": "v1.3.x Applicability rule 보강 — applic:hot_work.enforces 지원"
+  },
+  "iso45001Class": "iso45001:Control"
+}

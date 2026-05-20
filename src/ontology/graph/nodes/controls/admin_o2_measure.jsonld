@@ -1,0 +1,27 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_o2_measure",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_o2_measure",
+  "label": "밀폐공간 산소·유해가스 농도 측정",
+  "description": "밀폐공간 작업 전·중 산소 농도(18~23.5%) 및 유해가스(황화수소·일산화탄소·이산화탄소 등) 농도 측정. 측정 결과 기록·보관. 산안기준규칙 §619 등.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:drainage_sewerage"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "산안기준규칙 §619 (밀폐공간 작업 전 농도 측정) + §624 (구조·연락설비)",
+    "verifiedAt": "2026-05-20",
+    "matchKeywords": ["밀폐공간", "산소", "유해가스", "농도측정"],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "note": "v1.3.x Applicability rule 보강 — applic:confined_space.enforces 지원"
+  },
+  "iso45001Class": "iso45001:Control"
+}

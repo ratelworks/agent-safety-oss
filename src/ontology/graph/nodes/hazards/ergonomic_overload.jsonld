@@ -1,0 +1,50 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:ergonomic_overload",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "ergonomic_overload",
+  "label": "무리한 동작",
+  "category": "ergonomic",
+  "koshaAccidentType": "무리한동작",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "무리한",
+      "들기",
+      "운반",
+      "수공구"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_safety_education",
+    "control:admin_health_check",
+    "control:admin_supervisor"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/A-G-17-2026",
+    "doc:kosha_guide/E-G-1-2025",
+    "doc:kosha_guide/E-G-4-2025"
+  ],
+  "description": "**원인**: 일시적 과도한 들기·운반 / 부자연스러운 자세 + 무거운 하중.\n**상황**: 자재 인력운반 / 비계자재·거푸집·콘크리트.\n**확인**: 인력운반 한계 (성인 남성 25kg, 여성 15kg) / 2인 작업 / 운반설비.\n**중대성**: 급성 요추 디스크·요통.",
+  "koshaArchiveFacets": [
+    "facet:ctgr04/20"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/A-G-17-2026",
+    "doc:kosha_guide/E-G-1-2025",
+    "doc:kosha_guide/E-G-4-2025"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:admin_signal_person",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "admin_signal_person",
+  "label": "신호수 배치",
+  "description": "양중·차량계 장비·교통 접점 작업에서 작업반경과 이동 경로를 통제하기 위해 신호수를 배치하는 관리 통제.",
+  "ericLevel": 4,
+  "category": "administrative",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:heavy_lifting",
+    "activity:lifting_operation",
+    "activity:precast_installation",
+    "activity:road_pavement",
+    "activity:steel_erection",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:tower_crane_maintenance",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "신호수",
+      "신호"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

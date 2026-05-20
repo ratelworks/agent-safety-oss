@@ -1,0 +1,71 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:struck_by_overturn",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "struck_by_overturn",
+  "label": "깔림·뒤집힘",
+  "category": "physical",
+  "koshaAccidentType": "깔림·뒤집힘",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "전도",
+      "깔림",
+      "뒤집힘",
+      "전복"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:sub_safer_equipment",
+    "control:eng_isolation_barrier",
+    "control:eng_monitoring",
+    "control:admin_signal_person",
+    "control:admin_supervisor",
+    "control:admin_qualification",
+    "control:admin_inspection",
+    "control:ppe_helmet",
+    "control:ppe_safety_shoes",
+    "control:eng_machine_guard"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/B-E-20-2026",
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/C-48-2022",
+    "doc:kosha_guide/D-C-4-2025"
+  ],
+  "description": "**원인**: 건설기계 전도 / 차량 전복 / 흙막이·구조물 무너짐.\n**상황**: 경사지 차량 작업·아우트리거 미사용 굴삭·고소작업대 풍속 초과·흙막이 시공.\n**확인**: 아우트리거 전개·고정 / 풍속 10m/s 이상 작업 중지 / 사면 안정성 / 차량 경사한계.\n**중대성**: 차량 깔림 시 즉사. 흙막이 전도 시 굴착부 매몰.",
+  "koshaArchiveFacets": [
+    "facet:ctgr02/16",
+    "facet:ctgr02/19"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:earthwork_landfill",
+    "activity:excavation_2m_plus",
+    "activity:heavy_lifting",
+    "activity:phc_pile_driving",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-114-2020",
+    "doc:kosha_guide/C-48-2022",
+    "doc:kosha_guide/D-C-4-2025"
+  ]
+}

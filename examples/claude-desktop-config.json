@@ -1,0 +1,12 @@
+{
+  "_comment": "Claude Desktop 의 ~/Library/Application Support/Claude/claude_desktop_config.json (macOS) 또는 %APPDATA%\\Claude\\claude_desktop_config.json (Windows) 에 mcpServers 항목으로 추가합니다. 키는 README 표기와 동일한 'agent-safety-oss' 권장 (Claude Desktop UI 표시 이름).",
+  "mcpServers": {
+    "agent-safety-oss": {
+      "command": "npx",
+      "args": ["-y", "agent-safety-oss", "serve"],
+      "env": {
+        "LOG_LEVEL": "info"
+      }
+    }
+  }
+}

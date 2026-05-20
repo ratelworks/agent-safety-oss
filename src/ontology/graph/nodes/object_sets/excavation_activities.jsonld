@@ -1,0 +1,42 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:object_set/excavation_activities",
+  "@type": [
+    "safety:ObjectSet",
+    "prov:Collection"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "굴착·토공 활동",
+      "@language": "ko"
+    },
+    {
+      "@value": "Excavation & Earthwork Activities",
+      "@language": "en"
+    }
+  ],
+  "description": "굴착·토공·배수 계열 작업 활동 집합 — 산안기준규칙 제38조 및 굴착·흙막이·토공 KOSHA Guide 탐색의 named query.",
+  "category": "WorkActivity",
+  "sparqlFilter": "?activity a safety:WorkActivity . VALUES ?activity { activity:excavation_2m_plus activity:earthwork_landfill activity:drainage_sewerage activity:tunnel_excavation }",
+  "members": [
+    {
+      "@id": "activity:excavation_2m_plus"
+    },
+    {
+      "@id": "activity:earthwork_landfill"
+    },
+    {
+      "@id": "activity:drainage_sewerage"
+    },
+    {
+      "@id": "activity:tunnel_excavation"
+    }
+  ],
+  "memberCount": 4,
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks",
+    "intendedUse": "LLM이 굴착·토공 카테고리 작업을 한 번에 traversal하여 기준규칙, 위험요인, KOSHA Guide를 연결한다.",
+    "sourcePattern": "declarative named object-set query pattern"
+  }
+}

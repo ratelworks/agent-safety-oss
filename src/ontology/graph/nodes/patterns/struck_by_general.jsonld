@@ -1,0 +1,28 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_general",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_general",
+  "title": "struck_by",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 72건 관측. 사고유형 struck_by.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [],
+  "caseFrequency": 72,
+  "sampleKeywords": [
+    "CPB 조작판넬 충전부 감전",
+    "궤도 유지보수작업 중 열차와 충돌(사망2명)",
+    "배관연결작업 중 무너지는 토사를 피하려다 맨홀에 충돌"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}

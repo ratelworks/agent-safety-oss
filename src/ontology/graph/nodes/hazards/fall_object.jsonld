@@ -1,0 +1,77 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:fall_object",
+  "@type": "Hazard",
+  "verificationStatus": "verified",
+  "slug": "fall_object",
+  "label": "맞음 (낙하·비래)",
+  "category": "physical",
+  "koshaAccidentType": "맞음",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "낙하",
+      "비래",
+      "맞음",
+      "물체"
+    ],
+    "excludeKeywords": [],
+    "graphEnrichedAt": "2026-04-27",
+    "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
+    "guidedByAutoMatchedAt": "2026-04-28",
+    "guidedByMatchScript": "title-keyword-matching",
+    "descriptionFilledAt": "2026-04-28",
+    "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "mitigatedBy": [
+    "control:eng_fall_net",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person",
+    "control:admin_safety_education",
+    "control:ppe_helmet",
+    "control:ppe_safety_shoes"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:38"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-26-2017",
+    "doc:kosha_guide/C-27-2011",
+    "doc:kosha_guide/B-M-12-2025"
+  ],
+  "description": "**원인**: 낙하물 방지망 미설치 / 자재 가장자리 적재 / 양중 시 결속 부실 / 풍력.\n**상황**: 비계 외측·양중 작업·해체작업·고소 운반 시.\n**확인**: 낙하방지망 (그물코 10cm 이내) / 방호선반 / 출입금지 표시 / 안전모 착용.\n**중대성**: 두부 손상 시 사망. 안전모 의무 착용으로 빈도 감소 가능.",
+  "koshaArchiveFacets": [
+    "facet:ctgr01/11",
+    "facet:ctgr03/08",
+    "facet:ctgr03/14"
+  ],
+  "iso45001Class": "iso45001:Hazard",
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:bridge_5m_30m",
+    "activity:demolition",
+    "activity:excavation_2m_plus",
+    "activity:formwork_shoring",
+    "activity:general_workplace_safety",
+    "activity:heavy_lifting",
+    "activity:phc_pile_driving",
+    "activity:rc_concrete",
+    "activity:scaffolding_assembly",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:vehicle_cargo",
+    "activity:vehicle_construction"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-26-2017",
+    "doc:kosha_guide/C-27-2011",
+    "doc:kosha_guide/B-M-12-2025"
+  ]
+}

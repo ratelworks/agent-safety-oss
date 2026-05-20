@@ -1,0 +1,39 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:falling_object",
+  "@type": "Hazard",
+  "slug": "falling_object",
+  "label": "낙하물",
+  "description": "물체 낙하에 의한 재해",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장."
+  },
+  "iso45001Class": "iso45001:Hazard",
+  "category": "physical",
+  "mitigatedBy": [
+    "control:eng_fall_net",
+    "control:ppe_helmet",
+    "control:eng_isolation_barrier",
+    "control:admin_inspection",
+    "control:admin_signal_person"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-26-2017",
+    "doc:kosha_guide/C-27-2011",
+    "doc:kosha_guide/B-M-12-2025"
+  ],
+  "specificity": "specific",
+  "appliesToActivity": [
+    "activity:heavy_lifting",
+    "activity:tower_crane",
+    "activity:scaffolding_assembly",
+    "activity:steel_erection"
+  ],
+  "supportedByGuide": [
+    "doc:kosha_guide/C-26-2017",
+    "doc:kosha_guide/C-27-2011",
+    "doc:kosha_guide/B-M-12-2025"
+  ]
+}

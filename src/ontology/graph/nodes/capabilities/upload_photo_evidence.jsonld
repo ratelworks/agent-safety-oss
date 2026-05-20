@@ -1,0 +1,29 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/upload_photo_evidence",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "현장 사진을 PhotoEvidence 로 등록한다",
+      "@language": "ko"
+    },
+    {
+      "@value": "Upload Photo Evidence",
+      "@language": "en"
+    }
+  ],
+  "description": "현장 사진을 PhotoEvidence 로 등록한다. filePath 입력 시 photos/ 로 복사하고, fileUri 입력 시 URI를 그대로 증빙으로 기록한다. relatedTask·capturedAt 기반 IRI와 그래프 사슬을 반환한다.",
+  "toolName": "upload_photo_evidence",
+  "category": "site_profile",
+  "inputSchema": "safety:schema/input/upload_photo_evidence",
+  "maps_to_action": "safety:action/upload_photo_evidence",
+  "_meta": {
+    "created": "2026-05-19",
+    "creator": "safety:agent/ratelworks",
+    "addedIn": "v1.3.0",
+    "addedReason": "External P0-1 audit — capability registry 19 missing"
+  }
+}

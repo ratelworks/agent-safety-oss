@@ -1,0 +1,200 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-92-2012",
+  "@type": "Document",
+  "docId": "kosha_guide_h-92-2012",
+  "title": "전기도금 사업장 근로자 보건관리 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-92-2012",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). keyword=\"전기도금\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 1,
+      "7": 12,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "smartSearchKeyword": "전기도금",
+    "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 5건 (법령 0 / KOSHA Guide 5). title 로 검색. 2026-05-12.",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:electric_shock",
+    "hazard:fire",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:thermal_burn",
+    "hazard:trip_slip",
+    "hazard:ergonomic_overload",
+    "hazard:msd_repetitive",
+    "hazard:heat_stress",
+    "hazard:cold_stress"
+  ],
+  "mitigatedBy": [
+    "control:elim_avoid_work",
+    "control:sub_low_risk_method",
+    "control:eng_insulation",
+    "control:eng_loto",
+    "control:eng_alarm",
+    "control:sub_low_toxic",
+    "control:eng_fire_suppression",
+    "control:eng_explosion_proof",
+    "control:eng_isolation_barrier",
+    "control:eng_fall_net",
+    "control:eng_guard_rail",
+    "control:eng_scaffold",
+    "control:admin_safety_education",
+    "control:admin_supervisor",
+    "control:ppe_chemical_suit",
+    "control:ppe_eye_protection",
+    "control:admin_inspection",
+    "control:ppe_safety_shoes",
+    "control:elim_automation",
+    "control:sub_safer_equipment",
+    "control:admin_health_check",
+    "control:eng_ventilation"
+  ],
+  "appliesToActivities": [
+    "activity:electric_work_50v_plus"
+  ],
+  "relatedKoshaGuide": [
+    {
+      "docId": "KOSHA07_전기도금 사업장 근로자 보건관리 지침_1",
+      "title": "전기도금 사업장 근로자 보건관리 지침 - 목적",
+      "score": 80.302
+    },
+    {
+      "docId": "KOSHA07_전기도금 사업장 근로자 보건관리 지침_3",
+      "title": "전기도금 사업장 근로자 보건관리 지침 - 용어의 정의",
+      "score": 67.912
+    },
+    {
+      "docId": "KOSHA07_전기도금 사업장 근로자 보건관리 지침_5",
+      "title": "전기도금 사업장 근로자 보건관리 지침 - 작업관리",
+      "score": 64.848
+    },
+    {
+      "docId": "KOSHA07_전기도금 사업장 근로자 보건관리 지침_6",
+      "title": "전기도금 사업장 근로자 보건관리 지침 - 작업환경관리",
+      "score": 58.532
+    },
+    {
+      "docId": "KOSHA07_침지탱크의 작업안전 관리 기술지침_2",
+      "title": "침지탱크의 작업안전 관리 기술지침 - 적용범위",
+      "score": 49.518
+    }
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:36",
+      "law": "산안법",
+      "articleNumber": "36",
+      "title": "위험성평가의 실시",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제36조(안전검사)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:41",
+      "law": "산안법",
+      "articleNumber": "41",
+      "title": "고객의 폭언 등으로 인한 건강장해 예방조치 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제41조(물질안전보건자료의 작성·비치 등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:42",
+      "law": "산안법",
+      "articleNumber": "42",
+      "title": "유해위험방지계획서의 작성ㆍ제출 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제42조(작업환경측정 등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:43",
+      "law": "산안법",
+      "articleNumber": "43",
+      "title": "유해위험방지계획서 이행의 확인 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제43조(건강진단)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:36",
+      "law": "산안법",
+      "articleNumber": "36",
+      "title": "위험성평가의 실시",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제36조(안전검사)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:41",
+      "law": "산안법",
+      "articleNumber": "41",
+      "title": "고객의 폭언 등으로 인한 건강장해 예방조치 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제41조(물질안전보건자료의 작성·비치 등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:42",
+      "law": "산안법",
+      "articleNumber": "42",
+      "title": "유해위험방지계획서의 작성ㆍ제출 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제42조(작업환경측정 등)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법:43",
+      "law": "산안법",
+      "articleNumber": "43",
+      "title": "유해위험방지계획서 이행의 확인 등",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제43조(건강진단)",
+      "citedAsOf": "2012",
+      "temporalNote": "KOSHA Guide H-92-2012 본문 직접 인용 (2012년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ]
+}

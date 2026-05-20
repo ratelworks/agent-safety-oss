@@ -1,0 +1,37 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "control:eng_fire_suppression",
+  "@type": "Control",
+  "verificationStatus": "verified",
+  "slug": "eng_fire_suppression",
+  "label": "자동소화 설비",
+  "description": "화기·전기·화학물질 작업에서 초기 화재를 자동으로 감지·소화하도록 설비를 배치하는 공학적 통제.",
+  "ericLevel": 3,
+  "category": "engineering",
+  "controlSpecificity": "specific",
+  "appliesToActivity": [
+    "activity:chemical_handling",
+    "activity:electric_work_50v_plus",
+    "activity:electrical_maintenance",
+    "activity:finishing_paint",
+    "activity:hazardous_chemical_work",
+    "activity:painting",
+    "activity:road_pavement",
+    "activity:steel_structure",
+    "activity:tunnel_excavation",
+    "activity:underground_utility",
+    "activity:waterproofing"
+  ],
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceStandard": "ERIC-PP 위계 (Elimination → Substitution → Engineering → Administrative → PPE)",
+    "verifiedAt": "2026-04-27",
+    "matchKeywords": [
+      "소화",
+      "스프링클러"
+    ],
+    "excludeKeywords": [],
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+  },
+  "iso45001Class": "iso45001:Control"
+}

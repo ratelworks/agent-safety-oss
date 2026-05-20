@@ -1,0 +1,134 @@
+{
+  "@context": "../../../context.jsonld",
+  "@id": "doc:kosha_guide/H-123-2013",
+  "@type": "Document",
+  "docId": "kosha_guide_h-123-2013",
+  "title": "불산불화수소 취급근로자의 중독 예방 및 응급대응 지침",
+  "cycle": "cyc:reference",
+  "verificationStatus": "kosha_live_verified",
+  "jurisdiction": "KR",
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA)",
+    "sourceApi": "data.go.kr 15144147 (KOSHA Guide 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/guideExp.do",
+    "guideNo": "H-123-2013",
+    "guideCategory": "health",
+    "fetchedAt": "2026-04-26",
+    "verifiedAt": "2026-04-26",
+    "verifiedBy": "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
+    "licenseHint": "공공자료 (출처 표기 시 활용)",
+    "note": "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    "matchType": "smart-search-enriched",
+    "scope": "general_applicable",
+    "matchTypeNote": "data.go.kr 15123696 smart search 매칭 0건 (법령 0 / KOSHA Guide 0). keyword=\"불산불화수소\" (title 첫 단어 추출). 2026-05-12.",
+    "smartSearchEnrichedAt": "2026-05-12",
+    "smartSearchCategoryCounts": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "11": 0
+    },
+    "previousMatchTypeNote": "KOSHA 코드 prefix 기반 fallback. 의미적 키워드 매칭 실패. 도메인 카테고리 활동에만 약하게 연결.",
+    "smartSearchKeyword": "불산불화수소",
+    "relatedLawSource": "guide_body_citation_v1",
+    "relatedLawUpdatedAt": "2026-05-18"
+  },
+  "causedBy": [
+    "hazard:chemical_burn",
+    "hazard:chemical_exposure"
+  ],
+  "mitigatedBy": [
+    "control:admin_emergency_plan",
+    "control:sub_low_toxic",
+    "control:eng_ventilation",
+    "control:eng_isolation_barrier",
+    "control:admin_msds",
+    "control:admin_safety_education"
+  ],
+  "relatedLaw": [
+    {
+      "articleNodeId": "art:산안법:5",
+      "law": "산안법",
+      "articleNumber": "5",
+      "title": "사업주 등의 의무",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 제5조(사업주 등의 의무)",
+      "citedAsOf": "2013",
+      "temporalNote": "KOSHA Guide H-123-2013 본문 직접 인용 (2013년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:3",
+      "law": "산안법시행령",
+      "articleNumber": "3",
+      "title": "산업재해 예방을 위한 시책 마련",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "산업안전보건법 시행령 제3조의7(사업주 등의 협조)",
+      "citedAsOf": "2013",
+      "temporalNote": "KOSHA Guide H-123-2013 본문 직접 인용 (2013년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "_legacyRelatedLaw": [
+    {
+      "articleNodeId": "art:산안법:5",
+      "law": "산안법",
+      "articleNumber": "5",
+      "title": "사업주 등의 의무",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 제5조(사업주 등의 의무)",
+      "citedAsOf": "2013",
+      "temporalNote": "KOSHA Guide H-123-2013 본문 직접 인용 (2013년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    },
+    {
+      "articleNodeId": "art:산안법시행령:3",
+      "law": "산안법시행령",
+      "articleNumber": "3",
+      "title": "산업재해 예방을 위한 시책 마련",
+      "source": "guide_body_citation",
+      "score": 100,
+      "rawCitation": "- 산업안전보건법 시행령 제3조의7(사업주 등의 협조)",
+      "citedAsOf": "2013",
+      "temporalNote": "KOSHA Guide H-123-2013 본문 직접 인용 (2013년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
+    }
+  ],
+  "relatedChapter": [
+    {
+      "chapterNodeId": "chapter:기준규칙:1장",
+      "law": "기준규칙",
+      "chapterTitle": "관리대상 유해물질에 의한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편제1장(관리대상 유해물질에 의한 건강"
+    },
+    {
+      "chapterNodeId": "chapter:기준규칙:10장",
+      "law": "기준규칙",
+      "chapterTitle": "밀폐공간 작업으로 인한 건강장해의 예방",
+      "source": "guide_body_citation",
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제10장(밀폐공간 작업으로 인한 건강"
+    }
+  ],
+  "rawChapterCitations": [
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 3,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편제1장(관리대상 유해물질에 의한 건강",
+      "needsNode": true
+    },
+    {
+      "law": "기준규칙",
+      "unit": "편",
+      "num": 3,
+      "rawCitation": "산업안전보건기준에 관한 규칙 제3편 제10장(밀폐공간 작업으로 인한 건강",
+      "needsNode": true
+    }
+  ]
+}

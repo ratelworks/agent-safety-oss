@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/list_kras_methods",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "KRAS 위험성평가 7개 방법론 목록",
+      "@language": "ko"
+    },
+    {
+      "@value": "List Kras Methods",
+      "@language": "en"
+    }
+  ],
+  "description": "안전관리 법정문서의 근거, 스키마, 생성, 검토, 제출, 보관, 컨텍스트 조립을 수행하는 capability. KOSHA 가 공식 제공하는 KRAS 7개 위험성평가 방법론(3단계 판단법, 체크리스트법, 핵심요인기술법(OPS), 빈도·강도법, 산업보건평가, 화학물질평가(CHARM), 건설 최초·상시·수시·정기 평가)의 메타데이터(코드·공식명·정량/정성·적용규모·적용분야)를 반환. 위험성평가 작성 전 어떤 방법을 적용할지 결정에 사용.",
+  "toolName": "list_kras_methods",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/list_kras_methods",
+  "producesEntity": [
+    "safety:Method"
+  ],
+  "maps_to_action": "safety:action/list_kras_methods",
+  "_meta": {
+    "created": "2026-05-03",
+    "creator": "safety:agent/ratelworks"
+  }
+}

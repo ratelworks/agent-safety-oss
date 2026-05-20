@@ -1,0 +1,32 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "hazard:noise",
+  "@type": "Hazard",
+  "slug": "noise",
+  "label": "소음",
+  "description": "소음 노출에 의한 청력 손실",
+  "_meta": {
+    "createdAt": "2026-04-29",
+    "createdBy": "auto-placeholder (1차 의무 양식 정합 후속)",
+    "note": "Dangling reference 해소를 위한 placeholder. 추후 도메인 보강 권장."
+  },
+  "iso45001Class": "iso45001:Hazard",
+  "category": "physical",
+  "mitigatedBy": [
+    "control:ppe_hearing_protection",
+    "control:eng_noise_barrier",
+    "control:admin_health_check",
+    "control:admin_safety_education"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/M-51-2023",
+    "doc:kosha_guide/W-23-2016",
+    "doc:kosha_guide/H-160-2014"
+  ],
+  "specificity": "general",
+  "supportedByGuide": [
+    "doc:kosha_guide/M-51-2023",
+    "doc:kosha_guide/W-23-2016",
+    "doc:kosha_guide/H-160-2014"
+  ]
+}

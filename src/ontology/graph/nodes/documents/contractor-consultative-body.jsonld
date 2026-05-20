@@ -1,0 +1,294 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "doc:monthly/contractor_consultative_body",
+  "@type": [
+    "Document",
+    "DigitalDocument"
+  ],
+  "docId": "contractor_consultative_body",
+  "title": "도급인 안전보건교육 지원",
+  "description": "50억 이상 건설현장 또는 일정 규모 도급사업 안전보건협의체 (산안법 제75조 + 시행규칙 제74조)",
+  "cycle": "cyc:monthly",
+  "trigger": "월 1회 회의 + 안전 의제 변경 시",
+  "applicableWhen": {
+    "constructionValueGte": 50
+  },
+  "legalBasis": [
+    "art:산안법:75",
+    "art:산안법시행규칙:74"
+  ],
+  "requiredFields": [
+    {
+      "key": "f_0_회의_일시",
+      "label": "회의 일시",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "도급인-수급인 안전보건협의체 회의 일시 (월 1회).",
+      "examples": [
+        "2026-04-29 14:00"
+      ]
+    },
+    {
+      "key": "f_1_도급인_사업장명",
+      "label": "도급인 사업장명",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "도급 발주 사업장.",
+      "examples": [
+        "황룡건설(주) 삼성동 현장"
+      ]
+    },
+    {
+      "key": "f_2_관계수급인_사업장명",
+      "label": "관계수급인 사업장명",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "수급·하수급 사업장.",
+      "examples": [
+        "광산기계(주) 양중작업팀"
+      ]
+    },
+    {
+      "key": "f_3_협의_의제",
+      "label": "협의 의제",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "협의 의제 (작업방법 조정·합동안전점검·교육·재해예방).",
+      "examples": [
+        "1) 양중 작업 신호체계 통일 / 2) 합동 안전점검 일정 / 3) 외국인 안전교육"
+      ]
+    },
+    {
+      "key": "f_4_안전보건조치",
+      "label": "안전보건조치",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "논의 결정 사항.",
+      "examples": [
+        "1) 양중 시 무전기 채널 7 통일 / 2) 합동점검 5/5·5/12 / 3) 베트남어 교육 5/8"
+      ]
+    },
+    {
+      "key": "f_5_위험요인_공유",
+      "label": "위험요인 공유",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "발견·예상 유해·위험요인. 행위·조건 명시.",
+      "examples": [
+        "용접 불꽃·점화원 + 가연물 / 인화성 액체 누출 / 산소 농도 과다"
+      ]
+    },
+    {
+      "key": "f_6_회의_결과",
+      "label": "회의 결과",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "양호 / 보통 / 불량 + 특이사항.",
+      "examples": [
+        "양호 — 비계 안전난간 1개층 누락 → 즉시 설치 완료"
+      ]
+    },
+    {
+      "key": "f_7_참석자_명단_서명",
+      "label": "참석자 명단·서명",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "본인 자필 서명 또는 전자서명.",
+      "examples": [
+        "(자필 서명)"
+      ]
+    },
+    {
+      "key": "f_8_다음_회의_일자",
+      "label": "다음 회의 일자",
+      "source": "산안법 제63조 ② + 시행령 제63조",
+      "inputGuide": "다음 협의체 회의 예정일.",
+      "examples": [
+        "2026-05-29"
+      ]
+    }
+  ],
+  "reviewRules": [
+    {
+      "rule": "월 1회 정기 개최",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법시행규칙:74"
+    },
+    {
+      "rule": "도급인+수급인+근로자대표 모두 참여",
+      "severity": "manual_review",
+      "legalBasis": "art:산안법:75"
+    }
+  ],
+  "sections": [
+    {
+      "title": "1. 문서 메타",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "documentNumber",
+          "label": "문서번호",
+          "required": true,
+          "inputGuide": "현장 자체 일련번호 (DOC-YYMMDD-NN).",
+          "examples": [
+            "DOC-260429-01"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "siteName",
+          "label": "사업장 / 현장명",
+          "required": true,
+          "inputGuide": "사업장 정식 명칭.",
+          "examples": [
+            "황룡건설(주) 삼성동 현장"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compileDate",
+          "label": "작성 일자",
+          "required": true,
+          "inputGuide": "YYYY-MM-DD.",
+          "examples": [
+            "2026-04-29"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "compiler",
+          "label": "작성자 (안전관리자)",
+          "required": true,
+          "inputGuide": "성명·직책.",
+          "examples": [
+            "김안전 (안전관리자)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "2. 도급인 안전보건교육 지원",
+      "legalSource": "산안법 제64조 ① 3호",
+      "fields": [
+        {
+          "key": "educationDate",
+          "label": "교육 일자",
+          "required": true,
+          "inputGuide": "수급인 교육 시기.",
+          "examples": [
+            "2026-04-15"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "recipientCompany",
+          "label": "수급업체",
+          "required": true,
+          "inputGuide": "교육 대상 수급인.",
+          "examples": [
+            "우송설비(주)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supportProvided",
+          "label": "제공 지원 내역",
+          "required": true,
+          "inputGuide": "강사·장소·자료·교재 등.",
+          "examples": [
+            "강사 김안전 파견 + 회의실 제공 + KOSHA 교재 12부"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "trainees",
+          "label": "교육 이수 인원",
+          "required": true,
+          "inputGuide": "수급인 근로자 명부·서명.",
+          "examples": [
+            "우송설비 근로자 8명 (별첨 서명부)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "결재선",
+      "legalSource": "공통",
+      "fields": [
+        {
+          "key": "compiler_sign",
+          "label": "작성자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "김안전 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "supervisor_sign",
+          "label": "관리감독자 서명",
+          "required": true,
+          "inputGuide": "성명·서명.",
+          "examples": [
+            "박감독 (서명)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "principal_sign",
+          "label": "사업주/안전보건관리책임자 서명",
+          "required": true,
+          "inputGuide": "현장소장 서명.",
+          "examples": [
+            "황룡 (현장소장, 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    }
+  ],
+  "penaltyOnMissing": "penalty:산안법:175",
+  "retention": "3년",
+  "guidedBy": [],
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "황룡건설(주) + ㈜라텔웍스",
+    "sourceLaw": "art:산안법:75",
+    "verifiedAt": "2026-04-27",
+    "guidedByKeywords": [
+      "안전보건협의체",
+      "도급사업주"
+    ],
+    "guidedByExcludeKeywords": [],
+    "documentCategory": "administrative",
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "alignedAt": "2026-04-29",
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+  },
+  "appliesToActivities": [
+    "activity:general_workplace_safety"
+  ],
+  "informedBy": [
+    "entity:moel",
+    "src:kosha_portal"
+  ],
+  "approvalChain": [
+    {
+      "role": "작성자 (안전관리자)",
+      "action": "기안"
+    },
+    {
+      "role": "관리감독자",
+      "action": "검토"
+    },
+    {
+      "role": "사업주 / 안전보건관리책임자",
+      "action": "최종 승인"
+    }
+  ],
+  "iso45001Class": "iso45001:Workplace",
+  "mitigatedBy": [
+    "control:admin_supervisor"
+  ],
+  "relatedDocs": [
+    "doc:monthly/contractor_safety_council",
+    "doc:weekly/weekly_joint_inspection"
+  ],
+  "industry": "construction",
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+}

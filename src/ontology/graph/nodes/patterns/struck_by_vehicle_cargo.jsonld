@@ -1,0 +1,30 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "event:pattern/struck_by_vehicle_cargo",
+  "@type": [
+    "Event"
+  ],
+  "slug": "struck_by_vehicle_cargo",
+  "title": "struck_by × vehicle_cargo",
+  "description": "KOSHA 건설업 사고사례 빈도 패턴 — 22건 관측. 사고유형 struck_by 작업유형 vehicle_cargo.",
+  "koshaAccidentType": "struck_by",
+  "hasHazard": [
+    "hazard:struck_by"
+  ],
+  "causedBy": [
+    "activity:vehicle_cargo"
+  ],
+  "caseFrequency": 22,
+  "sampleKeywords": [
+    "고소작업대 작업 중 끼임",
+    "Gabion을 운반하던 백호우에 충돌 사망",
+    "조립식 판넬 운반중 끝단부가 변압기 퓨즈에 접촉"
+  ],
+  "_meta": {
+    "publishedBy": "한국산업안전보건공단 (KOSHA) 사고사례",
+    "sourceApi": "data.go.kr 15140383 (KOSHA 사고사례 조회 서비스)",
+    "sourceUrl": "https://www.kosha.or.kr/kosha/data/accidentCase.do",
+    "fetchedAt": "2026-04-28",
+    "license": "공공누리 출처표시 (KOSHA) — keyword·빈도만 보존, 본문 미저장"
+  }
+}
