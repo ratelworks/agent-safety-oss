@@ -10,7 +10,7 @@
 
 | Item | Current code |
 |---|---:|
-| Package version | **1.3.0** (2026-05-19) |
+| Package version | **1.3.1** (2026-05-20) |
 | MCP tools | **88** (offline-first, single API key for 6 KOSHA Live tools) |
 | Statutory documents | **19** (TBM, work plans, risk assessments, MSDS, accident reports, etc.) |
 | Legal-duty document master | 94 docIds |

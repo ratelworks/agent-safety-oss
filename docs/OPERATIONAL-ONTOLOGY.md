@@ -1,6 +1,6 @@
 # Operational Ontology Profile
 
-> release: **v1.3.0 (2026-05-19) · 80 tools · 1,039 KOSHA Guides**
+> release: **v1.3.1 (2026-05-20) · 80 tools · 1,039 KOSHA Guides**
 > 목적: 중소 건설사가 실제 업무에서 사용할 수 있는 경량 운영 온톨로지 그래프
 
 ## 1. 목적

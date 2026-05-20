@@ -5,6 +5,30 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] — 2026-05-20
+
+**npm 첫 publish 직후 patch — version 시점 정합**
+
+v1.3.0 npm publish 후 git tag 가 가리키는 commit 과 publish 된 commit 사이의 시점 차이를 해소하고, 외부 평가 보고서를 반영한 후속 정리를 단일 release 로 묶었습니다.
+
+### 변경 사항
+
+- 외부 평가 보고서 (2026-05-20) 반영 — P0/P1 6건 해소
+  - tool-registry.ts 의 stale 주석 ("80 도구") 을 TOOLS.length SSoT 표기로 정정
+  - ensureGraphBuilt 가 buildIndex 만 호출하던 결함 → buildIndex + buildGraph 통합
+  - loadArchivedDocument 의 path traversal 가드 (`..` / `/` / `\\` / 정상화 prefix 검증)
+  - assemble_doc_context excerpt 가 article 전체 description 노출 → `slice(0, 500)` 발췌
+  - 로컬 저장소 경로 SSoT — `src/config/paths.ts` 신규 + local-storage / trace-recorder 통합
+  - link_company_key · get_company_info text content PII 기본 마스킹 + `reveal: true` 명시 옵션
+- 회귀 정정 — trace-recorder 가 SAFETY_LOCAL_DIR 미반영하던 결함 해소
+- .env.example · 코드 주석의 옛 이름 (`agent-safety-oss-mcp`) 잔여 정정
+
+### 외부 사용자 영향
+
+- npm `npm update agent-safety-oss` 또는 `npm install -g agent-safety-oss@latest` 로 즉시 받기 가능
+- 입력 호환성 변화 없음 (모든 도구 동일 schema · 동일 출력 구조)
+- 단 PII 기본 마스킹 도입 — `link_company_key` / `get_company_info` text 본문이 마스킹 표시. 평문 확인은 `reveal: true` 명시.
+
 ## [1.3.0] — 2026-05-19
 
 **첫 PUBLIC release — 한국 건설안전 작성 보조 MCP**
