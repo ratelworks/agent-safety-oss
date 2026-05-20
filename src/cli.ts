@@ -100,7 +100,7 @@ type ToolCategory =
   | "프로젝트 메타";
 
 const TOOLS_NEEDING_API_KEY = new Set<string>([
-  // v1.1.19 — get_kosha_guide_content 제거 (번들 통합, 키 불필요)
+  // get_kosha_guide_content (legacy) 는 번들 통합으로 제거 (키 불필요)
   "search_accident_cases",
   "get_accident_case_attachments",
   "search_construction_fatal_accidents",

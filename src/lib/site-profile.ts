@@ -231,7 +231,7 @@ const EMPTY_PROFILE: Profile = {
   contractors: [],
 };
 
-// v1.1.12 (a-codex cross-review): cache key 를 path 로 변경.
+// a-codex cross-review: cache key 를 path 로 변경.
 // SAFETY_LOCAL_DIR env 변경 시 cache 가 stale 한 path 의 profile 을 그대로 반환하던
 // 회귀 해소. Map<path, Profile> 으로 path-aware cache. invalidateProfileCache 는
 // 전체 clear (보수적 — 한 path 만 무효화하고 싶으면 cache.delete(path) 사용 가능).
@@ -313,7 +313,7 @@ export function autoFillFromProfile(
   }
   if (project) {
     fillIfEmpty("projectName", project.name);
-    // v1.1.11 P0-1: projectInfo 합성도 사용자가 draftCopy 에 명시한 값 우선.
+    // projectInfo 합성도 사용자가 draftCopy 에 명시한 값 우선.
     // normalizeDraftAliases 가 metadata.{projectName,contractAmount,contractPeriod} 를
     // draft 로 옮겼다면 그 값으로 합성. profile stale 값이 표에 박히는 회귀 방지.
     const projName = (draftCopy.projectName as string | undefined) ?? project.name;

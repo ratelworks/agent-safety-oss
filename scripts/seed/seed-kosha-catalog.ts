@@ -121,7 +121,7 @@ function buildNode(item: KoshaItem) {
     verifiedAt: FETCHED_AT,
     verifiedBy: "agent-safety-relay /api/kosha-guides full catalog auto-ingest",
     licenseHint: "공공자료 (출처 표기 시 활용)",
-    note: "메타 노드. 본문은 v1.1.19+ 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
+    note: "메타 노드. 본문은 번들 도구 get_kosha_guide_md(techGdlnNo) 또는 sourceUrl 직접 참조.",
   };
   if (item.techGdlnGblsnDt) meta.publishedDate = item.techGdlnGblsnDt;
   if (item.techGdlnRevsnDt) meta.revisedDate = item.techGdlnRevsnDt;

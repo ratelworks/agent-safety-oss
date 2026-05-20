@@ -39,7 +39,7 @@ function getArg(name: string, def: number): number {
 }
 const START = getArg("start", 0);
 const LIMIT = getArg("limit", 9999);
-const FORCE = args.includes("--force"); // 기존 MD 덮어쓰기 (v1.1.18 kordoc 재추출)
+const FORCE = args.includes("--force"); // 기존 MD 덮어쓰기 (kordoc 재추출 모드)
 
 interface GuideMeta {
   guideNo: string;
@@ -68,18 +68,18 @@ async function runCmd(cmd: string, args: string[], opts: { env?: Record<string, 
   });
 }
 
-// TODO(v1.1.19+): get_kosha_guide_content 도구가 v1.1.19 에서 제거됨 (번들 1,039 통합).
+// 본 helper 는 legacy fetch path. 현 안정판은 KOSHA Guide 1,039건 번들 통합 + get_kosha_guide_md 도구로 직접 접근.
 // 본 스크립트 (라텔웍스 운영자용 — 신규 가이드 PDF 번들 보강) 는 다음 중 한 방법으로 마이그레이션 필요:
 //   1) Live API 15144147 직접 호출 (axios/fetch + DATA_GO_KR_KEY 환경변수)
 //   2) build/cli.js call 옵션을 동적으로 fetch (라텔웍스 운영 RELAY 직접 호출)
 // 임시: 호출 시 명시적 에러 반환. 라텔웍스 운영자는 별도 절차 (kosha-guide-map.json + sync 스크립트 단독 복원) 사용.
 async function fetchDownloadUrl(guideNo: string): Promise<string | null> {
-  console.error(`[DEPRECATED] fetchDownloadUrl(${guideNo}) — v1.1.19 에서 get_kosha_guide_content 도구 제거됨. Live API 직접 호출 필요.`);
+  console.error(`[DEPRECATED] fetchDownloadUrl(${guideNo}) — legacy. 본문은 src/ontology/kosha-guides/ 번들 또는 Live API 직접 호출.`);
   return null;
   // eslint-disable-next-line @typescript-eslint/no-unreachable-code
   const out = await runCmd(
     "node",
-    // v1.1.19 에서 'get_kosha_guide_content' 도구 제거됨. 본 라인은 마이그레이션 대기 (Live API 직접 호출 필요).
+    // 본 라인은 마이그레이션 대기 (legacy fetch path; 안정판은 번들 통합).
     ["build/cli.js", "call", "DEPRECATED_TOOL_PLACEHOLDER", "--inputJson", JSON.stringify({ techGdlnNo: guideNo, numOfRows: 1 })],
     { env: { KOSHA_RELAY_URL: "" }, timeout: 30000 },
   );
@@ -103,7 +103,7 @@ async function downloadPdf(url: string, dest: string): Promise<boolean> {
 }
 
 async function pdfToText(pdfPath: string): Promise<string> {
-  // v1.1.18: pdftotext → kordoc 전환. HTML 표 보존 + markdown 헤더로 정보 손실 최소화.
+  // pdftotext → kordoc 전환 (HTML 표 보존 + markdown 헤더로 정보 손실 최소화).
   // kordoc 가 PDF 의 표지·내부 표를 <table> 로 보존하여 5-10% 정보 추가 추출.
   const tmpMdPath = pdfPath.replace(/\.pdf$/, ".kordoc.md");
   const out = await runCmd("npx", ["kordoc", pdfPath, "-o", tmpMdPath], { timeout: 90000 });
@@ -124,7 +124,7 @@ function compileMd(g: GuideMeta, text: string, sourceUrl: string): string {
     `> **지침번호**: ${g.guideNo}`,
     `> **원본 URL**: ${sourceUrl}`,
     `> **License**: 공공누리 출처표시 (변경금지)`,
-    `> **추출 방식**: PDF → kordoc (라텔웍스 자체 도구, HTML 표 보존, v1.1.18 ${today})`,
+    `> **추출 방식**: PDF → kordoc (라텔웍스 자체 도구, HTML 표 보존, ${today})`,
     `> **주의**: 이미지·일부 시각적 서식 손실 가능. 정확 원본은 위 URL.`,
     "",
     "---",

@@ -2,12 +2,12 @@
  * get-kosha-guide-md.ts
  *
  * 번들된 KOSHA Guide 본문 MD 단일 통합 조회 도구. AGENTHQ_API_KEY 없이 동작 (offline, keyless).
- * v1.1.19 이후 KOSHA Guide 1,039건 번들 단일 진입점:
+ * KOSHA Guide 1,039건 번들 단일 진입점:
  *   - 단건 본문 조회: techGdlnNo='A-1-2018' 형식
  *   - 키워드 검색: keyword='굴착' (제목 + 본문 매칭)
  *   - 전체 인덱스: 인수 없음
  *
- * v1.1.19 통합: 종전 Live API 기반 get_kosha_guide_content (15144147) 와
+ * Live API 기반 get_kosha_guide_content (15144147) 와
  *   빈 번들 stub search_kosha_guides 는 본 도구로 통합·제거. 번들이 1,039건을
  *   keyless offline 제공하므로 외부 호출 불필요.
  */
@@ -126,7 +126,7 @@ export const getKoshaGuideMdTool: ToolDefinition = {
   name: "get_kosha_guide_md",
   title: "번들 KOSHA Guide 본문 조회",
   description:
-    "번들 KOSHA Guide 본문 MD 1,039건 단일 통합 조회 (AGENTHQ_API_KEY 없이 동작, offline). 단건 조회 (techGdlnNo='A-1-2018') / 키워드 검색 (keyword='굴착') / 전체 인덱스 (인수 없음). 본문은 PDF → kordoc 추출 (HTML 표 보존, v1.1.18+, 정확 원본은 sourceUrl). v1.1.19 부터 KOSHA Guide 단일 진입점 (Live API 도구 통합·제거).",
+    "번들 KOSHA Guide 본문 MD 1,039건 단일 통합 조회 (AGENTHQ_API_KEY 없이 동작, offline). 단건 조회 (techGdlnNo='A-1-2018') / 키워드 검색 (keyword='굴착') / 전체 인덱스 (인수 없음). 본문은 PDF → kordoc 추출 (HTML 표 보존, 정확 원본은 sourceUrl). KOSHA Guide 단일 진입점 (Live API 도구 통합·제거).",
   inputSchema,
   handler,
 };

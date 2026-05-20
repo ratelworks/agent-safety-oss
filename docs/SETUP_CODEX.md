@@ -94,7 +94,7 @@ Codex 가 자동으로 다음 도구를 조합 호출합니다:
 
 ### 도구 호출 시 "tool not found"
 - `codex mcp tools agent-safety-oss` 로 실 등록된 도구 명 확인
-- 도구명 typo 또는 v1.1.x 시점 도구명 변경 가능성
+- 도구명 typo 확인 (현 안정판 v1.3.0 도구 목록은 README §"MCP 도구" 참조)
 
 ### 공공 OpenAPI 도구가 "API 키 필요" 반환
 - `AGENTHQ_API_KEY` 환경변수가 Codex 프로세스에 전달됐는지 확인

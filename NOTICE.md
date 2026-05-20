@@ -68,6 +68,7 @@ and is not required for you to preserve when forking or redistributing
 the code. It is provided so that downstream consumers who wish to
 credit the project correctly have the canonical citation:
 
+- **Provider**: 황룡건설(주) 안전보건기획부 — 도메인 검증·현장 요구사항·시나리오 제공
 - **Developer**: 주식회사 라텔웍스 (Ratelworks Inc.) — <alphamale@ratelworks.co.kr>
 - **Purpose**: Public-interest open source — improving accessibility of
   Korean public safety-and-health resources for front-line workers and

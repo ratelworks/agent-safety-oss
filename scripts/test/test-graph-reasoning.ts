@@ -22,7 +22,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const NODES_DIR = resolve(__dirname, "..", "..", "src", "ontology", "graph", "nodes");
 
-// v1.2.1 P1-3: 전체 그래프 (3,336 노드) 기반 재귀 로딩.
+// graph traversal: 전체 그래프 (3,336 노드) 기반 재귀 로딩.
 // 이전: documents/articles/annexes/hazards/controls 5개 폴더 1단계만 — 전체 1,712 노드만 인덱싱.
 // 변경 후: NODES_DIR 전체 재귀 — KOSHA Guide 1,039 + facets 118 등 모두 포함.
 const allNodes = new Map<string, any>();

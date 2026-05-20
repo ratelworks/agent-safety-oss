@@ -3,7 +3,7 @@
  * verify-tool-capability-drift.ts — TOOLS ↔ CAPABILITY_REGISTRY_ENTRIES ↔ capability .jsonld 정합
  *
  * 외부 평가 P0-1 (2026-05-19): src/index.ts 에 registerCapabilities 누락 + TOOLS 88 vs
- * CAPABILITY_REGISTRY_ENTRIES 69 = 19 drift. v1.2.2 에서 정합.
+ * CAPABILITY_REGISTRY_ENTRIES ↔ TOOLS 정합 검증 (drift 시 release blocker).
  *
  * 검증 항목:
  *   1. TOOLS (build/tool-registry.js) 의 도구 이름 set

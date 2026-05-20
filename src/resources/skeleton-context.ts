@@ -11,7 +11,7 @@
  *   safety://skeleton/tbox          — Walking Skeleton T-Box (6 OWL Class + 13 properties)
  *   safety://skeleton/instances     — Walking Skeleton A-Box (인스턴스 사슬)
  *   safety://operational/profile    — Semantic/Kinetic/Dynamic 운영 온톨로지 프로파일
- *   safety://graph/{category}       — 범주별 그래프 노드 일괄 (v1.2.1: 하위 폴더 재귀 로딩)
+ *   safety://graph/{category}       — 범주별 그래프 노드 일괄 (하위 폴더 재귀 로딩 지원)
  *     · activities  (41 작업 활동)
  *     · hazards     (38 위험요인 + specificity)
  *     · controls    (45 통제수단 + ericLevel)
@@ -67,7 +67,7 @@ const ALLOWED_CATEGORIES = new Set([
 /**
  * 디렉토리 안의 .jsonld·.json 파일을 재귀로 읽어 단일 @graph 배열로 반환.
  *
- * v1.2.1 변경 (P0-2): documents/guides/ 1,039건, facets/code·group·shp 118건 등
+ * P0-2 변경: documents/guides/ 1,039건, facets/code·group·shp 118건 등 하위 폴더 재귀 로딩
  * 하위 폴더 노드를 Resource export 에서 누락하던 문제 해결.
  * 이전: readdir 1단계만 → documents 96건만 노출 (실제 1,135)
  */

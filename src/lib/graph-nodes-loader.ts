@@ -169,7 +169,7 @@ const EDGE_FIELDS: Record<string, string> = {
   annexReference: "annexReference", // Activity/Document → Annex (24 노드, 단일 IRI 도 Array.isArray 처리됨)
   appliesToActivities: "appliesToActivities", // facet/applicability → Activity (589 노드 사용)
   involves: "involves", // Statistic → Event (23 노드 사용)
-  // ─── v1.2.1 보강 (P0-3, 2026-05-19) ───
+  // ─── P0-3 보강 ───
   // context.jsonld @type:@id term 64개 중 EDGE_FIELDS 미등록이던 11개 추가.
   // graphology BFS·neighborsByEdge() 가 도구별 결과 불일치 (direct lookup vs graph traversal) 해소.
   regulatedBy: "regulatedBy", // Article → Document/Activity (77 노드)
@@ -183,7 +183,7 @@ const EDGE_FIELDS: Record<string, string> = {
   maps_to_action: "maps_to_action", // Operational ActionType (69 노드)
   producesEntity: "producesEntity", // Activity → Entity (69 노드)
   delegationOf: "delegationOf", // delegates 의 역방향 (296 노드)
-  // ─── v1.2.2 (2026-05-19) — verify-edge-context-drift 정합 (외부 평가 P0-2) ───
+  // ─── 외부 평가 P0-2 — verify-edge-context-drift 정합 ───
   hasChapter: "hasChapter", // Act → Chapter (6 노드 사용)
   // ─── v1.3.x (2026-05-20) — 결정론 룰 레이어 (외부 평가 gap #3) ───
   // Applicability 조건 충족 시 강제되는 control IRIs. graph BFS 에서 "이 룰이 활성되면 어떤 통제가 필요한가" 추적.

@@ -418,9 +418,8 @@ function normalizeDraftAliases(input: Input): void {
   setIfEmpty(draft, "compiler", metadata.compiler ?? metadata.author ?? metadata.supervisor);
   setIfEmpty(draft, "supervisor", metadata.supervisor);
 
-  // v1.1.11 P0-1: 사용자 metadata 가 autoFillFromProfile 의 profile stale 데이터를
+  // 사용자 metadata 가 autoFillFromProfile 의 profile stale 데이터를
   // 우선하도록 normalize 단계에서 draft 평면 키로 미리 옮긴다.
-  // 시나리오 평가 v1.1.10 §5 P0-1 — input 반영도 30~50% → 90%+ 회복.
   setIfEmpty(draft, "businessNumber", metadata.businessNumber);
   setIfEmpty(draft, "address", metadata.address);
   setIfEmpty(draft, "siteAddress", metadata.siteAddress ?? metadata.address);
@@ -851,8 +850,8 @@ function _renderValidation(report: ValidationReport, retention?: string): string
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const input: Input = inputSchema.parse(rawInput ?? {});
 
-  // v1.1.12 P0-1 (A2UI 경로 보강): doc + A2UI alias normalize 를 profile 이전 실행.
-  // a-codex cross-review (v1.1.11) 가 짚은 P0-1 잔여 위험 — A2UI field-N-input 으로
+  // A2UI 경로 보강: doc + A2UI alias normalize 를 profile 이전 실행.
+  // a-codex cross-review 가 짚은 P0-1 잔여 위험 — A2UI field-N-input 으로
   // 들어온 사용자 값이 profile 자동채움 이후 setIfEmpty 에 막혀 profile 값을 이기지
   // 못하던 회귀를 해소. 순서: parse → doc → flat normalize → A2UI flat → profile fill.
   const doc = await getDocument(input.docId);
@@ -934,7 +933,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     ? `> 🚫 **결재 사용 불가** — 필수 항목 ${missingRequiredCount}건 미작성. 미작성 항목은 \`structuredContent.validation.issues\` 참조. 결재 전 반드시 보강.\n\n`
     : `> ✅ **필수 항목 모두 작성됨** — 결재 가능 (단 결재선 서명·날짜 별도 확인).\n\n`;
 
-  // v1.1.19+ 안전 disclaimer — 모든 generate 결과 하단 부착
+  // 안전 disclaimer — 모든 generate 결과 하단 부착
   const safetyDisclaimer = `\n\n---\n\n> ℹ️ **본 문서는 agent-safety-oss 가 생성한 초안입니다.** 결재·제출 전에 (1) 안전관리자 본인이 본문·법령 인용·필수 항목을 직접 검토하고, (2) \`review_safety_document\` 도구로 환각·누락 확인, (3) 중대재해·산업재해 관련 사항은 법무·노무 협의가 필요합니다. **작성 주체는 안전관리자이며 본 OSS 는 작성 보조만 수행합니다.**\n`;
 
   const fullBody = usabilityHeader + body + (doc.retention ? `\n---\n*보존: ${doc.retention}*` : "") + safetyDisclaimer;

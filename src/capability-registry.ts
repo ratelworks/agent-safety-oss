@@ -95,7 +95,7 @@ export const CAPABILITY_REGISTRY_ENTRIES = [
   ["archive_safety_document", { capabilityIRI: "safety:capability/archive_safety_document", category: "meta" }],
   ["list_archived_documents", { capabilityIRI: "safety:capability/list_archived_documents", category: "meta" }],
   ["get_storage_stats", { capabilityIRI: "safety:capability/get_storage_stats", category: "meta" }],
-  // ─── v1.2.2 (2026-05-19) — 외부 평가 P0-1 정합. 19 누락 entry 추가 ───
+  // ─── 외부 평가 P0-1 정합 — 누락 entry 일괄 추가 ───
   // KOSHA Live (2)
   ["search_safety_law_smart", { capabilityIRI: "safety:capability/search_safety_law_smart", category: "kosha_search" }],
   ["get_kosha_guide_md", { capabilityIRI: "safety:capability/get_kosha_guide_md", category: "kosha_search" }],
@@ -197,7 +197,7 @@ export const CAPABILITY_CATEGORY_BY_TOOL = new Map<string, CapabilityCategory>([
   ["archive_safety_document", "meta"],
   ["list_archived_documents", "meta"],
   ["get_storage_stats", "meta"],
-  // v1.2.2 — 19 누락 entry
+  // 누락 entry (외부 평가 P0-1 보강)
   ["search_safety_law_smart", "kosha_search"],
   ["get_kosha_guide_md", "kosha_search"],
   ["get_measures_by_risk", "safety_doc"],
@@ -235,7 +235,7 @@ export function registerCapabilities(server: McpServer): void {
     {
       title: "Safety Capability Registry",
       description:
-        "88 MCP tools (v1.2.1 release) 를 safety:Capability/prov:Plan 노드로 묶은 capability registry. LLM 이 toolName, category, action, object type 을 한 번에 읽는 entry point.",
+        "88 MCP tools 를 safety:Capability/prov:Plan 노드로 묶은 capability registry. LLM 이 toolName, category, action, object type 을 한 번에 읽는 entry point.",
       mimeType: "application/ld+json",
     },
     async () => {

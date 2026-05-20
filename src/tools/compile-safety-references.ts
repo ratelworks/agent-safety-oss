@@ -113,7 +113,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       workType: input.workType,
       limit: input.limitPerSource,
     }),
-    // v1.1.20+ — 번들 KOSHA Guide 1,039건 키워드 검색 (Live API search 도구 폐기 후 번들로 통합)
+    // 번들 KOSHA Guide 1,039건 키워드 검색 (Live API search 도구 폐기 후 번들로 통합)
     safeCall("kosha-guide", getKoshaGuideMdTool.handler, {
       keyword: input.workType,
       limit: input.limitPerSource,

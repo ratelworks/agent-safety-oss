@@ -196,7 +196,7 @@ async function main() {
   }
   const danglingPct = (dangling.length / totalEdges) * 100;
 
-  // orphan (in-degree 0) — v1.2.1 P1-2: src/ontology/policy/orphan-policy.json 정합
+  // orphan (in-degree 0) — src/ontology/policy/orphan-policy.json 정합
   // ENTRY = 도구 진입점 / STANDALONE = 의도된 독립 vocabulary
   const ENTRY_LABELS = new Set([
     "documents", "acts", "activities", "applicabilities",

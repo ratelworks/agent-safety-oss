@@ -63,7 +63,7 @@ interface AssembledContext {
     controlLevel?: string;
     ericLevel?: string;
   }>;
-  // v1.2.1 P1-4: 2-hop indirect controls (doc → hasHazard → mitigatedBy)
+  // 2-hop indirect controls (doc → hasHazard → mitigatedBy)
   // LLM 이 hazard 경유 traversal 사슬을 직접 볼 수 있도록 분리 노출.
   controlsViaHazards: Array<{
     iri: string;
@@ -206,7 +206,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     };
   });
 
-  // 4b. Controls via Hazards (2-hop: doc → hasHazard → mitigatedBy) — v1.2.1 P1-4
+  // 4b. Controls via Hazards (2-hop: doc → hasHazard → mitigatedBy)
   // 직접 control 외에, 연결된 hazard 가 가리키는 control 도 노출. LLM 이 의미적 사슬 따라가도록.
   const seenControl = new Set(directControlIris);
   const controlsViaHazards: Array<{
@@ -339,7 +339,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     legalBasisExternal: asArray<string>(docNode.legalBasisExternal),
     hazards,
     controls, // 1-hop direct controls (doc → mitigatedBy)
-    controlsViaHazards, // 2-hop indirect controls (doc → hasHazard → mitigatedBy), v1.2.1 P1-4
+    controlsViaHazards, // 2-hop indirect controls (doc → hasHazard → mitigatedBy)
     annex,
     relatedDocs,
     lifecycle,

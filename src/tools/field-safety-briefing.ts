@@ -415,7 +415,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
 export const fieldSafetyBriefingTool: ToolDefinition = {
   name: "field_safety_briefing",
-  description: "🏗️ 현장 안전 통합 brief — 작업명·위험·의무 토픽 한 줄 입력 → 위험요인·필수통제·법령근거·의무문서·KOSHA 가이드·**위반 시 처벌**까지 한 화면 요약. 현장소장(즉시 이해)·안전관리자(법령 인용) 페르소나별 정렬. **동의어 사전 28그룹** 자동 확장 ('분기'≈'정기'·'도료'≈'MSDS'·'사망'≈'중대재해'). 산안법·시행령·시행규칙·기준규칙·중처법·위험성평가-고시(번들 6 본문 + 중처법시행령 그래프 노드)·KOSHA Guide 본문 1,039건 (v1.1.17+ offline 번들)을 cover. 부칙·법무 전문 조항은 default 제외 (userVisible=false 필터).",
+  description: "🏗️ 현장 안전 통합 brief — 작업명·위험·의무 토픽 한 줄 입력 → 위험요인·필수통제·법령근거·의무문서·KOSHA 가이드·**위반 시 처벌**까지 한 화면 요약. 현장소장(즉시 이해)·안전관리자(법령 인용) 페르소나별 정렬. **동의어 사전 28그룹** 자동 확장 ('분기'≈'정기'·'도료'≈'MSDS'·'사망'≈'중대재해'). 산안법·시행령·시행규칙·기준규칙·중처법·위험성평가-고시(번들 6 본문 + 중처법시행령 그래프 노드)·KOSHA Guide 본문 1,039건 (offline 번들)을 cover. 부칙·법무 전문 조항은 default 제외 (userVisible=false 필터).",
   inputSchema,
   handler,
 };

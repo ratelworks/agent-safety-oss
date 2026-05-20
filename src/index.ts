@@ -31,7 +31,7 @@ async function main(): Promise<void> {
 
   registerAllTools(server);
   registerSkeletonResources(server);
-  registerCapabilities(server);  // v1.2.2: capability registry → MCP Resource `safety://graph/capabilities`
+  registerCapabilities(server);  // capability registry → MCP Resource `safety://graph/capabilities`
                                  // LLM 이 도구 선택 시 capability node 통해 traversal 가능 (외부 평가 P0-1)
 
   const transport = new StdioServerTransport();

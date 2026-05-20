@@ -7,7 +7,7 @@
  * toObjectType 에 해당하는지 미확인.
  *
  * 예: annex_reference 가 doc→doc 으로 선언됐었는데 실제는 doc→annex.
- *     (v1.2.1 에서 P0-4 로 doc→annex 수정 완료. 단 검증 자동화는 미설치)
+ *     (LinkType range 는 graph 에서 doc→annex 로 통일. 본 스크립트로 회귀 검증)
  *
  * 검증:
  *   1. profile.jsonld 의 LinkType implemented 24 개 로드 (fromObjectType, toObjectType, predicate)
