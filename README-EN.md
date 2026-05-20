@@ -163,6 +163,21 @@ Restart Codex CLI and run `codex mcp list` to verify registration. Full guide: [
 
 Run `npm run mcp:tools` for the full catalog.
 
+## A2UI Form — Browser Preview
+
+`render_a2ui_form` emits a [Google A2UI](https://github.com/google/a2ui) v0.9 JSONL that you can preview directly in a browser. Useful for showing the safety manager how the auto-generated form (with blanks, placeholders, and statutory citations) actually looks before submitting.
+
+```bash
+npm install
+npm run build
+npm run mcp:demo:viewer
+# → http://localhost:5174 starts automatically
+```
+
+Pick a form type (TBM log, excavation work plan, periodic risk assessment, etc.) and the page renders with blanks, examples, and statutory references already populated.
+
+For a static-only preview (paste JSONL into a textarea, no server), see [`a2ui-demo/README.md`](./a2ui-demo/README.md).
+
 ## Verification
 
 ```bash

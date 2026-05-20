@@ -165,6 +165,21 @@ review_safety_document
 archive_safety_document
 ```
 
+## A2UI 폼 — 브라우저에서 보기
+
+`render_a2ui_form` 이 만드는 폼을 [Google A2UI](https://github.com/google/a2ui) v0.9 JSONL 로 그대로 브라우저에서 시각화할 수 있습니다. 안전관리자가 빈칸·플레이스홀더·법령 근거가 자동 표시된 폼을 실제로 보고 입력해보는 데 유용합니다.
+
+```bash
+npm install
+npm run build
+npm run mcp:demo:viewer
+# → http://localhost:5174 자동 시작
+```
+
+브라우저에서 폼 종류 (TBM 회의록 / 굴착 작업계획서 / 정기 위험성평가 등) 를 선택하면, 빈칸·예시·법령 인용까지 자동으로 채워진 입력 폼이 렌더링됩니다.
+
+JSONL 만 따로 받아 정적 뷰어 (`a2ui-demo/index.html`) 에 붙여넣는 방법도 있습니다 — 자세한 안내는 [`a2ui-demo/README.md`](./a2ui-demo/README.md).
+
 ## 빠른 시작
 
 Node.js 20.19 이상이 필요합니다. 아래 두 트랙 중 본인 환경에 맞는 것을 선택하세요.
