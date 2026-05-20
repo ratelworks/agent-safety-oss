@@ -74,6 +74,14 @@ credit the project correctly have the canonical citation:
   Korean public safety-and-health resources for front-line workers and
   safety managers via LLM agents
 
+### Awards & Recognition
+
+| Year | Award | Issuer | Recipient |
+|------|-------|--------|-----------|
+| 2025.07 | 2025 AI·스마트 산업안전기술 우수사례 경진대회 **대상** | 고용노동부장관상 (Minister of Employment and Labor) | 황룡건설(주) (개발: ㈜라텔웍스) |
+| 2025.09 | 2025 위험성평가 우수사례 발표대회 **우수상** | 대전지방고용노동청장상 (Daejeon Regional Labor Office) | 황룡건설(주) (개발: ㈜라텔웍스) |
+| 2026.01 | 사이드임팩트 2025 AI 트랙 **우승** | 브라이언임팩트재단 (Brian Impact Foundation) | ㈜라텔웍스 |
+
 ---
 
 ## 5. Disclaimers
