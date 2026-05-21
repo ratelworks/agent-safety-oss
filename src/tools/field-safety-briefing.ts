@@ -29,11 +29,12 @@ interface SynonymGroup {
   userMisuseNote?: string;
 }
 
-const inputSchema = z.object({
+// Issue #6 — 자연어 필드 alias (topic / workName / 작업명 입력도 받아들임)
+const baseInputSchema = z.object({
   workOrTopic: z
     .string()
     .describe(
-      "작업명 또는 위험·의무 토픽 (예: '거푸집 해체', '비계 설치', '추락방지', 'MSDS 등록', '재해 발생 보고', '분기 정기교육', '신규 도료 반입')",
+      "작업명 또는 위험·의무 토픽 (예: '거푸집 해체', '비계 설치', '추락방지', 'MSDS 등록', '재해 발생 보고', '분기 정기교육', '신규 도료 반입'). alias 허용: topic / workName / 작업명.",
     ),
   persona: z
     .enum(["site_manager", "safety_manager", "auto"])
@@ -42,6 +43,24 @@ const inputSchema = z.object({
       "현장 페르소나 — site_manager(현장소장·실무 즉시 이해), safety_manager(안전관리자·법령 인용 포함), auto(워크 키워드로 추정)",
     ),
 });
+
+// alias 매핑: 다양한 입력 키를 workOrTopic 으로 정규화
+const inputSchema = z.preprocess((v) => {
+  if (!v || typeof v !== "object" || Array.isArray(v)) return v;
+  const obj = v as Record<string, unknown>;
+  const out: Record<string, unknown> = { ...obj };
+  if (!("workOrTopic" in obj)) {
+    const aliasKeys = ["topic", "workName", "work", "작업명", "작업", "task"];
+    for (const k of aliasKeys) {
+      if (k in obj && typeof obj[k] === "string") {
+        out.workOrTopic = obj[k];
+        delete out[k];
+        break;
+      }
+    }
+  }
+  return out;
+}, baseInputSchema);
 
 type Input = z.infer<typeof inputSchema>;
 

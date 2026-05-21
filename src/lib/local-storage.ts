@@ -23,6 +23,8 @@ import {
   writeSecureTextExclusive,
   appendSecureLog,
 } from "./secure-fs.js";
+// Issue #5 lateral (2026-05-22) — 보관 timestamp 파일명 KST 기준
+import { formatKstDate, formatKstHuman } from "./datetime-kst.js";
 import {
   getStorageRoot,
   getDraftsDir,
@@ -221,15 +223,21 @@ export interface ArchivedDocument {
 }
 
 function timestamp(): string {
-  const d = new Date();
+  // Issue #5 lateral — KST 기준 timestamp 파일명.
+  // 이전: d.toISOString().slice(0,10) 은 UTC 기준이라 KST 새벽 호출 시 어제 파일명.
+  // 이후: KST 기준 YYYY-MM-DD + KST 기준 HHmmss-SSS.
+  const utcMs = Date.now();
+  const kstMs = utcMs + 9 * 60 * 60 * 1000;
+  const kst = new Date(kstMs);
+  const datePart = formatKstDate(new Date(utcMs));
   return (
-    d.toISOString().slice(0, 10) +
+    datePart +
     "-" +
-    String(d.getHours()).padStart(2, "0") +
-    String(d.getMinutes()).padStart(2, "0") +
-    String(d.getSeconds()).padStart(2, "0") +
+    String(kst.getUTCHours()).padStart(2, "0") +
+    String(kst.getUTCMinutes()).padStart(2, "0") +
+    String(kst.getUTCSeconds()).padStart(2, "0") +
     "-" +
-    String(d.getMilliseconds()).padStart(3, "0")
+    String(kst.getUTCMilliseconds()).padStart(3, "0")
   );
 }
 

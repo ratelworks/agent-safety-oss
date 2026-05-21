@@ -11,6 +11,8 @@ import {
   listSafetyReports,
   type GenerateSafetyReportInput,
 } from "../lib/safety-report-storage.js";
+// Issue #6 lateral (2026-05-22) — period 자연어 alias
+import { aliasedEnum, PERIOD_ALIASES } from "../lib/input-aliases.js";
 
 const DATE_RE = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 
@@ -23,7 +25,9 @@ const SUGGESTED_NEXT_TOOLS = {
 const generateSafetyReportSchema = z
   .object({
     siteId: z.string().optional().describe("현장 ID. 생략 시 generic 보고서"),
-    period: z.enum(["weekly", "monthly"]).describe("보고 주기"),
+    period: aliasedEnum(["weekly", "monthly"] as const, PERIOD_ALIASES).describe(
+      "보고 주기. 자연어 alias 허용: 주/주간/매주/week→weekly, 월/월간/매월/month→monthly.",
+    ),
     startDate: z.string().regex(DATE_RE, "xsd:date 형식(YYYY-MM-DD)").describe("기간 시작일"),
     endDate: z.string().regex(DATE_RE, "xsd:date 형식(YYYY-MM-DD)").describe("기간 종료일"),
   })
@@ -34,7 +38,9 @@ const generateSafetyReportSchema = z
 
 const listSafetyReportsSchema = z.object({
   siteId: z.string().optional().describe("현장 ID"),
-  period: z.enum(["weekly", "monthly"]).optional().describe("보고 주기"),
+  period: aliasedEnum(["weekly", "monthly"] as const, PERIOD_ALIASES).optional().describe(
+    "보고 주기 (자연어 alias 허용)",
+  ),
 });
 
 async function generateSafetyReportHandler(input: unknown): Promise<McpToolResult> {

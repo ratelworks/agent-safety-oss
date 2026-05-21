@@ -9,6 +9,8 @@
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { loadMaster, computeNextDueDate } from "../lib/master-loader.js";
+// Issue #5 lateral (2026-05-22) — KST 기준 일자 산술
+import { kstToday, kstAddDays, kstDayDiff } from "../lib/datetime-kst.js";
 
 const inputSchema = z.object({
   withinDays: z.number().int().min(1).max(365).default(30).describe("조회 범위 (일)"),
@@ -21,14 +23,15 @@ const inputSchema = z.object({
 });
 
 
+// Issue #5 lateral — KST 기준 일수 차이 (시간대 안전)
 function daysBetween(a: string, b: string): number {
-  const ms = new Date(b).getTime() - new Date(a).getTime();
-  return Math.floor(ms / (1000 * 60 * 60 * 24));
+  return kstDayDiff(a, b);
 }
 
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const args = inputSchema.parse(rawInput);
-  const asOf = args.asOf ?? new Date().toISOString().slice(0, 10);
+  // Issue #5 lateral — UTC slice 대신 KST 기준 today
+  const asOf = args.asOf ?? kstToday();
   const master = loadMaster();
   const upcoming: Array<{
     docId: string;
@@ -60,9 +63,8 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     if (!nextDueDate) {
       // 정량 산출 불가 → 스킵 (includeAdHoc=true 이면 내일 마감으로 표시)
       if (args.includeAdHoc) {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        nextDueDate = tomorrow.toISOString().slice(0, 10);
+        // Issue #5 lateral — KST 기준 내일
+        nextDueDate = kstAddDays(asOf, 1);
       } else {
         continue;
       }

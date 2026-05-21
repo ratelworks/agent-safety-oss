@@ -1,10 +1,42 @@
 import { z } from "zod";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import {
   getGuideById,
   loadAllGuides,
   CYCLE_LABELS,
 } from "../lib/safety-document-guides-loader.js";
+
+const __dirname_guide = dirname(fileURLToPath(import.meta.url));
+
+// 결재용 양식 SSoT 로드 — custom/ (현장 안전관리자 작성 13섹션 종합) 우선, auto/ (KOSHA 자동) 폴백.
+// LLM 은 이 본문을 그대로 사용하고 placeholder 만 사용자 입력값으로 치환해야 통일 UX 유지.
+function loadOfficialFormTemplate(
+  docId: string,
+): { source: "custom" | "auto"; body: string } | null {
+  const candidates: Array<{ source: "custom" | "auto"; path: string }> = [
+    {
+      source: "custom",
+      path: resolve(__dirname_guide, "..", "ontology", "forms", "custom", `${docId}.md`),
+    },
+    {
+      source: "auto",
+      path: resolve(__dirname_guide, "..", "ontology", "forms", "auto", `${docId}.md`),
+    },
+  ];
+  for (const c of candidates) {
+    if (!existsSync(c.path)) continue;
+    try {
+      const body = readFileSync(c.path, "utf8");
+      return { source: c.source, body };
+    } catch {
+      /* skip */
+    }
+  }
+  return null;
+}
 
 // 파일 최상단 상수 — 특정 법정문서의 풀 가이드 (양식 + 작성가이드 + 검토규칙)
 // "이 서식 어떻게 작성?" 에 대한 답을 LLM 에게 제공
@@ -160,11 +192,36 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     lines.push(`- \`${t}\``);
   }
 
+  // === 결재용 양식 SSoT (custom/ 우선 → auto/ 폴백) ===
+  // LLM 통일 UX 의 핵심: 본 양식 구조 그대로 사용하고 placeholder("미입력" 등) 만 입력값으로 치환.
+  // 사용자 LLM (Claude Desktop / Codex / a2ui 클라이언트) 이 자체 양식 합성하면 클라이언트별 결과 차이 → UX 분열.
+  const officialFormTemplate = loadOfficialFormTemplate(input.docId);
+  if (officialFormTemplate) {
+    lines.push("");
+    lines.push(`## 결재용 양식 (SSoT — 그대로 채우기, 구조 변경 금지)`);
+    lines.push("");
+    lines.push(
+      `> **LLM 지시**: 본 양식의 마크다운 구조를 **그대로 유지**한 채 placeholder (\`미입력\` / \`YYYY-MM-DD\` / \`DOC-YYYYMMDD-NN\` 등) 만 사용자가 제공한 \`draft\` 값으로 치환하여 출력하세요. 표 행 추가·삭제·재배치 금지. 섹션 번호·제목·법령 인용 변경 금지. 출처: \`src/ontology/forms/${officialFormTemplate.source}/${input.docId}.md\` (${officialFormTemplate.source === "custom" ? "현장 안전관리자 작성 종합 결재 양식" : "KOSHA 자동 생성 양식"}).`,
+    );
+    lines.push("");
+    lines.push("````markdown");
+    lines.push(officialFormTemplate.body);
+    lines.push("````");
+  }
+
   return {
     content: [{ type: "text", text: lines.join("\n") }],
     structuredContent: {
       found: true,
       guide,
+      officialFormTemplate: officialFormTemplate
+        ? {
+            source: officialFormTemplate.source,
+            body: officialFormTemplate.body,
+            instruction:
+              "본 양식 구조 그대로 사용. placeholder 만 사용자 draft 값으로 치환. 표 행·섹션 변경 금지.",
+          }
+        : null,
     },
   };
 }

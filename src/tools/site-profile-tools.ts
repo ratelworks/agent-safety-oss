@@ -19,6 +19,9 @@ import {
   Contractor,
 } from "../lib/site-profile.js";
 import type { ToolDefinition as McpToolDefinition } from "../lib/types.js";
+// Issue #7 (2026-05-21) — MCP 응답 텍스트 PII 마스킹.
+// structuredContent 는 평문 유지 (저장·재호출용), 사용자 표시 text 만 마스킹.
+import { maskBusinessNumber, maskName, maskPhone, maskEmail } from "../lib/pii-masking.js";
 
 // ─── register_site ───
 const RegisterSiteInput = z.object({
@@ -53,7 +56,7 @@ const registerSite: McpToolDefinition = {
       content: [
         {
           type: "text" as const,
-          text: `✅ 사업장 등록 완료\n\n  ID: \`${newSite["@id"]}\`\n  이름: ${newSite.name}\n  사업자번호: ${newSite.businessNumber}\n  대표자: ${newSite.ownerName}\n\n저장 위치: ${getProfilePath()}\n\n다음 단계: register_project / register_person 으로 현장·직원 추가.`,
+          text: `✅ 사업장 등록 완료\n\n  ID: \`${newSite["@id"]}\`\n  이름: ${newSite.name}\n  사업자번호: ${maskBusinessNumber(newSite.businessNumber)}\n  대표자: ${maskName(newSite.ownerName)}\n\n저장 위치: ${getProfilePath()}\n\n> 🔒 PII 보호 — 사업자번호·대표자명은 표시용으로 마스킹됨 (저장된 structuredContent 는 평문 유지).\n다음 단계: register_project / register_person 으로 현장·직원 추가.`,
         },
       ],
       structuredContent: { site: newSite, profilePath: getProfilePath() },
@@ -147,7 +150,7 @@ const registerPerson: McpToolDefinition = {
     else profile.persons.push(person);
     await saveProfile(profile);
     return {
-      content: [{ type: "text" as const, text: `✅ 직원 등록\n  ID: \`${person["@id"]}\`\n  ${person.name} (${person.role})${person.qualification ? ", " + person.qualification : ""}` }],
+      content: [{ type: "text" as const, text: `✅ 직원 등록\n  ID: \`${person["@id"]}\`\n  ${maskName(person.name)} (${person.role})${person.qualification ? ", " + person.qualification : ""}\n\n> 🔒 성명은 마스킹됨 (structuredContent 평문 유지).` }],
       structuredContent: { person },
     };
   },
@@ -235,7 +238,7 @@ const registerContractor: McpToolDefinition = {
     else profile.contractors.push(c);
     await saveProfile(profile);
     return {
-      content: [{ type: "text" as const, text: `✅ 수급업체 등록\n  ID: \`${c["@id"]}\`\n  ${c.name} (대표 ${c.ceo})` }],
+      content: [{ type: "text" as const, text: `✅ 수급업체 등록\n  ID: \`${c["@id"]}\`\n  ${c.name} (대표 ${maskName(c.ceo)})${c.businessNumber ? `, 사업자 ${maskBusinessNumber(c.businessNumber)}` : ""}\n\n> 🔒 대표자명·사업자번호는 마스킹됨 (structuredContent 평문 유지).` }],
       structuredContent: { contractor: c },
     };
   },
@@ -258,7 +261,7 @@ const getSiteProfile: McpToolDefinition = {
     lines.push(`📅 갱신: ${profile._meta.updatedAt}\n`);
     if (input.type === "all" || input.type === "sites") {
       lines.push(`## 사업장 ${profile.sites.length}개`);
-      for (const s of profile.sites) lines.push(`  - \`${s["@id"]}\` ${s.name} | 사업자번호 ${s.businessNumber} | 대표 ${s.ownerName}`);
+      for (const s of profile.sites) lines.push(`  - \`${s["@id"]}\` ${s.name} | 사업자번호 ${maskBusinessNumber(s.businessNumber)} | 대표 ${maskName(s.ownerName)}`);
       lines.push("");
     }
     if (input.type === "all" || input.type === "projects") {
@@ -268,7 +271,7 @@ const getSiteProfile: McpToolDefinition = {
     }
     if (input.type === "all" || input.type === "persons") {
       lines.push(`## 직원·근로자 ${profile.persons.length}명`);
-      for (const p of profile.persons) lines.push(`  - \`${p["@id"]}\` ${p.name} (${p.role})${p.qualification ? " — " + p.qualification : ""}`);
+      for (const p of profile.persons) lines.push(`  - \`${p["@id"]}\` ${maskName(p.name)} (${p.role})${p.qualification ? " — " + p.qualification : ""}`);
       lines.push("");
     }
     if (input.type === "all" || input.type === "equipments") {
@@ -278,9 +281,10 @@ const getSiteProfile: McpToolDefinition = {
     }
     if (input.type === "all" || input.type === "contractors") {
       lines.push(`## 수급업체 ${profile.contractors.length}개`);
-      for (const c of profile.contractors) lines.push(`  - \`${c["@id"]}\` ${c.name} (대표 ${c.ceo}, 현장: ${c.project})`);
+      for (const c of profile.contractors) lines.push(`  - \`${c["@id"]}\` ${c.name} (대표 ${maskName(c.ceo)}, 현장: ${c.project})`);
       lines.push("");
     }
+    lines.push(`> 🔒 PII (사업자번호·성명) 은 표시용으로 마스킹됨. 원본은 \`${getProfilePath()}\` 에 평문 저장.`);
     return {
       content: [{ type: "text" as const, text: lines.join("\n") }],
       structuredContent: { profile, profilePath: getProfilePath() },

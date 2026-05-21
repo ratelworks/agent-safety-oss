@@ -33,6 +33,8 @@ import { renderIri } from "../lib/iri-renderer.js";
 import { extractArticleBody, extractAnnexBody } from "../lib/law-body-extractor.js";
 import { validateDocumentInput, type ValidationReport } from "../lib/input-validator.js";
 import { COMMON_RESPONSE_META } from "../config/constants.js";
+// Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
+import { kstToday } from "../lib/datetime-kst.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -532,7 +534,7 @@ async function renderGeneric(
   const metadata = (d.metadata ?? {}) as Record<string, any>;
   const meta = {
     siteName: d.siteName ?? d.projectName ?? metadata.siteName ?? metadata.projectName ?? "(미작성)",
-    planDate: d.compileDate ?? d.planDate ?? metadata.planDate ?? metadata.assessmentDate ?? new Date().toISOString().slice(0, 10),
+    planDate: d.compileDate ?? d.planDate ?? metadata.planDate ?? metadata.assessmentDate ?? kstToday(),
     supervisor: d.supervisor ?? d.compiler ?? d.principal_sign ?? metadata.supervisor,
   } as { siteName: string; planDate: string; supervisor?: string };
   const sections = doc.sections && doc.sections.length > 0 ? doc.sections : buildSectionsFromRequiredFields(doc);

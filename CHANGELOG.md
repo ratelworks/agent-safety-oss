@@ -5,6 +5,74 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] — 2026-05-21
+
+**Active Graph Authoring Loop + a2ui-demo → viewer 격상 + 사용자 onboarding 이슈 5건 fix**
+
+본 릴리스는 ADR 002 (Active Graph Authoring Loop) 도입과 ADR 001 (viewer 격상) 을 한 번에 묶고, 첫 publish 직후 발견된 사용자 onboarding 이슈 5건을 함께 해소한다.
+
+### Added — Active Graph Authoring Loop (ADR 002)
+
+**A2UI ↔ LLM ↔ Graph 의 능동 루프** 도입. 사용자 입력이 LLM 의 도구 체이닝을 trigger 하고, 결과가 `updateComponents` 로 폼에 동적 push 되는 작성 보조 패턴.
+
+신규 MCP 도구 4종 (총 88 → 92):
+- `request_field_help` — 필드 단위 동적 도움말 (inputGuide·examples·checkPoints + `_meta.writingGuide.fieldHints`/`commonMistakes`/`bestPractices` 결정론 조립). `currentValue` 가 있으면 추상명사·서명 누락 등 패턴 일치 경고.
+- `suggest_controls_for_hazard` — 위험요인 입력 → ERIC-PP 위계 (제거·대체·공학·관리·PPE) 정렬 통제대책 추천 (`mitigatedBy` 그래프 traversal).
+- `analyze_work_context` — 작업명·내용·조건 입력 → 위험·통제·법령·KOSHA Guide 종합 컨텍스트. `workConditions.depthM`/`heightM`/`confinedSpace` 등 조건 기반 §38·§42·§618 적용성 룰 자동 발동.
+- `preview_review` — 작성 중 부분 검토 (`scope: all|required-only|hallucination-only`). 최종 `review_safety_document` 와 직교 — 가드레일 vs 결재 직전 검증.
+
+`render_a2ui_form` 강화:
+- info-card 에 그래프 컨텍스트 inline (hazards/controls/relatedDocs/legalArticles/koshaGuides)
+- `_meta.writingGuide.commonMistakes`/`bestPractices` 를 신규 `guide-card` 로 노출
+- 필드별 `checkPoints` + `fieldHints` 동시 표시 (라벨 정규화 후 양방향 substring 매칭)
+- actions Row 에 6 액션 버튼 — analyze/controls/help/preview-review/assemble/submit
+
+문서·인프라:
+- `decisions/002-active-graph-authoring-loop.md` — ADR 박제
+- `.specs/in-progress/2026-05-21-active-graph-authoring-loop.md` — EARS 요구사항·디자인·태스크
+- `scripts/test/test-active-graph-authoring-loop.ts` — 통합 시나리오 (daily_tbm + work_plan_excavation + 그래프 SSoT 일관성) 25 checks PASS
+
+### Added — viewer 격상 (ADR 001)
+
+데모 위치에 있던 A2UI 폼 viewer 를 운영 자원으로 격상. 비-개발자 안전관리자가 MCP host (Claude Desktop / Codex / MCP Inspector) 없이도 브라우저에서 직접 사용 가능.
+
+- 본문 생성 후 **MD 파일 다운로드** 버튼 (`{docId}-{YYYY-MM-DD}.md`) — 의존성 0 (Blob URL 만 사용)
+- `decisions/001-a2ui-viewer-promotion.md` — ADR 표준 도입
+- `.specs/` 디렉토리 — phase gate spec (`plans/` → `in-progress/` → `executed/`)
+- `render_a2ui_form` 도구 description / nextActions 에 viewer 가 동급 A2UI 호환 클라이언트로 등재
+
+### Added — CLI DX 강화 (Issue #4)
+
+- `node build/cli.js tools --with-schema` — 각 도구의 `inputSchema` (properties · required · type · enum · description) JSON 출력
+- `node build/cli.js tools describe <toolName>` — 단일 도구 상세 (인터랙티브 형식 + 호출 예시 자동 생성)
+- `tools` 사람 가독 출력에 각 도구 **필수 필드 한 줄** 추가
+- 의존성 0 유지 — `zod-to-json-schema` 미사용, `src/lib/schema-introspection.ts` 자체 변환
+
+### Fixed
+
+- **Issue #3** — CLI `--key "value"` 따옴표 string 이 자동 number coerce 되어 Zod `z.string()` 거부되던 회귀. `src/lib/schema-introspection.ts` 가 inputSchema 의 expected type (`string`/`number`/`boolean`/`array`/`object`/`enum`) 을 추출, `parseKeyValueArgs` 가 키별로 coerce 결정. 예: `--industryCode "41"` 은 이제 string `"41"` 로 보존됨.
+- **Issue #5** — `get_incident_response_workflow` 의 `dueAt` 이 UTC 자정 파싱으로 KST(+09:00) 대비 9시간 빨라지던 회귀. 모든 일자 산술을 `+09:00` 기준으로 명시 + `2026-05-21 00:30 KST` 형식으로 명시 표시. 호출 시각 fallback 도 `kstToday()` 로 KST 기준 계산.
+- **Issue #5 lateral** — 같은 KST/UTC 회귀가 박혀 있던 **8곳 일괄 fix**. `src/lib/datetime-kst.ts` 공통 유틸 신설 (`kstToday`/`kstAddDays`/`kstDayDiff`/`parseKstDate`/`formatKstDate`/`kstIsoNow`). 적용처: `list_upcoming_duties` (asOf + 내일 fallback), `get_retention_status` (asOf), `generate_safety_document` (planDate fallback), `site-profile` (compileDate auto-fill), `input-validator` (TODAY 모듈 상수), `master-loader.computeNextDueDate` (compileDate + P{N}{D|M|Y} 산술), `trace-recorder` (활동 로그 일자), `local-storage.timestamp` (보관 timestamp 파일명). KST 새벽 0~9시 호출 시 "오늘"이 어제로 잘못 산정되던 회귀가 모든 시간 의존 도구에서 해소됨.
+- **Issue #6** — enum/필드명 자연어 alias 미지원. `src/lib/input-aliases.ts` 의 `aliasedEnum` / `withFieldAliases` 헬퍼 도입. `severity: fatality|death|사망 → fatal`, `critical|major|중상 → serious`, `light|slight|경상 → minor` 영문·한국어 alias 지원. `field_safety_briefing` 도 `topic`/`workName`/`작업명` 등을 `workOrTopic` 으로 자동 정규화.
+- **Issue #6 lateral** — 같은 패턴이 사용자 진입점 4곳에 추가 박힘 — 일괄 alias 확대. `INDUSTRY_ALIASES` (건설/건축/토목/제조/공장/서비스/기타 + 영문 변형) 가 `assess_my_obligations.industry` + `query_applicability.industry` 에 적용. `STAGE_ALIASES` (착공전/사전/시공중/진행/준공/완공 + before/during/after) 가 `get_construction_stage_duties.stage` 에 적용. `PERIOD_ALIASES` (주/주간/매주/월/월간/매월) 가 `generate_safety_report.period` + `list_safety_reports.period` 에 적용.
+- **Issue #7** — `register_site`/`register_person`/`register_contractor` 응답 텍스트에 사업자등록번호·대표자명 평문 노출. `src/lib/pii-masking.ts` 신설 — 표시용 text 만 마스킹 (`***-**-67890` / `J*** D**`), `structuredContent` 는 평문 유지 (파일 저장·재호출용). `get_site_profile` 출력에도 일괄 적용. (※ `company-key-tools` 는 이미 자체 `reveal=true` 마스킹 메커니즘 보유 — lateral 점검 결과 추가 작업 불필요.)
+- **결함 #1 (릴리즈 전 점검)** — `suggest_controls_for_hazard` 가 빈 문자열 / whitespace 입력에 silent fail (isError 미설정, 결과 없음). 명시적 거부 + `error: "empty_hazard"` + nextActions 안내.
+- **결함 #2 (릴리즈 전 점검)** — `analyze_work_context` 가 도메인 외 입력 (서비스/제조/화학공정 등) 에도 docId 의 기본 hazard/control 을 반환해 사용자가 비-건설 작업에 건설 매핑을 적용할 위험. `domainBoundary` 시그널 신설 — `scope.json` excluded 키워드 감지 + `matchedActivities + matchedWorktypes` 모두 0 일 때 응답 상단에 ⚠️ 도메인 경계 안내 + `structuredContent.domainBoundary` 노출.
+
+### Breaking
+- npm script `mcp:demo:viewer` → `mcp:viewer` 로 변경
+- `a2ui-demo/` 폴더 제거 — JSONL 정적 시연 기능은 운영 viewer (`npm run mcp:viewer`) 로 통합
+- `scripts/dev/demo-a2ui-viewer.ts` → `scripts/dev/viewer-server.ts` 로 리네임
+
+### Documentation
+- README / README-EN — viewer 본격 사용법 + PDF 변환 가이드 (Pandoc / 한컴오피스 / Typora 안내)
+- `viewer-server.ts` 주석 — 데모 표현 제거, 운영 위치 명시
+- README badge `tools` 88 → 92
+
+### Rationale
+
+본질 우선순위 (사용자 황룡 2026-05-21 명시): **(1) 온톨로지 그래프 기반 작성 보조와 가이드라인 (2) 완성 문서 검토 (3) A2UI 가 작성자에게 필요한 정보를 능동적으로 가져올 수 있도록 LLM 과 연결**. ADR 002 가 세 본질을 동시 충족. ADR 001 의 viewer 격상은 14,000 안전관리자 (SAM 5,400사) 도달 — Agent_HQ PHILOSOPHY §9 의 Human fallback / 직원 역할 항목 해소. 이슈 5건 fix 는 npm 첫 publish 후 사용자 onboarding 마찰 직접 해소.
+
 ## [1.3.1] — 2026-05-20
 
 **npm 첫 publish 직후 patch — version 시점 정합**

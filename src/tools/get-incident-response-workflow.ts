@@ -12,16 +12,18 @@
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { findDoc } from "../lib/master-loader.js";
+// Issue #6 — severity 자연어 alias (fatality/사망 등도 허용)
+import { aliasedEnum, SEVERITY_ALIASES } from "../lib/input-aliases.js";
 
 const inputSchema = z.object({
-  severity: z.enum(["fatal", "serious", "minor"]).describe(
-    "fatal=중대재해 / serious=휴업 3일 이상 / minor=경미사고",
+  severity: aliasedEnum(["fatal", "serious", "minor"] as const, SEVERITY_ALIASES).describe(
+    "fatal=중대재해 / serious=휴업 3일 이상 / minor=경미사고. 자연어 alias 허용: fatality/death/사망→fatal, critical/major/중상→serious, light/slight/경상→minor.",
   ),
   incidentDate: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .optional()
-    .describe("발생일 YYYY-MM-DD (생략 시 오늘)"),
+    .describe("발생일 YYYY-MM-DD (생략 시 오늘 KST)"),
 });
 
 
@@ -180,15 +182,30 @@ const MINOR_STEPS: Step[] = [
   },
 ];
 
+// Issue #5 (2026-05-21) — KST/UTC 9시간 오차 fix
+// 이전: new Date("YYYY-MM-DDT00:00:00") 가 로컬 또는 UTC 자정으로 파싱되어
+//      서버 timezone 에 따라 dueAt 이 9시간 이전(UTC 자정)으로 표시되는 회귀 발생.
+// 이후: 항상 KST(+09:00) 자정 기준으로 산술 + ISO offset 명시.
 function offsetToDate(incidentDate: string, minutes: number): string {
-  const d = new Date(incidentDate + "T00:00:00");
-  d.setMinutes(d.getMinutes() + minutes);
-  return d.toISOString().slice(0, 16).replace("T", " ");
+  // 입력은 YYYY-MM-DD (예: "2026-05-21"). KST(+09:00) 자정으로 명시 파싱.
+  const kstMidnight = new Date(`${incidentDate}T00:00:00+09:00`);
+  const due = new Date(kstMidnight.getTime() + minutes * 60_000);
+  // KST 기준 ISO 문자열 — UTC ISO 에서 +9h 보정 후 substring.
+  const kstMs = due.getTime() + 9 * 60 * 60_000;
+  const kstIso = new Date(kstMs).toISOString();
+  // "2026-05-21T00:30:00.000Z" → "2026-05-21 00:30 KST"
+  return kstIso.slice(0, 16).replace("T", " ") + " KST";
+}
+
+// Issue #5 — KST 기준 오늘 날짜 (UTC slice 시 hours<9 인 새벽 호출에서 하루 빨라지는 문제 해소)
+function todayKst(): string {
+  const nowKstMs = Date.now() + 9 * 60 * 60_000;
+  return new Date(nowKstMs).toISOString().slice(0, 10);
 }
 
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const args = inputSchema.parse(rawInput);
-  const incidentDate = args.incidentDate ?? new Date().toISOString().slice(0, 10);
+  const incidentDate = args.incidentDate ?? todayKst();
   const steps =
     args.severity === "fatal" ? FATAL_STEPS : args.severity === "serious" ? SERIOUS_STEPS : MINOR_STEPS;
 

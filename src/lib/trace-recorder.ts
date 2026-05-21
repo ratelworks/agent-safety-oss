@@ -2,6 +2,8 @@ import { createHash, randomUUID } from "crypto";
 import { join } from "path";
 import { ensureSecureDir, appendSecureLog } from "./secure-fs.js";
 import { getTracesDir } from "../config/paths.js";
+// Issue #5 lateral (2026-05-22) — 활동 로그 파일명 KST 기준
+import { kstToday } from "./datetime-kst.js";
 
 const TRACE_DISABLE_ENV = "SAFETY_TRACE_DISABLE";
 // SAFETY_TRACE_DIR 가 우선이지만 미설정 시 paths.ts 의 getTracesDir() 가 SAFETY_LOCAL_DIR
@@ -84,9 +86,10 @@ function isTraceDisabled(): boolean {
 }
 
 function getTraceDate(startedAt: string): string {
+  // Issue #5 lateral — KST 기준 파일명 (UTC slice 회귀 해소)
   return /^\d{4}-\d{2}-\d{2}/.test(startedAt)
     ? startedAt.slice(0, 10)
-    : new Date().toISOString().slice(0, 10);
+    : kstToday();
 }
 
 function sha256(value: unknown): string {

@@ -1,21 +1,25 @@
 #!/usr/bin/env tsx
 /**
- * demo-a2ui-viewer.ts
+ * viewer-server.ts
  *
- * A2UI v0.9 JSONL 을 브라우저에서 시각적으로 렌더링하는 데모 viewer.
- * 의존성 0 (Node 표준만). 시연·검증용.
+ * A2UI v0.9 JSONL 을 브라우저에서 폼으로 렌더링하는 운영 viewer.
+ * agent-safety-oss 의 사용자 표면 — 비-개발자 안전관리자가 직접 사용.
+ * 의존성 0 (Node 표준만).
  *
  * 흐름:
  *   1. Node http 서버 (localhost:5174)
- *   2. 사용자가 브라우저로 접속
- *   3. 폼 선택: profile / docId 별 A2UI 폼
+ *   2. 사용자가 브라우저로 접속 (Claude Desktop / MCP Inspector 없이도 가능)
+ *   3. 폼 선택: profile / 94종 법정문서 docId 별 A2UI 폼
  *   4. 서버가 MCP CLI 호출 → A2UI JSONL 반환
- *   5. 클라이언트가 vanilla JS A2UI 렌더러로 폼 표시
- *   6. 사용자 입력 → POST /save → save_profile_from_form 호출
+ *   5. 클라이언트가 vanilla JS A2UI 렌더러로 폼 표시 + draft 자동 저장
+ *   6. 사용자 입력 → 본문 생성 (generate_safety_document) → 영구 보관 (archive)
+ *   7. MD 다운로드 (.md 파일) — PDF 는 사용자가 별도 도구 (Pandoc / 한컴 등) 로
  *
  * 실행:
- *   npm run mcp:demo:viewer   # 서버 시작
+ *   npm run mcp:viewer   # 서버 시작 + 자동 브라우저 열림
  *   open http://localhost:5174
+ *
+ * 결정 박제: decisions/001-a2ui-viewer-promotion.md
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { spawnSync, spawn } from "node:child_process";
@@ -27,6 +31,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
 const CLI = resolve(ROOT, "build", "cli.js");
 const MASTER_PATH = resolve(ROOT, "src", "ontology", "legal-duty-master.json");
+// 결재 양식 SSoT — custom/ (현장 표준 종합 양식) 우선, auto/ (KOSHA 자동 생성) 폴백.
+// custom/ 은 안전관리자가 가이드를 참조해 작성한 13섹션 종합 결재 양식.
+// auto/ 는 sections.fields 기반 KOSHA 양식 자동 생성 (94종).
+const FORMS_DIR_CUSTOM = resolve(ROOT, "src", "ontology", "forms", "custom");
+const FORMS_DIR_AUTO = resolve(ROOT, "src", "ontology", "forms", "auto");
 const PORT = Number(process.env.PORT ?? 5174);
 
 interface MasterDoc {
@@ -88,6 +97,7 @@ const HTML = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/Igent_Safety_OSS</title>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Display:wght@700;900&family=Roboto+Mono:wght@400;500&family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
 <style>
   /* === Design System v2 — Token Contract (핵심만 inline) === */
   :root {
@@ -137,7 +147,25 @@ const HTML = `<!doctype html>
   * { box-sizing: border-box; }
   body { font-family: var(--font-sans); margin:0; padding:0; background: var(--background); color: var(--foreground); line-height: 1.55; }
 
-  .layout { max-width: 1180px; margin: 0 auto; padding: var(--space-6) var(--space-4) var(--space-12); }
+  .layout { max-width: 1600px; margin: 0 auto; padding: var(--space-6) var(--space-4) var(--space-12); }
+
+  /* === 좌우 분할 (좌: 입력 폼 / 우: 양식 실시간 미리보기) === */
+  .split-area { display: grid; grid-template-columns: minmax(440px, 1fr) minmax(440px, 1.15fr); gap: var(--space-6); align-items: start; margin-top: var(--space-2); }
+  .split-area > #form-container { min-width: 0; }
+  .split-area > #preview-container { min-width: 0; position: sticky; top: var(--space-3); max-height: calc(100vh - var(--space-6)); overflow-y: auto; }
+  /* Profile 모드 — 우측 미사용, 폼 단독 (공통 메타는 양식 없음) */
+  .split-area.profile-mode { grid-template-columns: 1fr; max-width: 920px; margin-left: auto; margin-right: auto; }
+  .split-area.profile-mode > #preview-container { display: none; }
+  /* 분할 화면일 때 preview-panel 의 max-height 는 sticky 컨테이너가 제어 */
+  .split-area .preview-panel.preview-doc .preview-body { max-height: none; }
+  .split-area .preview-panel .preview-body { max-height: none; }
+
+  /* 분할 임계값 — 1080px 이하면 세로 배치 (태블릿/모바일 자연 fallback) */
+  @media (max-width: 1080px) {
+    .split-area { grid-template-columns: 1fr; }
+    .split-area > #preview-container { position: static; max-height: none; }
+  }
+
 
   /* === Header === */
   .agent-header { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid var(--border); margin-bottom: var(--space-6); }
@@ -229,9 +257,41 @@ const HTML = `<!doctype html>
   /* === Preview Panel === */
   .preview-panel { margin-top: var(--space-6); border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--background); overflow: hidden; }
   .preview-panel h3 { margin: 0; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border); background: var(--surface); font-family: var(--font-display); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: var(--space-2); }
+  .preview-panel h3 .preview-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .preview-panel h3 .preview-actions { display: flex; gap: var(--space-1); flex-wrap: wrap; }
+  .preview-panel h3 .preview-action { height: 30px; padding: 0 var(--space-2); font-size: 12px; font-weight: 500; gap: 4px; }
+  .preview-panel h3 .preview-action .material-symbols-outlined { font-size: 14px; }
+  /* 모바일/협소 폭에서 액션 줄바꿈 */
+  @media (max-width: 720px) {
+    .preview-panel h3 { flex-wrap: wrap; }
+    .preview-panel h3 .preview-actions { width: 100%; justify-content: flex-end; margin-top: var(--space-1); }
+  }
   .preview-panel .preview-body { padding: var(--space-4) var(--space-6); max-height: 480px; overflow-y: auto; font-size: 13px; }
   .preview-panel pre { background: var(--surface); padding: var(--space-3); border-radius: var(--component-radius); overflow-x: auto; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; }
-  .preview-panel .markdown { white-space: pre-wrap; line-height: 1.7; color: var(--foreground); }
+  /* === Markdown HTML 양식 렌더 (marked 파싱 결과용 — 결재용 양식 스타일) === */
+  .preview-panel .markdown { line-height: 1.7; color: var(--foreground); font-size: 14px; }
+  .preview-panel .markdown h1 { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-align: center; margin: 0 0 var(--space-6); padding-bottom: var(--space-3); border-bottom: 2px solid var(--gray-1000); letter-spacing: -0.02em; }
+  .preview-panel .markdown h2 { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin: var(--space-6) 0 var(--space-3); padding: var(--space-2) 0; border-bottom: 1px solid var(--border); }
+  .preview-panel .markdown h3 { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin: var(--space-4) 0 var(--space-2); color: var(--foreground); }
+  .preview-panel .markdown h4 { font-size: 13px; font-weight: 700; margin: var(--space-3) 0 var(--space-1); color: var(--foreground-secondary); }
+  .preview-panel .markdown p { margin: var(--space-2) 0; }
+  .preview-panel .markdown ul, .preview-panel .markdown ol { padding-left: var(--space-6); margin: var(--space-2) 0; }
+  .preview-panel .markdown li { margin: var(--space-1) 0; }
+  .preview-panel .markdown li > ul, .preview-panel .markdown li > ol { margin: 2px 0; }
+  .preview-panel .markdown strong { font-weight: 700; color: var(--foreground); }
+  .preview-panel .markdown em { font-style: italic; }
+  .preview-panel .markdown code { background: var(--surface); padding: 1px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 12px; }
+  .preview-panel .markdown blockquote { border-left: 3px solid var(--border-strong); padding: var(--space-2) var(--space-4); margin: var(--space-3) 0; color: var(--foreground-secondary); background: var(--surface); }
+  .preview-panel .markdown hr { border: none; border-top: 1px solid var(--border); margin: var(--space-6) 0; }
+  /* 결재용 표 — 흰 배경 + 검정 경계선 (공문서 표준) */
+  .preview-panel .markdown table { width: 100%; border-collapse: collapse; margin: var(--space-3) 0; font-size: 13px; }
+  .preview-panel .markdown thead { background: var(--surface); }
+  .preview-panel .markdown th { padding: var(--space-2) var(--space-3); border: 1px solid var(--border-strong); text-align: left; font-weight: 700; vertical-align: middle; }
+  .preview-panel .markdown td { padding: var(--space-2) var(--space-3); border: 1px solid var(--border); vertical-align: top; }
+  .preview-panel .markdown td:empty::before { content: ' '; }
+  .preview-panel .markdown a { color: var(--info); text-decoration: underline; }
+  /* preview-body 자체 max-height 늘리기 — 결재용 양식은 길어질 수 있음 */
+  .preview-panel.preview-doc .preview-body { max-height: 720px; }
 
   /* === Material Symbols inline === */
   .inline-icon { font-size: 1.15em; vertical-align: -3px; margin-right: 4px; color: var(--foreground-tertiary); font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga"; -webkit-font-smoothing: antialiased; }
@@ -282,6 +342,62 @@ const HTML = `<!doctype html>
   .agent-footer strong { color: var(--foreground); font-family: var(--font-display); font-weight: 700; }
   .agent-footer a { color: var(--foreground); font-family: var(--font-display); font-weight: 700; text-decoration: none; }
   .agent-footer a:hover { text-decoration: underline; }
+
+  /* === 모바일 반응형 — 현장 PDA/태블릿 우선 (split-area 는 1080px 임계값에서 이미 세로화) === */
+  @media (max-width: 768px) {
+    .layout { padding: var(--space-3) var(--space-2) var(--space-8); }
+    .agent-header { flex-wrap: wrap; gap: var(--space-2); }
+    .agent-tagline { margin-left: 0; font-size: 12px; }
+    .agent-toolbar { flex-direction: column; align-items: stretch; gap: var(--space-2); }
+    .agent-input-group { width: 100%; flex-wrap: wrap; gap: var(--space-2); }
+    .agent-label { width: 100%; }
+    .agent-select { min-width: 0; width: 100%; }
+    .agent-input { width: 100%; }
+    .agent-button { width: 100%; justify-content: center; }
+    .agent-card { padding: var(--space-4); }
+    .field-block { margin: var(--space-2) 0; }
+    .field-block input, .field-block textarea, .field-block select { width: 100%; }
+    .check-toggle { flex-wrap: wrap; gap: var(--space-1); }
+    .check-btn { flex: 1; min-width: calc(33% - var(--space-2)); padding: 0 var(--space-2); font-size: 13px; }
+    .Button { width: 100%; justify-content: center; }
+    .Row { flex-direction: column; align-items: stretch; }
+    .Row.spaceBetween { flex-direction: column; }
+    .preview-panel h3 { flex-wrap: wrap; padding: var(--space-3); }
+    .preview-panel h3 .preview-download { width: 100%; margin-left: 0; margin-top: var(--space-2); }
+    .preview-panel .preview-body { padding: var(--space-3); max-height: 360px; }
+    .ctx-hazards { grid-template-columns: 1fr; }
+    .ctx-grid { grid-template-columns: 1fr 1fr; }
+    .ctx-table th { width: 80px; font-size: 12px; padding: var(--space-1) var(--space-2); }
+    .ctx-table td { font-size: 12px; padding: var(--space-1) var(--space-2); }
+    #status { padding: var(--space-2) var(--space-3); font-size: 12px; }
+  }
+
+  @media (max-width: 480px) {
+    .h1 { font-size: 22px; }
+    .h2 { font-size: 15px; }
+    .body, .field-block .label { font-size: 13px; }
+    .Card { padding: var(--space-3); }
+  }
+
+  /* === 인쇄용 (window.print() → PDF 저장 가능) === */
+  @media print {
+    @page { size: A4; margin: 18mm 14mm; }
+    body { background: white; color: black; padding: 0; }
+    .layout { padding: 0; max-width: 100%; }
+    .agent-header, .agent-toolbar, #status, #form-container, .agent-footer { display: none !important; }
+    #preview-container { margin: 0; }
+    .preview-panel { border: none; box-shadow: none; margin: 0; }
+    .preview-panel h3 { display: none; } /* viewer UI 헤더 숨김, 마크다운 자체 h1 이 결재용 제목 */
+    .preview-panel .preview-body { max-height: none !important; padding: 0; overflow: visible; }
+    .preview-panel .markdown { color: black; font-size: 11pt; line-height: 1.55; }
+    .preview-panel .markdown h1 { font-size: 18pt; border-color: black; page-break-after: avoid; }
+    .preview-panel .markdown h2 { font-size: 13pt; border-color: #444; page-break-after: avoid; }
+    .preview-panel .markdown h3 { font-size: 11pt; page-break-after: avoid; }
+    .preview-panel .markdown table { page-break-inside: avoid; }
+    .preview-panel .markdown th, .preview-panel .markdown td { border-color: black; }
+    .preview-panel .markdown thead { background: #EEE; }
+    .preview-download { display: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -306,8 +422,11 @@ const HTML = `<!doctype html>
 </div>
 
 <div id="status"></div>
-<div id="form-container"></div>
-<div id="preview-container"></div>
+
+<div class="split-area">
+  <div id="form-container"></div>
+  <div id="preview-container"></div>
+</div>
 
 <footer class="agent-footer">
   Provided by <strong>황룡건설(주)</strong> · Developed by <a href="mailto:alphamale@ratelworks.co.kr">R/ITEL WORKS</a>
@@ -318,6 +437,11 @@ const HTML = `<!doctype html>
 <script>
 let currentTarget = 'profile';
 let fieldPathMap = {};
+let lastGeneratedDoc = null;     // { docId, content, filename } — generate 본문 (MD 다운로드 호환)
+let currentContext = null;       // 마지막으로 표시한 assemble_doc_context 의 docId — 토글용
+let currentDocTitle = '';        // 현재 docId 의 한국어 제목 (실시간 양식 미리보기 헤더)
+let formPreviewDebounce = null;  // 폼 입력 시 양식 미리보기 갱신 debounce
+let lastRenderedMd = '';         // 우측에 마지막으로 그린 마크다운 본문 (MD 저장/인쇄용)
 
 const root = document.getElementById('form-container');
 const status = document.getElementById('status');
@@ -431,6 +555,24 @@ async function loadForm(target) {
   setStatus('info', '폼 로드 중...');
   root.innerHTML = '';
   document.getElementById('preview-container').innerHTML = '';
+  currentContext = null;            // 새 폼 로드 시 그래프 토글 상태 초기화
+  lastGeneratedDoc = null;           // 이전 docId 의 generated 본문 상태 초기화
+  currentDocTitle = '';
+
+  // 레이아웃 분기 — Profile 은 폼 단독, docId 양식은 좌우 분할
+  const splitArea = document.querySelector('.split-area');
+  if (target === 'profile') {
+    splitArea?.classList.add('profile-mode');
+  } else {
+    splitArea?.classList.remove('profile-mode');
+    // docId 제목 — 드롭다운 selected option 의 textContent 에서 추출
+    const sel = document.getElementById('doc-select');
+    const opt = sel?.options[sel.selectedIndex];
+    if (opt && opt.value) {
+      // "TBM 회의록 [점검·일지] ★" → "TBM 회의록"
+      currentDocTitle = (opt.textContent || '').replace(/\s*\[.*?\].*$/, '').trim();
+    }
+  }
 
   try {
     const r = await fetch('/api/form?target=' + encodeURIComponent(target));
@@ -445,6 +587,8 @@ async function loadForm(target) {
     // draft 자동 복원 + autosave 바인딩 + 외부 변경 폴링
     await maybeLoadDraft();
     setupAutoSave();
+    setupLivePreview();             // docId 양식이면 폼 입력 → /api/generate 호출 바인딩 (1.5s debounce)
+    refreshFormPreview(true);       // 초기 1회 — generate 빈 draft 호출로 결재용 양식 골격 즉시 표시
     startPolling();
   } catch (e) {
     setStatus('err', '오류: ' + e.message);
@@ -801,11 +945,313 @@ function replaceEmojiWithIcons(text) {
   return html;
 }
 
-function renderPreview(title, html, kind) {
+function renderPreview(title, html, kind, hasDownload) {
   const container = document.getElementById('preview-container');
   const icon = kind === 'context' ? 'hub' : 'description';
-  container.innerHTML = '<div class="preview-panel"><h3><span class="material-symbols-outlined">' + icon + '</span> ' + escapeHtml(title) + '</h3><div class="preview-body">' + html + '</div></div>';
+  const panelClass = kind === 'doc' ? 'preview-panel preview-doc' : 'preview-panel';
+  // 결재 양식(doc) 미리보기일 때만 액션 4종 노출 — context(그래프) 는 액션 없음
+  const actions = (kind === 'doc') ? buildPreviewActions() : '';
+  container.innerHTML = '<div class="' + panelClass + '"><h3><span class="material-symbols-outlined">' + icon + '</span><span class="preview-title">' + escapeHtml(title) + '</span>' + actions + '</h3><div class="preview-body">' + html + '</div></div>';
   container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// 우측 결재 양식 미리보기 액션 4종 (갱신·MD 저장·인쇄/PDF·초기화)
+function buildPreviewActions() {
+  return (
+    '<div class="preview-actions">' +
+      '<button type="button" class="Button secondary preview-action" onclick="onRefreshPreview()" title="우측 양식 다시 그리기"><span class="material-symbols-outlined">refresh</span>갱신</button>' +
+      '<button type="button" class="Button secondary preview-action" onclick="onSaveMarkdown()" title="현재 양식을 .md 로 다운로드"><span class="material-symbols-outlined">download</span>MD 저장</button>' +
+      '<button type="button" class="Button secondary preview-action" onclick="window.print()" title="브라우저 인쇄로 PDF 저장"><span class="material-symbols-outlined">print</span>인쇄/PDF</button>' +
+      '<button type="button" class="Button secondary preview-action" onclick="onResetForm()" title="좌측 입력 초기화"><span class="material-symbols-outlined">restart_alt</span>초기화</button>' +
+    '</div>'
+  );
+}
+
+// 미리보기 갱신 — 현재 폼 입력 기준으로 즉시 우측 다시 그리기
+function onRefreshPreview() {
+  if (currentContext) { currentContext = null; } // 그래프 표시 중이었으면 양식으로 복귀
+  if (lastGeneratedDoc) { lastGeneratedDoc = null; } // generate 본문 표시 중이었으면 양식으로 복귀
+  refreshFormPreview(true);
+  setStatus('info', '양식 갱신 완료');
+}
+
+// 현재 우측 마크다운을 .md 파일로 다운로드
+function onSaveMarkdown() {
+  if (!lastRenderedMd) { setStatus('err', '저장할 본문이 없습니다 — 양식을 먼저 갱신하세요'); return; }
+  const docId = (currentTarget && currentTarget.startsWith('doc:')) ? currentTarget.replace('doc:', '') : 'document';
+  const today = new Date().toISOString().slice(0, 10);
+  const filename = docId + '-' + today + '.md';
+  const blob = new Blob([lastRenderedMd], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+  setStatus('ok', 'MD 다운로드 — ' + filename);
+}
+
+// 좌측 입력 초기화 — 모든 input/textarea/select + check 토글 + 서버 draft 삭제
+async function onResetForm() {
+  if (!confirm('현재 양식의 모든 입력값을 초기화하시겠습니까?')) return;
+  // 1) 입력 컨트롤 비우기
+  document.querySelectorAll('[data-field-id]').forEach((el) => {
+    if (el.tagName === 'SELECT') {
+      el.selectedIndex = 0;
+    } else if (el.type === 'hidden') {
+      el.value = '';
+    } else {
+      el.value = '';
+    }
+  });
+  // 2) check 토글 active 해제 + 메모 비우기
+  document.querySelectorAll('.check-btn.active').forEach((el) => el.classList.remove('active'));
+  document.querySelectorAll('.check-note').forEach((el) => { el.value = ''; });
+  // 3) 서버 draft 삭제 (docId 모드만)
+  if (currentTarget && currentTarget.startsWith('doc:')) {
+    const docId = currentTarget.replace('doc:', '');
+    try {
+      await fetch('/api/draft/save', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ docId, formValues: {}, autosave: false }),
+      });
+    } catch { /* best-effort */ }
+  }
+  // 4) 우측 양식 placeholder 상태로 복귀
+  lastGeneratedDoc = null;
+  refreshFormPreview(true);
+  setStatus('ok', '입력 초기화 완료');
+}
+
+// === 실시간 결재 양식 미리보기 ===
+// /api/generate (generate_safety_document MCP) 를 호출해서 docId 의 결재용 양식 마크다운을 받음.
+// 빈 draft → 양식 골격 + placeholder. 채워진 draft → 입력값 반영된 양식.
+// 자동 양식 생성 (클라이언트 추출) 은 정밀한 결재 양식 (결재선·다열 표·헤더 강조) 불가능하여 폐기.
+let liveGenerateInflight = false;
+
+// 결재 양식 템플릿의 {{key}} placeholder 를 폼 입력값으로 치환.
+// 폼에 없는 key 는 '미입력' 으로 (현장 안전관리자가 PDF 받아서 손으로 채우는 양식).
+function fillFormTemplate(templateMd, draft) {
+  let s = String(templateMd);
+  // 1) 입력된 값으로 명시적 치환
+  if (draft && typeof draft === 'object') {
+    for (const key of Object.keys(draft)) {
+      const v = (draft[key] == null ? '' : String(draft[key]).trim());
+      if (!v) continue;
+      const placeholder = '{{' + key + '}}';
+      s = s.split(placeholder).join(v);
+    }
+  }
+  // 2) 남은 {{...}} → '미입력'  (RegExp 생성자 + double-escape — backtick 회피)
+  s = s.replace(new RegExp('\\\\{\\\\{[^}]+\\\\}\\\\}', 'g'), '미입력');
+  return s;
+}
+
+async function refreshFormPreview(immediate) {
+  if (currentTarget === 'profile' || !currentTarget.startsWith('doc:')) return;
+  if (currentContext) return;     // 그래프 표시 중이면 덮지 않음
+  if (lastGeneratedDoc) return;    // submit 본문 표시 중이면 덮지 않음
+
+  const run = async () => {
+    if (liveGenerateInflight) return; // 동시 호출 중복 방지
+    liveGenerateInflight = true;
+    try {
+      const docId = currentTarget.replace('doc:', '');
+      const draft = collectFormValues();
+
+      // 1) 우선 결재 양식 템플릿 (src/templates/forms/{docId}.md) 시도
+      try {
+        const tplRes = await fetch('/api/official-form?docId=' + encodeURIComponent(docId));
+        if (tplRes.ok) {
+          const tplData = await tplRes.json();
+          if (tplData.ok && tplData.md) {
+            const filled = fillFormTemplate(tplData.md, draft);
+            if (currentContext || lastGeneratedDoc) return;
+            lastRenderedMd = filled; // MD 저장/인쇄에 사용
+            renderPreview('실시간 양식 — ' + (currentDocTitle || ''), renderMarkdownPreview(filled), 'doc', false);
+            return;
+          }
+        }
+      } catch (e) { /* fallback 진행 */ }
+
+      // 2) Fallback — 템플릿 없는 docId 는 기존 generate_safety_document
+      const r = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ docId, draft }),
+      });
+      const data = await r.json();
+      if (!data.ok) return;
+      if (currentContext || lastGeneratedDoc) return;
+      const rawMd = data.content || data.preview || '';
+      lastRenderedMd = rawMd; // MD 저장/인쇄에 사용
+      renderPreview('실시간 양식 — ' + (currentDocTitle || ''), renderMarkdownPreview(rawMd), 'doc', false);
+    } catch (e) {
+      // best-effort — 실패해도 silent
+    } finally {
+      liveGenerateInflight = false;
+    }
+  };
+
+  if (immediate) {
+    await run();
+  } else {
+    if (formPreviewDebounce) clearTimeout(formPreviewDebounce);
+    // 템플릿 경로는 LLM 안 거치므로 200ms 빠른 debounce (입력 즉시 반영)
+    formPreviewDebounce = setTimeout(run, 200);
+  }
+}
+
+function setupLivePreview() {
+  if (currentTarget === 'profile') return;
+  const fields = document.querySelectorAll('[data-field-id]');
+  for (const el of fields) {
+    el.addEventListener('input', () => refreshFormPreview(false));
+    el.addEventListener('change', () => refreshFormPreview(false));
+  }
+}
+
+// 법령 기호 → 한국어 가독성 변환 (양식 본문 / 결재 문서용)
+// MCP 도구는 § / Article 같은 영문/기호 표현을 그대로 출력 (Claude Desktop 등 다른 호스트와의 호환).
+// viewer 는 화면 그리기 직전에 한국어 표현으로 치환.
+function humanizeLawSymbols(text) {
+  if (!text) return '';
+  let s = String(text);
+  // § N → 제N조. TS backtick 이 \\s / \\d 를 한 번 escape 해야 JS RegExp 가 정상 해석.
+  s = s.replace(new RegExp('§\\\\s*(\\\\d+)', 'g'), '제$1조');
+  // ¶ N → 제N항
+  s = s.replace(new RegExp('¶\\\\s*(\\\\d+)', 'g'), '제$1항');
+  // Art. N → 제N조 (영문 표기 보정)
+  s = s.replace(new RegExp('\\\\bArt\\\\.?\\\\s*(\\\\d+)', 'g'), '제$1조');
+  return s;
+}
+
+// 결재용 양식에 부적합한 개발자/도구 친화 메타를 제거 — string 조작 only (정규식 escape 회피).
+// 제거 대상:
+//   - 상단 "🚫 결재 사용 불가 ... validation.issues" 경고
+//   - "(kordoc/pdftotext 검증 ...)" 내부 검증 메타
+//   - "📝 빈칸 작성 가이드 ..." LLM 친화 안내 블록 (다음 ## 까지)
+//   - "(그래프 추론 ...)" / "(ERIC-PP 위계 ...)" 도구 표현
+//   - "## 적용 KOSHA Guide (0건)" 빈 섹션 (다음 ## 까지)
+//   - "ERIC-PP 5계층 ..." 영문 설명 인용 줄
+//   - "> 직접 매핑 N개 ..." 도구 메타 줄
+//   - 하단 "ℹ️ 본 문서는 agent-safety-oss ..." 도구 라벨 (마지막 --- 부터 끝까지)
+function stripGeneratedNoise(text) {
+  if (!text) return '';
+  // 1차 — preamble 메타·가이드 인용 제거 (첫 ## 헤더 전의 모든 > 인용 + --- 구분선)
+  //         양식 본문은 ## 섹션부터 시작 — 그 위의 가이드 메타는 좌측 입력 영역에 위치해야 함
+  const rawLines = String(text).split('\\n');
+  let inPreamble = true;
+  const preCleaned = [];
+  for (const line of rawLines) {
+    if (inPreamble) {
+      if (line.startsWith('## ') || line.startsWith('### ')) {
+        inPreamble = false;
+        preCleaned.push(line);
+        continue;
+      }
+      // # h1 헤더는 유지, 그 외 > 인용 / --- 구분선은 출력 영역에서 제거
+      if (line.startsWith('>') || line.trim() === '---') continue;
+      preCleaned.push(line);
+    } else {
+      preCleaned.push(line);
+    }
+  }
+  const lines = preCleaned;
+
+  // 2차 — 본문 안의 도구/개발자 친화 메타 제거 (기존 로직)
+  const out = [];
+  let skipBlock = false;
+
+  function stripInlineParen(line, key) {
+    const idx = line.indexOf(key);
+    if (idx < 0) return line;
+    const close = line.indexOf(')', idx);
+    if (close < 0) return line;
+    return (line.substring(0, idx).replace(/\\s+$/, '') + line.substring(close + 1)).replace(/\\s+\\./g, '.');
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (skipBlock) {
+      if (line.startsWith('## ') || line.startsWith('---')) {
+        skipBlock = false;
+        // 이 줄(다음 ##) 은 살리는 게 자연스러움
+      } else {
+        continue;
+      }
+    }
+
+    // 개발자용 결재 경고
+    if (line.includes('🚫') && line.includes('결재 사용 불가')) continue;
+    // LLM 용 빈칸 작성 가이드 진입
+    // 작성 가이드 인용 블록 — 입력 영역에 위치할 가이드 메타 (출력에서 제거)
+    if (line.includes('📝') && line.includes('작성 가이드')) { skipBlock = true; continue; }
+    // 0건 KOSHA Guide 섹션
+    if (line.startsWith('## ') && line.includes('적용 KOSHA Guide') && line.includes('(0건)')) {
+      skipBlock = true; continue;
+    }
+    // ERIC-PP 5계층 도구 설명
+    if (line.startsWith('> ') && line.includes('ERIC-PP') && line.includes('5계층')) continue;
+    if (line.startsWith('> 직접 매핑')) continue;
+    // 하단 disclaimer (--- 다음 5줄 내 agent-safety-oss 라벨이 있으면 끝까지 잘라냄)
+    if (line.trim() === '---') {
+      const rest = lines.slice(i + 1, i + 6).join(' ');
+      if (rest.includes('agent-safety-oss')) break;
+    }
+
+    // 인라인 괄호 메타 정리
+    let cleaned = line;
+    cleaned = stripInlineParen(cleaned, '(kordoc/pdftotext');
+    cleaned = stripInlineParen(cleaned, '(그래프 추론');
+    cleaned = stripInlineParen(cleaned, '(ERIC-PP 위계');
+
+    // ERIC-PP 단어 자체는 한국어로
+    cleaned = cleaned.split('ERIC-PP 위계').join('통제수단 위계');
+    cleaned = cleaned.split('ERIC-PP').join('통제수단');
+
+    out.push(cleaned);
+  }
+
+  // 연속 빈 줄 정리
+  return out.join('\\n').replace(new RegExp('\\\\n{3,}', 'g'), '\\n\\n').trim();
+}
+
+// 마크다운 본문을 HTML 양식으로 렌더 — marked CDN 사용, 미로드 시 raw 폴백
+function renderMarkdownPreview(rawMd) {
+  // 1) 법령 기호 한국어화  2) 개발자/도구 메타 제거 (결재용 양식 가독성)
+  const ko = stripGeneratedNoise(humanizeLawSymbols(rawMd));
+  if (typeof marked !== 'undefined' && marked && typeof marked.parse === 'function') {
+    try {
+      marked.setOptions({ gfm: true, breaks: false });
+      return '<div class="markdown">' + marked.parse(ko) + '</div>';
+    } catch (e) {
+      // 파싱 실패 시 raw 폴백
+    }
+  }
+  return '<pre class="markdown" style="white-space:pre-wrap;font-family:var(--font-mono);font-size:12px">' + escapeHtml(ko) + '</pre>';
+}
+
+// 마크다운 본문을 .md 파일로 다운로드 — 의존성 0, Blob URL 만 사용
+function downloadMarkdown() {
+  if (!lastGeneratedDoc || !lastGeneratedDoc.content) {
+    setStatus('err', '다운로드할 본문이 없습니다');
+    return;
+  }
+  const blob = new Blob([lastGeneratedDoc.content], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = lastGeneratedDoc.filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+  setStatus('ok', 'MD 다운로드 — ' + lastGeneratedDoc.filename);
 }
 
 const HAZARD_CAT_KO = { physical: '물리적', chemical: '화학적', biological: '생물학적', ergonomic: '인간공학적', psychosocial: '심리사회적', psychological: '심리적', environmental: '환경적' };
@@ -1121,14 +1567,31 @@ async function handleAction(action) {
       body: JSON.stringify({ docId, content: data.content || data.preview, format: 'markdown', cleanupDraft: false }),
     });
     const archiveData = await archiveRes.json();
+    // MD 다운로드용 본문 보관 (사용자가 .md 파일로 받아 Pandoc/한컴 등으로 PDF 변환)
+    const today = new Date().toISOString().slice(0, 10);
+    lastGeneratedDoc = {
+      docId,
+      content: data.content || data.preview || '',
+      filename: docId + '-' + today + '.md',
+    };
     if (archiveData.ok) {
-      setStatus('ok', '본문 ' + data.length + '자 생성 + 영구 보관 (' + archiveData.data.filename + ')');
+      setStatus('ok', '본문 ' + data.length + '자 생성 + 영구 보관 (' + archiveData.data.filename + ') — 우측 상단 MD 다운로드 가능');
     } else {
-      setStatus('ok', '본문 ' + data.length + '자 생성 (보관 실패: ' + archiveData.reason + ')');
+      setStatus('ok', '본문 ' + data.length + '자 생성 (보관 실패: ' + archiveData.reason + ') — MD 다운로드는 가능');
     }
-    renderPreview('생성된 본문 — ' + docId, data.content || data.preview, 'doc');
+    const rawMd = data.content || data.preview || '';
+    lastRenderedMd = rawMd; // MD 저장/인쇄에 사용 (LLM 본문 결과)
+    renderPreview('생성된 본문 — ' + docId, renderMarkdownPreview(rawMd), 'doc', true);
+    currentContext = null; // 그래프 preview 가 doc preview 로 덮였으므로 context 토글 상태 초기화
   } else if (action.name === 'assemble_doc_context') {
     const docId = action.payload?.docId || currentTarget.replace('doc:', '');
+    // 토글: 같은 docId 의 그래프가 이미 표시 중이면 양식으로 복귀 (빈 공간 X)
+    if (currentContext === docId) {
+      currentContext = null;
+      setStatus('info', '온톨로지 그래프 접음 — 양식으로 복귀');
+      refreshFormPreview(true); // 실시간 양식 다시 그리기
+      return;
+    }
     setStatus('info', '문서 컨텍스트 불러오는 중...');
     const r = await fetch('/api/assemble', {
       method: 'POST',
@@ -1139,8 +1602,9 @@ async function handleAction(action) {
     if (data.ok) {
       const refs = data.summary || {};
       const title = data.data?.document?.title || docId;
-      setStatus('ok', '문서 정보 로드 완료 — 그래프 참조 ' + (refs.resolvedReferences || 0) + '/' + (refs.totalReferences || 0));
+      setStatus('ok', '문서 정보 로드 완료 — 그래프 참조 ' + (refs.resolvedReferences || 0) + '/' + (refs.totalReferences || 0) + ' (한번 더 누르면 접힘)');
       renderPreview('온톨로지 그래프 — ' + title, renderContextHumanFriendly(data.data), 'context');
+      currentContext = docId;
     } else {
       setStatus('err', '로드 실패: ' + data.reason);
     }
@@ -1191,9 +1655,9 @@ function renderDocSelect(docs) {
     for (const d of groups[freq]) {
       const opt = document.createElement('option');
       opt.value = d.docId;
-      // 제목 + [카테고리] + ★ (뒤) — 제목 앞 정렬 깔끔
-      const star = (d.tags && d.tags.length > 0) ? ' ★' : '';
-      opt.textContent = d.title + ' [' + humanizeCategory(d.category) + ']' + star;
+      // 제목 + [카테고리] — ★ 같은 시각 단서는 양식·결재 문서에 잘못 묻을 위험이 있어 제거.
+      // 법령강제·중대재해 강조는 그룹 라벨 (빈도 emoji + 그룹명) 단위로 이미 표현됨.
+      opt.textContent = d.title + ' [' + humanizeCategory(d.category) + ']';
       og.appendChild(opt);
     }
     sel.appendChild(og);
@@ -1360,6 +1824,37 @@ const server = createServer(async (req, res) => {
     const r = callMcp("get_storage_stats", {});
     if (!r.ok) return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: r.reason }));
     return send(res, 200, "application/json", JSON.stringify({ ok: true, data: r.data }));
+  }
+
+  // === 결재용 양식 반환 — custom/ 우선 → auto/ 폴백 ===
+  // custom/ = 안전관리자가 가이드 기반으로 작성한 13섹션 종합 결재 양식 (현장 실무 표준)
+  // auto/   = sections.fields 기반 KOSHA 양식 자동 생성 (94종)
+  if (url.pathname === "/api/official-form" && req.method === "GET") {
+    const docId = url.searchParams.get("docId") || "";
+    if (!docId || !/^[a-zA-Z0-9_-]+$/.test(docId)) {
+      return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "invalid docId" }));
+    }
+    const filename = docId + ".md";
+
+    // 1) custom/ 우선
+    try {
+      const customPath = resolve(FORMS_DIR_CUSTOM, filename);
+      if (customPath.startsWith(FORMS_DIR_CUSTOM + "/")) {
+        const md = readFileSync(customPath, "utf8");
+        return send(res, 200, "application/json", JSON.stringify({ ok: true, docId, md, source: "custom" }));
+      }
+    } catch { /* custom 없으면 auto 폴백 */ }
+
+    // 2) auto/ 폴백
+    try {
+      const autoPath = resolve(FORMS_DIR_AUTO, filename);
+      if (autoPath.startsWith(FORMS_DIR_AUTO + "/")) {
+        const md = readFileSync(autoPath, "utf8");
+        return send(res, 200, "application/json", JSON.stringify({ ok: true, docId, md, source: "auto" }));
+      }
+    } catch { /* 둘 다 없음 */ }
+
+    return send(res, 404, "application/json", JSON.stringify({ ok: false, reason: "form not found" }));
   }
 
   if (url.pathname === "/api/assemble" && req.method === "POST") {

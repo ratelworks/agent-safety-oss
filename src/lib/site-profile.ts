@@ -20,6 +20,8 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { homedir } from "node:os";
 import { ensureSecureDir, writeSecureJson } from "./secure-fs.js";
+// Issue #5 lateral (2026-05-22) — KST 기준 작성일 자동 채움
+import { kstToday } from "./datetime-kst.js";
 
 // SAFETY_LOCAL_DIR 환경변수가 있으면 그 디렉토리를 루트로 사용. photo·issue·action·report
 // 등 다른 로컬 저장소(corrective-action-storage 의 getSafetyLocalDir)와 동일 정책.
@@ -398,8 +400,8 @@ export function autoFillFromProfile(
     }
   }
 
-  // 작성 일자 (오늘)
-  fillIfEmpty("compileDate", new Date().toISOString().slice(0, 10));
+  // 작성 일자 (오늘 KST — Issue #5 lateral)
+  fillIfEmpty("compileDate", kstToday());
 
   // 안전보건관리비 — 자동 계산 (산안법 §72 1.97% 일반건설)
   if (project && (docId === "safety_health_mgmt_cost_plan" || docId === "construction_safety_management_plan")) {

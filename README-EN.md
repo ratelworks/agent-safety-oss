@@ -10,8 +10,8 @@
 
 | Item | Current code |
 |---|---:|
-| Package version | **1.3.1** (2026-05-20) |
-| MCP tools | **88** (offline-first, single API key for 6 KOSHA Live tools) |
+| Package version | **1.4.0** (2026-05-21) |
+| MCP tools | **92** (offline-first, single API key for 6 KOSHA Live tools) |
 | Statutory documents | **19** (TBM, work plans, risk assessments, MSDS, accident reports, etc.) |
 | Legal-duty document master | 94 docIds |
 | Full guides | 19 |
@@ -170,13 +170,13 @@ Run `npm run mcp:tools` for the full catalog.
 ```bash
 npm install
 npm run build
-npm run mcp:demo:viewer
+npm run mcp:viewer
 # → http://localhost:5174 starts automatically
 ```
 
-Pick a form type (TBM log, excavation work plan, periodic risk assessment, etc.) and the page renders with blanks, examples, and statutory references already populated.
+Pick a form type (TBM log, excavation work plan, periodic risk assessment, etc.) and the page renders with blanks, examples, and statutory references already populated. Fill in, generate the document body, archive, and download as `.md` — all in one page.
 
-For a static-only preview (paste JSONL into a textarea, no server), see [`a2ui-demo/README.md`](./a2ui-demo/README.md).
+> For PDF output, convert the downloaded `.md` via [Pandoc](https://pandoc.org/), Hangul/HWP Office, or [Typora](https://typora.io/). The viewer keeps zero runtime dependencies and does not embed a PDF engine.
 
 ## Verification
 

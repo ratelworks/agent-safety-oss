@@ -5,8 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.19-brightgreen)](https://nodejs.org)
 [![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io)
-[![Release](https://img.shields.io/badge/release-v1.3.1-blue.svg)](./CHANGELOG.md)
-[![Tools](https://img.shields.io/badge/MCP%20tools-88-orange.svg)](./docs/IDENTITY.md)
+[![Release](https://img.shields.io/badge/release-v1.4.0-blue.svg)](./CHANGELOG.md)
+[![Tools](https://img.shields.io/badge/MCP%20tools-92-orange.svg)](./docs/IDENTITY.md)
 
 **건설현장의 법정 안전문서 작성을 더 빠르고 정확하게.** 산안법·기준규칙·중처법·KOSHA Guide를 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.
 
@@ -172,13 +172,13 @@ archive_safety_document
 ```bash
 npm install
 npm run build
-npm run mcp:demo:viewer
+npm run mcp:viewer
 # → http://localhost:5174 자동 시작
 ```
 
-브라우저에서 폼 종류 (TBM 회의록 / 굴착 작업계획서 / 정기 위험성평가 등) 를 선택하면, 빈칸·예시·법령 인용까지 자동으로 채워진 입력 폼이 렌더링됩니다.
+브라우저에서 폼 종류 (TBM 회의록 / 굴착 작업계획서 / 정기 위험성평가 등) 를 선택하면, 빈칸·예시·법령 인용까지 자동으로 채워진 입력 폼이 렌더링됩니다. 입력 완료 후 본문 생성 → 영구 보관 → MD 파일 다운로드까지 한 페이지에서 끝납니다.
 
-JSONL 만 따로 받아 정적 뷰어 (`a2ui-demo/index.html`) 에 붙여넣는 방법도 있습니다 — 자세한 안내는 [`a2ui-demo/README.md`](./a2ui-demo/README.md).
+> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/), 한글/한컴오피스, 또는 [Typora](https://typora.io/) 등으로 변환합니다. viewer 자체는 의존성 0 원칙 유지를 위해 PDF 변환을 내장하지 않습니다.
 
 ## 빠른 시작
 
@@ -404,8 +404,8 @@ generate_safety_report
 
 ## 들어 있는 것
 
-- 패키지 버전: 1.3.1
-- MCP 도구: 88개
+- 패키지 버전: 1.4.0
+- MCP 도구: 92개
 - 법정의무 문서 마스터: 94 docId
 - 풀가이드: 19개
 - 양식 인덱스: 132 formId

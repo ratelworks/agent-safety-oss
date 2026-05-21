@@ -7,22 +7,25 @@
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { findDoc, retentionToDays, computeNextDueDate } from "../lib/master-loader.js";
+// Issue #5 lateral (2026-05-22) — KST 기준 일자 산술
+import { kstToday, kstDayDiff } from "../lib/datetime-kst.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("법정문서 docId"),
   compileDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("작성일 YYYY-MM-DD"),
-  asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("기준일 (생략 시 오늘)"),
+  asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("기준일 KST (생략 시 오늘)"),
 });
 
 
+// Issue #5 lateral — KST 기준 일수 차이
 function daysBetween(a: string, b: string): number {
-  const ms = new Date(b).getTime() - new Date(a).getTime();
-  return Math.floor(ms / (1000 * 60 * 60 * 24));
+  return kstDayDiff(a, b);
 }
 
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const { docId, compileDate, asOf: asOfArg } = inputSchema.parse(rawInput);
-  const asOf = asOfArg ?? new Date().toISOString().slice(0, 10);
+  // Issue #5 lateral — UTC slice 대신 KST 기준 today
+  const asOf = asOfArg ?? kstToday();
   const doc = findDoc(docId);
   if (!doc) {
     return {

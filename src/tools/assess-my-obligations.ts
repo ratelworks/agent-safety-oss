@@ -17,6 +17,8 @@ import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { loadProfile } from "../lib/site-profile.js";
 import { loadMaster } from "../lib/master-loader.js";
+// Issue #6 lateral (2026-05-22) — industry 자연어 alias
+import { aliasedEnum, INDUSTRY_ALIASES } from "../lib/input-aliases.js";
 
 type Verdict = "applies" | "likely_applies" | "likely_excludes" | "depends_on_review";
 
@@ -127,7 +129,10 @@ const inputSchema = z.object({
   siteId: z.string().optional().describe("프로파일의 사업장 IRI (생략 시 첫 번째 사업장)"),
   workforce: z.number().int().min(0).optional().describe("상시근로자 수 (프로파일 override)"),
   contractAmount: z.number().min(0).optional().describe("도급금액 단위:원 (프로파일 override)"),
-  industry: z.enum(["construction", "manufacturing", "service", "other"]).optional(),
+  industry: aliasedEnum(
+    ["construction", "manufacturing", "service", "other"] as const,
+    INDUSTRY_ALIASES,
+  ).optional().describe("업종. 자연어 alias 허용: 건설/건축/토목→construction, 제조/공장→manufacturing, 서비스→service, 기타→other."),
   hasContractor: z.boolean().optional(),
   verdictFilter: z
     .array(z.enum(["applies", "likely_applies", "likely_excludes", "depends_on_review"]))

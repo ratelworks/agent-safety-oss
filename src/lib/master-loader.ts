@@ -7,6 +7,8 @@
 import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+// Issue #5 lateral (2026-05-22) — KST 기준 일자 산술
+import { parseKstDate, formatKstDate } from "./datetime-kst.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -79,17 +81,19 @@ export function retentionToDays(retention: string): number | null {
   return null;
 }
 
-// nextDueRule + compileDate → 다음 작성일 (ISO 8601)
+// nextDueRule + compileDate → 다음 작성일 (KST 기준 YYYY-MM-DD)
+// Issue #5 lateral — UTC 자정 파싱 + UTC substring 회귀 해소.
 export function computeNextDueDate(rule: string | null | undefined, compileDate: string): string | null {
   if (!rule) return null;
   const m = rule.match(/compileDate\s*\+\s*P(\d+)([DMY])/);
   if (!m) return null;
   const n = Number(m[1]);
   const unit = m[2];
-  const d = new Date(compileDate);
+  const d = parseKstDate(compileDate);
   if (Number.isNaN(d.getTime())) return null;
-  if (unit === "D") d.setDate(d.getDate() + n);
-  else if (unit === "M") d.setMonth(d.getMonth() + n);
-  else if (unit === "Y") d.setFullYear(d.getFullYear() + n);
-  return d.toISOString().slice(0, 10);
+  // KST 자정 기준에서 D/M/Y 산술 — setDate/setMonth/setFullYear 는 timezone 무관 정수 가산
+  if (unit === "D") d.setUTCDate(d.getUTCDate() + n);
+  else if (unit === "M") d.setUTCMonth(d.getUTCMonth() + n);
+  else if (unit === "Y") d.setUTCFullYear(d.getUTCFullYear() + n);
+  return formatKstDate(d);
 }

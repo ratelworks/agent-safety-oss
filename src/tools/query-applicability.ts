@@ -2,6 +2,8 @@ import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { getDocument, neighborsByEdge } from "../lib/graph-nodes-loader.js";
 import { COMMON_RESPONSE_META } from "../config/constants.js";
+// Issue #6 lateral (2026-05-22) — industry 자연어 alias
+import { aliasedEnum, INDUSTRY_ALIASES } from "../lib/input-aliases.js";
 
 // 파일 최상단 상수 — 사업장 조건 + 작업 조건이 특정 법정문서·조문 적용 대상인지 자동 판정
 //
@@ -20,7 +22,10 @@ const ScaleSchema = z
   .object({
     workforce: z.number().int().min(0).optional().describe("상시 근로자 수"),
     constructionValue: z.number().min(0).optional().describe("총 공사금액 (억원)"),
-    industry: z.enum(["construction", "manufacturing", "service", "other"]).optional(),
+    industry: aliasedEnum(
+      ["construction", "manufacturing", "service", "other"] as const,
+      INDUSTRY_ALIASES,
+    ).optional().describe("업종. 자연어 alias 허용: 건설→construction, 제조→manufacturing, 서비스→service, 기타→other."),
   })
   .optional();
 

@@ -12,9 +12,13 @@
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { loadMaster } from "../lib/master-loader.js";
+// Issue #6 lateral (2026-05-22) — stage 자연어 alias
+import { aliasedEnum, STAGE_ALIASES } from "../lib/input-aliases.js";
 
 const inputSchema = z.object({
-  stage: z.enum(["pre", "active", "post"]).describe("pre=착공전 / active=시공중 / post=준공"),
+  stage: aliasedEnum(["pre", "active", "post"] as const, STAGE_ALIASES).describe(
+    "공사 단계. 자연어 alias 허용: 착공전/사전/before/preparation→pre, 시공/진행중/during→active, 준공/완공/after→post.",
+  ),
   isLargeScale: z.boolean().optional().describe("50억+ 또는 50인+ 대규모 여부 (착공 전 추가 의무 활성화)"),
 });
 

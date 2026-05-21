@@ -9,13 +9,14 @@
  *   2. profile.jsonld 로드 → 자동 채움 가능한 값 prefill
  *   3. A2UI v0.9 JSONL 메시지 생성 (createSurface + updateComponents)
  *   4. 사용자 입력 흐름:
- *      - 클라이언트가 폼 렌더 → 사용자 입력 → 사용자가 LLM 에 입력값 전달
- *      - LLM 이 generate_safety_document({docId, draft: 입력값}) 호출 → 본문 생성
+ *      - 클라이언트가 폼 렌더 → 사용자 입력
+ *      - 패키지 내장 viewer (scripts/dev/viewer-server.ts) 는 자체적으로 generate_safety_document 호출 + archive + MD 다운로드까지 수행
+ *      - 또는 LLM 이 generate_safety_document({docId, draft: 입력값}) 호출 → 본문 생성
  *      - 또는 register_* 도구로 profile 갱신
  *
  * A2UI 한계 준수:
  *   - 동적 추가/삭제 없음 (고정 필드 N개)
- *   - action.name 만 노출 — 실제 백엔드 동작은 LLM/MCP 가 처리
+ *   - action.name 만 노출 — 실제 백엔드 동작은 viewer/LLM/MCP 가 처리
  *   - 클라이언트 측 유효성 검사 없음 (review_safety_document 가 후속 검증)
  */
 import { z } from "zod";
@@ -25,6 +26,7 @@ import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { findDoc } from "../lib/master-loader.js";
 import { loadProfile, autoFillFromProfile } from "../lib/site-profile.js";
+import { graphRepository } from "../lib/graph-repository.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const NODES_DIR = (() => {
@@ -240,6 +242,66 @@ function flattenFields(node: any): Array<{ key: string; label: string; inputGuid
   return out;
 }
 
+// ADR 002 — Active Graph Authoring Loop: 그래프 컨텍스트 inline 조립
+// assemble_doc_context 의 traversal 로직을 폼 렌더 단계에서 직접 호출 (별도 도구 호출 없이)
+interface InlineGraphContext {
+  hazards: Array<{ iri: string; label: string; category?: string }>;
+  controls: Array<{ iri: string; label: string; ericLevel?: number }>;
+  relatedDocs: Array<{ iri: string; docId?: string; title?: string }>;
+  legalArticles: Array<{ iri: string; name: string }>;
+  koshaGuides: Array<{ iri: string; guideNo?: string; title?: string }>;
+}
+
+async function loadInlineGraphContext(docNode: Record<string, any>): Promise<InlineGraphContext> {
+  await graphRepository.ensureBuilt();
+  const hazards: InlineGraphContext["hazards"] = [];
+  for (const iri of (docNode.hasHazard ?? []) as string[]) {
+    const n = graphRepository.getNode(iri) as Record<string, any> | undefined;
+    if (!n) continue;
+    hazards.push({ iri, label: String(n.label ?? iri), category: n.category });
+  }
+  // direct controls + via hazards 합집합 (간단)
+  const controlIris = new Set<string>((docNode.mitigatedBy ?? []) as string[]);
+  for (const h of hazards) {
+    const hNode = graphRepository.getNode(h.iri) as Record<string, any> | undefined;
+    for (const c of (hNode?.mitigatedBy ?? []) as string[]) controlIris.add(c);
+  }
+  const controls: InlineGraphContext["controls"] = [];
+  for (const iri of controlIris) {
+    const n = graphRepository.getNode(iri) as Record<string, any> | undefined;
+    if (!n) continue;
+    controls.push({
+      iri,
+      label: String(n.label ?? n.title ?? iri),
+      ericLevel: Number(n.ericLevel ?? 4),
+    });
+  }
+  controls.sort((a, b) => (a.ericLevel ?? 4) - (b.ericLevel ?? 4));
+
+  const relatedDocs: InlineGraphContext["relatedDocs"] = [];
+  for (const iri of (docNode.relatedDocs ?? []) as string[]) {
+    const n = graphRepository.getNode(iri) as Record<string, any> | undefined;
+    if (!n) continue;
+    relatedDocs.push({ iri, docId: n.docId, title: n.title });
+  }
+
+  const legalArticles: InlineGraphContext["legalArticles"] = (
+    (docNode.legalBasis ?? []) as string[]
+  ).map((l) => ({ iri: l, name: humanizeArticleIri(l) }));
+
+  const koshaGuides: InlineGraphContext["koshaGuides"] = [];
+  for (const iri of (docNode.guidedBy ?? []) as string[]) {
+    const n = graphRepository.getNode(iri) as Record<string, any> | undefined;
+    if (!n) continue;
+    koshaGuides.push({
+      iri,
+      guideNo: n._meta?.guideNo ?? iri.split("/").pop(),
+      title: n.title ?? n.label,
+    });
+  }
+  return { hazards, controls, relatedDocs, legalArticles, koshaGuides };
+}
+
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const args = inputSchema.parse(rawInput);
 
@@ -260,6 +322,46 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       isError: true,
       structuredContent: { docId: args.docId, fields: 0 },
     };
+  }
+
+  // ADR 002 — _meta.writingGuide 추출 (있을 때만)
+  const writingGuide = (node._meta?.writingGuide ?? {}) as {
+    fieldHints?: Record<string, string>;
+    commonMistakes?: string[];
+    bestPractices?: string[];
+  };
+
+  // ADR 002 — 그래프 컨텍스트 inline 조립 (assemble_doc_context 와 동일 데이터)
+  let graphContext: InlineGraphContext = {
+    hazards: [],
+    controls: [],
+    relatedDocs: [],
+    legalArticles: [],
+    koshaGuides: [],
+  };
+  try {
+    graphContext = await loadInlineGraphContext(node);
+  } catch {
+    // graph 로드 실패 시 빈 컨텍스트로 진행 (폼은 정상 렌더)
+  }
+
+  // sections 의 fields 에 checkPoints 보존 (flattenFields 가 누락) → 별도 맵 구축
+  const checkPointsMap: Record<string, string[]> = {};
+  if (Array.isArray(node.sections)) {
+    for (const sec of node.sections) {
+      for (const f of sec.fields ?? []) {
+        if (f && typeof f === "object" && f.key && Array.isArray(f.checkPoints)) {
+          checkPointsMap[f.key] = f.checkPoints;
+        }
+      }
+    }
+  }
+  if (Array.isArray(node.requiredFields)) {
+    for (const f of node.requiredFields) {
+      if (f && typeof f === "object" && f.key && Array.isArray(f.checkPoints) && !checkPointsMap[f.key]) {
+        checkPointsMap[f.key] = f.checkPoints;
+      }
+    }
   }
 
   // profile 자동 채움 — 사업장명·주소·대표자 등
@@ -283,11 +385,19 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   // 2. components — root Column 안에 [title, info, ...fields, submit]
   const components: A2UIComponent[] = [];
 
+  // ADR 002 — guide-card 조건부 표시 (writingGuide 가 있을 때만)
+  const hasWritingGuide =
+    (writingGuide.commonMistakes && writingGuide.commonMistakes.length > 0) ||
+    (writingGuide.bestPractices && writingGuide.bestPractices.length > 0);
+
   // root
+  const rootChildren: string[] = ["header", "info-card"];
+  if (hasWritingGuide) rootChildren.push("guide-card");
+  rootChildren.push("fields-section", "actions");
   components.push({
     id: "root",
     component: "Column",
-    children: ["header", "info-card", "fields-section", "actions"],
+    children: rootChildren,
   });
 
   // header
@@ -298,12 +408,29 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     usageHint: "h1",
   });
 
-  // info card
+  // info card — ADR 002 강화: graph-context + lifecycle 추가
+  const infoColChildren: string[] = ["info-purpose", "info-meta", "info-laws"];
+  if (
+    graphContext.hazards.length > 0 ||
+    graphContext.controls.length > 0 ||
+    graphContext.relatedDocs.length > 0 ||
+    graphContext.koshaGuides.length > 0
+  ) {
+    infoColChildren.push("info-graph-context");
+  }
+  if (
+    masterDoc?.submitTo ||
+    masterDoc?.submitDeadline ||
+    masterDoc?.retention ||
+    masterDoc?.electronicSubmission?.available
+  ) {
+    infoColChildren.push("info-lifecycle");
+  }
   components.push({ id: "info-card", component: "Card", child: "info-col" });
   components.push({
     id: "info-col",
     component: "Column",
-    children: ["info-purpose", "info-meta", "info-laws"],
+    children: infoColChildren,
   });
   components.push({
     id: "info-purpose",
@@ -350,6 +477,126 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     components.push({ id: "info-laws", component: "Text", text: "", usageHint: "caption" });
   }
 
+  // ADR 002 — info-graph-context 인라인 (assemble_doc_context 요약)
+  if (infoColChildren.includes("info-graph-context")) {
+    const parts: string[] = [];
+    if (graphContext.hazards.length > 0) {
+      parts.push(
+        `⚠️ 위험요인 ${graphContext.hazards.length}건 (${graphContext.hazards
+          .slice(0, 3)
+          .map((h) => h.label)
+          .join(" · ")}${graphContext.hazards.length > 3 ? " 외" : ""})`,
+      );
+    }
+    if (graphContext.controls.length > 0) {
+      parts.push(
+        `🛡 통제대책 ${graphContext.controls.length}건 (${graphContext.controls
+          .slice(0, 3)
+          .map((c) => c.label)
+          .join(" · ")}${graphContext.controls.length > 3 ? " 외" : ""})`,
+      );
+    }
+    if (graphContext.koshaGuides.length > 0) {
+      parts.push(
+        `📚 KOSHA Guide ${graphContext.koshaGuides.length}건 (${graphContext.koshaGuides
+          .slice(0, 2)
+          .map((g) => g.guideNo ?? g.title ?? "")
+          .filter(Boolean)
+          .join(" · ")})`,
+      );
+    }
+    if (graphContext.relatedDocs.length > 0) {
+      parts.push(
+        `🔗 연계 문서 ${graphContext.relatedDocs.length}건 (${graphContext.relatedDocs
+          .slice(0, 3)
+          .map((d) => d.title ?? d.docId ?? "")
+          .filter(Boolean)
+          .join(" · ")})`,
+      );
+    }
+    components.push({
+      id: "info-graph-context",
+      component: "Text",
+      text: parts.join("\n"),
+      usageHint: "caption",
+    });
+  }
+
+  // ADR 002 — info-lifecycle 인라인
+  if (infoColChildren.includes("info-lifecycle")) {
+    const lifecycleParts: string[] = [];
+    if (masterDoc?.submitTo) lifecycleParts.push(`📤 제출: ${masterDoc.submitTo}`);
+    if (masterDoc?.submitDeadline) lifecycleParts.push(`⏰ 마감: ${masterDoc.submitDeadline}`);
+    if (masterDoc?.electronicSubmission?.available)
+      lifecycleParts.push(`💻 전자제출: ${masterDoc.electronicSubmission.url ?? "지원"}`);
+    if (masterDoc?.retention) lifecycleParts.push(`🗄 보관: ${masterDoc.retention}`);
+    components.push({
+      id: "info-lifecycle",
+      component: "Text",
+      text: lifecycleParts.join(" · "),
+      usageHint: "caption",
+    });
+  }
+
+  // ADR 002 — guide-card (writingGuide 노출)
+  if (hasWritingGuide) {
+    const guideColChildren: string[] = [];
+    components.push({ id: "guide-card", component: "Card", child: "guide-col" });
+    if (writingGuide.commonMistakes && writingGuide.commonMistakes.length > 0) {
+      guideColChildren.push("guide-mistakes-title", "guide-mistakes");
+      components.push({
+        id: "guide-mistakes-title",
+        component: "Text",
+        text: "⚠️ 흔한 실수",
+        usageHint: "h2",
+      });
+      components.push({
+        id: "guide-mistakes",
+        component: "Text",
+        text: writingGuide.commonMistakes.map((m) => `• ${m}`).join("\n"),
+        usageHint: "body",
+      });
+    }
+    if (writingGuide.bestPractices && writingGuide.bestPractices.length > 0) {
+      guideColChildren.push("guide-practices-title", "guide-practices");
+      components.push({
+        id: "guide-practices-title",
+        component: "Text",
+        text: "✅ 모범 사례",
+        usageHint: "h2",
+      });
+      components.push({
+        id: "guide-practices",
+        component: "Text",
+        text: writingGuide.bestPractices.map((p) => `• ${p}`).join("\n"),
+        usageHint: "body",
+      });
+    }
+    components.push({ id: "guide-col", component: "Column", children: guideColChildren });
+  }
+
+  // ADR 002 — _meta.writingGuide.fieldHints 라벨 매칭 헬퍼
+  // 공백·괄호·번호 마커 정규화 후 양방향 substring 매칭
+  function normalizeForMatch(s: string): string {
+    return s
+      .replace(/\([^)]*\)/g, "") // 괄호 안 제거 ("3건 이상" 등)
+      .replace(/[❶❷❸❹❺❻❼❽❾❿①-⑳]/g, "") // 번호 마커 제거
+      .replace(/\s+/g, "") // 공백 제거
+      .trim();
+  }
+  function findFieldHint(label: string, key: string): string | undefined {
+    if (!writingGuide.fieldHints) return undefined;
+    if (writingGuide.fieldHints[label]) return writingGuide.fieldHints[label];
+    if (writingGuide.fieldHints[key]) return writingGuide.fieldHints[key];
+    const labelNorm = normalizeForMatch(label);
+    for (const [hintKey, hintVal] of Object.entries(writingGuide.fieldHints)) {
+      const hintKeyNorm = normalizeForMatch(hintKey);
+      if (!hintKeyNorm) continue;
+      if (labelNorm.includes(hintKeyNorm) || hintKeyNorm.includes(labelNorm)) return hintVal;
+    }
+    return undefined;
+  }
+
   // fields section
   const fieldGroupChildren: string[] = [];
   const fieldPathMap: Record<string, string> = {};
@@ -360,11 +607,11 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     const labelId = `field-${i}-label`;
     const inputId = `field-${i}-input`;
     const guideId = `field-${i}-guide`;
+    const hintId = `field-${i}-hint`;
     fieldPathMap[inputId] = f.key;
     fieldLabelMap[f.key] = f.label;
 
-    fieldGroupChildren.push(fieldId);
-    components.push({ id: fieldId, component: "Column", children: [labelId, inputId, guideId] });
+    const fieldChildren: string[] = [labelId, inputId, guideId];
 
     components.push({
       id: labelId,
@@ -389,15 +636,35 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       ...(f.examples && f.examples.length > 0 ? { placeholder: f.examples[0] } : {}),
     });
 
+    // ADR 002 — guide 강화 (inputGuide + examples + checkPoints)
     const guideParts: string[] = [];
     if (f.inputGuide) guideParts.push(`💡 ${f.inputGuide}`);
     if (f.examples && f.examples.length > 0) guideParts.push(`예시: ${f.examples.slice(0, 2).join(" / ")}`);
+    const checkPoints = checkPointsMap[f.key];
+    if (checkPoints && checkPoints.length > 0) {
+      guideParts.push(`☑️ 점검: ${checkPoints.slice(0, 3).join(" / ")}`);
+    }
     components.push({
       id: guideId,
       component: "Text",
       text: guideParts.join("  ·  ") || "",
       usageHint: "caption",
     });
+
+    // ADR 002 — fieldHint (writingGuide.fieldHints 라벨 매칭) — 있을 때만
+    const fieldHint = findFieldHint(f.label, f.key);
+    if (fieldHint) {
+      fieldChildren.push(hintId);
+      components.push({
+        id: hintId,
+        component: "Text",
+        text: `🧠 ${fieldHint}`,
+        usageHint: "caption",
+      });
+    }
+
+    fieldGroupChildren.push(fieldId);
+    components.push({ id: fieldId, component: "Column", children: fieldChildren });
   }
   components.push({
     id: "fields-section",
@@ -405,27 +672,102 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     children: fieldGroupChildren,
   });
 
-  // actions
+  // ADR 002 — actions Row 강화: 4 신규 능동 호출 액션 + 기존 2개
   components.push({
     id: "actions",
     component: "Row",
-    children: ["submit-btn", "preview-btn"],
+    children: [
+      "analyze-btn",
+      "controls-btn",
+      "help-btn",
+      "preview-review-btn",
+      "preview-btn",
+      "submit-btn",
+    ],
     distribution: "spaceBetween",
   });
+
+  // ADR 002 — analyze-btn: 작업명 → 그래프 종합 컨텍스트
   components.push({
-    id: "submit-btn",
+    id: "analyze-btn",
     component: "Button",
-    child: "submit-text",
-    action: { name: "submit_safety_document", payload: { docId: args.docId, surfaceId: surface } },
+    child: "analyze-text",
+    action: {
+      name: "analyze_work_context",
+      payload: { docId: args.docId, surfaceId: surface },
+    },
   });
-  components.push({ id: "submit-text", component: "Text", text: "📥 작성 완료 — 본문 생성" });
+  components.push({
+    id: "analyze-text",
+    component: "Text",
+    text: "🔍 작업 분석",
+  });
+
+  // ADR 002 — controls-btn: 위험요인 → 통제대책 추천
+  components.push({
+    id: "controls-btn",
+    component: "Button",
+    child: "controls-text",
+    action: {
+      name: "suggest_controls_for_hazard",
+      payload: { docId: args.docId, surfaceId: surface },
+    },
+  });
+  components.push({
+    id: "controls-text",
+    component: "Text",
+    text: "🛡 통제대책",
+  });
+
+  // ADR 002 — help-btn: 필드 단위 동적 도움말
+  components.push({
+    id: "help-btn",
+    component: "Button",
+    child: "help-text",
+    action: {
+      name: "request_field_help",
+      payload: { docId: args.docId, surfaceId: surface },
+    },
+  });
+  components.push({
+    id: "help-text",
+    component: "Text",
+    text: "❓ 필드 도움말",
+  });
+
+  // ADR 002 — preview-review-btn: 작성 중 부분 검토
+  components.push({
+    id: "preview-review-btn",
+    component: "Button",
+    child: "preview-review-text",
+    action: {
+      name: "preview_review",
+      payload: { docId: args.docId, surfaceId: surface, scope: "all" },
+    },
+  });
+  components.push({
+    id: "preview-review-text",
+    component: "Text",
+    text: "📝 부분 검토",
+  });
+
+  // 기존 — preview-btn: assemble_doc_context (전체 그래프 컨텍스트 미리보기)
   components.push({
     id: "preview-btn",
     component: "Button",
     child: "preview-text",
     action: { name: "assemble_doc_context", payload: { docId: args.docId } },
   });
-  components.push({ id: "preview-text", component: "Text", text: "온톨로지 그래프" });
+  components.push({ id: "preview-text", component: "Text", text: "🧭 온톨로지 그래프" });
+
+  // 기존 — submit-btn: 작성 완료 → 본문 생성
+  components.push({
+    id: "submit-btn",
+    component: "Button",
+    child: "submit-text",
+    action: { name: "submit_safety_document", payload: { docId: args.docId, surfaceId: surface } },
+  });
+  components.push({ id: "submit-text", component: "Text", text: "📥 작성 완료" });
 
   messages.push({
     updateComponents: {
@@ -455,9 +797,31 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       a2uiVersion: "v0.9",
       format: args.format,
       messages,
+      // ADR 002 — 그래프 컨텍스트 + writingGuide 노출 (LLM 능동 호출에 활용)
+      graphContext: {
+        hazards: graphContext.hazards,
+        controls: graphContext.controls,
+        relatedDocs: graphContext.relatedDocs,
+        legalArticles: graphContext.legalArticles,
+        koshaGuides: graphContext.koshaGuides,
+      },
+      writingGuide: {
+        hasFieldHints: !!(writingGuide.fieldHints && Object.keys(writingGuide.fieldHints).length > 0),
+        commonMistakesCount: writingGuide.commonMistakes?.length ?? 0,
+        bestPracticesCount: writingGuide.bestPractices?.length ?? 0,
+      },
+      activeActions: [
+        "analyze_work_context",
+        "suggest_controls_for_hazard",
+        "request_field_help",
+        "preview_review",
+        "assemble_doc_context",
+        "submit_safety_document",
+      ],
       nextActions: [
-        "Claude Desktop / MCP Inspector 등 A2UI 호환 클라이언트가 위 JSONL 을 렌더링",
+        "viewer (npm run mcp:viewer → http://localhost:5174) / Claude Desktop / MCP Inspector 등 A2UI 호환 클라이언트가 위 JSONL 을 렌더링",
         "사용자 입력 후 fieldPathMap 기준으로 draft 키를 변환 → generate_safety_document({docId, draft: 입력값}) 호출",
+        "ADR 002 능동 호출 루프 — 사용자가 작업명 입력 시 analyze_work_context, 위험요인 입력 시 suggest_controls_for_hazard, 필드 도움말 필요 시 request_field_help, 부분 검토 필요 시 preview_review 호출 (LLM 이 사용자 입력 맥락에 따라 자연 체이닝)",
         "또는 register_site/project/person 도구로 profile.jsonld 갱신",
       ],
     },
@@ -466,9 +830,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
 export const renderA2UIFormTool: ToolDefinition = {
   name: "render_a2ui_form",
-  title: "A2UI 안전문서 입력 폼 렌더",
+  title: "A2UI 안전문서 입력 폼 렌더 (Active Graph Authoring Loop)",
   description:
-    "docId 를 받아 그래프 노드의 작성 필드를 A2UI v0.9 JSONL 폼 정의로 변환한다. profile.jsonld 자동 채움. Claude Desktop·MCP Inspector 등 A2UI 호환 클라이언트가 직접 렌더링하여 사용자 입력 → generate_safety_document 호출. 동적 입력 필드 협업의 진입점.",
+    "docId 를 받아 그래프 노드의 작성 필드를 A2UI v0.9 JSONL 폼 정의로 변환한다. ADR 002 강화: (1) info-card 에 그래프 컨텍스트 inline (위험요인·통제대책·KOSHA Guide·연계문서·라이프사이클) (2) _meta.writingGuide.commonMistakes / bestPractices 를 guide-card 로 노출 (3) 필드별 inputGuide·examples·checkPoints + _meta.writingGuide.fieldHints 매칭 (4) actions Row 에 6 개 액션 버튼 — analyze_work_context / suggest_controls_for_hazard / request_field_help / preview_review / assemble_doc_context / submit_safety_document. profile.jsonld 자동 채움. 비-개발자 안전관리자가 브라우저(viewer)/Claude Desktop/Inspector 에서 직접 사용 가능. 동적 입력 협업의 진입점이자 ADR 002 Active Graph Authoring Loop 의 1단계.",
   inputSchema,
   handler,
 };

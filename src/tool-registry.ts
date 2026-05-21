@@ -68,6 +68,11 @@ import { assembleDocContextTool } from "./tools/assemble-doc-context.js";
 import { renderA2UIFormTool } from "./tools/render-a2ui-form.js";
 import { renderProfileInputFormTool } from "./tools/render-profile-input-form.js";
 import { saveProfileFromFormTool } from "./tools/save-profile-from-form.js";
+// ADR 002 Active Graph Authoring Loop — 4 신규 도구
+import { requestFieldHelpTool } from "./tools/request-field-help.js";
+import { suggestControlsForHazardTool } from "./tools/suggest-controls-for-hazard.js";
+import { analyzeWorkContextTool } from "./tools/analyze-work-context.js";
+import { previewReviewTool } from "./tools/preview-review.js";
 import { CORRECTIVE_ACTION_TOOLS } from "./tools/corrective-action-tools.js";
 import { SAFETY_REPORT_TOOLS } from "./tools/safety-report-tools.js";
 import { LOCAL_STORAGE_TOOLS } from "./tools/local-storage-tools.js";
@@ -156,6 +161,11 @@ export const TOOLS: ToolDefinition[] = [
   renderA2UIFormTool, // ⭐⭐ docId → A2UI v0.9 JSONL 폼 (Claude Desktop·Inspector 직접 렌더 + 동적 입력)
   renderProfileInputFormTool, // ⭐⭐⭐ Profile 통합 입력 폼 (사업장+현장+인력 한 번 등록 → 94종 자동 채움)
   saveProfileFromFormTool, // ⭐⭐⭐ Profile 폼 입력값 → profile.jsonld 일괄 저장
+  // ─── 8. Active Graph Authoring Loop (ADR 002, 2026-05-21) — A2UI ↔ LLM ↔ Graph 능동 루프 ───
+  requestFieldHelpTool, // ⭐⭐ 필드 단위 동적 도움말 (inputGuide·examples·checkPoints + _meta.writingGuide)
+  suggestControlsForHazardTool, // ⭐⭐ 위험요인 → 통제대책 추천 (ERIC-PP 위계 정렬, 그래프 mitigatedBy traversal)
+  analyzeWorkContextTool, // ⭐⭐ 작업명 → 종합 컨텍스트 (위험·통제·법령·KOSHA·조건 적용성)
+  previewReviewTool, // ⭐⭐ 작성 중 부분 검토 (필수 누락·환각·결재선 — 작성 가드레일)
   // ─── 9. 조치·보고 사이클 (v0.6.x 신규) — SafetyIssue·CorrectiveAction·SafetyReport ───
   ...CORRECTIVE_ACTION_TOOLS,
   ...SAFETY_REPORT_TOOLS,

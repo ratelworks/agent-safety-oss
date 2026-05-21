@@ -16,6 +16,9 @@
 //   - 결재선 서명 누락
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Issue #5 lateral (2026-05-22) — KST 기준 TODAY
+import { kstToday } from "./datetime-kst.js";
+
 export interface ValidationIssue {
   field: string;
   severity: "error" | "warning" | "info";
@@ -23,7 +26,10 @@ export interface ValidationIssue {
   suggested?: string;
 }
 
-const TODAY = new Date().toISOString().slice(0, 10);
+// module 상수 — 모듈 로드 시점 KST 자정.
+// 새벽 0~9시 호출에서 UTC slice 시 어제로 잘못 잡히던 문제 해소.
+// 장시간 실행 서버에서는 TODAY 가 어제로 박힐 가능성 있으나 본 OSS 는 단발 호출 위주 — 무시 가능.
+const TODAY = kstToday();
 
 // ─── 날짜 검증 ───
 export function validateDate(field: string, value: string | undefined, allowFuture = false): ValidationIssue | null {
