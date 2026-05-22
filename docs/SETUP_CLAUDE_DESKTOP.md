@@ -26,9 +26,9 @@
 | Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 | Linux | `~/.config/Claude/claude_desktop_config.json` |
 
-> **현재 상태**: npm registry publish 전. 아래 npx / `npm install -g` 경로는 publish 후 동작합니다. publish 전에는 "소스 빌드본으로 사용" 섹션을 사용하세요.
+> **현재 상태**: v1.4.1 npm publish 완료. 아래 npx 경로 즉시 사용 가능. 소스 빌드본 직접 연결은 "소스 빌드본으로 사용" 섹션 참조 (fork/개발자용).
 
-## npx로 사용 (publish 후)
+## npx로 사용 (권장)
 
 ```json
 {

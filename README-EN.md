@@ -2,7 +2,7 @@
 
 > An OSS MCP server that gives AI Agents (**Claude Desktop / OpenAI Codex CLI**) **safety-management domain expertise** by providing Korean construction-safety **statutes, KOSHA Guides, and other public data as an ontology graph**.
 >
-> Helps safety managers and site managers draft **19 statutory safety documents** (TBM logs, work plans, risk assessments, MSDS registers, accident reports, etc.) accurately and quickly. Bundles **8 statute MDs** (OSH Act/Decree/Rule, Safety Rules, SAPA, SAPA Decree, Risk Assessment Notice, CTPA §62 area) + **1,039 KOSHA Guides** + other public data (Law Information Center, KOSHA, MOEL, MOLIT) unified in a single ontology graph. Provides forms, fill-in guides, statute body excerpts, and review at the moment of drafting. **The safety manager remains the author; the MCP is a co-pilot.**
+> Helps safety managers and site managers draft **19 statutory safety documents** (TBM logs, work plans, risk assessments, MSDS registers, accident reports, etc.) accurately and quickly. Bundles **8 statutes — curated key articles, not full text** (OSH Act 10 / Decree 3 / Rule 4 / Safety Rules 10 / SAPA 7 / SAPA Decree 13 / Risk Assessment Notice 23 **full text** / CTPA §62 area 4, ≈77 articles total — see [`docs/INVENTORY.md`](./docs/INVENTORY.md)) + **1,037 KOSHA Guides** (kordoc-extracted, quality-tiered verified/partial/raw) + other public data (Law Information Center, KOSHA, MOEL, MOLIT) unified in a single ontology graph. Provides forms, fill-in guides, statute body excerpts, and review at the moment of drafting. **The safety manager remains the author; the MCP is a co-pilot.**
 >
 > [Korean README](./README.md) · [Identity](./docs/IDENTITY.md) · [Operational Ontology](./docs/OPERATIONAL-ONTOLOGY.md) · [Claude Desktop Setup](./docs/SETUP_CLAUDE_DESKTOP.md) · [Codex CLI Setup](./docs/SETUP_CODEX.md) · [Quality Report](./docs/QUALITY-REPORT.md)
 
@@ -10,7 +10,7 @@
 
 | Item | Current code |
 |---|---:|
-| Package version | **1.4.0** (2026-05-21) |
+| Package version | **1.4.1** (2026-05-22) |
 | MCP tools | **92** (offline-first, single API key for 6 KOSHA Live tools) |
 | Statutory documents | **19** (TBM, work plans, risk assessments, MSDS, accident reports, etc.) |
 | Legal-duty document master | 94 docIds |
@@ -18,8 +18,8 @@
 | Form index | 132 formIds (HWP 14 / PDF 23 / XLSX 1 / MD 94) |
 | Operational graph | 3,336 nodes / 29,642 edges |
 | Core activity/hazard/control nodes | WorkActivity 41 / Hazard 38 / Control 45 |
-| Bundled statutes | **8 MDs**: OSH Act, OSH Decree, OSH Rule, Safety Rules, SAPA, SAPA Decree, Risk Assessment Notice, CTPA §62 area |
-| Bundled KOSHA Guides | **1,039 bodies** (offline, keyless, kordoc-extracted) |
+| Bundled statutes | **8 statutes (curated articles, ≈77 articles total)**: OSH Act 10/175, Decree 3/159, Rule 4/252, Safety Rules 10/671, SAPA 7/16, SAPA Decree 13/14, Risk Assessment Notice 23/23 (full), CTPA §62 area 4 — full breakdown in `docs/INVENTORY.md` |
+| Bundled KOSHA Guides | **1,037 bodies** (offline, keyless, kordoc-extracted) |
 | Verification | `ontology:operational` 38/38, `mcp:test:graph` pass, `audit:strict` pass |
 | Field scenarios | 4/4 scenarios, 29/29 steps, quality average 8.65/10 |
 
@@ -92,16 +92,17 @@ The LLM does not invent statutory basis. Laws, hazards, controls, and document l
 
 ## Install
 
-> **Current status**: not yet published to npm registry (`npm view agent-safety-oss` returns E404). Use the "From source" path below. The npm command will work after publishing a future release.
+> **Current status**: v1.4.1 published on npm (`npm view agent-safety-oss version` → `1.4.1`). Both paths below work.
 
 ```bash
-# After npm publish
+# Recommended — npm-published binary
+npx -y agent-safety-oss tools
+npx -y agent-safety-oss serve
+# Or install globally
 npm install -g agent-safety-oss
-agent-safety-oss tools
-agent-safety-oss serve
 ```
 
-From source (current path):
+From source (developers / fork):
 
 ```bash
 git clone https://github.com/ratelworks/agent-safety-oss.git

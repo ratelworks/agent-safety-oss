@@ -11,6 +11,7 @@ const CMD = {
   TOOLS: "tools",
   CALL: "call",
   DESCRIBE: "describe",
+  DOCTOR: "doctor",
 } as const;
 
 const program = new Command();
@@ -35,6 +36,18 @@ program
   .description("Start MCP server over stdio")
   .action(async () => {
     await import("./index.js");
+  });
+
+// 외부 리뷰 P1 (2026-05-22) — doctor: 시스템 무결성 진단
+program
+  .command(CMD.DOCTOR)
+  .description("Show system health (graph SSoT, KOSHA quality, law freshness, user env)")
+  .option("--json", "JSON 출력 (사람 가독 markdown 대신)")
+  .action(async (opts: { json?: boolean }) => {
+    const { runDoctor } = await import("./tools-meta/doctor.js");
+    const output = await runDoctor(opts.json ? "json" : "markdown");
+    // eslint-disable-next-line no-console
+    console.log(output);
   });
 
 const toolsCmd = program

@@ -36,7 +36,7 @@
 - ❌ 자체 LLM 또는 AI 모델 통합 (No-Lock-In 위반)
 - ❌ 무거운 platform / SaaS 기능 (Workshop UI · Pipeline Builder 등)
 - ❌ 한국 건설 도메인 외 일반 안전관리 (도메인 분리 원칙)
-- ⚠️ 본문 재배포 — KOSHA Guide 본문은 1,039건 번들 포함 (`get_kosha_guide_md` 로 offline 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선). 
+- ⚠️ 본문 재배포 — KOSHA Guide 본문은 1,037건 번들 포함 (`get_kosha_guide_md` 로 offline 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선). 
 - ❌ 의사결정 자동화 (판단은 사람·LLM)
 
 ---

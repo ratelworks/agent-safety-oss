@@ -1,6 +1,6 @@
 {
   "name": "agent-safety-oss",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "건설현장의 법정 안전문서 작성을 더 빠르고 정확하게. 산안법·기준규칙·중처법·KOSHA Guide를 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.",
   "type": "module",
   "main": "build/index.js",
@@ -32,7 +32,7 @@
     ".env.example"
   ],
   "scripts": {
-    "build": "tsc && tsx scripts/build/copy-ontology-assets.ts && node -e \"import('fs').then(fs=>fs.chmodSync('build/cli.js',0o755))\"",
+    "build": "tsc && tsx scripts/build/copy-ontology-assets.ts && tsx scripts/build/generate-inventory.ts && node -e \"import('fs').then(fs=>fs.chmodSync('build/cli.js',0o755))\"",
     "watch": "tsc --watch",
     "start": "node build/index.js",
     "test": "npm run check:essence && npm run check:lightweight && npm run mcp:test:smoke",

@@ -5,6 +5,40 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] — 2026-05-22
+
+**외부 리뷰 (npm 첫 publish 직후) 의 모든 코드/문서 drift 지적을 실제 코드 교차 검증 후 일괄 해소**.
+
+### Added — 자동 inventory & doctor (외부 리뷰 P0/P1)
+
+- **`scripts/build/generate-inventory.ts`** — 빌드 시 자동 실행되어 `docs/INVENTORY.md` 갱신. TOOLS·capability·KOSHA Guide·법령 조문·양식·그래프 노드 카운트를 코드/데이터에서 직접 산출, README/docs 의 수동 카운트 drift 차단.
+- **`docs/INVENTORY.md`** — 자동 산출 카운트 + 법령 데이터 기준일 통합 표시 + KOSHA Guide 추출 품질 등급 분포 (verified/partial/raw) + stub 도구 명시.
+- **`node build/cli.js doctor`** — 시스템 무결성 진단 CLI 명령. 도구·Capability SSoT 정합 / 그래프 노드 카운트 / KOSHA Guide 등급 분포 / 법령 동기화 stale 경고 / 사용자 환경 (profile + API 키) 점검. `--json` 옵션으로 머신 가독.
+
+### Fixed — 실측 vs 문서 drift 일괄 해소 (외부 리뷰 P0)
+
+- **KOSHA Guide 카운트**: README/CHANGELOG/SECURITY/ARCHITECTURE/IDENTITY/DATA_SOURCES/CONTRIBUTING/README-EN/OPERATIONAL-ONTOLOGY 의 `1,039` → 실측 `1,037` (kosha-guides/*.md 직접 카운트 + `_FAILURES.json` 2건 분리). 향후 drift 는 자동 inventory 가 차단.
+- **법령 표현 정직화**: "안전관리 법령 8개 본문" → "8건 핵심 조문 발췌 (산안법 10조 / 시행령 3조 / 시행규칙 4조 / 기준규칙 10조 / 중처법 7조 / 중처법시행령 13조 / 위평고시 23조 **전문** / 건진법 §62 영역 4조 — 합계 약 77조, 전체 법령 아님)". 산안법 175조 中 5.7% 만 수록임을 명시. 개별 `safety-laws/*.md` 헤더에는 이미 정직 명시되어 있었으나 최상위 README/IDENTITY 가 과장돼 정정.
+- **stub 도구 명시**: `search_sif_archive` / `list_construction_subtasks` 가 공공누리 변경금지 라이선스 준수용 의도된 placeholder 임을 INVENTORY 와 README 5초 진입 카드에 명시. "92개 (85 keyless + 7 키 필요 + **2 placeholder**)" 형식.
+- **npm publish 상태**: README/README-EN/SETUP_CLAUDE_DESKTOP 의 "npm publish 전 (E404)" / "not yet published" 표현 제거. v1.4.0 publish 완료 반영.
+
+### Added — SECURITY 키 거버넌스 (외부 리뷰 P2)
+
+- **SECURITY.md §6.1**: AgentHQ 키 (라텔웍스 발행) vs `DATA_GO_KR_KEY` (사용자 직접 발급) 거버넌스 차이 비교표 (관측 가능성·rate limit·익명성·키 수명·prod 안정성). 라텔웍스 relay 운영 정책 4항 (영구 보관 X / 로그 redaction / 수익화 회수 없음 등) 명시.
+
+### 보류 (코드 수정 외 영역)
+
+- 황룡건설 외 2~3개 현장 독립 필드 테스트 결과 공개 — 비즈니스 영역, 향후 사용자 도입 사례 확보 후
+- 커뮤니티 신호 (star/fork/contributor) — 시간 해결 영역
+- 법령 전문 (全文) 번들 — 라이선스 (저작권법 §7 비보호이나 변경금지) + 크기 (산안기준규칙 671조 전체 ≈ 수십 MB) trade-off, 후속 ADR
+
+### Verification
+
+- mcp:test:smoke 29/29 PASS
+- test-active-graph-authoring-loop 25/25 PASS
+- `doctor` 출력: TOOLS = CAPABILITY_REGISTRY = .jsonld = 92/92/92 / 그래프 2,212 / KOSHA 1,037 (verified 14 / partial 958 / raw 65 / failed 2) / 법령 최신 2026-05-18
+- INVENTORY.md 자동 생성 (133 lines) — npm run build 시 자동
+
 ## [1.4.0] — 2026-05-21
 
 **Active Graph Authoring Loop + a2ui-demo → viewer 격상 + 사용자 onboarding 이슈 5건 fix**
@@ -108,7 +142,7 @@ v1.3.0 npm publish 후 git tag 가 가리키는 commit 과 publish 된 commit �
 ### 안전관리자가 받는 실질 가치
 
 - **88개 도구** 모두 작성 보조 직접 동작
-- **1,039 KOSHA Guide 본문 번들** (offline, keyless — 인터넷 없이 가이드 발췌)
+- **1,037 KOSHA Guide 본문 번들** (offline, keyless — 인터넷 없이 가이드 발췌)
 - **8개 법령 본문 번들** (산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법 §62 영역)
 - **19종 법정문서 그래프 추론 14/14** (100%)
 - **도구별 결과 일관성 보장** (같은 docId 어느 도구로 호출해도 결과 같음)
@@ -138,7 +172,7 @@ Claude Desktop / OpenAI Codex CLI 두 host 메인 지원. `npm` 한 줄.
 ### 핵심 자료
 
 - 88 MCP tools
-- 1,039 KOSHA Guide 본문 (offline, MD 형식)
+- 1,037 KOSHA Guide 본문 (offline, MD 형식)
 - 8개 법령 본문 (offline)
 - 94 docId 마스터 + 132 form index
 - 3,336 노드 운영 그래프 (작업·위험·통제·법령·문서·증빙·조치·보고)
@@ -153,7 +187,7 @@ Claude Desktop / OpenAI Codex CLI 두 host 메인 지원. `npm` 한 줄.
 
 - 코드: MIT
 - 안전관리 법령 본문: 저작권법 §7 비보호 (자유 인용)
-- KOSHA Guide 본문 (1,039건): 공공누리 출처표시·변경금지
+- KOSHA Guide 본문 (1,037건): 공공누리 출처표시·변경금지
 
 ### 제공·개발
 

@@ -155,8 +155,8 @@ P1-5 — `safety://graph/{category}` 의 카테고리 의미를 명확히:
 
 | Category | 노드 수 | 역할 | IRI 패턴 |
 |---|---|---|---|
-| `documents` | 1,135 | 19종 법정 문서 + KOSHA Guide 1,039 (`guides/` 하위) | `doc:annual/...`, `doc:kosha_guide/{code}` |
-| `documents/guides/` | 1,039 | **KOSHA Guide canonical 노드 위치** | `doc:kosha_guide/{code}` |
+| `documents` | 1,135 | 19종 법정 문서 + KOSHA Guide 1,037 (`guides/` 하위) | `doc:annual/...`, `doc:kosha_guide/{code}` |
+| `documents/guides/` | 1,037 | **KOSHA Guide canonical 노드 위치** | `doc:kosha_guide/{code}` |
 | `kosha_guides` | 2 | 레거시 원천 메타 1건 + Manual 절 1건 (v1.3.x 에서 documents/guides·manuals 로 이동 예정) | `doc:kosha_guide/Z-26-2022`, `kosha:P-94:4.2.1.4` |
 | `articles` | 1,306 | 법령 조문 (산안법·기준규칙·중처법·건진법 등) | `art:{law}:{num}` |
 | `annexes` | 227 | 별표·서식 | `annex:{law}:{num}` |
@@ -164,9 +164,9 @@ P1-5 — `safety://graph/{category}` 의 카테고리 의미를 명확히:
 | `chapters` | 55 | 법령 편/장/절 | `chapter:{law}:{num}장` |
 
 **원칙** (재귀 로딩 + 명명 정합):
-- KOSHA Guide 1,039건의 canonical 위치는 `documents/guides/`
+- KOSHA Guide 1,037건의 canonical 위치는 `documents/guides/`
 - `kosha_guides/` 폴더는 잔존 2건만 (v1.3.x 정리 예정)
-- Resource `safety://graph/documents` 가 1,135 전체 (guides 1,039 포함) 노출
+- Resource `safety://graph/documents` 가 1,135 전체 (guides 1,037 포함) 노출
 - Resource `safety://graph/kosha_guides` 는 잔존 2건만 (오해 방지 안내 필요)
 
 ## Evidence Model

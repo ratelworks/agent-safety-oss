@@ -5,12 +5,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.19-brightgreen)](https://nodejs.org)
 [![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io)
-[![Release](https://img.shields.io/badge/release-v1.4.0-blue.svg)](./CHANGELOG.md)
+[![Release](https://img.shields.io/badge/release-v1.4.1-blue.svg)](./CHANGELOG.md)
 [![Tools](https://img.shields.io/badge/MCP%20tools-92-orange.svg)](./docs/IDENTITY.md)
 
 **건설현장의 법정 안전문서 작성을 더 빠르고 정확하게.** 산안법·기준규칙·중처법·KOSHA Guide를 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.
 
-안전관리자·현장소장이 매일·매주·매월 작성하는 **19종 법정 안전관리 문서** (TBM·작업계획서·위험성평가·MSDS·산재조사표 등) 를 옆에서 돕습니다. **안전관리 법령 8개 본문** (산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법 §62 영역) + **KOSHA Guide 1,039건 본문** (offline, keyless) + 부처별 분산 공공데이터 (법제처·KOSHA·고용노동부·국토부) 를 같은 온톨로지 그래프로 통합해, 작성 시점에 양식·빈칸 가이드·법령 본문 발췌·검수를 자동 제공합니다.
+안전관리자·현장소장이 매일·매주·매월 작성하는 **19종 법정 안전관리 문서** (TBM·작업계획서·위험성평가·MSDS·산재조사표 등) 를 옆에서 돕습니다. **안전관리 법령 8건 핵심 조문 발췌** (산안법 10조 / 시행령 3조 / 시행규칙 4조 / 기준규칙 10조 / 중처법 7조 / 중처법 시행령 13조 / 위험성평가 고시 23조 **전문** / 건진법 §62 영역 4조, 합계 약 77조 — 전체 법령 아님, 법제처 직접 참조 필수. 상세는 [`docs/INVENTORY.md`](./docs/INVENTORY.md)) + **KOSHA Guide 1,037건 본문** (offline, keyless, kordoc 변환 — 추출 품질 등급 verified/partial/raw) + 부처별 분산 공공데이터 (법제처·KOSHA·고용노동부·국토부) 를 같은 온톨로지 그래프로 통합해, 작성 시점에 양식·빈칸 가이드·법령 본문 발췌·검수를 자동 제공합니다.
 
 **Claude Desktop · OpenAI Codex CLI** 두 host 를 메인 지원합니다. `npm` 한 줄로 동작합니다. **작성 주체는 안전관리자, MCP 는 보조**.
 
@@ -20,7 +20,7 @@
 
 ## 5초 진입 — MCP host 사용자 (Claude Desktop · Codex)
 
-이미 MCP host 를 쓰는 안전관리자라면 아래 설정만 추가하면 끝납니다. **88개 도구가 모두 동작** (대부분 키 없이 offline · 공공 OpenAPI 7개만 라텔웍스 발행 키 필요).
+이미 MCP host 를 쓰는 안전관리자라면 아래 설정만 추가하면 끝납니다. **92개 도구가 모두 동작** (85 keyless offline · 공공 OpenAPI 7개만 키 필요 · 2개 라이선스 placeholder. 상세는 [`docs/INVENTORY.md`](./docs/INVENTORY.md) 자동 산출).
 
 ### Claude Desktop (JSON 설정)
 
@@ -203,20 +203,21 @@ Node.js 20.19 이상이 필요합니다. 아래 두 트랙 중 본인 환경에 
 
 ### Track B — 터미널 / CI / 개발자
 
-> **현재 상태**: npm registry publish 전 (`npm view agent-safety-oss` E404). 아래 npx/`npm install -g` 명령은 publish 후 동작합니다. 현재는 GitHub clone + build 경로를 사용하세요.
+> **현재 상태**: v1.4.1 npm publish 완료 (`npm view agent-safety-oss version` → `1.4.1`). 아래 두 경로 모두 동작합니다.
 
 ```bash
-# 현재 권장 — GitHub clone + build (publish 전)
+# 권장 — npm publish 본 (즉시 실행)
+npx -y agent-safety-oss tools
+npx -y agent-safety-oss serve
+# 또는 전역 설치
+npm install -g agent-safety-oss
+
+# 소스 빌드 (개발자 / fork)
 git clone https://github.com/ratelworks/agent-safety-oss.git
 cd agent-safety-oss
 npm ci && npm run build
 node build/cli.js tools
 node build/cli.js serve
-
-# npm publish 후 (v1.x 예정)
-# npx -y agent-safety-oss tools
-# npx -y agent-safety-oss serve
-# npm install -g agent-safety-oss
 ```
 
 CLI 사용 예시는 [`examples/`](./examples/) 폴더의 `mcp-list-tools.sh`, `search-laws.sh`, `generate-tbm.sh` 참고.
@@ -236,16 +237,16 @@ CLI 사용 예시는 [`examples/`](./examples/) 폴더의 `mcp-list-tools.sh`, `
 | KOSHA OneAPI 15001197 | MSDS (화학물질안전) | `search_msds` |
 | KOSHA OneAPI 15139497 | 보호구 안전인증 (KCs) | `search_ppe_certification` |
 | KOSHA OneAPI 15123696 | 안전보건법령 스마트검색 (AI 유사어) | `search_safety_law_smart` |
-| KOSHA OneAPI 15144147 | KOSHA Guide PDF 다운로드 (현재 번들 1,039) | (offline 번들로 대체) |
+| KOSHA OneAPI 15144147 | KOSHA Guide PDF 다운로드 (현재 번들 1,037) | (offline 번들로 대체) |
 | KOSHA OneAPI 15087828 | 건설 공종 분류 (구조 분류) | `analyze_construction_work_risks` (fallback) |
 | KOSHA OneAPI 15116595 | 공종 ↔ KOSHA Guide 매핑 | `analyze_construction_work_risks` (fallback) |
 | KOSHA OneAPI 15140383 | SIF 아카이브 (사망 고위험요인) | `search_sif_archive` |
 | KOSHA portal24 | 안전보건자료실 8,976건 (OPS·동영상·교안) | `search_kosha_archive` · `list_kosha_archive_facets` · `get_kosha_archive_files` |
-| 법제처 OpenAPI (law.go.kr) | 안전관리 법령 본문 (현재 8 본문 번들) | (offline 번들 + 향후 동적 확장) |
+| 법제처 OpenAPI (law.go.kr) | 안전관리 법령 8건 핵심 조문 발췌 (전문 아님) | (offline 번들 + 향후 동적 확장) |
 
 **키 없이 즉시 동작 — 81개 도구**:
 - 8 법령 본문 번들 검색 (`search_safety_laws`, `get_safety_law_article`, `list_core_safety_laws`)
-- 1,039 KOSHA Guide 본문 offline 조회 (`get_kosha_guide_md`)
+- 1,037 KOSHA Guide 본문 offline 조회 (`get_kosha_guide_md`)
 - 그래프 traversal (`assemble_doc_context`, `generate_safety_document`, `review_safety_document`)
 - 19종 법정문서 작성 보조 (위험성평가·작업계획서·TBM·MSDS·작업허가서 등)
 - 로컬 현장 기록 (사진·이슈·조치·보고)
@@ -404,7 +405,7 @@ generate_safety_report
 
 ## 들어 있는 것
 
-- 패키지 버전: 1.4.0
+- 패키지 버전: 1.4.1
 - MCP 도구: 92개
 - 법정의무 문서 마스터: 94 docId
 - 풀가이드: 19개

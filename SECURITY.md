@@ -10,7 +10,7 @@
 
 | 버전 | 보안 패치 지원 | 비고 |
 |---|:--:|---|
-| 1.4.x | ✅ | 현재 안정판 (v1.4.0, 2026-05-21) |
+| 1.4.x | ✅ | 현재 안정판 (v1.4.1, 2026-05-21) |
 | 1.3.x | ⚠️ | 이전 안정판 (v1.3.1) — critical-only 패치 (2026-08-21 까지 3개월) |
 
 > 차기 minor release 시 직전 버전의 critical-only 지원 기간(3개월)이 본 표에 자동 갱신됩니다.
@@ -71,7 +71,7 @@
 
 ### 3.4 PII·보존·삭제·마스킹 사용자 책임
 
-**v1.4.0 정합** — 본 OSS 는 데이터 영속 위치만 제공하며, 다음은 **사용자(안전관리자·현장 관리자)의 책임 영역**입니다:
+**v1.4.1 정합** — 본 OSS 는 데이터 영속 위치만 제공하며, 다음은 **사용자(안전관리자·현장 관리자)의 책임 영역**입니다:
 
 | 항목 | 사용자 책임 | OSS 책임 |
 |---|---|---|
@@ -138,6 +138,36 @@ npm audit
 | 공공 OpenAPI (search_msds 등) | AgentHQ API 키 (라텔웍스 무료 발급) 또는 사용자 자체 `DATA_GO_KR_KEY` |
 | Site profile 조작 (register_site·register_person 등) | LocalStorage (사용자 로컬, 외부 X) |
 
+### 6.1 키 거버넌스 차이 — AgentHQ vs `DATA_GO_KR_KEY` (외부 리뷰 P2, 2026-05-22)
+
+KOSHA OneAPI 7개 도구는 두 가지 키 경로 중 하나를 선택할 수 있습니다. 두 경로의 거버넌스 차이는 다음과 같습니다.
+
+| 항목 | **AgentHQ API 키** (라텔웍스 발행, 기본 권장) | **`DATA_GO_KR_KEY`** (사용자 직접 발급) |
+|---|---|---|
+| 발급 경로 | 라텔웍스에 무료 발급 신청 (`alphamale@ratelworks.co.kr`) | data.go.kr 가입 → 활용신청 |
+| 호출 경로 | `agentsafetyrelay-...run.app` (라텔웍스 Cloud Run relay) → KOSHA | 사용자 → KOSHA 직접 |
+| 라텔웍스 관측 가능 항목 | **호출 시각·도구명·파라미터·응답 byte 크기** (relay 액세스 로그) | **없음** (라텔웍스 미경유) |
+| PII 노출 | 호출 파라미터에 사업자번호·성명 포함 시 라텔웍스가 ephemeral 로 통과 — 영구 저장 X, 외부 전송 X | 라텔웍스 미경유 |
+| Rate limit | **60 req/min/IP** (relay 단일 키 보호용 — 라텔웍스 부담분) | 사용자 키의 OpenAPI 호출 한도 (data.go.kr 정책, 보통 일 1,000~10,000건) |
+| 키 수명 | 라텔웍스가 회수 가능 (불법 사용·라이선스 위반 등) | 사용자 본인 키 — 라텔웍스 회수 불가 |
+| Production 안정성 | relay 가용성 의존 | data.go.kr 가용성 의존 |
+| 익명성 | 라텔웍스가 호출 패턴 관측 가능 | 라텔웍스 미관측 |
+| 비용 | 무료 (라텔웍스 부담) | 무료 (data.go.kr 정책) |
+| 추천 use case | 학습·평가·소규모 production·익명성 비중요 | 대규모 production·라텔웍스 관측 회피 필요·키 자율 관리 |
+
+**라텔웍스 측 약속** (relay 운영 정책):
+1. 호출 파라미터·응답 본문은 **로그·저장소에 영구 보관하지 않음** (액세스 로그만 7일 보존)
+2. 호출 메타데이터 (시각·도구명·byte 크기) 는 **로그 보안 보호** + 라텔웍스 직원 익명화 후 집계만 사용
+3. 사용자 식별 정보 (사업자번호·성명·연락처 등 PII) 는 **로그 redaction** 처리
+4. 키 회수 사유는 라이선스 위반·법적 요청·악용 의심에 한정. **수익화 목적 회수 없음** — 키는 무상 제공.
+
+**사용자 선택권**:
+- 가벼운 사용 → AgentHQ 키 (편의성)
+- 라텔웍스 관측 회피 필요 → `DATA_GO_KR_KEY` (익명성)
+- 두 키 모두 설정 시 → AgentHQ 우선 (relay 경유)
+
+키 변경: `register_company_key` MCP 도구 또는 `~/.agent-safety-oss/company-key.json` 직접 편집.
+
 ---
 
 ## 7. 위협 모델
@@ -181,8 +211,8 @@ CI workflow (`.github/workflows/ci.yml`) 는 별도로 `npm audit --audit-level=
 |---|---|
 | 본 OSS 코드 | MIT |
 | 산안법·시행령·시행규칙·기준규칙·중처법·고시 (`src/ontology/safety-laws/`) | 저작권법 §7 비보호 (자유 인용) |
-| KOSHA Guide 메타 (1,039 노드) | 공공누리 출처표시·변경금지 (`_meta.licenseHint`) |
-| KOSHA Guide 본문 (1,039건 번들) | 공공누리 출처표시·변경금지 (npm 패키지 내장, `get_kosha_guide_md` 도구로 offline 조회) |
+| KOSHA Guide 메타 (1,037 노드) | 공공누리 출처표시·변경금지 (`_meta.licenseHint`) |
+| KOSHA Guide 본문 (1,037건 번들) | 공공누리 출처표시·변경금지 (npm 패키지 내장, `get_kosha_guide_md` 도구로 offline 조회) |
 | 정부 양식 (`src/ontology/forms/*.pdf|.hwp`) | 행정안전부·KOSHA 발행 (출처 표기) |
 
 ---
