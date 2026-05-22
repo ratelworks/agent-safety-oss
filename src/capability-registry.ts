@@ -87,6 +87,11 @@ export const CAPABILITY_REGISTRY_ENTRIES = [
   ["export_drafted_document", { capabilityIRI: "safety:capability/export_drafted_document", category: "safety_doc" }],
   ["assemble_doc_context", { capabilityIRI: "safety:capability/assemble_doc_context", category: "safety_doc" }],
   ["render_a2ui_form", { capabilityIRI: "safety:capability/render_a2ui_form", category: "meta" }],
+  // ADR 002 Active Graph Authoring Loop — 4 신규 도구 (v1.4.0)
+  ["request_field_help", { capabilityIRI: "safety:capability/request_field_help", category: "safety_doc" }],
+  ["suggest_controls_for_hazard", { capabilityIRI: "safety:capability/suggest_controls_for_hazard", category: "safety_doc" }],
+  ["analyze_work_context", { capabilityIRI: "safety:capability/analyze_work_context", category: "construction" }],
+  ["preview_review", { capabilityIRI: "safety:capability/preview_review", category: "safety_doc" }],
   ["render_profile_input_form", { capabilityIRI: "safety:capability/render_profile_input_form", category: "site_profile" }],
   ["save_profile_from_form", { capabilityIRI: "safety:capability/save_profile_from_form", category: "site_profile" }],
   ["save_form_draft", { capabilityIRI: "safety:capability/save_form_draft", category: "meta" }],
@@ -189,6 +194,11 @@ export const CAPABILITY_CATEGORY_BY_TOOL = new Map<string, CapabilityCategory>([
   ["export_drafted_document", "safety_doc"],
   ["assemble_doc_context", "safety_doc"],
   ["render_a2ui_form", "meta"],
+  // ADR 002 Active Graph Authoring Loop — 4 신규 도구 (v1.4.0)
+  ["request_field_help", "safety_doc"],
+  ["suggest_controls_for_hazard", "safety_doc"],
+  ["analyze_work_context", "construction"],
+  ["preview_review", "safety_doc"],
   ["render_profile_input_form", "site_profile"],
   ["save_profile_from_form", "site_profile"],
   ["save_form_draft", "meta"],

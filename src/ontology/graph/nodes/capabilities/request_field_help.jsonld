@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/request_field_help",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "필드 단위 동적 작성 도움말",
+      "@language": "ko"
+    },
+    {
+      "@value": "Request Field Help",
+      "@language": "en"
+    }
+  ],
+  "description": "A2UI 폼의 특정 필드 작성 시 그래프 노드의 inputGuide·examples·checkPoints·standardFormat + _meta.writingGuide.fieldHints / commonMistakes / bestPractices 를 결정론적으로 조립하여 동적 도움말을 제공한다. currentValue 가 있으면 추상명사·서명 누락 등 패턴 일치 경고. ADR 002 Active Graph Authoring Loop 2단계 (사용자 입력 trigger → LLM 능동 호출) 의 핵심 도구.",
+  "toolName": "request_field_help",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/request_field_help",
+  "producesEntity": [
+    "safety:FieldHelp"
+  ],
+  "maps_to_action": "safety:action/request_field_help",
+  "_meta": {
+    "created": "2026-05-21",
+    "creator": "safety:agent/ratelworks",
+    "adr": "decisions/002-active-graph-authoring-loop.md"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/suggest_controls_for_hazard",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "위험요인 → 통제대책 추천 (ERIC-PP 위계)",
+      "@language": "ko"
+    },
+    {
+      "@value": "Suggest Controls For Hazard",
+      "@language": "en"
+    }
+  ],
+  "description": "A2UI 폼에서 위험요인 (hazard) 입력 후 본 도구 호출 → 그래프 mitigatedBy traversal 로 ERIC-PP 위계 (제거·대체·공학·관리·PPE) 정렬 통제대책 추천. docId 입력 시 해당 문서에 이미 직접 매핑된 control 을 우선 표시. ADR 002 Active Graph Authoring Loop 2단계 도구. 결정론적 (그래프 IRI 기반, LLM 추측 0).",
+  "toolName": "suggest_controls_for_hazard",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/suggest_controls_for_hazard",
+  "producesEntity": [
+    "safety:ControlRecommendation"
+  ],
+  "maps_to_action": "safety:action/suggest_controls_for_hazard",
+  "_meta": {
+    "created": "2026-05-21",
+    "creator": "safety:agent/ratelworks",
+    "adr": "decisions/002-active-graph-authoring-loop.md"
+  }
+}

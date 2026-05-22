@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/analyze_work_context",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작업명 → 그래프 종합 컨텍스트",
+      "@language": "ko"
+    },
+    {
+      "@value": "Analyze Work Context",
+      "@language": "en"
+    }
+  ],
+  "description": "A2UI 폼에서 사용자가 작업명·작업내용·작업조건을 입력하면 본 도구가 그래프 traversal 로 위험요인·통제대책·법령근거·KOSHA Guide·조건 기반 적용성 룰을 한 번에 조립한다. docId 의 hasHazard / mitigatedBy / legalBasis / guidedBy + workName 매칭 work_type/activity 의 hasHazard / guidedBy 를 합집합. workConditions (depthM·heightM·confinedSpace·hotWork) 기반 §38 §42 §618 등 적용성 룰 자동 발동. scope.json excluded 와 일치 시 도메인 외 경계 시그널 노출. ADR 002 Active Graph Authoring Loop 2단계 도구.",
+  "toolName": "analyze_work_context",
+  "category": "construction",
+  "inputSchema": "safety:schema/input/analyze_work_context",
+  "producesEntity": [
+    "safety:WorkContext"
+  ],
+  "maps_to_action": "safety:action/analyze_work_context",
+  "_meta": {
+    "created": "2026-05-21",
+    "creator": "safety:agent/ratelworks",
+    "adr": "decisions/002-active-graph-authoring-loop.md"
+  }
+}

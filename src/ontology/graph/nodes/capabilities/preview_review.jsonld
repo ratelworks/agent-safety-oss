@@ -1,0 +1,31 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "safety:capability/preview_review",
+  "@type": [
+    "safety:Capability",
+    "prov:Plan"
+  ],
+  "rdfs:label": [
+    {
+      "@value": "작성 중 부분 검토",
+      "@language": "ko"
+    },
+    {
+      "@value": "Preview Review",
+      "@language": "en"
+    }
+  ],
+  "description": "A2UI 폼에서 사용자가 일부 필드 작성 후 본 도구 호출 → review_safety_document 의 부분 모드로 누락 필수·환각 인용·결재선 즉시 검토. scope 으로 검토 범위 좁힘 (all / required-only / hallucination-only). 작성 중 가드레일 — 최종 검토 (review_safety_document) 와 직교. ADR 002 Active Graph Authoring Loop 2단계 도구.",
+  "toolName": "preview_review",
+  "category": "safety_doc",
+  "inputSchema": "safety:schema/input/preview_review",
+  "producesEntity": [
+    "safety:ReviewPreview"
+  ],
+  "maps_to_action": "safety:action/preview_review",
+  "_meta": {
+    "created": "2026-05-21",
+    "creator": "safety:agent/ratelworks",
+    "adr": "decisions/002-active-graph-authoring-loop.md"
+  }
+}
