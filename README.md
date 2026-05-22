@@ -178,7 +178,7 @@ npm run mcp:viewer
 
 브라우저에서 폼 종류 (TBM 회의록 / 굴착 작업계획서 / 정기 위험성평가 등) 를 선택하면, 빈칸·예시·법령 인용까지 자동으로 채워진 입력 폼이 렌더링됩니다. 입력 완료 후 본문 생성 → 영구 보관 → MD 파일 다운로드까지 한 페이지에서 끝납니다.
 
-> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/), 한글/한컴오피스, 또는 [Typora](https://typora.io/) 등으로 변환합니다. viewer 자체는 의존성 0 원칙 유지를 위해 PDF 변환을 내장하지 않습니다.
+> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/), 한글/한컴오피스, 또는 [Typora](https://typora.io/) 등으로 변환합니다.
 
 ## 빠른 시작
 

@@ -176,7 +176,7 @@ npm run mcp:viewer
 
 Pick a form type (TBM log, excavation work plan, periodic risk assessment, etc.) and the page renders with blanks, examples, and statutory references already populated. Fill in, generate the document body, archive, and download as `.md` — all in one page.
 
-> For PDF output, convert the downloaded `.md` via [Pandoc](https://pandoc.org/), Hangul/HWP Office, or [Typora](https://typora.io/). The viewer keeps zero runtime dependencies and does not embed a PDF engine.
+> For PDF output, convert the downloaded `.md` via [Pandoc](https://pandoc.org/), Hangul/HWP Office, or [Typora](https://typora.io/).
 
 ## Verification
 
