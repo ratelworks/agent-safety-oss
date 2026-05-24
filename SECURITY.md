@@ -10,7 +10,7 @@
 
 | 버전 | 보안 패치 지원 | 비고 |
 |---|:--:|---|
-| 1.4.x | ✅ | 현재 안정판 (v1.4.1, 2026-05-21) |
+| 1.4.x | ✅ | 현재 안정판 (v<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION -->) |
 | 1.3.x | ⚠️ | 이전 안정판 (v1.3.1) — critical-only 패치 (2026-08-21 까지 3개월) |
 
 > 차기 minor release 시 직전 버전의 critical-only 지원 기간(3개월)이 본 표에 자동 갱신됩니다.
@@ -71,11 +71,11 @@
 
 ### 3.4 PII·보존·삭제·마스킹 사용자 책임
 
-**v1.4.1 정합** — 본 OSS 는 데이터 영속 위치만 제공하며, 다음은 **사용자(안전관리자·현장 관리자)의 책임 영역**입니다:
+**v<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION --> 정합** — 본 OSS 는 데이터 영속 위치만 제공하며, 다음은 **사용자(안전관리자·현장 관리자)의 책임 영역**입니다:
 
 | 항목 | 사용자 책임 | OSS 책임 |
 |---|---|---|
-| **보존 기간** | 19종 법정 문서의 법정 보존 (3~30년) 준수 — 사용자가 `SAFETY_LOCAL_DIR` 백업·아카이브 관리 | `*.jsonld` 노드에 `retention` 메타 명시 |
+| **보존 기간** | <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 법정 문서의 법정 보존 (3~30년) 준수 — 사용자가 `SAFETY_LOCAL_DIR` 백업·아카이브 관리 | `*.jsonld` 노드에 `retention` 메타 명시 |
 | **삭제** | 보존 만료 시 사용자가 직접 폴더 삭제 (자동 만료 삭제 없음) | 삭제 시 다른 노드와의 참조 무결성은 사용자 책임 |
 | **마스킹** | 사진의 얼굴·번호판, 양식의 PII 항목 마스킹은 사용자 선택 (자동 마스킹 X) | photo metadata 의 `redaction: true` 플래그 지원만 |
 | **암호화** | 디스크 암호화는 OS 수준 (macOS FileVault / Windows BitLocker / Linux LUKS) 권장 | 파일 권한 0600 (사용자만 읽기·쓰기) — `secure-fs.ts` |
@@ -140,7 +140,7 @@ npm audit
 
 ### 6.1 키 거버넌스 차이 — AgentHQ vs `DATA_GO_KR_KEY` (외부 리뷰 P2, 2026-05-22)
 
-KOSHA OneAPI 7개 도구는 두 가지 키 경로 중 하나를 선택할 수 있습니다. 두 경로의 거버넌스 차이는 다음과 같습니다.
+KOSHA OneAPI <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 도구는 두 가지 키 경로 중 하나를 선택할 수 있습니다. 두 경로의 거버넌스 차이는 다음과 같습니다.
 
 | 항목 | **AgentHQ API 키** (라텔웍스 발행, 기본 권장) | **`DATA_GO_KR_KEY`** (사용자 직접 발급) |
 |---|---|---|
@@ -211,8 +211,8 @@ CI workflow (`.github/workflows/ci.yml`) 는 별도로 `npm audit --audit-level=
 |---|---|
 | 본 OSS 코드 | MIT |
 | 산안법·시행령·시행규칙·기준규칙·중처법·고시 (`src/ontology/safety-laws/`) | 저작권법 §7 비보호 (자유 인용) |
-| KOSHA Guide 메타 (1,037 노드) | 공공누리 출처표시·변경금지 (`_meta.licenseHint`) |
-| KOSHA Guide 본문 (1,037건 번들) | 공공누리 출처표시·변경금지 (npm 패키지 내장, `get_kosha_guide_md` 도구로 offline 조회) |
+| KOSHA Guide 메타 (<!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 노드) | 공공누리 출처표시·변경금지 (`_meta.licenseHint`) |
+| KOSHA Guide 본문 (<!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건 번들) | 공공누리 출처표시·변경금지 (npm 패키지 내장, `get_kosha_guide_md` 도구로 offline 조회) |
 | 정부 양식 (`src/ontology/forms/*.pdf|.hwp`) | 행정안전부·KOSHA 발행 (출처 표기) |
 
 ---

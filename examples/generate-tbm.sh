@@ -5,7 +5,7 @@ set -euo pipefail
 
 DATE_TIME="${1:-$(date +%Y-%m-%dT%H:%M)}"
 
-agent-safety-oss-mcp call submit_safety_document --inputJson "$(cat <<JSON
+npx -y agent-safety-oss call submit_safety_document --inputJson "$(cat <<JSON
 {
   "docId": "daily_tbm",
   "draft": {

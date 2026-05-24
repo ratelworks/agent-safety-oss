@@ -13,228 +13,23 @@
  *   - 양식 인덱스 (HWP/PDF/XLSX/MD)
  *   - 데이터 기준일 통합 표시
  *
+ * 산출 로직은 `inventory-data.ts` 에 분리 (ADR 003). 본 파일은 렌더링만 담당.
+ * sync-docs.ts (9개 문서 marker 자동 갱신) 가 동일 데이터를 재사용.
+ *
  * 실행:
  *   npm run build  (자동)
  *   npx tsx scripts/build/generate-inventory.ts  (수동)
- *
- * 의존성: Node 표준만. zod-to-json-schema 등 외부 패키지 미사용.
  */
-import { readdirSync, readFileSync, writeFileSync, statSync, existsSync } from "node:fs";
-import { resolve, join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+import {
+  collectInventoryData,
+  ROOT,
+  type InventoryData,
+} from "./inventory-data.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, "..", "..");
-
-// ─── 1. 도구 (TOOLS) ───
-interface ToolStat {
-  total: number;
-  keyless: number;
-  keyRequired: number;
-  stub: number;
-  active: number;
-  stubNames: string[];
-  keyRequiredNames: string[];
-  allNames: string[];
-}
-
-async function countTools(): Promise<ToolStat> {
-  // 정확도 우선 — build/tool-registry.js 동적 import 로 TOOLS 직접 카운트.
-  // generate-inventory.ts 는 build step 안에서 실행되므로 build/ 디렉토리 항상 존재.
-  const buildRegistryPath = resolve(ROOT, "build/tool-registry.js");
-  let allNames: string[] = [];
-  if (existsSync(buildRegistryPath)) {
-    const mod = (await import(buildRegistryPath)) as { TOOLS?: Array<{ name: string }> };
-    if (Array.isArray(mod.TOOLS)) {
-      allNames = mod.TOOLS.map((t) => t.name).filter(Boolean);
-    }
-  }
-  // fallback — build 미생성 시 src/cli.ts 의 TOOLS_NEEDING_API_KEY 만 활용
-  if (allNames.length === 0) {
-    throw new Error(
-      "[generate-inventory] build/tool-registry.js 미발견. `npm run build` 후 실행 필요.",
-    );
-  }
-
-  // API 키 필요 목록 — src/cli.ts TOOLS_NEEDING_API_KEY 추출
-  const cli = readFileSync(resolve(ROOT, "src/cli.ts"), "utf8");
-  const keyMatch = cli.match(/TOOLS_NEEDING_API_KEY = new Set<string>\(\[([\s\S]*?)\]\)/);
-  const keyRequired: string[] = [];
-  if (keyMatch) {
-    const lines = keyMatch[1].matchAll(/"([^"]+)"/g);
-    for (const m of lines) keyRequired.push(m[1]);
-  }
-
-  // stub 도구 — tool-registry.ts 의 "빈 상태" 주석 + 실제 JSON bundleStatus=empty 검증
-  const toolRegistry = readFileSync(resolve(ROOT, "src/tool-registry.ts"), "utf8");
-  const stubMatches = toolRegistry.matchAll(/(\w+Tool),\s*\/\/[^\n]*빈 상태/g);
-  const stubVarMap: Record<string, string> = {
-    searchSifArchiveTool: "search_sif_archive",
-    listConstructionSubtasksTool: "list_construction_subtasks",
-  };
-  const stubNames: string[] = [];
-  for (const m of stubMatches) {
-    const name = stubVarMap[m[1]];
-    if (name && allNames.includes(name)) stubNames.push(name);
-  }
-
-  const total = allNames.length;
-  const keyRequiredCount = keyRequired.length;
-  return {
-    total,
-    keyless: total - keyRequiredCount,
-    keyRequired: keyRequiredCount,
-    stub: stubNames.length,
-    active: total - stubNames.length,
-    stubNames,
-    keyRequiredNames: keyRequired,
-    allNames,
-  };
-}
-
-// ─── 2. 그래프 노드 ───
-interface GraphStat {
-  total: number;
-  byCategory: Record<string, number>;
-}
-
-function countGraphNodes(): GraphStat {
-  const nodesDir = resolve(ROOT, "src/ontology/graph/nodes");
-  const byCategory: Record<string, number> = {};
-  let total = 0;
-  for (const cat of readdirSync(nodesDir)) {
-    const catDir = join(nodesDir, cat);
-    if (!statSync(catDir).isDirectory()) continue;
-    const count = readdirSync(catDir).filter((f) => f.endsWith(".jsonld")).length;
-    byCategory[cat] = count;
-    total += count;
-  }
-  return { total, byCategory };
-}
-
-// ─── 3. KOSHA Guide 본문 + 추출 품질 ───
-interface KoshaStat {
-  total: number;
-  failed: number;
-  verified: number; // 빈 <table> 잔재 0건
-  partial: number;  // 빈 <table> 1~10건
-  raw: number;      // 빈 <table> 11건+
-}
-
-function countKoshaGuides(): KoshaStat {
-  const dir = resolve(ROOT, "src/ontology/kosha-guides");
-  const all = readdirSync(dir).filter((f) => f.endsWith(".md"));
-  const failuresPath = join(dir, "_FAILURES.json");
-  let failed = 0;
-  try {
-    const failures = JSON.parse(readFileSync(failuresPath, "utf8"));
-    failed = Array.isArray(failures) ? failures.length : 0;
-  } catch {}
-
-  let verified = 0;
-  let partial = 0;
-  let raw = 0;
-  for (const f of all) {
-    const content = readFileSync(join(dir, f), "utf8");
-    const emptyTables = (content.match(/^<table>$/gm) ?? []).length;
-    if (emptyTables === 0) verified++;
-    else if (emptyTables <= 10) partial++;
-    else raw++;
-  }
-  return { total: all.length, failed, verified, partial, raw };
-}
-
-// ─── 4. 법령 본문 ───
-interface LawStat {
-  filename: string;
-  shortName: string;
-  articleCount: number;
-  totalArticles: number | null;
-  coveragePercent: string;
-  lastSynced: string;
-  publishedVersion: string | null;
-  isPartial: boolean;
-}
-
-const LAW_TOTAL_ARTICLES: Record<string, { total: number | null; shortName: string }> = {
-  "산업안전보건법.md": { total: 175, shortName: "산업안전보건법" },
-  "산업안전보건법-시행령.md": { total: 159, shortName: "산안법 시행령" },
-  "산업안전보건법-시행규칙.md": { total: 252, shortName: "산안법 시행규칙" },
-  "산업안전보건기준에-관한-규칙.md": { total: 671, shortName: "산안기준규칙" },
-  "중대재해처벌법.md": { total: 16, shortName: "중대재해처벌법" },
-  "중대재해처벌법-시행령.md": { total: 14, shortName: "중처법 시행령" },
-  "위험성평가-고시-2024-76.md": { total: 23, shortName: "위험성평가 고시" },
-  "건설기술진흥법-§62영역.md": { total: null, shortName: "건진법 §62 영역" },
-};
-
-function countLawArticles(): LawStat[] {
-  const dir = resolve(ROOT, "src/ontology/safety-laws");
-  const files = readdirSync(dir).filter((f) => f.endsWith(".md") && f !== "README.md");
-  const out: LawStat[] = [];
-  for (const f of files) {
-    const content = readFileSync(join(dir, f), "utf8");
-    const articleCount = (content.match(/^##\s+(§|제\d)/gm) ?? []).length;
-    const meta = LAW_TOTAL_ARTICLES[f] ?? { total: null, shortName: f.replace(/\.md$/, "") };
-    const lastSynced =
-      content.match(/마지막 동기화[^\n]*?(\d{4}-\d{2}-\d{2})/)?.[1] ?? "(미명시)";
-    const publishedVersion = content.match(/현행 법률[^\n]*?\*\*([^*]+)\*\*/)?.[1]?.trim() ?? null;
-    const coveragePercent =
-      meta.total === null
-        ? "(영역 한정)"
-        : meta.total === articleCount
-          ? "**전문**"
-          : `${((articleCount / meta.total) * 100).toFixed(1)}%`;
-    const isPartial = meta.total !== null && articleCount < meta.total;
-    out.push({
-      filename: f,
-      shortName: meta.shortName,
-      articleCount,
-      totalArticles: meta.total,
-      coveragePercent,
-      lastSynced,
-      publishedVersion,
-      isPartial,
-    });
-  }
-  return out;
-}
-
-// ─── 5. 양식 ───
-interface FormsStat {
-  total: number;
-  byFormat: Record<string, number>;
-  meta: { compiled: string; license: string };
-}
-
-function countForms(): FormsStat {
-  const path = resolve(ROOT, "src/ontology/forms/forms-map.json");
-  const data = JSON.parse(readFileSync(path, "utf8"));
-  const byFormat: Record<string, number> = {};
-  for (const f of data.forms) byFormat[f.format] = (byFormat[f.format] ?? 0) + 1;
-  return {
-    total: data.forms.length,
-    byFormat,
-    meta: { compiled: data._meta?.compiled ?? "?", license: data._meta?.license ?? "?" },
-  };
-}
-
-// ─── INVENTORY.md 조립 ───
-async function generateInventory(): Promise<string> {
-  const tools = await countTools();
-  const graph = countGraphNodes();
-  const kosha = countKoshaGuides();
-  const laws = countLawArticles();
-  const forms = countForms();
-  const generatedAt = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 19) + "+09:00";
-
-  const lawArticleTotal = laws.reduce((s, l) => s + l.articleCount, 0);
-  const latestLawSync =
-    laws
-      .map((l) => l.lastSynced)
-      .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
-      .sort()
-      .pop() ?? "(미명시)";
-
+function renderInventoryMarkdown(data: InventoryData): string {
+  const { tools, graph, kosha, laws, forms, lawArticleTotal, latestLawSync, generatedAt, documentsTotal, docIdMaster } = data;
   const lines: string[] = [];
   lines.push("# Inventory (자동 생성)");
   lines.push("");
@@ -276,26 +71,59 @@ async function generateInventory(): Promise<string> {
   // 2. 그래프
   lines.push("## 2. 그래프 노드");
   lines.push("");
-  lines.push("| 카테고리 | 노드 수 |");
-  lines.push("|---|---:|");
-  const sortedCats = Object.entries(graph.byCategory).sort((a, b) => b[1] - a[1]);
-  for (const [cat, count] of sortedCats) lines.push(`| ${cat} | ${count} |`);
-  lines.push(`| **전체** | **${graph.total}** |`);
+  lines.push(
+    `- 카테고리 1단계 노드 (직속 \`.jsonld\`): **${graph.totalTopLevel}**`,
+  );
+  lines.push(
+    `- 전체 노드 (재귀, KOSHA Guide 1,039건 포함): **${graph.totalRecursive}**`,
+  );
+  lines.push(`- 엣지 (주요 EDGE_FIELDS): **${graph.edges}**`);
+  lines.push("");
+  lines.push("| 카테고리 | 1단계 | 재귀 (서브디렉토리 포함) |");
+  lines.push("|---|---:|---:|");
+  const sortedCats = Object.entries(graph.byCategoryRecursive).sort((a, b) => b[1] - a[1]);
+  for (const [cat, recCount] of sortedCats) {
+    const topCount = graph.byCategoryTopLevel[cat] ?? 0;
+    lines.push(`| ${cat} | ${topCount} | ${recCount} |`);
+  }
+  lines.push(`| **전체** | **${graph.totalTopLevel}** | **${graph.totalRecursive}** |`);
   lines.push("");
 
   // 3. KOSHA Guide
-  lines.push("## 3. KOSHA Guide 본문");
+  lines.push("## 3. KOSHA Guide 본문 / 메타");
   lines.push("");
-  lines.push("| 항목 | 수 |");
-  lines.push("|---|---:|");
-  lines.push(`| 전체 본문 (.md) | **${kosha.total}** |`);
-  lines.push(`| 추출 실패 (\`_FAILURES.json\`) | ${kosha.failed} |`);
+  lines.push("| 항목 | 수 | 비고 |");
+  lines.push("|---|---:|---|");
+  lines.push(`| 그래프 메타 (.jsonld) | **${kosha.metaCount}** | KOSHA OneAPI 15144147 가 인지한 가이드 메타 |`);
+  lines.push(`| 본문 (.md) | **${kosha.bodyCount}** | PDF → kordoc 변환 성공한 본문 |`);
+  lines.push(
+    `| 본문 미수집 | ${kosha.missingBodies.length} | ${kosha.missingBodies.length > 0 ? "메타는 있으나 KOSHA 측 PDF 0 bytes" : "(없음 — 본문 = 메타)"} |`,
+  );
   lines.push("");
-  lines.push("**추출 품질 등급** (빈 `<table>` 잔재 기준 자동 분류):");
+  if (kosha.missingBodies.length > 0) {
+    lines.push("**본문 미수집 가이드 상세** (`_FAILURES.json`):");
+    lines.push("");
+    lines.push("| guideNo | 제목 | 사유 | 사용자 우회 경로 |");
+    lines.push("|---|---|---|---|");
+    for (const id of kosha.missingBodies) {
+      const fail = kosha.failures.find((f) => f.guideNo === id);
+      lines.push(
+        `| \`${id}\` | ${fail?.title ?? "(_FAILURES.json 미등록 — drift)"} | ${fail?.reason ?? "—"} | ${fail?.userWorkaround ?? "—"} |`,
+      );
+    }
+    lines.push("");
+    if (!kosha.failureDriftOk) {
+      lines.push(
+        "> ⚠️ `_FAILURES.json` 과 실제 본문 미수집 목록이 불일치합니다. `npm run audit:kosha-gaps` 로 정정 필요.",
+      );
+      lines.push("");
+    }
+  }
+  lines.push("**추출 품질 등급** (`.md` 의 빈 `<table>` 잔재 기준 자동 분류):");
   lines.push("");
   lines.push("| 등급 | 기준 | 수 | 비율 |");
   lines.push("|---|---|---:|---:|");
-  const pct = (n: number) => ((n / kosha.total) * 100).toFixed(1) + "%";
+  const pct = (n: number) => ((n / kosha.bodyCount) * 100).toFixed(1) + "%";
   lines.push(`| **verified** | 빈 \`<table>\` 0건 — 본문 정상 | ${kosha.verified} | ${pct(kosha.verified)} |`);
   lines.push(`| **partial** | 빈 \`<table>\` 1~10건 — 표 일부 손실, 본문 텍스트 정상 | ${kosha.partial} | ${pct(kosha.partial)} |`);
   lines.push(`| **raw** | 빈 \`<table>\` 11+건 — kordoc 변환 잔재 다수, 본문은 텍스트로 가독 가능 | ${kosha.raw} | ${pct(kosha.raw)} |`);
@@ -325,6 +153,13 @@ async function generateInventory(): Promise<string> {
   lines.push(`**저작권**: 저작권법 §7 — 비보호 저작물 (자유 인용·재배포)`);
   lines.push("");
 
+  // 4-1. 법정의무 문서 마스터
+  lines.push("## 4-1. 법정의무 문서 마스터 (`legal-duty-master.json`)");
+  lines.push("");
+  lines.push(`- 19종 법정 안전관리 문서: **${documentsTotal}** (안전관리자가 매일·매주·매월 작성)`);
+  lines.push(`- 94 docId 마스터: **${docIdMaster}** (legal-duty-master.json 의 documents 총 카운트 — 19종 + 세분화된 사이클·범위·발주처별 변형)`);
+  lines.push("");
+
   // 5. 양식
   lines.push("## 5. 양식 인덱스 (`forms-map.json`)");
   lines.push("");
@@ -345,7 +180,9 @@ async function generateInventory(): Promise<string> {
   lines.push("- **법령**: 법제처 OpenAPI `lawService` 직접 추출 + 본문 100% 검증 (개별 \\.md 헤더 참조)");
   lines.push("- **KOSHA Guide**: PDF → kordoc 변환 — 본문 텍스트 보존, 일부 표 서식 잔재. 등급 분포 위 §3 참조.");
   lines.push("- **그래프 노드**: SHACL 검증 통과, IRI dangling 0");
-  lines.push("- **자동 검증 게이트** (CI): `audit:strict` / `verify:tool-capability` (92/92/92) / `verify:edge-context` / `validate-shapes:strict` / `npm audit --audit-level=high`");
+  lines.push(
+    `- **자동 검증 게이트** (CI): \`audit:strict\` / \`verify:tool-capability\` (${tools.total}/${tools.total}/${tools.total}) / \`verify:edge-context\` / \`validate-shapes:strict\` / \`npm audit --audit-level=high\``,
+  );
   lines.push("- **개정 미반영 가능성**: 본 번들은 마지막 동기화일 기준 스냅샷. 그 이후 법령 개정·KOSHA Guide 신규는 미반영. 결재·인용 전 법제처/KOSHA 원본 재확인 권장.");
   lines.push("");
 
@@ -357,7 +194,9 @@ async function generateInventory(): Promise<string> {
   lines.push("npx tsx scripts/build/generate-inventory.ts  # 수동 실행");
   lines.push("```");
   lines.push("");
-  lines.push("CI 단계에서 본 문서가 최신 상태와 일치하는지 검증할 수 있도록 `check:inventory-drift` 추가 예정.");
+  lines.push(
+    "9개 문서 (README · README-EN · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · OPERATIONAL-ONTOLOGY) 의 marker 영역은 `sync-docs.ts` 가 본 inventory 산출값으로 자동 갱신합니다. `npm run docs:check` 가 CI/pre-commit 에서 drift 차단.",
+  );
   lines.push("");
   lines.push("---");
   lines.push("");
@@ -367,7 +206,8 @@ async function generateInventory(): Promise<string> {
 }
 
 async function main(): Promise<void> {
-  const output = await generateInventory();
+  const data = await collectInventoryData();
+  const output = renderInventoryMarkdown(data);
   const target = resolve(ROOT, "docs/INVENTORY.md");
   writeFileSync(target, output, "utf8");
   // eslint-disable-next-line no-console

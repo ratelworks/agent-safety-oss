@@ -1,15 +1,16 @@
 /**
- * doctor.ts
+ * inspect.ts
  *
- * 외부 리뷰 P1 (2026-05-22) — agent-safety-oss doctor CLI 명령.
+ * `node build/cli.js inspect` — 시스템 정합성 점검 (v1.4.1 `doctor` 의 정식 이름).
  *
- * 설치 직후 또는 평소에 시스템 무결성을 한 번에 확인:
- *   1. 도구 / capability SSoT 정합 (92/92/92)
- *   2. 그래프 노드 카운트 + dangling IRI
- *   3. KOSHA Guide 본문 등급별 분포
+ * 설치 직후 또는 평소에 시스템 내부 구조를 한 번에 점검:
+ *   1. 도구 / capability SSoT 정합
+ *   2. 그래프 노드 카운트
+ *   3. KOSHA Guide 본문 vs 메타 차이 + 추출 품질 등급
  *   4. 법령 마지막 동기화 일자 + stale 경고 (1년 이상)
  *   5. profile.jsonld 존재 여부 + API 키 환경변수
  *
+ * 명령 어휘 채택: docker inspect / kubectl inspect 와 같은 "내부 구조 점검" 의미.
  * 출력: Markdown — 사용자에게 가독성 우선, JSON 옵션도 제공.
  */
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
@@ -19,13 +20,13 @@ import { homedir } from "node:os";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-interface DoctorReport {
+interface InspectReport {
   generatedAt: string;
   overall: "ok" | "warn" | "fail";
-  sections: DoctorSection[];
+  sections: InspectSection[];
 }
 
-interface DoctorSection {
+interface InspectSection {
   name: string;
   status: "ok" | "warn" | "fail";
   detail: string;
@@ -50,13 +51,13 @@ function findRoot(start: string): string {
 
 const ROOT = findRoot(__dirname);
 
-async function checkToolCapabilitySSoT(): Promise<DoctorSection> {
+async function checkToolCapabilitySSoT(): Promise<InspectSection> {
   const buildRegistryPath = resolve(ROOT, "build/tool-registry.js");
   if (!existsSync(buildRegistryPath)) {
     return {
       name: "도구·Capability SSoT 정합",
       status: "warn",
-      detail: "build/tool-registry.js 미발견. `npm run build` 실행 후 doctor 재실행 권장.",
+      detail: "build/tool-registry.js 미발견. `npm run build` 실행 후 inspect 재실행 권장.",
     };
   }
   const mod = (await import(buildRegistryPath)) as { TOOLS?: Array<{ name: string }> };
@@ -89,7 +90,7 @@ async function checkToolCapabilitySSoT(): Promise<DoctorSection> {
   };
 }
 
-function checkGraphNodes(): DoctorSection {
+function checkGraphNodes(): InspectSection {
   const nodesDir = resolve(ROOT, "src/ontology/graph/nodes");
   if (!existsSync(nodesDir)) {
     return { name: "그래프 노드", status: "fail", detail: "nodes 디렉토리 미발견" };
@@ -111,14 +112,36 @@ function checkGraphNodes(): DoctorSection {
   };
 }
 
-function checkKoshaGuides(): DoctorSection {
+function checkKoshaGuides(): InspectSection {
   const dir = resolve(ROOT, "src/ontology/kosha-guides");
   if (!existsSync(dir)) return { name: "KOSHA Guide 본문", status: "warn", detail: "디렉토리 미발견" };
   const all = readdirSync(dir).filter((f) => f.endsWith(".md"));
-  let failed = 0;
+
+  // 그래프 노드 메타 (src/ontology/graph/nodes/documents/guides/) vs 본문 .md 차이 자동 검증
+  const guideMetaDir = resolve(ROOT, "src/ontology/graph/nodes/documents/guides");
+  let metaCount = 0;
+  let missingBodyList: string[] = [];
+  if (existsSync(guideMetaDir)) {
+    const metaFiles = readdirSync(guideMetaDir).filter((f) => f.endsWith(".jsonld"));
+    metaCount = metaFiles.length;
+    const bodyIds = new Set(all.map((f) => f.replace(/\.md$/, "").toLowerCase()));
+    missingBodyList = metaFiles
+      .map((f) => f.replace(/\.jsonld$/, ""))
+      .filter((id) => !bodyIds.has(id.toLowerCase()))
+      .map((id) => id.toUpperCase());
+  }
+
+  // _FAILURES.json 정합 검증 (legacy array 또는 새 object 둘 다 지원)
+  let failuresRecorded: Array<{ guideNo: string; title?: string }> = [];
   try {
-    failed = JSON.parse(readFileSync(join(dir, "_FAILURES.json"), "utf8")).length;
+    const raw = JSON.parse(readFileSync(join(dir, "_FAILURES.json"), "utf8"));
+    const list = Array.isArray(raw) ? raw : raw.failures ?? [];
+    failuresRecorded = list.map((x: { guideNo?: string; title?: string }) => ({
+      guideNo: x.guideNo ?? "",
+      title: x.title,
+    }));
   } catch {}
+
   let verified = 0;
   let partial = 0;
   let raw = 0;
@@ -129,15 +152,46 @@ function checkKoshaGuides(): DoctorSection {
     else raw++;
   }
   const pct = (n: number) => Math.round((n / all.length) * 100);
+
+  // 누락 ↔ _FAILURES.json drift 검증
+  const failureIds = failuresRecorded.map((f) => f.guideNo);
+  const missingNotRecorded = missingBodyList.filter((id) => !failureIds.includes(id));
+  const recordedNotMissing = failureIds.filter((id) => !missingBodyList.includes(id));
+  const failureDriftOk = missingNotRecorded.length === 0 && recordedNotMissing.length === 0;
+
+  let status: InspectSection["status"] = "ok";
+  let extra = "";
+  if (missingBodyList.length > 0) {
+    extra = ` · 메타 ${metaCount} (본문 미수집 ${missingBodyList.length}: ${missingBodyList.join(", ")})`;
+    if (!failureDriftOk) {
+      status = "warn";
+      extra += ` ⚠️ _FAILURES.json drift (미등록 ${missingNotRecorded.length} / 잔존 ${recordedNotMissing.length})`;
+    } else {
+      extra += " — _FAILURES.json 등록 완료";
+    }
+  } else {
+    extra = ` · 메타 ${metaCount} (본문 = 메타 일치)`;
+  }
+
   return {
     name: "KOSHA Guide 본문",
-    status: "ok",
-    detail: `총 ${all.length} 본문 — verified ${verified} (${pct(verified)}%) · partial ${partial} (${pct(partial)}%) · raw ${raw} (${pct(raw)}%) · 추출 실패 ${failed}`,
-    data: { total: all.length, verified, partial, raw, failed },
+    status,
+    detail: `본문 ${all.length}${extra} — verified ${verified} (${pct(verified)}%) · partial ${partial} (${pct(partial)}%) · raw ${raw} (${pct(raw)}%)`,
+    data: {
+      bodies: all.length,
+      meta: metaCount,
+      missingBodies: missingBodyList,
+      failuresRecorded: failuresRecorded.length,
+      missingNotRecorded,
+      recordedNotMissing,
+      verified,
+      partial,
+      raw,
+    },
   };
 }
 
-function checkLawFreshness(): DoctorSection {
+function checkLawFreshness(): InspectSection {
   const dir = resolve(ROOT, "src/ontology/safety-laws");
   if (!existsSync(dir)) return { name: "법령 동기화", status: "fail", detail: "디렉토리 미발견" };
   const todayMs = Date.now();
@@ -170,7 +224,7 @@ function checkLawFreshness(): DoctorSection {
   };
 }
 
-function checkProfileAndKeys(): DoctorSection {
+function checkProfileAndKeys(): InspectSection {
   const profilePath = join(homedir(), ".agent-safety-oss", "profile.jsonld");
   const hasProfile = existsSync(profilePath);
   const dataGoKrKey = !!process.env.DATA_GO_KR_KEY;
@@ -193,8 +247,8 @@ function checkProfileAndKeys(): DoctorSection {
   };
 }
 
-export async function runDoctor(format: "markdown" | "json" = "markdown"): Promise<string> {
-  const sections: DoctorSection[] = [
+export async function runInspect(format: "markdown" | "json" = "markdown"): Promise<string> {
+  const sections: InspectSection[] = [
     await checkToolCapabilitySSoT(),
     checkGraphNodes(),
     checkKoshaGuides(),
@@ -203,9 +257,9 @@ export async function runDoctor(format: "markdown" | "json" = "markdown"): Promi
   ];
   const hasFailure = sections.some((s) => s.status === "fail");
   const hasWarn = sections.some((s) => s.status === "warn");
-  const overall: DoctorReport["overall"] = hasFailure ? "fail" : hasWarn ? "warn" : "ok";
+  const overall: InspectReport["overall"] = hasFailure ? "fail" : hasWarn ? "warn" : "ok";
 
-  const report: DoctorReport = {
+  const report: InspectReport = {
     generatedAt: kstNow(),
     overall,
     sections,
@@ -216,7 +270,7 @@ export async function runDoctor(format: "markdown" | "json" = "markdown"): Promi
   // Markdown
   const lines: string[] = [];
   const overallEmoji = overall === "ok" ? "✅" : overall === "warn" ? "⚠️" : "❌";
-  lines.push(`# agent-safety-oss doctor ${overallEmoji} ${overall.toUpperCase()}`);
+  lines.push(`# agent-safety-oss inspect ${overallEmoji} ${overall.toUpperCase()}`);
   lines.push("");
   lines.push(`> 생성: ${report.generatedAt}`);
   lines.push("");

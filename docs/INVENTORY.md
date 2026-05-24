@@ -2,7 +2,7 @@
 
 > **본 문서는 `npm run build` 시 `scripts/build/generate-inventory.ts` 가 자동 생성합니다. 수동 편집 금지** — drift 차단용.
 
-- 생성 시각: 2026-05-22T16:06:46+09:00
+- 생성 시각: 2026-05-24T18:38:14+09:00
 - 법령 데이터 최신 동기화: **2026-05-18**
 - 양식 인덱스 컴파일: 2026-04-29
 
@@ -33,49 +33,54 @@
 
 ## 2. 그래프 노드
 
-| 카테고리 | 노드 수 |
-|---|---:|
-| articles | 1306 |
-| annexes | 227 |
-| patterns | 110 |
-| documents | 96 |
-| capabilities | 92 |
-| chapters | 55 |
-| controls | 50 |
-| activities | 41 |
-| hazards | 38 |
-| events | 24 |
-| applicabilities | 22 |
-| entities | 19 |
-| interpretations | 19 |
-| work_types | 16 |
-| sources | 15 |
-| cycles | 13 |
-| methods | 13 |
-| equipment | 10 |
-| iso45001 | 9 |
-| penalties | 9 |
-| acts | 8 |
-| manuals | 8 |
-| object_sets | 7 |
-| statistics | 3 |
-| kosha_guides | 2 |
-| facets | 0 |
-| **전체** | **2212** |
+- 카테고리 1단계 노드 (직속 `.jsonld`): **2212**
+- 전체 노드 (재귀, KOSHA Guide 1,039건 포함): **3369**
+- 엣지 (주요 EDGE_FIELDS): **32963**
 
-## 3. KOSHA Guide 본문
+| 카테고리 | 1단계 | 재귀 (서브디렉토리 포함) |
+|---|---:|---:|
+| articles | 1306 | 1306 |
+| documents | 96 | 1135 |
+| annexes | 227 | 227 |
+| facets | 0 | 118 |
+| patterns | 110 | 110 |
+| capabilities | 92 | 92 |
+| chapters | 55 | 55 |
+| controls | 50 | 50 |
+| activities | 41 | 41 |
+| hazards | 38 | 38 |
+| events | 24 | 24 |
+| applicabilities | 22 | 22 |
+| entities | 19 | 19 |
+| interpretations | 19 | 19 |
+| work_types | 16 | 16 |
+| sources | 15 | 15 |
+| cycles | 13 | 13 |
+| methods | 13 | 13 |
+| equipment | 10 | 10 |
+| iso45001 | 9 | 9 |
+| penalties | 9 | 9 |
+| acts | 8 | 8 |
+| manuals | 8 | 8 |
+| object_sets | 7 | 7 |
+| statistics | 3 | 3 |
+| kosha_guides | 2 | 2 |
+| **전체** | **2212** | **3369** |
 
-| 항목 | 수 |
-|---|---:|
-| 전체 본문 (.md) | **1037** |
-| 추출 실패 (`_FAILURES.json`) | 2 |
+## 3. KOSHA Guide 본문 / 메타
 
-**추출 품질 등급** (빈 `<table>` 잔재 기준 자동 분류):
+| 항목 | 수 | 비고 |
+|---|---:|---|
+| 그래프 메타 (.jsonld) | **1039** | KOSHA OneAPI 15144147 가 인지한 가이드 메타 |
+| 본문 (.md) | **1039** | PDF → kordoc 변환 성공한 본문 |
+| 본문 미수집 | 0 | (없음 — 본문 = 메타) |
+
+**추출 품질 등급** (`.md` 의 빈 `<table>` 잔재 기준 자동 분류):
 
 | 등급 | 기준 | 수 | 비율 |
 |---|---|---:|---:|
-| **verified** | 빈 `<table>` 0건 — 본문 정상 | 14 | 1.4% |
-| **partial** | 빈 `<table>` 1~10건 — 표 일부 손실, 본문 텍스트 정상 | 958 | 92.4% |
+| **verified** | 빈 `<table>` 0건 — 본문 정상 | 14 | 1.3% |
+| **partial** | 빈 `<table>` 1~10건 — 표 일부 손실, 본문 텍스트 정상 | 960 | 92.4% |
 | **raw** | 빈 `<table>` 11+건 — kordoc 변환 잔재 다수, 본문은 텍스트로 가독 가능 | 65 | 6.3% |
 
 > ⚠️ KOSHA Guide 는 PDF → kordoc 변환 결과로, 일부 시각적 서식 손실 가능. LLM 인용 시 본문 텍스트만 사용 권장. 정확한 원본은 각 파일의 `원본 URL` 참조.
@@ -97,6 +102,11 @@
 | **합계** | **76** | — | — | — | — |
 
 **저작권**: 저작권법 §7 — 비보호 저작물 (자유 인용·재배포)
+
+## 4-1. 법정의무 문서 마스터 (`legal-duty-master.json`)
+
+- 19종 법정 안전관리 문서: **19** (안전관리자가 매일·매주·매월 작성)
+- 94 docId 마스터: **94** (legal-duty-master.json 의 documents 총 카운트 — 19종 + 세분화된 사이클·범위·발주처별 변형)
 
 ## 5. 양식 인덱스 (`forms-map.json`)
 
@@ -125,7 +135,7 @@ npm run build              # 자동 생성 (빌드 단계 통합)
 npx tsx scripts/build/generate-inventory.ts  # 수동 실행
 ```
 
-CI 단계에서 본 문서가 최신 상태와 일치하는지 검증할 수 있도록 `check:inventory-drift` 추가 예정.
+9개 문서 (README · README-EN · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · OPERATIONAL-ONTOLOGY) 의 marker 영역은 `sync-docs.ts` 가 본 inventory 산출값으로 자동 갱신합니다. `npm run docs:check` 가 CI/pre-commit 에서 drift 차단.
 
 ---
 

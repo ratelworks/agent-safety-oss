@@ -88,6 +88,17 @@ interface AssembledContext {
     title?: string;
     cycle?: string;
   }>;
+  // v1.5.0: KOSHA Guide 자동 노출 (guidedBy edge traversal)
+  // 안전관리자가 작성 시점에 어떤 KOSHA 기술지원규정을 참고해야 하는지 LLM 이 즉시 발견 가능.
+  koshaGuides: Array<{
+    iri: string;
+    found: boolean;
+    guideNo?: string;
+    title?: string;
+    category?: string;
+    publishedBy?: string;
+    bodyAvailable?: boolean; // get_kosha_guide_md 로 본문 조회 가능 여부
+  }>;
   lifecycle: {
     submitTo: string | null;
     submitDeadline: string | null;
@@ -274,6 +285,30 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     };
   });
 
+  // 6-2. KOSHA Guide traversal (v1.5.0 — guidedBy edge SSoT)
+  // 작성 시점에 어떤 KOSHA 기술지원규정을 참고해야 하는지 LLM 이 즉시 발견.
+  // 본문 조회 가능 여부 (bodyAvailable) 명시 → LLM 이 get_kosha_guide_md 호출 우선순위 결정 가능.
+  const guidedByIris = asArray<string>(docNode.guidedBy);
+  const koshaGuides = guidedByIris
+    .filter((iri) => typeof iri === "string" && iri.startsWith("doc:kosha_guide/"))
+    .map((iri) => {
+      const g = getNode(iri);
+      if (!g) {
+        unresolved.push(iri);
+        return { iri, found: false };
+      }
+      const meta = (g._meta ?? {}) as Record<string, any>;
+      return {
+        iri,
+        found: true,
+        guideNo: meta.guideNo,
+        title: g.title,
+        category: meta.guideCategory,
+        publishedBy: meta.publishedBy,
+        bodyAvailable: true, // 1,039 본문 100% 보유 (v1.4.2)
+      };
+    });
+
   // 7. 작성 항목 — requiredFields + sections.fields 통합 (폼 전체와 동일)
   const allFields: Array<{ key: string; label: string; inputGuide?: string; examples?: string[]; source?: string; section?: string }> = [];
   if (Array.isArray(docNode.requiredFields)) {
@@ -344,10 +379,11 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     controlsViaHazards, // 2-hop indirect controls (doc → hasHazard → mitigatedBy)
     annex,
     relatedDocs,
+    koshaGuides,
     lifecycle,
     requiredFields,
     meta: {
-      totalReferences: legalBasis.length + hazards.length + controls.length + controlsViaHazards.length + (annexIri ? 1 : 0) + relatedDocs.length,
+      totalReferences: legalBasis.length + hazards.length + controls.length + controlsViaHazards.length + (annexIri ? 1 : 0) + relatedDocs.length + koshaGuides.length,
       resolvedReferences:
         legalBasis.filter((x) => x.found).length +
         hazards.filter((x) => x.found).length +

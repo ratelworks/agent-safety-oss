@@ -22,7 +22,9 @@
     "note": "신규 의무문서 — requiredFields/reviewRules/applicableWhen 표준 골격 채움 (Phase 2.5 wave4).",
     "verifiedAt": "2026-04-28",
     "alignedAt": "2026-04-29",
-    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)",
+    "guidedByInferredAt": "2026-05-24",
+    "guidedByInferenceSource": "legalBasis_traversal"
   },
   "applicableWhen": {
     "appliesTo": "applic:all_workplace",
@@ -268,5 +270,12 @@
     "doc:quarterly/safety_health_committee"
   ],
   "industry": "construction",
-  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능."
+  "industryNote": "본 OSS 1차 타겟은 건설업 (50억/50인 미만 중소건설현장). 제조업 등 타 업종도 산안법 공통 양식으로 활용 가능.",
+  "guidedBy": [
+    "doc:kosha_guide/A-R-1-2026",
+    "doc:kosha_guide/C-45-2012",
+    "doc:kosha_guide/C-62-2012",
+    "doc:kosha_guide/C-79-2015",
+    "doc:kosha_guide/C-98-2014"
+  ]
 }

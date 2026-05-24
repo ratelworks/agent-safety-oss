@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# 등록된 MCP 도구 70개 카탈로그를 JSON 으로 출력 (검증·연결 점검용).
+# 등록된 MCP 도구 카탈로그를 JSON 으로 출력 (검증·연결 점검용).
 # CI 의 smoke 단계와 동일 — 도구 수 회귀 시 즉시 감지.
+# 현재 등록 도구 수: docs/INVENTORY.md 참조 (자동 산출).
 set -euo pipefail
 
-agent-safety-oss-mcp tools --json | node -e "
+npx -y agent-safety-oss tools --json | node -e "
 let s = '';
 process.stdin.on('data', d => s += d);
 process.stdin.on('end', () => {

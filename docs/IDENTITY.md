@@ -9,8 +9,8 @@ agent-safety-oss 는 **건설현장의 법정 안전문서 작성을 더 빠르�
 **주요 MCP host**: **Claude Desktop · OpenAI Codex CLI** 두 host 만 메인 지원. 설정은 host 별 안내 (`docs/SETUP_CLAUDE_DESKTOP.md` · `docs/SETUP_CODEX.md`) 참조.
 
 번들 공공데이터:
-- **법령 본문 MD 8개**: 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법 §62 영역
-- **KOSHA Guide 1,037건** (2026.1 재정비 후 유효본)
+- **법령 본문 MD <!-- INV:LAW_BUNDLE_COUNT -->8<!-- /INV:LAW_BUNDLE_COUNT -->개** (합계 약 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조): 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법 §62 영역
+- **KOSHA Guide <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** (본문) + **<!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META -->건** (메타, 2026.1 재정비 후 유효본)
 - **부처별 분산 공공데이터 통합**: 법제처·KOSHA·고용노동부·국토부 등 자료를 같은 온톨로지 그래프로 묶어 LLM 이 관계 따라가며 도메인 추론 가능
 
 ## 핵심 사용자
@@ -47,11 +47,11 @@ Human Layer     검토, 수정, 승인, 제출, 책임 판단
 | Contractor | 수급업체 | local profile + 도급 문서 |
 | WorkerRole / Person | 안전관리자, 현장소장, 관리감독자, 근로자대표 | local profile + 결재선 자동 채움 |
 | Equipment | 장비와 기계 | local profile + 작업계획서/점검표 연결 |
-| WorkActivity | 실제 작업 | 41개 activity node |
-| Hazard | 위험요인 | 38개 hazard node |
-| Control | 통제대책과 보호구 | 45개 control node, ERIC-PP 위계 |
+| WorkActivity | 실제 작업 | <!-- INV:GRAPH_ACTIVITIES -->41<!-- /INV:GRAPH_ACTIVITIES -->개 activity node |
+| Hazard | 위험요인 | <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS -->개 hazard node |
+| Control | 통제대책과 보호구 | <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS -->개 control node, ERIC-PP 위계 |
 | LegalArticle | 법령 조문 | 1,306개 article node (산안법 영역 거의 전수 + 건진법 §62 영역 4건) |
-| SafetyDocument | 법정의무 문서 | 94 docId master + 1,135 document node |
+| SafetyDocument | 법정의무 문서 | <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId master + document graph node (KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) |
 | Evidence | 사진, 문서, 제출 증빙 | PhotoEvidence부터 시작 |
 | SafetyIssue | 현장 이슈 | local storage + graph chain |
 | CorrectiveAction | 개선조치 | local storage + resolves chain |
@@ -89,9 +89,9 @@ SafetyReport -> includes -> SafetyIssue
 
 ## 현재 충분한 것
 
-- 89개 MCP 도구가 검색, 조회, 문서, 검수, 현장 사이클, 로컬 저장을 포괄한다.
-- 94 docId 법정의무 마스터와 132 formId 양식 인덱스가 정합된다.
-- 운영 그래프는 3,336 노드와 29,642 엣지로 중소 건설사 사용 범위에는 충분하다.
+- <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 MCP 도구가 검색, 조회, 문서, 검수, 현장 사이클, 로컬 저장을 포괄한다.
+- <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId 법정의무 마스터와 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId 양식 인덱스가 정합된다.
+- 운영 그래프는 <!-- INV:GRAPH_TOTAL -->3,369<!-- /INV:GRAPH_TOTAL --> 노드 (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) 와 약 <!-- INV:GRAPH_EDGES -->32,963<!-- /INV:GRAPH_EDGES --> 엣지로 중소 건설사 사용 범위에는 충분하다.
 - `ontology:operational`, `mcp:test:graph`, `audit:strict`가 통과한다.
 - 4개 필드 시나리오에서 29/29 단계가 통과한다.
 

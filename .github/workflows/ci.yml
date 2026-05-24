@@ -86,10 +86,18 @@ jobs:
           fi
           echo "Tool count: $count ✅"
 
+      - name: SSoT drift — INVENTORY marker ↔ 9개 문서 (ADR 003 L3)
+        run: |
+          # ADR 003 (Doc Drift Prevention) L3 — INVENTORY 산출값과 README/CHANGELOG/SECURITY 등
+          # 9개 문서의 <!-- INV:KEY -->...<!-- /INV:KEY --> marker 영역이 일치하는지 검증.
+          # drift 있으면 exit 1 + 정정 가이드 출력. 로컬에서는 `npm run docs:sync` 로 자동 정정.
+          npm run docs:check
+
       - name: SSoT drift — doc ↔ code (release version + 도구 수 + KOSHA 번들 + 메인 host)
         run: |
           # 매 release 시 README/SECURITY/docs 의 version 표기가 package.json 과 동기화됐는지
           # 자동 차단. release-v badge / Package version / "현재 안정판" 모두 검증.
+          # 본 step 은 패턴 휴리스틱 (false positive 가능), 위 docs:check 는 marker 영역 정밀 검증.
           npm run check:doc-sync
 
       - name: SSoT drift — Tool ↔ Capability (TOOLS == CAPABILITY_REGISTRY == .jsonld)

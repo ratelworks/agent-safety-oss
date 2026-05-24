@@ -11,7 +11,8 @@ const CMD = {
   TOOLS: "tools",
   CALL: "call",
   DESCRIBE: "describe",
-  DOCTOR: "doctor",
+  INSPECT: "inspect",
+  DOCTOR: "doctor", // v1.4.1 backward-compat — inspect 의 alias
 } as const;
 
 const program = new Command();
@@ -38,17 +39,25 @@ program
     await import("./index.js");
   });
 
-// 외부 리뷰 P1 (2026-05-22) — doctor: 시스템 무결성 진단
+// 시스템 정합성 점검 — `inspect` (권장) + `doctor` (v1.4.1 backward-compat alias)
+async function runInspectCommand(opts: { json?: boolean }): Promise<void> {
+  const { runInspect } = await import("./tools-meta/inspect.js");
+  const output = await runInspect(opts.json ? "json" : "markdown");
+  // eslint-disable-next-line no-console
+  console.log(output);
+}
+
+program
+  .command(CMD.INSPECT)
+  .description("Inspect system integrity (graph SSoT, KOSHA body/meta, law freshness, user env)")
+  .option("--json", "JSON 출력 (사람 가독 markdown 대신)")
+  .action(runInspectCommand);
+
 program
   .command(CMD.DOCTOR)
-  .description("Show system health (graph SSoT, KOSHA quality, law freshness, user env)")
+  .description("alias of `inspect` (kept for v1.4.1 backward compatibility)")
   .option("--json", "JSON 출력 (사람 가독 markdown 대신)")
-  .action(async (opts: { json?: boolean }) => {
-    const { runDoctor } = await import("./tools-meta/doctor.js");
-    const output = await runDoctor(opts.json ? "json" : "markdown");
-    // eslint-disable-next-line no-console
-    console.log(output);
-  });
+  .action(runInspectCommand);
 
 const toolsCmd = program
   .command(CMD.TOOLS)

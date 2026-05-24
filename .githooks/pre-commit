@@ -1,0 +1,29 @@
+#!/bin/sh
+# ADR 003 (Doc Drift Prevention) L3 — pre-commit gate.
+#
+# CI (.github/workflows/ci.yml) 와 동일한 docs:check 를 로컬 commit 시점에 강제.
+# 우회 (`git commit --no-verify`) 시 CI 에서 다시 차단됨.
+#
+# 본 hook 은 `.githooks/` 디렉토리에 있음. package.json 의 `prepare` script 가
+# `git config core.hooksPath .githooks` 를 자동 설정 (`npm install` 시).
+#
+# 의존성: Node + tsx (devDependency 에 이미 있음). 추가 패키지 없음 (husky 미사용).
+
+# build 산출물 없으면 skip — CI 가 build 후 다시 검증.
+if [ ! -f build/tool-registry.js ]; then
+  echo "ℹ️ build/tool-registry.js 없음 — docs:check skip (\`npm run build\` 후 commit 권장)"
+  exit 0
+fi
+
+# docs:check 실행
+npm run docs:check --silent
+status=$?
+if [ $status -ne 0 ]; then
+  echo ""
+  echo "❌ commit 차단 — INVENTORY ↔ 문서 marker drift"
+  echo "   정정: \`npm run docs:sync\` 실행 후 변경 사항 git add"
+  echo "   우회: \`git commit --no-verify\` (CI 에서 다시 차단됨)"
+  exit 1
+fi
+
+exit 0

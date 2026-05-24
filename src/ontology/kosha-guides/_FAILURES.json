@@ -1,10 +1,23 @@
-[
-  {
-    "guideNo": "A-142-2018",
-    "reason": "KOSHA portal API 응답 0 bytes (PDF empty) — 폐기 판정"
+{
+  "_meta": {
+    "version": "1.4.2",
+    "generatedAt": "2026-05-23",
+    "description": "KOSHA OneAPI 15144147 으로 본문 PDF 다운로드가 실패한 가이드 목록. 메타 (그래프 노드 `.jsonld`) 는 보유하나 본문 `.md` 부재. KOSHA 측 API 가 해당 가이드의 fileDownloadUrl 을 반환하지 않거나 빈 PDF (0 bytes) 를 반환하는 케이스. 현재 0건 — 본문 = 메타 (1,039 = 1,039) 일치.",
+    "verification": "src/ontology/graph/nodes/documents/guides/ 의 .jsonld 1,039 vs src/ontology/kosha-guides/ 의 .md 1,039 차이 0 (자동 검증). scripts/audit/audit-kosha-guide-gaps.ts 가 시퀀스 갭과 함께 검증. inspect CLI 가 build 시 정합도 확인.",
+    "history": [
+      {
+        "version": "1.4.1",
+        "date": "2026-05-22",
+        "missing": ["A-142-2018", "T-25-2021"],
+        "reason": "fetch-kosha-guide-bodies.ts 가 KOSHA OneAPI 응답의 fileDownloadUrl (fileOrdrNo=5) 만 시도 → 0 bytes 응답 → _FAILURES 등록"
+      },
+      {
+        "version": "1.4.2",
+        "date": "2026-05-23",
+        "missing": [],
+        "resolution": "동일 fileId 의 다른 fileOrdrNo 전수 시도 (1~10) 로 정상 본문 확보. A-142-2018: fileOrdrNo=4 (PDF 506KB). T-25-2021: fileOrdrNo=4 (HWP 26KB — KOSHA portal 측 PDF 자체가 0 bytes 라 HWP 원본 사용 + kordoc 변환). 본문 1,037 → 1,039 (메타와 일치). 본 경험으로 향후 fetch 시 fileOrdrNo 전수 시도 패턴 도입 권장 (fetch-kosha-guide-bodies.ts 개선 후보)."
+      }
+    ]
   },
-  {
-    "guideNo": "T-25-2021",
-    "reason": "KOSHA portal API 응답 0 bytes (PDF empty) — 폐기 판정"
-  }
-]
+  "failures": []
+}

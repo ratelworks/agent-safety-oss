@@ -225,7 +225,12 @@
   ],
   "penaltyOnMissing": "penalty:산안법:175",
   "retention": "1년",
-  "guidedBy": [],
+  "guidedBy": [
+    "doc:kosha_guide/B-M-34-2026",
+    "doc:kosha_guide/D-C-7-2026",
+    "doc:kosha_guide/M-39-2012",
+    "doc:kosha_guide/M-69-2012"
+  ],
   "verificationStatus": "verified",
   "_meta": {
     "publishedBy": "황룡건설(주) + ㈜라텔웍스",
@@ -235,7 +240,9 @@
     "note": "스켈레톤 노드. 후속 양식 정합 작업 필요 (sections.fields 양식 그대로 + inputGuide + examples 보강).",
     "documentCategory": "inspection",
     "alignedAt": "2026-04-29",
-    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)",
+    "guidedByInferredAt": "2026-05-24",
+    "guidedByInferenceSource": "legalBasis_traversal"
   },
   "applicableWhen": {
     "appliesTo": "applic:all_workplace",

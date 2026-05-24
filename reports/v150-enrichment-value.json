@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-05-24T09:21:57.228Z",
+  "scenarios": [
+    {
+      "docId": "daily_tbm",
+      "userPrompt": "오늘 4층 발코니 거푸집 양중 작업 TBM 만들어줘",
+      "assemble": {
+        "completenessScore": 6,
+        "guides": 5,
+        "laws": 6,
+        "hazards": 3,
+        "controls": 16,
+        "totalReferences": 33,
+        "resolvedReferences": 28,
+        "guideSamples": [
+          {
+            "guideNo": "A-R-1-2026",
+            "title": "자율안전보건관리체계 구축 및 운영에 관한 기술지원규정"
+          },
+          {
+            "guideNo": "A-R-3-2026",
+            "title": "보우타이(Bow-Tie) 리스크 평가 기법에 관한 기술지원규정"
+          },
+          {
+            "guideNo": "C-C-7-2026",
+            "title": "정량적 위험성평가에 관한 기술지원규정"
+          }
+        ],
+        "lawSamples": [
+          {
+            "iri": "art:산안법:36",
+            "title": "위험성평가의 실시"
+          },
+          {
+            "iri": "art:위험성평가-고시:15",
+            "title": "위험성평가의 실시 시기"
+          },
+          {
+            "iri": "art:위험성평가-고시:6",
+            "title": "근로자 참여"
+          }
+        ]
+      },
+      "generate": {
+        "bodyLength": 5205,
+        "legalCitationHits": 20,
+        "structuredKeys": [
+          "docId",
+          "title",
+          "koshaGuideCount",
+          "hazardCount",
+          "controlCount",
+          "sectionsCount",
+          "legalBasisCount",
+          "bodyMarkdownLength",
+          "inferred",
+          "validation",
+          "graphContext",
+          "_meta"
+        ],
+        "approvable": false
+      },
+      "review": {
+        "overall": "fail",
+        "pass": 3,
+        "warn": 1,
+        "manual_review": 1,
+        "fail": 22,
+        "applies": true
+      }
+    },
+    {
+      "docId": "ad_hoc_risk_assessment",
+      "userPrompt": "추락 위험 발생해서 수시 위험성평가 작성",
+      "assemble": {
+        "completenessScore": 6,
+        "guides": 14,
+        "laws": 2,
+        "hazards": 3,
+        "controls": 24,
+        "totalReferences": 47,
+        "resolvedReferences": 33,
+        "guideSamples": [
+          {
+            "guideNo": "C-C-21-2026",
+            "title": "위험성평가 실시를 위한 우선순위 결정에 관한 기술지원규정"
+          },
+          {
+            "guideNo": "C-C-22-2026",
+            "title": "PVC 제조공정의 화재폭발 위험성평가 및 비상조치에 관한 기술지원규정"
+          },
+          {
+            "guideNo": "C-C-30-2026",
+            "title": "폭주반응 예방을 위한 열적 위험성평가에 관한 기술지원규정"
+          }
+        ],
+        "lawSamples": [
+          {
+            "iri": "art:산안법:36",
+            "title": "위험성평가의 실시"
+          },
+          {
+            "iri": "art:위험성평가-고시:15",
+            "title": "위험성평가의 실시 시기"
+          }
+        ]
+      },
+      "generate": {
+        "bodyLength": 3567,
+        "legalCitationHits": 10,
+        "structuredKeys": [
+          "docId",
+          "title",
+          "koshaGuideCount",
+          "hazardCount",
+          "controlCount",
+          "sectionsCount",
+          "legalBasisCount",
+          "bodyMarkdownLength",
+          "inferred",
+          "validation",
+          "graphContext",
+          "_meta"
+        ],
+        "approvable": false
+      },
+      "review": {
+        "overall": "fail",
+        "pass": 2,
+        "warn": 0,
+        "manual_review": 5,
+        "fail": 12,
+        "applies": true
+      }
+    },
+    {
+      "docId": "industrial_accident_report",
+      "userPrompt": "근로자 1명 추락 산재 발생 보고",
+      "assemble": {
+        "completenessScore": 7,
+        "guides": 4,
+        "laws": 6,
+        "hazards": 10,
+        "controls": 40,
+        "totalReferences": 64,
+        "resolvedReferences": 60,
+        "guideSamples": [
+          {
+            "guideNo": "A-G-8-2025",
+            "title": "산업재해 기록·분류에 관한 기술지원규정"
+          },
+          {
+            "guideNo": "E-182-2021",
+            "title": "정전기에 의한 화재.폭발 재해조사에 대한 기술지침"
+          },
+          {
+            "guideNo": "G-5-2017",
+            "title": "업무상 사고조사에 관한 기술지침"
+          }
+        ],
+        "lawSamples": [
+          {
+            "iri": "art:산안법:54",
+            "title": "중대재해 발생 시 사업주의 조치"
+          },
+          {
+            "iri": "art:산안법:57",
+            "title": "산업재해 발생 은폐 금지 및 보고 등"
+          },
+          {
+            "iri": "art:산안법시행규칙:73",
+            "title": "산업재해 발생 보고 등"
+          }
+        ]
+      },
+      "generate": {
+        "bodyLength": 14479,
+        "legalCitationHits": 37,
+        "structuredKeys": [
+          "docId",
+          "title",
+          "koshaGuideCount",
+          "hazardCount",
+          "controlCount",
+          "sectionsCount",
+          "legalBasisCount",
+          "bodyMarkdownLength",
+          "inferred",
+          "validation",
+          "graphContext",
+          "_meta"
+        ],
+        "approvable": false
+      },
+      "review": {
+        "overall": "fail",
+        "pass": 1,
+        "warn": 2,
+        "manual_review": 2,
+        "fail": 38,
+        "applies": true
+      }
+    },
+    {
+      "docId": "work_plan_excavation",
+      "userPrompt": "굴착 작업계획서 작성",
+      "assemble": {
+        "completenessScore": 6,
+        "guides": 6,
+        "laws": 2,
+        "hazards": 11,
+        "controls": 40,
+        "totalReferences": 61,
+        "resolvedReferences": 55,
+        "guideSamples": [
+          {
+            "guideNo": "C-103-2014",
+            "title": "굴착공사 계측관리 기술지침"
+          },
+          {
+            "guideNo": "D-C-1-2025",
+            "title": "흙막이공사에 대한 기술지원규정"
+          },
+          {
+            "guideNo": "D-C-11-2026",
+            "title": "굴착 및 토공 안전작업에 관한 기술지원규정"
+          }
+        ],
+        "lawSamples": [
+          {
+            "iri": "art:기준규칙:38",
+            "title": "사전조사 및 작업계획서의 작성 등"
+          },
+          {
+            "iri": "annex:기준규칙:별표4-6호",
+            "title": "굴착작업 — 사전조사 및 작업계획서 내용"
+          }
+        ]
+      },
+      "generate": {
+        "bodyLength": 4099,
+        "legalCitationHits": 8,
+        "structuredKeys": [
+          "docId",
+          "title",
+          "koshaGuideCount",
+          "hazardCount",
+          "controlCount",
+          "sectionsCount",
+          "legalBasisCount",
+          "bodyMarkdownLength",
+          "inferred",
+          "validation",
+          "graphContext",
+          "_meta"
+        ],
+        "approvable": false
+      },
+      "review": {
+        "overall": "fail",
+        "pass": 1,
+        "warn": 0,
+        "manual_review": 7,
+        "fail": 22,
+        "applies": true
+      }
+    },
+    {
+      "docId": "msds_register",
+      "userPrompt": "신너 600 도장작업 MSDS 비치대장",
+      "assemble": {
+        "completenessScore": 6,
+        "guides": 2,
+        "laws": 4,
+        "hazards": 4,
+        "controls": 16,
+        "totalReferences": 29,
+        "resolvedReferences": 27,
+        "guideSamples": [
+          {
+            "guideNo": "C-C-29-2026",
+            "title": "경고표지를 이용한 화학물질 관리에 관한 기술지원규정"
+          },
+          {
+            "guideNo": "H-158-2021",
+            "title": "물질안전보건자료 교육 실시에 관한 지침"
+          }
+        ],
+        "lawSamples": [
+          {
+            "iri": "art:산안법:114",
+            "title": "물질안전보건자료의 게시 및 교육"
+          },
+          {
+            "iri": "art:산안법:115",
+            "title": "물질안전보건자료대상물질 용기 등의 경고표시"
+          },
+          {
+            "iri": "art:산안법시행규칙:169",
+            "title": "물질안전보건자료에 관한 교육의 시기ㆍ내용ㆍ방법 등"
+          }
+        ]
+      },
+      "generate": {
+        "bodyLength": 6038,
+        "legalCitationHits": 39,
+        "structuredKeys": [
+          "docId",
+          "title",
+          "koshaGuideCount",
+          "hazardCount",
+          "controlCount",
+          "sectionsCount",
+          "legalBasisCount",
+          "bodyMarkdownLength",
+          "inferred",
+          "validation",
+          "graphContext",
+          "_meta"
+        ],
+        "approvable": false
+      },
+      "review": {
+        "overall": "fail",
+        "pass": 1,
+        "warn": 0,
+        "manual_review": 0,
+        "fail": 22,
+        "applies": true
+      }
+    }
+  ]
+}

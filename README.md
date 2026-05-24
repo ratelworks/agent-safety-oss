@@ -5,22 +5,56 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.19-brightgreen)](https://nodejs.org)
 [![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io)
-[![Release](https://img.shields.io/badge/release-v1.4.1-blue.svg)](./CHANGELOG.md)
+[![Release](https://img.shields.io/badge/release-v1.5.0-blue.svg)](./CHANGELOG.md)
 [![Tools](https://img.shields.io/badge/MCP%20tools-92-orange.svg)](./docs/IDENTITY.md)
 
-**건설현장의 법정 안전문서 작성을 더 빠르고 정확하게.** 산안법·기준규칙·중처법·KOSHA Guide를 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.
+**건설현장의 법정 안전문서 작성을 더 빠르고 정확하게.** 산안법·기준규칙·중처법·KOSHA 기술지원규정(가이드)을 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.
 
-안전관리자·현장소장이 매일·매주·매월 작성하는 **19종 법정 안전관리 문서** (TBM·작업계획서·위험성평가·MSDS·산재조사표 등) 를 옆에서 돕습니다. **안전관리 법령 8건 핵심 조문 발췌** (산안법 10조 / 시행령 3조 / 시행규칙 4조 / 기준규칙 10조 / 중처법 7조 / 중처법 시행령 13조 / 위험성평가 고시 23조 **전문** / 건진법 §62 영역 4조, 합계 약 77조 — 전체 법령 아님, 법제처 직접 참조 필수. 상세는 [`docs/INVENTORY.md`](./docs/INVENTORY.md)) + **KOSHA Guide 1,037건 본문** (offline, keyless, kordoc 변환 — 추출 품질 등급 verified/partial/raw) + 부처별 분산 공공데이터 (법제처·KOSHA·고용노동부·국토부) 를 같은 온톨로지 그래프로 통합해, 작성 시점에 양식·빈칸 가이드·법령 본문 발췌·검수를 자동 제공합니다.
-
-**Claude Desktop · OpenAI Codex CLI** 두 host 를 메인 지원합니다. `npm` 한 줄로 동작합니다. **작성 주체는 안전관리자, MCP 는 보조**.
-
-[English](./README-EN.md) · [정체성](./docs/IDENTITY.md) · [운영 온톨로지](./docs/OPERATIONAL-ONTOLOGY.md) · [Claude Desktop 설정](./docs/SETUP_CLAUDE_DESKTOP.md) · [Codex CLI 설정](./docs/SETUP_CODEX.md)
+[English](./README-EN.md) · [정체성](./docs/IDENTITY.md) · [Claude Desktop 설정](./docs/SETUP_CLAUDE_DESKTOP.md) · [Codex CLI 설정](./docs/SETUP_CODEX.md) · [기술 상세 (운영 온톨로지)](./docs/OPERATIONAL-ONTOLOGY.md)
 
 ---
 
-## 5초 진입 — MCP host 사용자 (Claude Desktop · Codex)
+## 한 눈에 — 안전관리자가 받는 가치
 
-이미 MCP host 를 쓰는 안전관리자라면 아래 설정만 추가하면 끝납니다. **92개 도구가 모두 동작** (85 keyless offline · 공공 OpenAPI 7개만 키 필요 · 2개 라이선스 placeholder. 상세는 [`docs/INVENTORY.md`](./docs/INVENTORY.md) 자동 산출).
+> CLI(명령어 입력) 환경이 익숙하지 않아도 됩니다. AI 비서 (Claude Desktop · OpenAI Codex CLI) 가 본 도구를 호출해서 다음을 자동으로 해 줍니다.
+
+| 사용자가 하는 일 | AI 비서가 자동으로 해 주는 일 |
+|---|---|
+| "**오늘 굴착 작업 TBM 만들어줘**" 한 줄 요청 | 적용 KOSHA 가이드 5건 + 법령 6건 + 위험 3건 + 통제 16건 자동 발견 → 결재 가능한 초안 자동 작성 → 빠진 필수 항목 자동 검출 |
+| "**추락 산재 발생 보고**" 요청 | 산안법 §54·§57 등 법령 자동 인용 + 사고조사 기술지침 자동 인용 + 시간순 제출 순서 안내 |
+| "**MSDS 비치대장**" 요청 | 산안법 §114·§115 + KOSHA 화학물질 경고표지 가이드 + 보호구 자동 표시 |
+
+**작성 주체는 안전관리자, AI 비서는 옆에서 보조** (법적 판단·서명·제출 책임은 사람). 본 도구가 의무 문서를 자동 생성하더라도 결재 전 안전관리자 검토는 필수입니다.
+
+---
+
+## 무엇이 들어 있나
+
+| 영역 | 내용 |
+|---|---|
+| **<!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 법정 안전관리 문서** | TBM · 작업계획서 · 위험성평가 · MSDS · 산재조사표 등 매일·매주·매월 작성하는 양식 |
+| **법령 <!-- INV:LAW_BUNDLE_COUNT -->8<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문** | 산안법 · 시행령 · 시행규칙 · 기준규칙 · 중처법 · 위험성평가 고시 등 합계 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조 (전체 1,310조 중 건설안전 실무 핵심만 발췌. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조) |
+| **KOSHA 기술지원규정 (가이드) <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** | 한국산업안전보건공단 발행 기술지침 전체 본문 (인터넷 없이 즉시 검색·인용) |
+| **양식 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL -->개** | 고용노동부·KOSHA 공식 HWP / PDF / XLSX 원본 + 자동 생성 Markdown 양식 |
+| **위험·통제 정보망** | 작업 → 위험요인 → 통제대책 → 법령 근거 → 문서 자동 연결 ("의미 연결망" — 자세히는 [기술 상세](./docs/OPERATIONAL-ONTOLOGY.md)) |
+
+→ 위 자료들이 **서로 연결**되어 있어, "굴착 작업"이라는 한 단어만 알면 적용 법령·KOSHA 가이드·위험·통제·양식이 자동으로 따라옵니다.
+
+---
+
+## 어떻게 시작하나?
+
+| 사용자 환경 | 진입 경로 | 난이도 |
+|---|---|:---:|
+| **Claude Desktop / OpenAI Codex CLI 이미 쓰는 분** (개발자 · IT 익숙) | 아래 "5초 진입" 카드 그대로 복사 → AI 비서가 본 도구 호출 | ⭐ 5초 |
+| **AI 비서가 뭔지 모르는 분** (안전관리자 · 현장소장) | [📖 Claude Desktop 설정 가이드](./docs/SETUP_CLAUDE_DESKTOP.md) → 그림 따라하기 | ⭐⭐ 5분 |
+| **브라우저 폼만 쓰고 싶은 분** (CLI 안 익숙) | `npm install -g agent-safety-oss && agent-safety-oss serve` → 별도 viewer 실행 → 폼 화면에서 입력 → 본문 자동 생성 → MD 다운로드 (아래 "A2UI 폼" 섹션 참고) | ⭐⭐⭐ 10분 |
+
+---
+
+## 5초 진입 — Claude Desktop / OpenAI Codex CLI 사용자
+
+> **"AI 비서 도구 연결 표준" (MCP) 을 지원하는 앱** (Claude Desktop · OpenAI Codex CLI) 의 설정 파일에 아래 한 블록을 추가하면 끝납니다. <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 도구가 모두 동작합니다 (<!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개는 인터넷 없이 동작, <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개만 공공 OpenAPI 키 필요).
 
 ### Claude Desktop (JSON 설정)
 
@@ -165,20 +199,39 @@ review_safety_document
 archive_safety_document
 ```
 
-## A2UI 폼 — 브라우저에서 보기
+## 브라우저 입력 폼 — CLI 안 익숙해도 됨
 
-`render_a2ui_form` 이 만드는 폼을 [Google A2UI](https://github.com/google/a2ui) v0.9 JSONL 로 그대로 브라우저에서 시각화할 수 있습니다. 안전관리자가 빈칸·플레이스홀더·법령 근거가 자동 표시된 폼을 실제로 보고 입력해보는 데 유용합니다.
+> **CLI(명령어 입력)가 익숙하지 않은 안전관리자·현장소장이 가장 편하게 쓰는 방법.** 브라우저 화면에 입력 양식이 뜨고, 법령 근거·KOSHA 가이드·위험요인·통제대책이 미리 채워져 있습니다. 빈 칸만 채우면 결재 가능한 문서가 자동 생성됩니다.
+
+설치 및 실행 (안전관리자가 한 번만):
 
 ```bash
-npm install
-npm run build
+# 1. Node.js 20.19+ 설치 (https://nodejs.org)
+# 2. 본 도구 설치 + 빌드
+npm install -g agent-safety-oss
+git clone https://github.com/ratelworks/agent-safety-oss.git
+cd agent-safety-oss
+npm install && npm run build
+# 3. 브라우저 입력 폼 시작
 npm run mcp:viewer
-# → http://localhost:5174 자동 시작
+# → 브라우저가 자동으로 http://localhost:5174 열림
 ```
 
-브라우저에서 폼 종류 (TBM 회의록 / 굴착 작업계획서 / 정기 위험성평가 등) 를 선택하면, 빈칸·예시·법령 인용까지 자동으로 채워진 입력 폼이 렌더링됩니다. 입력 완료 후 본문 생성 → 영구 보관 → MD 파일 다운로드까지 한 페이지에서 끝납니다.
+브라우저에서 보이는 화면:
 
-> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/), 한글/한컴오피스, 또는 [Typora](https://typora.io/) 등으로 변환합니다.
+1. **폼 종류 선택** (TBM 회의록 / 굴착 작업계획서 / 정기 위험성평가 / MSDS 비치대장 등 <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종)
+2. **자동 표시되는 영역** (그대로 결재 인용 가능):
+   - 적용 법령 조문 (산안법 / 기준규칙 / 위평고시 등) — 본문 그대로 발췌
+   - 적용 KOSHA 기술지원규정 (가이드) 평균 5건
+   - 위험요인 + 통제대책 + 필요 보호구
+3. **빈 칸 입력** — 작업일·작업명·참석자 등 사용자 입력 필요한 항목만 표시
+4. **본문 생성** 버튼 → 결재 가능한 문서 자동 작성
+5. **검수** → 빠진 필수 항목 / 결재 가능 여부 / 환각 차단 검증
+6. **MD 다운로드** 또는 LocalStorage 보관
+
+> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/) · 한글/한컴오피스 · [Typora](https://typora.io/) 등으로 변환합니다.
+
+> 이 폼은 [Google A2UI](https://github.com/google/a2ui) (Agent-UI 표준) 기반으로 만들어졌습니다. 기술 상세는 [`docs/OPERATIONAL-ONTOLOGY.md`](./docs/OPERATIONAL-ONTOLOGY.md) 참조.
 
 ## 빠른 시작
 
@@ -203,7 +256,7 @@ Node.js 20.19 이상이 필요합니다. 아래 두 트랙 중 본인 환경에 
 
 ### Track B — 터미널 / CI / 개발자
 
-> **현재 상태**: v1.4.1 npm publish 완료 (`npm view agent-safety-oss version` → `1.4.1`). 아래 두 경로 모두 동작합니다.
+> **현재 상태**: v<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION --> npm publish 완료 (`npm view agent-safety-oss version` → `<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION -->`). 아래 두 경로 모두 동작합니다.
 
 ```bash
 # 권장 — npm publish 본 (즉시 실행)
@@ -222,11 +275,11 @@ node build/cli.js serve
 
 CLI 사용 예시는 [`examples/`](./examples/) 폴더의 `mcp-list-tools.sh`, `search-laws.sh`, `generate-tbm.sh` 참고.
 
-### 공공 데이터 연결 — 12+ source, 11개 도구
+### 공공 데이터 연결 — 13 source 통합
 
-본 OSS 는 한국 공공 OpenAPI 와 portal 을 그래프 작성 보조에 통합합니다.
+본 OSS 는 한국 공공 OpenAPI 와 portal 13 source 를 그래프 작성 보조에 통합합니다.
 
-**연결된 공공 데이터 source (12+)**:
+**연결된 공공 데이터 source**:
 
 | Source | 영역 | 호출 도구 |
 |---|---|---|
@@ -237,21 +290,21 @@ CLI 사용 예시는 [`examples/`](./examples/) 폴더의 `mcp-list-tools.sh`, `
 | KOSHA OneAPI 15001197 | MSDS (화학물질안전) | `search_msds` |
 | KOSHA OneAPI 15139497 | 보호구 안전인증 (KCs) | `search_ppe_certification` |
 | KOSHA OneAPI 15123696 | 안전보건법령 스마트검색 (AI 유사어) | `search_safety_law_smart` |
-| KOSHA OneAPI 15144147 | KOSHA Guide PDF 다운로드 (현재 번들 1,037) | (offline 번들로 대체) |
+| KOSHA OneAPI 15144147 | KOSHA Guide PDF 다운로드 (현재 번들 <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->) | (offline 번들로 대체) |
 | KOSHA OneAPI 15087828 | 건설 공종 분류 (구조 분류) | `analyze_construction_work_risks` (fallback) |
 | KOSHA OneAPI 15116595 | 공종 ↔ KOSHA Guide 매핑 | `analyze_construction_work_risks` (fallback) |
 | KOSHA OneAPI 15140383 | SIF 아카이브 (사망 고위험요인) | `search_sif_archive` |
 | KOSHA portal24 | 안전보건자료실 8,976건 (OPS·동영상·교안) | `search_kosha_archive` · `list_kosha_archive_facets` · `get_kosha_archive_files` |
 | 법제처 OpenAPI (law.go.kr) | 안전관리 법령 8건 핵심 조문 발췌 (전문 아님) | (offline 번들 + 향후 동적 확장) |
 
-**키 없이 즉시 동작 — 81개 도구**:
-- 8 법령 본문 번들 검색 (`search_safety_laws`, `get_safety_law_article`, `list_core_safety_laws`)
-- 1,037 KOSHA Guide 본문 offline 조회 (`get_kosha_guide_md`)
+**키 없이 즉시 동작 — <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 도구**:
+- <!-- INV:LAW_BUNDLE_COUNT -->8<!-- /INV:LAW_BUNDLE_COUNT --> 법령 본문 번들 검색 (`search_safety_laws`, `get_safety_law_article`, `list_core_safety_laws`)
+- <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY --> KOSHA Guide 본문 offline 조회 (`get_kosha_guide_md`)
 - 그래프 traversal (`assemble_doc_context`, `generate_safety_document`, `review_safety_document`)
 - 19종 법정문서 작성 보조 (위험성평가·작업계획서·TBM·MSDS·작업허가서 등)
 - 로컬 현장 기록 (사진·이슈·조치·보고)
 
-**키 필요 — 7개 도구** (KOSHA OneAPI 실시간 호출):
+**키 필요 — <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 도구** (KOSHA OneAPI 실시간 호출):
 
 | 도구 | 영역 |
 |---|---|
@@ -334,7 +387,7 @@ archive_safety_document
 
 ### 1. 현장 프로파일 등록
 
-한 번 등록하면 19종 법정문서 (94 docId 마스터) 의 사업장명, 현장명, 대표자, 안전관리자, 현장소장, 결재선이 자동 채워집니다.
+한 번 등록하면 <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 법정문서 (<!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId 마스터) 의 사업장명, 현장명, 대표자, 안전관리자, 현장소장, 결재선이 자동 채워집니다.
 
 ```text
 register_site
@@ -405,37 +458,37 @@ generate_safety_report
 
 ## 들어 있는 것
 
-- 패키지 버전: 1.4.1
-- MCP 도구: 92개
-- 법정의무 문서 마스터: 94 docId
-- 풀가이드: 19개
-- 양식 인덱스: 132 formId
-- 자동 생성 양식: 94개 Markdown 양식
-- 공식/참조 양식 인덱스 (`forms-map.json`): HWP 14 / PDF 23 / XLSX 1 (실제 번들 원본: HWP 8 / PDF 11 / XLSX 1 — 나머지는 공식 다운로드 URL 안내)
-- 운영 그래프: 3,336 노드 / 29,642 엣지
-- 핵심 작업/위험/통제: WorkActivity 41 / Hazard 38 / Control 45
-- 법령 본문 번들: **8개 MD** — 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법 §62 영역 (`src/ontology/safety-laws/*.md`)
+- 패키지 버전: <!-- INV:VERSION -->1.5.0<!-- /INV:VERSION -->
+- MCP 도구: <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 (keyless <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS --> · 키 필요 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ --> · 라이선스 placeholder <!-- INV:TOOLS_PLACEHOLDER -->2<!-- /INV:TOOLS_PLACEHOLDER -->)
+- 19종 법정 안전관리 문서: <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL --> (TBM·작업계획서·위험성평가·MSDS·산재조사표 등)
+- 법정의무 문서 마스터 (`legal-duty-master.json`): <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId (19종 + 사이클·범위·발주처별 변형)
+- 양식 인덱스 (`forms-map.json`): <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId — HWP <!-- INV:FORMS_HWP -->14<!-- /INV:FORMS_HWP --> / PDF <!-- INV:FORMS_PDF -->23<!-- /INV:FORMS_PDF --> / XLSX <!-- INV:FORMS_XLSX -->1<!-- /INV:FORMS_XLSX --> (공식 양식) + 자동 생성 MD <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD -->개. HWP/PDF/XLSX 중 일부는 라이선스상 공식 다운로드 URL 안내로 대체.
+- 그래프 노드: 카테고리 1단계 <!-- INV:GRAPH_TOPLEVEL -->2,212<!-- /INV:GRAPH_TOPLEVEL --> + KOSHA Guide 1,039 (서브디렉토리 포함 재귀) = 전체 **<!-- INV:GRAPH_TOTAL -->3,369<!-- /INV:GRAPH_TOTAL -->** · 엣지 약 <!-- INV:GRAPH_EDGES -->32,963<!-- /INV:GRAPH_EDGES --> (정확 카운트는 `npm run audit:strict`)
+- 핵심 작업/위험/통제: WorkActivity <!-- INV:GRAPH_ACTIVITIES -->41<!-- /INV:GRAPH_ACTIVITIES --> / Hazard <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS --> / Control <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS -->
+- 법령 본문 번들: **<!-- INV:LAW_BUNDLE_COUNT -->8<!-- /INV:LAW_BUNDLE_COUNT -->개 MD** — 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법 §62 영역 (합계 약 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조). 마지막 동기화: <!-- INV:LAW_LAST_SYNC -->2026-05-18<!-- /INV:LAW_LAST_SYNC --> (`src/ontology/safety-laws/*.md`)
 
-## 온톨로지 설계
+## (기술 상세) 온톨로지 설계 — 개발자·연구자용
 
-이 프로젝트는 세 계층을 분리합니다.
+> 이 섹션부터는 **개발자·기술 연구자용 상세**입니다. 안전관리자·현장소장이 본 도구를 사용하는 데 이 내용을 알 필요는 없습니다.
+
+이 프로젝트는 세 계층 (Layer) 으로 안전 정보를 표현합니다.
 
 | 계층 | 역할 | 예 |
 |---|---|---|
-| Semantic Layer | 안전관리 객체와 관계 | Site, Project, WorkActivity, Hazard, Control, LegalArticle, SafetyDocument |
-| Kinetic Layer | 그래프 객체에 대한 실행 도구 | `generate_safety_document`, `review_safety_document`, `register_safety_issue` |
-| Dynamic Layer | LLM과 하네스의 상황 해석과 도구 조합 | Claude Desktop, OpenAI Codex CLI |
+| Semantic Layer (의미 계층) | 안전관리 객체와 관계 정의 | Site, Project, WorkActivity, Hazard, Control, LegalArticle, SafetyDocument |
+| Kinetic Layer (실행 계층) | 그래프 객체에 대한 실행 가능한 MCP 도구 | `generate_safety_document`, `review_safety_document`, `register_safety_issue` |
+| Dynamic Layer (동적 계층) | LLM과 하네스의 상황 해석 + 도구 조합 | Claude Desktop, OpenAI Codex CLI |
 
-핵심 사슬은 다음과 같습니다.
+핵심 의미 사슬 (안전 정보 자동 연결):
 
 ```text
-WorkActivity -> Hazard -> Control
-SafetyDocument -> LegalArticle
-SafetyDocument -> KOSHA Guide
-PhotoEvidence -> SafetyIssue -> CorrectiveAction -> SafetyReport
+WorkActivity (작업)  →  Hazard (위험)  →  Control (통제대책)
+SafetyDocument (문서) →  LegalArticle (법령 조문)
+SafetyDocument        →  KOSHA Guide (가이드)
+PhotoEvidence (사진)  →  SafetyIssue (이슈) → CorrectiveAction (조치) → SafetyReport (보고)
 ```
 
-표준은 JSON-LD, RDF/OWL, SKOS, PROV-O, schema.org, ISO 45001 관점을 사용하되, 런타임은 무거운 그래프 DB 없이 로컬 파일과 MCP 도구로 동작합니다.
+채택 표준: JSON-LD 1.1, RDF/OWL, SKOS, PROV-O, schema.org, ISO 45001. 런타임은 무거운 그래프 DB 없이 로컬 파일 + MCP 도구로 동작합니다. 자세한 운영 온톨로지 상세는 [`docs/OPERATIONAL-ONTOLOGY.md`](./docs/OPERATIONAL-ONTOLOGY.md), 핵심 객체 13종은 [`docs/IDENTITY.md`](./docs/IDENTITY.md) 참조.
 
 ## 근거 등급
 

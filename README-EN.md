@@ -2,7 +2,7 @@
 
 > An OSS MCP server that gives AI Agents (**Claude Desktop / OpenAI Codex CLI**) **safety-management domain expertise** by providing Korean construction-safety **statutes, KOSHA Guides, and other public data as an ontology graph**.
 >
-> Helps safety managers and site managers draft **19 statutory safety documents** (TBM logs, work plans, risk assessments, MSDS registers, accident reports, etc.) accurately and quickly. Bundles **8 statutes — curated key articles, not full text** (OSH Act 10 / Decree 3 / Rule 4 / Safety Rules 10 / SAPA 7 / SAPA Decree 13 / Risk Assessment Notice 23 **full text** / CTPA §62 area 4, ≈77 articles total — see [`docs/INVENTORY.md`](./docs/INVENTORY.md)) + **1,037 KOSHA Guides** (kordoc-extracted, quality-tiered verified/partial/raw) + other public data (Law Information Center, KOSHA, MOEL, MOLIT) unified in a single ontology graph. Provides forms, fill-in guides, statute body excerpts, and review at the moment of drafting. **The safety manager remains the author; the MCP is a co-pilot.**
+> Helps safety managers and site managers draft **<!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL --> statutory safety documents** (TBM logs, work plans, risk assessments, MSDS registers, accident reports, etc.) accurately and quickly. Bundles **<!-- INV:LAW_BUNDLE_COUNT -->8<!-- /INV:LAW_BUNDLE_COUNT --> statutes — curated key articles, not full text** (<!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES --> articles total — per-statute breakdown in [`docs/INVENTORY.md §4`](./docs/INVENTORY.md), auto-generated) + **<!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY --> KOSHA Guide bodies + <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> graph metadata** (<!-- INV:KOSHA_FAILURES -->0<!-- /INV:KOSHA_FAILURES --> bodies unavailable from KOSHA OneAPI — listed in [`docs/INVENTORY.md`](./docs/INVENTORY.md), kordoc-extracted, quality-tiered verified/partial/raw) + other public data (Law Information Center, KOSHA, MOEL, MOLIT) unified in a single ontology graph. Provides forms, fill-in guides, statute body excerpts, and review at the moment of drafting. **The safety manager remains the author; the MCP is a co-pilot.**
 >
 > [Korean README](./README.md) · [Identity](./docs/IDENTITY.md) · [Operational Ontology](./docs/OPERATIONAL-ONTOLOGY.md) · [Claude Desktop Setup](./docs/SETUP_CLAUDE_DESKTOP.md) · [Codex CLI Setup](./docs/SETUP_CODEX.md) · [Quality Report](./docs/QUALITY-REPORT.md)
 
@@ -10,16 +10,16 @@
 
 | Item | Current code |
 |---|---:|
-| Package version | **1.4.1** (2026-05-22) |
-| MCP tools | **92** (offline-first, single API key for 6 KOSHA Live tools) |
+| Package version | **<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION -->** (2026-05-23) |
+| MCP tools | **<!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->** (offline-first, API key needed for <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ --> KOSHA Live tools) |
 | Statutory documents | **19** (TBM, work plans, risk assessments, MSDS, accident reports, etc.) |
-| Legal-duty document master | 94 docIds |
-| Full guides | 19 |
-| Form index | 132 formIds (HWP 14 / PDF 23 / XLSX 1 / MD 94) |
-| Operational graph | 3,336 nodes / 29,642 edges |
-| Core activity/hazard/control nodes | WorkActivity 41 / Hazard 38 / Control 45 |
+| Legal-duty document master (`legal-duty-master.json`) | **<!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER -->** docIds (19 statutes + cycle/scope/issuer variants) |
+| Full guides | <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL --> |
+| Form index (`forms-map.json`) | **<!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL -->** formIds (HWP <!-- INV:FORMS_HWP -->14<!-- /INV:FORMS_HWP --> / PDF <!-- INV:FORMS_PDF -->23<!-- /INV:FORMS_PDF --> / XLSX <!-- INV:FORMS_XLSX -->1<!-- /INV:FORMS_XLSX --> / MD <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD -->) |
+| Operational graph | **<!-- INV:GRAPH_TOTAL -->3,369<!-- /INV:GRAPH_TOTAL -->** nodes (recursive, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> included) / ~<!-- INV:GRAPH_EDGES -->32,963<!-- /INV:GRAPH_EDGES --> edges. Top-level category nodes: <!-- INV:GRAPH_TOPLEVEL -->2,212<!-- /INV:GRAPH_TOPLEVEL --> |
+| Core activity/hazard/control nodes | WorkActivity <!-- INV:GRAPH_ACTIVITIES -->41<!-- /INV:GRAPH_ACTIVITIES --> / Hazard <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS --> / Control <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS --> |
 | Bundled statutes | **8 statutes (curated articles, ≈77 articles total)**: OSH Act 10/175, Decree 3/159, Rule 4/252, Safety Rules 10/671, SAPA 7/16, SAPA Decree 13/14, Risk Assessment Notice 23/23 (full), CTPA §62 area 4 — full breakdown in `docs/INVENTORY.md` |
-| Bundled KOSHA Guides | **1,037 bodies** (offline, keyless, kordoc-extracted) |
+| Bundled KOSHA Guides | **<!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY --> bodies + <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> metadata** (<!-- INV:KOSHA_FAILURES -->0<!-- /INV:KOSHA_FAILURES --> bodies unavailable, offline, keyless, kordoc-extracted) |
 | Verification | `ontology:operational` 38/38, `mcp:test:graph` pass, `audit:strict` pass |
 | Field scenarios | 4/4 scenarios, 29/29 steps, quality average 8.65/10 |
 
@@ -92,7 +92,7 @@ The LLM does not invent statutory basis. Laws, hazards, controls, and document l
 
 ## Install
 
-> **Current status**: v1.4.1 published on npm (`npm view agent-safety-oss version` → `1.4.1`). Both paths below work.
+> **Current status**: v<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION --> published on npm (`npm view agent-safety-oss version` → `<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION -->`). Both paths below work.
 
 ```bash
 # Recommended — npm-published binary

@@ -36,7 +36,7 @@
 - ❌ 자체 LLM 또는 AI 모델 통합 (No-Lock-In 위반)
 - ❌ 무거운 platform / SaaS 기능 (Workshop UI · Pipeline Builder 등)
 - ❌ 한국 건설 도메인 외 일반 안전관리 (도메인 분리 원칙)
-- ⚠️ 본문 재배포 — KOSHA Guide 본문은 1,037건 번들 포함 (`get_kosha_guide_md` 로 offline 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선). 
+- ⚠️ 본문 재배포 — KOSHA Guide 본문은 <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건 번들 포함 (`get_kosha_guide_md` 로 offline 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선). 
 - ❌ 의사결정 자동화 (판단은 사람·LLM)
 
 ---
@@ -57,7 +57,7 @@ npm run check:essence
 npm run check:lightweight
 
 # 4. 도구 호출 시뮬
-npm run mcp:tools                # 89 Tool 목록
+npm run mcp:tools                # <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL --> Tool 목록
 node build/cli.js call get_measures_by_risk --inputJson '{"hazardId":"hazard:fall_from_height"}'
 
 # 5. MCP Inspector
@@ -141,8 +141,8 @@ npm run typecheck              # TypeScript 0 에러
 npm run build                  # tsc + ontology asset copy
 npm run verify-graph           # IRI 형식 / 도메인 외 참조 / JSON-LD expand
 npm run validate-shapes:strict # SHACL declarative 룰
-npm run audit:strict           # 그래프 건강성 (dangling / 19종 추론 / DAG / 매트릭스 밀도)
-node build/cli.js tools --json # 도구 수 ≥89 게이트
+npm run audit:strict           # 그래프 건강성 (dangling / <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 추론 / DAG / 매트릭스 밀도)
+node build/cli.js tools --json # 도구 수 ≥<!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL --> 게이트
 # Smoke 6종: search_safety_laws / get_safety_law_article / analyze_construction_work_risks /
 #            compile_safety_references / verify_safety_basis / npm pack dry-run
 ```

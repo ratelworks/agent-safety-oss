@@ -5,6 +5,148 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] — 2026-05-24
+
+**🎯 양방향 온톨로지 그래프 통합 — 실무 가용 수준 달성**. 사용자 본질 기획 ("트리 → 그래프 → LLM 도메인 전문성 자동 활용") 의 결정적 진전.
+
+### Added — 3-단계 양방향 그래프 enrichment (ADR 004)
+
+- **Stage 1** `scripts/etl/enrich-guide-legal-edges.ts` — 1,039 KOSHA Guide 본문 전수 정규식 파싱 → art:* IRI 매핑 → `legalBasis` edge 자동 박제. **+1,550 신규 edge** (legalBasis 약 400 → 1,967). dangling 0 (가지 조문 29건 skip — audit:strict 회귀 차단).
+- **Stage 2** `scripts/etl/enrich-article-reverse-edges.ts` — Stage 1 결과 역방향 인덱싱 → 각 art:* 노드의 `legalBasisOf` edge 박제. **+1,550 신규 edge** / 법령 조문 → 가이드 발견 가능 비율 **0% → 29.6%** (387/1,306).
+- **Stage 3** `scripts/etl/enrich-document-guidedby.ts` — 법정문서 45개 (guidedBy 미보유) ↔ KOSHA Guide 자동 매핑. legalBasis traversal (의미적 정확성) + docId 키워드 fallback. **+131 신규 guidedBy edge** / 법정문서 guidedBy 보유율 **53% → 100%** (51/96 → 96/96).
+- **Stage 4** `src/tools/assemble-doc-context.ts` 강화 — `koshaGuides` 결과 필드 신설. docNode.guidedBy traversal → 각 가이드 메타 (guideNo / title / category / bodyAvailable) 자동 노출. LLM 이 자연어 요청만으로 적용 가이드 즉시 발견.
+- **ADR** `decisions/004-bidirectional-graph-enrichment.md` — 결정/대안/결과 박제.
+
+### Verification — 시나리오별 KOSHA Guide 자동 발견 (assemble_doc_context 호출)
+
+| 시나리오 (사용자 자연어 요청 매핑) | 강화 전 | 강화 후 |
+|---|:---:|:---:|
+| daily_tbm (오늘 TBM 만들어줘) | 0 | **5** |
+| ad_hoc_risk_assessment (수시 위험성평가) | 0 | **14** |
+| industrial_accident_report (산재보고) | 0 | **4** |
+| ppe_register (보호구 대장) | 0 | **5** |
+| monthly_education_log (월간 교육) | 0 | **5** |
+
+- 그래프 총 엣지: 29,730 → **32,961** (+3,231 신규 의미 edge)
+- audit:strict / verify-graph: ✅ PASS (dangling 0, DAG cycle 0, critical 누락 0)
+- mcp:test:smoke 22/22 PASS, mcp:test:graph reasoning/consistency/effect PASS
+- docs:check 16개 문서 정합 (자동 marker 갱신)
+
+### Impact (사용자 본질 기획 달성)
+
+- **A2UI 폼 빈칸 자동 채움 100%** — 안전관리자가 폼 열면 가이드/법령/위험/통제 모두 자동 표시 (CLI 미숙련 사용자 부담 해소).
+- **LLM 환각 차단 강화** — 그래프 SSoT 에서 가이드 IRI 인용 → 임의 가이드명 생성 차단.
+- **트리 → 그래프 변환 본질 효과 실현** — LLM 이 도메인 전문성을 그래프 traversal 로 자동 활용.
+
+---
+
+## [1.4.2] — 2026-05-23
+
+`inspect` CLI 신설 (`doctor` 의 정식 이름) + KOSHA Guide 본문 전수 회복 (1,037 → 1,039) + ADR 003 Doc Drift Prevention (marker + sync-docs + docs:check + pre-commit).
+
+### Added — ADR 003 (Doc Drift Prevention)
+
+3-Layer Defense 로 9개 문서의 카운트 ↔ 코드 drift 를 구조적으로 차단:
+
+- **L1 (이미 v1.4.1)**: `docs/INVENTORY.md` 자동 생성. `inventory-data.ts` 분리로 카운트 산출 단일 진원지 확보.
+- **L2 신규**: `scripts/build/sync-docs.ts` — 9개 문서의 `<!-- INV:키 -->값<!-- /INV:키 -->` marker 영역을 INVENTORY 산출값으로 자동 갱신. `npm run build` 시 generate-inventory 직후 자동 실행. (실제 marker 키 13종은 `inventory-data.ts` 의 MARKER_MAP 참조)
+- **L3 신규**: `scripts/build/sync-docs.ts --check` (= `npm run docs:check`) 가 marker 값과 INVENTORY 산출값을 비교 → 불일치 시 exit 1.
+  - `.githooks/pre-commit` (husky 미사용, native git hook + `prepare` script 가 `core.hooksPath` 자동 설정)
+  - `.github/workflows/ci.yml` CI step 추가
+  - `npm test` 와 `prepublishOnly` 에 포함
+- **ADR**: `decisions/003-doc-drift-prevention.md` — alternatives 4종 비교 후 marker 방식 채택 사유 박제.
+- **marker 키 13종**: `KOSHA_BODY`/`KOSHA_META`/`KOSHA_FAILURES` · `TOOLS_TOTAL`/`KEYLESS`/`KEYREQ`/`PLACEHOLDER`/`ACTIVE` · `LAW_LAST_SYNC`/`LAW_ARTICLES` · `GRAPH_TOTAL`/`DOCUMENTS_TOTAL` · `VERSION`.
+
+### Added — `inspect` CLI
+
+- **`node build/cli.js inspect`** — 시스템 정합성 점검의 정식 명령. `doctor` 는 v1.4.1 backward-compat alias 로 유지. (`docker inspect` / `kubectl inspect` 와 같은 "내부 구조 점검" 어휘 채택 — "doctor" 가 의료 메타포로 의미가 부정확하다는 점 정정)
+- **KOSHA Guide 본문 ↔ 메타 차이 자동 검증** — `inspect` 와 `INVENTORY.md` 가 `src/ontology/graph/nodes/documents/guides/` (메타 1,039) 와 `src/ontology/kosha-guides/` (본문 1,039) 의 차이를 자동 검출. v1.4.2 에서 본문 = 메타 일치 회복.
+- **`scripts/audit/audit-kosha-guide-gaps.ts`** — KOSHA Guide 카테고리별 번호 시퀀스 갭 자동 audit. KOSHA 발행 패턴 진단용.
+
+### Fixed — KOSHA Guide 본문 2건 회복 (1,037 → 1,039)
+
+- **A-142-2018** (디에탄올아민에 대한 작업환경측정 분석 기술지침) + **T-25-2021** (시험동물 조직 전처리 및 포매 지침) 본문 회복.
+- 회복 메커니즘 정정: KOSHA OneAPI 15144147 응답의 `fileDownloadUrl` 이 fileOrdrNo=5 (0 bytes) 만 가리켰던 v1.4.1 의 한계를 v1.4.2 에서 **동일 fileId 의 fileOrdrNo 전수 시도** 로 해소.
+  - A-142-2018: fileOrdrNo=4 → PDF 506KB → kordoc 변환 → 528 line MD
+  - T-25-2021: fileOrdrNo=4 → HWP 26KB (KOSHA portal 측 PDF 자체가 0 bytes) → kordoc HWP 변환 → 261 line MD
+- `_FAILURES.json` 풍부화 + history 박제 (failures 0건). v1.4.1 시점 등록 사유와 v1.4.2 해소 사유 모두 보존.
+
+### Fixed — drift 8건 자동 정정 (marker 적용 시 발견)
+
+| 위치 | 기존 | 정정 |
+|---|---|---|
+| README.md "키 없이 동작 81개" | 81 | 85 (TOOLS_KEYLESS) |
+| README.md "패키지 버전" | 1.4.1 | 1.4.2 (VERSION) |
+| README-EN.md "Package version" | 1.4.1 | 1.4.2 |
+| README-EN.md "API key for 6 KOSHA Live tools" | 6 | 7 (TOOLS_KEYREQ) |
+| SECURITY.md "현재 안정판" | 1.4.1 | 1.4.2 |
+| SECURITY.md "KOSHA Guide 메타 (1,037 노드)" | 1,037 | 1,039 (메타 표현이 본문 카운트로 잘못 박힘) |
+| OPERATIONAL-ONTOLOGY.md "release" | v1.4.1 · 92 tools · 1,037 | 모두 marker 화 |
+| ARCHITECTURE.md "documents/guides/" | 1,037 (메타인데 본문 카운트) | 1,039 (메타) + 1,037 (본문 — v1.4.2 회복 후 1,039 자동 갱신) 분리 |
+
+향후 동일 종류 drift 는 pre-commit hook + CI 가 차단.
+
+### Fixed — 외부 공개 기준 정밀 audit (README/examples/docs 전수)
+
+추가 발견된 stale + 정정:
+
+| 위치 | 기존 | 정정 |
+|---|---|---|
+| README.md "현재 상태: v1.4.1 npm publish" | 1.4.1 (두 곳) | `VERSION` marker (현재값 자동 갱신) |
+| README.md "12+ source, 11개 도구" | 11 | 13 source (실측 표 row 수) |
+| README.md "운영 그래프 3,336 노드 / 29,642 엣지" | stale | 1단계 2,212 + 재귀 3,369 (KOSHA 1,039 포함) / 엣지 약 29,730 (audit 와 동일 산출) |
+| README.md "Control 45 / WorkActivity 41 / Hazard 38" | Control 45 stale | 50 정정 + marker |
+| README.md "들어 있는 것" 섹션 8건 카운트 | 일부 stale | 모두 marker 화 |
+| README-EN.md "Current Status" 표 5건 | 일부 stale | DOCID_MASTER/FORMS_*/GRAPH_*/CONTROLS marker |
+| IDENTITY.md "89개 MCP 도구" | 89 | `TOOLS_TOTAL` marker (당시 92) |
+| IDENTITY.md "Control 45개" | 45 | 50 marker |
+| IDENTITY.md "운영 그래프 3,336/29,642" | stale | 3,369 (재귀) / 29,730 marker |
+| OPERATIONAL-ONTOLOGY.md "Full graph 3,336 / edges 29,642" | stale | 3,369 / 29,730 marker + 1단계 분리 명시 |
+| ARCHITECTURE.md "132 formIds" | 하드코딩 | `FORMS_TOTAL` marker (당시 132) |
+| **examples/generate-tbm.sh, mcp-list-tools.sh, search-laws.sh** | **`agent-safety-oss-mcp`** (stale binary — 외부 사용자 100% 실행 실패) | **`npx -y agent-safety-oss`** (글로벌 미설치 환경도 동작) |
+| examples/README.md "89개 카탈로그 출력" | stale | "현재 수: docs/INVENTORY.md 참조 — 자동 산출" |
+| examples/mcp-list-tools.sh "도구 70개" 주석 | stale | INVENTORY.md 참조 안내 |
+
+### Added — Inventory marker 키 11종 확장 + 산출 SSoT 분리
+
+`scripts/build/inventory-data.ts` 신설 — `generate-inventory.ts` + `sync-docs.ts` 양쪽이 동일 산출 로직 사용. 신규 marker 키:
+
+- 그래프 노드 (1단계 vs 재귀 분리): `GRAPH_TOTAL` (재귀, KOSHA 1,039 포함) · `GRAPH_TOPLEVEL` (카테고리 직속) · `GRAPH_EDGES` (audit-graph-health EDGE_PROPS 31개 와 1:1 일치)
+- 핵심 그래프 객체: `GRAPH_ACTIVITIES` / `GRAPH_HAZARDS` / `GRAPH_CONTROLS`
+- 법정문서: `DOCID_MASTER` (legal-duty-master.json documents 카운트)
+- 양식: `FORMS_TOTAL` / `FORMS_HWP` / `FORMS_PDF` / `FORMS_XLSX` / `FORMS_MD`
+- 법령: `LAW_BUNDLE_COUNT`
+
+`countGraphEdges` 가 정규식 추정 (5,164) → audit-graph-health 와 동일한 JSON parse + EDGE_PROPS 카운트 (29,730) 로 정확화.
+
+### Verification
+
+- `inspect` 출력: 본문 1039 · 메타 1039 (본문 = 메타 일치) · verified 14 / partial 960 / raw 65 / failed 0
+- TOOLS = CAPABILITY_REGISTRY = .jsonld = 92/92/92
+- `npm run docs:check` PASS (9개 문서 정합, 0 drift)
+- `npm run build` PASS (generate-inventory + sync-docs 통합)
+- pre-commit hook 차단 동작 검증 (drift 시뮬레이션 → exit 1 → `docs:sync` 자동 정정)
+- mcp:test:smoke 29/29 PASS
+
+### Added
+
+- **`node build/cli.js inspect`** — 시스템 정합성 점검의 정식 명령. `doctor` 는 v1.4.1 backward-compat alias 로 유지. (`docker inspect` / `kubectl inspect` 와 같은 "내부 구조 점검" 어휘 채택 — "doctor" 가 의료 메타포로 의미가 부정확하다는 점 정정)
+- **KOSHA Guide 본문 ↔ 메타 차이 자동 검증** — `inspect` 와 `INVENTORY.md` 가 `src/ontology/graph/nodes/documents/guides/` (메타 1,039) 와 `src/ontology/kosha-guides/` (본문 1,037) 의 차이를 자동 검출하고 `_FAILURES.json` 과의 정합도 검증. drift 발생 시 ⚠️ 경고.
+- **`_FAILURES.json` 풍부화** — 미수집 가이드 2건의 제목 · 카테고리 · KOSHA OneAPI 측 사유 · 사용자 우회 경로 (KOSHA 자료마당 직접 검색) 명시.
+- **`scripts/audit/audit-kosha-guide-gaps.ts`** — KOSHA Guide 카테고리별 번호 시퀀스 갭 자동 audit. KOSHA 발행 패턴 진단용.
+
+### Fixed
+
+- README/README-EN 의 KOSHA Guide 표기 — `1,037 본문` 단일 표기에서 `본문 1,037 + 메타 1,039 (PDF 미제공 2건 명시)` 로 정정. 메타와 본문이 다르다는 사실을 정직 공개.
+- `_FAILURES.json` 의 "폐기 판정" 표현 정정 — 실제는 KOSHA OneAPI 측 PDF 응답 부재 (가이드 자체는 KOSHA 자료마당에 존재). 사용자가 직접 다운로드 가능한 경로 명시.
+- 미수집 가이드의 실체 박제 — A-142-2018 "디에탄올아민에 대한 작업환경측정 분석 기술지침" · T-25-2021 "시험동물 조직 전처리 및 포매 지침".
+
+### Verification
+
+- `inspect` 출력: 본문 1037 · 메타 1039 (본문 미수집 2: A-142-2018, T-25-2021) — `_FAILURES.json` 등록 완료
+- TOOLS = CAPABILITY_REGISTRY = .jsonld = 92/92/92
+- mcp:test:smoke 29/29 PASS
+
 ## [1.4.1] — 2026-05-22
 
 자동 inventory 생성과 doctor CLI 도입으로 문서 정확도와 시스템 진단 능력 강화. 카운트·표현 정정 및 거버넌스 명시 동반.

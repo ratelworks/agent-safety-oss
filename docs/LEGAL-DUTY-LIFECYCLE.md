@@ -4,7 +4,7 @@
 
 ## 핵심 의도
 
-한 사업장의 안전관리자가 94종 법정의무문서를 빠짐없이, 정확하게, 제때, 보관 의무까지 처리하도록 돕는다.
+한 사업장의 안전관리자가 <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER -->종 법정의무문서를 빠짐없이, 정확하게, 제때, 보관 의무까지 처리하도록 돕는다.
 
 ```text
 인식 -> 작성 -> 검수 -> 결재 -> 제출 -> 보관
@@ -149,7 +149,7 @@ PhotoEvidence -> SafetyIssue -> CorrectiveAction -> SafetyReport
 
 ## 현재 충분한 것
 
-- 94 docId 마스터와 132 formId 양식 인덱스.
+- <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId 마스터와 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId 양식 인덱스.
 - 8 cycle 기반 문서 목록.
 - 작성, 검수, 제출, 보관을 담당하는 MCP 도구.
 - 현장 프로파일 기반 자동 채움.

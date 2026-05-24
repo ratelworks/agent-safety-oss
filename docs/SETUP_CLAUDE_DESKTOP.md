@@ -112,7 +112,7 @@ data.go.kr 키를 자체 발급해 직접 쓰는 방식도 지원합니다. `.en
 라텔웍스에서 받은 AgentHQ API 키 ASF_xxxx_yyyy 를 등록해줘.
 ```
 
-내부에서 `link_company_key` 도구가 호출되어 `~/.agent-safety-oss/company-key.json` 에 0o600 권한으로 저장됩니다. 등록 후엔 공공 OpenAPI 9개 도구가 즉시 동작합니다. 등록 상태 확인은 `get_company_info`, 해제는 `unlink_company_key`.
+내부에서 `link_company_key` 도구가 호출되어 `~/.agent-safety-oss/company-key.json` 에 0o600 권한으로 저장됩니다. 등록 후엔 공공 OpenAPI <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 도구가 즉시 동작합니다. 등록 상태 확인은 `get_company_info`, 해제는 `unlink_company_key`.
 
 ## 첫 요청 예시
 
