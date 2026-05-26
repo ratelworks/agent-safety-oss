@@ -384,13 +384,16 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     requiredFields,
     meta: {
       totalReferences: legalBasis.length + hazards.length + controls.length + controlsViaHazards.length + (annexIri ? 1 : 0) + relatedDocs.length + koshaGuides.length,
+      // ADR 005: koshaGuides 가 totalReferences 에는 포함되는데 resolved 에 누락되어
+      // "33/47 ✅" 같은 모순(14건=koshaGuides 누락) 발생 → resolved 에도 합산.
       resolvedReferences:
         legalBasis.filter((x) => x.found).length +
         hazards.filter((x) => x.found).length +
         controls.filter((x) => x.found).length +
         controlsViaHazards.filter((x) => x.found).length +
         (annex.found ? 1 : 0) +
-        relatedDocs.filter((x) => x.found).length,
+        relatedDocs.filter((x) => x.found).length +
+        koshaGuides.filter((x) => x.found).length,
       unresolvedRefs: unresolved,
     },
   };

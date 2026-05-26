@@ -26,6 +26,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
 const OUT_DIR = resolve(ROOT, "artifacts", "test-results", "core");
 
+// ADR 006 — over-dump(근거 없는 위험 과다 제시 = 환각) 페널티 파라미터.
+// 기대 위험의 OVERDUMP_RATIO 배 또는 (기대 + OVERDUMP_MARGIN) 중 큰 값까지는 무페널티,
+// 그 초과분 1건당 OVERDUMP_PENALTY_PER 점 감점(최대 OVERDUMP_PENALTY_CAP).
+const OVERDUMP_RATIO = 2; // 기대 위험 대비 2배까지 허용
+const OVERDUMP_MARGIN = 10; // 또는 기대 + 10건까지 허용 (기대가 적은 문서 보호)
+const OVERDUMP_PENALTY_PER = 0.5; // 초과 위험 1건당 0.5점 감점
+const OVERDUMP_PENALTY_CAP = 8; // 페널티 상한 (최소 2점은 잔존)
+// KOSHA 가이드 개수 점수 상한 — 의미 매칭(5점)과 동등 비중. 과다 매핑이 점수를 더 올리지 못하게 포화.
+const KOSHA_COUNT_SCORE_CAP = 5;
+
 interface Scenario {
   id: string;
   desc: string;
@@ -148,7 +158,9 @@ function evaluateDocument(text: string, sc: Record<string, any>, scenario: Scena
     note: `legalBasis ${legalBasisCount}개, 본문 발췌 ${hasLawExtract ? "있음" : "없음"}`,
   };
 
-  // 2. KOSHA 가이드 활용 (max 10)
+  // 2. KOSHA 가이드 활용 (max 10) — ADR 006: 순수 개수가 아닌 *관련성* 반영.
+  //   개수 기여를 KOSHA_COUNT_SCORE_CAP 으로 제한해 "많을수록 고득점" 인센티브(over-dump 유발)를 제거.
+  //   의미 매칭(expectedKoshaPattern)이 동등 비중을 갖도록 가중.
   const koshaCount = (sc.koshaGuideCount as number | undefined) ?? 0;
   let koshaPatternScore = 0;
   if (scenario.expectedKoshaPattern) {
@@ -157,26 +169,49 @@ function evaluateDocument(text: string, sc: Record<string, any>, scenario: Scena
   } else {
     koshaPatternScore = 5;
   }
+  // 개수 점수: 1건 이상이면 점진 가점하되 상한(KOSHA_COUNT_SCORE_CAP)에서 포화 — 과다 매핑 무가점.
+  const koshaCountScore = Math.min(KOSHA_COUNT_SCORE_CAP, Math.floor(koshaCount / 2));
   breakdown.koshaGuide = {
-    score: Math.min(10, Math.floor(koshaCount / 2) + koshaPatternScore),
+    score: Math.min(10, koshaCountScore + koshaPatternScore),
     max: 10,
-    note: `KOSHA ${koshaCount}개 매핑, 의미 매칭 ${koshaPatternScore}/5`,
+    note: `KOSHA ${koshaCount}개 매핑(개수점 ${koshaCountScore}/${KOSHA_COUNT_SCORE_CAP}), 의미 매칭 ${koshaPatternScore}/5`,
   };
 
-  // 3. 위험요소 완전성 (max 10)
+  // 3. 위험요소 완전성 + over-dump 페널티 (max 10) — ADR 006
+  //   올바름 > 양: 기대 위험을 빠짐없이 포함하되, 근거 없는 위험을 과다 제시(over-dump)하면 감점.
+  //   단 화이트리스트(hasHazard 그래프 직접 매핑) 위험은 근거가 명확하므로 개수로 감점하지 않는다.
+  //   over-dump 환각의 실거주지는 guide_fallback(가이드 causedBy 무차별 확장)이다.
   const hazardCount = (sc.hazardCount as number | undefined) ?? 0;
+  const hazardSource = (sc.hazardSource as string | undefined) ?? "unknown";
   let hazardMatchCount = 0;
   for (const h of scenario.expectedHazards) {
     if (text.includes(h)) hazardMatchCount += 1;
   }
+  // over-dump 허용 한계: 기대 위험의 2배 또는 (기대 + OVERDUMP_MARGIN) 중 큰 값까지는 무페널티.
+  const overdumpLimit = Math.max(scenario.expectedHazards.length * OVERDUMP_RATIO, scenario.expectedHazards.length + OVERDUMP_MARGIN);
+  // 화이트리스트·억제 문서는 over-dump 페널티 면제(근거 명확). guide_fallback 만 초과분 감점.
+  const overdumpPenaltyApplies = hazardSource === "guide_fallback" || hazardSource === "unknown";
+  const overdumpExcess = overdumpPenaltyApplies ? Math.max(0, hazardCount - overdumpLimit) : 0;
+  // 초과 위험 1건당 OVERDUMP_PENALTY_PER 점 감점 (최대 OVERDUMP_PENALTY_CAP).
+  const overdumpPenalty = Math.min(OVERDUMP_PENALTY_CAP, Math.ceil(overdumpExcess * OVERDUMP_PENALTY_PER));
+
+  let hazardBase: number;
+  if (scenario.expectedHazards.length > 0) {
+    // 작업문서: 기대 위험 포함률 (정상 = 만점)
+    hazardBase = Math.min(10, Math.floor(10 * hazardMatchCount / scenario.expectedHazards.length));
+  } else {
+    // 행정문서: 위험요인 미해당이 정답(ADR 006). 억제/0건 = 만점, 폴백 과다 = 환각 감점.
+    hazardBase = hazardSource === "suppressed_administrative" || hazardCount === 0 ? 10 : 8;
+  }
+  const hazardScore = Math.max(0, hazardBase - overdumpPenalty);
   breakdown.hazards = {
-    score: scenario.expectedHazards.length > 0
-      ? Math.min(10, Math.floor(10 * hazardMatchCount / scenario.expectedHazards.length))
-      : (hazardCount > 0 ? 8 : 5),  // 행정문서는 hazards 없을 수 있음
+    score: hazardScore,
     max: 10,
     note: scenario.expectedHazards.length > 0
-      ? `기대 ${scenario.expectedHazards.length}개 중 ${hazardMatchCount}개 매칭, 매핑 ${hazardCount}`
-      : `행정문서 (위험매핑 ${hazardCount}개)`,
+      ? `기대 ${scenario.expectedHazards.length}개 중 ${hazardMatchCount}개 매칭, 매핑 ${hazardCount}(${hazardSource})` +
+        (overdumpPenalty > 0 ? `, over-dump -${overdumpPenalty}(한계 ${overdumpLimit}↑ 초과 ${overdumpExcess})` : "")
+      : `행정문서 위험매핑 ${hazardCount}(${hazardSource})` +
+        (overdumpPenalty > 0 ? `, over-dump -${overdumpPenalty}` : hazardCount === 0 ? ", 위험요인 미해당(정상)" : ""),
   };
 
   // 4. ERIC-PP 위계 (max 10)

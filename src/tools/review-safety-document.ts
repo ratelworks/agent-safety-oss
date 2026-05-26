@@ -2,13 +2,85 @@ import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { EvidenceItemSchema } from "../evidence/evidence.schema.js";
 import { getArticle, listLaws } from "../lib/safety-laws-loader.js";
-import { getDocument, type DocumentNode } from "../lib/graph-nodes-loader.js";
+import { getDocument, getNode, type DocumentNode } from "../lib/graph-nodes-loader.js";
+import { legalRefToIri } from "../lib/article-iri-map.js";
 
 // ─── 인라인 법령 인용 환각 스캔 ───
-// draft 의 모든 문자열 값에서 법령 인용 패턴을 추출해 번들 법령 DB 와 대조.
+// draft 의 모든 문자열 값에서 법령 인용 패턴을 추출해 그래프 노드 + 번들 법령 DB 와 대조.
 // citations 필드를 통하지 않고도 본문(sections, controls.description 등)에 들어간
 // "산안기준규칙 §999" 같은 가짜 조문을 검출한다.
-const LAW_PATTERN = /(산업안전보건기준에\s*관한\s*규칙|산업안전보건법\s*시행령|산업안전보건법\s*시행규칙|산업안전보건법|산안기준규칙|산안법시행령|산안법시행규칙|산안법|기준규칙|중대재해\s*처벌\s*등에\s*관한\s*법률|중대재해처벌법|중처법시행령|중처법|위험성평가\s*고시|위험성평가고시)\s*(?:제)?\s*§?\s*(\d+)\s*조?/g;
+// ADR 005: 시행령/시행규칙·건진법 변형도 ref 로 추출되도록 패턴 보강
+// (본문에 박힌 "중대재해처벌법 시행령 §4" 같은 인용도 그래프 대조 대상이 되게).
+const LAW_PATTERN = /(산업안전보건기준에\s*관한\s*규칙|산업안전보건법\s*시행규칙|산업안전보건법\s*시행령|산업안전보건법|산안기준규칙|산안법\s*시행규칙|산안법\s*시행령|산안법시행규칙|산안법시행령|산안법|기준규칙|중대재해\s*처벌\s*등에\s*관한\s*법률\s*시행령|중대재해\s*처벌\s*등에\s*관한\s*법률|중대재해처벌법\s*시행령|중대재해처벌법|중처법\s*시행령|중처법시행령|중처법|건설기술\s*진흥법\s*시행규칙|건설기술\s*진흥법\s*시행령|건설기술\s*진흥법|건진법\s*시행규칙|건진법\s*시행령|건진법시행규칙|건진법시행령|건진법|위험성평가\s*고시|위험성평가고시)\s*(?:제)?\s*§?\s*(\d+)\s*조?/g;
+
+// ─── 법령 ref 실존성 판정 (ADR 005 단일 SSoT 함수) ───
+// 순서: 텍스트 ref → IRI 정규화 → 그래프 getNode(우선 SSoT) → getArticle(MD, 본문 표시 보조).
+// 그래프에 노드가 존재하면 환각이 아니다. 노드도 없고 IRI 정규화도 실패할 때만 환각 후보.
+// review 의 inline 스캔 / risk_assessment citations / generic citations 3경로가 공유한다.
+interface RefExistence {
+  reference: string;
+  exists: boolean;
+  matched?: string;
+  reason?: string;
+}
+
+// "산안법 §36", "중처법 시행령 §4", "기준규칙 §38 ②" 등에서 (lawPart, "§N") 분리.
+// 마지막 §숫자 토큰을 기준으로 법령명과 조문 부분을 가른다.
+function splitLawAndArticle(ref: string): { lawPart: string; articlePart: string } | null {
+  const m = ref.match(/^(.*?)\s*(§\s*\d+.*)$/);
+  if (m) {
+    return { lawPart: m[1].trim(), articlePart: m[2].trim() };
+  }
+  return null;
+}
+
+async function resolveLegalRefExistence(
+  ref: string,
+  lawShortNames: string,
+): Promise<RefExistence> {
+  const cleanRef = (ref ?? "").trim();
+  if (!cleanRef) {
+    return { reference: "(없음)", exists: false, reason: "reference 비어있음" };
+  }
+  try {
+    // 1차 SSoT — 그래프 노드 getNode. 텍스트 ref → IRI 정규화 후 조회.
+    const parts = splitLawAndArticle(cleanRef);
+    if (parts && parts.lawPart) {
+      const iriRes = legalRefToIri(parts.lawPart, parts.articlePart);
+      if (iriRes.iri) {
+        const node = await getNode(iriRes.iri);
+        if (node) {
+          const title =
+            (node as { title?: string }).title ??
+            (node as { label?: string }).label ??
+            iriRes.iri;
+          return {
+            reference: cleanRef,
+            exists: true,
+            matched: `${iriRes.iri} ${title} (graph node)`,
+          };
+        }
+      }
+    }
+    // 2차 — MD 번들 getArticle (본문 표시 보조). 그래프 미커버 조문 보강.
+    const article = await getArticle(cleanRef);
+    if (article) {
+      return {
+        reference: cleanRef,
+        exists: true,
+        matched: `${article.lawShortName} ${article.ref} ${article.title}`,
+      };
+    }
+    // 그래프 노드 부재 + IRI 정규화 실패 + MD 미수록 → 환각 후보
+    return {
+      reference: cleanRef,
+      exists: false,
+      reason: `graph node + 번들 법령(${lawShortNames}) 모두 미발견 — 환각 가능성`,
+    };
+  } catch (err) {
+    return { reference: cleanRef, exists: false, reason: `검증 오류: ${(err as Error).message}` };
+  }
+}
 
 function walkStrings(node: unknown, out: string[]): void {
   if (typeof node === "string") {
@@ -42,46 +114,9 @@ async function scanInlineCitations(
       }
     }
   }
+  // ADR 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
   const lawShortNames = listLaws().map((l) => l.shortName).join(", ");
-  return Promise.all(
-    refs.map(async (ref) => {
-      try {
-        const article = await getArticle(ref);
-        if (article) {
-          return {
-            reference: ref,
-            exists: true,
-            matched: `${article.lawShortName} ${article.ref} ${article.title}`,
-          };
-        }
-        // fallback — 번들 md 미수록 조문은 graph node lookup
-        const m = ref.match(/^(.+?)\s*§\s*(\S+)$/);
-        if (m) {
-          const { legalRefToIri } = await import("../lib/article-iri-map.js");
-          const { getNode } = await import("../lib/graph-nodes-loader.js");
-          const iriRes = legalRefToIri(m[1], `§${m[2]}`);
-          if (iriRes.iri) {
-            const node = await getNode(iriRes.iri);
-            if (node) {
-              const title = (node as any).title ?? (node as any).label ?? iriRes.iri;
-              return {
-                reference: ref,
-                exists: true,
-                matched: `${iriRes.iri} ${title} (graph node)`,
-              };
-            }
-          }
-        }
-        return {
-          reference: ref,
-          exists: false,
-          reason: `번들 법령(${lawShortNames}) + graph node 모두 미발견 — 환각 가능성`,
-        };
-      } catch (err) {
-        return { reference: ref, exists: false, reason: `검증 오류: ${(err as Error).message}` };
-      }
-    }),
-  );
+  return Promise.all(refs.map((ref) => resolveLegalRefExistence(ref, lawShortNames)));
 }
 
 // ─── 결재선 정합성 검증 (문서 유형별) ───
@@ -559,6 +594,7 @@ async function reviewRiskAssessment(
         "감독관 대응을 위해 평가 근거 법령(산안법 §36, 기준규칙 §38 등) 1건 이상 인용 권장.",
     });
   } else {
+    // ADR 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
     const lawShortNames = listLaws().map((l) => l.shortName).join(", ");
     type RefDetail = { reference: string; exists: boolean; matched?: string; reason?: string };
     const refDetails: RefDetail[] = await Promise.all(
@@ -570,35 +606,7 @@ async function reviewRiskAssessment(
             matched: `(검증 대상 외 — basisType=${ev.basisType})`,
           };
         }
-        const ref = ev.reference ?? "";
-        if (!ref) {
-          return {
-            reference: "(없음)",
-            exists: false,
-            reason: `basisType=${ev.basisType} 인데 reference 비어있음`,
-          };
-        }
-        try {
-          const article = await getArticle(ref);
-          if (article) {
-            return {
-              reference: ref,
-              exists: true,
-              matched: `${article.lawShortName} ${article.ref} ${article.title}`,
-            };
-          }
-          return {
-            reference: ref,
-            exists: false,
-            reason: `번들 법령(${lawShortNames})에서 미발견 — 환각 가능성`,
-          };
-        } catch (err) {
-          return {
-            reference: ref,
-            exists: false,
-            reason: `검증 오류: ${(err as Error).message}`,
-          };
-        }
+        return resolveLegalRefExistence(ev.reference ?? "", lawShortNames);
       }),
     );
     const hallucination = refDetails.filter((d) => !d.exists).length;
@@ -957,6 +965,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     }
 
     // 환각 검증 — citations 필드 (모든 docId 공통)
+    // ADR 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
     const citations = (draftRaw["citations"] as Array<{ basisType?: string; reference?: string }> | undefined) ?? [];
     if (citations.length > 0) {
       const lawShortNames = listLaws().map((l) => l.shortName).join(", ");
@@ -969,25 +978,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
               matched: `(검증 대상 외 — basisType=${ev.basisType})`,
             };
           }
-          const ref = ev.reference ?? "";
-          if (!ref) return { reference: "(없음)", exists: false, reason: "reference 비어있음" };
-          try {
-            const article = await getArticle(ref);
-            if (article) {
-              return {
-                reference: ref,
-                exists: true,
-                matched: `${article.lawShortName} ${article.ref} ${article.title}`,
-              };
-            }
-            return {
-              reference: ref,
-              exists: false,
-              reason: `번들 법령(${lawShortNames})에서 미발견 — 환각 가능성`,
-            };
-          } catch (err) {
-            return { reference: ref, exists: false, reason: `검증 오류: ${(err as Error).message}` };
-          }
+          return resolveLegalRefExistence(ev.reference ?? "", lawShortNames);
         }),
       );
       const hallucination = refDetails.filter((d) => !d.exists).length;

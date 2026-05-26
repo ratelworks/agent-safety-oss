@@ -162,11 +162,59 @@ function hazardFromNode(iri: string, node: HazardRawNode): HazardInfo {
   };
 }
 
+// ADR 006 — 위험요인 환각 차단: 행정성 문서는 guidedBy→causedBy 위험 폴백을 금지한다.
+// 위험요인이 본질적으로 불필요한 문서(선임·게시·대장·신청·교육·보고·협의체)에
+// 근거 없는 위험을 그래프 추론인 양 출처 달아 제시 = over-dump = 환각.
+// 작업성 문서(작업계획서·점검표·인허가·위험성평가)는 특정 작업 위험을 다루므로 폴백 유지.
+const ADMINISTRATIVE_HAZARD_CATEGORIES = new Set<string>([
+  "administrative", // 행정 일반 (관리규정·정책·게시물 등)
+  "register",       // 대장·게시물 (선임 게시·관리대장)
+  "report",         // 보고·진단보고
+  "appointment",    // 선임서 (안전관리자·명예감독관·조정자 등)
+  "application",    // 신청서 (인증·검사 신청)
+  "education",      // 교육일지
+  "council",        // 협의체·심의위원회
+]);
+
+// docId 패턴 → 행정성 위험 폴백 차단 여부 (documentCategory 메타 없는 fallback 노드용).
+// inferCategoryFromDocId(양식 스타일용)와 분리 — 여기서는 *위험 폴백* 결정만 한다.
+// 보수적 원칙(ADR 006): 확실한 행정문서만 차단, 애매하면 작업성으로 두어 폴백 허용.
+function isAdministrativeDocIdForHazard(docId: string): boolean {
+  // (1) 최우선 — docId 의 *말미 토큰*이 문서 종류를 결정한다.
+  //     예: safety_inspection_application 은 중간에 "inspection"이 있어도 본질은 신청서(application).
+  //     선임(appointment)·신청(application)·접수(filing)·게시(posting)·정보제공(provision)·
+  //     보고(report)·대장(register) 으로 끝나면 행정문서 → 위험 폴백 차단.
+  if (/(_appointment|_application|_filing|_posting|_provision|_report|_register)$/.test(docId)) {
+    return true;
+  }
+  // (2) 작업성 신호 — 점검(inspection/check/checklist)·작업계획·인허가·위험성평가는 폴백 허용.
+  //     weekly_joint_inspection 등 합동점검도 작업성으로 둔다(ADR 006 — 애매 문서는 작업성).
+  if (/(^|_)(work_plan|work_permit|inspection|check|checklist|risk_assessment|hazardous_risk)/.test(docId)) {
+    return false;
+  }
+  // (3) 기타 확실한 행정 신호 — 정책·규정·진단(보고서가 아닌 형태) 등.
+  if (/(^|_)(policy|regulation|diagnosis)(_|$)/.test(docId)) {
+    return true;
+  }
+  return false;
+}
+
+// 문서 성격(category) + docId 로 위험 폴백 허용 여부 판정 (ADR 006).
+// documentCategory 메타가 있으면 그것을 우선, 없으면 docId 패턴으로 추론.
+function allowGuideFallback(category: string | undefined, docId: string): boolean {
+  if (category && category.length > 0) {
+    return !ADMINISTRATIVE_HAZARD_CATEGORIES.has(category);
+  }
+  return !isAdministrativeDocIdForHazard(docId);
+}
+
 // docHazardIris(doc.hasHazard) 가 있으면 화이트리스트 모드 — KOSHA Guide causedBy 확장 안 함.
 // 비어 있을 때만 KOSHA Guide의 causedBy로 추론 (over-dump 방지).
+// allowFallback=false(행정성 문서, ADR 006): 화이트리스트가 없으면 위험 0 — 폴백 금지.
 async function loadHazards(
   guideIris: string[],
   docHazardIris: string[] = [],
+  allowFallback: boolean = true,
 ): Promise<HazardInfo[]> {
   const seen = new Set<string>();
   const out: HazardInfo[] = [];
@@ -178,6 +226,8 @@ async function loadHazards(
     if (node) out.push(hazardFromNode(hIri, node));
   }
   if (whitelist) return out;
+  // ADR 006 — 행정성 문서는 화이트리스트가 없으면 위험 0 (guidedBy→causedBy 폴백 차단).
+  if (!allowFallback) return out;
   for (const gIri of guideIris) {
     const causedBy = await neighborsByEdge(gIri, "causedBy");
     for (const hIri of causedBy) {
@@ -529,6 +579,8 @@ async function renderGeneric(
   controls: ControlInfo[],
   directControlIris: Set<string>,
   legalBodyByIri: Map<string, string | undefined>,
+  // ADR 006 — 행정성 문서로 위험 폴백이 차단됐는지 (hazards 비었을 때 메시지 결정용)
+  hazardFallbackSuppressed: boolean = false,
 ): Promise<string> {
   const d = (input.draft ?? {}) as Record<string, any>;
   const metadata = (d.metadata ?? {}) as Record<string, any>;
@@ -571,17 +623,22 @@ async function renderGeneric(
   // 행정 메타·결재선·작업조건은 번호 없이 표기 — sections 가 자체 번호(별지 ①~⑤·GHS 16항 등)를
   // 가질 수 있어 충돌 방지 (BLOCKER cosmetic 정정 2026-04-29). sections 본문은 자체 번호 또는
   // 자동 번호(secNo) 중 하나로 일관 처리.
+  // ADR 005 / 결함 정정: 문서메타 표의 모든 셀을 formatMarkdownCell 로 일원화.
+  // siteName="A | 사망 | 50세" 같은 파이프 포함 값이 2열표를 4열로 붕괴시키거나,
+  // supervisor 줄바꿈이 행을 누출시키는 것을 방지 (파이프 \| 이스케이프, 줄바꿈 <br>).
+  const docNumber =
+    d.documentNumber ?? d.documentId ?? "(자동) DOC-" + (meta.planDate ?? "YYYYMMDD").replace(/-/g, "") + "-001";
   lines.push(`## 문서 메타`);
   lines.push("");
   lines.push(`| 항목 | 내용 |`);
   lines.push(`|---|---|`);
-  lines.push(`| 문서번호 | ${d.documentNumber ?? d.documentId ?? "(자동) DOC-" + (meta.planDate ?? "YYYYMMDD").replace(/-/g, "") + "-001"} |`);
-  lines.push(`| ${siteLabel} | ${meta.siteName} |`);
-  lines.push(`| 작성일 | ${meta.planDate} |`);
+  lines.push(`| 문서번호 | ${formatMarkdownCell(docNumber)} |`);
+  lines.push(`| ${siteLabel} | ${formatMarkdownCell(meta.siteName)} |`);
+  lines.push(`| 작성일 | ${formatMarkdownCell(meta.planDate)} |`);
   if (shouldRenderPeriod) {
-    lines.push(`| ${periodLabel} | ${formatCellValue(periodValue) ?? "(미기재 — 작성 필수)"} |`);
+    lines.push(`| ${periodLabel} | ${formatMarkdownCell(periodValue) || "(미기재 — 작성 필수)"} |`);
   }
-  if (meta.supervisor) lines.push(`| ${supervisorLabel} | ${meta.supervisor} |`);
+  if (meta.supervisor) lines.push(`| ${supervisorLabel} | ${formatMarkdownCell(meta.supervisor)} |`);
   lines.push("");
 
   // 결재선
@@ -620,7 +677,8 @@ async function renderGeneric(
     lines.push(`|---|---|`);
     for (const [k, v] of Object.entries(d.workConditions)) {
       const label = WORK_COND_LABELS[k] ?? k;
-      lines.push(`| ${label} | ${formatCellValue(v) ?? ""} |`);
+      // formatMarkdownCell 로 일원화 — 파이프·줄바꿈 이스케이프 (표 무결)
+      lines.push(`| ${formatMarkdownCell(label)} | ${formatMarkdownCell(v)} |`);
     }
     lines.push("");
   }
@@ -645,8 +703,14 @@ async function renderGeneric(
       lines.push(`| 항목 | 내용 |`);
       lines.push(`|---|---|`);
       for (const f of sec.fields) {
-        const v = getFieldValue(input, f.key, f.label) ?? f.placeholder ?? (f.required ? "(미작성 — 필수)" : "(미작성)");
-        lines.push(`| ${f.label} | ${v} |`);
+        // 값 셀을 formatMarkdownCell 로 일원화 — 파이프·줄바꿈 이스케이프 (표 무결).
+        // 미작성 placeholder 는 이스케이프 불필요하나 라벨/값 모두 일관 처리.
+        const v = getFieldValue(input, f.key, f.label);
+        const cell =
+          v !== undefined && v !== ""
+            ? formatMarkdownCell(v)
+            : (f.placeholder ?? (f.required ? "(미작성 — 필수)" : "(미작성)"));
+        lines.push(`| ${formatMarkdownCell(f.label)} | ${cell} |`);
       }
       for (const f of sec.fields) {
         const rawValue = getRawFieldValue(input, f.key, f.label);
@@ -682,11 +746,21 @@ async function renderGeneric(
   }
 
   // 부속 정보(위험요소·통제·KOSHA·법령·비상·통지)는 모두 라벨로 표기 — 양식 본문 번호와 충돌 방지.
-  // 위험 요소 (그래프 추론)
-  lines.push(`## 식별된 위험 요소 (그래프 추론 — KOSHA Guide ${kosha.length}건 기반)`);
+  // 위험 요소 — 화이트리스트(hasHazard)는 그래프 직접 매핑, 그 외엔 KOSHA Guide causedBy 추론.
+  // ADR 006 — 행정성 문서는 위험 폴백을 차단하므로 hazards 가 비면 "위험요인 미해당"으로 표기
+  // (근거 없는 위험을 그래프 추론인 양 제시하는 환각 방지).
+  const hazardHeader =
+    hazards.length === 0 && hazardFallbackSuppressed
+      ? `## 식별된 위험 요소`
+      : `## 식별된 위험 요소 (그래프 추론 — KOSHA Guide ${kosha.length}건 기반)`;
+  lines.push(hazardHeader);
   lines.push("");
   if (hazards.length === 0) {
-    lines.push(`> (그래프 매핑된 Hazard 없음)`);
+    lines.push(
+      hazardFallbackSuppressed
+        ? `> 본 문서는 행정·선임·게시·보고 성격으로 특정 작업 위험요인을 다루지 않습니다 (위험요인 미해당).`
+        : `> (그래프 매핑된 Hazard 없음)`,
+    );
   } else {
     lines.push(`| 위험 분류 | 카테고리 |`);
     lines.push(`|---|---|`);
@@ -898,13 +972,28 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   // 그래프 추론 — 독립 호출 병렬화
   const guidedByIris = doc.guidedBy ?? [];
+  // ADR 006 — 문서 성격 판정: 행정성 문서는 위험 폴백 차단(화이트리스트만).
+  // 주의: 위험 폴백 결정은 *원본 documentCategory 메타* + docId 패턴만 사용한다.
+  // inferCategoryFromDocId(양식 스타일용)는 weekly_joint_inspection 등을 administrative 로
+  // 분류해 위험 폴백을 잘못 차단하므로 hazard 결정에 쓰지 않는다.
+  const documentCategoryMeta = (doc._meta as { documentCategory?: string } | undefined)?.documentCategory;
+  const documentCategory = documentCategoryMeta ?? inferCategoryFromDocId(doc.docId);
+  const hazardFallbackAllowed = allowGuideFallback(documentCategoryMeta, doc.docId);
   const [kosha, hazards] = await Promise.all([
     loadKoshaGuides(guidedByIris),
-    loadHazards(guidedByIris, (doc as DocumentNode & { hasHazard?: string[] }).hasHazard ?? []),
+    loadHazards(
+      guidedByIris,
+      (doc as DocumentNode & { hasHazard?: string[] }).hasHazard ?? [],
+      hazardFallbackAllowed,
+    ),
   ]);
   const docControlIris = ((doc as DocumentNode & { mitigatedBy?: string[] }).mitigatedBy ?? []);
   const directControlIris = new Set<string>(docControlIris);
   const controls = await loadControls(guidedByIris, Array.from(directControlIris));
+
+  // ADR 006 — 위험 폴백이 차단됐고 화이트리스트도 없어 위험이 비워진 경우 (렌더 메시지용)
+  const hasWhitelist = ((doc as DocumentNode & { hasHazard?: string[] }).hasHazard ?? []).length > 0;
+  const hazardFallbackSuppressed = !hazardFallbackAllowed && !hasWhitelist;
 
   // 법령 본문 발췌 — IRI당 1회 (400자) → 결재본은 200자 slice, structuredContent는 400자
   const legalBodyByIri = new Map<string, string | undefined>();
@@ -915,7 +1004,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     legalBodyByIri.set(l, body);
   }));
 
-  const body = await renderGeneric(doc, input, kosha, hazards, controls, directControlIris, legalBodyByIri);
+  const body = await renderGeneric(doc, input, kosha, hazards, controls, directControlIris, legalBodyByIri, hazardFallbackSuppressed);
 
   // v0.14 — 사용자 입력 사실성 검증 (구조화 데이터로만 노출, 결재본에는 미포함)
   const validation = validateDocumentInput(
@@ -996,6 +1085,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       sectionsCount: (doc.sections ?? []).length,
       legalBasisCount: (doc.legalBasis ?? []).length,
       bodyMarkdownLength: fullBody.length,
+      // ADR 006 — 위험 출처/폴백 차단 여부 (환각 차단 관찰용)
+      documentCategory,
+      hazardSource: hasWhitelist ? "whitelist" : hazardFallbackAllowed ? "guide_fallback" : "suppressed_administrative",
       inferred: {
         hazards,
         controls,

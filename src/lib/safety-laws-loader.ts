@@ -261,13 +261,29 @@ function normalizeRef(raw: string): { lawPart: string; refShort: string } {
 function guessLawCodeFromRef(lawPart: string): LawCode | undefined {
   if (!lawPart) return undefined;
   const lp = lawPart.toLowerCase();
-  // 순서 중요 — 더 구체적인 매칭 우선
-  if (lp.includes("기준") || lp.includes("standard")) return "osha-standard";
-  if (lp.includes("시행령") || lp.includes("decree")) return "osha-decree";
-  if (lp.includes("시행규칙") || lp.includes("rule")) return "osha-rule";
-  if (lp.includes("중처") || lp.includes("중대재해")) return "severe-accident";
-  if (lp.includes("위험성평가") || lp.includes("고시") || lp.includes("2024-76"))
-    return "risk-assessment-notice";
+  // ADR 005: 본법명 + 수식어(시행령/시행규칙) 결합 판정.
+  // 이전 버그 — `시행령` 단독 판정이 `중처/중대재해` 보다 먼저 매칭되어
+  // "중처법 시행령" 을 osha-decree(산안법시행령)로 오라우팅 → §4 도달 불가.
+  // 본법 식별을 먼저 한 뒤 수식어를 결합한다.
+  const isSevere = lp.includes("중처") || lp.includes("중대재해");
+  const isCtpa = lp.includes("건진") || lp.includes("건설기술");
+  const isRiskNotice =
+    lp.includes("위험성평가") || lp.includes("고시") || lp.includes("2024-76");
+  const isStandard = lp.includes("기준") || lp.includes("standard");
+  const hasDecree = lp.includes("시행령") || lp.includes("decree");
+  const hasRule = lp.includes("시행규칙") || lp.includes("rule");
+
+  // 1) 중처법 — 시행령 결합 시 severe-accident-decree
+  if (isSevere) return hasDecree ? "severe-accident-decree" : "severe-accident";
+  // 2) 건진법 — §62 영역 통합 파일 (시행령·시행규칙 본문 포함)
+  if (isCtpa) return "ctpa-art62";
+  // 3) 위험성평가 고시
+  if (isRiskNotice) return "risk-assessment-notice";
+  // 4) 기준규칙 (산안 기준에 관한 규칙)
+  if (isStandard) return "osha-standard";
+  // 5) 산안법 계열 — 시행령/시행규칙 결합 우선, 없으면 본법
+  if (hasRule) return "osha-rule";
+  if (hasDecree) return "osha-decree";
   if (lp.includes("산안") || lp.includes("산업안전")) return "osha";
   return undefined;
 }
