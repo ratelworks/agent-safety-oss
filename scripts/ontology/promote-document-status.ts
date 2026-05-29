@@ -28,7 +28,7 @@ const DOCS_DIR = resolve(ROOT, "src", "ontology", "graph", "nodes", "documents")
       _meta?: Record<string, unknown>;
     };
 
-    // a-codex 진단 반영 — 자동 일괄 변경은 'human_reviewed' 라벨 과신 위험.
+    // 교차 검증 진단 반영 — 자동 일괄 변경은 'human_reviewed' 라벨 과신 위험.
     // 'auto_promoted_pending_review' 로 명확화 (실제 dogfooding 완료 시만 'verified').
     if (node.verificationStatus === "auto_converted" || node.verificationStatus === "human_reviewed") {
       node.verificationStatus = "auto_promoted_pending_review";

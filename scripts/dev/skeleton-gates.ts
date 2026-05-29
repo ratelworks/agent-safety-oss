@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Walking Skeleton 검증 게이트 6개 (D6 정정 후)
-// a-codex 6차 권장 반영
+// 교차 검증 6차 권장 반영
 //
 // Gate 1 — JSON-LD expand
 // Gate 2 — SHACL conformance (skeleton 전용 wiring)

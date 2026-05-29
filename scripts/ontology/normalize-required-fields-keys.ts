@@ -17,7 +17,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
 const DOCS_DIR = resolve(ROOT, "src", "ontology", "graph", "nodes", "documents");
 
-// 한국어 라벨 substring → 영문 표준 슬러그 매핑 (P9 a-codex 진단 후 80+ 확대)
+// 한국어 라벨 substring → 영문 표준 슬러그 매핑 (P9 교차 검증 진단 후 80+ 확대)
 // 매칭 우선순위: 더 긴 라벨이 먼저 매칭되도록 정렬 후 적용
 const LABEL_PATTERNS: Array<{ pattern: RegExp; key: string }> = [
   // 기본 메타

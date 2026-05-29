@@ -3,7 +3,7 @@
  * seed-domain-edges.ts
  *
  * 신규 도메인 노드(Activity/Hazard/Control)와 기존 노드(Article/Annex/Document) 간 엣지 채움.
- * a-codex 진단: 신규 43 노드 중 41개 고립 — regulates=1, mitigatedBy=0, guidedBy=0.
+ * 교차 검증 진단: 신규 43 노드 중 41개 고립 — regulates=1, mitigatedBy=0, guidedBy=0.
  *
  * 매핑:
  *   1. Article ↔ Activity (regulates) — 별표 4 13종 작업

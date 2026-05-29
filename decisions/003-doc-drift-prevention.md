@@ -94,4 +94,3 @@ v1.4.1 에서 `docs/INVENTORY.md` 를 `npm run build` 시 `scripts/build/generat
 - `scripts/build/generate-inventory.ts` (L1)
 - `scripts/build/sync-docs.ts` (L2, 본 ADR 로 신설)
 - `scripts/check/docs-check.ts` (L3, 본 ADR 로 신설)
-- `~/.claude/rules/decisions.md` (라텔웍스 ADR 표준)

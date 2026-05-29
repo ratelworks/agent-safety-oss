@@ -110,7 +110,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     },
   };
 
-  // delegates 엣지 데이터 0 상태 솔직한 경고 (a-codex P3 권고)
+  // delegates 엣지 데이터 0 상태 솔직한 경고 (교차 검증 P3 권고)
   const delegatesAvailable = chain.length > 1; // start 외에 hop 있나
   const enrichedPayload = {
     ...payload,
@@ -123,7 +123,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   };
 
   if (chain.length === 0) {
-    // a-codex P4 권고: 가짜 IRI / 미발견 시 isError=true (verify_safety_basis 와 일관성)
+    // 교차 검증 P4 권고: 가짜 IRI / 미발견 시 isError=true (verify_safety_basis 와 일관성)
     return {
       content: [
         {

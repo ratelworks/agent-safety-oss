@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 /**
- * form-conformance.ts (a-codex BLOCKER 자기참조 탈출)
+ * form-conformance.ts (교차 검증 BLOCKER 자기참조 탈출)
  *
  * 법 원문 .md 에서 양식 항목을 *추출*하여 시드된 Document.sections와 *대조*.
  * 자기참조 검증 회귀 (우리가 만든 것을 우리 기준으로 채점) 탈출.

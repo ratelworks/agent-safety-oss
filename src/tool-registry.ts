@@ -217,7 +217,7 @@ export function registerAllTools(server: McpServer): void {
 }
 
 function extractRawShape(schema: unknown): z.ZodRawShape {
-  // ZodEffects(.refine() 등)는 _def.schema 로 unwrap 필요 (a-codex P0-5 권고)
+  // ZodEffects(.refine() 등)는 _def.schema 로 unwrap 필요 (교차 검증 P0-5 권고)
   let cur: unknown = schema;
   // 최대 3단계까지 unwrap (.refine().refine() 같은 중첩 대응)
   for (let i = 0; i < 3; i += 1) {

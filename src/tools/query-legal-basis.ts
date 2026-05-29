@@ -60,7 +60,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     text: string;
   }>) ?? [];
 
-  // ── Reverse lookup (a-codex P0 권고): Article/Annex 정·역방향 모두 추적 ──
+  // ── Reverse lookup (교차 검증 P0 권고): Article/Annex 정·역방향 모두 추적 ──
   const linkedNodes = await findArticlesAndAnnexesForDocument(doc.docId);
   const iriArticles: Array<{
     "@id": string;

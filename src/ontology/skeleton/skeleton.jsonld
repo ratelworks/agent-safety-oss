@@ -406,8 +406,8 @@
         {"@value": "requires TBM", "@language": "en"}
       ],
       "rdfs:comment": [
-        {"@value": "작업 전에 필요한 TBM 활동 (Tool Box Meeting). range 는 safety:TBM (a-codex 11차 review 정정).", "@language": "ko"},
-        {"@value": "Links a work activity to the required TBM (Tool Box Meeting) activity before work starts. Range is safety:TBM (a-codex 11th review correction).", "@language": "en"}
+        {"@value": "작업 전에 필요한 TBM 활동 (Tool Box Meeting). range 는 safety:TBM (11차 교차 검증 정정).", "@language": "ko"},
+        {"@value": "Links a work activity to the required TBM (Tool Box Meeting) activity before work starts. Range is safety:TBM (11차 교차 검증 review correction).", "@language": "en"}
       ],
       "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
     },
@@ -422,8 +422,8 @@
         {"@value": "requires checklist", "@language": "en"}
       ],
       "rdfs:comment": [
-        {"@value": "작업 전 또는 주기적으로 작성해야 할 안전점검표. IDENTITY §5 14 관계 #8 (a-codex 11차 review 추가).", "@language": "ko"},
-        {"@value": "Safety checklist required before or periodically during the work activity. IDENTITY §5 relation #8 (added per a-codex 11th review).", "@language": "en"}
+        {"@value": "작업 전 또는 주기적으로 작성해야 할 안전점검표. IDENTITY §5 14 관계 #8 (11차 교차 검증 추가).", "@language": "ko"},
+        {"@value": "Safety checklist required before or periodically during the work activity. IDENTITY §5 relation #8 (added per 11차 교차 검증 review).", "@language": "en"}
       ],
       "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
     },
@@ -771,8 +771,8 @@
         {"@value": "applies to work activity", "@language": "en"}
       ],
       "rdfs:comment": [
-        {"@value": "도메인은 union(Action, StandardDocument, SafetyChecklist) — Action·기준문서·점검표 모두 작업에 적용 가능 (a-codex 11차 review 정정: domain 제거하고 SHACL 별 검증).", "@language": "ko"},
-        {"@value": "Domain is union(Action, StandardDocument, SafetyChecklist) — actions, standard documents, and checklists all apply to work activities. Domain removed; SHACL validates per case (a-codex 11th review correction).", "@language": "en"}
+        {"@value": "도메인은 union(Action, StandardDocument, SafetyChecklist) — Action·기준문서·점검표 모두 작업에 적용 가능 (11차 교차 검증 정정: domain 제거하고 SHACL 별 검증).", "@language": "ko"},
+        {"@value": "Domain is union(Action, StandardDocument, SafetyChecklist) — actions, standard documents, and checklists all apply to work activities. Domain removed; SHACL validates per case (11차 교차 검증 review correction).", "@language": "en"}
       ],
       "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
     },
@@ -788,8 +788,8 @@
         {"@value": "has risk (alias)", "@language": "en"}
       ],
       "rdfs:comment": [
-        {"@value": "IDENTITY §5 14 관계 #3 'Task hasRisk SafetyRisk' 의 alias. 실 IRI 는 safety:hasHazard 이며 SafetyRisk ≅ safety:Hazard. owl:equivalentProperty 로 정합 (a-codex 11차 review 정정).", "@language": "ko"},
-        {"@value": "Alias for IDENTITY §5 relation #3 'Task hasRisk SafetyRisk'. Actual IRI is safety:hasHazard; SafetyRisk ≅ safety:Hazard. Defined via owl:equivalentProperty (a-codex 11th review correction).", "@language": "en"}
+        {"@value": "IDENTITY §5 14 관계 #3 'Task hasRisk SafetyRisk' 의 alias. 실 IRI 는 safety:hasHazard 이며 SafetyRisk ≅ safety:Hazard. owl:equivalentProperty 로 정합 (11차 교차 검증 정정).", "@language": "ko"},
+        {"@value": "Alias for IDENTITY §5 relation #3 'Task hasRisk SafetyRisk'. Actual IRI is safety:hasHazard; SafetyRisk ≅ safety:Hazard. Defined via owl:equivalentProperty (11차 교차 검증 review correction).", "@language": "en"}
       ],
       "rdfs:isDefinedBy": {"@id": "https://safety.ratelworks.org/skeleton/v1"}
     }

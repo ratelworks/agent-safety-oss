@@ -162,7 +162,7 @@ const EDGE_FIELDS: Record<string, string> = {
   auditedBy: "auditedBy",
   informedBy: "informedBy",
   cited_in: "cited_in",
-  // ─── v0.6 정규화 (a-codex review 2026-04-30) ───
+  // ─── v0.6 정규화 (교차 검증 2026-04-30) ───
   // assemble-doc-context.ts / generate-safety-document.ts 가 직접 attribute 로 읽던
   // IRI 배열 5종을 graph edge 로 승격. graphology BFS·multi-hop 쿼리에서 통합 traversal 가능.
   hasHazard: "hasHazard", // Document/Activity → Hazard (246 노드 사용)
@@ -228,7 +228,7 @@ async function buildIndex(): Promise<Map<string, AnyNode>> {
   if (nodeIndex) return nodeIndex;
   const dir = await discoverNodesDir();
   const all = await loadAllJsonLdRecursive(dir);
-  // duplicate @id 검출 — Phase 1 P1 a-codex 권고 반영
+  // duplicate @id 검출 — Phase 1 P1 교차 검증 권고 반영
   const seen = new Map<string, AnyNode>();
   for (const node of all) {
     if (!node["@id"]) {

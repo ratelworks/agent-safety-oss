@@ -158,7 +158,7 @@ function summary(s: unknown, max = 200): string {
 
   // ─────────────────────────────────────────────────────────────
   // 시나리오 4 — Article §38 reverse: 근거가 되는 문서들
-  //   (a-codex P4 권고: 공개 MCP 도구만 사용. 내부 함수 호출 금지)
+  //   (교차 검증 P4 권고: 공개 MCP 도구만 사용. 내부 함수 호출 금지)
   // ─────────────────────────────────────────────────────────────
   console.log("## 시나리오 4 — Article §38 reverse → 근거 문서들 (공개 도구만)\n");
   // 공개 도구로 reverse: query_legal_basis 가 Document 입력 시 iriMapped 응답.
@@ -275,7 +275,7 @@ function summary(s: unknown, max = 200): string {
   console.log(`총 hops: 그래프 ON ${totalGraphHops} vs OFF ${totalOffHops} (${(totalOffHops / totalGraphHops).toFixed(1)}x 절약)`);
   console.log(`Traceable (IRI 추적 가능): ${traceableCount}/${results.length}`);
   console.log("");
-  console.log("정직 결론 (a-codex 객관 검증 반영):");
+  console.log("정직 결론 (교차 검증 객관 검증 반영):");
   console.log(
     "  ✅ 진짜 가치: 처벌 매핑(시나리오 1) + 법령 근거 통합(시나리오 2) + 적용성 종합 판정(시나리오 3) — 1 hop 응답 + IRI traceable",
   );
@@ -286,7 +286,7 @@ function summary(s: unknown, max = 200): string {
     "  🛡 안전장치: 미완성 영역 안내(시나리오 5) + 환각 차단(시나리오 6) — 가치 우위는 아니나 사용자 신뢰 유지",
   );
   console.log(
-    "  ⚖ over-engineering 영역: 단일 조문 본문 조회·작성 항목 확인은 그래프보다 텍스트/가이드 도구가 자연 (a-codex 진단)",
+    "  ⚖ over-engineering 영역: 단일 조문 본문 조회·작성 항목 확인은 그래프보다 텍스트/가이드 도구가 자연 (교차 검증 진단)",
   );
   console.log("");
   console.log(

@@ -51,7 +51,7 @@ const LAW_FILES: Record<string, { fileName: string; shortName: string; official:
     shortName: "위험성평가 고시",
     official: "사업장 위험성평가에 관한 지침 (고용노동부 고시 제2024-76호, 시행 2025-01-02)",
   },
-  // 그래프 article 본문 → MD 통일 (a-codex 권고: "MD 6 + graph 2" 분리 표현 제거)
+  // 그래프 article 본문 → MD 통일 (교차 검증 권고: "MD 6 + graph 2" 분리 표현 제거)
   "severe-accident-decree": {
     fileName: "중대재해처벌법-시행령.md",
     shortName: "중처법 시행령",

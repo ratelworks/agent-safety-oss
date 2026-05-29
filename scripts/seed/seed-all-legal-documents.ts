@@ -314,7 +314,7 @@ const WORK_PLAN_DOCS: DocSeed[] = [
 
   // [9호] 채석작업 — 비건설 (광업) 도메인 (별도 OSS 분리)
 
-  // [10호] 건축물 해체 — a-codex BLOCKER #1: 사전조사 항목 추가
+  // [10호] 건축물 해체 — 교차 검증 BLOCKER #1: 사전조사 항목 추가
   {
     docId: "work_plan_demolition",
     title: "건축물 해체 작업계획서",
@@ -433,7 +433,7 @@ const WORK_PERMIT_DOCS: DocSeed[] = [
     legalBasis: ["art:기준규칙:619", "art:기준규칙:620"],
     penaltyOnMissing: "penalty:산안법:175",
     retention: "1년",
-    // a-codex BLOCKER #2: §619 ② 6항목 정확 반영
+    // 교차 검증 BLOCKER #2: §619 ② 6항목 정확 반영
     sections: [
       {
         title: "사전 확인 사항",
@@ -586,7 +586,7 @@ const RISK_ASSESSMENT_DOCS: DocSeed[] = [
 // D. 발주자 안전보건대장 (산안법 §67) 3종
 // ─────────────────────────────────────────────────────────────────────────────
 
-// a-codex BLOCKER #3: 시행규칙 §86 ①②③ 정확 반영
+// 교차 검증 BLOCKER #3: 시행규칙 §86 ①②③ 정확 반영
 const FINANCIER_DOCS: DocSeed[] = [
   {
     docId: "basic_safety_health_register",

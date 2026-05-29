@@ -144,13 +144,8 @@ Phase 1C (viewer/, 4-7일):
 
 - 사용자 메시지 2026-05-21: "온톨로지 그래프를 활용한 작성 보조와 가이드라인, 완성된 문서에 대한 검토이고 a2ui 를 이용해서 작성자에게 필요한 정보들을 능동적으로 가져올 수 있도록 LLM 과 연결"
 - decisions/001-a2ui-viewer-promotion.md (ADR 001 — viewer 격상)
-- MEMORY: agentsafety_top_priority_document_drafting (19종 법정문서)
-- MEMORY: agentsafety_central_distribution_vision (14,000 안전관리자)
-- MEMORY: agent_safety_oss_identity (4계층 Ontology/Model/Harness/Human)
 - `src/tools/render-a2ui-form.ts:232-241` (F2 sections 우선)
 - `src/tools/review-safety-document.ts:808-811` (F8 review 도 sections 우선)
 - `src/tools/assemble-doc-context.ts` (그래프 traversal 결과 조립)
 - `src/ontology/graph/nodes/documents/daily-tbm.jsonld:431-470` (_meta.writingGuide 예시)
-- `~/.claude/rules/decisions.md` (T5 ADR 표준)
-- `~/.claude/rules/specs.md` (T7 .specs/ phase gate)
 - Agent_HQ PHILOSOPHY.md §9 (Agent-first / Protocol-first / 4층 매핑 / Human fallback)

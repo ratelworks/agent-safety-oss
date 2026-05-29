@@ -15,7 +15,7 @@ const ROOT = resolve(__dirname, "..", "..");
 const LAWS_DIR_BUILD = resolve(ROOT, "build", "ontology", "safety-laws");
 const LAWS_DIR_SRC = resolve(ROOT, "src", "ontology", "safety-laws");
 
-// a-codex 재평가 정정: 중처법시행령 별도 .md 미보유 → KNOWN_NOT_INCLUDED 처리 (본법 오매핑 제거)
+// 교차 검증 재평가 정정: 중처법시행령 별도 .md 미보유 → KNOWN_NOT_INCLUDED 처리 (본법 오매핑 제거)
 const LAW_FILE_MAP: Record<string, string> = {
   "기준규칙": "산업안전보건기준에-관한-규칙.md",
   "산안법": "산업안전보건법.md",
@@ -87,7 +87,7 @@ async function loadLawText(lawSlug: string): Promise<string | undefined> {
  * @param iri art:lawSlug:articleNo[의M][#N항] 형식
  * @param maxChars 발췌 최대 글자수 (기본 400)
  *
- * a-codex BLOCKER #4: 항 번호(#N) 처리 추가, 미수록 조문 명시
+ * 교차 검증 BLOCKER #4: 항 번호(#N) 처리 추가, 미수록 조문 명시
  */
 async function loadArticleNodeDescription(iri: string): Promise<string | undefined> {
   // 그래프 노드의 description fallback 로더 (law .md 미수록 조문 보강)
@@ -137,7 +137,7 @@ export async function extractArticleBody(iri: string, maxChars = 400): Promise<s
     return undefined;
   }
 
-  // ## §N 또는 ## §N의M (조문 헤더). a-codex BLOCKER 정정: EOF 종결 조건 추가
+  // ## §N 또는 ## §N의M (조문 헤더). 교차 검증 BLOCKER 정정: EOF 종결 조건 추가
   const headerKey = branch ? `§${articleNo}의${branch}` : `§${articleNo}`;
   const re = new RegExp(`## ${headerKey}\\b[^\\n]*\\n([\\s\\S]*?)(?=\\n## §|\\n---|$)`, "u");
   const match = text.match(re);

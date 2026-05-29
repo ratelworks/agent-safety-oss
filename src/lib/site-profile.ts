@@ -233,7 +233,7 @@ const EMPTY_PROFILE: Profile = {
   contractors: [],
 };
 
-// a-codex cross-review: cache key 를 path 로 변경.
+// 교차 검증: cache key 를 path 로 변경.
 // SAFETY_LOCAL_DIR env 변경 시 cache 가 stale 한 path 의 profile 을 그대로 반환하던
 // 회귀 해소. Map<path, Profile> 으로 path-aware cache. invalidateProfileCache 는
 // 전체 clear (보수적 — 한 path 만 무효화하고 싶으면 cache.delete(path) 사용 가능).

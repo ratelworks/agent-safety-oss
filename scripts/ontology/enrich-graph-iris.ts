@@ -78,7 +78,7 @@ async function buildNodeIndex(): Promise<Map<string, { status: string; type: str
 
     const { iris, unresolved } = extractIrisFromRefs(refs);
 
-    // verified vs stub vs missing 3분류 (a-codex P0-1 권고: stub은 정식 promoted 아님)
+    // verified vs stub vs missing 3분류 (교차 검증 P0-1 권고: stub은 정식 promoted 아님)
     const verifiedIris: string[] = [];
     const stubIris: string[] = [];
     const missing: string[] = [];

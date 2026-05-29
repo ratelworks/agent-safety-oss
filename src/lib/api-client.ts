@@ -23,7 +23,7 @@ const XML_PARSER = new XMLParser({
 // 업스트림 응답 최대 크기 (바이트). 초과 시 업스트림 장애로 판정하고 중단.
 const MAX_RESPONSE_BYTES = 10 * 1024 * 1024; // 10 MiB
 
-// relay 호출 실패 시 direct API fallback / retry 정책 (a-codex review 2026-04-30 P0-5)
+// relay 호출 실패 시 direct API fallback / retry 정책 (교차 검증 2026-04-30 P0-5)
 // relay 가 일시 장애·rate-limit 응답일 때 자동으로 (1) backoff 재시도 → (2) 사용자 키 보유 시 직접 호출 fallback.
 // 외부 npm 사용자가 단일 중계 장애로 전체 도구가 멈추는 상황을 방지.
 const RETRY_MAX_ATTEMPTS = 2; // 최초 1회 + 재시도 1회. relay 5xx / rate-limit 시만 적용

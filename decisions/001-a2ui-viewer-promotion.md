@@ -12,8 +12,8 @@ tags: [a2ui, viewer, ux, architecture, accessibility]
 
 agent-safety-oss 의 본질 목적:
 
-- SAM 5,400사 / **14,000 안전관리자** 도달 (MEMORY: agentsafety_central_distribution_vision)
-- 19종 법정문서 매일 작성 보조 (MEMORY: agentsafety_top_priority_document_drafting)
+- SAM 5,400사 / **14,000 안전관리자** 도달
+- 19종 법정문서 매일 작성 보조
 - 엔드유저 = QC + 감리원 + 안전관리자 (비-개발자)
 - 주간 7h → 2h 10m (70%↓)
 
@@ -87,10 +87,5 @@ Agent_HQ PHILOSOPHY.md §9 체크리스트로 검증:
 
 ## References
 
-- MEMORY: agentsafety_central_distribution_vision (14,000 안전관리자 비전)
-- MEMORY: agentsafety_top_priority_document_drafting (19종 법정문서)
-- MEMORY: agent_safety_oss_identity (4계층 Ontology/Model/Harness/Human)
 - `dev/Agent_HQ/PHILOSOPHY.md` §9 체크리스트
-- `~/.claude/rules/decisions.md` (T5 ADR 표준)
-- `~/.claude/rules/specs.md` (T7 .specs/ phase gate)
 - agent-safety-oss/a2ui-demo/README.md (현재 데모 자체 한계 인정 문단)

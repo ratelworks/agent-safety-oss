@@ -80,7 +80,7 @@ tags: [hallucination, over-dump, hazard, document-quality, graph-ssot, purpose-a
 
 ## References
 
-- 목적·원칙: 메모리 `feedback_safety_oss_correctness_over_coverage`(올바름>양), `feedback_ontology_result_reflects_graph`
+- 목적·원칙: 안전 실무자에게 근거 기반 올바른 지식 전달 — 정확한 근거(올바름) > 커버리지(양)
 - ADR 005 (법령 환각 그래프 SSoT 우선 검증) — 본 ADR은 그 원칙의 위험·가이드 확장
 - ADR 004 (양방향 그래프 통합 — guidedBy 100%) — over-dump 연쇄 인과의 출발
 - `src/tools/generate-safety-document.ts` loadHazards(167-191) / inferCategoryFromDocId(214-234) / `_meta.documentCategory`

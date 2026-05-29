@@ -5,7 +5,7 @@
  * 핵심 위임 사슬 30+건 매핑. query_delegation_chain BFS 진짜 가치 발휘.
  * 산안법(상위) → 시행령/시행규칙/기준규칙/고시(하위) + 중처법 → 시행령 등.
  *
- * P9-2 (a-codex 진단 — 5/336 = 1.5% 엣지 facade 정정).
+ * P9-2 (교차 검증 진단 — 5/336 = 1.5% 엣지 facade 정정).
  */
 
 import { readFile, readdir, writeFile } from "node:fs/promises";

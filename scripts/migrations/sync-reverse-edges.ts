@@ -5,7 +5,7 @@
  * Document.legalBasis 정방향 → Article/Annex 의 legalBasisOf/specifies 역방향 자동 보정.
  * 양방향 일관성 확보 — query_legal_basis 가 두 방향 어디서든 정확 응답.
  *
- * a-codex P0-3 권고 반영. enrich-graph-iris 다음 단계로 자동 실행 권장.
+ * 교차 검증 P0-3 권고 반영. enrich-graph-iris 다음 단계로 자동 실행 권장.
  */
 
 import { readFile, readdir, writeFile } from "node:fs/promises";

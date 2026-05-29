@@ -23,7 +23,7 @@ const MARKER_HALLUCINATION = "[HALLUCINATION_DETECTED]";
 const MARKER_NOT_FOUND = "[NOT_FOUND]";
 
 // 기본 mandatory trigger — claim 에 포함되면 법령·규정 근거 필요
-// a-codex 지적 반영: "필수", "필요", "위반 시", "과태료" 추가
+// 교차 검증 지적 반영: "필수", "필요", "위반 시", "과태료" 추가
 const DEFAULT_MANDATORY_TRIGGERS = [
   "의무",
   "반드시",

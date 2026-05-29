@@ -1,5 +1,5 @@
 // Phase R3 — D8: Action ↔ MCP tool 실제 연결 시뮬
-// a-codex 9차 권장 (옵션 E): 새 클래스 추가 X, 기존 도구와 연결 닫기
+// 교차 검증 9차 권장 (옵션 E): 새 클래스 추가 X, 기존 도구와 연결 닫기
 // CreateWorkPlanAction → generate_safety_document(docId='work_plan_excavation') 실행
 
 import { readFile, writeFile } from "node:fs/promises";

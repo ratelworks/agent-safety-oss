@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Phase R2 — D7a 통합 시뮬: Walking Skeleton + 기존 OSS 자산 결합
-// a-codex 8차 권장: R1의 진짜 결함은 "기존 graph 재사용 실패"
+// 교차 검증 8차 권장: R1의 진짜 결함은 "기존 graph 재사용 실패"
 // 이 스크립트는 work-plan-excavation form + 기존 그래프 노드 (hazards/controls/articles/guides) 통합
 
 import { readFile, writeFile, readdir } from "node:fs/promises";

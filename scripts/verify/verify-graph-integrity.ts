@@ -40,7 +40,7 @@ function extractIriFields(): Set<string> {
 }
 
 // 알려진 prefix (context.jsonld 정의)
-// a-codex review 2026-04-30: 노드 데이터에 활성 사용 중이지만 화이트리스트 누락이던
+// 교차 검증 2026-04-30: 노드 데이터에 활성 사용 중이지만 화이트리스트 누락이던
 // 4개 prefix 추가 — cyc(1136 사용), facet(342 사용), entity(104 사용),
 // iso45001(179 사용 — ISO 45001 OHSMS 표준 클래스 매핑, context.jsonld:16 정의).
 // 이 추가 + IRI_FORMAT_RE 정규식 완화(숫자 prefix 허용)로 verify-graph IRI 형식 위반 1836 → 0.
