@@ -202,8 +202,11 @@ function isAdministrativeDocIdForHazard(docId: string): boolean {
 // 문서 성격(category) + docId 로 위험 폴백 허용 여부 판정 (ADR 006).
 // documentCategory 메타가 있으면 그것을 우선, 없으면 docId 패턴으로 추론.
 function allowGuideFallback(category: string | undefined, docId: string): boolean {
-  if (category && category.length > 0) {
-    return !ADMINISTRATIVE_HAZARD_CATEGORIES.has(category);
+  // ADR 006: category 정규화(trim·소문자) — JSON 저작 시 대소문자/공백 드리프트로
+  // 행정문서 위험 억제가 우회(over-dump 환각)되는 것을 방지.
+  const c = category?.trim().toLowerCase();
+  if (c) {
+    return !ADMINISTRATIVE_HAZARD_CATEGORIES.has(c);
   }
   return !isAdministrativeDocIdForHazard(docId);
 }
@@ -380,7 +383,9 @@ function formatCellValue(value: unknown): string | undefined {
     return `${value.length}건 (아래 상세표 참조)`;
   }
   try {
-    return JSON.stringify(value).replace(/\|/g, "\\|");
+    // ADR 005/결함정정: 파이프 이스케이프는 formatMarkdownCell 이 단일 책임으로 처리한다.
+    // 여기서 미리 이스케이프하면 formatMarkdownCell 과 이중 이스케이프(\\\|)되어 셀이 깨진다.
+    return JSON.stringify(value);
   } catch {
     return String(value);
   }
@@ -594,7 +599,11 @@ async function renderGeneric(
   // Document category — 양식 일관성 (행정 문서 vs 작업 문서) — v0.8 결함 #3 정정 + v0.9 fallback 추론
   const metaCat = (doc._meta as { documentCategory?: string } | undefined)?.documentCategory;
   const category = metaCat ?? inferCategoryFromDocId(doc.docId);
-  const isAdmin = category === "administrative" || category === "report" || category === "register";
+  // ADR 006: 라벨(행정/작업) 판정을 위험 폴백 분류기 allowGuideFallback 과 일원화한다.
+  // 이전엔 3값(administrative/report/register)만 행정 처리해, 위험 억제 집합(7값)에는 있으나
+  // 여기 없는 appointment/application/education/council(및 meta 없는 선임·교육 docId) 문서가
+  // "작업기간" 라벨 + "위험요인 미해당" 을 동시 출력하는 모순이 있었다. allowGuideFallback 으로 통일.
+  const isAdmin = !allowGuideFallback(metaCat, doc.docId);
   const siteLabel = isAdmin ? "사업장명/소재지" : "현장명";
   const supervisorLabel = isAdmin ? "작성책임자" : "작업지휘자/책임자";
   const periodLabel = isAdmin ? "유효 기간" : "작업기간";
@@ -927,7 +936,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const input: Input = inputSchema.parse(rawInput ?? {});
 
   // A2UI 경로 보강: doc + A2UI alias normalize 를 profile 이전 실행.
-  // a-codex cross-review 가 짚은 P0-1 잔여 위험 — A2UI field-N-input 으로
+  // 교차 검증 가 짚은 P0-1 잔여 위험 — A2UI field-N-input 으로
   // 들어온 사용자 값이 profile 자동채움 이후 setIfEmpty 에 막혀 profile 값을 이기지
   // 못하던 회귀를 해소. 순서: parse → doc → flat normalize → A2UI flat → profile fill.
   const doc = await getDocument(input.docId);

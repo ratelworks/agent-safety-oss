@@ -11,7 +11,11 @@ import { legalRefToIri } from "../lib/article-iri-map.js";
 // "산안기준규칙 §999" 같은 가짜 조문을 검출한다.
 // ADR 005: 시행령/시행규칙·건진법 변형도 ref 로 추출되도록 패턴 보강
 // (본문에 박힌 "중대재해처벌법 시행령 §4" 같은 인용도 그래프 대조 대상이 되게).
-const LAW_PATTERN = /(산업안전보건기준에\s*관한\s*규칙|산업안전보건법\s*시행규칙|산업안전보건법\s*시행령|산업안전보건법|산안기준규칙|산안법\s*시행규칙|산안법\s*시행령|산안법시행규칙|산안법시행령|산안법|기준규칙|중대재해\s*처벌\s*등에\s*관한\s*법률\s*시행령|중대재해\s*처벌\s*등에\s*관한\s*법률|중대재해처벌법\s*시행령|중대재해처벌법|중처법\s*시행령|중처법시행령|중처법|건설기술\s*진흥법\s*시행규칙|건설기술\s*진흥법\s*시행령|건설기술\s*진흥법|건진법\s*시행규칙|건진법\s*시행령|건진법시행규칙|건진법시행령|건진법|위험성평가\s*고시|위험성평가고시)\s*(?:제)?\s*§?\s*(\d+)\s*조?/g;
+// ADR 005: 조문 표지(§·제·조) 중 최소 하나가 있어야 매칭 — 표지 없이 법령명 뒤
+// 맨숫자만 있는 산문("산업안전보건법 2024년"·"산안법 50인 이상")이 가짜 조문으로
+// 추출돼 정상 문서가 환각으로 반려되던 false-positive 차단. "제62조"/"§62"/"§62조"/
+// "62조" 는 매칭, 표지 없는 "2024"·"50"은 거부. 캡처그룹은 m[2]/m[3]/m[4] 중 하나.
+const LAW_PATTERN = /(산업안전보건기준에\s*관한\s*규칙|산업안전보건법\s*시행규칙|산업안전보건법\s*시행령|산업안전보건법|산안기준규칙|산안법\s*시행규칙|산안법\s*시행령|산안법시행규칙|산안법시행령|산안법|기준규칙|중대재해\s*처벌\s*등에\s*관한\s*법률\s*시행령|중대재해\s*처벌\s*등에\s*관한\s*법률|중대재해처벌법\s*시행령|중대재해처벌법|중처법\s*시행령|중처법시행령|중처법|건설기술\s*진흥법\s*시행규칙|건설기술\s*진흥법\s*시행령|건설기술\s*진흥법|건진법\s*시행규칙|건진법\s*시행령|건진법시행규칙|건진법시행령|건진법|위험성평가\s*고시|위험성평가고시)\s*(?:제\s*(\d+)\s*조|§\s*(\d+)\s*조?|(\d+)\s*조)/g;
 
 // ─── 법령 ref 실존성 판정 (ADR 005 단일 SSoT 함수) ───
 // 순서: 텍스트 ref → IRI 정규화 → 그래프 getNode(우선 SSoT) → getArticle(MD, 본문 표시 보조).
@@ -27,7 +31,10 @@ interface RefExistence {
 // "산안법 §36", "중처법 시행령 §4", "기준규칙 §38 ②" 등에서 (lawPart, "§N") 분리.
 // 마지막 §숫자 토큰을 기준으로 법령명과 조문 부분을 가른다.
 function splitLawAndArticle(ref: string): { lawPart: string; articlePart: string } | null {
-  const m = ref.match(/^(.*?)\s*(§\s*\d+.*)$/);
+  // ADR 005: §조문뿐 아니라 "별표 N" 인용도 분리 — 별표 노드(106개) 실재하므로 그래프
+  // 조회 경로를 타야 한다(legalRefToIri 가 "별표 N"을 annex IRI 로 변환). 별표를 못 가르면
+  // 실재 별표 인용이 환각으로 오판됨.
+  const m = ref.match(/^(.*?)\s*((?:§\s*\d+|별표\s*\d+).*)$/);
   if (m) {
     return { lawPart: m[1].trim(), articlePart: m[2].trim() };
   }
@@ -58,6 +65,19 @@ async function resolveLegalRefExistence(
             reference: cleanRef,
             exists: true,
             matched: `${iriRes.iri} ${title} (graph node)`,
+          };
+        }
+        // ADR 005: 건진법 시행령/시행규칙은 그래프 노드가 유일 SSoT.
+        // 본문이 병합 MD(ctpa-art62)에 본법(§62 등)과 섞여 저장돼 있어, 아래 MD getArticle
+        // 폴백이 본법 조문을 시행령/시행규칙 조문으로 오매칭한다(가짜 "건진법 시행령 §62"가
+        // 본법 §62 에 매칭돼 false-pass). 따라서 노드 미발견 시 MD 폴백으로 내려가지 않고
+        // 즉시 환각 판정한다. 실재 노드(시행령 §98·시행규칙 §58 등)는 위 getNode 에서
+        // 이미 통과하므로 영향 없음 — 노드 없는 가짜 조항만 차단.
+        if (iriRes.canonical === "건진법시행령" || iriRes.canonical === "건진법시행규칙") {
+          return {
+            reference: cleanRef,
+            exists: false,
+            reason: `그래프 노드 미발견(${iriRes.iri}) — 환각 가능성 (건진법 시행령/시행규칙은 그래프 SSoT)`,
           };
         }
       }
@@ -107,7 +127,9 @@ async function scanInlineCitations(
     LAW_PATTERN.lastIndex = 0;
     let m: RegExpExecArray | null;
     while ((m = LAW_PATTERN.exec(s)) !== null) {
-      const ref = `${m[1].replace(/\s+/g, "")} §${m[2]}`;
+      // ADR 005: 조문 번호는 "제N조"(m[2]) / "§N"(m[3]) / "N조"(m[4]) 세 분기 중 하나에 잡힌다.
+      const num = m[2] ?? m[3] ?? m[4];
+      const ref = `${m[1].replace(/\s+/g, "")} §${num}`;
       if (!seen.has(ref)) {
         seen.add(ref);
         refs.push(ref);
@@ -183,7 +205,7 @@ function evaluateApprovalChain(
 
 // 파일 최상단 상수 — 안전관리 법정문서 초안 검토 Tool
 //
-// 검수 깊이 3단계 (a-codex review 2026-04-30 P0-2 권고에 따라 명시):
+// 검수 깊이 3단계 (교차 검증 2026-04-30 P0-2 권고에 따라 명시):
 //   L0 (노드 존재)        — getDocument(docId) 가 그래프 노드를 찾으면 통과. 모든 docId 지원.
 //   L1 (필수 필드/양식)   — requiredFields + sections.fields[required:true] + reviewRules.checkFields
 //                          존재 여부 자동 검증. 모든 docId 자동 대응 (그래프 노드 메타 기반).
@@ -1030,7 +1052,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       ((c.details as { hallucinationCount?: number })?.hallucinationCount ?? 0) > 0,
   );
 
-  // a-codex P0-4 권고: blocker fail 또는 hallucination 은 건수 무관 isError=true
+  // 교차 검증 P0-4 권고: blocker fail 또는 hallucination 은 건수 무관 isError=true
   const isErrorFlag = hasHallucination || failCount > 0;
 
   const nextActions = buildNextActions(checks, applicability);
