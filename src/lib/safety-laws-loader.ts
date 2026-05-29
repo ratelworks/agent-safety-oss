@@ -57,10 +57,20 @@ const LAW_FILES: Record<string, { fileName: string; shortName: string; official:
     shortName: "중처법 시행령",
     official: "중대재해 처벌 등에 관한 법률 시행령",
   },
-  "ctpa-art62": {
-    fileName: "건설기술진흥법-§62영역.md",
-    shortName: "건진법 §62 영역",
-    official: "건설기술 진흥법 — 안전관리 핵심 영역 (§62 + 시행령 §98 + 시행규칙 §58)",
+  ctpa: {
+    fileName: "건설기술진흥법.md",
+    shortName: "건진법",
+    official: "건설기술 진흥법 (§62 안전관리)",
+  },
+  "ctpa-decree": {
+    fileName: "건설기술진흥법-시행령.md",
+    shortName: "건진법 시행령",
+    official: "건설기술 진흥법 시행령 (§98 안전관리계획)",
+  },
+  "ctpa-rule": {
+    fileName: "건설기술진흥법-시행규칙.md",
+    shortName: "건진법 시행규칙",
+    official: "건설기술 진흥법 시행규칙 (§58 수립기준)",
   },
 };
 
@@ -275,8 +285,12 @@ function guessLawCodeFromRef(lawPart: string): LawCode | undefined {
 
   // 1) 중처법 — 시행령 결합 시 severe-accident-decree
   if (isSevere) return hasDecree ? "severe-accident-decree" : "severe-accident";
-  // 2) 건진법 — §62 영역 통합 파일 (시행령·시행규칙 본문 포함)
-  if (isCtpa) return "ctpa-art62";
+  // 2) 건진법 — 본법/시행령/시행규칙 법령별 파일로 분리. 수식어 결합 판정.
+  if (isCtpa) {
+    if (hasDecree) return "ctpa-decree";
+    if (hasRule) return "ctpa-rule";
+    return "ctpa";
+  }
   // 3) 위험성평가 고시
   if (isRiskNotice) return "risk-assessment-notice";
   // 4) 기준규칙 (산안 기준에 관한 규칙)

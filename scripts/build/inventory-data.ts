@@ -264,7 +264,9 @@ export const LAW_TOTAL_ARTICLES: Record<string, { total: number | null; shortNam
   "중대재해처벌법.md": { total: 16, shortName: "중대재해처벌법" },
   "중대재해처벌법-시행령.md": { total: 14, shortName: "중처법 시행령" },
   "위험성평가-고시-2024-76.md": { total: 23, shortName: "위험성평가 고시" },
-  "건설기술진흥법-§62영역.md": { total: null, shortName: "건진법 §62 영역" },
+  "건설기술진흥법.md": { total: null, shortName: "건진법" },
+  "건설기술진흥법-시행령.md": { total: null, shortName: "건진법 시행령" },
+  "건설기술진흥법-시행규칙.md": { total: null, shortName: "건진법 시행규칙" },
 };
 
 export function countLawArticles(): LawStat[] {

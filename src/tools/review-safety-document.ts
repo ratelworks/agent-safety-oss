@@ -67,22 +67,13 @@ async function resolveLegalRefExistence(
             matched: `${iriRes.iri} ${title} (graph node)`,
           };
         }
-        // decision 005: 건진법 시행령/시행규칙은 그래프 노드가 유일 SSoT.
-        // 본문이 병합 MD(ctpa-art62)에 본법(§62 등)과 섞여 저장돼 있어, 아래 MD getArticle
-        // 폴백이 본법 조문을 시행령/시행규칙 조문으로 오매칭한다(가짜 "건진법 시행령 §62"가
-        // 본법 §62 에 매칭돼 false-pass). 따라서 노드 미발견 시 MD 폴백으로 내려가지 않고
-        // 즉시 환각 판정한다. 실재 노드(시행령 §98·시행규칙 §58 등)는 위 getNode 에서
-        // 이미 통과하므로 영향 없음 — 노드 없는 가짜 조항만 차단.
-        if (iriRes.canonical === "건진법시행령" || iriRes.canonical === "건진법시행규칙") {
-          return {
-            reference: cleanRef,
-            exists: false,
-            reason: `그래프 노드 미발견(${iriRes.iri}) — 환각 가능성 (건진법 시행령/시행규칙은 그래프 SSoT)`,
-          };
-        }
       }
     }
     // 2차 — MD 번들 getArticle (본문 표시 보조). 그래프 미커버 조문 보강.
+    // 건진법은 본법/시행령/시행규칙이 법령별 MD 파일로 분리되어 있어 getArticle 가
+    // 법령별로 정확 라우팅한다(가짜 "건진법 시행령 §62"는 시행령 파일에서 §62 미발견 →
+    // 환각 판정). 과거 병합 MD(ctpa-art62)의 본법/시행령/시행규칙 혼재로 인한 오매칭을
+    // 막던 하드코딩 가드는 분리 완료로 불필요해져 제거됨.
     const article = await getArticle(cleanRef);
     if (article) {
       return {

@@ -114,7 +114,7 @@ src/ontology/legal-duty-master.json       <!-- INV:DOCID_MASTER -->94<!-- /INV:D
 src/ontology/forms/forms-map.json         <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> 개 formId
 src/ontology/forms/auto/*.md              <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD --> 개 생성된 마크다운 양식
 src/ontology/guides/*.json                <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL --> 개 전체 가이드
-src/ontology/safety-laws/*.md             <!-- INV:LAW_BUNDLE_COUNT -->8<!-- /INV:LAW_BUNDLE_COUNT --> 개 내장 법령 MD (산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법 §62 영역)
+src/ontology/safety-laws/*.md             <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT --> 개 내장 법령 MD (산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법·건진법 시행령·건진법 시행규칙)
 src/ontology/graph/nodes/**               그래프 노드와 엣지
 src/ontology/operational/profile.jsonld   운영 프로필
 ```

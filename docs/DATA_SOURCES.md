@@ -28,7 +28,7 @@
 ## 번들 데이터
 
 ```text
-src/ontology/safety-laws/*.md       법령 본문 <!-- INV:LAW_BUNDLE_COUNT -->8<!-- /INV:LAW_BUNDLE_COUNT -->개 (합계 약 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조)
+src/ontology/safety-laws/*.md       법령 본문 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->개 (합계 약 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조)
 src/ontology/legal-duty-master.json <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId 마스터
 src/ontology/forms/forms-map.json   <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId 인덱스
 src/ontology/forms/auto/*.md        <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD --> 자동 생성 양식
