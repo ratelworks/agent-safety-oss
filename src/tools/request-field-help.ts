@@ -1,7 +1,7 @@
 /**
  * request_field_help
  *
- * Active Graph Authoring Loop (ADR 002) — 필드 단위 동적 도움말 도구.
+ * Active Graph Authoring Loop (decision 002) — 필드 단위 동적 도움말 도구.
  *
  * 사용자가 A2UI 폼에서 특정 필드 옆 "?" 버튼을 클릭하거나,
  * LLM 이 사용자 입력값 currentValue 를 보고 작성 보조가 필요하다고 판단하면 호출.
@@ -299,7 +299,7 @@ export const requestFieldHelpTool: ToolDefinition = {
   name: "request_field_help",
   title: "필드 단위 동적 작성 도움말 (Active Graph Authoring Loop)",
   description:
-    "A2UI 폼의 특정 필드 작성 시 그래프 노드의 inputGuide·examples·checkPoints·standardFormat + _meta.writingGuide.fieldHints / commonMistakes / bestPractices 를 결정론적으로 조립하여 동적 도움말을 제공한다. currentValue 가 있으면 추상명사·서명 누락 등 패턴 일치 경고. ADR 002 Active Graph Authoring Loop 2단계 (사용자 입력 trigger → LLM 능동 호출) 의 핵심 도구. 반환값 structuredContent.a2uiUpdate 를 viewer 가 직접 updateComponents 적용 가능. LLM 후속 도구 추천: suggest_controls_for_hazard / preview_review / get_safety_document_guide.",
+    "A2UI 폼의 특정 필드 작성 시 그래프 노드의 inputGuide·examples·checkPoints·standardFormat + _meta.writingGuide.fieldHints / commonMistakes / bestPractices 를 결정론적으로 조립하여 동적 도움말을 제공한다. currentValue 가 있으면 추상명사·서명 누락 등 패턴 일치 경고. decision 002 Active Graph Authoring Loop 2단계 (사용자 입력 trigger → LLM 능동 호출) 의 핵심 도구. 반환값 structuredContent.a2uiUpdate 를 viewer 가 직접 updateComponents 적용 가능. LLM 후속 도구 추천: suggest_controls_for_hazard / preview_review / get_safety_document_guide.",
   inputSchema,
   handler,
 };

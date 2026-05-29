@@ -9,15 +9,15 @@ import { legalRefToIri } from "../lib/article-iri-map.js";
 // draft 의 모든 문자열 값에서 법령 인용 패턴을 추출해 그래프 노드 + 번들 법령 DB 와 대조.
 // citations 필드를 통하지 않고도 본문(sections, controls.description 등)에 들어간
 // "산안기준규칙 §999" 같은 가짜 조문을 검출한다.
-// ADR 005: 시행령/시행규칙·건진법 변형도 ref 로 추출되도록 패턴 보강
+// decision 005: 시행령/시행규칙·건진법 변형도 ref 로 추출되도록 패턴 보강
 // (본문에 박힌 "중대재해처벌법 시행령 §4" 같은 인용도 그래프 대조 대상이 되게).
-// ADR 005: 조문 표지(§·제·조) 중 최소 하나가 있어야 매칭 — 표지 없이 법령명 뒤
+// decision 005: 조문 표지(§·제·조) 중 최소 하나가 있어야 매칭 — 표지 없이 법령명 뒤
 // 맨숫자만 있는 산문("산업안전보건법 2024년"·"산안법 50인 이상")이 가짜 조문으로
 // 추출돼 정상 문서가 환각으로 반려되던 false-positive 차단. "제62조"/"§62"/"§62조"/
 // "62조" 는 매칭, 표지 없는 "2024"·"50"은 거부. 캡처그룹은 m[2]/m[3]/m[4] 중 하나.
 const LAW_PATTERN = /(산업안전보건기준에\s*관한\s*규칙|산업안전보건법\s*시행규칙|산업안전보건법\s*시행령|산업안전보건법|산안기준규칙|산안법\s*시행규칙|산안법\s*시행령|산안법시행규칙|산안법시행령|산안법|기준규칙|중대재해\s*처벌\s*등에\s*관한\s*법률\s*시행령|중대재해\s*처벌\s*등에\s*관한\s*법률|중대재해처벌법\s*시행령|중대재해처벌법|중처법\s*시행령|중처법시행령|중처법|건설기술\s*진흥법\s*시행규칙|건설기술\s*진흥법\s*시행령|건설기술\s*진흥법|건진법\s*시행규칙|건진법\s*시행령|건진법시행규칙|건진법시행령|건진법|위험성평가\s*고시|위험성평가고시)\s*(?:제\s*(\d+)\s*조|§\s*(\d+)\s*조?|(\d+)\s*조)/g;
 
-// ─── 법령 ref 실존성 판정 (ADR 005 단일 SSoT 함수) ───
+// ─── 법령 ref 실존성 판정 (decision 005 단일 SSoT 함수) ───
 // 순서: 텍스트 ref → IRI 정규화 → 그래프 getNode(우선 SSoT) → getArticle(MD, 본문 표시 보조).
 // 그래프에 노드가 존재하면 환각이 아니다. 노드도 없고 IRI 정규화도 실패할 때만 환각 후보.
 // review 의 inline 스캔 / risk_assessment citations / generic citations 3경로가 공유한다.
@@ -31,7 +31,7 @@ interface RefExistence {
 // "산안법 §36", "중처법 시행령 §4", "기준규칙 §38 ②" 등에서 (lawPart, "§N") 분리.
 // 마지막 §숫자 토큰을 기준으로 법령명과 조문 부분을 가른다.
 function splitLawAndArticle(ref: string): { lawPart: string; articlePart: string } | null {
-  // ADR 005: §조문뿐 아니라 "별표 N" 인용도 분리 — 별표 노드(106개) 실재하므로 그래프
+  // decision 005: §조문뿐 아니라 "별표 N" 인용도 분리 — 별표 노드(106개) 실재하므로 그래프
   // 조회 경로를 타야 한다(legalRefToIri 가 "별표 N"을 annex IRI 로 변환). 별표를 못 가르면
   // 실재 별표 인용이 환각으로 오판됨.
   const m = ref.match(/^(.*?)\s*((?:§\s*\d+|별표\s*\d+).*)$/);
@@ -67,7 +67,7 @@ async function resolveLegalRefExistence(
             matched: `${iriRes.iri} ${title} (graph node)`,
           };
         }
-        // ADR 005: 건진법 시행령/시행규칙은 그래프 노드가 유일 SSoT.
+        // decision 005: 건진법 시행령/시행규칙은 그래프 노드가 유일 SSoT.
         // 본문이 병합 MD(ctpa-art62)에 본법(§62 등)과 섞여 저장돼 있어, 아래 MD getArticle
         // 폴백이 본법 조문을 시행령/시행규칙 조문으로 오매칭한다(가짜 "건진법 시행령 §62"가
         // 본법 §62 에 매칭돼 false-pass). 따라서 노드 미발견 시 MD 폴백으로 내려가지 않고
@@ -127,7 +127,7 @@ async function scanInlineCitations(
     LAW_PATTERN.lastIndex = 0;
     let m: RegExpExecArray | null;
     while ((m = LAW_PATTERN.exec(s)) !== null) {
-      // ADR 005: 조문 번호는 "제N조"(m[2]) / "§N"(m[3]) / "N조"(m[4]) 세 분기 중 하나에 잡힌다.
+      // decision 005: 조문 번호는 "제N조"(m[2]) / "§N"(m[3]) / "N조"(m[4]) 세 분기 중 하나에 잡힌다.
       const num = m[2] ?? m[3] ?? m[4];
       const ref = `${m[1].replace(/\s+/g, "")} §${num}`;
       if (!seen.has(ref)) {
@@ -136,7 +136,7 @@ async function scanInlineCitations(
       }
     }
   }
-  // ADR 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
+  // decision 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
   const lawShortNames = listLaws().map((l) => l.shortName).join(", ");
   return Promise.all(refs.map((ref) => resolveLegalRefExistence(ref, lawShortNames)));
 }
@@ -616,7 +616,7 @@ async function reviewRiskAssessment(
         "감독관 대응을 위해 평가 근거 법령(산안법 §36, 기준규칙 §38 등) 1건 이상 인용 권장.",
     });
   } else {
-    // ADR 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
+    // decision 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
     const lawShortNames = listLaws().map((l) => l.shortName).join(", ");
     type RefDetail = { reference: string; exists: boolean; matched?: string; reason?: string };
     const refDetails: RefDetail[] = await Promise.all(
@@ -987,7 +987,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     }
 
     // 환각 검증 — citations 필드 (모든 docId 공통)
-    // ADR 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
+    // decision 005: 그래프 getNode 우선 → MD getArticle 보조. resolveLegalRefExistence 단일 SSoT 사용.
     const citations = (draftRaw["citations"] as Array<{ basisType?: string; reference?: string }> | undefined) ?? [];
     if (citations.length > 0) {
       const lawShortNames = listLaws().map((l) => l.shortName).join(", ");

@@ -1,7 +1,7 @@
 /**
  * analyze_work_context
  *
- * Active Graph Authoring Loop (ADR 002) — 작업명/내용 입력 시 그래프 종합 컨텍스트 조립.
+ * Active Graph Authoring Loop (decision 002) — 작업명/내용 입력 시 그래프 종합 컨텍스트 조립.
  *
  * 사용자가 A2UI 폼에서 작업명 (workName) 과 작업내용 (workContent) 을 입력하고
  * "이 작업의 위험·KOSHA·법령 보기" 버튼을 클릭하면, LLM 이 본 도구를 호출하여
@@ -498,7 +498,7 @@ export const analyzeWorkContextTool: ToolDefinition = {
   name: "analyze_work_context",
   title: "작업명 → 그래프 종합 컨텍스트 (위험·통제·법령·KOSHA)",
   description:
-    "A2UI 폼에서 사용자가 작업명·작업내용·작업조건을 입력하면 본 도구가 그래프 traversal 로 위험요인·통제대책·법령근거·KOSHA Guide·조건 기반 적용성 룰을 한 번에 조립한다. docId 의 hasHazard / mitigatedBy / legalBasis / guidedBy + workName 매칭 work_type/activity 의 hasHazard / guidedBy 를 합집합. workConditions (depthM·heightM·confinedSpace·hotWork) 기반 §38 §42 §618 등 적용성 룰 발동 자동 안내. ADR 002 Active Graph Authoring Loop 2단계 도구. 결정론적 (LLM 추측 0, 그래프 IRI 기반). 반환 structuredContent.a2uiUpdate 를 viewer 가 updateComponents 로 폼에 push. LLM 후속 도구 추천: suggest_controls_for_hazard / get_kosha_guide_md / get_safety_law_article / compile_safety_references / preview_review.",
+    "A2UI 폼에서 사용자가 작업명·작업내용·작업조건을 입력하면 본 도구가 그래프 traversal 로 위험요인·통제대책·법령근거·KOSHA Guide·조건 기반 적용성 룰을 한 번에 조립한다. docId 의 hasHazard / mitigatedBy / legalBasis / guidedBy + workName 매칭 work_type/activity 의 hasHazard / guidedBy 를 합집합. workConditions (depthM·heightM·confinedSpace·hotWork) 기반 §38 §42 §618 등 적용성 룰 발동 자동 안내. decision 002 Active Graph Authoring Loop 2단계 도구. 결정론적 (LLM 추측 0, 그래프 IRI 기반). 반환 structuredContent.a2uiUpdate 를 viewer 가 updateComponents 로 폼에 push. LLM 후속 도구 추천: suggest_controls_for_hazard / get_kosha_guide_md / get_safety_law_article / compile_safety_references / preview_review.",
   inputSchema,
   handler,
 };

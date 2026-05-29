@@ -2,7 +2,7 @@
 /**
  * inventory-data.ts
  *
- * ADR 003 (Doc Drift Prevention) — 코드/데이터에서 카운트 산출하는 단일 진원지.
+ * decision 003 (Doc Drift Prevention) — 코드/데이터에서 카운트 산출하는 단일 진원지.
  *
  * `generate-inventory.ts` (INVENTORY.md 렌더링) 와 `sync-docs.ts` (9개 문서 marker 자동 갱신)
  * 가 동일한 산출값을 공유하도록 본 모듈을 import.

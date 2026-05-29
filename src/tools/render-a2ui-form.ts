@@ -242,7 +242,7 @@ function flattenFields(node: any): Array<{ key: string; label: string; inputGuid
   return out;
 }
 
-// ADR 002 — Active Graph Authoring Loop: 그래프 컨텍스트 inline 조립
+// decision 002 — Active Graph Authoring Loop: 그래프 컨텍스트 inline 조립
 // assemble_doc_context 의 traversal 로직을 폼 렌더 단계에서 직접 호출 (별도 도구 호출 없이)
 interface InlineGraphContext {
   hazards: Array<{ iri: string; label: string; category?: string }>;
@@ -324,14 +324,14 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     };
   }
 
-  // ADR 002 — _meta.writingGuide 추출 (있을 때만)
+  // decision 002 — _meta.writingGuide 추출 (있을 때만)
   const writingGuide = (node._meta?.writingGuide ?? {}) as {
     fieldHints?: Record<string, string>;
     commonMistakes?: string[];
     bestPractices?: string[];
   };
 
-  // ADR 002 — 그래프 컨텍스트 inline 조립 (assemble_doc_context 와 동일 데이터)
+  // decision 002 — 그래프 컨텍스트 inline 조립 (assemble_doc_context 와 동일 데이터)
   let graphContext: InlineGraphContext = {
     hazards: [],
     controls: [],
@@ -385,7 +385,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   // 2. components — root Column 안에 [title, info, ...fields, submit]
   const components: A2UIComponent[] = [];
 
-  // ADR 002 — guide-card 조건부 표시 (writingGuide 가 있을 때만)
+  // decision 002 — guide-card 조건부 표시 (writingGuide 가 있을 때만)
   const hasWritingGuide =
     (writingGuide.commonMistakes && writingGuide.commonMistakes.length > 0) ||
     (writingGuide.bestPractices && writingGuide.bestPractices.length > 0);
@@ -408,7 +408,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     usageHint: "h1",
   });
 
-  // info card — ADR 002 강화: graph-context + lifecycle 추가
+  // info card — decision 002 강화: graph-context + lifecycle 추가
   const infoColChildren: string[] = ["info-purpose", "info-meta", "info-laws"];
   if (
     graphContext.hazards.length > 0 ||
@@ -477,7 +477,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     components.push({ id: "info-laws", component: "Text", text: "", usageHint: "caption" });
   }
 
-  // ADR 002 — info-graph-context 인라인 (assemble_doc_context 요약)
+  // decision 002 — info-graph-context 인라인 (assemble_doc_context 요약)
   if (infoColChildren.includes("info-graph-context")) {
     const parts: string[] = [];
     if (graphContext.hazards.length > 0) {
@@ -522,7 +522,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     });
   }
 
-  // ADR 002 — info-lifecycle 인라인
+  // decision 002 — info-lifecycle 인라인
   if (infoColChildren.includes("info-lifecycle")) {
     const lifecycleParts: string[] = [];
     if (masterDoc?.submitTo) lifecycleParts.push(`📤 제출: ${masterDoc.submitTo}`);
@@ -538,7 +538,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     });
   }
 
-  // ADR 002 — guide-card (writingGuide 노출)
+  // decision 002 — guide-card (writingGuide 노출)
   if (hasWritingGuide) {
     const guideColChildren: string[] = [];
     components.push({ id: "guide-card", component: "Card", child: "guide-col" });
@@ -575,7 +575,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     components.push({ id: "guide-col", component: "Column", children: guideColChildren });
   }
 
-  // ADR 002 — _meta.writingGuide.fieldHints 라벨 매칭 헬퍼
+  // decision 002 — _meta.writingGuide.fieldHints 라벨 매칭 헬퍼
   // 공백·괄호·번호 마커 정규화 후 양방향 substring 매칭
   function normalizeForMatch(s: string): string {
     return s
@@ -636,7 +636,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       ...(f.examples && f.examples.length > 0 ? { placeholder: f.examples[0] } : {}),
     });
 
-    // ADR 002 — guide 강화 (inputGuide + examples + checkPoints)
+    // decision 002 — guide 강화 (inputGuide + examples + checkPoints)
     const guideParts: string[] = [];
     if (f.inputGuide) guideParts.push(`💡 ${f.inputGuide}`);
     if (f.examples && f.examples.length > 0) guideParts.push(`예시: ${f.examples.slice(0, 2).join(" / ")}`);
@@ -651,7 +651,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       usageHint: "caption",
     });
 
-    // ADR 002 — fieldHint (writingGuide.fieldHints 라벨 매칭) — 있을 때만
+    // decision 002 — fieldHint (writingGuide.fieldHints 라벨 매칭) — 있을 때만
     const fieldHint = findFieldHint(f.label, f.key);
     if (fieldHint) {
       fieldChildren.push(hintId);
@@ -672,7 +672,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     children: fieldGroupChildren,
   });
 
-  // ADR 002 — actions Row 강화: 4 신규 능동 호출 액션 + 기존 2개
+  // decision 002 — actions Row 강화: 4 신규 능동 호출 액션 + 기존 2개
   components.push({
     id: "actions",
     component: "Row",
@@ -687,7 +687,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     distribution: "spaceBetween",
   });
 
-  // ADR 002 — analyze-btn: 작업명 → 그래프 종합 컨텍스트
+  // decision 002 — analyze-btn: 작업명 → 그래프 종합 컨텍스트
   components.push({
     id: "analyze-btn",
     component: "Button",
@@ -703,7 +703,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     text: "🔍 작업 분석",
   });
 
-  // ADR 002 — controls-btn: 위험요인 → 통제대책 추천
+  // decision 002 — controls-btn: 위험요인 → 통제대책 추천
   components.push({
     id: "controls-btn",
     component: "Button",
@@ -719,7 +719,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     text: "🛡 통제대책",
   });
 
-  // ADR 002 — help-btn: 필드 단위 동적 도움말
+  // decision 002 — help-btn: 필드 단위 동적 도움말
   components.push({
     id: "help-btn",
     component: "Button",
@@ -735,7 +735,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     text: "❓ 필드 도움말",
   });
 
-  // ADR 002 — preview-review-btn: 작성 중 부분 검토
+  // decision 002 — preview-review-btn: 작성 중 부분 검토
   components.push({
     id: "preview-review-btn",
     component: "Button",
@@ -797,7 +797,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       a2uiVersion: "v0.9",
       format: args.format,
       messages,
-      // ADR 002 — 그래프 컨텍스트 + writingGuide 노출 (LLM 능동 호출에 활용)
+      // decision 002 — 그래프 컨텍스트 + writingGuide 노출 (LLM 능동 호출에 활용)
       graphContext: {
         hazards: graphContext.hazards,
         controls: graphContext.controls,
@@ -821,7 +821,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       nextActions: [
         "viewer (npm run mcp:viewer → http://localhost:5174) / Claude Desktop / MCP Inspector 등 A2UI 호환 클라이언트가 위 JSONL 을 렌더링",
         "사용자 입력 후 fieldPathMap 기준으로 draft 키를 변환 → generate_safety_document({docId, draft: 입력값}) 호출",
-        "ADR 002 능동 호출 루프 — 사용자가 작업명 입력 시 analyze_work_context, 위험요인 입력 시 suggest_controls_for_hazard, 필드 도움말 필요 시 request_field_help, 부분 검토 필요 시 preview_review 호출 (LLM 이 사용자 입력 맥락에 따라 자연 체이닝)",
+        "decision 002 능동 호출 루프 — 사용자가 작업명 입력 시 analyze_work_context, 위험요인 입력 시 suggest_controls_for_hazard, 필드 도움말 필요 시 request_field_help, 부분 검토 필요 시 preview_review 호출 (LLM 이 사용자 입력 맥락에 따라 자연 체이닝)",
         "또는 register_site/project/person 도구로 profile.jsonld 갱신",
       ],
     },
@@ -832,7 +832,7 @@ export const renderA2UIFormTool: ToolDefinition = {
   name: "render_a2ui_form",
   title: "A2UI 안전문서 입력 폼 렌더 (Active Graph Authoring Loop)",
   description:
-    "docId 를 받아 그래프 노드의 작성 필드를 A2UI v0.9 JSONL 폼 정의로 변환한다. ADR 002 강화: (1) info-card 에 그래프 컨텍스트 inline (위험요인·통제대책·KOSHA Guide·연계문서·라이프사이클) (2) _meta.writingGuide.commonMistakes / bestPractices 를 guide-card 로 노출 (3) 필드별 inputGuide·examples·checkPoints + _meta.writingGuide.fieldHints 매칭 (4) actions Row 에 6 개 액션 버튼 — analyze_work_context / suggest_controls_for_hazard / request_field_help / preview_review / assemble_doc_context / submit_safety_document. profile.jsonld 자동 채움. 비-개발자 안전관리자가 브라우저(viewer)/Claude Desktop/Inspector 에서 직접 사용 가능. 동적 입력 협업의 진입점이자 ADR 002 Active Graph Authoring Loop 의 1단계.",
+    "docId 를 받아 그래프 노드의 작성 필드를 A2UI v0.9 JSONL 폼 정의로 변환한다. decision 002 강화: (1) info-card 에 그래프 컨텍스트 inline (위험요인·통제대책·KOSHA Guide·연계문서·라이프사이클) (2) _meta.writingGuide.commonMistakes / bestPractices 를 guide-card 로 노출 (3) 필드별 inputGuide·examples·checkPoints + _meta.writingGuide.fieldHints 매칭 (4) actions Row 에 6 개 액션 버튼 — analyze_work_context / suggest_controls_for_hazard / request_field_help / preview_review / assemble_doc_context / submit_safety_document. profile.jsonld 자동 채움. 비-개발자 안전관리자가 브라우저(viewer)/Claude Desktop/Inspector 에서 직접 사용 가능. 동적 입력 협업의 진입점이자 decision 002 Active Graph Authoring Loop 의 1단계.",
   inputSchema,
   handler,
 };

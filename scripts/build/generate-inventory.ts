@@ -13,7 +13,7 @@
  *   - 양식 인덱스 (HWP/PDF/XLSX/MD)
  *   - 데이터 기준일 통합 표시
  *
- * 산출 로직은 `inventory-data.ts` 에 분리 (ADR 003). 본 파일은 렌더링만 담당.
+ * 산출 로직은 `inventory-data.ts` 에 분리 (decision 003). 본 파일은 렌더링만 담당.
  * sync-docs.ts (9개 문서 marker 자동 갱신) 가 동일 데이터를 재사용.
  *
  * 실행:

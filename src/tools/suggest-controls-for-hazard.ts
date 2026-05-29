@@ -1,7 +1,7 @@
 /**
  * suggest_controls_for_hazard
  *
- * Active Graph Authoring Loop (ADR 002) — 위험요인 입력 시 통제대책 추천.
+ * Active Graph Authoring Loop (decision 002) — 위험요인 입력 시 통제대책 추천.
  *
  * 사용자가 A2UI 폼에서 위험요인 (hazard) 필드를 입력하고 "통제대책 추천" 버튼을 클릭하면,
  * LLM 이 본 도구를 호출하여 그래프 traversal 로 ERIC-PP 위계별 통제대책을 추천받는다.
@@ -374,7 +374,7 @@ export const suggestControlsForHazardTool: ToolDefinition = {
   name: "suggest_controls_for_hazard",
   title: "위험요인 → 통제대책 추천 (ERIC-PP 위계)",
   description:
-    "A2UI 폼에서 위험요인 (hazard) 입력 후 본 도구 호출 → 그래프 mitigatedBy traversal 로 ERIC-PP 위계 (제거·대체·공학·관리·PPE) 정렬 통제대책 추천. docId 입력 시 해당 문서에 이미 직접 매핑된 control 을 우선 표시. ADR 002 Active Graph Authoring Loop 2단계 도구. 결정론적 (그래프 IRI 기반, LLM 추측 0). 반환 structuredContent.a2uiUpdate 를 viewer 가 updateComponents 로 폼에 push 가능. LLM 후속 도구 추천: get_ppe_by_task / get_kosha_guide_md / preview_review.",
+    "A2UI 폼에서 위험요인 (hazard) 입력 후 본 도구 호출 → 그래프 mitigatedBy traversal 로 ERIC-PP 위계 (제거·대체·공학·관리·PPE) 정렬 통제대책 추천. docId 입력 시 해당 문서에 이미 직접 매핑된 control 을 우선 표시. decision 002 Active Graph Authoring Loop 2단계 도구. 결정론적 (그래프 IRI 기반, LLM 추측 0). 반환 structuredContent.a2uiUpdate 를 viewer 가 updateComponents 로 폼에 push 가능. LLM 후속 도구 추천: get_ppe_by_task / get_kosha_guide_md / preview_review.",
   inputSchema,
   handler,
 };

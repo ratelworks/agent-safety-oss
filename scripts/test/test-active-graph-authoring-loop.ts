@@ -1,5 +1,5 @@
 /**
- * Active Graph Authoring Loop 통합 시나리오 테스트 (ADR 002)
+ * Active Graph Authoring Loop 통합 시나리오 테스트 (decision 002)
  *
  * 안전관리자가 daily_tbm 을 실제로 작성하는 흐름을 처음부터 끝까지 시뮬레이션.
  * 각 단계마다 6개 도구의 호출·응답·a2uiUpdate 메시지를 검증.
@@ -92,7 +92,7 @@ async function scenarioDailyTbm(): Promise<void> {
   );
 
   check(
-    "그래프 컨텍스트 인라인 (ADR 002 R1)",
+    "그래프 컨텍스트 인라인 (decision 002 R1)",
     sc1.graphContext.hazards.length > 0 &&
       sc1.graphContext.controls.length > 0 &&
       sc1.graphContext.legalArticles.length > 0,
@@ -121,7 +121,7 @@ async function scenarioDailyTbm(): Promise<void> {
   const actualActions = buttons.map((b: any) => b.action?.name);
   const allPresent = expectedActions.every((a) => actualActions.includes(a));
   check(
-    "actions 6종 모두 등록 (ADR 002 R2)",
+    "actions 6종 모두 등록 (decision 002 R2)",
     allPresent,
     `buttons=[${actualActions.join(", ")}]`,
   );
@@ -166,7 +166,7 @@ async function scenarioDailyTbm(): Promise<void> {
 
   const a2uiValid = validateA2UIUpdate(sc2.a2uiUpdate);
   check(
-    "a2uiUpdate 메시지 정상 (ADR 002 R3)",
+    "a2uiUpdate 메시지 정상 (decision 002 R3)",
     a2uiValid.valid,
     a2uiValid.valid ? `messages=${sc2.a2uiUpdate.length}` : `invalid: ${a2uiValid.reason}`,
   );
@@ -399,7 +399,7 @@ async function scenarioGraphContextConsistency(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  console.log("Active Graph Authoring Loop — 통합 시나리오 테스트 (ADR 002)");
+  console.log("Active Graph Authoring Loop — 통합 시나리오 테스트 (decision 002)");
   console.log(`실행 시각: ${new Date().toISOString()}`);
 
   await scenarioDailyTbm();
@@ -421,7 +421,7 @@ async function main(): Promise<void> {
     }
     process.exit(1);
   }
-  console.log("\n✅ 전체 통과 — ADR 002 Active Graph Authoring Loop 통합 시나리오 검증 완료");
+  console.log("\n✅ 전체 통과 — decision 002 Active Graph Authoring Loop 통합 시나리오 검증 완료");
 }
 
 main().catch((err) => {

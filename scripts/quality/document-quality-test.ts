@@ -26,7 +26,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
 const OUT_DIR = resolve(ROOT, "artifacts", "test-results", "core");
 
-// ADR 006 — over-dump(근거 없는 위험 과다 제시 = 환각) 페널티 파라미터.
+// decision 006 — over-dump(근거 없는 위험 과다 제시 = 환각) 페널티 파라미터.
 // 기대 위험의 OVERDUMP_RATIO 배 또는 (기대 + OVERDUMP_MARGIN) 중 큰 값까지는 무페널티,
 // 그 초과분 1건당 OVERDUMP_PENALTY_PER 점 감점(최대 OVERDUMP_PENALTY_CAP).
 const OVERDUMP_RATIO = 2; // 기대 위험 대비 2배까지 허용
@@ -158,7 +158,7 @@ function evaluateDocument(text: string, sc: Record<string, any>, scenario: Scena
     note: `legalBasis ${legalBasisCount}개, 본문 발췌 ${hasLawExtract ? "있음" : "없음"}`,
   };
 
-  // 2. KOSHA 가이드 활용 (max 10) — ADR 006: 순수 개수가 아닌 *관련성* 반영.
+  // 2. KOSHA 가이드 활용 (max 10) — decision 006: 순수 개수가 아닌 *관련성* 반영.
   //   개수 기여를 KOSHA_COUNT_SCORE_CAP 으로 제한해 "많을수록 고득점" 인센티브(over-dump 유발)를 제거.
   //   의미 매칭(expectedKoshaPattern)이 동등 비중을 갖도록 가중.
   const koshaCount = (sc.koshaGuideCount as number | undefined) ?? 0;
@@ -177,7 +177,7 @@ function evaluateDocument(text: string, sc: Record<string, any>, scenario: Scena
     note: `KOSHA ${koshaCount}개 매핑(개수점 ${koshaCountScore}/${KOSHA_COUNT_SCORE_CAP}), 의미 매칭 ${koshaPatternScore}/5`,
   };
 
-  // 3. 위험요소 완전성 + over-dump 페널티 (max 10) — ADR 006
+  // 3. 위험요소 완전성 + over-dump 페널티 (max 10) — decision 006
   //   올바름 > 양: 기대 위험을 빠짐없이 포함하되, 근거 없는 위험을 과다 제시(over-dump)하면 감점.
   //   단 화이트리스트(hasHazard 그래프 직접 매핑) 위험은 근거가 명확하므로 개수로 감점하지 않는다.
   //   over-dump 환각의 실거주지는 guide_fallback(가이드 causedBy 무차별 확장)이다.
@@ -200,7 +200,7 @@ function evaluateDocument(text: string, sc: Record<string, any>, scenario: Scena
     // 작업문서: 기대 위험 포함률 (정상 = 만점)
     hazardBase = Math.min(10, Math.floor(10 * hazardMatchCount / scenario.expectedHazards.length));
   } else {
-    // 행정문서: 위험요인 미해당이 정답(ADR 006). 억제/0건 = 만점, 폴백 과다 = 환각 감점.
+    // 행정문서: 위험요인 미해당이 정답(decision 006). 억제/0건 = 만점, 폴백 과다 = 환각 감점.
     hazardBase = hazardSource === "suppressed_administrative" || hazardCount === 0 ? 10 : 8;
   }
   const hazardScore = Math.max(0, hazardBase - overdumpPenalty);

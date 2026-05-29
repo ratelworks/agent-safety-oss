@@ -2,7 +2,7 @@
 /**
  * sync-docs.ts
  *
- * ADR 003 (Doc Drift Prevention) L2 — 9개 문서의 marker 영역을 INVENTORY 산출값으로 자동 갱신.
+ * decision 003 (Doc Drift Prevention) L2 — 9개 문서의 marker 영역을 INVENTORY 산출값으로 자동 갱신.
  *
  * 처리 패턴:
  *   1. `<!-- INV:KEY -->VALUE<!-- /INV:KEY -->` (본문 inline) — 정규식 치환

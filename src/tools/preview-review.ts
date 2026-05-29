@@ -1,7 +1,7 @@
 /**
  * preview_review
  *
- * Active Graph Authoring Loop (ADR 002) — 작성 중 부분 검토 도구.
+ * Active Graph Authoring Loop (decision 002) — 작성 중 부분 검토 도구.
  *
  * 사용자가 A2UI 폼에서 일부 필드를 작성한 상태에서 "현재까지 검토" 버튼을
  * 클릭하면, LLM 이 본 도구를 호출하여 review_safety_document 를 부분 모드로
@@ -288,7 +288,7 @@ export const previewReviewTool: ToolDefinition = {
   name: "preview_review",
   title: "작성 중 부분 검토 (Active Graph Authoring Loop)",
   description:
-    "A2UI 폼에서 사용자가 일부 필드 작성 후 본 도구 호출 → review_safety_document 의 부분 모드로 누락 필수·환각 인용·결재선 즉시 검토. scope 으로 검토 범위 좁힘 (all / required-only / hallucination-only). 작성 중 가드레일 — 최종 검토 (review_safety_document) 와 직교. ADR 002 Active Graph Authoring Loop 2단계 도구. 반환 structuredContent.a2uiUpdate 가 viewer 에 체크리스트 컴포넌트 push. LLM 후속 도구 추천: request_field_help (누락 필드별 가이드) / search_safety_laws (환각 정정) / review_safety_document (최종) / generate_safety_document (본문).",
+    "A2UI 폼에서 사용자가 일부 필드 작성 후 본 도구 호출 → review_safety_document 의 부분 모드로 누락 필수·환각 인용·결재선 즉시 검토. scope 으로 검토 범위 좁힘 (all / required-only / hallucination-only). 작성 중 가드레일 — 최종 검토 (review_safety_document) 와 직교. decision 002 Active Graph Authoring Loop 2단계 도구. 반환 structuredContent.a2uiUpdate 가 viewer 에 체크리스트 컴포넌트 push. LLM 후속 도구 추천: request_field_help (누락 필드별 가이드) / search_safety_laws (환각 정정) / review_safety_document (최종) / generate_safety_document (본문).",
   inputSchema,
   handler,
 };

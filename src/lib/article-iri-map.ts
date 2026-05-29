@@ -12,7 +12,7 @@
 
 // 법령명 → canonical 슬러그
 //
-// ADR 005: 그래프(articles/*.jsonld @id)에 존재하는 모든 art: prefix 를 커버해야
+// decision 005: 그래프(articles/*.jsonld @id)에 존재하는 모든 art: prefix 를 커버해야
 // review 환각검증이 정당한 법령 인용을 차단하지 않는다. 그래프 실측 prefix 10종:
 //   건진법, 건진법시행규칙, 건진법시행령, 기준규칙, 산안법, 산안법시행규칙,
 //   산안법시행령, 위험성평가-고시, 중처법, 중처법시행령
@@ -39,7 +39,7 @@ export const LAW_ALIASES: Record<string, string> = {
   "중대재해 처벌 등에 관한 법률": "중처법",
   "중대재해처벌법": "중처법",
   "중처법": "중처법",
-  // 중처법 시행령 — 입력 키 누락이 P0 버그였음 (ADR 005)
+  // 중처법 시행령 — 입력 키 누락이 P0 버그였음 (decision 005)
   "중대재해 처벌 등에 관한 법률 시행령": "중처법시행령",
   "중대재해처벌법 시행령": "중처법시행령",
   "중대재해처벌법시행령": "중처법시행령",
@@ -78,7 +78,7 @@ interface IriResolution {
 
 // 공백 정규화 lookup — "중처법 시행령" 과 "중처법시행령" 을 동일 키로 취급.
 // LAW_ALIASES 에 양쪽 표기를 모두 등록하지만, 누락 시에도 공백 차이로 인한
-// canonical 실패를 방지하기 위한 2차 안전망 (ADR 005 단일화 정신).
+// canonical 실패를 방지하기 위한 2차 안전망 (decision 005 단일화 정신).
 const ALIAS_BY_COMPACT: Record<string, string> = (() => {
   const m: Record<string, string> = {};
   for (const [key, canonical] of Object.entries(LAW_ALIASES)) {

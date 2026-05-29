@@ -261,7 +261,7 @@ function normalizeRef(raw: string): { lawPart: string; refShort: string } {
 function guessLawCodeFromRef(lawPart: string): LawCode | undefined {
   if (!lawPart) return undefined;
   const lp = lawPart.toLowerCase();
-  // ADR 005: 본법명 + 수식어(시행령/시행규칙) 결합 판정.
+  // decision 005: 본법명 + 수식어(시행령/시행규칙) 결합 판정.
   // 이전 버그 — `시행령` 단독 판정이 `중처/중대재해` 보다 먼저 매칭되어
   // "중처법 시행령" 을 osha-decree(산안법시행령)로 오라우팅 → §4 도달 불가.
   // 본법 식별을 먼저 한 뒤 수식어를 결합한다.

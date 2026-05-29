@@ -162,7 +162,7 @@ function hazardFromNode(iri: string, node: HazardRawNode): HazardInfo {
   };
 }
 
-// ADR 006 — 위험요인 환각 차단: 행정성 문서는 guidedBy→causedBy 위험 폴백을 금지한다.
+// decision 006 — 위험요인 환각 차단: 행정성 문서는 guidedBy→causedBy 위험 폴백을 금지한다.
 // 위험요인이 본질적으로 불필요한 문서(선임·게시·대장·신청·교육·보고·협의체)에
 // 근거 없는 위험을 그래프 추론인 양 출처 달아 제시 = over-dump = 환각.
 // 작업성 문서(작업계획서·점검표·인허가·위험성평가)는 특정 작업 위험을 다루므로 폴백 유지.
@@ -178,7 +178,7 @@ const ADMINISTRATIVE_HAZARD_CATEGORIES = new Set<string>([
 
 // docId 패턴 → 행정성 위험 폴백 차단 여부 (documentCategory 메타 없는 fallback 노드용).
 // inferCategoryFromDocId(양식 스타일용)와 분리 — 여기서는 *위험 폴백* 결정만 한다.
-// 보수적 원칙(ADR 006): 확실한 행정문서만 차단, 애매하면 작업성으로 두어 폴백 허용.
+// 보수적 원칙(decision 006): 확실한 행정문서만 차단, 애매하면 작업성으로 두어 폴백 허용.
 function isAdministrativeDocIdForHazard(docId: string): boolean {
   // (1) 최우선 — docId 의 *말미 토큰*이 문서 종류를 결정한다.
   //     예: safety_inspection_application 은 중간에 "inspection"이 있어도 본질은 신청서(application).
@@ -188,7 +188,7 @@ function isAdministrativeDocIdForHazard(docId: string): boolean {
     return true;
   }
   // (2) 작업성 신호 — 점검(inspection/check/checklist)·작업계획·인허가·위험성평가는 폴백 허용.
-  //     weekly_joint_inspection 등 합동점검도 작업성으로 둔다(ADR 006 — 애매 문서는 작업성).
+  //     weekly_joint_inspection 등 합동점검도 작업성으로 둔다(decision 006 — 애매 문서는 작업성).
   if (/(^|_)(work_plan|work_permit|inspection|check|checklist|risk_assessment|hazardous_risk)/.test(docId)) {
     return false;
   }
@@ -199,10 +199,10 @@ function isAdministrativeDocIdForHazard(docId: string): boolean {
   return false;
 }
 
-// 문서 성격(category) + docId 로 위험 폴백 허용 여부 판정 (ADR 006).
+// 문서 성격(category) + docId 로 위험 폴백 허용 여부 판정 (decision 006).
 // documentCategory 메타가 있으면 그것을 우선, 없으면 docId 패턴으로 추론.
 function allowGuideFallback(category: string | undefined, docId: string): boolean {
-  // ADR 006: category 정규화(trim·소문자) — JSON 저작 시 대소문자/공백 드리프트로
+  // decision 006: category 정규화(trim·소문자) — JSON 저작 시 대소문자/공백 드리프트로
   // 행정문서 위험 억제가 우회(over-dump 환각)되는 것을 방지.
   const c = category?.trim().toLowerCase();
   if (c) {
@@ -213,7 +213,7 @@ function allowGuideFallback(category: string | undefined, docId: string): boolea
 
 // docHazardIris(doc.hasHazard) 가 있으면 화이트리스트 모드 — KOSHA Guide causedBy 확장 안 함.
 // 비어 있을 때만 KOSHA Guide의 causedBy로 추론 (over-dump 방지).
-// allowFallback=false(행정성 문서, ADR 006): 화이트리스트가 없으면 위험 0 — 폴백 금지.
+// allowFallback=false(행정성 문서, decision 006): 화이트리스트가 없으면 위험 0 — 폴백 금지.
 async function loadHazards(
   guideIris: string[],
   docHazardIris: string[] = [],
@@ -229,7 +229,7 @@ async function loadHazards(
     if (node) out.push(hazardFromNode(hIri, node));
   }
   if (whitelist) return out;
-  // ADR 006 — 행정성 문서는 화이트리스트가 없으면 위험 0 (guidedBy→causedBy 폴백 차단).
+  // decision 006 — 행정성 문서는 화이트리스트가 없으면 위험 0 (guidedBy→causedBy 폴백 차단).
   if (!allowFallback) return out;
   for (const gIri of guideIris) {
     const causedBy = await neighborsByEdge(gIri, "causedBy");
@@ -383,7 +383,7 @@ function formatCellValue(value: unknown): string | undefined {
     return `${value.length}건 (아래 상세표 참조)`;
   }
   try {
-    // ADR 005/결함정정: 파이프 이스케이프는 formatMarkdownCell 이 단일 책임으로 처리한다.
+    // decision 005/결함정정: 파이프 이스케이프는 formatMarkdownCell 이 단일 책임으로 처리한다.
     // 여기서 미리 이스케이프하면 formatMarkdownCell 과 이중 이스케이프(\\\|)되어 셀이 깨진다.
     return JSON.stringify(value);
   } catch {
@@ -584,7 +584,7 @@ async function renderGeneric(
   controls: ControlInfo[],
   directControlIris: Set<string>,
   legalBodyByIri: Map<string, string | undefined>,
-  // ADR 006 — 행정성 문서로 위험 폴백이 차단됐는지 (hazards 비었을 때 메시지 결정용)
+  // decision 006 — 행정성 문서로 위험 폴백이 차단됐는지 (hazards 비었을 때 메시지 결정용)
   hazardFallbackSuppressed: boolean = false,
 ): Promise<string> {
   const d = (input.draft ?? {}) as Record<string, any>;
@@ -599,7 +599,7 @@ async function renderGeneric(
   // Document category — 양식 일관성 (행정 문서 vs 작업 문서) — v0.8 결함 #3 정정 + v0.9 fallback 추론
   const metaCat = (doc._meta as { documentCategory?: string } | undefined)?.documentCategory;
   const category = metaCat ?? inferCategoryFromDocId(doc.docId);
-  // ADR 006: 라벨(행정/작업) 판정을 위험 폴백 분류기 allowGuideFallback 과 일원화한다.
+  // decision 006: 라벨(행정/작업) 판정을 위험 폴백 분류기 allowGuideFallback 과 일원화한다.
   // 이전엔 3값(administrative/report/register)만 행정 처리해, 위험 억제 집합(7값)에는 있으나
   // 여기 없는 appointment/application/education/council(및 meta 없는 선임·교육 docId) 문서가
   // "작업기간" 라벨 + "위험요인 미해당" 을 동시 출력하는 모순이 있었다. allowGuideFallback 으로 통일.
@@ -632,7 +632,7 @@ async function renderGeneric(
   // 행정 메타·결재선·작업조건은 번호 없이 표기 — sections 가 자체 번호(별지 ①~⑤·GHS 16항 등)를
   // 가질 수 있어 충돌 방지 (BLOCKER cosmetic 정정 2026-04-29). sections 본문은 자체 번호 또는
   // 자동 번호(secNo) 중 하나로 일관 처리.
-  // ADR 005 / 결함 정정: 문서메타 표의 모든 셀을 formatMarkdownCell 로 일원화.
+  // decision 005 / 결함 정정: 문서메타 표의 모든 셀을 formatMarkdownCell 로 일원화.
   // siteName="A | 사망 | 50세" 같은 파이프 포함 값이 2열표를 4열로 붕괴시키거나,
   // supervisor 줄바꿈이 행을 누출시키는 것을 방지 (파이프 \| 이스케이프, 줄바꿈 <br>).
   const docNumber =
@@ -756,7 +756,7 @@ async function renderGeneric(
 
   // 부속 정보(위험요소·통제·KOSHA·법령·비상·통지)는 모두 라벨로 표기 — 양식 본문 번호와 충돌 방지.
   // 위험 요소 — 화이트리스트(hasHazard)는 그래프 직접 매핑, 그 외엔 KOSHA Guide causedBy 추론.
-  // ADR 006 — 행정성 문서는 위험 폴백을 차단하므로 hazards 가 비면 "위험요인 미해당"으로 표기
+  // decision 006 — 행정성 문서는 위험 폴백을 차단하므로 hazards 가 비면 "위험요인 미해당"으로 표기
   // (근거 없는 위험을 그래프 추론인 양 제시하는 환각 방지).
   const hazardHeader =
     hazards.length === 0 && hazardFallbackSuppressed
@@ -981,7 +981,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   // 그래프 추론 — 독립 호출 병렬화
   const guidedByIris = doc.guidedBy ?? [];
-  // ADR 006 — 문서 성격 판정: 행정성 문서는 위험 폴백 차단(화이트리스트만).
+  // decision 006 — 문서 성격 판정: 행정성 문서는 위험 폴백 차단(화이트리스트만).
   // 주의: 위험 폴백 결정은 *원본 documentCategory 메타* + docId 패턴만 사용한다.
   // inferCategoryFromDocId(양식 스타일용)는 weekly_joint_inspection 등을 administrative 로
   // 분류해 위험 폴백을 잘못 차단하므로 hazard 결정에 쓰지 않는다.
@@ -1000,7 +1000,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const directControlIris = new Set<string>(docControlIris);
   const controls = await loadControls(guidedByIris, Array.from(directControlIris));
 
-  // ADR 006 — 위험 폴백이 차단됐고 화이트리스트도 없어 위험이 비워진 경우 (렌더 메시지용)
+  // decision 006 — 위험 폴백이 차단됐고 화이트리스트도 없어 위험이 비워진 경우 (렌더 메시지용)
   const hasWhitelist = ((doc as DocumentNode & { hasHazard?: string[] }).hasHazard ?? []).length > 0;
   const hazardFallbackSuppressed = !hazardFallbackAllowed && !hasWhitelist;
 
@@ -1094,7 +1094,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       sectionsCount: (doc.sections ?? []).length,
       legalBasisCount: (doc.legalBasis ?? []).length,
       bodyMarkdownLength: fullBody.length,
-      // ADR 006 — 위험 출처/폴백 차단 여부 (환각 차단 관찰용)
+      // decision 006 — 위험 출처/폴백 차단 여부 (환각 차단 관찰용)
       documentCategory,
       hazardSource: hasWhitelist ? "whitelist" : hazardFallbackAllowed ? "guide_fallback" : "suppressed_administrative",
       inferred: {
