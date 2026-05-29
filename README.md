@@ -10,7 +10,7 @@
 
 **건설현장의 법정 안전문서 작성을 더 빠르고 정확하게.** 산안법·기준규칙·중처법·KOSHA 기술지원규정(가이드)을 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.
 
-[English](./README-EN.md) · [정체성](./docs/IDENTITY.md) · [Claude Desktop 설정](./docs/SETUP_CLAUDE_DESKTOP.md) · [Codex CLI 설정](./docs/SETUP_CODEX.md) · [기술 상세 (운영 온톨로지)](./docs/OPERATIONAL-ONTOLOGY.md)
+[정체성](./docs/IDENTITY.md) · [Claude Desktop 설정](./docs/SETUP_CLAUDE_DESKTOP.md) · [Codex CLI 설정](./docs/SETUP_CODEX.md) · [기술 상세 (운영 온톨로지)](./docs/OPERATIONAL-ONTOLOGY.md)
 
 ---
 

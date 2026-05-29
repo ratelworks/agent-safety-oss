@@ -145,7 +145,7 @@ function scanFile(file: string) {
     }
 
     // === 검출 4 (v1.3.0+): 현재 release version 자동 매치 (HIGH) ===
-    // README badge / README-EN Package version / SECURITY 현재 안정판 → SSoT.version 정확 일치
+    // README badge / SECURITY 현재 안정판 → SSoT.version 정확 일치
     // 매 release 시 sed 빼먹어도 CI 차단 (사용자 비판: "여전히 문서 정리 안 됨" 자동화)
 
     // README badge: [![Release](https://img.shields.io/badge/release-vN.N.N-...)]
@@ -159,20 +159,6 @@ function scanFile(file: string) {
         expected: `release-v${SSoT.version}`,
         found: `release-v${badgeMatch[1]}`,
         hint: "README badge release-v 가 package.json version 과 불일치. 매 release bump 시 동기화 필수.",
-      });
-    }
-
-    // README-EN: | Package version | **N.N.N** (date) |
-    const enVersionMatch = line.match(/Package version.*\*\*(\d+\.\d+\.\d+)\*\*/);
-    if (enVersionMatch && enVersionMatch[1] !== SSoT.version) {
-      issues.push({
-        severity: "HIGH",
-        category: "stale_release_marker",
-        file: rel,
-        line: lineNo,
-        expected: SSoT.version,
-        found: enVersionMatch[1],
-        hint: "README-EN Package version 이 package.json 과 불일치.",
       });
     }
 

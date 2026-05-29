@@ -2,7 +2,7 @@
 
 > **본 문서는 `npm run build` 시 `scripts/build/generate-inventory.ts` 가 자동 생성합니다. 수동 편집 금지** — drift 차단용.
 
-- 생성 시각: 2026-05-29T09:00:18+09:00
+- 생성 시각: 2026-05-29T10:59:10+09:00
 - 법령 데이터 최신 동기화: **2026-05-18**
 - 양식 인덱스 컴파일: 2026-04-29
 
@@ -135,7 +135,7 @@ npm run build              # 자동 생성 (빌드 단계 통합)
 npx tsx scripts/build/generate-inventory.ts  # 수동 실행
 ```
 
-9개 문서 (README · README-EN · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · OPERATIONAL-ONTOLOGY) 의 marker 영역은 `sync-docs.ts` 가 본 inventory 산출값으로 자동 갱신합니다. `npm run docs:check` 가 CI/pre-commit 에서 drift 차단.
+8개 문서 (README · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · OPERATIONAL-ONTOLOGY) 의 marker 영역은 `sync-docs.ts` 가 본 inventory 산출값으로 자동 갱신합니다. `npm run docs:check` 가 CI/pre-commit 에서 drift 차단.
 
 ---
 

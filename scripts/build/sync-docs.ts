@@ -13,7 +13,7 @@
  *   npm run docs:check          # dry-run + drift 있으면 exit 1 (CI / pre-commit 용)
  *   npx tsx scripts/build/sync-docs.ts [--check] [--verbose]
  *
- * 처리 대상: README.md · README-EN.md · CHANGELOG.md · CONTRIBUTING.md
+ * 처리 대상: README.md · CHANGELOG.md · CONTRIBUTING.md
  *           docs/SECURITY.md · docs/ARCHITECTURE.md · docs/IDENTITY.md
  *           docs/DATA_SOURCES.md · docs/OPERATIONAL-ONTOLOGY.md
  *
@@ -29,7 +29,6 @@ import { collectInventoryData, ROOT, type InventoryData } from "./inventory-data
 const TARGET_DOCS: string[] = [
   // 외부 공개 최상위 문서
   "README.md",
-  "README-EN.md",
   "CHANGELOG.md",
   "CONTRIBUTING.md",
   "SECURITY.md",

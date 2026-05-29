@@ -195,7 +195,7 @@ function renderInventoryMarkdown(data: InventoryData): string {
   lines.push("```");
   lines.push("");
   lines.push(
-    "9개 문서 (README · README-EN · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · OPERATIONAL-ONTOLOGY) 의 marker 영역은 `sync-docs.ts` 가 본 inventory 산출값으로 자동 갱신합니다. `npm run docs:check` 가 CI/pre-commit 에서 drift 차단.",
+    "8개 문서 (README · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · OPERATIONAL-ONTOLOGY) 의 marker 영역은 `sync-docs.ts` 가 본 inventory 산출값으로 자동 갱신합니다. `npm run docs:check` 가 CI/pre-commit 에서 drift 차단.",
   );
   lines.push("");
   lines.push("---");

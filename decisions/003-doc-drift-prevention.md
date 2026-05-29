@@ -10,7 +10,7 @@ tags: [drift, inventory, docs, governance]
 
 ## Context
 
-agent-safety-oss 는 외부 평가/사용자 onboarding 마다 README · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · README-EN · OPERATIONAL-ONTOLOGY 9 개 문서의 카운트가 코드와 어긋나는 drift 가 반복 발생했다.
+agent-safety-oss 는 외부 평가/사용자 onboarding 마다 README · CHANGELOG · SECURITY · ARCHITECTURE · IDENTITY · DATA_SOURCES · CONTRIBUTING · OPERATIONAL-ONTOLOGY 8 개 문서의 카운트가 코드와 어긋나는 drift 가 반복 발생했다.
 
 대표 사례:
 - v1.4.1 fix 항목 중 단일 항목이 "9 개 문서의 KOSHA Guide 본문 `1,039` → 실측 `1,037` 정정". 9 곳에 수동으로 박힌 동일 숫자.
