@@ -125,10 +125,7 @@ git commit -m "feat(scope): 한국어 설명
 
 상세 설명...
 
-Continues: <기준 commit hash>
-Work-Scope: agent-safety-oss
-
-Co-Authored-By: <기여자>"
+Co-Authored-By: Name <email>"
 ```
 
 ### 5.2 자동 검증 (CI — `.github/workflows/ci.yml` SSoT)
@@ -171,12 +168,8 @@ tsx scripts/dev/skeleton-graph-check.ts  # graph 6/6
 
 <상세 설명>
 
-Continues: <hash>
-Session-Id: <세션 ID>
-Agent-Source: <claude-code | a-codex | manual>
-Work-Scope: agent-safety-oss
-
-Co-Authored-By: <이름>
+Signed-off-by: Name <email>
+Co-Authored-By: Name <email>
 ```
 
 `<type>`: feat / fix / docs / chore / refactor / test

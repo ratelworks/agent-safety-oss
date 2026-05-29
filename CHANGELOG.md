@@ -7,15 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.0] — 2026-05-24
 
-**🎯 양방향 온톨로지 그래프 통합 — 실무 가용 수준 달성**. 사용자 본질 기획 ("트리 → 그래프 → LLM 도메인 전문성 자동 활용") 의 결정적 진전.
+**🎯 양방향 온톨로지 그래프 통합 — 실무 가용 수준 달성**. 핵심 설계 방향 ("트리 → 그래프 → LLM 도메인 전문성 자동 활용") 의 결정적 진전.
 
 ### Added — 3-단계 양방향 그래프 enrichment (ADR 004)
 
-- **Stage 1** `scripts/etl/enrich-guide-legal-edges.ts` — 1,039 KOSHA Guide 본문 전수 정규식 파싱 → art:* IRI 매핑 → `legalBasis` edge 자동 박제. **+1,550 신규 edge** (legalBasis 약 400 → 1,967). dangling 0 (가지 조문 29건 skip — audit:strict 회귀 차단).
-- **Stage 2** `scripts/etl/enrich-article-reverse-edges.ts` — Stage 1 결과 역방향 인덱싱 → 각 art:* 노드의 `legalBasisOf` edge 박제. **+1,550 신규 edge** / 법령 조문 → 가이드 발견 가능 비율 **0% → 29.6%** (387/1,306).
+- **Stage 1** `scripts/etl/enrich-guide-legal-edges.ts` — 1,039 KOSHA Guide 본문 전수 정규식 파싱 → art:* IRI 매핑 → `legalBasis` edge 자동 기입. **+1,550 신규 edge** (legalBasis 약 400 → 1,967). dangling 0 (가지 조문 29건 skip — audit:strict 회귀 차단).
+- **Stage 2** `scripts/etl/enrich-article-reverse-edges.ts` — Stage 1 결과 역방향 인덱싱 → 각 art:* 노드의 `legalBasisOf` edge 기입. **+1,550 신규 edge** / 법령 조문 → 가이드 발견 가능 비율 **0% → 29.6%** (387/1,306).
 - **Stage 3** `scripts/etl/enrich-document-guidedby.ts` — 법정문서 45개 (guidedBy 미보유) ↔ KOSHA Guide 자동 매핑. legalBasis traversal (의미적 정확성) + docId 키워드 fallback. **+131 신규 guidedBy edge** / 법정문서 guidedBy 보유율 **53% → 100%** (51/96 → 96/96).
 - **Stage 4** `src/tools/assemble-doc-context.ts` 강화 — `koshaGuides` 결과 필드 신설. docNode.guidedBy traversal → 각 가이드 메타 (guideNo / title / category / bodyAvailable) 자동 노출. LLM 이 자연어 요청만으로 적용 가이드 즉시 발견.
-- **ADR** `decisions/004-bidirectional-graph-enrichment.md` — 결정/대안/결과 박제.
+- **ADR** `decisions/004-bidirectional-graph-enrichment.md` — 결정/대안/결과 기록.
 
 ### Verification — 시나리오별 KOSHA Guide 자동 발견 (assemble_doc_context 호출)
 
@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - mcp:test:smoke 22/22 PASS, mcp:test:graph reasoning/consistency/effect PASS
 - docs:check 16개 문서 정합 (자동 marker 갱신)
 
-### Impact (사용자 본질 기획 달성)
+### Impact (핵심 설계 방향 달성)
 
 - **A2UI 폼 빈칸 자동 채움 100%** — 안전관리자가 폼 열면 가이드/법령/위험/통제 모두 자동 표시 (CLI 미숙련 사용자 부담 해소).
 - **LLM 환각 차단 강화** — 그래프 SSoT 에서 가이드 IRI 인용 → 임의 가이드명 생성 차단.
@@ -54,7 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `.githooks/pre-commit` (husky 미사용, native git hook + `prepare` script 가 `core.hooksPath` 자동 설정)
   - `.github/workflows/ci.yml` CI step 추가
   - `npm test` 와 `prepublishOnly` 에 포함
-- **ADR**: `decisions/003-doc-drift-prevention.md` — alternatives 4종 비교 후 marker 방식 채택 사유 박제.
+- **ADR**: `decisions/003-doc-drift-prevention.md` — alternatives 4종 비교 후 marker 방식 채택 사유 기록.
 - **marker 키 13종**: `KOSHA_BODY`/`KOSHA_META`/`KOSHA_FAILURES` · `TOOLS_TOTAL`/`KEYLESS`/`KEYREQ`/`PLACEHOLDER`/`ACTIVE` · `LAW_LAST_SYNC`/`LAW_ARTICLES` · `GRAPH_TOTAL`/`DOCUMENTS_TOTAL` · `VERSION`.
 
 ### Added — `inspect` CLI
@@ -69,7 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 회복 메커니즘 정정: KOSHA OneAPI 15144147 응답의 `fileDownloadUrl` 이 fileOrdrNo=5 (0 bytes) 만 가리켰던 v1.4.1 의 한계를 v1.4.2 에서 **동일 fileId 의 fileOrdrNo 전수 시도** 로 해소.
   - A-142-2018: fileOrdrNo=4 → PDF 506KB → kordoc 변환 → 528 line MD
   - T-25-2021: fileOrdrNo=4 → HWP 26KB (KOSHA portal 측 PDF 자체가 0 bytes) → kordoc HWP 변환 → 261 line MD
-- `_FAILURES.json` 풍부화 + history 박제 (failures 0건). v1.4.1 시점 등록 사유와 v1.4.2 해소 사유 모두 보존.
+- `_FAILURES.json` 풍부화 + history 기록 (failures 0건). v1.4.1 시점 등록 사유와 v1.4.2 해소 사유 모두 보존.
 
 ### Fixed — drift 8건 자동 정정 (marker 적용 시 발견)
 
@@ -139,7 +139,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - README/README-EN 의 KOSHA Guide 표기 — `1,037 본문` 단일 표기에서 `본문 1,037 + 메타 1,039 (PDF 미제공 2건 명시)` 로 정정. 메타와 본문이 다르다는 사실을 정직 공개.
 - `_FAILURES.json` 의 "폐기 판정" 표현 정정 — 실제는 KOSHA OneAPI 측 PDF 응답 부재 (가이드 자체는 KOSHA 자료마당에 존재). 사용자가 직접 다운로드 가능한 경로 명시.
-- 미수집 가이드의 실체 박제 — A-142-2018 "디에탄올아민에 대한 작업환경측정 분석 기술지침" · T-25-2021 "시험동물 조직 전처리 및 포매 지침".
+- 미수집 가이드의 실체 기입 — A-142-2018 "디에탄올아민에 대한 작업환경측정 분석 기술지침" · T-25-2021 "시험동물 조직 전처리 및 포매 지침".
 
 ### Verification
 
@@ -195,7 +195,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - actions Row 에 6 액션 버튼 — analyze/controls/help/preview-review/assemble/submit
 
 문서·인프라:
-- `decisions/002-active-graph-authoring-loop.md` — ADR 박제
+- `decisions/002-active-graph-authoring-loop.md` — ADR 기록
 - `.specs/in-progress/2026-05-21-active-graph-authoring-loop.md` — EARS 요구사항·디자인·태스크
 - `scripts/test/test-active-graph-authoring-loop.ts` — 통합 시나리오 (daily_tbm + work_plan_excavation + 그래프 SSoT 일관성) 25 checks PASS
 

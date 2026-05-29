@@ -204,5 +204,5 @@ npx tsx scripts/verify/validate-shacl.ts                   # SHACL Shape 무결�
 - `src/ontology/graph/context.jsonld` — vocabulary SSoT
 - `src/ontology/legal-duty-master.json` — <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER -->종 법정의무 SSoT
 - `docs/LEGAL-DUTY-LIFECYCLE.md` — 6단계 라이프사이클 (인식·작성·검수·결재·제출·보관)
-- `dev.md` 제2조 5축 모델 — 새 도구 분류
-- `dev.md` 제4조 법령 인용 규칙 — 정확한 §·항·호 인용
+- 5축 도구 분류 모델 — 새 도구 분류
+- 법령 인용 규칙 — 정확한 조·항·호 인용
