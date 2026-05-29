@@ -226,7 +226,7 @@ agent-safety-oss/
 
 본 spec 의 작업 단위는 TaskList #1 ~ #6 과 1:1 매핑:
 
-- [x] T1 — ADR 002 작성
+- [x] T1 — decision 002 작성
 - [x] T2 — .specs/in-progress 작성 (본 파일)
 - [ ] T3 — render-a2ui-form.ts 강화
 - [ ] T4 — 신규 도구 4종 작성
@@ -234,7 +234,7 @@ agent-safety-oss/
 - [ ] T6 — typecheck + build + smoke 통과
 
 P2~P5 (데이터 보강) 는 별도 spec 으로 분리 (Phase 1B).
-P1C (viewer/ 격상) 은 ADR 001 spec 으로 진행 (병행).
+P1C (viewer/ 격상) 은 decision 001 spec 으로 진행 (병행).
 
 ## References
 

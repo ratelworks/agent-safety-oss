@@ -21,7 +21,7 @@ tags: [ontology, kosha-guide, graph-traversal, semantic-integration]
 | Hazard → 가이드 | 38 / 38 (100%) |
 | **법정문서 → 가이드** | **51 / 96 (53%)** |
 | **법령 조문 → 가이드 (역방향)** | **0 / 1,306 (0%)** |
-| 가이드 본문에 인용된 법령 | 약 757건 가이드가 평균 2.1건 인용 (그래프 edge 미박제) |
+| 가이드 본문에 인용된 법령 | 약 757건 가이드가 평균 2.1건 인용 (그래프 edge 미기록) |
 
 사용자 본질 기획 — "기존 트리 구조 전문 자료를 온톨로지 그래프화 → LLM 이 도메인 전문성 이해하기 쉬운 구조" — 와 큰 격차. 안전관리자가 자연어로 "굴착 작업 TBM" 요청 시 LLM 이 그래프 traversal 로 적용 KOSHA Guide 를 자동 발견하지 못하는 상태.
 
@@ -34,13 +34,13 @@ tags: [ontology, kosha-guide, graph-traversal, semantic-integration]
 - 1,039 .md 본문 전수 정규식 파싱 (긴 패턴 우선 / 가지 조문 "X조의Y" 포함)
 - 11개 법령명 패턴 → art:* IRI 매핑 (기준규칙/산안법/시행규칙/시행령/중처법/위평고시/건진법)
 - art:* 풀 dangling 검증 → 미등록 가지 조문 29건 skip (audit:strict 회귀 차단)
-- 각 가이드 .jsonld 의 `legalBasis` edge (audit-graph-health EDGE_PROPS 표준) 에 박제
+- 각 가이드 .jsonld 의 `legalBasis` edge (audit-graph-health EDGE_PROPS 표준) 에 기록
 - 결과: **+1,550 신규 legalBasis edge** (legalBasis 약 400 → 1,967)
 
 ### Stage 2 — 법령 조문 → 가이드 역방향 매핑 (`scripts/etl/enrich-article-reverse-edges.ts`)
 
 - Stage 1 결과 forward edges 역방향 인덱싱
-- 각 art:* 노드의 `legalBasisOf` edge 에 가이드 IRI 박제
+- 각 art:* 노드의 `legalBasisOf` edge 에 가이드 IRI 기록
 - 결과: **+1,550 신규 legalBasisOf edge** / 법령 조문 → 가이드 발견 가능 비율 **0% → 29.6%** (387/1,306)
 
 ### Stage 3 — 법정문서 ↔ 가이드 자동 매핑 (`scripts/etl/enrich-document-guidedby.ts`)

@@ -20,7 +20,7 @@ tags: [a2ui, ontology-graph, llm, authoring, review, writing-guide]
 
 ### 현재 자원 vs 활용 — 10개 갭
 
-조사 결과 (rules/decisions.md / rules/specs.md 박제용 요약):
+조사 결과 (rules/decisions.md / rules/specs.md 기록용 요약):
 
 | 코드 | 사실 | 영향 |
 |---|---|---|
@@ -28,7 +28,7 @@ tags: [a2ui, ontology-graph, llm, authoring, review, writing-guide]
 | F2 | `render-a2ui-form.ts:232-241` flattenFields() 가 sections 우선 → requiredFields 무시 | KOSHA 1:1 검증된 32 필드(daily_tbm) 누락 |
 | F3 | `_meta.writingGuide` (fieldHints·commonMistakes·bestPractices) — A2UI/generate/review 미참조 | 작성 보조 자원 사장 |
 | F4 | 공식 PDF/HWP 132 종 내장 vs. draft 주입 경로 없음 | 양식 외형 갭 (후속) |
-| F5 | viewer/ 미존재 (ADR 001 spec T2~T5 미진행) | 비-개발자 도달 경로 미완성 |
+| F5 | viewer/ 미존재 (decision 001 spec T2~T5 미진행) | 비-개발자 도달 경로 미완성 |
 | F6 | `_meta.writingGuide` 보유 노드 **17/97 (18%)** | 작성 보조 커버리지 부족 |
 | F7 | `checkPoints` **1,302건** 풍부 — generate 만 사용 | A2UI/review 누락 |
 | F8 | `review-safety-document.ts:808-811` 도 sections 우선 → requiredFields 무시 | review 정합성↓ |
@@ -107,20 +107,20 @@ P1 (코드 수정) → P2~P5 (데이터 보강) 순차 진행. P1 은 즉시 효
 
 - A2UI 폼이 더 복잡해짐 — info-card / guide / suggestion 영역 등 컴포넌트 수↑
 - LLM 도구 호출 횟수↑ — Claude Desktop 등 MCP host 의 토큰 비용 증가 (단 그래프는 결정론적 → 환각 비용은 0)
-- viewer/ 미존재로 A2UI 양방향 흐름을 끝까지 검증하려면 ADR 001 spec T2~T5 진행 필요 (병행)
+- viewer/ 미존재로 A2UI 양방향 흐름을 끝까지 검증하려면 decision 001 spec T2~T5 진행 필요 (병행)
 - `_meta.writingGuide` 노드 80개 보강은 시간 소모 (P2 단독으로 1~3주)
 
 ### Neutral
 
-- 양식 외형 동일성 (F4) 은 본 ADR 범위 외 — 후속 ADR 003 후보 (HWP fill / PDF AcroForm / 1:1 HTML 재현)
-- viewer/ T2~T5 진행 (ADR 001) 은 본 ADR 과 직교 — 둘 다 진행 시 시너지
+- 양식 외형 동일성 (F4) 은 본 decision 범위 외 — 후속 decision 003 후보 (HWP fill / PDF AcroForm / 1:1 HTML 재현)
+- viewer/ T2~T5 진행 (decision 001) 은 본 decision 과 직교 — 둘 다 진행 시 시너지
 
 ## Alternatives Considered
 
 1. **Path A: F2+F3 단순 패키지 (정적 보조만)** — render-a2ui-form 만 수정해서 writingGuide / checkPoints 정적 노출. 1-2일 소모. 그러나 LLM 능동 호출 루프 미구현 → 사용자 메시지("능동적으로 가져올 수 있도록")와 충돌 → REJECT
-2. **Path B: F2+F3+F4 양식 외형 동시 진행** — HWP/PDF inject 까지 한 번에. 5-7일 소모. 그러나 사용자 우선순위(작성 품질 + 그래프 보조 + 검토)와 외형 동일성은 직교, 본질 1~3 가 더 시급 → DEFER (후속 ADR)
+2. **Path B: F2+F3+F4 양식 외형 동시 진행** — HWP/PDF inject 까지 한 번에. 5-7일 소모. 그러나 사용자 우선순위(작성 품질 + 그래프 보조 + 검토)와 외형 동일성은 직교, 본질 1~3 가 더 시급 → DEFER (후속 decision)
 3. **Path C: 그래프 보조 + A2UI 능동 루프 (본 결정)** ✅ — 3단계 루프로 본질 1~3 동시 충족. P1 (코드 3-5일) + P2~P5 (데이터 보강 누적) 순차.
-4. **Path D: A2UI 폐기 + Web UI 신규 개발** — React/Next 기반 web/ 신규. 1-2주 소모, 의존성·번들 무게↑. A2UI vanilla 철학 부정 → REJECT (viewer/ 격상 후 한계 도달 시 후속 ADR)
+4. **Path D: A2UI 폐기 + Web UI 신규 개발** — React/Next 기반 web/ 신규. 1-2주 소모, 의존성·번들 무게↑. A2UI vanilla 철학 부정 → REJECT (viewer/ 격상 후 한계 도달 시 후속 decision)
 
 ## Implementation
 
@@ -138,12 +138,12 @@ Phase 1B (데이터 보강, 1-3주 누적):
 - P5: formAuthority 메타 추가
 
 Phase 1C (viewer/, 4-7일):
-- ADR 001 spec T2~T5 진행 — viewer 격상 + A2UI 양방향 흐름 클라이언트 구현
+- decision 001 spec T2~T5 진행 — viewer 격상 + A2UI 양방향 흐름 클라이언트 구현
 
 ## References
 
 - 사용자 메시지 2026-05-21: "온톨로지 그래프를 활용한 작성 보조와 가이드라인, 완성된 문서에 대한 검토이고 a2ui 를 이용해서 작성자에게 필요한 정보들을 능동적으로 가져올 수 있도록 LLM 과 연결"
-- decisions/001-a2ui-viewer-promotion.md (ADR 001 — viewer 격상)
+- decisions/001-a2ui-viewer-promotion.md (decision 001 — viewer 격상)
 - `src/tools/render-a2ui-form.ts:232-241` (F2 sections 우선)
 - `src/tools/review-safety-document.ts:808-811` (F8 review 도 sections 우선)
 - `src/tools/assemble-doc-context.ts` (그래프 traversal 결과 조립)

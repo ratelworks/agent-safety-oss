@@ -28,7 +28,7 @@ v1.4.1 에서 `docs/INVENTORY.md` 를 `npm run build` 시 `scripts/build/generat
 - `docs/INVENTORY.md` 가 `npm run build` 시 코드/데이터에서 직접 카운트 산출.
 - 모든 카운트의 단일 진원지 (Single Source of Truth).
 
-### L2. Marker + sync-docs (이번 ADR 신설)
+### L2. Marker + sync-docs (이번 decision 신설)
 
 각 문서의 카운트 위치에 다음 형태의 marker 를 삽입한다:
 
@@ -49,7 +49,7 @@ v1.4.1 에서 `docs/INVENTORY.md` 를 `npm run build` 시 `scripts/build/generat
 - 기본: 천 단위 콤마 (`1,037`). 숫자 형식이 아닌 키 (`LAW_LAST_SYNC`) 는 raw.
 - shields.io badge URL 안의 숫자는 별도 정규식 갱신 — marker 가 URL 안에 들어가면 파싱 깨짐.
 
-### L3. docs-check (이번 ADR 신설)
+### L3. docs-check (이번 decision 신설)
 
 `scripts/check/docs-check.ts` 가 marker 영역의 현재 값과 INVENTORY 산출값을 비교. 불일치 시 exit 1.
 
@@ -90,7 +90,7 @@ v1.4.1 에서 `docs/INVENTORY.md` 를 `npm run build` 시 `scripts/build/generat
 
 ## References
 
-- v1.4.1 CHANGELOG (외부 리뷰 drift 일괄 해소 — 본 ADR 의 직접 동기)
+- v1.4.1 CHANGELOG (외부 리뷰 drift 일괄 해소 — 본 decision 의 직접 동기)
 - `scripts/build/generate-inventory.ts` (L1)
-- `scripts/build/sync-docs.ts` (L2, 본 ADR 로 신설)
-- `scripts/check/docs-check.ts` (L3, 본 ADR 로 신설)
+- `scripts/build/sync-docs.ts` (L2, 본 decision 로 신설)
+- `scripts/check/docs-check.ts` (L3, 본 decision 로 신설)

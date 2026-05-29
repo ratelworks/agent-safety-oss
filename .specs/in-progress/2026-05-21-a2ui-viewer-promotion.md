@@ -118,7 +118,7 @@ agent-safety-oss/
 
 본 spec 의 작업 단위는 TaskList #1 ~ #5 와 1:1 매핑:
 
-- [x] T1 — ADR + .specs/ 결정 박제 (본 파일)
+- [x] T1 — decision + .specs/ 결정 기록 (본 파일)
 - [ ] T2 — 폴더 리네임 + 메타파일 갱신
 - [ ] T3 — viewer.js 확장 (19종 docId 동적)
 - [ ] T4 — 폼 입력 + MD/PDF export 흐름

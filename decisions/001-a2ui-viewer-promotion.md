@@ -72,13 +72,13 @@ Agent_HQ PHILOSOPHY.md §9 체크리스트로 검증:
 
 ### Neutral
 
-- DOCX/HWP export 는 본 ADR 범위 외 — 후속 ADR 002 후보
-- React/Next 기반 web/ 격상은 viewer/ 한계 도달 시 ADR 003 후보
+- DOCX/HWP export 는 본 decision 범위 외 — 후속 decision 002 후보
+- React/Next 기반 web/ 격상은 viewer/ 한계 도달 시 decision 003 후보
 
 ## Alternatives Considered
 
 1. **데모 유지 + Claude Desktop 권장** — 비-개발자 도달 불가, 본질 부정 → REJECT
-2. **React/Next 기반 web/ 신규 개발** — 1-2주 소요, 의존성·번들 무게↑. viewer.js 격상 후에도 한계 도달하면 그때 후속 ADR → DEFER
+2. **React/Next 기반 web/ 신규 개발** — 1-2주 소요, 의존성·번들 무게↑. viewer.js 격상 후에도 한계 도달하면 그때 후속 decision → DEFER
 3. **본 결정 (viewer.js vanilla 확장)** ✅ — 최소한 + 즉시 가능 + 의존성 0 철학 보존
 
 ## Implementation
