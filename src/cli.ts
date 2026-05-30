@@ -8,11 +8,12 @@ import { toolInputToMeta, getFieldKind, getObjectShape, type FieldKind } from ".
 // 파일 최상단 상수 — CLI 서브커맨드 라벨
 const CMD = {
   SERVE: "serve",
+  VIEWER: "viewer",
   TOOLS: "tools",
   CALL: "call",
   DESCRIBE: "describe",
   INSPECT: "inspect",
-  DOCTOR: "doctor", // v1.4.1 backward-compat — inspect 의 alias
+  DOCTOR: "doctor", // inspect 의 alias (구버전 호환)
 } as const;
 
 const program = new Command();
@@ -39,6 +40,16 @@ program
     await import("./index.js");
   });
 
+// 브라우저 입력 폼 — CLI(명령어)·AI 비서 없이 비개발자가 직접 쓰는 사용자 표면.
+// `npx -y agent-safety-oss viewer` 한 줄로 로컬 폼 서버 기동 (자동 브라우저 오픈).
+program
+  .command(CMD.VIEWER)
+  .description("Start the browser input-form viewer (A2UI) at http://localhost:5174")
+  .action(async () => {
+    const { startViewer } = await import("./viewer.js");
+    startViewer();
+  });
+
 // 시스템 정합성 점검 — `inspect` (권장) + `doctor` (v1.4.1 backward-compat alias)
 async function runInspectCommand(opts: { json?: boolean }): Promise<void> {
   const { runInspect } = await import("./tools-meta/inspect.js");
@@ -55,7 +66,7 @@ program
 
 program
   .command(CMD.DOCTOR)
-  .description("alias of `inspect` (kept for v1.4.1 backward compatibility)")
+  .description("alias of `inspect`")
   .option("--json", "JSON 출력 (사람 가독 markdown 대신)")
   .action(runInspectCommand);
 

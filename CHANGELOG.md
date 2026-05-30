@@ -5,6 +5,20 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] — 2026-05-30
+
+브라우저 입력 폼을 명령어 한 줄로 띄울 수 있습니다 — 설치도 빌드도 필요 없습니다.
+
+### 추가
+
+- **브라우저 입력 폼을 `npx` 한 줄로** — `npx -y agent-safety-oss viewer` 만 입력하면 안전문서 입력 폼이 브라우저에 바로 열립니다. 이전엔 소스를 내려받아 빌드해야 했지만, 이제 Node.js 만 있으면 됩니다. AI 비서(Claude·Codex)나 명령어가 익숙하지 않은 안전관리자·현장소장을 위한 가장 쉬운 경로입니다.
+- **자동 브라우저 열기가 Windows·Linux 에서도 동작** — 폼 화면이 운영체제에 맞게 자동으로 열립니다 (이전 macOS 전용 → 전 OS 지원).
+
+### 개선
+
+- 포트가 이미 사용 중일 때 다른 포트로 실행하는 방법을 안내합니다.
+- Claude Desktop·Codex 설정 가이드의 옛 버전 표기를 정리했습니다.
+
 ## [1.5.0] — 2026-05-24
 
 안전 문서를 작성하면 관련 KOSHA 가이드와 법령 조항이 자동으로 따라붙습니다 — 일일이 찾을 필요가 없습니다.

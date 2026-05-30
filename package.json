@@ -1,6 +1,6 @@
 {
   "name": "agent-safety-oss",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "건설현장의 법정 안전문서 작성을 더 빠르고 정확하게. 산안법·기준규칙·중처법·KOSHA Guide를 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.",
   "type": "module",
   "main": "build/index.js",
@@ -62,7 +62,7 @@
     "mcp:test:consistency": "tsx scripts/test/test-graph-consistency.ts",
     "mcp:test:graph": "npm run mcp:test:reasoning && npm run mcp:test:consistency && npm run mcp:test:effect",
     "mcp:a2ui:demo": "node build/cli.js call render_a2ui_form --inputJson '{\"docId\":\"daily_tbm\",\"format\":\"jsonl\"}'",
-    "mcp:viewer": "tsx scripts/dev/viewer-server.ts",
+    "mcp:viewer": "tsx src/viewer.ts",
     "mcp:test:all": "npm run build && npm run mcp:test:lifecycle && npm run mcp:test:a2ui && npm run mcp:test:scenarios && npm run mcp:test:fillrate:top && npm run mcp:test:graph",
     "sync-kosha": "tsx scripts/sync/sync-kosha-data.ts",
     "sync-safety-laws": "tsx scripts/sync/sync-safety-laws.ts",

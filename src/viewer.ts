@@ -1,10 +1,9 @@
-#!/usr/bin/env tsx
 /**
- * viewer-server.ts
+ * viewer.ts
  *
  * A2UI v0.9 JSONL 을 브라우저에서 폼으로 렌더링하는 운영 viewer.
  * agent-safety-oss 의 사용자 표면 — 비-개발자 안전관리자가 직접 사용.
- * 의존성 0 (Node 표준만).
+ * 의존성 0 (Node 표준만) → 빌드되어 npm 패키지(build/viewer.js)에 포함된다.
  *
  * 흐름:
  *   1. Node http 서버 (localhost:5174)
@@ -16,26 +15,46 @@
  *   7. MD 다운로드 (.md 파일) — PDF 는 사용자가 별도 도구 (Pandoc / 한컴 등) 로
  *
  * 실행:
- *   npm run mcp:viewer   # 서버 시작 + 자동 브라우저 열림
- *   open http://localhost:5174
+ *   npx -y agent-safety-oss viewer   # npm 설치 없이 바로 (자동 브라우저 열림)
+ *   npm run mcp:viewer               # 소스 dev (tsx)
+ *   → http://localhost:5174
  *
- * 결정 박제: decisions/001-a2ui-viewer-promotion.md
+ * 결정 기록: decisions/001-a2ui-viewer-promotion.md
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { spawnSync, spawn } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, "..", "..");
-const CLI = resolve(ROOT, "build", "cli.js");
-const MASTER_PATH = resolve(ROOT, "src", "ontology", "legal-duty-master.json");
+const HERE = dirname(fileURLToPath(import.meta.url));
+// 컴파일본(build/viewer.js)·소스 dev(src/viewer.ts) 양쪽에서 동작하도록
+// 에셋·CLI 경로를 "같은 디렉토리 우선 → 프로젝트 루트 폴백" 으로 해석한다.
+// - npm 설치본: build/viewer.js 옆에 cli.js·ontology/ 가 함께 배포됨 (package.json files: ["build"])
+// - 소스 dev: src/viewer.ts 옆에 ontology/, ../build/cli.js
+const ROOT = resolve(HERE, "..");
+function firstExisting(...candidates: string[]): string {
+  for (const c of candidates) {
+    if (existsSync(c)) return c;
+  }
+  return candidates[candidates.length - 1];
+}
+const CLI = firstExisting(resolve(HERE, "cli.js"), resolve(ROOT, "build", "cli.js"));
+const MASTER_PATH = firstExisting(
+  resolve(HERE, "ontology", "legal-duty-master.json"),
+  resolve(ROOT, "src", "ontology", "legal-duty-master.json"),
+);
 // 결재 양식 SSoT — custom/ (현장 표준 종합 양식) 우선, auto/ (KOSHA 자동 생성) 폴백.
 // custom/ 은 안전관리자가 가이드를 참조해 작성한 13섹션 종합 결재 양식.
 // auto/ 는 sections.fields 기반 KOSHA 양식 자동 생성 (94종).
-const FORMS_DIR_CUSTOM = resolve(ROOT, "src", "ontology", "forms", "custom");
-const FORMS_DIR_AUTO = resolve(ROOT, "src", "ontology", "forms", "auto");
+const FORMS_DIR_CUSTOM = firstExisting(
+  resolve(HERE, "ontology", "forms", "custom"),
+  resolve(ROOT, "src", "ontology", "forms", "custom"),
+);
+const FORMS_DIR_AUTO = firstExisting(
+  resolve(HERE, "ontology", "forms", "auto"),
+  resolve(ROOT, "src", "ontology", "forms", "auto"),
+);
 const PORT = Number(process.env.PORT ?? 5174);
 
 interface MasterDoc {
@@ -1875,14 +1894,51 @@ const server = createServer(async (req, res) => {
   send(res, 404, "text/plain", "Not Found");
 });
 
-server.listen(PORT, () => {
-  const url = `http://localhost:${PORT}`;
-  console.log(`\n🛡  Agent Safety OSS — A2UI 폼 Viewer`);
-  console.log(`    ${url}`);
-  console.log(`\n페이지에서 폼을 입력하고 저장하면 profile.jsonld 가 갱신됩니다.`);
-  console.log(`종료: Ctrl+C\n`);
-  // 자동 브라우저 오픈 (macOS)
+// 자동 브라우저 오픈 — macOS / Windows / Linux 크로스플랫폼.
+// AGENT_SAFETY_NO_OPEN=1 이면 건너뜀 (CI·헤드리스·원격 서버 환경 배려).
+function openBrowser(url: string): void {
+  if (process.env.AGENT_SAFETY_NO_OPEN === "1") return;
+  const [cmd, cmdArgs]: [string, string[]] =
+    process.platform === "darwin"
+      ? ["open", [url]]
+      : process.platform === "win32"
+        ? ["cmd", ["/c", "start", "", url]]
+        : ["xdg-open", [url]];
   try {
-    spawn("open", [url], { stdio: "ignore", detached: true }).unref();
-  } catch {}
-});
+    spawn(cmd, cmdArgs, { stdio: "ignore", detached: true }).unref();
+  } catch {
+    /* 자동 오픈 실패는 무시 — 사용자가 출력된 URL 로 직접 접속 */
+  }
+}
+
+/**
+ * Viewer HTTP 서버를 기동한다. CLI 의 `viewer` 서브커맨드가 호출한다.
+ * 포트 충돌(EADDRINUSE) 시 다른 포트 안내 후 종료.
+ */
+export function startViewer(): void {
+  server.on("error", (err: NodeJS.ErrnoException) => {
+    if (err.code === "EADDRINUSE") {
+      console.error(
+        `\n[agent-safety-oss] 포트 ${PORT} 가 이미 사용 중입니다.\n` +
+          `다른 포트로 실행: PORT=5180 npx -y agent-safety-oss viewer\n`,
+      );
+      process.exit(1);
+    }
+    throw err;
+  });
+  server.listen(PORT, () => {
+    const url = `http://localhost:${PORT}`;
+    console.log(`\n🛡  Agent Safety OSS — A2UI 폼 Viewer`);
+    console.log(`    ${url}`);
+    console.log(`\n브라우저가 자동으로 열리지 않으면 위 주소로 직접 접속하세요.`);
+    console.log(`페이지에서 폼을 입력하고 저장하면 profile.jsonld 가 갱신됩니다.`);
+    console.log(`종료: Ctrl+C\n`);
+    openBrowser(url);
+  });
+}
+
+// 직접 실행(tsx src/viewer.ts / node build/viewer.js) 시 자동 기동.
+// CLI 의 `viewer` 서브커맨드는 import 후 startViewer() 를 명시 호출한다.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  startViewer();
+}

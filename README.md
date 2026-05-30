@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.19-brightgreen)](https://nodejs.org)
 [![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io)
-[![Release](https://img.shields.io/badge/release-v1.5.0-blue.svg)](./CHANGELOG.md)
+[![Release](https://img.shields.io/badge/release-v1.6.0-blue.svg)](./CHANGELOG.md)
 [![Tools](https://img.shields.io/badge/MCP%20tools-92-orange.svg)](./docs/IDENTITY.md)
 
 **건설현장의 법정 안전문서 작성을 더 빠르고 정확하게.** 산안법·기준규칙·중처법·KOSHA 기술지원규정(가이드)을 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.
@@ -48,7 +48,7 @@
 |---|---|:---:|
 | **Claude Desktop / OpenAI Codex CLI 이미 쓰는 분** (개발자 · IT 익숙) | 아래 "5초 진입" 카드 그대로 복사 → AI 비서가 본 도구 호출 | ⭐ 5초 |
 | **AI 비서가 뭔지 모르는 분** (안전관리자 · 현장소장) | [📖 Claude Desktop 설정 가이드](./docs/SETUP_CLAUDE_DESKTOP.md) → 그림 따라하기 | ⭐⭐ 5분 |
-| **브라우저 폼만 쓰고 싶은 분** (CLI 안 익숙) | `npm install -g agent-safety-oss && agent-safety-oss serve` → 별도 viewer 실행 → 폼 화면에서 입력 → 본문 자동 생성 → MD 다운로드 (아래 "A2UI 폼" 섹션 참고) | ⭐⭐⭐ 10분 |
+| **브라우저 폼만 쓰고 싶은 분** (AI 비서·CLI 모두 불필요) | `npx -y agent-safety-oss viewer` 한 줄 → 브라우저에 입력 폼 자동 표시 → 빈 칸만 채우면 본문 자동 생성 → MD 다운로드 (아래 "브라우저 입력 폼" 섹션) | ⭐ 10초 |
 
 ---
 
@@ -203,19 +203,17 @@ archive_safety_document
 
 > **CLI(명령어 입력)가 익숙하지 않은 안전관리자·현장소장이 가장 편하게 쓰는 방법.** 브라우저 화면에 입력 양식이 뜨고, 법령 근거·KOSHA 가이드·위험요인·통제대책이 미리 채워져 있습니다. 빈 칸만 채우면 결재 가능한 문서가 자동 생성됩니다.
 
-설치 및 실행 (안전관리자가 한 번만):
+실행 — **한 줄이면 됩니다** (설치·빌드·git clone 모두 불필요):
 
 ```bash
-# 1. Node.js 20.19+ 설치 (https://nodejs.org)
-# 2. 본 도구 설치 + 빌드
-npm install -g agent-safety-oss
-git clone https://github.com/ratelworks/agent-safety-oss.git
-cd agent-safety-oss
-npm install && npm run build
-# 3. 브라우저 입력 폼 시작
-npm run mcp:viewer
+# Node.js 20.19+ 만 미리 설치 (https://nodejs.org). 그 외 준비 없음.
+npx -y agent-safety-oss viewer
 # → 브라우저가 자동으로 http://localhost:5174 열림
+#   (자동으로 안 열리면 위 주소를 브라우저 주소창에 직접 입력)
+#   다른 포트로 열려면:  PORT=5180 npx -y agent-safety-oss viewer
 ```
+
+> 소스를 직접 받아 개발·수정하는 경우엔 `git clone` 후 `npm install && npm run build && npm run mcp:viewer` 로도 같은 화면이 뜹니다.
 
 브라우저에서 보이는 화면:
 
@@ -256,7 +254,7 @@ Node.js 20.19 이상이 필요합니다. 아래 두 트랙 중 본인 환경에 
 
 ### Track B — 터미널 / CI / 개발자
 
-> **현재 상태**: v<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION --> npm publish 완료 (`npm view agent-safety-oss version` → `<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION -->`). 아래 두 경로 모두 동작합니다.
+> **현재 상태**: v<!-- INV:VERSION -->1.6.0<!-- /INV:VERSION --> npm publish 완료 (`npm view agent-safety-oss version` → `<!-- INV:VERSION -->1.6.0<!-- /INV:VERSION -->`). 아래 두 경로 모두 동작합니다.
 
 ```bash
 # 권장 — npm publish 본 (즉시 실행)
@@ -327,7 +325,7 @@ CLI 사용 예시는 [`examples/`](./examples/) 폴더의 `mcp-list-tools.sh`, `
 
 #### 향후 추가 가능 공공 데이터
 
-본 OSS 는 현재 12+ source 를 통합했으나, 다음 공공 데이터도 그래프 통합 후보입니다 (contributor 환영):
+본 OSS 는 현재 13 source 를 통합했으나, 다음 공공 데이터도 그래프 통합 후보입니다 (contributor 환영):
 
 - **법제처 OpenAPI** 동적 확장 (안전 외 인접 법령 — 산업안전기준에 관한 규칙 외)
 - **KOSHA-MS** 안전보건경영시스템 인증 사업장 명부
@@ -458,8 +456,8 @@ generate_safety_report
 
 ## 들어 있는 것
 
-- 패키지 버전: <!-- INV:VERSION -->1.5.0<!-- /INV:VERSION -->
-- MCP 도구: <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 (keyless <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS --> · 키 필요 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ --> · 라이선스 placeholder <!-- INV:TOOLS_PLACEHOLDER -->2<!-- /INV:TOOLS_PLACEHOLDER -->)
+- 패키지 버전: <!-- INV:VERSION -->1.6.0<!-- /INV:VERSION -->
+- MCP 도구: <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 = 키 없이 바로 쓰는 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 + 공공 API 키 필요 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 (이 중 <!-- INV:TOOLS_PLACEHOLDER -->2<!-- /INV:TOOLS_PLACEHOLDER -->개는 공공누리 라이선스 사유로 다운로드 URL 안내만 하는 placeholder)
 - 19종 법정 안전관리 문서: <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL --> (TBM·작업계획서·위험성평가·MSDS·산재조사표 등)
 - 법정의무 문서 마스터 (`legal-duty-master.json`): <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId (19종 + 사이클·범위·발주처별 변형)
 - 양식 인덱스 (`forms-map.json`): <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId — HWP <!-- INV:FORMS_HWP -->14<!-- /INV:FORMS_HWP --> / PDF <!-- INV:FORMS_PDF -->23<!-- /INV:FORMS_PDF --> / XLSX <!-- INV:FORMS_XLSX -->1<!-- /INV:FORMS_XLSX --> (공식 양식) + 자동 생성 MD <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD -->개. HWP/PDF/XLSX 중 일부는 라이선스상 공식 다운로드 URL 안내로 대체.

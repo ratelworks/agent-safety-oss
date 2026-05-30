@@ -10,7 +10,7 @@
  *   3. A2UI v0.9 JSONL 메시지 생성 (createSurface + updateComponents)
  *   4. 사용자 입력 흐름:
  *      - 클라이언트가 폼 렌더 → 사용자 입력
- *      - 패키지 내장 viewer (scripts/dev/viewer-server.ts) 는 자체적으로 generate_safety_document 호출 + archive + MD 다운로드까지 수행
+ *      - 패키지 내장 viewer (src/viewer.ts → `agent-safety-oss viewer`) 는 자체적으로 generate_safety_document 호출 + archive + MD 다운로드까지 수행
  *      - 또는 LLM 이 generate_safety_document({docId, draft: 입력값}) 호출 → 본문 생성
  *      - 또는 register_* 도구로 profile 갱신
  *
@@ -819,7 +819,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
         "submit_safety_document",
       ],
       nextActions: [
-        "viewer (npm run mcp:viewer → http://localhost:5174) / Claude Desktop / MCP Inspector 등 A2UI 호환 클라이언트가 위 JSONL 을 렌더링",
+        "viewer (npx -y agent-safety-oss viewer → http://localhost:5174) / Claude Desktop / MCP Inspector 등 A2UI 호환 클라이언트가 위 JSONL 을 렌더링",
         "사용자 입력 후 fieldPathMap 기준으로 draft 키를 변환 → generate_safety_document({docId, draft: 입력값}) 호출",
         "decision 002 능동 호출 루프 — 사용자가 작업명 입력 시 analyze_work_context, 위험요인 입력 시 suggest_controls_for_hazard, 필드 도움말 필요 시 request_field_help, 부분 검토 필요 시 preview_review 호출 (LLM 이 사용자 입력 맥락에 따라 자연 체이닝)",
         "또는 register_site/project/person 도구로 profile.jsonld 갱신",

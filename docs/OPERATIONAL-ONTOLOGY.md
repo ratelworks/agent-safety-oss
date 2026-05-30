@@ -1,6 +1,6 @@
 # Operational Ontology Profile
 
-> release: **v<!-- INV:VERSION -->1.5.0<!-- /INV:VERSION --> · <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL --> tools · <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY --> KOSHA Guides**
+> release: **v<!-- INV:VERSION -->1.6.0<!-- /INV:VERSION --> · <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL --> tools · <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY --> KOSHA Guides**
 > 목적: 중소 건설사가 실제 업무에서 사용할 수 있는 경량 운영 온톨로지 그래프
 
 ## 1. 목적

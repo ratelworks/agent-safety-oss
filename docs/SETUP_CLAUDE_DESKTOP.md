@@ -26,7 +26,7 @@
 | Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 | Linux | `~/.config/Claude/claude_desktop_config.json` |
 
-> **현재 상태**: v1.4.1 npm publish 완료. 아래 npx 경로 즉시 사용 가능. 소스 빌드본 직접 연결은 "소스 빌드본으로 사용" 섹션 참조 (fork/개발자용).
+> 아래 `npx` 경로면 **별도 설치 없이 바로** 사용할 수 있습니다 (npm 최신 publish 본을 자동으로 받아 실행). 소스 빌드본 직접 연결은 "소스 빌드본으로 사용" 섹션 참조 (fork·개발자용).
 
 ## npx로 사용 (권장)
 
@@ -41,7 +41,7 @@
 }
 ```
 
-## npm global 설치로 사용 (publish 후)
+## npm global 설치로 사용
 
 ```bash
 npm install -g agent-safety-oss
@@ -58,7 +58,7 @@ npm install -g agent-safety-oss
 }
 ```
 
-## 소스 빌드본으로 사용 (현재 권장)
+## 소스 빌드본으로 사용 (fork·개발자용)
 
 ```bash
 git clone https://github.com/ratelworks/agent-safety-oss.git
