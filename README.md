@@ -233,13 +233,11 @@ npx -y agent-safety-oss viewer
 
 ## 빠른 시작
 
-Node.js 20.19 이상이 필요합니다. 아래 두 트랙 중 본인 환경에 맞는 것을 선택하세요.
+Node.js 20.19 이상이 필요합니다. 위 "어떻게 시작하나?" 표의 세 경로에 맞춰 고르세요.
 
-### Track A — Claude Desktop 사용자 (안전관리자·현장소장 권장)
+### A. AI 비서 (Claude Desktop · OpenAI Codex CLI) — 안전관리자·현장소장 권장
 
-위 "5초 진입" 카드 참고. `npx` 가 자동으로 패키지를 받아 실행하므로 별도 설치 명령이 필요 없습니다.
-
-소스 빌드본을 직접 연결할 때는 다음처럼 지정합니다.
+위 "5초 진입" 카드의 설정 한 블록이면 끝입니다 (`npx` 가 패키지를 자동으로 받아 실행 → 별도 설치 불필요). 소스 빌드본을 직접 연결할 때는:
 
 ```json
 {
@@ -252,12 +250,18 @@ Node.js 20.19 이상이 필요합니다. 아래 두 트랙 중 본인 환경에 
 }
 ```
 
-### Track B — 터미널 / CI / 개발자
-
-> **현재 상태**: v<!-- INV:VERSION -->1.6.0<!-- /INV:VERSION --> npm publish 완료 (`npm view agent-safety-oss version` → `<!-- INV:VERSION -->1.6.0<!-- /INV:VERSION -->`). 아래 두 경로 모두 동작합니다.
+### B. 브라우저 입력 폼 — AI 비서·CLI 없이
 
 ```bash
-# 권장 — npm publish 본 (즉시 실행)
+npx -y agent-safety-oss viewer   # 브라우저에 입력 폼 자동 표시 (위 "브라우저 입력 폼" 섹션)
+```
+
+### C. 터미널 · CI · 개발자
+
+npm 에 publish 되어 있어 별도 설치 없이 `npx` 로 바로 실행됩니다 (설치된 최신 버전은 `npm view agent-safety-oss version` 으로 확인).
+
+```bash
+# npm publish 본 (즉시 실행)
 npx -y agent-safety-oss tools
 npx -y agent-safety-oss serve
 # 또는 전역 설치

@@ -12,10 +12,14 @@ agent-safety-oss 사용 예제. 각 예제는 외부 의존성 없이 단독 실
 ## 사전 준비
 
 ```bash
+# 설치 없이 바로 실행 (권장)
+npx -y agent-safety-oss tools
+# 또는 전역 설치 / 로컬 빌드
 npm install -g agent-safety-oss
-# 또는 로컬 빌드:
-npm install && npm run build
+# (로컬 빌드: npm install && npm run build)
 ```
+
+> 브라우저 입력 폼만 쓰려면 설치 없이: `npx -y agent-safety-oss viewer`
 
 LocalStorage(`~/.agent-safety-oss/`)는 첫 실행 시 자동 생성됩니다. 별도 설정 불필요.
 
