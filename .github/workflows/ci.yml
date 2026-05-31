@@ -30,6 +30,9 @@ jobs:
       - name: npm audit (high 이상 회귀 차단)
         run: npm audit --audit-level=high
 
+      - name: OSS hygiene — 내부 용어 / 내부 경로 / PII 노출 차단
+        run: npm run check:oss-hygiene
+
       - name: TypeScript strict check (src — build 의존 없음)
         run: npm run typecheck:src
 
