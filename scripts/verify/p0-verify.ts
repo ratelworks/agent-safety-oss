@@ -8,7 +8,7 @@
  * 케이스:
  *   1. 적용 외 (굴착면 < 2m)        → applicability warn
  *   2. 필수 누락 (사전조사 1건 무)   → blocker fail
- *   3. 환각 ref (§39 인용)           → hallucination
+ *   3. 환각 ref (§9999 인용)         → hallucination
  *   4. 정상 작성                     → pass
  *   5. 권장 보강 (notifiedToWorkers무) → warn/fail
  */
@@ -80,7 +80,7 @@ const cases: Case[] = [
     },
   },
   {
-    name: "Case 3 — 환각 ref (§39 인용)",
+    name: "Case 3 — 환각 ref (§9999 인용)",
     expect: "hallucination 검출",
     input: {
       docId: "work_plan_excavation",
@@ -96,7 +96,7 @@ const cases: Case[] = [
           supervisor: "현장소장 직접", other: "보호구·교육 일일",
         },
         citations: [
-          { basisType: "regulation", legalWeight: "mandatory", title: "굴착 §39 (가공)", source: "INTERNAL", reference: "산업안전보건기준에 관한 규칙 §39" },
+          { basisType: "regulation", legalWeight: "mandatory", title: "굴착 §9999 (가공)", source: "INTERNAL", reference: "산업안전보건기준에 관한 규칙 §9999" },
         ],
       },
       scale: { workforce: 8, constructionValue: 5, industry: "construction" },
