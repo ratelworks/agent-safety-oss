@@ -33,7 +33,7 @@
 | 영역 | 내용 |
 |---|---|
 | **<!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 법정 안전관리 문서** | TBM · 작업계획서 · 위험성평가 · MSDS · 산재조사표 등 매일·매주·매월 작성하는 양식 |
-| **법령 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문** | 산안법 · 시행령 · 시행규칙 · 기준규칙 · 중처법 · 위험성평가 고시 등 합계 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조 (전체 1,310조 중 건설안전 실무 핵심만 발췌. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조) |
+| **법령 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문** | 산안법 · 시행령 · 시행규칙 · 기준규칙 · 중처법 · 중처법 시행령 · 위험성평가 고시 · 건진법 등 합계 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조 (전체 1,310조 중 건설안전 실무 핵심만 발췌. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조) |
 | **KOSHA 기술지원규정 (가이드) <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** | 한국산업안전보건공단 발행 기술지침 전체 본문 (인터넷 없이 즉시 검색·인용) |
 | **양식 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL -->개** | 고용노동부·KOSHA 공식 HWP / PDF / XLSX 원본 + 자동 생성 Markdown 양식 |
 | **위험·통제 정보망** | 작업 → 위험요인 → 통제대책 → 법령 근거 → 문서 자동 연결 ("의미 연결망" — 자세히는 [기술 상세](./docs/OPERATIONAL-ONTOLOGY.md)) |
@@ -461,7 +461,7 @@ generate_safety_report
 ## 들어 있는 것
 
 - 패키지 버전: <!-- INV:VERSION -->1.6.0<!-- /INV:VERSION -->
-- MCP 도구: <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 = 키 없이 바로 쓰는 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 + 공공 API 키 필요 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 (이 중 <!-- INV:TOOLS_PLACEHOLDER -->2<!-- /INV:TOOLS_PLACEHOLDER -->개는 공공누리 라이선스 사유로 다운로드 URL 안내만 하는 placeholder)
+- MCP 도구: <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 = 키 없이 바로 쓰는 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 + 공공 API 키 필요 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 (그중 <!-- INV:TOOLS_PLACEHOLDER -->2<!-- /INV:TOOLS_PLACEHOLDER -->개는 공공누리 라이선스 사유로 다운로드 URL 안내만 하는 placeholder)
 - 19종 법정 안전관리 문서: <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL --> (TBM·작업계획서·위험성평가·MSDS·산재조사표 등)
 - 법정의무 문서 마스터 (`legal-duty-master.json`): <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId (19종 + 사이클·범위·발주처별 변형)
 - 양식 인덱스 (`forms-map.json`): <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId — HWP <!-- INV:FORMS_HWP -->14<!-- /INV:FORMS_HWP --> / PDF <!-- INV:FORMS_PDF -->23<!-- /INV:FORMS_PDF --> / XLSX <!-- INV:FORMS_XLSX -->1<!-- /INV:FORMS_XLSX --> (공식 양식) + 자동 생성 MD <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD -->개. HWP/PDF/XLSX 중 일부는 라이선스상 공식 다운로드 URL 안내로 대체.
