@@ -15,12 +15,14 @@
  *   1. 내부 용어 사전 (운영 에이전트명·내부 문서 체계·내부 트레일러)
  *   2. 내부 경로 (/Users/, dev/A_/, dev/Agent_HQ/, ~/.claude)
  *   3. PII (개인 이메일·사업자번호·법인번호) — placeholder 는 제외
+ *   4. 내부 문서 체계 파일이 public repo 에 tracked (CLAUDE/dev/plan/prep.md) — git ls-files 기반
  *
  * 버전 일치 검사는 본 게이트 범위 밖 (check:doc-sync / docs:check 가 담당).
  */
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { execSync } from "node:child_process";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
@@ -69,6 +71,11 @@ const INTERNAL_TERMS = [
 // ── 검사 항목 2: 내부 경로 ──────────────────────────────────
 const INTERNAL_PATHS = ["/Users/", "dev/A_/", "dev/Agent_HQ/", "~/.claude"];
 
+// ── 검사 항목 4: 내부 문서 체계 파일 (git tracked) ──────────
+// 내부 전용 문서(CLAUDE.md / dev.md / plan.md / prep.md)가 public repo 에 tracked 되면 위반.
+// 루트·하위 어디에 있든 매칭 (경로 끝의 파일명만 검사).
+const INTERNAL_DOC_RE = /(^|\/)(CLAUDE|dev|plan|prep)\.md$/;
+
 // ── 검사 항목 3: PII ────────────────────────────────────────
 // 개인 이메일 (회사 공식 alphamale@ratelworks.co.kr 은 검사 안 함)
 const PERSONAL_EMAIL = "ryongkoon1984@gmail.com";
@@ -84,9 +91,9 @@ const PLACEHOLDER_PATTERNS = [
 ];
 
 interface Violation {
-  category: "internal_term" | "internal_path" | "pii";
+  category: "internal_term" | "internal_path" | "pii" | "tracked_internal_doc";
   file: string; // ROOT 기준 상대경로
-  line: number; // 1-base
+  line: number; // 1-base (파일 단위 검사는 0)
   found: string; // 발견 토큰
   hint: string;
 }
@@ -191,6 +198,31 @@ function collectDocs(dir: string, files: string[] = []): string[] {
   return files;
 }
 
+// 검사 항목 4: git tracked 파일 중 내부 문서 체계 파일 탐지.
+// git 은 repo 빌드 환경의 필수 도구이므로 호출 허용 (npm 패키지 의존 아님).
+// git 미설치·non-git 디렉토리 등 실패 시 graceful skip (다른 검사는 계속).
+function scanTrackedInternalDocs(): void {
+  let out: string;
+  try {
+    out = execSync("git ls-files", { cwd: ROOT, encoding: "utf8" });
+  } catch {
+    // git 호출 실패 시 본 검사만 생략
+    return;
+  }
+  for (const path of out.split("\n")) {
+    const file = path.trim();
+    if (file && INTERNAL_DOC_RE.test(file)) {
+      violations.push({
+        category: "tracked_internal_doc",
+        file,
+        line: 0,
+        found: file,
+        hint: `내부 문서 체계 ${file} 가 public repo 에 tracked — .gitignore + git rm, 외부용은 AGENTS.md/ROADMAP.md/CONTRIBUTING.md 로 대체`,
+      });
+    }
+  }
+}
+
 // ── 검사 대상 수집 ──────────────────────────────────────────
 const targets: string[] = [];
 for (const name of TARGET_ROOT_FILES) {
@@ -201,10 +233,11 @@ targets.push(...collectDocs(resolve(ROOT, TARGET_DOCS_DIR)));
 
 // ── 실행 ────────────────────────────────────────────────────
 for (const file of targets) scanFile(file);
+scanTrackedInternalDocs();
 
 // ── 출력 ────────────────────────────────────────────────────
-console.log("OSS hygiene 검증 (내부 용어 / 내부 경로 / PII)");
-console.log(`검사 대상: ${targets.length} 파일`);
+console.log("OSS hygiene 검증 (내부 용어 / 내부 경로 / PII / 내부 문서 tracked)");
+console.log(`검사 대상: ${targets.length} 파일 + git tracked 내부 문서`);
 console.log();
 
 if (violations.length === 0) {
@@ -225,14 +258,16 @@ const CATEGORY_LABEL: Record<Violation["category"], string> = {
   internal_term: "내부 용어",
   internal_path: "내부 경로",
   pii: "PII",
+  tracked_internal_doc: "내부 문서 tracked",
 };
 
-for (const cat of ["internal_term", "internal_path", "pii"] as const) {
+for (const cat of ["internal_term", "internal_path", "pii", "tracked_internal_doc"] as const) {
   const list = byCat[cat];
   if (!list || list.length === 0) continue;
   console.error(`[${CATEGORY_LABEL[cat]}] ${list.length}건`);
+  // tracked_internal_doc 은 파일 단위 검사(line=0) — 위치 대신 파일명만 출력
   for (const v of list) {
-    console.error(`  · ${v.file}:${v.line} — "${v.found}"`);
+    console.error(cat === "tracked_internal_doc" ? `  · ${v.file}` : `  · ${v.file}:${v.line} — "${v.found}"`);
   }
   console.error(`  → ${list[0].hint}`);
   console.error();
