@@ -1,0 +1,7 @@
+step 1 action: GET https://github.com/ratelworks/agent-safety-oss
+step 1 action: status=200 readme_loaded=True -> CP1=True
+step 2 action: has_install_command=True -> CP2=True
+step 3 action: stars='31' forks='3' -> CP3=True
+step 4 action: after_click_url=https://github.com/ratelworks/agent-safety-oss/issues -> CP4=True
+step 99 action: CP_STATUS {'CP1': True, 'CP2': True, 'CP3': True, 'CP4': True}
+step 100 action: FINAL_DATUM {'repo_url': 'https://github.com/ratelworks/agent-safety-oss', 'http_status': 200, 'stars_label': '31', 'forks_label': '3', 'has_install_command': True, 'issues_tab_url_after_click': 'https://github.com/ratelworks/agent-safety-oss/issues'}
