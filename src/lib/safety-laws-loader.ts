@@ -268,7 +268,9 @@ function normalizeRef(raw: string): { lawPart: string; refShort: string } {
   return { lawPart, refShort };
 }
 
-function guessLawCodeFromRef(lawPart: string): LawCode | undefined {
+// 법령명 문자열 → 번들 LawCode 추정. 번들 외 법령(소방·환경 등)은 undefined.
+// verify_safety_basis 의 본문 인라인 인용 검증에서도 재사용 (번들 법령만 환각 대조 대상).
+export function guessLawCodeFromRef(lawPart: string): LawCode | undefined {
   if (!lawPart) return undefined;
   const lp = lawPart.toLowerCase();
   // decision 005: 본법명 + 수식어(시행령/시행규칙) 결합 판정.

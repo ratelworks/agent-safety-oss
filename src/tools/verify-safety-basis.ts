@@ -7,7 +7,11 @@ import {
 } from "../evidence/evidence.schema.js";
 import { BASIS_WEIGHT_MAP } from "../config/constants.js";
 import { stringBool } from "../lib/zod-helpers.js";
-import { getArticle, listLaws } from "../lib/safety-laws-loader.js";
+import {
+  getArticle,
+  listLaws,
+  guessLawCodeFromRef,
+} from "../lib/safety-laws-loader.js";
 
 // 파일 최상단 상수 — verification status 코드
 const STATUS = {
@@ -21,6 +25,17 @@ const STATUS = {
 // 응답 텍스트 첫 줄에 부착하여 LLM 이 "검증 성공"으로 오해하는 것을 차단
 const MARKER_HALLUCINATION = "[HALLUCINATION_DETECTED]";
 const MARKER_NOT_FOUND = "[NOT_FOUND]";
+const MARKER_INLINE_CITATION = "[INLINE_CITATION_WARNING]";
+
+// 본문 인라인 법령 인용 추출 정규식 (korean-law-mcp verify_citations 패턴 차용)
+// evidence 배열을 첨부하지 않고 claim 본문에 "산안기준규칙 제38조" 처럼 인라인으로 쓴
+// 법령 인용을 자동 추출 → 번들 조문 대조. evidence-기반 검증의 사각지대(LLM 이 근거를
+// 구조화하지 않고 본문에 흘려 쓴 가짜 조문)를 메운다.
+//   그룹1: 법령명("산안기준규칙" / "산업안전보건법" 등)
+//   그룹2: 제N조의 N      그룹3: 제N조의 M 의 M
+//   그룹4: §N 의 N        그룹5: §N 의 M
+const INLINE_CITATION_REGEX =
+  /([가-힣][가-힣·ㆍ\s]{0,20}?(?:법|규칙|시행령|시행규칙|고시|규정))\s*(?:제\s*(\d+)\s*조(?:\s*의\s*(\d+))?|§\s*(\d+)(?:\s*의\s*(\d+))?)/g;
 
 // 기본 mandatory trigger — claim 에 포함되면 법령·규정 근거 필요
 // 교차 검증 지적 반영: "필수", "필요", "위반 시", "과태료" 추가
@@ -87,6 +102,17 @@ interface RefCheck {
   reason?: string;
 }
 
+// 본문 인라인 인용 검증 결과
+interface InlineCitationCheck {
+  raw: string; // 매칭 원문 (예: "산안기준규칙 제38조")
+  lawPart: string; // 추출된 법령명 (예: "산안기준규칙")
+  ref: string; // 정규화된 조문 (예: "§38")
+  inBundle: boolean; // 번들 법령으로 식별됐는가 (false=대조 불가, 환각 판정 보류)
+  exists: boolean; // inBundle 일 때만 의미 — 번들 조문에 실존하는가
+  matched?: string;
+  reason?: string;
+}
+
 interface ClaimVerdict {
   claim: string;
   status: (typeof STATUS)[keyof typeof STATUS];
@@ -95,6 +121,11 @@ interface ClaimVerdict {
   matchedTriggers: string[];
   refChecks: RefCheck[];
   hallucinationCount: number;
+  // 본문 인라인 인용 검증 — evidence 와 독립. 번들 법령으로 식별됐으나 조문이 번들에 미수록이면 flag.
+  // false positive 여지(법령명↔조문 휴리스틱 + 번들=건설안전 발췌라 실존 조문 누락 가능)가 있어
+  // status/isError 판정에는 미반영, 경고·nextAction 으로만 노출 (100% 하위 호환). 미수록≠환각.
+  inlineCitations: InlineCitationCheck[];
+  inlineUnresolvedCount: number;
 }
 
 async function handler(rawInput: unknown): Promise<McpToolResult> {
@@ -121,6 +152,11 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     unsupported: verdicts.filter((v) => v.status === STATUS.UNSUPPORTED).length,
     invalid: verdicts.filter((v) => v.status === STATUS.INVALID).length,
     hallucinationCount: verdicts.reduce((s, v) => s + v.hallucinationCount, 0),
+    // 본문 인라인 인용 환각 — evidence 기반 hallucinationCount 와 별개 집계 (status 미반영)
+    inlineUnresolvedCount: verdicts.reduce(
+      (s, v) => s + v.inlineUnresolvedCount,
+      0,
+    ),
   };
 
   // 다음 행동 제안 — 환각·부분지원·미지원 케이스별 맞춤 검색 도구 추천
@@ -129,6 +165,11 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     nextActions.push(
       "search_safety_laws({keyword}) 로 정확한 조문 재검색 후 재제출",
       "list_core_safety_laws() 로 번들된 법령 6개·55조문 목록 확인",
+    );
+  }
+  if (summary.inlineUnresolvedCount > 0) {
+    nextActions.push(
+      "본문에 evidence 없이 인라인으로 쓴 법령 인용 중 번들 미수록 건이 있음 — search_safety_laws 또는 법제처로 실존 확인 (번들은 건설안전 발췌라 누락 가능, 미수록≠환각). verdicts[].inlineCitations 참조",
     );
   }
   if (summary.unsupported > 0) {
@@ -165,6 +206,12 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   } else if (summary.unsupported > 0) {
     headerLines.push(
       `${MARKER_NOT_FOUND} 근거 부족 claim ${summary.unsupported}건 — mandatory trigger 가 포함된 claim 에 법령·규정 근거가 없거나 evidence 자체가 비어있음.`,
+    );
+  }
+  // 인라인 인용 경고는 evidence 기반 판정과 독립 — isError/status 에 영향 없이 추가 노출
+  if (summary.inlineUnresolvedCount > 0) {
+    headerLines.push(
+      `${MARKER_INLINE_CITATION} 본문 인라인 법령 인용 ${summary.inlineUnresolvedCount}건이 번들에 미수록 — 번들은 건설안전 핵심 발췌(전체 법령 아님)라 **실존 조문도 누락 가능(미수록≠환각)**. verdicts[].inlineCitations 의 exists:false 항목을 search_safety_laws/법제처로 실존 확인할 것. (번들 외 법령 inBundle:false 는 대조 보류)`,
     );
   }
   const text =
@@ -232,6 +279,65 @@ async function checkRefExistence(ev: EvidenceItemT): Promise<RefCheck> {
       reason: `검증 중 오류: ${(err as Error).message}`,
     };
   }
+}
+
+// claim 본문에서 인라인 법령 인용을 추출해 번들 조문과 대조.
+// evidence 미첨부 사각지대 보완 — 번들 법령(산안법/기준규칙/중처법/건진법/위평고시)의
+// 없는 조문을 본문에 쓴 경우만 환각 flag. 번들 외 법령은 대조 불가로 보류(false positive 방지).
+async function checkInlineCitations(
+  claim: string,
+): Promise<InlineCitationCheck[]> {
+  const checks: InlineCitationCheck[] = [];
+  const seen = new Set<string>();
+
+  for (const m of claim.matchAll(INLINE_CITATION_REGEX)) {
+    const lawPart = m[1].trim().replace(/\s+/g, "");
+    const artNo = m[2] ?? m[4]; // 제N조 | §N
+    const subNo = m[3] ?? m[5]; // 의 M
+    if (!artNo) continue;
+    const ref = subNo ? `§${artNo}의${subNo}` : `§${artNo}`;
+    const key = `${lawPart}|${ref}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const raw = m[0].trim().replace(/\s+/g, " ");
+
+    const code = guessLawCodeFromRef(lawPart);
+    if (!code) {
+      // 번들 외 법령(소방·환경·하도급 등) — 실존 대조 불가, 환각 판정 보류
+      checks.push({
+        raw,
+        lawPart,
+        ref,
+        inBundle: false,
+        exists: false,
+        reason:
+          "번들 외 법령 추정 — 본 도구의 번들 조문으로는 실존 대조 불가 (법제처 원문 확인 필요)",
+      });
+      continue;
+    }
+
+    const article = await getArticle(`${lawPart} ${ref}`, code);
+    if (article) {
+      checks.push({
+        raw,
+        lawPart,
+        ref,
+        inBundle: true,
+        exists: true,
+        matched: `${article.lawShortName} ${article.ref} ${article.title}`,
+      });
+    } else {
+      checks.push({
+        raw,
+        lawPart,
+        ref,
+        inBundle: true,
+        exists: false,
+        reason: `번들 법령(${lawPart})에 '${ref}' 조문 미수록 — 본 번들은 건설안전 핵심 발췌(전체 법령 아님)라 **실존 조문도 누락될 수 있음(미수록≠환각)**. 실존 여부는 search_safety_laws 또는 법제처 원문으로 확인 필요.`,
+      });
+    }
+  }
+  return checks;
 }
 
 async function verifyClaim(
@@ -312,6 +418,17 @@ async function verifyClaim(
     status = STATUS.PARTIAL;
   }
 
+  // 본문 인라인 인용 검증 — status 확정 후 계산하여 reasons/status/isError 에 영향 없음.
+  // (법령명↔조문 휴리스틱 연결의 false positive 가 기존 evidence 판정을 흔들지 않도록 분리)
+  let inlineCitations: InlineCitationCheck[] = [];
+  let inlineUnresolvedCount = 0;
+  if (verifyReferenceExistence) {
+    inlineCitations = await checkInlineCitations(claim);
+    inlineUnresolvedCount = inlineCitations.filter(
+      (c) => c.inBundle && !c.exists,
+    ).length;
+  }
+
   return {
     claim,
     status,
@@ -320,6 +437,8 @@ async function verifyClaim(
     matchedTriggers,
     refChecks,
     hallucinationCount,
+    inlineCitations,
+    inlineUnresolvedCount,
   };
 }
 
@@ -340,7 +459,7 @@ export const verifySafetyBasisTool: ToolDefinition = {
   name: "verify_safety_basis",
   title: "안전관리 근거 검증 (ref 실존 + 등급 정합성)",
   description:
-    "LLM 이 생성한 안전관리 결론(claim)에 첨부된 근거(evidence)의 **(1) 등급 정합성**(basisType↔legalWeight) + **(2) reference 실존성**(번들 법령 55조문 대조) + **(3) mandatory trigger 검사**(의무/반드시/필수/금지/위반 등 포함 시 법령 근거 필수) 를 점검. 환각 인용 발견 시 응답 첫 줄에 `[HALLUCINATION_DETECTED]` 마커 + isError:true 를 부착해 LLM 의 자가검열을 강제. **주의**: 의미론적 entailment(이 조문이 정말 이 주장에 적용되는가)는 검증하지 않음 — 인간 검토 필요. 법령 조회 Tool 미제공 환경에서는 allowRecommendedAsBasis=true 로 KOSHA Guide 근거까지 허용 가능.",
+    "LLM 이 생성한 안전관리 결론(claim)에 첨부된 근거(evidence)의 **(1) 등급 정합성**(basisType↔legalWeight) + **(2) reference 실존성**(번들 법령 55조문 대조) + **(3) mandatory trigger 검사**(의무/반드시/필수/금지/위반 등 포함 시 법령 근거 필수) + **(4) 본문 인라인 인용 검증**(evidence 를 첨부하지 않고 claim 본문에 '제38조'·'§38' 처럼 흘려 쓴 법령 인용을 자동 추출→번들 조문 대조. 번들 수록이면 확인됨, 미수록이면 `[INLINE_CITATION_WARNING]`) 을 점검. 환각 인용 발견 시 응답 첫 줄에 `[HALLUCINATION_DETECTED]` 마커 + isError:true 를 부착해 LLM 의 자가검열을 강제. **주의**: (4) 인라인 검증은 법령명↔조문 휴리스틱 + **번들이 건설안전 발췌(전체 법령 아님)** 라는 이중 한계로 false positive 여지가 있어 status/isError 에 미반영(경고 전용). 번들 미수록은 환각이 아니라 발췌 누락일 수 있으니 법제처 확인 필요. 번들 외 법령(inBundle:false)은 대조 보류. 의미론적 entailment(이 조문이 정말 이 주장에 적용되는가)는 검증하지 않음 — 인간 검토 필요. 법령 조회 Tool 미제공 환경에서는 allowRecommendedAsBasis=true 로 KOSHA Guide 근거까지 허용 가능.",
   inputSchema,
   handler,
 };
