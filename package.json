@@ -100,11 +100,12 @@
     "verify:tool-capability": "tsx scripts/verify/verify-tool-capability-drift.ts",
     "verify:edge-context": "tsx scripts/verify/verify-edge-context-drift.ts",
     "verify:link-type": "tsx scripts/verify/verify-link-type-semantics.ts",
-    "prepublishOnly": "npm run check:oss-hygiene && npm run build && npm run check:essence && npm run check:lightweight && npm run docs:check && npm run verify-all && npm run validate-shacl && npm run verify:tool-capability && npm run verify:edge-context && npm run verify:link-type && npm run form-conformance && npm run quality-regression && npm run check:doc-sync",
+    "prepublishOnly": "npm run check:oss-hygiene && npm run build && npm run check:essence && npm run check:lightweight && npm run docs:check && npm run verify-all && npm run validate-shacl && npm run verify:tool-capability && npm run verify:edge-context && npm run verify:link-type && npm run form-conformance && npm run quality-regression && npm run check:doc-sync && npm run check:doc-citations",
     "audit:expand": "tsx scripts/audit/audit-jsonld-expand.ts",
     "audit:graph-v2": "tsx scripts/audit/audit-ontology-v2.ts",
     "ontology:operational": "tsx scripts/verify/verify-operational-ontology.ts",
-    "check:doc-sync": "tsx scripts/verify/check-doc-code-sync.ts"
+    "check:doc-sync": "tsx scripts/verify/check-doc-code-sync.ts",
+    "check:doc-citations": "tsx scripts/verify/check-doc-citation-existence.ts"
   },
   "keywords": [
     "mcp",

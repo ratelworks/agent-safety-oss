@@ -103,6 +103,12 @@ jobs:
           # 본 step 은 패턴 휴리스틱 (false positive 가능), 위 docs:check 는 marker 영역 정밀 검증.
           npm run check:doc-sync
 
+      - name: SSoT drift — doc 인용 ↔ 번들 조문 실재 (README/docs 인용 조문이 번들에 수록됐는지)
+        run: |
+          # check:doc-sync 가 못 잡는 "조문 실재" 갭 차단. 번들 법령의 미수록 조문을
+          # README/docs 가 "자동 인용" 으로 광고하면 exit 1 (publish·CI). 번들 외 법령은 보류.
+          npm run check:doc-citations
+
       - name: SSoT drift — Tool ↔ Capability (TOOLS == CAPABILITY_REGISTRY == .jsonld)
         run: npm run verify:tool-capability
 

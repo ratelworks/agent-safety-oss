@@ -9,7 +9,7 @@ agent-safety-oss 는 **건설현장의 법정 안전문서 작성을 더 빠르�
 **주요 MCP host**: **Claude Desktop · OpenAI Codex CLI** 두 host 만 메인 지원. 설정은 host 별 안내 (`docs/SETUP_CLAUDE_DESKTOP.md` · `docs/SETUP_CODEX.md`) 참조.
 
 번들 공공데이터:
-- **법령 본문 MD <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->개** (합계 약 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조): 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법·건진법 시행령·건진법 시행규칙
+- **법령 본문 MD <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->개** (합계 약 <!-- INV:LAW_ARTICLES -->79<!-- /INV:LAW_ARTICLES -->조): 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법·건진법 시행령·건진법 시행규칙
 - **KOSHA Guide <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** (본문) + **<!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META -->건** (메타, 2026.1 재정비 후 유효본)
 - **부처별 분산 공공데이터 통합**: 법제처·KOSHA·고용노동부·국토부 등 자료를 같은 온톨로지 그래프로 묶어 LLM 이 관계 따라가며 도메인 추론 가능
 

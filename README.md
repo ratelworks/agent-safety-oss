@@ -33,7 +33,7 @@
 | 영역 | 내용 |
 |---|---|
 | **<!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 법정 안전관리 문서** | TBM · 작업계획서 · 위험성평가 · MSDS · 산재조사표 등 매일·매주·매월 작성하는 양식 |
-| **법령 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문** | 산안법 · 시행령 · 시행규칙 · 기준규칙 · 중처법 · 중처법 시행령 · 위험성평가 고시 · 건진법 등 합계 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조 (전체 1,310조 중 건설안전 실무 핵심만 발췌. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조) |
+| **법령 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문** | 산안법 · 시행령 · 시행규칙 · 기준규칙 · 중처법 · 중처법 시행령 · 위험성평가 고시 · 건진법 등 합계 <!-- INV:LAW_ARTICLES -->79<!-- /INV:LAW_ARTICLES -->조 (전체 1,310조 중 건설안전 실무 핵심만 발췌. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조) |
 | **KOSHA 기술지원규정 (가이드) <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** | 한국산업안전보건공단 발행 기술지침 전체 본문 (인터넷 없이 즉시 검색·인용) |
 | **양식 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL -->개** | 고용노동부·KOSHA 공식 HWP / PDF / XLSX 원본 + 자동 생성 Markdown 양식 |
 | **위험·통제 정보망** | 작업 → 위험요인 → 통제대책 → 법령 근거 → 문서 자동 연결 ("의미 연결망" — 자세히는 [기술 상세](./docs/OPERATIONAL-ONTOLOGY.md)) |
@@ -467,7 +467,7 @@ generate_safety_report
 - 양식 인덱스 (`forms-map.json`): <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId — HWP <!-- INV:FORMS_HWP -->14<!-- /INV:FORMS_HWP --> / PDF <!-- INV:FORMS_PDF -->23<!-- /INV:FORMS_PDF --> / XLSX <!-- INV:FORMS_XLSX -->1<!-- /INV:FORMS_XLSX --> (공식 양식) + 자동 생성 MD <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD -->개. HWP/PDF/XLSX 중 일부는 라이선스상 공식 다운로드 URL 안내로 대체.
 - 그래프 노드: 카테고리 1단계 <!-- INV:GRAPH_TOPLEVEL -->2,212<!-- /INV:GRAPH_TOPLEVEL --> + KOSHA Guide 1,039 (서브디렉토리 포함 재귀) = 전체 **<!-- INV:GRAPH_TOTAL -->3,369<!-- /INV:GRAPH_TOTAL -->** · 엣지 약 <!-- INV:GRAPH_EDGES -->32,963<!-- /INV:GRAPH_EDGES --> (정확 카운트는 `npm run audit:strict`)
 - 핵심 작업/위험/통제: WorkActivity <!-- INV:GRAPH_ACTIVITIES -->41<!-- /INV:GRAPH_ACTIVITIES --> / Hazard <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS --> / Control <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS -->
-- 법령 본문 번들: **<!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->개 MD** — 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법·건진법 시행령·건진법 시행규칙 (합계 약 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조). 마지막 동기화: <!-- INV:LAW_LAST_SYNC -->2026-05-18<!-- /INV:LAW_LAST_SYNC --> (`src/ontology/safety-laws/*.md`)
+- 법령 본문 번들: **<!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->개 MD** — 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법·건진법 시행령·건진법 시행규칙 (합계 약 <!-- INV:LAW_ARTICLES -->79<!-- /INV:LAW_ARTICLES -->조). 마지막 동기화: <!-- INV:LAW_LAST_SYNC -->2026-06-08<!-- /INV:LAW_LAST_SYNC --> (`src/ontology/safety-laws/*.md`)
 
 ## (기술 상세) 온톨로지 설계 — 개발자·연구자용
 
