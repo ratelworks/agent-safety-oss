@@ -177,7 +177,23 @@ Co-Authored-By: Name <email>
 
 ---
 
-## 7. 라이선스
+## 7. Release 절차 (maintainer)
+
+**Release 노트의 SSoT 는 CHANGELOG 입니다. GitHub Release 를 손으로 작성하지 않습니다.**
+
+1. CHANGELOG 에 `## [X.Y.Z] — YYYY-MM-DD` 섹션 작성
+   - 헤더 바로 다음 줄에 **한 줄 가치 요약** (사용자 관점, 70자 이내) — Release 제목으로 자동 사용됨
+   - 규칙: 한국어 · 사용자 관점("이 릴리즈로 무엇을 얻나") · 핵심만 · breaking change 명시 · 코드 내부 경로(`src/` 등)·구현 디테일·내부 용어 금지
+2. `package.json` 과 버전 상수 파일을 함께 bump (불일치 시 `npm run check:doc-sync` 가 차단)
+3. `npm run release:notes` 로 게이트 사전 확인 — `npm run release:notes:preview` 로 실제 Release 본문 미리보기 (설치 안내·breaking 문구·크레딧 footer 자동 부착)
+4. commit → annotated tag `vX.Y.Z` → push (tag 포함)
+5. **tag push 가 끝** — `.github/workflows/release.yml` 이 게이트(버전 3자 일치 · 공개 위생 · 노트 규칙) 통과 후 GitHub Release 를 자동 생성합니다. `npm publish` 는 별도 실행하며, `prepublishOnly` 가 같은 게이트를 다시 강제합니다.
+
+수동 `gh release create` 는 금지합니다 — workflow 게이트를 우회하게 됩니다. 게이트 위반 시 Release 가 생성되지 않으므로 CHANGELOG 를 고친 뒤 tag 를 다시 만드십시오.
+
+---
+
+## 8. 라이선스
 
 본 OSS 에 기여하는 것은 [MIT 라이선스](./LICENSE) 하에 코드를 배포하는 것에 동의하는 것입니다.
 
@@ -185,7 +201,7 @@ KOSHA / 법령 / 정부 양식 등 외부 자료 라이선스는 [`SECURITY.md` 
 
 ---
 
-## 8. 행동 강령
+## 9. 행동 강령
 
 - 한국어·영어 모두 환영
 - 안전관리는 사람의 생명에 직결됩니다. 정확성·검증을 우선

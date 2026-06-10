@@ -1,0 +1,58 @@
+# GitHub Release 자동 생성 — 릴리즈 노트·제목 게이트 강제
+#
+# 본질: Release 노트의 SSoT 는 CHANGELOG 해당 버전 섹션 (3중 위생 게이트 통과 텍스트).
+# tag(vX.Y.Z) push 만 하면 본 workflow 가 검증된 섹션에서 노트·제목을 생성한다.
+# 사람이 `gh release create` 로 비검증 노트를 직접 쓰는 경로를 제거하는 것이 목적.
+#
+# 게이트 (scripts/release/extract-release-notes.ts — 위반 시 Release 미생성):
+#   · CHANGELOG 에 해당 버전 섹션 존재 (tag ↔ package.json ↔ CHANGELOG 3자 일치)
+#   · 한 줄 가치 요약 존재 (제목 SSoT, 70자 이내)
+#   · 내부 용어 / 내부 경로 / PII 사전 (check:oss-hygiene 와 동일 사전)
+#   · 코드 내부 경로(src/·scripts/·build/) 언급 금지 (사용자 관점 강제)
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write # gh release create
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install (scripts 실행용 — tsx)
+        run: npm ci --ignore-scripts
+
+      - name: Tag ↔ package.json 버전 일치 확인
+        run: |
+          TAG_VER="${GITHUB_REF_NAME#v}"
+          PKG_VER="$(node -p "require('./package.json').version")"
+          if [ "$TAG_VER" != "$PKG_VER" ]; then
+            echo "::error::tag v$TAG_VER ≠ package.json $PKG_VER — 버전 3자 동기화 위반"
+            exit 1
+          fi
+
+      - name: 공개 위생 게이트 (내부 용어 / 내부 경로 / PII)
+        run: npm run check:oss-hygiene
+
+      - name: Release 노트·제목 게이트 + 생성
+        run: |
+          npx tsx scripts/release/extract-release-notes.ts --check
+          TITLE="$(npx tsx scripts/release/extract-release-notes.ts --title)"
+          npx tsx scripts/release/extract-release-notes.ts --out .release-notes.md
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$TITLE" \
+            --notes-file .release-notes.md \
+            --verify-tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
