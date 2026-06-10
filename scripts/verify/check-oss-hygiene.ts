@@ -29,7 +29,7 @@ const ROOT = resolve(__dirname, "..", "..");
 
 // ── 검사 대상 ──────────────────────────────────────────────
 // repo 루트의 고정 문서 4종 + docs 디렉토리 하위 모든 *.md
-const TARGET_ROOT_FILES = ["README.md", "CHANGELOG.md", "CONTRIBUTING.md", "package.json"];
+const TARGET_ROOT_FILES = ["README.md", "CHANGELOG.md", "CONTRIBUTING.md", "AGENTS.md", "package.json"];
 const TARGET_DOCS_DIR = "docs";
 const DOC_EXTENSION = ".md";
 
@@ -75,6 +75,9 @@ const INTERNAL_PATHS = ["/Users/", "dev/A_/", "dev/Agent_HQ/", "~/.claude"];
 // 내부 전용 문서(CLAUDE.md / dev.md / plan.md / prep.md)가 public repo 에 tracked 되면 위반.
 // 루트·하위 어디에 있든 매칭 (경로 끝의 파일명만 검사).
 const INTERNAL_DOC_RE = /(^|\/)(CLAUDE|dev|plan|prep)\.md$/;
+// 예외: tests/ux/{TC-id}/plan.md 는 Webwright(MIT) E2E 테스트 표준 산출물(Critical Points 플랜) —
+// 내부 문서 체계의 plan.md(목표/마일스톤)와 무관하며 영문 테스트 자산으로 외부 공개 적합.
+const INTERNAL_DOC_ALLOW_RE = /^tests\/ux\/[^/]+\/plan\.md$/;
 
 // ── 검사 항목 3: PII ────────────────────────────────────────
 // 개인 이메일 (회사 공식 alphamale@ratelworks.co.kr 은 검사 안 함)
@@ -211,7 +214,7 @@ function scanTrackedInternalDocs(): void {
   }
   for (const path of out.split("\n")) {
     const file = path.trim();
-    if (file && INTERNAL_DOC_RE.test(file)) {
+    if (file && INTERNAL_DOC_RE.test(file) && !INTERNAL_DOC_ALLOW_RE.test(file)) {
       violations.push({
         category: "tracked_internal_doc",
         file,
