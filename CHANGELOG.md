@@ -5,6 +5,18 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### 수정
+
+- 런타임이 표시하는 버전(`src/version.ts`)이 v1.5.0 으로 남아 있던 문제를 바로잡았습니다. MCP 서버 선언·CLI 배너·프로젝트 정보 조회가 이제 실제 패키지 버전을 표시합니다. 재발하지 않도록 release 전 자동 검사에 버전 일치 항목을 추가했습니다.
+
+### 개선
+
+- README 를 처음 보는 분 기준으로 다시 정리했습니다 — 목차 추가, 여러 곳에 흩어져 있던 시작 방법·구성 요소 안내를 한 곳으로 통합, 브라우저 입력 폼 화면 캡처 추가.
+- 공공 데이터 source 상세 매핑과 향후 추가 후보를 [docs/DATA_SOURCES.md](./docs/DATA_SOURCES.md) 로 정리했습니다.
+- AI 코딩 도구(Claude Code·Codex CLI·Cursor 등) 공통 안내 파일 `AGENTS.md` 를 추가했습니다 — 외부 기여자가 어떤 도구를 쓰든 같은 규칙을 안내받습니다.
+
 ## [1.6.0] — 2026-05-30
 
 브라우저 입력 폼을 명령어 한 줄로 띄울 수 있습니다 — 설치도 빌드도 필요 없습니다.

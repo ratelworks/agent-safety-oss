@@ -49,6 +49,39 @@ src/ontology/kras-methods/*.md      KRAS 방법론
 
 일반 사용자는 선택적으로 `AGENTHQ_API_KEY`를 설정한다. 운영팀 또는 자체 중계를 운영하는 조직만 `DATA_GO_KR_KEY`를 직접 설정한다.
 
+## 공공 OpenAPI source 매핑 (13 source)
+
+본 OSS 가 그래프 작성 보조에 통합한 공공 데이터 source 와 호출 도구의 매핑이다.
+
+| Source | 영역 | 호출 도구 |
+|---|---|---|
+| KOSHA OneAPI 15121001 / 15121008 | 재해사례 + 첨부 | `search_accident_cases` · `get_accident_case_attachments` |
+| KOSHA OneAPI 15133935 | 건설 사망사고 통계 | `search_construction_fatal_accidents` |
+| KOSHA OneAPI 15119137 | 전 업종 사망사고 | `search_all_fatal_accidents` |
+| KOSHA OneAPI 15139398 | 안전보건자료실 (외국인 13개국어) | `search_safety_materials` · `get_foreign_worker_resource_links` |
+| KOSHA OneAPI 15001197 | MSDS (화학물질안전) | `search_msds` |
+| KOSHA OneAPI 15139497 | 보호구 안전인증 (KCs) | `search_ppe_certification` |
+| KOSHA OneAPI 15123696 | 안전보건법령 스마트검색 (AI 유사어) | `search_safety_law_smart` |
+| KOSHA OneAPI 15144147 | KOSHA Guide PDF 다운로드 (현재 번들 <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->) | (offline 번들로 대체) |
+| KOSHA OneAPI 15087828 | 건설 공종 분류 (구조 분류) | `analyze_construction_work_risks` (fallback) |
+| KOSHA OneAPI 15116595 | 공종 ↔ KOSHA Guide 매핑 | `analyze_construction_work_risks` (fallback) |
+| KOSHA OneAPI 15140383 | SIF 아카이브 (사망 고위험요인) | `search_sif_archive` |
+| KOSHA portal24 | 안전보건자료실 8,976건 (OPS·동영상·교안) | `search_kosha_archive` · `list_kosha_archive_facets` · `get_kosha_archive_files` |
+| 법제처 OpenAPI (law.go.kr) | 안전관리 법령 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문 발췌 (전문 아님) | (offline 번들 + 향후 동적 확장) |
+
+## 향후 추가 가능 공공 데이터
+
+다음 공공 데이터도 그래프 통합 후보다 (contributor 환영 — [Issue](https://github.com/ratelworks/agent-safety-oss/issues) 로 제안).
+
+- **법제처 OpenAPI** 동적 확장 (안전 외 인접 법령 — 산업안전기준에 관한 규칙 외)
+- **KOSHA-MS** 안전보건경영시스템 인증 사업장 명부
+- **KCs/KCs Self** 안전인증·자율안전인증 통합 (현재 보호구만)
+- **고용노동부** 산업재해 통계연보 (분기·연도별 추이)
+- **국토교통부** 건설공사 안전관리 종합정보망 (CSI)
+- **환경부** 화학물질 정보 (PRTR · 유해성 등급)
+- **소방청** 위험물 안전관리 정보
+- **건설근로자공제회** 안전교육 이수 자료
+
 ## 근거 등급
 
 | basisType | legalWeight | 사용 방식 |
