@@ -49,6 +49,26 @@ const SSoT = {
     .filter((f) => f.endsWith(".md")).length,
 };
 
+// ============================================================
+// 1.5) src/version.ts VERSION 상수 — package.json 과 정확 일치 (HIGH)
+//      v1.6.0 release 에서 version.ts 만 1.5.0 으로 남은 실사고 재발 방지
+//      (런타임 MCP 선언·CLI 배너·get_project_info 가 옛 버전을 표시).
+// ============================================================
+{
+  const versionTs = readFileSync(resolve(ROOT, "src/version.ts"), "utf8");
+  const m = versionTs.match(/export const VERSION = "(\d+\.\d+\.\d+)"/);
+  if (!m || m[1] !== SSoT.version) {
+    issues.push({
+      severity: "HIGH",
+      category: "stale_version_ts",
+      file: "src/version.ts",
+      expected: SSoT.version,
+      found: m ? m[1] : "(VERSION 상수 미검출)",
+      hint: "src/version.ts 의 VERSION 이 package.json version 과 불일치 — release bump 시 두 파일 동시 갱신 필수.",
+    });
+  }
+}
+
 // 제거된 도구 (v1.1.19 통합)
 const REMOVED_TOOLS = ["get_kosha_guide_content", "search_kosha_guides"];
 
