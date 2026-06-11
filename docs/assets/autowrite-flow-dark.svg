@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1264 544" width="1264" height="544" role="img" aria-labelledby="flowTitle">
+  <!-- 자동작성 흐름 다이어그램 (다크 테마). 라이트 변형(autowrite-flow-light.svg)과 내용을 항상 동기화할 것 -->
+  <title id="flowTitle">자동작성 흐름 — 요청 · 근거 조립 · 초안 생성과 검수 · 보관</title>
+  <style>
+    .bg{fill:#0d1117;stroke:#30363d}
+    .card{fill:#161b22;stroke:#30363d;stroke-width:1}
+    .cardHi{fill:#161b22;stroke:#4493f8;stroke-width:1.5}
+    .grp{fill:#4493f8;fill-opacity:.08;stroke:#4493f8;stroke-opacity:.35;stroke-width:1;stroke-dasharray:6 5}
+    text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;fill:#e6edf3}
+    .mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;font-size:13px}
+    .ttl{font-size:15.5px;font-weight:600}
+    .dsc{font-size:13px;fill:#9198a1}
+    .quote{font-size:13px;fill:#9198a1}
+    .chip{fill:#4493f8}
+    .chipN{fill:#fff;font-size:13px;font-weight:700}
+    .ph{font-size:16px;font-weight:600}
+    .ln{stroke:#6e7681;stroke-width:1.6;fill:none}
+    .lnG{stroke:#3fb950;stroke-width:1.6;fill:none}
+    .lnA{stroke:#d29922;stroke-width:1.6;fill:none;stroke-dasharray:7 5}
+    .lblG{fill:#3fb950;font-size:12.5px;font-weight:600}
+    .lblA{fill:#d29922;font-size:12.5px;font-weight:600}
+    .note{fill:#4493f8;font-size:12.5px}
+    .badge{fill:#4493f8;fill-opacity:.18}
+    .badgeT{fill:#4493f8;font-size:11.5px;font-weight:600}
+    .ico{stroke:#9198a1;stroke-width:1.6;fill:none}
+    .spark{fill:#4493f8}
+    .mkGray{fill:#6e7681}
+    .mkG{fill:#3fb950}
+    .mkA{fill:#d29922}
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="mkGray"/>
+    </marker>
+    <marker id="arG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="mkG"/>
+    </marker>
+    <marker id="arA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="mkA"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="1262" height="542" rx="12" class="bg"/>
+
+  <!-- 페이즈 헤더 -->
+  <circle cx="47" cy="56" r="11" class="chip"/>
+  <text x="47" y="61" text-anchor="middle" class="chipN">1</text>
+  <text x="66" y="61" class="ph">요청</text>
+
+  <circle cx="311" cy="56" r="11" class="chip"/>
+  <text x="311" y="61" text-anchor="middle" class="chipN">2</text>
+  <text x="330" y="61" class="ph">근거 조립</text>
+
+  <circle cx="697" cy="56" r="11" class="chip"/>
+  <text x="697" y="61" text-anchor="middle" class="chipN">3</text>
+  <text x="716" y="61" class="ph">초안 생성 · 검수</text>
+
+  <circle cx="1023" cy="56" r="11" class="chip"/>
+  <text x="1023" y="61" text-anchor="middle" class="chipN">4</text>
+  <text x="1042" y="61" class="ph">보관</text>
+
+  <!-- ① 요청: 사용자 -->
+  <rect x="36" y="92" width="216" height="122" rx="8" class="card"/>
+  <circle cx="58" cy="116" r="5" class="ico"/>
+  <path d="M49,131 a9,7 0 0 1 18,0" class="ico"/>
+  <text x="72" y="122" class="ttl">안전관리자 · 현장소장</text>
+  <text x="50" y="162" class="quote">“오늘 굴착 작업</text>
+  <text x="50" y="186" class="quote">TBM 만들어줘”</text>
+
+  <line x1="144" y1="214" x2="144" y2="262" class="ln" marker-end="url(#ar)"/>
+
+  <!-- ① 요청: AI 비서 -->
+  <rect x="36" y="268" width="216" height="92" rx="8" class="card"/>
+  <path d="M58,288 l2.4,6.6 6.6,2.4 -6.6,2.4 -2.4,6.6 -2.4,-6.6 -6.6,-2.4 6.6,-2.4 z" class="spark"/>
+  <text x="72" y="301" class="ttl">AI 비서</text>
+  <text x="50" y="330" class="dsc">Claude Desktop · Codex CLI</text>
+
+  <line x1="252" y1="314" x2="294" y2="314" class="ln" marker-end="url(#ar)"/>
+
+  <!-- ② 근거 조립 그룹 -->
+  <rect x="300" y="92" width="330" height="368" rx="10" class="grp"/>
+
+  <rect x="316" y="110" width="298" height="86" rx="8" class="card"/>
+  <text x="332" y="145" class="mono">get_safety_document_guide</text>
+  <text x="332" y="173" class="dsc">양식 구조 · 필수 항목 확인</text>
+
+  <rect x="316" y="210" width="298" height="86" rx="8" class="cardHi"/>
+  <text x="332" y="245" class="mono">assemble_doc_context</text>
+  <text x="332" y="273" class="dsc">법령 · 위험 · 통제 · KOSHA Guide 조립</text>
+  <rect x="560" y="224" width="42" height="22" rx="11" class="badge"/>
+  <text x="581" y="239" text-anchor="middle" class="badgeT">핵심</text>
+
+  <rect x="316" y="310" width="298" height="86" rx="8" class="card"/>
+  <text x="332" y="345" class="mono">get_site_profile</text>
+  <text x="332" y="373" class="dsc">사업장명 · 현장명 · 결재선 자동 채움</text>
+
+  <text x="465" y="434" text-anchor="middle" class="note">LLM이 추측하지 않도록 — 근거를 먼저 모읍니다</text>
+
+  <!-- 근거 → 초안 합성 버스 -->
+  <path d="M614,153 H650 M614,253 H650 M614,353 H650 M650,353 V142" class="ln"/>
+  <path d="M650,142 H678" class="ln" marker-end="url(#ar)"/>
+
+  <!-- ③ 초안 생성 -->
+  <rect x="686" y="92" width="270" height="100" rx="8" class="card"/>
+  <text x="702" y="132" class="mono">generate_safety_document</text>
+  <text x="702" y="160" class="dsc">결재 가능한 초안 합성</text>
+
+  <line x1="821" y1="192" x2="821" y2="230" class="ln" marker-end="url(#ar)"/>
+
+  <!-- ③ 검수 -->
+  <rect x="686" y="236" width="270" height="124" rx="8" class="card"/>
+  <text x="702" y="274" class="mono">review_safety_document</text>
+  <text x="702" y="302" class="dsc">필수 항목 · 법령 인용</text>
+  <text x="702" y="326" class="dsc">결재 가능 여부 점검</text>
+
+  <!-- 결재 가능 → 보관 -->
+  <text x="981" y="286" text-anchor="middle" class="lblG">결재 가능</text>
+  <path d="M956,298 H1006" class="lnG" marker-end="url(#arG)"/>
+
+  <!-- ④ 보관 -->
+  <rect x="1012" y="246" width="216" height="104" rx="8" class="card"/>
+  <text x="1028" y="288" class="mono">archive_safety_document</text>
+  <text x="1028" y="316" class="dsc">로컬 보관</text>
+
+  <!-- 보강 필요 피드백 루프 -->
+  <path d="M821,360 V502 H16 V160 H30" class="lnA" marker-end="url(#arA)"/>
+  <text x="418" y="490" text-anchor="middle" class="lblA">보강 필요 · 수정 후 재요청</text>
+</svg>

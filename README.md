@@ -203,19 +203,10 @@ archive_safety_document        로컬 보관
 
 핵심은 문서를 바로 "그럴듯하게" 쓰는 것이 아니라, **그래프 컨텍스트를 먼저 조립하고, 초안을 만들고, 검수한 뒤 보관**하는 것입니다.
 
-```mermaid
-flowchart LR
-  U[안전관리자 / 현장소장] --> A[Claude Desktop / Codex CLI]
-  A --> G[get_safety_document_guide]
-  A --> C[assemble_doc_context]
-  A --> P[get_site_profile]
-  G --> D[generate_safety_document]
-  C --> D
-  P --> D
-  D --> R[review_safety_document]
-  R -->|보강 필요| U
-  R -->|결재 가능| S[archive_safety_document]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/autowrite-flow-dark.svg">
+  <img alt="자동작성 흐름 — 사용자 요청을 AI 비서가 받아 양식 가이드·그래프 근거·현장 프로파일을 조립하고, 초안 생성과 검수를 거쳐 결재 가능한 문서만 보관합니다. 보강이 필요하면 사용자에게 되돌아갑니다." src="./docs/assets/autowrite-flow-light.svg">
+</picture>
 
 1. 사용자가 "오늘 굴착 작업 TBM 만들어줘"처럼 요청한다.
 2. Agent가 `get_safety_document_guide`로 양식 구조와 필수 항목을 확인한다.
