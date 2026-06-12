@@ -4,7 +4,8 @@ import type { DocumentNode, DocumentSection, DocumentSectionField } from "./grap
 import { kstToday } from "./datetime-kst.js";
 import { renderIri } from "./iri-renderer.js";
 
-const XML_ESCAPE_PATTERN = /[&<>"\u0000]/g;
+// XML 1.0 불법 제어문자(u0000-u0008, u000B, u000C, u000E-u001F)는 escape 불가 — 맵 폴백("")으로 제거
+const XML_ESCAPE_PATTERN = /[&<>"\u0000-\u0008\u000B\u000C\u000E-\u001F]/g;
 const XML_ESCAPE_MAP: Record<string, string> = {
   "&": "&amp;",
   "<": "&lt;",
@@ -417,7 +418,8 @@ function simpleTable(caption: string, headers: string[], rows: unknown[][]): str
   });
 }
 
-function getRawFieldValue(draft: Record<string, unknown>, fieldKey: string, fieldLabel?: string): unknown {
+// draft 필드 해석의 단일 소스 — generate-safety-document.ts의 md 렌더도 이 함수에 위임한다 (해석 우선순위 drift 방지)
+export function resolveDraftFieldValue(draft: Record<string, unknown>, fieldKey: string, fieldLabel?: string): unknown {
   const sections = (draft.sections ?? {}) as Record<string, Record<string, unknown>>;
   for (const sec of Object.values(sections)) {
     if (fieldKey in sec) return sec[fieldKey];
@@ -507,13 +509,13 @@ function renderSection(index: number, section: DocumentSection, draft: Record<st
 
   if (section.fields.length > 0) {
     body.push(keyValueTable(section.title, section.fields.map((field) => {
-      const value = getRawFieldValue(draft, field.key, field.label);
+      const value = resolveDraftFieldValue(draft, field.key, field.label);
       return [field.label, isEmptyValue(value) ? "" : toText(value)];
     })));
   }
 
   const guideLines = section.fields
-    .filter((field) => isEmptyValue(getRawFieldValue(draft, field.key, field.label)) && field.inputGuide)
+    .filter((field) => isEmptyValue(resolveDraftFieldValue(draft, field.key, field.label)) && field.inputGuide)
     .flatMap((field) => [
       `${field.label}: ${field.inputGuide}`,
       field.standardFormat ? `표준 형식: ${field.standardFormat}` : "",
@@ -634,7 +636,7 @@ function fieldRegion(sections: DocumentSection[], draft: Record<string, unknown>
   const fields = sections.flatMap((section) => section.fields ?? []);
   if (fields.length === 0) return "";
   const items = fields.map((field: DocumentSectionField) => {
-    const value = getRawFieldValue(draft, field.key, field.label);
+    const value = resolveDraftFieldValue(draft, field.key, field.label);
     const valueXml = isEmptyValue(value)
       ? element(TAG.value, "", { class: VALUE_CLASS_FILLABLE })
       : element(TAG.value, escapeXml(toText(value)));

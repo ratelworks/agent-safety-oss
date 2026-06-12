@@ -103,7 +103,7 @@ function testSerializerStructure(): void {
 
   const xml = serializeSafetyDocumentToDoclang({
     document,
-    draft: { filledField: "A & B <C> \"D\"" },
+    draft: { filledField: "A & B <C> \"D\"" + String.fromCharCode(7) + "BEL" },
     sections: document.sections ?? [],
     kosha: [],
     hazards: [],
@@ -130,7 +130,8 @@ function testSerializerStructure(): void {
     xml.includes("<field_item><key>미작성 &lt;필드&gt;</key><value class=\"fillable\"></value></field_item>"),
     "missing input must be represented as fillable value",
   );
-  assert(xml.includes("A &amp; B &lt;C&gt; &quot;D&quot;"), "field value must be XML escaped");
+  assert(xml.includes("A &amp; B &lt;C&gt; &quot;D&quot;BEL"), "field value must be XML escaped");
+  assert(!xml.includes(String.fromCharCode(7)), "XML 1.0 illegal control characters must be stripped");
   assert(parseXml(xml).doclang, "DocLang XML must parse");
 }
 

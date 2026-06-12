@@ -35,7 +35,7 @@ import { validateDocumentInput, type ValidationReport } from "../lib/input-valid
 import { COMMON_RESPONSE_META } from "../config/constants.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
 import { kstToday } from "../lib/datetime-kst.js";
-import { serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput } from "../lib/doclang-serializer.js";
+import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput } from "../lib/doclang-serializer.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -423,25 +423,10 @@ function formatMarkdownCell(value: unknown): string {
   return text.replace(/\\/g, "\\\\").replace(/\r?\n/g, "<br>").replace(/\|/g, "\\|");
 }
 
+// draft 필드 해석은 doclang-serializer의 resolveDraftFieldValue 가 단일 소스 —
+// md/doclang 두 렌더가 같은 필드에 다른 값을 넣는 drift 를 구조적으로 방지한다.
 function getRawFieldValue(input: Input, fieldKey: string, fieldLabel?: string): unknown {
-  const d = (input.draft ?? {}) as Record<string, any>;
-  const sections = (d.sections ?? {}) as Record<string, Record<string, unknown>>;
-  for (const sec of Object.values(sections)) {
-    if (fieldKey in sec) return sec[fieldKey];
-    if (fieldLabel && fieldLabel in sec) return sec[fieldLabel];
-  }
-  if (fieldKey.includes(".")) {
-    const [outer, inner] = fieldKey.split(".", 2);
-    const o = (d as Record<string, unknown>)[outer];
-    if (o && typeof o === "object" && inner in (o as Record<string, unknown>)) {
-      return (o as Record<string, unknown>)[inner];
-    }
-  }
-  if (fieldKey in d) return d[fieldKey];
-  if (fieldLabel && fieldLabel in d) return d[fieldLabel];
-  if (d.raw && fieldKey in d.raw) return d.raw[fieldKey];
-  if (fieldLabel && d.raw && fieldLabel in d.raw) return d.raw[fieldLabel];
-  return undefined;
+  return resolveDraftFieldValue((input.draft ?? {}) as Record<string, unknown>, fieldKey, fieldLabel);
 }
 
 function renderFieldDetailTable(field: { key: string; label: string }, value: unknown): string[] {
