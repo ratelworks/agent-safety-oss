@@ -74,6 +74,30 @@ function testOtslMergedGrid(): void {
   assert(xml.includes("<nl/>"), "table rows must end with nl token");
 }
 
+function testHeaderDirection(): void {
+  // 첫 행 전체 헤더 = 열 헤더 밴드 (가로로 나란함 → 전부 ched, rhed 금지)
+  const headerBand = tableToOtsl({
+    rows: [
+      [{ text: "역할", isHeader: true }, { text: "성명", isHeader: true }, { text: "일자", isHeader: true }],
+      [{ text: "사업주" }, { text: "홍길동" }, { text: "2026-06-12" }],
+    ],
+  });
+  assert((headerBand.match(/<ched\/>/g) ?? []).length === 3, "first-row header band must be all ched");
+  assert(!headerBand.includes("<rhed/>"), "horizontal header band must not emit rhed");
+
+  // 첫 열에 세로로 쌓인 헤더 = 행 헤더 (rhed)
+  const keyColumn = tableToOtsl({
+    rows: [
+      [{ text: "항목", isHeader: true }, { text: "내용", isHeader: true }],
+      [{ text: "현장명", isHeader: true }, { text: "테스트 현장" }],
+      [{ text: "작성일", isHeader: true }, { text: "2026-06-12" }],
+    ],
+  });
+  assert(keyColumn.includes("<rhed/>현장명"), "stacked first-column headers must be rhed");
+  assert(keyColumn.includes("<rhed/>작성일"), "last stacked header must also be rhed");
+  assert(keyColumn.includes("<ched/>항목"), "top-left corner of header band must stay ched");
+}
+
 function testSerializerStructure(): void {
   const document: DocumentNode = {
     "@id": "doc:test_doclang",
@@ -173,12 +197,14 @@ async function testGenerateSafetyDocumentIntegration(): Promise<void> {
 
 async function main(): Promise<void> {
   testOtslMergedGrid();
+  testHeaderDirection();
   testSerializerStructure();
   await testGenerateSafetyDocumentIntegration();
   console.log(JSON.stringify({
     ok: true,
     version: DOCLANG_VERSION,
     otslMergedGrid: true,
+    headerDirection: true,
     serializerStructure: true,
     generateSafetyDocumentIntegration: true,
   }, null, 2));

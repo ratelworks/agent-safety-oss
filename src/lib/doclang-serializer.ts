@@ -246,8 +246,9 @@ function hasHeaderRight(table: DoclangTable, row: number, col: number): boolean 
 
 function detectHeaderKind(table: DoclangTable, row: number, col: number, cell: DoclangTableCell): HeaderKind {
   if (cell.isHeader === true) {
-    if (hasHeaderRight(table, row, col) && !hasHeaderBelow(table, row, col)) return "row";
-    if (hasHeaderBelow(table, row, col) && !hasHeaderRight(table, row, col)) return "column";
+    // 열 헤더(ched)는 가로로 나란히(오른쪽에 헤더 동료), 행 헤더(rhed)는 세로로 쌓인다(아래에 헤더 동료)
+    if (hasHeaderRight(table, row, col) && !hasHeaderBelow(table, row, col)) return "column";
+    if (hasHeaderBelow(table, row, col) && !hasHeaderRight(table, row, col)) return "row";
     return col === 0 && row > 0 ? "row" : "column";
   }
   return table.hasHeader === true && row === 0 ? "column" : "none";
