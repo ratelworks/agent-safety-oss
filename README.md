@@ -218,6 +218,8 @@ archive_safety_document        로컬 보관
 
 `assemble_doc_context`와 `generate_safety_document`의 조합이 핵심입니다 — 전자는 LLM이 추측하지 않도록 근거를 모으고, 후자는 그 근거를 결재 가능한 Markdown 문서로 합성합니다.
 
+출력은 기본적으로 기존과 같은 Markdown입니다. 양식의 병합 셀·빈칸·법령 근거 연결까지 보존해 다른 LLM 검수나 문서 RAG에 넘기고 싶다면 `generate_safety_document` 호출 시 `format: "doclang"`을 지정할 수 있습니다. 이 DocLang v0.6 XML 출력은 현재 experimental 옵션입니다.
+
 폼 UI([B. 브라우저 입력 폼](#b-브라우저-입력-폼--ai-비서cli-불필요))와 함께 쓰는 경우에는 `render_a2ui_form` (입력 폼 생성) → `save_form_draft` / `load_form_draft` (임시 저장·재로딩) → `submit_safety_document` (실제 문서 생성 흐름으로 제출) 를 같이 사용합니다.
 
 ## 현장 운영 흐름

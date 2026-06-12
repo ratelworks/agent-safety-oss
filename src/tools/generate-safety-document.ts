@@ -35,6 +35,7 @@ import { validateDocumentInput, type ValidationReport } from "../lib/input-valid
 import { COMMON_RESPONSE_META } from "../config/constants.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
 import { kstToday } from "../lib/datetime-kst.js";
+import { serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput } from "../lib/doclang-serializer.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -56,6 +57,10 @@ const inputSchema = z.object({
     .string()
     .optional()
     .describe("자동 채움에 사용할 현장 ID. 미지정 시 사업장의 첫 현장 사용."),
+  format: z
+    .enum(["md", "doclang"])
+    .default("md")
+    .describe("출력 포맷. md=기존 Markdown, doclang=DocLang v0.6 XML (experimental)."),
   scale: z
     .object({
       workforce: z.number().optional(),
@@ -67,6 +72,7 @@ const inputSchema = z.object({
 });
 
 type Input = z.infer<typeof inputSchema>;
+type OutputFormat = Input["format"];
 
 interface KoshaGuideInfo {
   iri: string;
@@ -896,6 +902,76 @@ async function renderGeneric(
   return lines.join("\n");
 }
 
+interface DocumentRenderContext {
+  doc: DocumentNode;
+  input: Input;
+  sections: DocumentSection[];
+  kosha: KoshaGuideInfo[];
+  hazards: HazardInfo[];
+  controls: ControlInfo[];
+  directControlIris: Set<string>;
+  legalBodyByIri: Map<string, string | undefined>;
+  hazardFallbackSuppressed: boolean;
+  documentCategory: string;
+  missingRequiredCount: number;
+}
+
+const SAFETY_DISCLAIMER = `본 문서는 agent-safety-oss 가 생성한 초안입니다. 결재·제출 전에 안전관리자 본인이 본문·법령 인용·필수 항목을 직접 검토하고, review_safety_document 도구로 환각·누락 확인, 중대재해·산업재해 관련 사항은 법무·노무 협의가 필요합니다. 작성 주체는 안전관리자이며 본 OSS 는 작성 보조만 수행합니다.`;
+const MARKDOWN_SAFETY_DISCLAIMER = `\n\n---\n\n> ℹ️ **본 문서는 agent-safety-oss 가 생성한 초안입니다.** 결재·제출 전에 (1) 안전관리자 본인이 본문·법령 인용·필수 항목을 직접 검토하고, (2) \`review_safety_document\` 도구로 환각·누락 확인, (3) 중대재해·산업재해 관련 사항은 법무·노무 협의가 필요합니다. **작성 주체는 안전관리자이며 본 OSS 는 작성 보조만 수행합니다.**\n`;
+
+function renderUsabilityHeader(missingRequiredCount: number): string {
+  return missingRequiredCount > 0
+    ? `> 🚫 **결재 사용 불가** — 필수 항목 ${missingRequiredCount}건 미작성. 미작성 항목은 \`structuredContent.validation.issues\` 참조. 결재 전 반드시 보강.\n\n`
+    : `> ✅ **필수 항목 모두 작성됨** — 결재 가능 (단 결재선 서명·날짜 별도 확인).\n\n`;
+}
+
+async function renderMarkdownOutput(context: DocumentRenderContext): Promise<string> {
+  const body = await renderGeneric(
+    context.doc,
+    context.input,
+    context.kosha,
+    context.hazards,
+    context.controls,
+    context.directControlIris,
+    context.legalBodyByIri,
+    context.hazardFallbackSuppressed,
+  );
+  return (
+    renderUsabilityHeader(context.missingRequiredCount) +
+    body +
+    (context.doc.retention ? `\n---\n*보존: ${context.doc.retention}*` : "") +
+    MARKDOWN_SAFETY_DISCLAIMER
+  );
+}
+
+function renderDoclangOutput(context: DocumentRenderContext): string {
+  const draft = (context.input.draft ?? {}) as Record<string, unknown>;
+  const statusText = context.missingRequiredCount > 0
+    ? `결재 사용 불가 — 필수 항목 ${context.missingRequiredCount}건 미작성. 결재 전 반드시 보강.`
+    : "필수 항목 모두 작성됨 — 결재 가능 (단 결재선 서명·날짜 별도 확인).";
+  const serializerInput: SafetyDocumentDoclangInput = {
+    document: context.doc,
+    draft,
+    sections: context.sections,
+    kosha: context.kosha,
+    hazards: context.hazards,
+    controls: context.controls,
+    directControlIris: context.directControlIris,
+    legalBodyByIri: context.legalBodyByIri,
+    hazardFallbackSuppressed: context.hazardFallbackSuppressed,
+    documentCategory: context.documentCategory,
+    missingRequiredCount: context.missingRequiredCount,
+    statusText,
+    safetyDisclaimer: SAFETY_DISCLAIMER,
+  };
+  return serializeSafetyDocumentToDoclang(serializerInput);
+}
+
+const DOCUMENT_RENDERERS: Record<OutputFormat, (context: DocumentRenderContext) => Promise<string> | string> = {
+  md: renderMarkdownOutput,
+  doclang: renderDoclangOutput,
+};
+
 // 검증 결과 푸터 (v0.14 — 사용자 입력 사실성 검증)
 // 향후 검증 UI 보강 시 호출 예정 (P-PAPER-2b). 현재 inactive — 함수 보존.
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -1013,8 +1089,6 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     legalBodyByIri.set(l, body);
   }));
 
-  const body = await renderGeneric(doc, input, kosha, hazards, controls, directControlIris, legalBodyByIri, hazardFallbackSuppressed);
-
   // v0.14 — 사용자 입력 사실성 검증 (구조화 데이터로만 노출, 결재본에는 미포함)
   const validation = validateDocumentInput(
     input.docId,
@@ -1029,14 +1103,22 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const missingRequiredCount = validation.errors.filter(
     (i) => i.field.startsWith("sections."),
   ).length;
-  const usabilityHeader = missingRequiredCount > 0
-    ? `> 🚫 **결재 사용 불가** — 필수 항목 ${missingRequiredCount}건 미작성. 미작성 항목은 \`structuredContent.validation.issues\` 참조. 결재 전 반드시 보강.\n\n`
-    : `> ✅ **필수 항목 모두 작성됨** — 결재 가능 (단 결재선 서명·날짜 별도 확인).\n\n`;
-
-  // 안전 disclaimer — 모든 generate 결과 하단 부착
-  const safetyDisclaimer = `\n\n---\n\n> ℹ️ **본 문서는 agent-safety-oss 가 생성한 초안입니다.** 결재·제출 전에 (1) 안전관리자 본인이 본문·법령 인용·필수 항목을 직접 검토하고, (2) \`review_safety_document\` 도구로 환각·누락 확인, (3) 중대재해·산업재해 관련 사항은 법무·노무 협의가 필요합니다. **작성 주체는 안전관리자이며 본 OSS 는 작성 보조만 수행합니다.**\n`;
-
-  const fullBody = usabilityHeader + body + (doc.retention ? `\n---\n*보존: ${doc.retention}*` : "") + safetyDisclaimer;
+  const sections = doc.sections && doc.sections.length > 0 ? doc.sections : buildSectionsFromRequiredFields(doc);
+  const renderContext: DocumentRenderContext = {
+    doc,
+    input,
+    sections,
+    kosha,
+    hazards,
+    controls,
+    directControlIris,
+    legalBodyByIri,
+    hazardFallbackSuppressed,
+    documentCategory,
+    missingRequiredCount,
+  };
+  const markdownBody = await DOCUMENT_RENDERERS.md(renderContext);
+  const fullBody = input.format === "md" ? markdownBody : await DOCUMENT_RENDERERS[input.format](renderContext);
 
   // 폼 UI 자동 채움 카드 — handler 시작에서 캐시한 400자 본문 재사용
   const legalArticles = (doc.legalBasis ?? []).map((l) => ({
@@ -1093,7 +1175,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       controlCount: controls.length,
       sectionsCount: (doc.sections ?? []).length,
       legalBasisCount: (doc.legalBasis ?? []).length,
-      bodyMarkdownLength: fullBody.length,
+      bodyMarkdownLength: markdownBody.length,
       // decision 006 — 위험 출처/폴백 차단 여부 (환각 차단 관찰용)
       documentCategory,
       hazardSource: hasWhitelist ? "whitelist" : hazardFallbackAllowed ? "guide_fallback" : "suppressed_administrative",
@@ -1117,7 +1199,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 export const generateSafetyDocumentTool: ToolDefinition = {
   name: "generate_safety_document",
   description:
-    "법정 안전관리 문서의 **초안 본문**을 결정론적으로 생성한다. v0.7 — Document.sections 기반 generic renderer로 모든 docId 자동 처리. 그래프 추론(KOSHA·Hazard·Control·법령) + 작업 조건 합성 → Markdown. PDF·docx 변환은 클라이언트. **⚠️ 작성 보조: 본 도구 단독 결과는 초안일 뿐, 결재 가능 여부 확인은 `review_safety_document` 호출 필수. 작성 주체는 안전관리자이며 MCP는 보조. 중대재해·산업재해 관련 문서는 법무·노무 검토 필요.**",
+    "법정 안전관리 문서의 **초안 본문**을 결정론적으로 생성한다. v0.7 — Document.sections 기반 generic renderer로 모든 docId 자동 처리. 그래프 추론(KOSHA·Hazard·Control·법령) + 작업 조건 합성 → Markdown. `format=doclang` 은 DocLang v0.6 XML experimental 출력. PDF·docx 변환은 클라이언트. **⚠️ 작성 보조: 본 도구 단독 결과는 초안일 뿐, 결재 가능 여부 확인은 `review_safety_document` 호출 필수. 작성 주체는 안전관리자이며 MCP는 보조. 중대재해·산업재해 관련 문서는 법무·노무 검토 필요.**",
   inputSchema,
   handler,
 };
