@@ -5,6 +5,15 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] — 2026-06-13
+
+안전 문서를 표 구조·법령 연결을 보존하는 DocLang 형식으로도 출력할 수 있습니다.
+
+### 추가
+
+- **DocLang 출력 옵션 (experimental)** — `generate_safety_document` 호출 시 `format: "doclang"` 을 지정하면 표의 병합 칸·채워야 할 빈칸·법령 근거 연결이 보존되는 XML 문서를 받습니다. 다른 AI 에게 문서 검수를 맡기거나 문서 검색(RAG) 자료로 쌓을 때 Markdown 보다 구조 정보가 정확하게 전달됩니다. 같은 문서를 두 형식으로 비교 검증한 결과, 표 병합 구조와 문서 분류 정보는 DocLang 에서만 정확히 전달되는 것을 확인했습니다.
+- 기본 출력은 기존과 같은 Markdown 입니다 — 따로 지정하지 않으면 쓰던 방식 그대로 동작합니다.
+
 ## [1.6.1] — 2026-06-10
 
 문서를 처음 보는 분 기준으로 다시 정리하고, 도구가 표시하는 버전 오류를 바로잡았습니다.
