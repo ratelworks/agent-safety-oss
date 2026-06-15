@@ -10,10 +10,12 @@
 // 운영 에이전트명 / 내부 문서 체계 / 내부 git 트레일러.
 // 회사명(황룡건설·라텔웍스·㈜라텔웍스)·Co-Authored-By 는 크레딧 맥락이므로 사전에 없음 (허용).
 export const INTERNAL_TERMS = [
-  // 자기학습 메모리 / 내부 운영 용어
+  // 자기학습 메모리 / 내부 운영 용어 · 내부 전략 언어
   "박제",
   "서브웨이",
   "만다라트",
+  "해자",
+  "영속 자산",
   // 운영 에이전트명 (a-* 계열)
   "a-dev",
   "a-git",
@@ -29,10 +31,11 @@ export const INTERNAL_TERMS = [
   "a-dogfooding",
   "a-frontend",
   "a-backend",
-  // 내부 문서 체계
+  // 내부 문서 체계 (파일명 — 'testsuite' 일반어 아님, '.md' 만)
   "prep.md",
   "dev.md",
   "plan.md",
+  "testsuite.md",
   // 내부 git 트레일러
   "Session-Id",
   "Work-Scope",
