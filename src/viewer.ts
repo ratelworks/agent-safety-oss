@@ -172,6 +172,7 @@ interface WorkflowState {
   approver?: string;     // 결재자 역할
   recipient?: string;    // 수신자 역할
   coAuthors?: string[];  // 다자 작성 귀속 (F-sub-4)
+  authMode?: string;     // "self-selected-role": 역할이 미인증 자가선택값임을 명시(서명 아님, critic C2)
   updatedAt: string;
   history: WorkflowHistory[];
 }
@@ -860,12 +861,12 @@ async function openEmergency() {
   } catch {}
   view.innerHTML =
     '<div class="emg-warn"><span class="material-symbols-outlined">warning</span>' +
-      '<span>이 화면은 신고를 대신하지 않습니다. 중대재해(사망·중상 등) 발생 시 <strong>STEP 1 전화 신고가 법정 의무</strong>입니다(산안법 제54조·중처법). 보고서 작성은 전화 신고 이후의 절차입니다.</span></div>' +
+      '<span>이 화면은 신고를 대신하지 않습니다. 중대재해 발생 시 <strong>STEP 1 인명 구조·구급(119)</strong>이 최우선이며, <strong>관할 지방고용노동청 보고(STEP 2)가 산안법 제54조의 법정 보고 의무</strong>입니다. 보고서 작성(STEP 3)만으로는 신고가 완료되지 않습니다.</span></div>' +
     '<div class="emg-steps">' +
-      // STEP 1 — 전화 (지금 즉시)
+      // STEP 1 — 전화 (지금 즉시). 119/112 는 인명 구조·구급 우선조치이지 산안법 §54 "보고" 자체가 아니다(critic M1 L-4).
       '<section class="emg-step">' +
-        '<div class="emg-step-head"><span class="emg-step-no">1</span><h3>지금 즉시 — 전화 신고</h3><span class="emg-when">최우선 법정 의무</span></div>' +
-        '<p class="caption">제출처: ' + escapeHtml(submitTo) + '</p>' +
+        '<div class="emg-step-head"><span class="emg-step-no">1</span><h3>지금 즉시 — 인명 구조·구급</h3><span class="emg-when">최우선 조치</span></div>' +
+        '<p class="caption">제출처(법정 보고 대상): ' + escapeHtml(submitTo) + '</p>' +
         '<div class="emg-call-btns">' +
           '<a class="emg-call" href="tel:119"><span class="material-symbols-outlined">call</span>119 (소방·구급)</a>' +
           '<a class="emg-call secondary" href="tel:112"><span class="material-symbols-outlined">local_police</span>112 (경찰)</a>' +
@@ -874,8 +875,8 @@ async function openEmergency() {
       '</section>' +
       // STEP 2 — e-노동민원 (지체없이)
       '<section class="emg-step">' +
-        '<div class="emg-step-head"><span class="emg-step-no">2</span><h3>지체 없이 — ' + escapeHtml(minwonSystem) + '</h3><span class="emg-when">전화 신고 후</span></div>' +
-        '<p class="caption">관할 지방고용노동청에 전자 보고를 접수합니다. 아래 링크는 새 탭에서 외부 사이트로 이동합니다.</p>' +
+        '<div class="emg-step-head"><span class="emg-step-no">2</span><h3>지체 없이 — ' + escapeHtml(minwonSystem) + '</h3><span class="emg-when">산안법 제54조 법정 보고</span></div>' +
+        '<p class="caption">산안법 제54조②에 따라 관할 지방고용노동청에 <strong>지체 없이 보고</strong>해야 하는 본 절차입니다. 아래 링크는 새 탭에서 외부 사이트로 이동합니다.</p>' +
         '<a class="emg-link" href="' + escapeHtml(minwonUrl) + '" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined">open_in_new</span>' + escapeHtml(minwonSystem) + ' 열기</a>' +
       '</section>' +
       // STEP 3 — 즉시보고서 작성
@@ -1077,8 +1078,12 @@ async function fillWorkflowLanes() {
   } catch {}
   // 결재함: pending 이고 approver=현재역할 / 검토 대상. 보호 분류(J_건강)는 결재함에 노출하지 않음(F-wr-4).
   const approvals = items.filter((it) => it.state === 'pending' && it.approver === currentRole && !isProtectedDoc(it.docId));
-  // 수신함: sent/received 이고 recipient=현재역할. 보호 분류는 수신자 본인에게만(recipient 필터로 한정).
-  const inbox = items.filter((it) => (it.state === 'sent' || it.state === 'received') && it.recipient === currentRole);
+  // 수신함: sent/received 이고 recipient=현재역할. 역할은 미인증 자가선택값(DP-1)이므로 보호 분류(J_건강)는
+  // 제목·메타를 마스킹해 역할 전환만으로 §129 대상 문서 존재가 드러나지 않게 한다(critic M3-HIGH). 실제 열람은
+  // isProtectedDoc → read-only + 본인 확인 게이트(healthUnlocked)에서 한 번 더 통제. 강한 인증은 범위 밖(F-wr-4).
+  const inbox = items
+    .filter((it) => (it.state === 'sent' || it.state === 'received') && it.recipient === currentRole)
+    .map((it) => isProtectedDoc(it.docId) ? { ...it, title: '🔒 보호 문서 — 본인 확인 후 열람', masked: true } : it);
   fillCardLane(lanes.approval, 'approval', approvals, '결재·검토 대기 문서가 없습니다.', 'edit');
   fillCardLane(lanes.inbox, 'inbox', inbox, '수신한 문서가 없습니다.', 'view');
 }
@@ -1277,7 +1282,8 @@ function renderWorkflowBar() {
       '<select id="wf-recipient" class="agent-select agent-select-mini wf-approver">' +
         ROLES.map((r) => '<option value="' + r.id + '"' + (r.id === 'client_orderer' ? ' selected' : '') + '>' + r.label + '</option>').join('') +
       '</select>' +
-      '<button type="button" class="Button primary" onclick="wfTransition(\\'send\\')"><span class="material-symbols-outlined">forward_to_inbox</span>수신자에게 발송</button>';
+      '<button type="button" class="Button primary" onclick="wfTransition(\\'send\\')"><span class="material-symbols-outlined">forward_to_inbox</span>수신자에게 발송</button>' +
+      '<span class="wf-unauth" title="이 발송/수신확인은 본 앱 안에서의 공유·추적입니다. 관할 노동청 등 행정기관 정식 접수·제출은 별도 절차(예: 비상화면의 e-노동민원)로 이루어집니다.">※ 앱 내부 공유·추적 — 행정기관 정식 제출 아님</span>';
   } else if (state === 'sent') {
     actions = '<button type="button" class="Button primary" onclick="wfTransition(\\'acknowledge\\')"><span class="material-symbols-outlined">mark_email_read</span>수신 확인</button>';
   }
@@ -1296,6 +1302,7 @@ function renderWorkflowBar() {
     (w && w.author ? '<span>작성 ' + escapeHtml(roleLabel(w.author)) + '</span>' : '') +
     (w && w.approver ? '<span>· 결재 ' + escapeHtml(roleLabel(w.approver)) + '</span>' : '') +
     (lastVerify ? '<span>· ' + verifyChip(lastVerify) + '</span>' : '') +
+    ((w && (w.author || w.approver)) ? '<span class="wf-unauth" title="역할 스위처는 로그인·전자서명이 아닙니다. 작성/결재 라벨은 운영자가 선택한 역할값이며 법적 결재 서명을 대체하지 않습니다.">· ⚠ 역할은 미인증 자가선택값(서명 아님)</span>' : '') +
     '</div><div class="wf-actions">' + verifyBtn + actions + '</div>' + hist;
 }
 // 검증 정량 칩 (KEEP-G N/M 패턴 재사용)
@@ -1307,33 +1314,51 @@ function verifyChip(sum) {
   return '<span class="badge ' + cls + '"><span class="material-symbols-outlined">verified_user</span>근거 ' + ok + '/' + (sum.total || 0) + ' · 환각 ' + halluc + '</span>';
 }
 const VERB_LABEL = { submit_for_review: '결재 올림', approve: '승인', reject: '반려', send: '발송', acknowledge: '수신 확인', comment: '의견' };
+const VERB_DONE_MSG = { submit_for_review: '결재 올림 — 결재함에 등록되었습니다', approve: '승인 완료 — 본문 생성·보관됨', reject: '반려 처리 — 작성자에게 보완 요청', send: '발송 완료 — 수신함에 등록', acknowledge: '수신 확인 완료' };
+// 단일 전이 POST. 성공 시 워크플로우 객체 반환, 실패(409/400/500) 시 null + 에러 상태.
+// 핵심(critic M3): 전이를 *먼저* 확정하고, generate/archive 같은 부작용은 전이 성공 *후에만* 한다.
+async function postTransition(payload) {
+  try {
+    const r = await fetch('/api/workflow/transition', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) });
+    const data = await r.json();
+    if (!data.ok) { setStatus('err', '상태 전이 실패: ' + (data.reason || 'unknown')); return null; }
+    return data.data;
+  } catch (e) { setStatus('err', '오류: ' + e.message); return null; }
+}
 async function wfTransition(verb, extra) {
   const docId = currentTarget.replace('doc:', '');
+  // 단독 결재(UC-19): draft/rejected 에서 approve 를 누르면 submit_for_review(→pending) 를 먼저 확정한 뒤 approve.
+  // 가드(approve←pending)와 정합하고, 전이가 거절되면 어떤 부작용(보관)도 일어나지 않게 한다.
+  if (verb === 'approve') {
+    const st = currentWorkflow ? currentWorkflow.state : 'draft';
+    if (st === 'draft' || st === 'rejected') {
+      const fv = collectFormValues();
+      try { await fetch('/api/draft/save', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ docId, formValues: fv, autosave: false }) }); } catch {}
+      const submitted = await postTransition({ docId, verb: 'submit_for_review', actor: currentRole, approver: currentRole, title: currentDocTitle || docId });
+      if (!submitted) return;
+      currentWorkflow = submitted;
+    }
+  }
   const payload = { docId, verb, actor: currentRole, title: currentDocTitle || docId };
   if (verb === 'submit_for_review') {
     const sel = document.getElementById('wf-approver');
     payload.approver = sel ? sel.value : 'site_manager';
-    // 작성 중인 폼 명시 저장 (이후 결재자가 같은 draft 확인)
     const fv = collectFormValues();
     try { await fetch('/api/draft/save', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ docId, formValues: fv, autosave: false }) }); } catch {}
   }
   if (verb === 'send') { const sel = document.getElementById('wf-recipient'); payload.recipient = sel ? sel.value : 'client_orderer'; }
   if (extra && extra.reason) payload.reason = extra.reason;
+  // 1) 전이 먼저 확정 (가드 통과해야 진행).
+  const data = await postTransition(payload);
+  if (!data) return;
+  currentWorkflow = data;
+  // 2) 승인이 확정된 *후에만* 본문 생성+영구 보관 (W8). 보관 실패는 상태를 되돌리지 않고 경고만.
   if (verb === 'approve') {
-    // 승인 = 최종 본문 생성 + 영구 보관 (W8: generate/archive 를 승인 시점으로 이동)
-    setStatus('info', '승인 처리 — 본문 생성 + 보관 중...');
-    const generated = await handleAction({ name: 'submit_safety_document', payload: { docId, archive: true } });
-    if (!generated) return;
+    setStatus('info', '승인됨 — 본문 생성·보관 중...');
+    try { await handleAction({ name: 'submit_safety_document', payload: { docId, archive: true } }); } catch (e) { setStatus('err', '승인됨(상태 approved) — 단, 본문 보관 실패: ' + e.message); }
   }
-  try {
-    const r = await fetch('/api/workflow/transition', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) });
-    const data = await r.json();
-    if (!data.ok) { setStatus('err', '상태 전이 실패: ' + (data.reason || 'unknown')); return; }
-    currentWorkflow = data.data;
-    renderWorkflowBar();
-    const msg = { submit_for_review: '결재 올림 — 결재함에 등록되었습니다', approve: '승인 완료 — 본문 생성·보관됨', reject: '반려 처리 — 작성자에게 보완 요청', send: '발송 완료 — 수신함에 등록', acknowledge: '수신 확인 완료' };
-    setStatus('ok', msg[verb] || '상태 전이 완료');
-  } catch (e) { setStatus('err', '오류: ' + e.message); }
+  renderWorkflowBar();
+  setStatus('ok', VERB_DONE_MSG[verb] || '상태 전이 완료');
 }
 function wfReject() {
   const reason = prompt('반려 사유를 입력하세요 (작성자에게 전달됩니다):', '');
@@ -1381,7 +1406,12 @@ function renderVerifyPanel(d) {
   parts.push('<span class="ctx-chip">미흡 ' + (s.unsupported || 0) + '</span>');
   parts.push('<span class="ctx-chip' + ((s.hallucinationCount || 0) > 0 ? ' ctx-chip-iso' : '') + '">환각 인용 ' + (s.hallucinationCount || 0) + '</span>');
   parts.push('<span class="ctx-chip">본문 미수록 인용 ' + (s.inlineUnresolvedCount || 0) + '</span>');
-  parts.push('</div></section>');
+  parts.push('</div>');
+  // 도구 한계 명시(critic M1 L-5): verify_safety_basis 는 인용 조문의 *존재·증거 weight·환각 여부*를 점검할 뿐,
+  // "이 조문이 이 주장에 실제로 적용되는가"(의미적 entailment)는 검증하지 않는다. "근거 충족"은 법적 보증이 아니며
+  // 최종 적합성 판단은 안전관리자의 검토 책임이다.
+  parts.push('<p class="caption">⚠ 이 검증은 인용 조문의 <strong>존재·증거 등급·환각 여부</strong>만 확인합니다. 조문이 해당 주장에 실제로 <strong>적용되는지(의미적 판단)는 검증하지 않으며</strong>, "근거 충족"이 법적 적합성을 보증하지 않습니다 — 최종 판단은 안전관리자가 하십시오.</p>');
+  parts.push('</section>');
   // 문장별 판정
   const verdicts = d.verdicts || [];
   if (verdicts.length) {
@@ -2974,6 +3004,29 @@ const server = createServer(async (req, res) => {
     if (!safeDocId(docId)) return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "invalid docId" }));
     let w = readWorkflow(docId) ?? { docId, title: docTitle(docId), state: "draft", updatedAt: "", history: [] } as WorkflowState;
     const now = new Date().toISOString();
+    // 상태 전제 가드 (critic C2): 각 전이는 정해진 이전 상태에서만 허용. 위반 시 409 로 거절해
+    // draft 를 acknowledge 하거나 승인 안 된 문서를 send 하는 모순 이력을 원천 차단한다.
+    // comment 는 상태 불변 메모이므로 draft(작성중)만 제외하고 허용.
+    const ALLOWED_PRIOR_STATE: Record<string, string[]> = {
+      submit_for_review: ["draft", "rejected"],
+      approve: ["pending"],
+      reject: ["pending"],
+      send: ["approved"],
+      acknowledge: ["sent"],
+      comment: ["pending", "approved", "sent", "received", "rejected"],
+    };
+    const allowedPrior = ALLOWED_PRIOR_STATE[verb];
+    if (!allowedPrior) return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "unknown verb" }));
+    if (!allowedPrior.includes(w.state)) {
+      return send(res, 409, "application/json", JSON.stringify({
+        ok: false,
+        reason: `'${verb}' 전이는 현재 상태('${w.state}')에서 허용되지 않습니다 — 필요 상태: ${allowedPrior.join(" / ")}`,
+        state: w.state,
+      }));
+    }
+    // 역할은 미인증 자가선택값(localStorage 역할 스위처, DP-1) — 법적 결재 서명이 아님.
+    // 이력 항목에 출처를 명시해 감사추적이 신원바인딩 결재로 오인되지 않게 한다.
+    w.authMode = "self-selected-role";
     if (verb === "submit_for_review") {
       // 작성자: draft → pending. 작성자 자동 결재선 주입(F-sub-3) + approver 지정.
       w.state = "pending"; w.author = actor || w.author;
