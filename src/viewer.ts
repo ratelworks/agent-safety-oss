@@ -23,9 +23,10 @@
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { spawnSync, spawn } from "node:child_process";
-import { readFileSync, existsSync } from "node:fs";
-import { resolve, dirname } from "node:path";
+import { readFileSync, existsSync, mkdirSync, writeFileSync, readdirSync, statSync } from "node:fs";
+import { resolve, dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { homedir } from "node:os";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 // 컴파일본(build/viewer.js)·소스 dev(src/viewer.ts) 양쪽에서 동작하도록
@@ -56,6 +57,30 @@ const FORMS_DIR_AUTO = firstExisting(
   resolve(ROOT, "src", "ontology", "forms", "auto"),
 );
 const PORT = Number(process.env.PORT ?? 5174);
+
+// P2-CU7 — 폼 .md 의 `*(필수)*` 표기 라벨을 추출(custom→auto). 신규 의존·네트워크 0(번들 .md 로컬 읽기).
+// render_a2ui_form 출력은 불변이며, 이 토큰 집합은 viewer 가 라벨 별표/제출 가드용으로만 쓴다.
+function extractRequiredLabels(docId: string): string[] {
+  if (!/^[a-zA-Z0-9_-]+$/.test(docId)) return [];
+  const filename = docId + ".md";
+  let md: string | null = null;
+  for (const dir of [FORMS_DIR_CUSTOM, FORMS_DIR_AUTO]) {
+    try {
+      const p = resolve(dir, filename);
+      if (p.startsWith(dir + "/")) { md = readFileSync(p, "utf8"); break; }
+    } catch { /* 다음 후보 */ }
+  }
+  if (!md) return [];
+  const labels = new Set<string>();
+  for (const line of md.split("\n")) {
+    if (!line.includes("*(필수)*")) continue;
+    // 표 행 "| 라벨 *(필수)* | |" → 첫 셀에서 라벨 추출
+    const cell = line.replace(/^\s*\|/, "").split("|")[0] ?? "";
+    const label = cell.replace(/\*\(필수\)\*/g, "").replace(/\*/g, "").trim();
+    if (label) labels.add(label);
+  }
+  return [...labels];
+}
 
 interface MasterDoc {
   docId: string;
@@ -107,6 +132,127 @@ function callMcp(tool: string, input: Record<string, unknown> = {}): { ok: boole
   } catch (e: any) {
     return { ok: false, reason: e.message };
   }
+}
+
+// verify_safety_basis / review_safety_document 전용 — isError(미지원 결론 등)여도 structuredContent 를
+// 분석 결과로 반환한다(검증 도구는 "근거 불충분"을 정상 진단으로 출력하므로). callMcp shape 불변, 응답 파싱만.
+function callMcpAllowError(tool: string, input: Record<string, unknown> = {}): { ok: boolean; data?: any; text?: string; reason?: string } {
+  const res = spawnSync("node", [CLI, "call", tool, "--inputJson", JSON.stringify(input)], {
+    encoding: "utf8",
+    cwd: ROOT,
+    maxBuffer: 32 * 1024 * 1024,
+  });
+  // 검증 도구는 isError 시 exit=1 이지만 stdout 에 분석 JSON(structuredContent)을 그대로 담는다.
+  // exit code 와 무관하게 stdout 을 우선 파싱한다. 파싱 실패 시에만 실패 처리.
+  try {
+    const parsed = JSON.parse(res.stdout);
+    if (parsed && (parsed.structuredContent || parsed.content)) {
+      return { ok: true, data: parsed.structuredContent, text: parsed.content?.[0]?.text };
+    }
+    return { ok: false, reason: `exit=${res.status}` };
+  } catch {
+    return { ok: false, reason: `exit=${res.status}` };
+  }
+}
+
+// === 문서 상태기계 (DP-2) — viewer 자체 로컬 메타 파일. MCP 응답 shape 과 무관. ===
+// 저장 위치: ~/.agent-safety-oss/_workflow/{docId}-local.json (SAFETY_LOCAL_DIR 우선, local-storage 패턴 재사용)
+// 상태: draft → pending → approved/rejected → sent → received
+function workflowRoot(): string {
+  const override = process.env.SAFETY_LOCAL_DIR;
+  const base = override ? resolve(override) : resolve(homedir(), ".agent-safety-oss");
+  return resolve(base, "_workflow");
+}
+interface WorkflowHistory { actor: string; verb: string; at: string; reason?: string; note?: string }
+interface WorkflowState {
+  docId: string;
+  title?: string;
+  state: "draft" | "pending" | "approved" | "rejected" | "sent" | "received";
+  author?: string;       // 작성자 역할 (자동 결재선 주입, F-sub-3)
+  approver?: string;     // 결재자 역할
+  recipient?: string;    // 수신자 역할
+  coAuthors?: string[];  // 다자 작성 귀속 (F-sub-4)
+  authMode?: string;     // "self-selected-role": 역할이 미인증 자가선택값임을 명시(서명 아님, critic C2)
+  updatedAt: string;
+  history: WorkflowHistory[];
+}
+function safeDocId(docId: string): boolean { return /^[a-zA-Z0-9_-]+$/.test(docId); }
+function workflowPath(docId: string): string { return join(workflowRoot(), docId + "-local.json"); }
+function readWorkflow(docId: string): WorkflowState | null {
+  try {
+    const p = workflowPath(docId);
+    const legacy = join(workflowRoot(), docId + ".json");
+    const path = existsSync(p) ? p : legacy;
+    if (!existsSync(path)) return null;
+    return JSON.parse(readFileSync(path, "utf8")) as WorkflowState;
+  } catch { return null; }
+}
+function writeWorkflow(w: WorkflowState): void {
+  const dir = workflowRoot();
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  w.updatedAt = new Date().toISOString();
+  writeFileSync(workflowPath(w.docId), JSON.stringify(w, null, 2), "utf8");
+}
+function listWorkflows(): WorkflowState[] {
+  try {
+    const dir = workflowRoot();
+    if (!existsSync(dir)) return [];
+    return readdirSync(dir)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => { try { return JSON.parse(readFileSync(join(dir, f), "utf8")) as WorkflowState; } catch { return null; } })
+      .filter((w): w is WorkflowState => !!w);
+  } catch { return []; }
+}
+// === 보관문서 읽기 (P1-CU5) — local-storage 의 documents/{docId}/*. 신규 MCP 도구 없이 viewer 가 직접 FS read. ===
+// 동일 머신 파일 읽기 — 신규 외부 네트워크 0 (offline-first 유지). SAFETY_LOCAL_DIR override 반영(workflowRoot 와 동일 base).
+function documentsRoot(): string {
+  const override = process.env.SAFETY_LOCAL_DIR;
+  const base = override ? resolve(override) : resolve(homedir(), ".agent-safety-oss");
+  return resolve(base, "documents");
+}
+interface ArchivedFile { docId: string; title: string; category: string; filename: string; format: string; byteSize: number; archivedAt: string }
+function listArchivedFiles(): ArchivedFile[] {
+  const out: ArchivedFile[] = [];
+  try {
+    const root = documentsRoot();
+    if (!existsSync(root)) return [];
+    for (const docId of readdirSync(root)) {
+      if (!safeDocId(docId)) continue;
+      const subdir = join(root, docId);
+      let files: string[];
+      try { files = readdirSync(subdir); } catch { continue; }
+      const m = loadMaster().find((x) => x.docId === docId);
+      for (const f of files) {
+        try {
+          const full = join(subdir, f);
+          const st = statSync(full);
+          if (!st.isFile()) continue;
+          const ext = (f.split(".").pop() || "").toLowerCase();
+          out.push({
+            docId, title: m ? m.title : docId, category: m ? m.category : "",
+            filename: f, format: ext === "md" ? "markdown" : ext,
+            byteSize: st.size, archivedAt: st.mtime.toISOString(),
+          });
+        } catch { /* skip */ }
+      }
+    }
+  } catch { /* empty */ }
+  return out.sort((a, b) => b.archivedAt.localeCompare(a.archivedAt));
+}
+function readArchivedFile(docId: string, filename: string): string | null {
+  // path traversal 가드 — docId·filename 둘 다 정상화 후 documents/ 내부 검증.
+  if (!safeDocId(docId)) return null;
+  if (typeof filename !== "string" || filename.includes("..") || filename.includes("/") || filename.includes("\\") || filename === "") return null;
+  const root = documentsRoot();
+  const target = resolve(root, docId, filename);
+  if (!target.startsWith(resolve(root) + "/")) return null;
+  try { return readFileSync(target, "utf8"); } catch { return null; }
+}
+
+// docId → 한국어 제목 (master 기준, 없으면 docId)
+function docTitle(docId: string): string {
+  const d = loadMaster().find((m) => m.docId === docId);
+  return d ? d.title : docId;
 }
 
 const HTML = `<!doctype html>
@@ -207,6 +353,109 @@ const HTML = `<!doctype html>
   .agent-input { width: 220px; }
   .agent-select:focus, .agent-input:focus { outline: 2px solid var(--primary); outline-offset: -1px; border-color: var(--primary); }
 
+  .agent-select-mini { flex: 0 0 auto; min-width: 130px; }
+
+  /* === 역할 스위처 (현장 공용 단말 — 로그인 아님) === */
+  .role-bar { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; padding: var(--space-3) 0; margin-bottom: var(--space-2); }
+  .role-bar .role-label { font-size: 13px; color: var(--foreground-secondary); margin-right: var(--space-1); }
+  .role-chip { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 var(--space-4); border-radius: 999px; border: 1px solid var(--border-strong); background: var(--background); color: var(--foreground-secondary); font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer; transition: all .12s ease; }
+  .role-chip:hover { background: var(--surface); }
+  .role-chip.is-active { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+  .role-chip .material-symbols-outlined { font-size: 18px; }
+  .role-emergency { margin-left: auto; background: var(--background); color: var(--error); border-color: var(--error); }
+  .role-emergency:hover { background: #FEF2F2; }
+
+  /* === 역할 홈 (3 레인) === */
+  .home-lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-4); }
+  @media (max-width: 1080px) { .home-lanes { grid-template-columns: 1fr; } }
+  .lane { border: 1px solid var(--border); border-radius: var(--container-radius); background: var(--surface); overflow: hidden; }
+  .lane-head { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border); background: var(--background); }
+  .lane-head h2 { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin: 0; }
+  .lane-head .material-symbols-outlined { font-size: 20px; color: var(--foreground-secondary); }
+  .lane-count { margin-left: auto; font-size: 12px; color: var(--foreground-tertiary); font-family: var(--font-mono); }
+  .lane-body { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); max-height: 60vh; overflow-y: auto; }
+  .lane-empty { color: var(--foreground-tertiary); font-size: 13px; padding: var(--space-4) var(--space-2); text-align: center; }
+  .doc-card { display: flex; flex-direction: column; gap: 4px; padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--background); cursor: pointer; transition: border-color .12s ease, box-shadow .12s ease; text-align: left; font-family: var(--font-sans); width: 100%; }
+  .doc-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+  .doc-card-title { font-size: 14px; font-weight: 600; color: var(--foreground); }
+  .doc-card-meta { font-size: 12px; color: var(--foreground-tertiary); display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: center; }
+
+  /* === 문서 상태 배지 (6종 상태기계 + 의무 긴급도) === */
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; line-height: 1.5; }
+  .badge .material-symbols-outlined { font-size: 13px; }
+  .badge-draft { background: var(--gray-200); color: var(--gray-700); }
+  .badge-pending { background: #FFF7ED; color: #C2410C; border: 1px solid var(--amber-500); }
+  .badge-approved { background: #ECFDF5; color: #047857; border: 1px solid var(--green-600); }
+  .badge-rejected { background: #FEF2F2; color: #B91C1C; border: 1px solid var(--error); }
+  .badge-sent { background: #EFF6FF; color: #1D4ED8; border: 1px solid var(--blue-600); }
+  .badge-received { background: #ECFEFF; color: #0E7490; border: 1px solid #0891B2; }
+  .badge-overdue { background: #FEF2F2; color: #B91C1C; }
+  .badge-imminent { background: #FFF7ED; color: #C2410C; }
+  .badge-upcoming { background: var(--surface-secondary); color: var(--foreground-secondary); }
+
+  /* === 결재 워크플로우 바 === */
+  #workflow-bar { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; padding: var(--space-3) var(--space-4); margin: 0 0 var(--space-4); }
+  #workflow-bar .wf-state { display: flex; align-items: center; gap: var(--space-2); font-size: 13px; color: var(--foreground-secondary); }
+  #workflow-bar .wf-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-left: auto; }
+  #workflow-bar .wf-actions .Button { height: 44px; }
+  #workflow-bar .wf-approver { min-height: 44px; }
+  #workflow-bar .wf-hist { width: 100%; margin-top: var(--space-2); font-size: 12px; color: var(--foreground-tertiary); }
+  #workflow-bar .wf-hist li { line-height: 1.7; }
+  /* 연계 바 (P2-CU9) — MSDS↔교육·대장 단계 전환 */
+  #link-bar { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; padding: var(--space-3) var(--space-4); margin: 0 0 var(--space-4); border: 1px solid var(--border); border-left: 3px solid var(--info); border-radius: var(--component-radius); background: var(--surface); }
+  #link-bar .link-msg { font-size: 13px; color: var(--foreground-secondary); }
+  #link-bar .link-btn { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 var(--space-4); border: 1px solid var(--border-strong); border-radius: var(--component-radius); background: var(--background); color: var(--foreground); font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer; }
+  #link-bar .link-btn:hover { background: var(--background-secondary); }
+  #link-bar .link-btn .material-symbols-outlined { font-size: 18px; color: var(--info); }
+  @media (max-width: 768px) { #link-bar .link-btn { width: 100%; justify-content: center; min-height: 48px; } }
+
+  /* === read-only 수신/열람 뷰 (P1-CU4) === */
+  .readonly-doc { background: var(--background); border: 1px solid var(--border); border-radius: var(--card-radius); padding: var(--card-padding); }
+  .readonly-head { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-3); }
+  .readonly-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin: 0 0 var(--space-3); color: var(--foreground); }
+  .readonly-body { padding: var(--space-3) 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .readonly-actions { margin-top: var(--space-3); }
+  .readonly-comment { margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+  .readonly-comment textarea { width: 100%; min-height: 56px; }
+  .health-gate { text-align: center; padding: var(--space-8) var(--space-4); display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+  .health-gate-ic { font-size: 48px; color: var(--warning); }
+  .health-gate .caption { max-width: 520px; line-height: 1.7; }
+
+  /* === 보관문서 (P1-CU5) === */
+  #archive-view { display: none; }
+  .arc-bar { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4); }
+  .arc-bar h2 { margin: 0; font-family: var(--font-display); font-size: 20px; }
+  .arc-bar input[type="search"] { flex: 1; min-width: 220px; }
+  .arc-actions { display: flex; gap: var(--space-2); }
+  .arc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .arc-table th, .arc-table td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--border); }
+  .arc-table th { color: var(--foreground-tertiary); font-weight: 600; font-size: 12px; }
+  .arc-table tbody tr:hover { background: var(--surface); }
+  .arc-table .arc-link { background: none; border: none; color: var(--info); cursor: pointer; font: inherit; padding: 0; text-decoration: underline; }
+  .arc-empty { padding: var(--space-8); text-align: center; color: var(--foreground-tertiary); }
+
+  /* === 비상 시간순 워크플로우 (P1-CU6) === */
+  #emergency-view { display: none; }
+  .emg-warn { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-4); border: 2px solid var(--error); border-radius: var(--card-radius); background: rgba(220,38,38,0.06); color: var(--error); font-weight: 600; margin-bottom: var(--space-4); }
+  .emg-warn .material-symbols-outlined { font-size: 28px; }
+  .emg-steps { display: flex; flex-direction: column; gap: var(--space-4); }
+  .emg-step { border: 1px solid var(--border); border-radius: var(--card-radius); padding: var(--card-padding); background: var(--background); }
+  .emg-step-head { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2); }
+  .emg-step-no { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--primary-foreground); font-weight: 700; flex-shrink: 0; }
+  .emg-step h3 { margin: 0; font-size: 17px; }
+  .emg-step .emg-when { margin-left: auto; font-size: 13px; color: var(--foreground-tertiary); }
+  .emg-call-btns { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-2); }
+  .emg-call { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 56px; padding: 0 var(--space-6); border-radius: var(--component-radius); border: 2px solid var(--error); background: var(--error); color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+  .emg-call.secondary { background: var(--background); color: var(--error); }
+  .emg-link { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 48px; padding: 0 var(--space-4); border-radius: var(--component-radius); border: 1px solid var(--info); background: var(--background); color: var(--info); font-weight: 600; text-decoration: none; margin-top: var(--space-2); }
+
+  /* === 우측 패널 모드 탭 === */
+  .preview-tabs { display: flex; gap: var(--space-1); flex-wrap: wrap; margin: var(--space-2) 0 0; }
+  .preview-tab { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--component-radius); background: var(--background); color: var(--foreground-secondary); font-family: var(--font-sans); font-size: 13px; font-weight: 500; cursor: pointer; }
+  .preview-tab:hover { background: var(--surface); }
+  .preview-tab.is-active { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
+  .preview-tab .material-symbols-outlined { font-size: 16px; }
+
   /* === Card / Section === */
   .agent-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: var(--card-padding); margin: var(--space-4) 0; }
   .agent-card.elevated { background: var(--background); box-shadow: var(--shadow-sm); }
@@ -228,6 +477,12 @@ const HTML = `<!doctype html>
   /* Field block (TextField wrapper) */
   .field-block { display: flex; flex-direction: column; gap: var(--space-1); margin: var(--space-3) 0; }
   .field-block .label { font-size: 13px; font-weight: 500; color: var(--foreground); margin-bottom: 2px; }
+  /* 필수 표시 (P2-CU7) — 라벨 별표 + 누락 가드 하이라이트 */
+  .field-block .label .req-star { color: var(--error); font-weight: 700; margin-left: 3px; }
+  .field-block.is-missing input, .field-block.is-missing textarea, .field-block.is-missing select { border-color: var(--error); background: #FEF2F2; }
+  .field-block.is-missing .label { color: var(--error); }
+  /* 인라인 힌트 (F-sub-6) — 입력칸 아래 가이드 */
+  .field-block .field-hint { color: var(--foreground-tertiary); font-size: 12px; line-height: 1.5; padding-left: 2px; }
   .field-block input, .field-block textarea, .field-block select { height: var(--component-height); padding: 0 var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--component-radius); background: var(--background); color: var(--foreground); font-family: var(--font-sans); font-size: 14px; box-sizing: border-box; }
   .field-block select { padding-right: 36px; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23616161' d='M0 0l5 6 5-6z'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; }
   .field-block input[type="date"], .field-block input[type="datetime-local"], .field-block input[type="time"] { font-family: var(--font-mono); }
@@ -375,10 +630,17 @@ const HTML = `<!doctype html>
     .agent-button { width: 100%; justify-content: center; }
     .agent-card { padding: var(--space-4); }
     .field-block { margin: var(--space-2) 0; }
-    .field-block input, .field-block textarea, .field-block select { width: 100%; }
+    /* P2-CU8 — 모바일 터치타깃 ≥44px (현장 장갑·소형 화면). 40px 컨트롤을 48px 로 승격. */
+    .field-block input, .field-block textarea, .field-block select { width: 100%; height: 48px; font-size: 16px; }
+    .field-block textarea { height: auto; min-height: 96px; }
+    .field-block .check-note { height: 48px; }
+    .agent-button, .agent-select, .agent-input { height: 48px; font-size: 16px; }
     .check-toggle { flex-wrap: wrap; gap: var(--space-1); }
-    .check-btn { flex: 1; min-width: calc(33% - var(--space-2)); padding: 0 var(--space-2); font-size: 13px; }
-    .Button { width: 100%; justify-content: center; }
+    /* 3-state 점검 토글 — 저숙련·장갑 현장 핵심 위젯, 더 크게(F-sub-5/KEEP-F) */
+    .check-btn { flex: 1; min-width: calc(33% - var(--space-2)); min-height: 48px; padding: 0 var(--space-2); font-size: 15px; }
+    .Button { width: 100%; min-height: 48px; justify-content: center; }
+    .role-chip { min-height: 48px; }
+    .emg-call { min-height: 64px; font-size: 19px; }
     .Row { flex-direction: column; align-items: stretch; }
     .Row.spaceBetween { flex-direction: column; }
     .preview-panel h3 { flex-wrap: wrap; padding: var(--space-3); }
@@ -426,25 +688,62 @@ const HTML = `<!doctype html>
   <div class="agent-logo"><span class="slash">/</span>Igent_Safety_OSS</div>
 </header>
 
+<!-- 역할 스위처 — 현장 공용 단말 전제(로그인 아님, "지금 누구로 작업?"). DP-1. -->
+<div class="role-bar" id="role-bar"></div>
+
 <div class="agent-toolbar">
-  <button onclick="loadForm('profile')" id="nav-profile" class="agent-button material is-active">
-    <span class="material-symbols-outlined">apartment</span>
-    공통 메타 (Profile)
+  <button onclick="goHome()" id="nav-home" class="agent-button material is-active">
+    <span class="material-symbols-outlined">home</span>
+    홈
+  </button>
+  <button onclick="openArchive()" id="nav-archive" class="agent-button material">
+    <span class="material-symbols-outlined">inventory_2</span>
+    보관 문서
+  </button>
+  <button onclick="loadForm('profile')" id="nav-profile" class="agent-button material">
+    <span class="material-symbols-outlined">settings</span>
+    현장 정보 설정
   </button>
   <div class="agent-input-group">
-    <label class="agent-label" for="doc-select">법정문서 폼 (94종):</label>
+    <select id="group-mode" class="agent-select agent-select-mini" onchange="renderDocSelect(allDocs)" title="문서 묶음 기준">
+      <option value="category">분류별</option>
+      <option value="frequency">작성 주기별</option>
+    </select>
     <select id="doc-select" class="agent-select" onchange="if (this.value) loadForm('doc:' + this.value)">
       <option value="">— 선택 —</option>
     </select>
-    <input type="search" id="doc-search" class="agent-input" placeholder="docId·title 검색" oninput="filterDocs(this.value)">
+    <input type="search" id="doc-search" class="agent-input" placeholder="문서·작업 이름으로 검색" oninput="filterDocs(this.value)">
   </div>
 </div>
 
 <div id="status"></div>
 
-<div class="split-area">
-  <div id="form-container"></div>
-  <div id="preview-container"></div>
+<!-- 역할 홈 (3 레인) — 첫 화면. profile 강제 진입 제거. -->
+<div id="home-view"></div>
+
+<!-- 비상 시간순 워크플로우 (P1-CU6) — 중대재해 즉시보고. "작성=신고 아님" 경고 + 4 STEP. -->
+<div id="emergency-view"></div>
+
+<!-- 보관 문서 검색·조회·일괄 내보내기 (P1-CU5) — 감독 즉시제시. -->
+<div id="archive-view"></div>
+
+<!-- 문서 작업 영역 (좌 입력 / 우 미리보기 탭) — 홈에서는 숨김 -->
+<div id="doc-view" style="display:none">
+  <!-- 우측 패널 모드 명시 탭 4종 (F-sm-9 / W7) -->
+  <div class="preview-tabs" id="preview-tabs">
+    <button type="button" class="preview-tab is-active" data-tab="form" onclick="setPreviewTab('form')"><span class="material-symbols-outlined">description</span>양식 미리보기</button>
+    <button type="button" class="preview-tab" data-tab="doc" onclick="setPreviewTab('doc')"><span class="material-symbols-outlined">article</span>생성 본문</button>
+    <button type="button" class="preview-tab" data-tab="graph" onclick="setPreviewTab('graph')"><span class="material-symbols-outlined">hub</span>온톨로지 그래프</button>
+    <button type="button" class="preview-tab" data-tab="verify" onclick="setPreviewTab('verify')"><span class="material-symbols-outlined">verified_user</span>법적 근거 검증</button>
+  </div>
+  <!-- 결재 워크플로우 바 (상태 배지 + 결재 액션). 상태기계 DP-2. -->
+  <div id="workflow-bar" class="agent-card elevated" style="display:none"></div>
+  <!-- 연계 바 (P2-CU9) — MSDS 등록↔교육, 대장 라이프사이클 단계 전환 진입. -->
+  <div id="link-bar" style="display:none"></div>
+  <div class="split-area">
+    <div id="form-container"></div>
+    <div id="preview-container"></div>
+  </div>
 </div>
 
 <footer class="agent-footer">
@@ -456,6 +755,21 @@ const HTML = `<!doctype html>
 <script>
 let currentTarget = 'profile';
 let fieldPathMap = {};
+let currentRequiredLabels = [];   // P2-CU7 — 현재 폼의 필수 라벨(서버 /api/form 에서 .md 파싱)
+let carryContext = null;          // P2-CU9 — 연계 진입 시 캐리오버 컨텍스트 { target, values }
+// === 역할 (현장 공용 단말 내 역할 전환 — 로그인 아님, DP-1) ===
+const ROLES = [
+  { id: 'safety_manager',     label: '안전관리자', icon: 'shield' },
+  { id: 'site_manager',       label: '현장소장',   icon: 'engineering' },
+  { id: 'subcontractor_lead', label: '작업반장',   icon: 'construction' },
+  { id: 'worker_rep',         label: '근로자대표', icon: 'groups' },
+  { id: 'client_orderer',     label: '발주자',     icon: 'apartment' },
+];
+let currentRole = localStorage.getItem('asos.role') || 'safety_manager';
+let activeView = 'home';          // 'home' | 'doc'
+let viewMode = 'edit';            // 'edit' | 'view' — 수신/열람 read-only 모드 (P1-CU4)
+let healthUnlocked = false;       // J_건강(보호 분류) 본인 확인 게이트 통과 여부 (F-wr-4 부분)
+let previewTab = 'form';          // 양식 미리보기 | 생성 본문 | 그래프 | 검증
 let lastGeneratedDoc = null;     // { docId, content, filename } — generate 본문 (MD 다운로드 호환)
 let currentContext = null;       // 마지막으로 표시한 assemble_doc_context 의 docId — 토글용
 let currentDocTitle = '';        // 현재 docId 의 한국어 제목 (실시간 양식 미리보기 헤더)
@@ -466,12 +780,655 @@ const root = document.getElementById('form-container');
 const status = document.getElementById('status');
 
 const STATUS_ICON = { ok: 'check_circle', err: 'error', info: 'info' };
+// P2-CU7 — 오류 reason humanize 사전. raw 도구/프로세스 사유를 사람 말 + 복구 안내로 치환(F-sm-7/W5).
+const ERROR_REASON_KO = [
+  { re: /exit\\s*=?\\s*1|exit code\\s*1|exited with code 1/i, ko: '문서 생성 도구가 처리를 끝내지 못했습니다 — 필수 항목이 비어 있는지 확인 후 다시 시도하세요.' },
+  { re: /ENOENT|no such file|not found/i, ko: '필요한 파일을 찾지 못했습니다 — 문서를 다시 선택하거나 관리자에게 문의하세요.' },
+  { re: /EACCES|permission denied/i, ko: '저장 권한이 없습니다 — 보관 폴더 권한을 확인하거나 관리자에게 문의하세요.' },
+  { re: /ECONNREFUSED|ETIMEDOUT|fetch failed|network/i, ko: '도구 응답을 받지 못했습니다 — 잠시 후 다시 시도하세요.' },
+  { re: /invalid json|unexpected token|JSON/i, ko: '도구 응답을 해석하지 못했습니다 — 다시 시도하거나 관리자에게 문의하세요.' },
+  { re: /timeout/i, ko: '처리 시간이 초과되었습니다 — 잠시 후 다시 시도하세요.' },
+];
+function humanizeReason(msg) {
+  let out = String(msg || '');
+  for (const r of ERROR_REASON_KO) {
+    if (r.re.test(out)) {
+      // raw 사유는 괄호로 보존하되 앞에 사람 말 + 복구안내를 둔다.
+      const m = out.match(/[:：]\\s*(.+)$/);
+      const raw = m ? m[1].trim() : '';
+      out = r.ko + (raw ? ' (' + raw + ')' : '');
+      break;
+    }
+  }
+  return out;
+}
 function setStatus(kind, msg) {
   status.className = kind;
   const iconName = STATUS_ICON[kind] || 'info';
   // prefix 이모지 제거 + 본문 이모지 → Material Symbols 인라인 치환
-  const cleanMsg = (msg || '').replace(/^✅\s*|^❌\s*|^⚠️?\s*|^💡\s*|^🔄\s*/, '');
+  let cleanMsg = (msg || '').replace(/^✅\s*|^❌\s*|^⚠️?\s*|^💡\s*|^🔄\s*/, '');
+  if (kind === 'err') cleanMsg = humanizeReason(cleanMsg);   // P2-CU7 오류 humanize + 복구 안내
   status.innerHTML = '<span class="material-symbols-outlined">' + iconName + '</span><span>' + replaceEmojiWithIcons(cleanMsg) + '</span>';
+}
+
+// === 역할 스위처 chrome ===
+function roleLabel(id) { const r = ROLES.find(x => x.id === id); return r ? r.label : id; }
+function renderRoleBar() {
+  const bar = document.getElementById('role-bar');
+  if (!bar) return;
+  let html = '<span class="role-label">지금 누구로 작업하시나요?</span>';
+  for (const r of ROLES) {
+    const active = r.id === currentRole ? ' is-active' : '';
+    html += '<button type="button" class="role-chip' + active + '" onclick="switchRole(\\'' + r.id + '\\')">' +
+      '<span class="material-symbols-outlined">' + r.icon + '</span>' + r.label + '</button>';
+  }
+  // 긴급 진입 (P1-CU6 자리 — 현재는 안내). 모든 역할 공통.
+  html += '<button type="button" class="role-chip role-emergency" onclick="openEmergency()" title="중대재해 즉시보고">' +
+    '<span class="material-symbols-outlined">emergency</span>긴급</button>';
+  bar.innerHTML = html;
+}
+function switchRole(id) {
+  currentRole = id;
+  try { localStorage.setItem('asos.role', id); } catch {}
+  renderRoleBar();
+  if (activeView === 'home') goHome();
+}
+// === 비상 시간순 워크플로우 (P1-CU6, UC-12) — "문서"가 아닌 시간순 절차로 재프레이밍 ===
+// STEP1 전화(법정의무 최우선) → STEP2 e-노동민원(사용자 클릭 외부링크) → STEP3 즉시보고서 → STEP4 1개월 조사표.
+const EMERGENCY_DOC = 'severe_accident_immediate_report';
+const FOLLOWUP_DOC = 'industrial_accident_report';
+async function openEmergency() {
+  activeView = 'emergency';
+  stopPolling();
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('doc-view').style.display = 'none';
+  const view = document.getElementById('emergency-view');
+  view.style.display = 'block';
+  document.querySelectorAll('.agent-toolbar .agent-button').forEach((b) => b.classList.remove('is-active'));
+  setStatus('info', '비상 절차 — 전화 신고가 최우선 법정 의무입니다.');
+  // 제출처·e-노동민원 URL 은 master 에서 실측(신규 네트워크 아님 — 로컬 callMcp).
+  let submitTo = '관할 지방고용노동(지)청 + 119 + 경찰';
+  let minwonUrl = 'https://minwon.moel.go.kr';
+  let minwonSystem = '고용노동부 e-노동민원';
+  try {
+    const r = await fetch('/api/emergency-info');
+    const d = await r.json();
+    if (d.ok && d.data) {
+      if (d.data.submitTo) submitTo = d.data.submitTo;
+      if (d.data.electronicSubmission && d.data.electronicSubmission.url) minwonUrl = d.data.electronicSubmission.url;
+      if (d.data.electronicSubmission && d.data.electronicSubmission.system) minwonSystem = d.data.electronicSubmission.system;
+    }
+  } catch {}
+  view.innerHTML =
+    '<div class="emg-warn"><span class="material-symbols-outlined">warning</span>' +
+      '<span>이 화면은 신고를 대신하지 않습니다. 중대재해 발생 시 <strong>STEP 1 인명 구조·구급(119)</strong>이 최우선이며, <strong>관할 지방고용노동청 보고(STEP 2)가 산안법 제54조의 법정 보고 의무</strong>입니다. 보고서 작성(STEP 3)만으로는 신고가 완료되지 않습니다.</span></div>' +
+    '<div class="emg-steps">' +
+      // STEP 1 — 전화 (지금 즉시). 119/112 는 인명 구조·구급 우선조치이지 산안법 §54 "보고" 자체가 아니다(critic M1 L-4).
+      '<section class="emg-step">' +
+        '<div class="emg-step-head"><span class="emg-step-no">1</span><h3>지금 즉시 — 인명 구조·구급</h3><span class="emg-when">최우선 조치</span></div>' +
+        '<p class="caption">제출처(법정 보고 대상): ' + escapeHtml(submitTo) + '</p>' +
+        '<div class="emg-call-btns">' +
+          '<a class="emg-call" href="tel:119"><span class="material-symbols-outlined">call</span>119 (소방·구급)</a>' +
+          '<a class="emg-call secondary" href="tel:112"><span class="material-symbols-outlined">local_police</span>112 (경찰)</a>' +
+          '<a class="emg-call secondary" href="tel:1350"><span class="material-symbols-outlined">support_agent</span>1350 (고용노동부)</a>' +
+        '</div>' +
+      '</section>' +
+      // STEP 2 — e-노동민원 (지체없이)
+      '<section class="emg-step">' +
+        '<div class="emg-step-head"><span class="emg-step-no">2</span><h3>지체 없이 — ' + escapeHtml(minwonSystem) + '</h3><span class="emg-when">산안법 제54조 법정 보고</span></div>' +
+        '<p class="caption">산안법 제54조②에 따라 관할 지방고용노동청에 <strong>지체 없이 보고</strong>해야 하는 본 절차입니다. 아래 링크는 새 탭에서 외부 사이트로 이동합니다.</p>' +
+        '<a class="emg-link" href="' + escapeHtml(minwonUrl) + '" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined">open_in_new</span>' + escapeHtml(minwonSystem) + ' 열기</a>' +
+      '</section>' +
+      // STEP 3 — 즉시보고서 작성
+      '<section class="emg-step">' +
+        '<div class="emg-step-head"><span class="emg-step-no">3</span><h3>즉시보고서 작성</h3><span class="emg-when">전화·전자 보고와 함께</span></div>' +
+        '<p class="caption">중대재해 즉시보고서를 작성해 보관·증빙합니다. (작성만으로는 신고가 완료되지 않습니다.)</p>' +
+        '<button type="button" class="Button primary" onclick="openEmergencyDoc(\\'' + EMERGENCY_DOC + '\\')"><span class="material-symbols-outlined">edit_document</span>즉시보고서 작성</button>' +
+      '</section>' +
+      // STEP 4 — 1개월 내 조사표 (후속 리마인드)
+      '<section class="emg-step">' +
+        '<div class="emg-step-head"><span class="emg-step-no">4</span><h3>1개월 이내 — 산업재해조사표</h3><span class="emg-when">후속 의무</span></div>' +
+        '<p class="caption">재해 발생일로부터 1개월 이내에 산업재해조사표(별지 제30호)를 관할 노동청에 제출해야 합니다.</p>' +
+        '<button type="button" class="Button secondary" onclick="openEmergencyDoc(\\'' + FOLLOWUP_DOC + '\\')"><span class="material-symbols-outlined">assignment</span>산업재해조사표 작성</button>' +
+      '</section>' +
+    '</div>';
+}
+// 비상 화면 → 보고서 작성 폼 진입 (작성=edit). 작성 후 결재/수신 상태기계에 합류.
+function openEmergencyDoc(docId) {
+  document.getElementById('emergency-view').style.display = 'none';
+  const sel = document.getElementById('doc-select');
+  if (sel) sel.value = docId;
+  loadForm('doc:' + docId, 'edit');
+}
+
+// === 보관문서 검색·조회·일괄 내보내기 (P1-CU5, UC-17 감독 즉시제시) ===
+let archiveItems = [];
+async function openArchive() {
+  activeView = 'archive';
+  stopPolling();
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('doc-view').style.display = 'none';
+  const emg = document.getElementById('emergency-view'); if (emg) emg.style.display = 'none';
+  const view = document.getElementById('archive-view');
+  view.style.display = 'block';
+  document.querySelectorAll('.agent-toolbar .agent-button').forEach((b) => b.classList.remove('is-active'));
+  document.getElementById('nav-archive')?.classList.add('is-active');
+  setStatus('info', '보관 문서를 불러오는 중...');
+  try {
+    const r = await fetch('/api/archive/list');
+    const data = await r.json();
+    archiveItems = data.ok ? (data.items || []) : [];
+  } catch { archiveItems = []; }
+  view.innerHTML =
+    '<div class="agent-card elevated"><div class="arc-bar">' +
+      '<h2><span class="material-symbols-outlined">inventory_2</span> 보관 문서</h2>' +
+      '<input type="search" class="agent-input" placeholder="문서명·분류·일자로 검색" oninput="renderArchive(this.value)">' +
+      '<div class="arc-actions">' +
+        '<button type="button" class="Button secondary" onclick="batchExportArchive()"><span class="material-symbols-outlined">download</span>선택 일괄 내보내기</button>' +
+      '</div>' +
+    '</div><div id="arc-list"></div></div>';
+  renderArchive('');
+  setStatus('ok', '보관 문서 ' + archiveItems.length + '건');
+}
+function renderArchive(q) {
+  const list = document.getElementById('arc-list');
+  if (!list) return;
+  const lower = (q || '').toLowerCase().trim();
+  const items = lower ? archiveItems.filter((it) =>
+    (it.title || '').toLowerCase().includes(lower) ||
+    (it.docId || '').toLowerCase().includes(lower) ||
+    humanizeCategory(it.category).toLowerCase().includes(lower) ||
+    (it.archivedAt || '').toLowerCase().includes(lower)) : archiveItems;
+  if (!items.length) { list.innerHTML = '<div class="arc-empty">' + (archiveItems.length ? '검색 결과가 없습니다.' : '보관된 문서가 없습니다 — 승인 시점에 보관됩니다.') + '</div>'; return; }
+  list.innerHTML =
+    '<table class="arc-table"><thead><tr>' +
+      '<th><input type="checkbox" onchange="toggleAllArchive(this.checked)" title="전체 선택"></th>' +
+      '<th>문서명</th><th>분류</th><th>보관 일시</th><th>형식</th><th>크기</th><th></th>' +
+    '</tr></thead><tbody>' +
+    items.map((it) =>
+      '<tr>' +
+        '<td><input type="checkbox" class="arc-check" data-docid="' + escapeHtml(it.docId) + '" data-filename="' + escapeHtml(it.filename) + '"></td>' +
+        '<td>' + escapeHtml(it.title || it.docId) + '</td>' +
+        '<td>' + escapeHtml(humanizeCategory(it.category)) + '</td>' +
+        '<td>' + escapeHtml(String(it.archivedAt).slice(0, 16).replace('T', ' ')) + '</td>' +
+        '<td>' + escapeHtml(it.format) + '</td>' +
+        '<td>' + (it.byteSize ? (Math.round(it.byteSize / 102.4) / 10 + ' KB') : '') + '</td>' +
+        '<td><button type="button" class="arc-link" onclick="viewArchived(\\'' + it.docId + '\\', \\'' + escapeHtml(it.filename) + '\\')">열람</button></td>' +
+      '</tr>').join('') +
+    '</tbody></table>';
+}
+function toggleAllArchive(checked) {
+  document.querySelectorAll('.arc-check').forEach((c) => { c.checked = checked; });
+}
+// 보관문서 열람 — 읽기전용. 본문을 받아 새 탭(브라우저 인쇄·저장 가능)으로 표시.
+async function viewArchived(docId, filename) {
+  setStatus('info', '보관 문서 여는 중...');
+  try {
+    const r = await fetch('/api/archive/read?docId=' + encodeURIComponent(docId) + '&filename=' + encodeURIComponent(filename));
+    const data = await r.json();
+    if (!data.ok) { setStatus('err', '열람 실패: ' + (data.reason || 'unknown')); return; }
+    const w = window.open('', '_blank');
+    if (w) {
+      const isHtml = /^\\s*</.test(data.content) || filename.endsWith('.html');
+      w.document.write(isHtml ? data.content : '<pre style="white-space:pre-wrap;font-family:sans-serif;padding:24px">' + escapeHtml(data.content) + '</pre>');
+      w.document.title = docTitleClient(docId) + ' — ' + filename;
+      w.document.close();
+    }
+    setStatus('ok', '보관 문서 열람 — ' + filename);
+  } catch (e) { setStatus('err', '오류: ' + e.message); }
+}
+function docTitleClient(docId) { const d = allDocs.find((x) => x.docId === docId); return d ? d.title : docId; }
+// 선택 문서 일괄 내보내기 — 순차 Blob 다운로드(기존 a[download] 재사용, zip 의존 없음).
+async function batchExportArchive() {
+  const checks = Array.from(document.querySelectorAll('.arc-check')).filter((c) => c.checked);
+  if (!checks.length) { setStatus('err', '내보낼 문서를 선택하세요.'); return; }
+  setStatus('info', checks.length + '건 내보내는 중...');
+  let done = 0;
+  for (const c of checks) {
+    const docId = c.dataset.docid; const filename = c.dataset.filename;
+    try {
+      const r = await fetch('/api/archive/read?docId=' + encodeURIComponent(docId) + '&filename=' + encodeURIComponent(filename));
+      const data = await r.json();
+      if (!data.ok) continue;
+      const blob = new Blob([data.content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = docId + '-' + filename;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 0);
+      done++;
+      await new Promise((res) => setTimeout(res, 150));   // 브라우저 다중 다운로드 차단 완화
+    } catch {}
+  }
+  setStatus('ok', done + '건 내보내기 완료');
+}
+
+// === 역할 홈 (3 레인: 할 일 / 결재함·검토함 / 수신함) ===
+async function goHome() {
+  activeView = 'home';
+  currentTarget = 'profile';
+  stopPolling();
+  document.getElementById('doc-view').style.display = 'none';
+  const emg = document.getElementById('emergency-view'); if (emg) emg.style.display = 'none';
+  const arc = document.getElementById('archive-view'); if (arc) arc.style.display = 'none';
+  const home = document.getElementById('home-view');
+  home.style.display = 'block';
+  document.querySelectorAll('.agent-toolbar .agent-button').forEach((b) => b.classList.remove('is-active'));
+  document.getElementById('nav-home')?.classList.add('is-active');
+  home.innerHTML = '<div class="home-lanes">' +
+    laneShell('todo', 'list_alt', '내가 할 일') +
+    laneShell('approval', 'approval', '내 결재함 · 검토함') +
+    laneShell('inbox', 'inbox', '내 수신함') +
+    '</div>';
+  setStatus('info', roleLabel(currentRole) + ' 홈 — 오늘 할 일을 불러오는 중...');
+  await Promise.all([fillTodoLane(), fillWorkflowLanes()]);
+}
+function laneShell(key, icon, title) {
+  return '<section class="lane" id="lane-' + key + '">' +
+    '<div class="lane-head"><span class="material-symbols-outlined">' + icon + '</span>' +
+    '<h2>' + title + '</h2><span class="lane-count" id="lane-count-' + key + '"></span></div>' +
+    '<div class="lane-body" id="lane-body-' + key + '"><div class="lane-empty">불러오는 중...</div></div></section>';
+}
+function dueBadge(d) {
+  if (d.overdue) return '<span class="badge badge-overdue"><span class="material-symbols-outlined">priority_high</span>기한 초과</span>';
+  if (typeof d.daysUntil === 'number' && d.daysUntil <= 7) return '<span class="badge badge-imminent">D-' + d.daysUntil + '일</span>';
+  return '<span class="badge badge-upcoming">D-' + (d.daysUntil ?? '?') + '일</span>';
+}
+async function fillTodoLane() {
+  const body = document.getElementById('lane-body-todo');
+  const count = document.getElementById('lane-count-todo');
+  if (!body) return;
+  try {
+    const [dutiesRes, workflowRes] = await Promise.all([
+      fetch('/api/duties'),
+      fetch('/api/workflow/list?role=' + encodeURIComponent(currentRole)),
+    ]);
+    const data = await dutiesRes.json();
+    const wfData = await workflowRes.json().catch(() => ({ ok: false, items: [] }));
+    const rejected = (wfData.ok ? (wfData.items || []) : [])
+      .filter((it) => it.state === 'rejected' && it.author === currentRole);
+    if (!data.ok) { body.innerHTML = '<div class="lane-empty">의무 목록을 불러오지 못했습니다.</div>'; return; }
+    const duties = (data.data && data.data.duties) || [];
+    if (count) count.textContent = (duties.length + rejected.length) + '건';
+    if (!duties.length && !rejected.length) { body.innerHTML = '<div class="lane-empty">30일 이내 마감 의무와 보완요청이 없습니다.</div>'; return; }
+    const reworkHtml = rejected.map((it) =>
+      '<button type="button" class="doc-card" onclick="openWorkflowDoc(\\'' + it.docId + '\\', \\'edit\\')">' +
+        '<span class="doc-card-title">' + escapeHtml(it.title || it.docId) + '</span>' +
+        '<span class="doc-card-meta">' + stateBadge(it.state) + '<span>보완 후 다시 결재 올리기</span></span></button>').join('');
+    const dutyHtml = duties.slice(0, 30).map((d) =>
+      '<button type="button" class="doc-card" onclick="openDocFromHome(\\'' + d.docId + '\\')">' +
+        '<span class="doc-card-title">' + escapeHtml(d.title || d.docId) + '</span>' +
+        '<span class="doc-card-meta">' + dueBadge(d) +
+          '<span>' + escapeHtml(humanizeCategory(d.category)) + '</span>' +
+          (d.nextDueDate ? '<span>' + escapeHtml(d.nextDueDate) + '</span>' : '') +
+        '</span></button>').join('');
+    body.innerHTML = reworkHtml + dutyHtml;
+  } catch (e) {
+    body.innerHTML = '<div class="lane-empty">오류: ' + escapeHtml(e.message) + '</div>';
+  }
+}
+// 결재함/검토함 + 수신함 — viewer 자체 상태기계(_workflow) 기반. (P0-CU2 에서 채움)
+async function fillWorkflowLanes() {
+  const lanes = { approval: 'lane-body-approval', inbox: 'lane-body-inbox' };
+  let items = [];
+  try {
+    const r = await fetch('/api/workflow/list?role=' + encodeURIComponent(currentRole));
+    const data = await r.json();
+    if (data.ok) items = data.items || [];
+  } catch {}
+  // 결재함: pending 이고 approver=현재역할 / 검토 대상. 보호 분류(J_건강)는 결재함에 노출하지 않음(F-wr-4).
+  const approvals = items.filter((it) => it.state === 'pending' && it.approver === currentRole && !isProtectedDoc(it.docId));
+  // 수신함: sent/received 이고 recipient=현재역할. 역할은 미인증 자가선택값(DP-1)이므로 보호 분류(J_건강)는
+  // 제목·메타를 마스킹해 역할 전환만으로 §129 대상 문서 존재가 드러나지 않게 한다(critic M3-HIGH). 실제 열람은
+  // isProtectedDoc → read-only + 본인 확인 게이트(healthUnlocked)에서 한 번 더 통제. 강한 인증은 범위 밖(F-wr-4).
+  const inbox = items
+    .filter((it) => (it.state === 'sent' || it.state === 'received') && it.recipient === currentRole)
+    .map((it) => isProtectedDoc(it.docId) ? { ...it, title: '🔒 보호 문서 — 본인 확인 후 열람', masked: true } : it);
+  fillCardLane(lanes.approval, 'approval', approvals, '결재·검토 대기 문서가 없습니다.', 'edit');
+  fillCardLane(lanes.inbox, 'inbox', inbox, '수신한 문서가 없습니다.', 'view');
+}
+function fillCardLane(bodyId, key, items, emptyMsg, mode) {
+  const body = document.getElementById(bodyId);
+  const count = document.getElementById('lane-count-' + key);
+  if (!body) return;
+  if (count) count.textContent = items.length + '건';
+  if (!items.length) { body.innerHTML = '<div class="lane-empty">' + emptyMsg + '</div>'; return; }
+  body.innerHTML = items.map((it) =>
+    '<button type="button" class="doc-card" onclick="openWorkflowDoc(\\'' + it.docId + '\\', \\'' + (mode || 'edit') + '\\')">' +
+      '<span class="doc-card-title">' + escapeHtml(it.title || it.docId) + '</span>' +
+      '<span class="doc-card-meta">' + stateBadge(it.state) +
+        (it.author ? '<span>작성 ' + escapeHtml(roleLabel(it.author)) + '</span>' : '') +
+        (it.updatedAt ? '<span>' + escapeHtml(String(it.updatedAt).slice(0, 16).replace('T', ' ')) + '</span>' : '') +
+      '</span></button>').join('');
+}
+const STATE_LABEL = { draft: '작성 중', pending: '결재 대기', approved: '승인됨', rejected: '반려', sent: '발송됨', received: '수신 확인' };
+const STATE_ICON = { draft: 'edit', pending: 'pending', approved: 'check_circle', rejected: 'cancel', sent: 'send', received: 'mark_email_read' };
+function stateBadge(state) {
+  const lbl = STATE_LABEL[state] || state || '';
+  const ic = STATE_ICON[state] || 'info';
+  return '<span class="badge badge-' + (state || 'draft') + '"><span class="material-symbols-outlined">' + ic + '</span>' + lbl + '</span>';
+}
+// docId → master 분류(category). allDocs 에 이미 로드됨(/api/list-docs). (P1-CU4 보호게이트)
+function docCategory(docId) { const d = allDocs.find((x) => x.docId === docId); return d ? d.category : ''; }
+// J_건강 = 건강진단/유소견 통보 등 §129 비밀보장 대상. 작성 진입 차단 + 본인 확인 게이트 + read-only.
+function isProtectedDoc(docId) { return docCategory(docId) === 'J_건강'; }
+
+function openDocFromHome(docId) {
+  const sel = document.getElementById('doc-select');
+  if (sel) sel.value = docId;
+  // 보호 분류(J_건강)는 작성 모드 진입 차단 — 항상 열람(read-only)으로만 연다(F-wr-4 부분).
+  loadForm('doc:' + docId, isProtectedDoc(docId) ? 'view' : 'edit');
+}
+// 수신함/검토함에서 진입 — 결재함(pending)은 결재 검토(edit), 수신함(sent/received)은 read-only 열람.
+function openWorkflowDoc(docId, mode) { openDocFromHome2(docId, mode); }
+function openDocFromHome2(docId, mode) {
+  const sel = document.getElementById('doc-select');
+  if (sel) sel.value = docId;
+  const forced = isProtectedDoc(docId) ? 'view' : (mode || 'edit');
+  loadForm('doc:' + docId, forced);
+}
+
+// === 우측 패널 모드 탭 ===
+function setPreviewTab(tab) {
+  previewTab = tab;
+  document.querySelectorAll('.preview-tab').forEach((b) => b.classList.toggle('is-active', b.dataset.tab === tab));
+  if (currentTarget === 'profile' || !currentTarget.startsWith('doc:')) return;
+  if (tab === 'form') { currentContext = null; lastGeneratedDoc = null; refreshFormPreview(true); }
+  else if (tab === 'doc') { currentContext = null; generatePreviewOnly(); }
+  else if (tab === 'graph') {
+    const docId = currentTarget.replace('doc:', '');
+    if (currentContext !== docId) handleAction({ name: 'assemble_doc_context' });
+  } else if (tab === 'verify') {
+    if (lastVerifyData) renderVerifyPanel(lastVerifyData);
+    else renderPreview('법적 근거 검증', '<p class="caption">[법적 근거 검증] 버튼을 눌러 본문의 조문 인용 정합성·환각을 점검하세요.</p>', 'context', false);
+  }
+}
+
+// 생성 본문 탭 — generate 만 (보관 X). 영구 보관은 승인 시점(wfTransition approve)에만 발생(W8).
+async function generatePreviewOnly() {
+  const docId = currentTarget.replace('doc:', '');
+  setStatus('info', '본문 생성 중...');
+  try {
+    const fv = collectFormValues();
+    const r = await fetch('/api/generate', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ docId, draft: fv }) });
+    const data = await r.json();
+    if (!data.ok) { setStatus('err', '생성 실패: ' + data.reason); return; }
+    const rawMd = data.content || data.preview || '';
+    lastGeneratedDoc = { docId, content: rawMd, filename: docId + '-' + new Date().toISOString().slice(0, 10) + '.md' };
+    lastRenderedMd = rawMd;
+    renderPreview('생성 본문 — ' + (currentDocTitle || docId), renderMarkdownPreview(rawMd), 'doc', true);
+    setStatus('ok', '본문 ' + (data.length || rawMd.length) + '자 생성 (보관은 승인 시)');
+  } catch (e) { setStatus('err', '오류: ' + e.message); }
+}
+
+// === 결재 워크플로우 바 (P0-CU2 상태기계) ===
+let currentWorkflow = null;     // 현재 docId 의 _workflow 상태
+let lastVerify = null;          // 마지막 verify_safety_basis summary (검증 칩·게이트용)
+let lastVerifyData = null;      // 마지막 verify 전체 결과 (검증 탭 재표시용)
+const APPROVER_BY_ROLE = { safety_manager: 'site_manager', subcontractor_lead: 'site_manager', site_manager: 'client_orderer', client_orderer: 'client_orderer', worker_rep: 'site_manager' };
+// === P2-CU9 — 문서 연계 (MSDS 등록↔교육 / 대장 라이프사이클) ===
+// 연계 정의: source docId → { to(다음 docId), label(버튼), carry(현재 폼값 키 → 다음 폼 키 매핑), msg }.
+// 신규 라우트 0 — 기존 loadForm + draft 시스템 재사용. 캐리오버는 viewer 자체 carryContext.
+const DOC_LINKS = {
+  msds_register: {
+    to: 'msds_education_log',
+    label: '이 화학물질로 MSDS 교육일지 작성',
+    msg: 'MSDS 비치대장 작성 후 — 취급 작업자 교육 일지로 연계(F-sm-5).',
+    carry: { chemicalList: 'chemicals', siteName: 'siteName' },
+  },
+  basic_safety_health_register: {
+    to: 'design_safety_health_register',
+    label: '설계 안전보건대장으로 단계 전환',
+    msg: '기본 안전보건대장 → 설계 단계로 진행(발주→설계 라이프사이클, UC-16).',
+    carry: { siteName: 'siteName' },
+  },
+  design_safety_health_register: {
+    to: 'construction_safety_health_register',
+    label: '공사 안전보건대장으로 단계 전환',
+    msg: '설계 안전보건대장 → 공사 단계로 진행(설계→시공 라이프사이클).',
+    carry: { siteName: 'siteName' },
+  },
+};
+function renderLinkBar() {
+  const bar = document.getElementById('link-bar');
+  if (!bar) return;
+  // doc 모드가 아니거나 read-only(view) 면 숨김 — 작성 연계만.
+  if (!currentTarget.startsWith('doc:') || viewMode === 'view') { bar.style.display = 'none'; return; }
+  const docId = currentTarget.replace('doc:', '');
+  const link = DOC_LINKS[docId];
+  if (!link) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  bar.innerHTML =
+    '<span class="material-symbols-outlined" style="color:var(--info)">link</span>' +
+    '<span class="link-msg">' + escapeHtml(link.msg) + '</span>' +
+    '<button type="button" class="link-btn" onclick="openLinkedDoc(\\'' + docId + '\\')">' +
+    '<span class="material-symbols-outlined">arrow_forward</span>' + escapeHtml(link.label) + '</button>';
+}
+// 연계 진입 — 현재 폼값에서 carry 키를 추출해 다음 문서로 캐리오버.
+function openLinkedDoc(fromDocId) {
+  const link = DOC_LINKS[fromDocId];
+  if (!link) return;
+  const cur = collectFormValues();
+  const values = {};
+  for (const [srcKey, dstKey] of Object.entries(link.carry || {})) {
+    const v = cur[srcKey];
+    if (v != null && String(v).trim() !== '') values[dstKey] = v;
+  }
+  carryContext = { target: 'doc:' + link.to, values };
+  setStatus('info', link.label + ' — 연계 정보 ' + Object.keys(values).length + '건 이어받음');
+  loadForm('doc:' + link.to, 'edit');
+}
+// 폼 로드 후 캐리오버 값을 매칭 필드에 주입(draft 복원과 동일 매칭). 일치 target 일 때만.
+function applyCarryContext() {
+  if (!carryContext || carryContext.target !== currentTarget) return;
+  const values = carryContext.values || {};
+  carryContext = null;   // 1회성
+  const inputs = document.querySelectorAll('#form-container [data-field-id]');
+  let applied = 0;
+  for (const [key, val] of Object.entries(values)) {
+    for (const el of inputs) {
+      const mappedKey = fieldPathMap[el.dataset.fieldId] || el.dataset.fieldKey || el.dataset.fieldId;
+      if (el.dataset.fieldId === key || el.dataset.fieldKey === key || mappedKey === key) {
+        el.value = String(val == null ? '' : val);
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        applied++;
+        break;
+      }
+    }
+  }
+  if (applied > 0) setStatus('ok', '연계 정보 ' + applied + '건 자동 채움 — 이어서 작성하세요.');
+}
+
+async function loadWorkflowBar() {
+  renderLinkBar();   // P2-CU9 — 연계 바 (MSDS↔교육·대장 단계). doc 가 아니면 내부에서 숨김.
+  const bar = document.getElementById('workflow-bar');
+  if (!bar) return;
+  if (currentTarget === 'profile' || !currentTarget.startsWith('doc:')) { bar.style.display = 'none'; return; }
+  const docId = currentTarget.replace('doc:', '');
+  currentWorkflow = null;
+  lastVerify = null; lastVerifyData = null;   // 새 문서 로드 시 이전 검증 칩 초기화
+  try {
+    const r = await fetch('/api/workflow/get?docId=' + encodeURIComponent(docId));
+    const data = await r.json();
+    if (data.ok && data.data) currentWorkflow = data.data;
+  } catch {}
+  renderWorkflowBar();
+}
+function renderWorkflowBar() {
+  const bar = document.getElementById('workflow-bar');
+  if (!bar) return;
+  bar.style.display = 'flex';
+  const w = currentWorkflow;
+  const state = w ? w.state : 'draft';
+  let actions = '';
+  // draft/없음 → 작성자: 결재 올리기 + 단독 결재(승인)
+  if (!w || state === 'draft' || state === 'rejected') {
+    const defApprover = APPROVER_BY_ROLE[currentRole] || 'site_manager';
+    actions =
+      '<label class="agent-label" for="wf-approver">결재자</label>' +
+      '<select id="wf-approver" class="agent-select agent-select-mini wf-approver">' +
+        ROLES.map((r) => '<option value="' + r.id + '"' + (r.id === defApprover ? ' selected' : '') + '>' + r.label + '</option>').join('') +
+      '</select>' +
+      '<button type="button" class="Button primary" onclick="wfTransition(\\'submit_for_review\\')"><span class="material-symbols-outlined">send</span>결재 올리기</button>' +
+      '<button type="button" class="Button secondary" onclick="wfTransition(\\'approve\\')"><span class="material-symbols-outlined">approval</span>단독 결재(승인)</button>';
+  } else if (state === 'pending') {
+    // 결재자: 승인 / 반려
+    actions =
+      '<button type="button" class="Button primary" onclick="wfTransition(\\'approve\\')"><span class="material-symbols-outlined">check_circle</span>승인</button>' +
+      '<button type="button" class="Button secondary" onclick="wfReject()"><span class="material-symbols-outlined">cancel</span>반려</button>';
+  } else if (state === 'approved') {
+    actions =
+      '<label class="agent-label" for="wf-recipient">수신자</label>' +
+      '<select id="wf-recipient" class="agent-select agent-select-mini wf-approver">' +
+        ROLES.map((r) => '<option value="' + r.id + '"' + (r.id === 'client_orderer' ? ' selected' : '') + '>' + r.label + '</option>').join('') +
+      '</select>' +
+      '<button type="button" class="Button primary" onclick="wfTransition(\\'send\\')"><span class="material-symbols-outlined">forward_to_inbox</span>수신자에게 발송</button>' +
+      '<span class="wf-unauth" title="이 발송/수신확인은 본 앱 안에서의 공유·추적입니다. 관할 노동청 등 행정기관 정식 접수·제출은 별도 절차(예: 비상화면의 e-노동민원)로 이루어집니다.">※ 앱 내부 공유·추적 — 행정기관 정식 제출 아님</span>';
+  } else if (state === 'sent') {
+    actions = '<button type="button" class="Button primary" onclick="wfTransition(\\'acknowledge\\')"><span class="material-symbols-outlined">mark_email_read</span>수신 확인</button>';
+  }
+  let hist = '';
+  if (w && w.history && w.history.length) {
+    hist = '<ul class="wf-hist">' + w.history.map((h) =>
+      '<li>' + escapeHtml((String(h.at).slice(0, 16).replace('T', ' '))) + ' · ' + escapeHtml(roleLabel(h.actor)) + ' · ' +
+      escapeHtml(VERB_LABEL[h.verb] || h.verb) + (h.reason ? ' — ' + escapeHtml(h.reason) : '') +
+      (h.note ? ' — ' + escapeHtml(h.note) : '') + '</li>').join('') + '</ul>';
+  }
+  // 법적 근거 검증 버튼 (P1-CU3) — 결재 전 게이트(F-site-7). sent/received 이후엔 숨김.
+  const verifyBtn = (state === 'draft' || state === 'rejected' || state === 'pending' || state === 'approved')
+    ? '<button type="button" class="Button secondary" onclick="runVerify()"><span class="material-symbols-outlined">verified_user</span>법적 근거 검증</button>'
+    : '';
+  bar.innerHTML = '<div class="wf-state">' + stateBadge(state) +
+    (w && w.author ? '<span>작성 ' + escapeHtml(roleLabel(w.author)) + '</span>' : '') +
+    (w && w.approver ? '<span>· 결재 ' + escapeHtml(roleLabel(w.approver)) + '</span>' : '') +
+    (lastVerify ? '<span>· ' + verifyChip(lastVerify) + '</span>' : '') +
+    ((w && (w.author || w.approver)) ? '<span class="wf-unauth" title="역할 스위처는 로그인·전자서명이 아닙니다. 작성/결재 라벨은 운영자가 선택한 역할값이며 법적 결재 서명을 대체하지 않습니다.">· ⚠ 역할은 미인증 자가선택값(서명 아님)</span>' : '') +
+    '</div><div class="wf-actions">' + verifyBtn + actions + '</div>' + hist;
+}
+// 검증 정량 칩 (KEEP-G N/M 패턴 재사용)
+function verifyChip(sum) {
+  if (!sum) return '';
+  const ok = (sum.supported || 0) + (sum.partial || 0);
+  const halluc = sum.hallucinationCount || 0;
+  const cls = halluc > 0 ? 'badge-rejected' : (ok === sum.total ? 'badge-approved' : 'badge-imminent');
+  return '<span class="badge ' + cls + '"><span class="material-symbols-outlined">verified_user</span>근거 ' + ok + '/' + (sum.total || 0) + ' · 환각 ' + halluc + '</span>';
+}
+const VERB_LABEL = { submit_for_review: '결재 올림', approve: '승인', reject: '반려', send: '발송', acknowledge: '수신 확인', comment: '의견' };
+const VERB_DONE_MSG = { submit_for_review: '결재 올림 — 결재함에 등록되었습니다', approve: '승인 완료 — 본문 생성·보관됨', reject: '반려 처리 — 작성자에게 보완 요청', send: '발송 완료 — 수신함에 등록', acknowledge: '수신 확인 완료' };
+// 단일 전이 POST. 성공 시 워크플로우 객체 반환, 실패(409/400/500) 시 null + 에러 상태.
+// 핵심(critic M3): 전이를 *먼저* 확정하고, generate/archive 같은 부작용은 전이 성공 *후에만* 한다.
+async function postTransition(payload) {
+  try {
+    const r = await fetch('/api/workflow/transition', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) });
+    const data = await r.json();
+    if (!data.ok) { setStatus('err', '상태 전이 실패: ' + (data.reason || 'unknown')); return null; }
+    return data.data;
+  } catch (e) { setStatus('err', '오류: ' + e.message); return null; }
+}
+async function wfTransition(verb, extra) {
+  const docId = currentTarget.replace('doc:', '');
+  // 단독 결재(UC-19): draft/rejected 에서 approve 를 누르면 submit_for_review(→pending) 를 먼저 확정한 뒤 approve.
+  // 가드(approve←pending)와 정합하고, 전이가 거절되면 어떤 부작용(보관)도 일어나지 않게 한다.
+  if (verb === 'approve') {
+    const st = currentWorkflow ? currentWorkflow.state : 'draft';
+    if (st === 'draft' || st === 'rejected') {
+      const fv = collectFormValues();
+      try { await fetch('/api/draft/save', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ docId, formValues: fv, autosave: false }) }); } catch {}
+      const submitted = await postTransition({ docId, verb: 'submit_for_review', actor: currentRole, approver: currentRole, title: currentDocTitle || docId });
+      if (!submitted) return;
+      currentWorkflow = submitted;
+    }
+  }
+  const payload = { docId, verb, actor: currentRole, title: currentDocTitle || docId };
+  if (verb === 'submit_for_review') {
+    const sel = document.getElementById('wf-approver');
+    payload.approver = sel ? sel.value : 'site_manager';
+    const fv = collectFormValues();
+    try { await fetch('/api/draft/save', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ docId, formValues: fv, autosave: false }) }); } catch {}
+  }
+  if (verb === 'send') { const sel = document.getElementById('wf-recipient'); payload.recipient = sel ? sel.value : 'client_orderer'; }
+  if (extra && extra.reason) payload.reason = extra.reason;
+  // 1) 전이 먼저 확정 (가드 통과해야 진행).
+  const data = await postTransition(payload);
+  if (!data) return;
+  currentWorkflow = data;
+  // 2) 승인이 확정된 *후에만* 본문 생성+영구 보관 (W8). 보관 실패는 상태를 되돌리지 않고 경고만.
+  if (verb === 'approve') {
+    setStatus('info', '승인됨 — 본문 생성·보관 중...');
+    try { await handleAction({ name: 'submit_safety_document', payload: { docId, archive: true } }); } catch (e) { setStatus('err', '승인됨(상태 approved) — 단, 본문 보관 실패: ' + e.message); }
+  }
+  renderWorkflowBar();
+  setStatus('ok', VERB_DONE_MSG[verb] || '상태 전이 완료');
+}
+function wfReject() {
+  const reason = prompt('반려 사유를 입력하세요 (작성자에게 전달됩니다):', '');
+  if (reason === null) return;
+  wfTransition('reject', { reason });
+}
+
+// === 법적 근거 검증 (P1-CU3) — verify_safety_basis 호출 + "검증" 탭 렌더 ===
+async function runVerify() {
+  const docId = currentTarget.replace('doc:', '');
+  setPreviewTab('verify');
+  setStatus('info', '법적 근거 검증 중 — 본문 생성 후 조문 정합성·환각 대조...');
+  // 검증 대상 본문 = 마지막 생성 본문, 없으면 즉석 generate.
+  let bodyMd = (lastGeneratedDoc && lastGeneratedDoc.content) || lastRenderedMd || '';
+  try {
+    if (!bodyMd) {
+      const fv = collectFormValues();
+      const gr = await fetch('/api/generate', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ docId, draft: fv }) });
+      const gd = await gr.json();
+      if (gd.ok) bodyMd = gd.content || gd.preview || '';
+    }
+    const r = await fetch('/api/verify', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ body: bodyMd }) });
+    const data = await r.json();
+    if (!data.ok) { setStatus('err', '검증 실패: ' + (data.reason || 'unknown')); renderPreview('법적 근거 검증', '<p class="caption">검증 실패: ' + escapeHtml(data.reason || '') + '</p>', 'doc', false); return; }
+    lastVerify = (data.data && data.data.summary) || null;
+    lastVerifyData = data.data || null;
+    renderVerifyPanel(data.data);
+    renderWorkflowBar();   // 검증 칩 갱신
+    const s = lastVerify || {};
+    setStatus('ok', '검증 완료 — 근거 ' + ((s.supported || 0) + (s.partial || 0)) + '/' + (s.total || 0) + ' · 환각 ' + (s.hallucinationCount || 0) + ' · 본문 미수록 인용 ' + (s.inlineUnresolvedCount || 0));
+  } catch (e) { setStatus('err', '오류: ' + e.message); }
+}
+const VERIFY_STATUS_KO = { supported: '근거 충족', partial: '부분 충족', unsupported: '근거 미흡', invalid: '부적합' };
+const VERIFY_STATUS_CLS = { supported: 'badge-approved', partial: 'badge-imminent', unsupported: 'badge-rejected', invalid: 'badge-rejected' };
+function renderVerifyPanel(d) {
+  if (!d || !d.summary) { renderPreview('법적 근거 검증', '<p class="caption">검증 결과가 없습니다.</p>', 'doc', false); return; }
+  const s = d.summary;
+  const parts = [];
+  // 정량 요약 칩 (KEEP-G N/M)
+  parts.push('<section class="ctx-section">');
+  parts.push('<div class="ctx-chips">');
+  parts.push('<span class="ctx-chip">검증 문장 ' + (s.total || 0) + '건</span>');
+  parts.push('<span class="ctx-chip">근거 충족 ' + (s.supported || 0) + '</span>');
+  parts.push('<span class="ctx-chip">부분 ' + (s.partial || 0) + '</span>');
+  parts.push('<span class="ctx-chip">미흡 ' + (s.unsupported || 0) + '</span>');
+  parts.push('<span class="ctx-chip' + ((s.hallucinationCount || 0) > 0 ? ' ctx-chip-iso' : '') + '">환각 인용 ' + (s.hallucinationCount || 0) + '</span>');
+  parts.push('<span class="ctx-chip">본문 미수록 인용 ' + (s.inlineUnresolvedCount || 0) + '</span>');
+  parts.push('</div>');
+  // 도구 한계 명시(critic M1 L-5): verify_safety_basis 는 인용 조문의 *존재·증거 weight·환각 여부*를 점검할 뿐,
+  // "이 조문이 이 주장에 실제로 적용되는가"(의미적 entailment)는 검증하지 않는다. "근거 충족"은 법적 보증이 아니며
+  // 최종 적합성 판단은 안전관리자의 검토 책임이다.
+  parts.push('<p class="caption">⚠ 이 검증은 인용 조문의 <strong>존재·증거 등급·환각 여부</strong>만 확인합니다. 조문이 해당 주장에 실제로 <strong>적용되는지(의미적 판단)는 검증하지 않으며</strong>, "근거 충족"이 법적 적합성을 보증하지 않습니다 — 최종 판단은 안전관리자가 하십시오.</p>');
+  parts.push('</section>');
+  // 문장별 판정
+  const verdicts = d.verdicts || [];
+  if (verdicts.length) {
+    parts.push('<section class="ctx-section"><h4 class="ctx-h"><span class="material-symbols-outlined">rule</span> 문장별 근거 판정</h4><ul class="ctx-list">');
+    for (const v of verdicts) {
+      const cls = VERIFY_STATUS_CLS[v.status] || 'badge-upcoming';
+      const lbl = VERIFY_STATUS_KO[v.status] || v.status;
+      parts.push('<li><span class="badge ' + cls + '">' + escapeHtml(lbl) + '</span> ' + escapeHtml(humanizeLawSymbols(v.claim || '')) +
+        ((v.reasons && v.reasons.length) ? '<div class="ctx-excerpt">' + escapeHtml(v.reasons.join(' · ')) + '</div>' : '') + '</li>');
+    }
+    parts.push('</ul></section>');
+  }
+  if (d.nextActions && d.nextActions.length) {
+    parts.push('<section class="ctx-section"><h4 class="ctx-h"><span class="material-symbols-outlined">tips_and_updates</span> 다음 조치</h4><ul class="ctx-list">' +
+      d.nextActions.map((a) => '<li>' + escapeHtml(a) + '</li>').join('') + '</ul></section>');
+  }
+  renderPreview('법적 근거 검증 — ' + (currentDocTitle || ''), parts.join(''), 'context', false);
 }
 
 let autoSaveTimer = null;
@@ -567,8 +1524,21 @@ async function maybeLoadDraft(opts) {
   } catch {}
 }
 
-async function loadForm(target) {
+async function loadForm(target, mode) {
   currentTarget = target;
+  // 작성(edit) vs 수신/열람(view, read-only) 모드. profile 은 항상 edit. (P1-CU4)
+  viewMode = (target !== 'profile' && mode === 'view') ? 'view' : 'edit';
+  healthUnlocked = false;          // 새 문서 로드 시 보호 분류 본인 확인 게이트 초기화
+  // 홈 → 문서 작업 영역 전환
+  activeView = 'doc';
+  document.getElementById('home-view').style.display = 'none';
+  const emgView = document.getElementById('emergency-view'); if (emgView) emgView.style.display = 'none';
+  const arcView = document.getElementById('archive-view'); if (arcView) arcView.style.display = 'none';
+  document.getElementById('doc-view').style.display = 'block';
+  // profile 은 우측 미리보기 없음 → 탭 숨김
+  document.getElementById('preview-tabs').style.display = (target === 'profile') ? 'none' : 'flex';
+  previewTab = 'form';
+  document.querySelectorAll('.preview-tab').forEach((b) => b.classList.toggle('is-active', b.dataset.tab === 'form'));
   document.querySelectorAll('.agent-toolbar .agent-button').forEach((b) => b.classList.remove('is-active'));
   if (target === 'profile') document.getElementById('nav-profile')?.classList.add('is-active');
   setStatus('info', '폼 로드 중...');
@@ -577,6 +1547,7 @@ async function loadForm(target) {
   currentContext = null;            // 새 폼 로드 시 그래프 토글 상태 초기화
   lastGeneratedDoc = null;           // 이전 docId 의 generated 본문 상태 초기화
   currentDocTitle = '';
+  currentRequiredLabels = [];        // P2-CU7 — 새 폼 로드 전 필수 라벨 초기화
 
   // 레이아웃 분기 — Profile 은 폼 단독, docId 양식은 좌우 분할
   const splitArea = document.querySelector('.split-area');
@@ -593,6 +1564,17 @@ async function loadForm(target) {
     }
   }
 
+  // === read-only 수신/열람 모드 (P1-CU4) — 작성 폼 대신 게시본 열람 ===
+  // 수신함(sent/received) 진입·보호 분류(J_건강)는 작성 폼을 띄우지 않고 게시본만 보여준다.
+  if (viewMode === 'view' && target.startsWith('doc:')) {
+    splitArea?.classList.add('profile-mode');   // 단일 컬럼 — 좌측에 게시본 단독
+    document.getElementById('preview-tabs').style.display = 'none';
+    stopPolling();
+    await renderReadonlyView(target.replace('doc:', ''));
+    loadWorkflowBar();              // 수신 확인(acknowledge) 액션은 workflow-bar 에서 노출
+    return;
+  }
+
   try {
     const r = await fetch('/api/form?target=' + encodeURIComponent(target));
     const data = await r.json();
@@ -601,17 +1583,102 @@ async function loadForm(target) {
       return;
     }
     fieldPathMap = data.fieldPathMap || {};
+    currentRequiredLabels = data.requiredLabels || [];   // P2-CU7 필수 라벨
     render(data.messages, data.summary);
     setStatus('ok', data.summary || '폼 로드 완료');
     // draft 자동 복원 + autosave 바인딩 + 외부 변경 폴링
     await maybeLoadDraft();
+    applyCarryContext();            // P2-CU9 — 연계 진입 캐리오버 주입(draft 복원 후, 빈 칸 채움)
     setupAutoSave();
     setupLivePreview();             // docId 양식이면 폼 입력 → /api/generate 호출 바인딩 (1.5s debounce)
     refreshFormPreview(true);       // 초기 1회 — generate 빈 draft 호출로 결재용 양식 골격 즉시 표시
     startPolling();
+    loadWorkflowBar();              // 결재 상태기계 바 (P0-CU2) — profile 은 내부에서 숨김
   } catch (e) {
     setStatus('err', '오류: ' + e.message);
   }
+}
+
+// === read-only 게시본 열람 (P1-CU4) — 작성 폼 없이 본문만. 의견 코멘트 채널 포함. ===
+async function renderReadonlyView(docId) {
+  const title = currentDocTitle || docId;
+  // 보호 분류(J_건강): 본인 확인 게이트 통과 전엔 본문 비공개(F-wr-4 부분, §129 비밀보장).
+  if (isProtectedDoc(docId) && !healthUnlocked) {
+    root.innerHTML =
+      '<div class="readonly-doc"><div class="health-gate">' +
+        '<span class="material-symbols-outlined health-gate-ic">lock</span>' +
+        '<h3>' + escapeHtml(title) + '</h3>' +
+        '<p class="caption">건강진단·유소견 통보는 본인에게만 공개되는 비밀 보장 대상(산안법 제129조)입니다. ' +
+        '본인 확인 후 열람하세요. 타 역할의 홈에는 표시되지 않습니다.</p>' +
+        '<button type="button" class="Button primary" onclick="unlockHealthDoc()"><span class="material-symbols-outlined">how_to_reg</span>본인 확인 후 열람</button>' +
+      '</div></div>';
+    setStatus('info', roleLabel(currentRole) + ' — 본인 확인이 필요한 보호 문서입니다.');
+    return;
+  }
+  setStatus('info', '게시본 불러오는 중...');
+  // 게시본 본문 — 저장된 draft 로 generate (수신 시점 본문). 실패하면 양식 골격(official-form) 으로 폴백.
+  let bodyHtml = '';
+  let rawMd = '';
+  try {
+    const fv = collectReadonlyValues(docId);
+    const r = await fetch('/api/generate', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ docId, draft: fv }) });
+    const data = await r.json();
+    if (data.ok) { rawMd = data.content || data.preview || ''; bodyHtml = renderMarkdownPreview(rawMd); }
+  } catch {}
+  if (!bodyHtml) {
+    try {
+      const r2 = await fetch('/api/official-form?docId=' + encodeURIComponent(docId));
+      const d2 = await r2.json();
+      if (d2.ok) { rawMd = d2.md || ''; bodyHtml = renderMarkdownPreview(rawMd); }
+    } catch {}
+  }
+  lastRenderedMd = rawMd;
+  lastGeneratedDoc = rawMd ? { docId, content: rawMd, filename: docId + '-' + new Date().toISOString().slice(0, 10) + '.md' } : null;
+  root.innerHTML =
+    '<div class="readonly-doc">' +
+      '<div class="readonly-head"><span class="badge badge-sent"><span class="material-symbols-outlined">visibility</span>열람 전용</span>' +
+        '<span class="caption">이 화면은 게시된 문서를 읽기 위한 것으로 수정할 수 없습니다.</span></div>' +
+      '<h3 class="readonly-title">' + escapeHtml(title) + '</h3>' +
+      '<div class="preview-body readonly-body">' + (bodyHtml || '<p class="caption">표시할 본문이 없습니다 — 작성·승인 후 게시됩니다.</p>') + '</div>' +
+      buildReadonlyActions() +
+      '<div class="readonly-comment">' +
+        '<label class="agent-label" for="ro-comment">의견 남기기 (선택)</label>' +
+        '<textarea id="ro-comment" class="agent-input" rows="2" placeholder="이 문서에 대한 의견·확인 메모를 남기면 이력에 기록됩니다"></textarea>' +
+        '<button type="button" class="Button secondary" onclick="submitComment()"><span class="material-symbols-outlined">comment</span>의견 제출</button>' +
+      '</div>' +
+    '</div>';
+  setStatus('ok', '열람 전용 — ' + title);
+}
+function buildReadonlyActions() {
+  return '<div class="preview-actions readonly-actions">' +
+    '<button type="button" class="Button secondary preview-action" onclick="onSaveMarkdown()" title="현재 본문을 .md 로 다운로드"><span class="material-symbols-outlined">download</span>MD 저장</button>' +
+    '<button type="button" class="Button secondary preview-action" onclick="window.print()" title="브라우저 인쇄로 PDF 저장"><span class="material-symbols-outlined">print</span>인쇄/PDF</button>' +
+    '</div>';
+}
+// 열람용 draft 값 — 저장된 draft 가 있으면 generate 가 서버에서 읽으므로 빈 객체로도 충분. (스텁)
+function collectReadonlyValues(docId) { return {}; }
+function unlockHealthDoc() {
+  // 강한 인증은 계약상 보류(➖). 명시적 본인 확인 클릭만 게이트로 둔다.
+  if (!confirm('본인 또는 열람 권한자임을 확인합니다. 계속하시겠습니까?')) return;
+  healthUnlocked = true;
+  renderReadonlyView(currentTarget.replace('doc:', ''));
+}
+async function submitComment() {
+  const ta = document.getElementById('ro-comment');
+  const text = (ta && ta.value || '').trim();
+  if (!text) { setStatus('err', '의견을 입력하세요.'); return; }
+  const docId = currentTarget.replace('doc:', '');
+  // 의견은 상태 전이를 일으키지 않는 이력 메모 — acknowledge note 와 동일 채널 재사용(상태 불변).
+  try {
+    const r = await fetch('/api/workflow/transition', { method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ docId, verb: 'comment', actor: currentRole, note: text, title: currentDocTitle || docId }) });
+    const data = await r.json();
+    if (!data.ok) { setStatus('err', '의견 제출 실패: ' + (data.reason || 'unknown')); return; }
+    currentWorkflow = data.data;
+    if (ta) ta.value = '';
+    renderWorkflowBar();
+    setStatus('ok', '의견이 이력에 기록되었습니다.');
+  } catch (e) { setStatus('err', '오류: ' + e.message); }
 }
 
 function render(messages, summary) {
@@ -677,6 +1744,15 @@ function renderComponent(id, all) {
       const label = document.createElement('div');
       label.className = 'label';
       label.textContent = c.label || '';
+      // P2-CU7 — 필수 필드 별표 + 가드용 마킹
+      if (isRequiredLabel(c.label)) {
+        wrapper.dataset.required = '1';
+        const star = document.createElement('span');
+        star.className = 'req-star';
+        star.textContent = '*';
+        star.title = '필수 입력';
+        label.appendChild(star);
+      }
       wrapper.appendChild(label);
 
       const hint = c.usageHint || 'shortText';
@@ -787,6 +1863,7 @@ function renderComponent(id, all) {
         ta.placeholder = c.placeholder || '';
         bindFieldMeta(ta, c);
         wrapper.appendChild(ta);
+        appendFieldHint(wrapper, c);   // P2-CU7 인라인 힌트(폼 옆 가이드)
         return wrapper;
       }
 
@@ -835,6 +1912,7 @@ function renderComponent(id, all) {
       if (!input.placeholder) input.placeholder = c.placeholder || '';
       bindFieldMeta(input, c);
       wrapper.appendChild(input);
+      appendFieldHint(wrapper, c);   // P2-CU7 인라인 힌트
       return wrapper;
     }
     case 'Button': {
@@ -874,6 +1952,54 @@ function renderComponent(id, all) {
       fb.textContent = '[' + c.component + ']';
       return fb;
   }
+}
+
+// === P2-CU7 — 필수 마커 / 인라인 힌트 / 제출 가드 헬퍼 ===
+// 라벨 정규화: 공백·괄호 부연·구분기호 제거 후 비교(폼 .md 라벨 ↔ A2UI 컴포넌트 라벨 표기 차이 흡수).
+function normLabel(s) {
+  return String(s || '')
+    .replace(/\\([^)]*\\)/g, '')   // 괄호 부연 제거
+    .replace(/[\\s·\\/]+/g, '')     // 공백·중점·슬래시 제거
+    .trim();
+}
+function isRequiredLabel(label) {
+  if (!label || !currentRequiredLabels.length) return false;
+  const n = normLabel(label);
+  if (!n) return false;
+  for (const rl of currentRequiredLabels) {
+    const rn = normLabel(rl);
+    if (!rn) continue;
+    if (n === rn || n.includes(rn) || rn.includes(n)) return true;
+  }
+  return false;
+}
+// 인라인 힌트 — 컴포넌트가 placeholder(예시값)만 들고 있으므로 "예: ..." 형태로 폼 옆에 노출(F-sub-6).
+function appendFieldHint(wrapper, c) {
+  const ph = c && c.placeholder ? String(c.placeholder).trim() : '';
+  if (!ph) return;
+  const hint = document.createElement('div');
+  hint.className = 'field-hint';
+  hint.textContent = '예: ' + ph;
+  wrapper.appendChild(hint);
+}
+// 제출 전 필수 가드 — 누락 필드 하이라이트 + 첫 누락으로 스크롤. 누락 라벨 배열 반환(빈 배열이면 통과).
+function checkRequiredFields() {
+  const missing = [];
+  let firstEl = null;
+  document.querySelectorAll('#form-container .field-block').forEach((blk) => {
+    blk.classList.remove('is-missing');
+    if (blk.dataset.required !== '1') return;
+    const inp = blk.querySelector('input, textarea, select');
+    const val = inp ? String(inp.value || '').trim() : '';
+    if (!val) {
+      blk.classList.add('is-missing');
+      const lbl = blk.querySelector('.label');
+      missing.push(lbl ? (lbl.textContent || '').replace(/\\*$/, '').trim() : '필수 항목');
+      if (!firstEl) firstEl = blk;
+    }
+  });
+  if (firstEl) firstEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return missing;
 }
 
 function collectFormValues() {
@@ -1240,7 +2366,8 @@ function stripGeneratedNoise(text) {
   return out.join('\\n').replace(new RegExp('\\\\n{3,}', 'g'), '\\n\\n').trim();
 }
 
-// 마크다운 본문을 HTML 양식으로 렌더 — marked CDN 사용, 미로드 시 raw 폴백
+// 마크다운 본문을 HTML 양식으로 렌더 — marked CDN 사용, 미로드/파싱실패 시 vanilla 표 폴백(DP-3, P2-CU8).
+// offline-first: 신규 네트워크 0. marked 가 차단된 환경(오프라인·CDN 미로드)에서도 결재용 표가 깨지지 않게 자체 렌더.
 function renderMarkdownPreview(rawMd) {
   // 1) 법령 기호 한국어화  2) 개발자/도구 메타 제거 (결재용 양식 가독성)
   const ko = stripGeneratedNoise(humanizeLawSymbols(rawMd));
@@ -1249,10 +2376,59 @@ function renderMarkdownPreview(rawMd) {
       marked.setOptions({ gfm: true, breaks: false });
       return '<div class="markdown">' + marked.parse(ko) + '</div>';
     } catch (e) {
-      // 파싱 실패 시 raw 폴백
+      // 파싱 실패 → vanilla 폴백
     }
   }
-  return '<pre class="markdown" style="white-space:pre-wrap;font-family:var(--font-mono);font-size:12px">' + escapeHtml(ko) + '</pre>';
+  return '<div class="markdown">' + fallbackMd2Html(ko) + '</div>';
+}
+
+// === P2-CU8 — vanilla MD→HTML 폴백 (marked 미로드 시) ===
+// 의존성 0. 결재용 양식은 표·제목·인용·목록 위주이므로 그 범위만 처리(GFM 표 포함).
+function fallbackMd2Html(md) {
+  const lines = String(md || '').split('\\n');
+  const out = [];
+  let i = 0;
+  const isTableSep = (s) => /^\\s*\\|?[\\s:|-]*-[\\s:|-]*\\|?\\s*$/.test(s) && s.includes('-');
+  const splitRow = (s) => s.replace(/^\\s*\\|/, '').replace(/\\|\\s*$/, '').split('|').map((c) => c.trim());
+  let listOpen = false;
+  const closeList = () => { if (listOpen) { out.push('</ul>'); listOpen = false; } };
+  while (i < lines.length) {
+    const line = lines[i];
+    // GFM 표: 헤더행 + 구분행
+    if (line.includes('|') && i + 1 < lines.length && isTableSep(lines[i + 1])) {
+      closeList();
+      const head = splitRow(line);
+      out.push('<table><thead><tr>' + head.map((h) => '<th>' + inlineMd(h) + '</th>').join('') + '</tr></thead><tbody>');
+      i += 2;
+      while (i < lines.length && lines[i].includes('|') && lines[i].trim() !== '') {
+        const cells = splitRow(lines[i]);
+        out.push('<tr>' + cells.map((c) => '<td>' + inlineMd(c) + '</td>').join('') + '</tr>');
+        i++;
+      }
+      out.push('</tbody></table>');
+      continue;
+    }
+    // 제목
+    const h = line.match(/^(#{1,6})\\s+(.*)$/);
+    if (h) { closeList(); const lv = h[1].length; out.push('<h' + lv + '>' + inlineMd(h[2]) + '</h' + lv + '>'); i++; continue; }
+    // 수평선
+    if (/^\\s*(-{3,}|\\*{3,}|_{3,})\\s*$/.test(line)) { closeList(); out.push('<hr>'); i++; continue; }
+    // 인용
+    if (/^\\s*>\\s?/.test(line)) { closeList(); out.push('<blockquote>' + inlineMd(line.replace(/^\\s*>\\s?/, '')) + '</blockquote>'); i++; continue; }
+    // 목록
+    if (/^\\s*[-*+]\\s+/.test(line)) {
+      if (!listOpen) { out.push('<ul>'); listOpen = true; }
+      out.push('<li>' + inlineMd(line.replace(/^\\s*[-*+]\\s+/, '')) + '</li>'); i++; continue;
+    }
+    // 빈 줄
+    if (line.trim() === '') { closeList(); i++; continue; }
+    // 일반 문단
+    closeList();
+    out.push('<p>' + inlineMd(line) + '</p>');
+    i++;
+  }
+  closeList();
+  return out.join('\\n');
 }
 
 // 마크다운 본문을 .md 파일로 다운로드 — 의존성 0, Blob URL 만 사용
@@ -1566,6 +2742,12 @@ async function handleAction(action) {
     }
   } else if (action.name === 'submit_safety_document') {
     const docId = action.payload?.docId || currentTarget.replace('doc:', '');
+    // P2-CU7 — 제출 전 필수 가드. 누락 시 generate 차단 + 필드 하이라이트.
+    const missing = checkRequiredFields();
+    if (missing.length) {
+      setStatus('err', '필수 항목 ' + missing.length + '건이 비어 있습니다 — ' + missing.slice(0, 3).join(', ') + (missing.length > 3 ? ' 외' : '') + '. 표시된 칸을 채운 뒤 다시 제출하세요.');
+      return false;
+    }
     // 1) 입력 폼 명시 저장 (manual)
     const formValues = collectFormValues();
     await fetch('/api/draft/save', {
@@ -1579,7 +2761,7 @@ async function handleAction(action) {
       body: JSON.stringify({ docId, draft: formValues }),
     });
     const data = await r.json();
-    if (!data.ok) { setStatus('err', '생성 실패: ' + data.reason); return; }
+    if (!data.ok) { setStatus('err', '생성 실패: ' + data.reason); return false; }
     // 3) 영구 보관
     const archiveRes = await fetch('/api/archive', {
       method: 'POST', headers: { 'content-type': 'application/json' },
@@ -1600,8 +2782,9 @@ async function handleAction(action) {
     }
     const rawMd = data.content || data.preview || '';
     lastRenderedMd = rawMd; // MD 저장/인쇄에 사용 (LLM 본문 결과)
-    renderPreview('생성된 본문 — ' + docId, renderMarkdownPreview(rawMd), 'doc', true);
+    renderPreview('생성된 본문 — ' + (currentDocTitle || docId), renderMarkdownPreview(rawMd), 'doc', true);   // P2-CU8 humanize
     currentContext = null; // 그래프 preview 가 doc preview 로 덮였으므로 context 토글 상태 초기화
+    return true;   // 승인 게이트(wfTransition approve)가 본문 생성+보관 성공을 확인
   } else if (action.name === 'assemble_doc_context') {
     const docId = action.payload?.docId || currentTarget.replace('doc:', '');
     // 토글: 같은 docId 의 그래프가 이미 표시 중이면 양식으로 복귀 (빈 공간 X)
@@ -1646,37 +2829,44 @@ async function handleAction(action) {
 let allDocs = [];
 
 async function loadDocList() {
-  const r = await fetch('/api/list-docs');
-  const data = await r.json();
-  allDocs = data.docs || [];
+  try {
+    const r = await fetch('/api/list-docs');
+    const data = await r.json();
+    allDocs = data.docs || [];
+  } catch { allDocs = []; }
   renderDocSelect(allDocs);
 }
 
 function renderDocSelect(docs) {
   const sel = document.getElementById('doc-select');
-  sel.innerHTML = '<option value="">— 선택 (전체 ' + docs.length + '종, 빈도·법령강제·중대재해 우선) —</option>';
+  // 1차 그룹핑 축 — 분류(category) 또는 작성 주기(frequency). 기본 분류별 (category 를 1급 IA 로 승격).
+  const mode = (document.getElementById('group-mode') || {}).value || 'category';
+  sel.innerHTML = '<option value="">— 문서 선택 (전체 ' + docs.length + '종) —</option>';
   const groups = {};
   for (const d of docs) {
-    if (!groups[d.frequency]) groups[d.frequency] = [];
-    groups[d.frequency].push(d);
+    const key = mode === 'category' ? (d.category || '기타') : (d.frequency || '기타');
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(d);
   }
-  // 그룹 자체 정렬 — 그룹 내 최고 priority 기준
-  const sortedFreqs = Object.keys(groups).sort((a, b) => {
+  // 그룹 자체 정렬 — 그룹 내 최고 priority 기준 (KEEP-B: priority 정렬 보존)
+  const sortedKeys = Object.keys(groups).sort((a, b) => {
     const aMax = Math.max(...groups[a].map(x => x.priority || 0));
     const bMax = Math.max(...groups[b].map(x => x.priority || 0));
     return bMax - aMax;
   });
-  for (const freq of sortedFreqs) {
-    // 그룹 내 정렬도 priority 우선
-    groups[freq].sort((a, b) => (b.priority || 0) - (a.priority || 0) || a.title.localeCompare(b.title, 'ko'));
+  for (const key of sortedKeys) {
+    // 그룹 내부 2차 정렬 — priority(빈도+법령강제+중대재해) 우선 보존 (KEEP-B)
+    groups[key].sort((a, b) => (b.priority || 0) - (a.priority || 0) || a.title.localeCompare(b.title, 'ko'));
     const og = document.createElement('optgroup');
-    og.label = (groups[freq][0].emoji || '') + ' ' + freq + ' (' + groups[freq].length + ')';
-    for (const d of groups[freq]) {
+    const head = groups[key][0];
+    og.label = mode === 'category'
+      ? (humanizeCategory(key) + ' (' + groups[key].length + ')')
+      : ((head.emoji || '') + ' ' + key + ' (' + groups[key].length + ')');
+    for (const d of groups[key]) {
       const opt = document.createElement('option');
       opt.value = d.docId;
-      // 제목 + [카테고리] — ★ 같은 시각 단서는 양식·결재 문서에 잘못 묻을 위험이 있어 제거.
-      // 법령강제·중대재해 강조는 그룹 라벨 (빈도 emoji + 그룹명) 단위로 이미 표현됨.
-      opt.textContent = d.title + ' [' + humanizeCategory(d.category) + ']';
+      // 분류 모드에서는 그룹 라벨에 분류가 이미 있으므로 제목만, 주기 모드에서는 분류 꼬리표 유지.
+      opt.textContent = mode === 'category' ? d.title : (d.title + ' [' + humanizeCategory(d.category) + ']');
       og.appendChild(opt);
     }
     sel.appendChild(og);
@@ -1695,9 +2885,9 @@ function filterDocs(q) {
   renderDocSelect(filtered);
 }
 
-// 초기 로드
-loadDocList();
-loadForm('profile');
+// 초기 로드 — profile 강제 진입 제거(F-wr-6). 역할 스위처 + 역할 홈이 첫 화면.
+renderRoleBar();
+loadDocList().then(() => goHome());
 </script>
 </body>
 </html>`;
@@ -1750,6 +2940,129 @@ const server = createServer(async (req, res) => {
     return send(res, 200, "application/json", JSON.stringify({ ok: true, docs }));
   }
 
+  // === 역할 홈 "내가 할 일" — list_upcoming_duties (기존 callMcp 재사용, 신규 네트워크 0) ===
+  if (url.pathname === "/api/duties" && req.method === "GET") {
+    const r = callMcp("list_upcoming_duties", {});
+    if (!r.ok) return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: r.reason }));
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, data: r.data }));
+  }
+
+  // === 비상 워크플로우 제출 정보 (P1-CU6) — get_submission_info (로컬 callMcp, 신규 네트워크 0) ===
+  // 중대재해 즉시보고의 제출처·e-노동민원 URL 을 master 에서 실측. 외부링크는 클라이언트에서 사용자 클릭 시에만 열림.
+  if (url.pathname === "/api/emergency-info" && req.method === "GET") {
+    const r = callMcp("get_submission_info", { docId: "severe_accident_immediate_report" });
+    if (!r.ok) return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: r.reason }));
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, data: r.data }));
+  }
+
+  // === 법적 근거 검증 (P1-CU3) — verify_safety_basis (기존 callMcp 재사용, 신규 네트워크 0) ===
+  if (url.pathname === "/api/verify" && req.method === "POST") {
+    const body = await readBody(req);
+    let p: any;
+    try { p = JSON.parse(body); } catch { return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "invalid json" })); }
+    // 클라이언트가 명시 claims 를 주면 그대로, 아니면 본문(body) 전체를 단일 claim 으로 검증.
+    let claims = Array.isArray(p.claims) && p.claims.length ? p.claims : null;
+    if (!claims) {
+      const text = String(p.body ?? "").trim();
+      if (!text) return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "검증할 본문이 없습니다 — 생성 본문을 먼저 만드세요" }));
+      // 본문을 줄 단위로 쪼개 인라인 법령 인용이 있는 문장을 claim 으로 (없으면 전체 1건).
+      const lines = text.split("\n").map((l) => l.trim()).filter((l) => l.length > 4 && !l.startsWith("#") && !l.startsWith("|") && !l.startsWith("---"));
+      const cited = lines.filter((l) => /제\s*\d+\s*조|§|산안|규칙|법|고시/.test(l)).slice(0, 12);
+      const picked = cited.length ? cited : [text.slice(0, 1500)];
+      claims = picked.map((c) => ({ claim: c, evidence: [] }));
+    }
+    const r = callMcpAllowError("verify_safety_basis", { claims });
+    if (!r.ok) return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: r.reason }));
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, data: r.data }));
+  }
+
+  // === 문서 상태기계 라우트 (DP-2, viewer 자체 _workflow/*.json) ===
+  // 목록 — 역할 홈 결재함/수신함 채움.
+  if (url.pathname === "/api/workflow/list" && req.method === "GET") {
+    const items = listWorkflows()
+      .map((w) => ({
+        docId: w.docId, title: w.title || docTitle(w.docId), state: w.state,
+        author: w.author, approver: w.approver, recipient: w.recipient, updatedAt: w.updatedAt,
+      }))
+      .sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, items }));
+  }
+  // 단건 상태 조회 — 문서 열람 시 현재 상태/이력 표시.
+  if (url.pathname === "/api/workflow/get" && req.method === "GET") {
+    const docId = url.searchParams.get("docId") ?? "";
+    if (!safeDocId(docId)) return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "invalid docId" }));
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, data: readWorkflow(docId) }));
+  }
+  // 상태 전이 — submit_for_review / approve / reject / send / acknowledge.
+  if (url.pathname === "/api/workflow/transition" && req.method === "POST") {
+    const body = await readBody(req);
+    let p: any;
+    try { p = JSON.parse(body); } catch { return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "invalid json" })); }
+    const docId = String(p.docId ?? "");
+    const verb = String(p.verb ?? "");
+    const actor = String(p.actor ?? "");
+    if (!safeDocId(docId)) return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "invalid docId" }));
+    let w = readWorkflow(docId) ?? { docId, title: docTitle(docId), state: "draft", updatedAt: "", history: [] } as WorkflowState;
+    const now = new Date().toISOString();
+    // 상태 전제 가드 (critic C2): 각 전이는 정해진 이전 상태에서만 허용. 위반 시 409 로 거절해
+    // draft 를 acknowledge 하거나 승인 안 된 문서를 send 하는 모순 이력을 원천 차단한다.
+    // comment 는 상태 불변 메모이므로 draft(작성중)만 제외하고 허용.
+    const ALLOWED_PRIOR_STATE: Record<string, string[]> = {
+      submit_for_review: ["draft", "rejected"],
+      approve: ["pending"],
+      reject: ["pending"],
+      send: ["approved"],
+      acknowledge: ["sent"],
+      comment: ["pending", "approved", "sent", "received", "rejected"],
+    };
+    const allowedPrior = ALLOWED_PRIOR_STATE[verb];
+    if (!allowedPrior) return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "unknown verb" }));
+    if (!allowedPrior.includes(w.state)) {
+      return send(res, 409, "application/json", JSON.stringify({
+        ok: false,
+        reason: `'${verb}' 전이는 현재 상태('${w.state}')에서 허용되지 않습니다 — 필요 상태: ${allowedPrior.join(" / ")}`,
+        state: w.state,
+      }));
+    }
+    // 역할은 미인증 자가선택값(localStorage 역할 스위처, DP-1) — 법적 결재 서명이 아님.
+    // 이력 항목에 출처를 명시해 감사추적이 신원바인딩 결재로 오인되지 않게 한다.
+    w.authMode = "self-selected-role";
+    if (verb === "submit_for_review") {
+      // 작성자: draft → pending. 작성자 자동 결재선 주입(F-sub-3) + approver 지정.
+      w.state = "pending"; w.author = actor || w.author;
+      if (p.approver) w.approver = String(p.approver);
+      if (Array.isArray(p.coAuthors)) w.coAuthors = p.coAuthors.map(String);
+      w.history.push({ actor, verb, at: now });
+    } else if (verb === "approve") {
+      // 결재자: pending → approved (단독 approve UC-19 도 verb=approve 로 기록).
+      w.state = "approved"; w.approver = actor || w.approver;
+      w.history.push({ actor, verb, at: now });
+    } else if (verb === "reject") {
+      // 반려: pending → draft + 사유. 작성자 홈에 보완요청 회귀(F-site-5).
+      w.state = "rejected"; w.approver = actor || w.approver;
+      w.history.push({ actor, verb, at: now, reason: p.reason ? String(p.reason) : undefined });
+    } else if (verb === "send") {
+      // approved → sent, recipient 지정 (발주자 등).
+      w.state = "sent";
+      if (p.recipient) w.recipient = String(p.recipient);
+      w.history.push({ actor, verb, at: now });
+    } else if (verb === "acknowledge") {
+      // 수신자: sent → received + 타임스탬프 (P1-CU4 에서 UI 연결).
+      w.state = "received"; w.recipient = actor || w.recipient;
+      w.history.push({ actor, verb, at: now, note: p.note ? String(p.note) : undefined });
+    } else if (verb === "comment") {
+      // 의견 제출 — 상태 불변, 이력에 메모만 append (P1-CU4 열람 뷰 의견 채널, F-wr-5).
+      w.history.push({ actor, verb, at: now, note: p.note ? String(p.note) : undefined });
+    } else {
+      return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "unknown verb" }));
+    }
+    if (p.title) w.title = String(p.title);
+    try { writeWorkflow(w); } catch (e: any) {
+      return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: e.message }));
+    }
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, data: w }));
+  }
+
   if (url.pathname === "/api/form" && req.method === "GET") {
     const target = url.searchParams.get("target") ?? "profile";
     let mcpRes;
@@ -1776,11 +3089,19 @@ const server = createServer(async (req, res) => {
     const summary = data.totalFields
       ? `${data.totalFields} 필드 · ${data.prefilledCount} 자동채움 · ${data.componentCount} 컴포넌트`
       : `${data.fieldCount ?? 0} 필드 · ${data.prefilledCount ?? 0} 자동채움 · ${data.componentCount ?? 0} 컴포넌트`;
+    // P2-CU7 — 필수 라벨 추출. render_a2ui_form 출력은 *(필수)* 마커를 라벨에 싣지 않으므로
+    // viewer 서버가 자체 번들 .md(custom→auto)를 직접 읽어 필수 라벨 토큰 집합을 만든다.
+    // (MCP shape 불변 — render_a2ui_form 응답은 손대지 않고 viewer chrome 메타로만 동봉)
+    let requiredLabels: string[] = [];
+    if (target.startsWith("doc:")) {
+      requiredLabels = extractRequiredLabels(target.slice(4));
+    }
     return send(res, 200, "application/json", JSON.stringify({
       ok: true,
       messages,
       summary,
       fieldPathMap: data.fieldPathMap ?? {},
+      requiredLabels,
     }));
   }
 
@@ -1843,6 +3164,18 @@ const server = createServer(async (req, res) => {
     const r = callMcp("get_storage_stats", {});
     if (!r.ok) return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: r.reason }));
     return send(res, 200, "application/json", JSON.stringify({ ok: true, data: r.data }));
+  }
+
+  // === 보관문서 목록·읽기 (P1-CU5) — 로컬 documents/ FS read 만. 신규 외부 네트워크 0. ===
+  if (url.pathname === "/api/archive/list" && req.method === "GET") {
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, items: listArchivedFiles() }));
+  }
+  if (url.pathname === "/api/archive/read" && req.method === "GET") {
+    const docId = url.searchParams.get("docId") ?? "";
+    const filename = url.searchParams.get("filename") ?? "";
+    const content = readArchivedFile(docId, filename);
+    if (content === null) return send(res, 404, "application/json", JSON.stringify({ ok: false, reason: "문서를 찾을 수 없습니다" }));
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, docId, filename, content }));
   }
 
   // === 결재용 양식 반환 — custom/ 우선 → auto/ 폴백 ===
