@@ -33,7 +33,7 @@ L0 AgentHQ Ontology Constitution
 
 무엇이 존재하고 어떻게 연결되는지를 정의한다.
 
-- `ObjectType` (operational graph 실측, **13개**): Site, Project, Contractor, WorkerRole, Equipment, WorkActivity, Hazard, Control, LegalDuty, SafetyDocument, Evidence, Incident, LegalArticle
+- `ObjectType` (operational profile 실측, **16개**): Site, Project, Contractor, WorkerRole, Equipment, WorkActivity, Hazard, Control, LegalDuty, SafetyDocument, Evidence, Incident, LegalArticle, Annex, SafetyIssue, CorrectiveAction
 - `LinkType` (operational graph 실측, **8개**): hasHazard, mitigatedBy, legalBasis, guidedBy, relatedDocs, annexReference, evidences, resolves
 
 의미 모델 (`docs/IDENTITY.md` §6/§7) 은 13객체 + SafetyReport (14번째 별개) + 14관계로 표현되며, operational 의 LegalDuty/Incident 가 의미 모델의 SafetyIssue/CorrectiveAction/SafetyReport 로 매핑된다. 두 추상화 (operational graph 실 정의 vs IDENTITY 의미 모델) 는 별개의 SSoT 다.
@@ -144,12 +144,12 @@ npm run audit:graph-v2
 npm run audit:strict
 ```
 
-검증 결과 (2026-05-19):
+검증 결과 (2026-07-02):
 
-- Operational ontology: 38/38 통과
+- Operational ontology: 41/41 통과
 - Full graph: <!-- INV:GRAPH_TOTAL -->3,369<!-- /INV:GRAPH_TOTAL --> nodes (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함). 카테고리 1단계만 = <!-- INV:GRAPH_TOPLEVEL -->2,212<!-- /INV:GRAPH_TOPLEVEL --> (Article 1,306 + Document 96 + Annex 227 + Acts 8 + ...).
 - Graph edges: 약 <!-- INV:GRAPH_EDGES -->32,963<!-- /INV:GRAPH_EDGES --> (주요 EDGE_FIELDS: mitigatedBy / causedBy / hasArticle / guidedBy / partOf …)
-- Semantic object type: 13/13 통과
+- Semantic object type: 16/16 통과
 - Semantic link type: 6/6 통과
 - Kinetic action type: 12/12 통과
 - Dynamic harness contract: 5/5 통과
@@ -161,21 +161,20 @@ npm run audit:strict
 - 그래프 규모: 수천 개 노드와 수만 개 엣지로 중소 건설사 사용에는 충분하다.
 - 핵심 사슬: `WorkActivity -> Hazard -> Control`, `SafetyDocument -> LegalArticle`, `Document -> KOSHA Guide` 흐름이 있다.
 - Kinetic 기반: 문서 조립, 문서 생성, 문서 검토, 의무 판정, 위험-통제 조회, 사진 증빙, 안전 이슈, 개선조치 도구가 있다.
+- 결정론 의무 판정: Applicability 노드 22개 (JSON Logic 조건 + 법령 근거 IRI + legalWeight) 가 사업장 규모·업종 기반 의무 적용 판정을 그래프에서 결정론적으로 내린다 (`query_applicability` · `assess_my_obligations`).
 - Resource 기반: MCP Resource로 skeleton, graph category, graph context, operational profile을 노출한다.
 
 ## 6. 현재 부족한 것
 
 - 전체 JSON-LD publish gate는 아직 별도 보강이 필요하다.
-- 일부 dangling IRI, context 미정의 term, inverse 비대칭이 남아 있다.
 - Site/Project/Contractor/WorkerRole은 runtime profile 중심이고, graph node로는 아직 충분히 물질화되지 않았다.
 - Evidence는 PhotoEvidence와 local storage tool 중심으로 시작됐고, 법정 제출 증거 타입은 더 세분화해야 한다.
 - Dynamic Layer 정책은 profile로 선언됐지만, 모든 하네스에서 자동 강제되는 수준은 아니다.
 
 ## 7. 다음 구축 순서
 
-1. `npm run ontology:operational`을 기본 운영 gate로 유지한다.
-2. `audit:expand` 실패 원인인 dangling IRI와 context term을 정리한다.
-3. Site, Project, Contractor, WorkerRole을 graph node category로 승격할지 결정한다.
-4. EvidenceType을 사진, 서명, 교육 참석, 점검 결과, 제출 영수증, 조치 전후 증거로 확장한다.
-5. 각 ActionType의 `precondition`, `requiredEvidence`, `humanFallback`을 SHACL 또는 JSON Logic으로 고정한다.
-6. 하네스별 테스트에서 LLM이 법령 근거를 생성하지 않는지 검증한다.
+1. `npm run ontology:operational`을 기본 운영 gate로 유지한다 (dangling IRI·context term 은 `audit:expand`·`audit:graph-v2` 게이트가 0건으로 유지 중).
+2. Site, Project, Contractor, WorkerRole을 graph node category로 승격할지 결정한다.
+3. EvidenceType을 사진, 서명, 교육 참석, 점검 결과, 제출 영수증, 조치 전후 증거로 확장한다.
+4. 각 ActionType의 `precondition`, `requiredEvidence`, `humanFallback`을 SHACL 또는 JSON Logic으로 고정한다 (의무 적용 판정은 Applicability 노드로 이미 결정론화 — 액션 전제조건은 미착수).
+5. 하네스별 테스트에서 LLM이 법령 근거를 생성하지 않는지 검증한다.

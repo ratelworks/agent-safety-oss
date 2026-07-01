@@ -62,7 +62,7 @@ LLM은 이 그래프를 보고 문서를 작성하거나 설명할 수 있지만
 | 영역 | 내용 |
 |---|---|
 | **<!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 법정 안전관리 문서** | TBM · 작업계획서 · 위험성평가 · MSDS · 산재조사표 등 매일·매주·매월 작성하는 양식. docId 마스터 <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER -->개 (19종 + 사이클·범위·발주처별 변형) |
-| **법령 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문** | 산안법 · 시행령 · 시행규칙 · 기준규칙 · 중처법 · 중처법 시행령 · 위험성평가 고시 · 건진법 등 합계 <!-- INV:LAW_ARTICLES -->79<!-- /INV:LAW_ARTICLES -->조 (전체 1,310조 중 건설안전 실무 핵심만 발췌. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조). 마지막 동기화: <!-- INV:LAW_LAST_SYNC -->2026-06-08<!-- /INV:LAW_LAST_SYNC --> |
+| **법령 <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->건 핵심 조문** | 산안법 · 시행령 · 시행규칙 · 기준규칙 · 중처법 · 중처법 시행령 · 위험성평가 고시 · 건진법 등 합계 <!-- INV:LAW_ARTICLES -->76<!-- /INV:LAW_ARTICLES -->조 (전체 1,310조 중 건설안전 실무 핵심만 발췌. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조). 마지막 동기화: <!-- INV:LAW_LAST_SYNC -->2026-06-08<!-- /INV:LAW_LAST_SYNC --> |
 | **KOSHA 기술지원규정 (가이드) <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** | 한국산업안전보건공단 발행 기술지침 전체 본문 (인터넷 없이 즉시 검색·인용) |
 | **양식 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL -->개** | 고용노동부·KOSHA 공식 HWP <!-- INV:FORMS_HWP -->14<!-- /INV:FORMS_HWP --> / PDF <!-- INV:FORMS_PDF -->23<!-- /INV:FORMS_PDF --> / XLSX <!-- INV:FORMS_XLSX -->1<!-- /INV:FORMS_XLSX --> 원본 + 자동 생성 Markdown 양식 <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD -->개 (일부는 라이선스상 공식 다운로드 URL 안내로 대체) |
 | **MCP 도구 <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개** | 키 없이 바로 쓰는 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 + 공공 API 키 필요 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 (그중 <!-- INV:TOOLS_PLACEHOLDER -->2<!-- /INV:TOOLS_PLACEHOLDER -->개는 공공누리 라이선스 사유로 다운로드 URL 안내만 하는 placeholder) |
@@ -140,7 +140,7 @@ npx -y agent-safety-oss viewer
 5. **검수** → 빠진 필수 항목 / 결재 가능 여부 / 환각 차단 검증
 6. **MD 다운로드** 또는 LocalStorage 보관
 
-> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/) · 한글/한컴오피스 · [Typora](https://typora.io/) 등으로 변환합니다. 이 폼은 [Google A2UI](https://github.com/google/a2ui) (Agent-UI 표준) 기반입니다.
+> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/) · 한글/한컴오피스 · [Typora](https://typora.io/) 등으로 변환합니다. 이 폼은 [Google A2UI](https://github.com/google/a2ui) v0.9 (Agent-UI 표준) 기반입니다.
 
 ### C. 터미널 · CI · 개발자
 
@@ -294,7 +294,7 @@ LLM이 "의무", "반드시", "금지", "위반" 같은 표현을 쓰면 `verify
 
 최근 검증 결과:
 
-- 운영 온톨로지: 38/38 통과 · 그래프 추론: 5/5 통과 · 그래프 recall / precision: 100% / 100%
+- 운영 온톨로지: 41/41 통과 · 그래프 추론: 5/5 통과 · 그래프 recall / precision: 100% / 100%
 - ISO 45001 카테고리 일관성: 100% · strict graph audit: 통과
 - 필드 워크플로우: 4/4 시나리오, 29/29 단계 통과 · 실제 입력 반응성: 4/4 시나리오 통과
 - 생성 문서 품질: 평균 8.65/10 · essence gate: 9/9 통과 · lightweight gate: 4/4 통과

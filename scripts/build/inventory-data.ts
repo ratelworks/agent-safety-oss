@@ -263,7 +263,8 @@ export const LAW_TOTAL_ARTICLES: Record<string, { total: number | null; shortNam
   "산업안전보건기준에-관한-규칙.md": { total: 671, shortName: "산안기준규칙" },
   "중대재해처벌법.md": { total: 16, shortName: "중대재해처벌법" },
   "중대재해처벌법-시행령.md": { total: 14, shortName: "중처법 시행령" },
-  "위험성평가-고시-2024-76.md": { total: 23, shortName: "위험성평가 고시" },
+  // 고시 전체 조문 = §1~§28 + §5의2 = 29 (번들은 인정심사 등 행정절차 6조 제외 23조 수록 — 파일 헤더 "23/29 조문 검증" 참조)
+  "위험성평가-고시-2024-76.md": { total: 29, shortName: "위험성평가 고시" },
   "건설기술진흥법.md": { total: null, shortName: "건진법" },
   "건설기술진흥법-시행령.md": { total: null, shortName: "건진법 시행령" },
   "건설기술진흥법-시행규칙.md": { total: null, shortName: "건진법 시행규칙" },
@@ -275,11 +276,24 @@ export function countLawArticles(): LawStat[] {
   const out: LawStat[] = [];
   for (const f of files) {
     const content = readFileSync(join(dir, f), "utf8");
-    const articleCount = (content.match(/^##\s+(§|제\d)/gm) ?? []).length;
+    // 조문 헤딩만 카운트 — "## 제1장 총칙" 같은 장(章) 헤딩은 제외 (§N 또는 제N조 형식만)
+    const articleCount = (content.match(/^##\s+(§|제\d+조)/gm) ?? []).length;
     const meta = LAW_TOTAL_ARTICLES[f] ?? { total: null, shortName: f.replace(/\.md$/, "") };
     const lastSynced =
       content.match(/마지막 동기화[^\n]*?(\d{4}-\d{2}-\d{2})/)?.[1] ?? "(미명시)";
-    const publishedVersion = content.match(/현행 법률[^\n]*?\*\*([^*]+)\*\*/)?.[1]?.trim() ?? null;
+    // 현행 호수 — 헤더의 "현행 …" 라인에서 "법률/대통령령/고용노동부령 제N호"를 추출,
+    // 고시는 제목의 "(… 고시 제YYYY-NN호)" 폴백 (볼드 마커 제거 후 평문 매칭)
+    const headerPlain = content.slice(0, 3000).replace(/\*\*/g, "");
+    const currentLine = headerPlain.split("\n").find((ln) => ln.includes("현행"));
+    const versionMatch = currentLine?.match(
+      /((?:법률|대통령령|고용노동부령|총리령|환경부령|국토교통부령)\s*)?(제\d+(?:-\d+)?호)/,
+    );
+    const titleGosiMatch = headerPlain.match(/^#\s.*?고시\s+(제\d+-\d+호)/m);
+    const publishedVersion = versionMatch
+      ? `${(versionMatch[1] ?? "").trim()} ${versionMatch[2]}`.trim()
+      : titleGosiMatch
+        ? `고시 ${titleGosiMatch[1]}`
+        : null;
     const coveragePercent =
       meta.total === null
         ? "(영역 한정)"
