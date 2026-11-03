@@ -132,7 +132,7 @@ function normalizeByDocId(docId: string, formValues: Record<string, string>): { 
 // === 1. save_form_draft ===
 const saveDraftSchema = z.object({
   docId: z.string().regex(/^[a-z][a-z0-9_-]*$/i, "docId — 영숫자·_·- 만"),
-  formValues: z.record(z.string()).describe("폼 입력값 — key:value (빈 값도 보존)"),
+  formValues: z.record(z.string(), z.string()).describe("폼 입력값 — key:value (빈 값도 보존)"),
   autosave: z.boolean().default(false).describe("true=자동저장 (5초 debounce 등) / false=사용자 명시 저장"),
 });
 

@@ -40,7 +40,7 @@ import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDo
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
   draft: z
-    .record(z.unknown())
+    .record(z.string(), z.unknown())
     .optional()
     .default({})
     .describe("작업 조건 + 사용자 작성 본문 (key·value 자유 형식). useProfile=true 시 사업장·결재선 등은 SSoT 자동 채움."),

@@ -123,7 +123,7 @@ const inputSchema = z.object({
     .optional()
     .describe("작업내용 상세 (선택, 토큰 매칭 강화)"),
   workConditions: z
-    .record(z.unknown())
+    .record(z.string(), z.unknown())
     .optional()
     .describe("작업 조건 (depthM·heightM·voltageV·confinedSpace 등 — applicableWhen 평가)"),
   surfaceId: z

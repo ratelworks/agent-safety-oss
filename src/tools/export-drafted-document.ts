@@ -13,7 +13,7 @@ import { escapeHtml } from "../lib/html-escape.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("법정문서 docId (제목·메타 자동 보강용)"),
-  draft: z.record(z.unknown()).describe("작성된 draft (key: value). generate_safety_document 의 출력 그대로 가능"),
+  draft: z.record(z.string(), z.unknown()).describe("작성된 draft (key: value). generate_safety_document 의 출력 그대로 가능"),
   format: z.enum(["html", "markdown"]).default("html").describe("출력 포맷 (PDF/HWPX 는 외부 도구 위임)"),
   includeApprovalChain: z.boolean().default(true).describe("결재선 표시 (draft.approvalChain)"),
 });

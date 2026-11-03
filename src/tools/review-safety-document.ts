@@ -347,12 +347,14 @@ const WorkPlanExcavationDraftSchema = z.object({
 });
 
 // docId 별 draft schema 가 다르므로 input 단계에서는 unknown 으로 받고 handler 에서 분기.
+// draft 누락은 받아들여 빈 초안으로 검토한다(zod 3 의 unknown 키 누락 허용 동작 유지 — zod 4 는 .optional() 이 있어야 허용).
 const inputSchema = z.object({
   docId: SupportedDocId.describe(
     "검토 대상 문서 docId. 모든 docId 가 L0(그래프 노드 존재) + L1(requiredFields·reviewRules·결재선·인라인 환각 스캔) 자동 검수 대상. risk_assessment 는 L2(§6 근로자 참여·ERIC-PP 우선순위·시나리오 구체성·인용 ref 실존) 풍부 로직. work_plan_excavation 은 §38 ② notifiedToWorkers 명시 매핑. 그 외 docId 의 L2 충실도는 그래프 노드의 reviewRules 보강 진행에 따라 점진 확대.",
   ),
   draft: z
     .unknown()
+    .optional()
     .describe(
       "검토할 초안 본문. docId 에 따라 schema 가 다름 — risk_assessment: {metadata, hazards, controls, citations}, work_plan_excavation: {metadata, workConditions:{depthM}, preSurvey, plan, citations}.",
     ),

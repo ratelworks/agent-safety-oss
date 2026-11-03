@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["20.19.0", "22.x"]
+        node-version: ["20.19.0", "22.x", "24.x", "26.x"]
 
     steps:
       - uses: actions/checkout@v7
@@ -38,6 +38,9 @@ jobs:
 
       - name: Build (tsc + taxonomy copy)
         run: npm run build
+
+      - name: 도구 입력 스키마 — 같은 입력을 받고 같은 입력을 거부하는지 (기준 대조)
+        run: npm run mcp:test:input-parity
 
       - name: TypeScript strict check (scripts — build 산출물 import 가능)
         run: npm run typecheck:scripts

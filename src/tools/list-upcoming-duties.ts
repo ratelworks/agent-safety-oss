@@ -15,7 +15,7 @@ import { kstToday, kstAddDays, kstDayDiff } from "../lib/datetime-kst.js";
 const inputSchema = z.object({
   withinDays: z.number().int().min(1).max(365).default(30).describe("조회 범위 (일)"),
   compileHistory: z
-    .record(z.string().regex(/^\d{4}-\d{2}-\d{2}$/))
+    .record(z.string(), z.string().regex(/^\d{4}-\d{2}-\d{2}$/))
     .optional()
     .describe("docId → 최근 작성일 (YYYY-MM-DD). 미지정 시 frequency 기반 추정"),
   asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),

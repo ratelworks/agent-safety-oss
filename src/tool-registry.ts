@@ -216,26 +216,22 @@ export function registerAllTools(server: McpServer): void {
   }
 }
 
-function extractRawShape(schema: unknown): z.ZodRawShape {
-  // ZodEffects(.refine() 등)는 _def.schema 로 unwrap 필요 (교차 검증 P0-5 권고)
+export function extractRawShape(schema: unknown): z.ZodRawShape {
+  // zod 4: .refine() 은 래퍼 없이 객체 스키마에 검사로 붙고(.shape 그대로),
+  // .preprocess() 는 pipe(transform → 객체) 이므로 out 쪽 객체의 shape 를 쓴다.
+  // 최대 3단계까지 unwrap (중첩 preprocess 대응)
   let cur: unknown = schema;
-  // 최대 3단계까지 unwrap (.refine().refine() 같은 중첩 대응)
   for (let i = 0; i < 3; i += 1) {
-    if (
-      cur &&
-      typeof cur === "object" &&
-      "_def" in (cur as Record<string, unknown>)
-    ) {
-      const def = (cur as { _def?: { schema?: unknown; typeName?: string } })._def;
-      if (def && def.typeName === "ZodEffects" && def.schema) {
-        cur = def.schema;
-        continue;
-      }
+    const def = (cur as { _zod?: { def?: { type?: string; out?: unknown } } } | null)?._zod?.def;
+    if (def && def.type === "pipe" && def.out) {
+      cur = def.out;
+      continue;
     }
     break;
   }
-  if (cur && typeof cur === "object" && "shape" in (cur as Record<string, unknown>)) {
-    return (cur as { shape: z.ZodRawShape }).shape;
+  const def = (cur as { _zod?: { def?: { type?: string; shape?: z.ZodRawShape } } } | null)?._zod?.def;
+  if (def && def.type === "object" && def.shape) {
+    return def.shape;
   }
   return {} as z.ZodRawShape;
 }

@@ -45,7 +45,7 @@ import {
 const PERSON_ROLES = ["안전관리자", "관리감독자", "현장소장", "근로자대표"];
 
 const inputSchema = z.object({
-  formValues: z.record(z.string()).describe("폼 입력값 — key: 'site.name', 'project.name', 'person0.name' 등"),
+  formValues: z.record(z.string(), z.string()).describe("폼 입력값 — key: 'site.name', 'project.name', 'person0.name' 등"),
   /** 기존 profile 덮어쓰기 vs 병합 */
   mode: z.enum(["merge", "replace"]).default("merge"),
 });

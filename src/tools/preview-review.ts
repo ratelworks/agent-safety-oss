@@ -27,7 +27,7 @@ import { reviewSafetyDocumentTool } from "./review-safety-document.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("법정문서 docId"),
-  draft: z.record(z.unknown()).describe("현재까지 작성된 draft (불완전 가능)"),
+  draft: z.record(z.string(), z.unknown()).describe("현재까지 작성된 draft (불완전 가능)"),
   scope: z
     .enum(["all", "required-only", "hallucination-only"])
     .default("all")

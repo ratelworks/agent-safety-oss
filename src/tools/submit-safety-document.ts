@@ -20,7 +20,7 @@ const HTML_ARCHIVE_STYLE = [
 const inputSchema = z.object({
   docId: z.string().regex(/^[a-z][a-z0-9_-]*$/i, "docId — 영숫자·_·- 만").describe("작성할 법정문서 docId"),
   draft: z
-    .record(z.unknown())
+    .record(z.string(), z.unknown())
     .optional()
     .default({})
     .describe("A2UI 또는 사용자가 입력한 draft. fieldPathMap/fieldKey 기반 값을 권장."),
