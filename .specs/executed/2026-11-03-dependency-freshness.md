@@ -1,6 +1,6 @@
 ---
 spec_id: 2026-11-03-dependency-freshness
-status: in-progress
+status: executed
 created: 2026-11-03
 priority: P1
 estimated_hours: 10
@@ -22,9 +22,9 @@ v1.8.4(`16139a3`) 기준 점검(2026-11-03)에서 확인된, 시간이 지나 �
 - 열린 의존성 갱신 PR(SDK 1.31.0 / 개발 의존성 묶음)은 이 변경으로 대체된다 — PR 을 닫는 일은 이 작업에 포함하지 않는다.
 
 완료 기준
-- [ ] `npm ci && npm audit --audit-level=high` exit 0 (개발 의존성 포함, CI 와 같은 명령)
-- [ ] `npm run typecheck`, `npm test`, `npm run test:full` 통과
-- [ ] MCP 서버가 도구 92개를 그대로 등록하고, 대표 도구(assemble_doc_context·generate_safety_document·review_safety_document·verify_safety_basis)가 옮기기 전과 같은 입력에서 같은 구조의 결과를 낸다(시험 또는 대조 기록)
+- [x] `npm ci && npm audit --audit-level=high` exit 0 (개발 의존성 포함, CI 와 같은 명령) — 취약점 0건
+- [x] `npm run typecheck`, `npm test`, `npm run test:full` 통과
+- [x] MCP 서버가 도구 92개를 그대로 등록하고, 대표 도구(assemble_doc_context·generate_safety_document·review_safety_document·verify_safety_basis)가 옮기기 전과 같은 입력에서 같은 구조의 결과를 낸다(시험 또는 대조 기록) — 입력 스키마 동등성 시험(`npm run mcp:test:input-parity`, 92개 도구·4,680개 입력)을 추가했고, 옮기기 전·후 서버에 대표 도구 4종 9개 호출(오류 경로 포함)을 넣어 결과 구조가 모두 같음을 확인. 본문 차이는 빈 `claims` 를 거부할 때의 검증 오류 문구 1건(zod 4 기본 문구)뿐이며 거부 동작은 같다
 
 ## 작업 2 — 번들 법령·고시 · 공식 양식 · 원본 주소
 
