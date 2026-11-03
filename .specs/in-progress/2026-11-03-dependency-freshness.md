@@ -58,9 +58,9 @@ v1.8.4(`16139a3`) 기준 점검(2026-11-03)에서 확인된, 시간이 지나 �
 - KOSHA 밀폐공간 기술지침(404), KOSHA 전자책 내려받기 2개(500)는 현행 공식 주소를 찾아 바꾼다. 찾지 못하면 그 사실을 기록하고, 사용자에게 내려받기 주소로 보이지 않게 한다.
 
 완료 기준
-- [ ] 위 2-1~2-6 반영, 대조 기록 파일 3종(조문 판본·관리비 고시·양식 주소)
-- [ ] `npm run typecheck`, `npm test`, `npm run verify-all`, `npm run form-conformance`, `npm run check:oss-hygiene` 통과
-- [ ] 산업재해조사표를 생성하면 현행 칸(주민등록번호 앞 7자리·주소·휴대전화·동의 칸)이 실리고 성별 칸이 없다
+- [x] 위 2-1~2-6 반영, 대조 기록 파일 3종(조문 판본·관리비 고시·양식 주소) — 기록: `reports/law-freshness/` (article-editions.{json,md} · osh-cost-notice.md · form-sources.md). 2-7(D-1-2021 지침 제목) 함께 반영
+- [x] `npm run typecheck`, `npm test`, `npm run verify-all`, `npm run form-conformance`, `npm run check:oss-hygiene` 통과
+- [x] 산업재해조사표를 생성하면 현행 칸(주민등록번호 앞 7자리·주소·휴대전화·동의 칸)이 실리고 성별 칸이 없다
 
 ## 범위 밖
 - KOSHA 가이드 목록의 현행성(목록 조회에 API 키 필요) — 별도.

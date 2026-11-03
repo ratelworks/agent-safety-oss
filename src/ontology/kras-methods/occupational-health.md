@@ -73,7 +73,7 @@
 
 ## 관련 KRAS 시스템
 
-- KRAS 보건평가법으로 회원가입 후 작성 가능 (http://kras.kosha.or.kr)
+- KRAS 보건평가법으로 회원가입 후 작성 가능 (https://portal.kosha.or.kr/kras/implement/real)
 - 작업환경측정·특수건진 결과 자동 연동 (사업장 등록 시)
 
 ## 원본 PDF

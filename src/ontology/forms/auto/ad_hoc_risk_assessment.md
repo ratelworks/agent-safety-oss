@@ -3,7 +3,7 @@
 > **법적 근거**: art:산안법:36 · art:위험성평가-고시:15 · art:산안법시행규칙:37 · art:산안법시행규칙:37의2 · art:산안법시행규칙:37의3 · art:산안법시행규칙:37의4
 > 설비·작업방법 변경 또는 산업재해 발생 시 추가된 유해·위험요인에 대해 즉시 실시하는 평가. 상시평가 선택 시 제15조 ④ 이행으로 갈음 가능.
 > **양식 출처**: KOSHA KRAS
-> **다운로드**: https://kras.kosha.or.kr
+> **다운로드**: https://portal.kosha.or.kr/kras/evaluation/risk-data
 > **보존**: 3년 (시행규칙 §37의4 ②)
 
 > 본 양식은 agent-safety-oss 자동 생성 (sections.fields 기반).

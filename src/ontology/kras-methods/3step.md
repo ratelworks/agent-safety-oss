@@ -47,7 +47,7 @@
 
 ## KRAS 시스템 연동
 
-KOSHA 위험성평가 지원시스템(http://kras.kosha.or.kr)에서 회원가입 후 본 방법으로 평가서 작성·결과관리 가능. 본 MCP는 작성 가이드만 제공.
+KOSHA 산업안전포털 KRAS(https://portal.kosha.or.kr/kras/implement/real)에서 회원가입 후 본 방법으로 평가서 작성·결과관리 가능. 본 MCP는 작성 가이드만 제공.
 
 ## 원본 PDF
 

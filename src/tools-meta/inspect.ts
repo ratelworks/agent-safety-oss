@@ -34,6 +34,8 @@ interface InspectSection {
 }
 
 const KST_OFFSET_MS = 9 * 60 * 60 * 1000;
+/** 번들 법령 판본(MST)을 법제처 현행·시행예정 판과 비교하는 점검 명령 (저장소 개발 스크립트) */
+const LAW_EDITION_CHECK_CMD = "npm run check:law-editions";
 
 function kstNow(): string {
   return new Date(Date.now() + KST_OFFSET_MS).toISOString().slice(0, 19) + "+09:00";
@@ -213,14 +215,16 @@ function checkLawFreshness(): InspectSection {
     if (stale) staleCount++;
     laws.push({ filename: f, date, stale });
   }
+  // 이 줄은 번들 머리말의 '마지막 동기화' 날짜만 본다 — 그 사이 법령이 개정됐는지는 판본 점검으로 확인한다.
+  const scopeNote = `(날짜 기준 점검 — 개정 여부는 확인하지 않음. 판본 비교: 저장소에서 \`${LAW_EDITION_CHECK_CMD}\`, 법제처 인증키 LAW_OC 필요)`;
   return {
     name: "법령 동기화",
     status: staleCount > 0 ? "warn" : "ok",
     detail:
       staleCount > 0
-        ? `⚠️ ${staleCount}건 1년 경과 (가장 오래된: ${oldestDate}) — 법제처 재확인 권장`
-        : `최신 ${newestDate} / 가장 오래된 ${oldestDate} — 모두 1년 이내`,
-    data: { laws, staleCount, oldestDate, newestDate },
+        ? `⚠️ ${staleCount}건 1년 경과 (가장 오래된: ${oldestDate}) — 법제처 재확인 권장 ${scopeNote}`
+        : `최신 ${newestDate} / 가장 오래된 ${oldestDate} — 모두 1년 이내 ${scopeNote}`,
+    data: { laws, staleCount, oldestDate, newestDate, basis: "sync-date-only", editionCheck: LAW_EDITION_CHECK_CMD },
   };
 }
 
@@ -291,6 +295,7 @@ export async function runInspect(format: "markdown" | "json" = "markdown"): Prom
     }
     if (sections.find((s) => s.name === "법령 동기화" && s.status === "warn")) {
       lines.push("- `src/ontology/safety-laws/*.md` 의 `마지막 동기화` 날짜 갱신 + 법제처 재확인");
+      lines.push(`- \`${LAW_EDITION_CHECK_CMD}\` 로 번들 판본(MST)을 법제처 현행·시행예정 판과 비교`);
     }
     if (sections.find((s) => s.name === "사용자 환경" && s.status === "warn")) {
       lines.push("- `node build/cli.js call register_site --inputJson '...'` 로 사업장 등록");

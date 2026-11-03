@@ -40,7 +40,6 @@ const ACCIDENT_REPORT_SECTIONS = [
     fields: [
       { key: "injuredName", label: "성명", required: true },
       { key: "injuredBirthDate", label: "생년월일", required: true },
-      { key: "injuredGender", label: "성별", required: true },
       { key: "injuredNationality", label: "국적 (외국인의 경우 체류자격)", required: true },
       { key: "injuredAddress", label: "주소·연락처", required: true },
       { key: "injuredOccupation", label: "직종 (구체)", required: true },

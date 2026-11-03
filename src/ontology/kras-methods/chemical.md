@@ -82,7 +82,7 @@ MSDS의 **H 코드** + **CMR 분류** 기반:
 - H 코드 누락 시 평가 불가 → MSDS 갱신 우선
 - 작업환경측정 미실시 시 측정 권고 (관련 법: 산안법 §125)
 - `occupational_health` 와 **연계 평가** 권장 (특수건진 결과 활용)
-- KRAS 시스템: http://kras.kosha.or.kr → CHARM 자동 산출
+- KRAS 시스템: https://portal.kosha.or.kr/kras/implement/real → CHARM 자동 산출
 
 ## 원본 PDF
 

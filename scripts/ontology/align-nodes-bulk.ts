@@ -63,7 +63,7 @@ const ALIGN_TEMPLATES: Record<string, Section[]> = {
       {key:"commitment",label:"사업주 의지·약속",required:true,inputGuide:"사업주가 직접 서명·공표한 약속.",examples:["사업주는 모든 위험을 적극 제거하고 안전한 작업환경을 제공한다"],checkPoints:[]},
       {key:"goals",label:"연간 목표 (정량)",required:true,inputGuide:"재해율·아차사고·교육이수율 등 정량 목표.",examples:["재해율 0%, 위험성평가 100% 이행, 안전교육 12회/년"],checkPoints:[]},
       {key:"strategy",label:"실행 전략",required:true,inputGuide:"위험성평가·교육·점검·도급관리 등 전략.",examples:["1) 매월 위험성평가 2) 매주 안전교육 3) 매일 TBM 4) 매분기 점검"],checkPoints:[]},
-      {key:"resources",label:"자원 배분 (인력·예산)",required:true,inputGuide:"안전관리자 인원·산안비 비율.",examples:["전임 안전관리자 1명, 산안비 1.97% (6,300만원)"],checkPoints:[]},
+      {key:"resources",label:"자원 배분 (인력·예산)",required:true,inputGuide:"안전관리자 인원·산안비 비율.",examples:["전임 안전관리자 1명, 산업안전보건관리비 77,285,000원 (건축공사 대상액 32억 기준)"],checkPoints:[]},
       {key:"reviewCycle",label:"방침 검토 주기",required:true,inputGuide:"연 1회 이상 재검토.",examples:["연 1회 (12월) 또는 중대 변경 시"],checkPoints:[]},
     ]},
     APPROVAL_SECTION,
@@ -548,9 +548,9 @@ const ALIGN_TEMPLATES: Record<string, Section[]> = {
     META_SECTION,
     {title:"2. 도급계약 안전보건 조항",legalSource:"산안법 §70 + 시행규칙 §43",fields:[
       {key:"contractorName",label:"수급인 (계약 상대방)",required:true,inputGuide:"수급업체명.",examples:["우송설비(주)"],checkPoints:[]},
-      {key:"contractAmount",label:"도급 금액",required:true,inputGuide:"계약금액 (안전관리비 포함).",examples:["8억원 (안전보건관리비 1.97% = 1,576만원 포함)"],checkPoints:[]},
+      {key:"contractAmount",label:"도급 금액",required:true,inputGuide:"계약금액 (안전관리비 포함).",examples:["8억원 (안전보건관리비 17,093,000원 포함 — 대상액 5.6억 × 2.28% + 기초액 4,325,000원, 건축공사)"],checkPoints:[]},
       {key:"safetyClauses",label:"안전보건 의무 조항 (§70 명시 5항)",required:true,inputGuide:"§70 ② 1~5호 모두 계약서 명시.",examples:["1) 도급인·수급인 안전보건 의무, 2) 안전보건교육·점검 협조, 3) 안전보건관리비 사용, 4) 산재 발생 시 보고·대응, 5) 위약금 (안전 위반 시)"],checkPoints:[]},
-      {key:"safetyCostAllocation",label:"안전보건관리비 산정·지급",required:true,inputGuide:"산안법 §72 요율 기준.",examples:["계약금 × 1.97% = 1,576만원, 월 분할 지급"],checkPoints:[]},
+      {key:"safetyCostAllocation",label:"안전보건관리비 산정·지급",required:true,inputGuide:"산안법 §72 요율 기준.",examples:["대상액 5.6억 × 2.28% + 기초액 4,325,000원 = 17,093,000원 (건축공사), 공정률에 따라 지급"],checkPoints:[]},
       {key:"penaltyForViolation",label:"위약금·해제 조항",required:true,inputGuide:"안전 의무 위반 시 위약금·해제.",examples:["안전 위반 1회 100만원, 3회 누적 시 해제"],checkPoints:[]},
     ]},
     APPROVAL_SECTION,
@@ -732,7 +732,7 @@ const ALIGN_TEMPLATES: Record<string, Section[]> = {
       {key:"clientInfo",label:"발주자 정보",required:true,inputGuide:"발주자명·대표·연락처.",examples:["황룡건설(주) / 황한일 / 02-1234-5678"],checkPoints:[]},
       {key:"projectInfo",label:"공사 기본정보",required:true,inputGuide:"공사명·위치·금액·공기.",examples:["삼성동 공동주택, 서울 강남구 삼성동 100-1, 35억, 2026-03~2026-09"],checkPoints:[]},
       {key:"hazardScreening",label:"공사 위험성 사전검토",required:true,inputGuide:"발주자가 사전검토한 주요 위험.",examples:["1) 지하 8m 굴착 (도시가스 인접) / 2) 50인 동시 작업 / 3) 야간 작업 일부"],checkPoints:[]},
-      {key:"safetyBudget",label:"안전보건관리비 계상",required:true,inputGuide:"산안법 §72 요율 적용.",examples:["계상금 32억 × 1.97% = 6,304만원"],checkPoints:[]},
+      {key:"safetyBudget",label:"안전보건관리비 계상",required:true,inputGuide:"산안법 §72 요율 적용.",examples:["대상액 32억 × 2.28% + 기초액 4,325,000원 = 77,285,000원 (건축공사)"],checkPoints:[]},
       {key:"submissionDate",label:"등록일자",required:true,inputGuide:"발주 시점 등록.",examples:["2026-02-01"],checkPoints:[]},
     ]},
     APPROVAL_SECTION,
@@ -817,8 +817,8 @@ const ALIGN_TEMPLATES: Record<string, Section[]> = {
   ],
   safety_health_mgmt_cost_plan_supplement: [
     META_SECTION,
-    {title:"2. 안전보건관리비 (월별 집행 보강)",legalSource:"산안법 §72 + 고시 2022-43",fields:[
-      {key:"monthlyExecutionDetail",label:"월별 항목 집행 상세",required:true,inputGuide:"고시 별표 2 9개 항목 분류.",examples:[[{월:"2026-04",항목:"1.안전관리자",금액:4500000},{월:"2026-04",항목:"3.PPE",금액:6650000}]],checkPoints:[]},
+    {title:"2. 안전보건관리비 (월별 집행 보강)",legalSource:"산안법 §72 + 고시 제2025-11호",fields:[
+      {key:"monthlyExecutionDetail",label:"월별 항목 집행 상세",required:true,inputGuide:"고시 제7조제1항·별지 제1호서식 9개 항목 분류.",examples:[[{월:"2026-04",항목:"1.안전관리자",금액:4500000},{월:"2026-04",항목:"3.PPE",금액:6650000}]],checkPoints:[]},
     ]},
     APPROVAL_SECTION,
   ],

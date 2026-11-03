@@ -22,6 +22,8 @@ import { homedir } from "node:os";
 import { ensureSecureDir, writeSecureJson } from "./secure-fs.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 자동 채움
 import { kstToday } from "./datetime-kst.js";
+import { getDocumentSync } from "./graph-nodes-loader.js";
+import { computeOshCost, estimateBaseFromContract, matchRateRow, readRateTable } from "./osh-cost.js";
 
 // SAFETY_LOCAL_DIR 환경변수가 있으면 그 디렉토리를 루트로 사용. photo·issue·action·report
 // 등 다른 로컬 저장소(corrective-action-storage 의 getSafetyLocalDir)와 동일 정책.
@@ -403,12 +405,30 @@ export function autoFillFromProfile(
   // 작성 일자 (오늘 KST — Issue #5 lateral)
   fillIfEmpty("compileDate", kstToday());
 
-  // 안전보건관리비 — 자동 계산 (산안법 §72 1.97% 일반건설)
+  // 안전보건관리비 — 자동 계산 (산안법 §72 + 건설업 산업안전보건관리비 계상 및 사용기준 제4조·별표 1)
+  // 요율·기초액은 관리비 사용계획서 문서 노드의 calculationBasis.rateTable 에서 읽는다 (코드에 요율을 두지 않는다).
+  // 공사 종류를 별표 1 공사종류로 판별하지 못하면 요율·총액은 채우지 않는다 (추측 금지).
   if (project && (docId === "safety_health_mgmt_cost_plan" || docId === "construction_safety_management_plan")) {
-    const calcBase = project.safetyCostBudget ?? Math.floor((project.contractAmount ?? 0) * 0.91); // 재료+직접노무비 추정
-    fillIfEmpty("calcBaseAmount", `${calcBase}원 (도급금액 91% 추정)`);
-    fillIfEmpty("applicableRate", "1.97% (일반건설(갑) 50억 미만)");
-    fillIfEmpty("totalCost", `${Math.floor(calcBase * 0.0197)}원`);
+    const contract = project.contractAmount ?? 0;
+    const hasBudget = typeof project.safetyCostBudget === "number" && project.safetyCostBudget > 0;
+    if (hasBudget || contract > 0) {
+      const calcBase = hasBudget ? (project.safetyCostBudget as number) : estimateBaseFromContract(contract);
+      fillIfEmpty(
+        "calcBaseAmount",
+        hasBudget ? `${calcBase}원` : `${calcBase}원 (대상액 불명확 — 총공사금액의 10분의 7, 고시 제4조제1항제3호)`,
+      );
+      const row = matchRateRow(project.constructionType, readRateTable(getDocumentSync("safety_health_mgmt_cost_plan")));
+      if (row) {
+        const r = computeOshCost(row, calcBase, { baseEstimated: !hasBudget });
+        fillIfEmpty(
+          "applicableRate",
+          r.fixedAmount > 0
+            ? `${r.ratePercent}% + 기초액 ${r.fixedAmount}원 (${r.type}, 대상액 ${r.bracket})`
+            : `${r.ratePercent}% (${r.type}, 대상액 ${r.bracket})`,
+        );
+        fillIfEmpty("totalCost", `${r.total}원`);
+      }
+    }
   }
 
   return { draft: draftCopy, appliedFields: applied };

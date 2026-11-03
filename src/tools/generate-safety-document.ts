@@ -35,6 +35,7 @@ import { validateDocumentInput, type ValidationReport } from "../lib/input-valid
 import { COMMON_RESPONSE_META } from "../config/constants.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
 import { kstToday } from "../lib/datetime-kst.js";
+import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
 import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput } from "../lib/doclang-serializer.js";
 
 const inputSchema = z.object({
@@ -1018,6 +1019,8 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   normalizeDraftAliases(input);
   normalizeA2UIDraftAliases(input, doc);
+  // 양식 개정으로 없어지거나 형식이 바뀐 칸 — 옛 입력 키는 오류 없이 노드 선언대로 처리 (무시·앞자리만 유지)
+  const inputMigrationNotes = applyInputMigrations(input.draft as Record<string, unknown> | undefined, readInputMigrations(doc));
 
   // v0.4 — SSoT 사이트 프로파일 자동 채움 (사용자 input + A2UI alias 평탄화 이후)
   if (input.useProfile !== false) {
@@ -1176,6 +1179,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
         issues: [...validation.errors, ...validation.warnings].slice(0, 10),
       },
       graphContext,
+      ...(inputMigrationNotes.length > 0 ? { inputMigrations: inputMigrationNotes } : {}),
       _meta: COMMON_RESPONSE_META,
     },
   };
