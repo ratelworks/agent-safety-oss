@@ -35,7 +35,7 @@
     "build": "tsc && tsx scripts/build/copy-ontology-assets.ts && tsx scripts/build/generate-inventory.ts && tsx scripts/build/sync-docs.ts && node -e \"import('fs').then(fs=>fs.chmodSync('build/cli.js',0o755))\"",
     "watch": "tsc --watch",
     "start": "node build/index.js",
-    "test": "npm run check:essence && npm run check:lightweight && npm run mcp:test:doclang && npm run mcp:test:input-parity && npm run mcp:test:law-freshness && npm run mcp:test:a2ui-schema && npm run docs:check && npm run mcp:test:smoke",
+    "test": "npm run check:essence && npm run check:lightweight && npm run mcp:test:doclang && npm run mcp:test:input-parity && npm run mcp:test:law-freshness && npm run mcp:test:a2ui-schema && npm run mcp:test:eras && npm run docs:check && npm run mcp:test:smoke",
     "docs:sync": "tsx scripts/build/sync-docs.ts",
     "docs:check": "tsx scripts/build/sync-docs.ts --check",
     "test:full": "npm run mcp:test:all",
@@ -53,6 +53,7 @@
     "mcp:test:law-freshness": "tsx scripts/test/test-law-freshness.ts",
     "mcp:test:a2ui": "tsx scripts/test/test-a2ui-workflow.ts",
     "mcp:test:a2ui-schema": "tsx scripts/test/test-a2ui-schema.ts",
+    "mcp:test:eras": "tsx scripts/test/test-mcp-protocol-eras.ts",
     "mcp:test:lifecycle": "tsx scripts/test/test-lifecycle-tools.ts",
     "mcp:test:scenarios": "tsx scripts/test/test-real-scenarios.ts",
     "mcp:test:real-input": "tsx scripts/test/field-real-input-eval.ts",
@@ -157,13 +158,14 @@
     "node": ">=22.12.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@modelcontextprotocol/server": "^2.4.0",
     "commander": "^15.1.0",
     "fast-xml-parser": "^5.12.0",
     "graphology": "^0.26.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@modelcontextprotocol/client": "^2.4.0",
     "@rdfjs/dataset": "^2.0.3",
     "@rdfjs/parser-n3": "^2.2.0",
     "@types/jsonld": "^1.5.15",

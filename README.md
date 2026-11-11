@@ -4,7 +4,7 @@
 [![CodeQL](https://github.com/ratelworks/agent-safety-oss/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/ratelworks/agent-safety-oss/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D22.12-brightgreen)](https://nodejs.org)
-[![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io)
+[![MCP](https://img.shields.io/badge/MCP-2026--07--28-purple)](https://modelcontextprotocol.io)
 [![Release](https://img.shields.io/badge/release-v2.0.0-blue.svg)](./CHANGELOG.md)
 [![Tools](https://img.shields.io/badge/MCP%20tools-92-orange.svg)](./docs/IDENTITY.md)
 
@@ -74,6 +74,8 @@ LLM은 이 그래프를 보고 문서를 작성하거나 설명할 수 있지만
 
 Node.js 22.12 이상이 필요합니다 ([nodejs.org](https://nodejs.org)). 환경에 맞는 경로 하나를 고르세요.
 
+> AI 비서 연결은 MCP 최신 규격(2026-07-28)과 그 이전 규격을 모두 지원합니다. 어느 쪽을 쓰는 AI 비서든 같은 설정으로 연결됩니다.
+
 | 사용자 환경 | 진입 경로 | 난이도 |
 |---|---|:---:|
 | **Claude Desktop / OpenAI Codex CLI 이미 쓰는 분** (개발자 · IT 익숙) | [A. AI 비서에 연결](#a-ai-비서에-연결--claude-desktop--openai-codex-cli) — 설정 한 블록 복사 | ⭐ 5초 |
@@ -135,12 +137,12 @@ npx -y agent-safety-oss viewer
 
 1. **폼 종류 선택** (TBM 회의록 / 굴착 작업계획서 / 정기 위험성평가 / MSDS 비치대장 등 <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종)
 2. **자동 표시되는 영역** (그대로 결재 인용 가능) — 적용 법령 조문 본문 발췌 · 적용 KOSHA 가이드 평균 5건 · 위험요인 + 통제대책 + 필요 보호구
-3. **빈 칸 입력** — 작업일·작업명·참석자 등 사용자 입력 필요한 항목만 표시
+3. **빈 칸 입력** — 작업일·작업명·참석자 등 사용자 입력 필요한 항목만 표시. 필수 칸은 `*` 로 표시되고, 비어 있으면 작성 완료를 누를 때 빈 항목을 알려 줍니다
 4. **본문 생성** 버튼 → 결재 가능한 문서 자동 작성
 5. **검수** → 빠진 필수 항목 / 결재 가능 여부 / 환각 차단 검증
 6. **MD 다운로드** 또는 LocalStorage 보관
 
-> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/) · 한글/한컴오피스 · [Typora](https://typora.io/) 등으로 변환합니다. 이 폼은 [A2UI](https://github.com/a2ui-project/a2ui) 1.0 (에이전트 UI 표준) 기반입니다.
+> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/) · 한글/한컴오피스 · [Typora](https://typora.io/) 등으로 변환합니다. 이 폼은 [A2UI](https://github.com/a2ui-project/a2ui) 1.0 (에이전트 UI 표준) 형식으로 만들어지므로, 같은 표준을 지원하는 다른 화면 프로그램에서도 폼을 그릴 수 있습니다.
 
 ### C. 터미널 · CI · 개발자
 
@@ -218,7 +220,7 @@ archive_safety_document        로컬 보관
 
 `assemble_doc_context`와 `generate_safety_document`의 조합이 핵심입니다 — 전자는 LLM이 추측하지 않도록 근거를 모으고, 후자는 그 근거를 결재 가능한 Markdown 문서로 합성합니다.
 
-출력은 기본적으로 기존과 같은 Markdown입니다. 양식의 병합 셀·빈칸·법령 근거 연결까지 보존해 다른 LLM 검수나 문서 RAG에 넘기고 싶다면 `generate_safety_document` 호출 시 `format: "doclang"`을 지정할 수 있습니다. 이 DocLang v0.9 XML 출력은 현재 experimental 옵션입니다.
+출력은 기본적으로 기존과 같은 Markdown입니다. 양식의 병합 셀·빈칸·법령 근거 연결까지 보존해 다른 LLM 검수나 문서 RAG에 넘기고 싶다면 `generate_safety_document` 호출 시 `format: "doclang"`을 지정할 수 있습니다. 이 [DocLang](https://www.doclang.ai/) 0.9 XML 출력은 현재 experimental 옵션이며, 여러 줄로 입력한 내용은 줄바꿈 그대로 전달됩니다.
 
 폼 UI([B. 브라우저 입력 폼](#b-브라우저-입력-폼--ai-비서cli-불필요))와 함께 쓰는 경우에는 `render_a2ui_form` (입력 폼 생성) → `save_form_draft` / `load_form_draft` (임시 저장·재로딩) → `submit_safety_document` (실제 문서 생성 흐름으로 제출) 를 같이 사용합니다.
 
@@ -298,12 +300,13 @@ LLM이 "의무", "반드시", "금지", "위반" 같은 표현을 쓰면 `verify
 - ISO 45001 카테고리 일관성: 100% · strict graph audit: 통과
 - 필드 워크플로우: 4/4 시나리오, 29/29 단계 통과 · 실제 입력 반응성: 4/4 시나리오 통과
 - 생성 문서 품질: 평균 8.65/10 · essence gate: 9/9 통과 · lightweight gate: 4/4 통과
+- 표준 규격 적합: 입력 폼 96종이 A2UI 1.0 공식 스키마 통과 · DocLang 출력 96종이 공식 검증 도구(0.9) 통과 · MCP 최신 규격(2026-07-28)과 이전 규격 클라이언트 양쪽 접속 확인
 
 핵심 검증 명령 (전체 목록과 CI 구성은 [CONTRIBUTING.md](./CONTRIBUTING.md) 참조):
 
 ```bash
 npm run typecheck && npm run build
-npm run test            # essence + lightweight + docs drift + smoke
+npm run test            # essence + lightweight + 표준 규격(A2UI·DocLang·MCP) + docs drift + smoke
 npm run mcp:test:graph  # 그래프 추론·일관성·효과
 npm run audit:strict    # 그래프 무결성 strict 감사
 ```
@@ -316,6 +319,8 @@ npm run audit:strict    # 그래프 무결성 strict 감사
 - `regular_risk_assessment`는 실제 입력 반영과 KRAS 결과표 작성은 통과하지만, 사용자 입력 `riskRows`에서 Hazard를 동적으로 역추론하는 깊이는 보강 대상입니다.
 - Site, Project, Contractor, WorkerRole은 런타임 프로파일 중심이며 정적 그래프 노드 물질화는 다음 단계입니다.
 - 사진 외 EvidenceType, 예를 들어 서명, 교육 참석, 제출 영수증, 점검 결과 증빙은 더 확장해야 합니다.
+- 브라우저 입력 폼의 작업 분석·통제대책·필드 도움말·부분 검토 버튼은 아직 화면에서 동작하지 않습니다(같은 기능은 AI 비서 연결에서 도구로 쓸 수 있습니다).
+- 입력 폼은 A2UI 1.0 공식 스키마 검증을 통과했지만, 함께 제공되는 브라우저 화면 외의 다른 A2UI 화면 프로그램에서 실제로 그려 본 확인은 아직 없습니다.
 - 최종 법적 판단, 서명, 제출 책임은 안전관리자와 사업장 책임자에게 있습니다.
 
 ## 기술 상세 — 온톨로지 설계

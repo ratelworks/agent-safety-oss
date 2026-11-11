@@ -1,5 +1,5 @@
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { z } from "zod";
+import type { McpServer } from "@modelcontextprotocol/server";
+import { z } from "zod";
 import type { ToolDefinition } from "./lib/types.js";
 import { TraceRecorder } from "./lib/trace-recorder.js";
 
@@ -209,7 +209,8 @@ export function registerAllTools(server: McpServer): void {
       {
         title: tool.title ?? tool.name,
         description: tool.description,
-        inputSchema: extractRawShape(tool.inputSchema),
+        // 객체 스키마로 감싸 넘긴다 (raw shape 직접 전달은 SDK 2 에서 폐기 예정)
+        inputSchema: z.object(extractRawShape(tool.inputSchema)),
       },
       wrappedHandler,
     );

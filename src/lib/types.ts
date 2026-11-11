@@ -1,7 +1,7 @@
 import type { z } from "zod";
 import type { BasisType, LegalWeight } from "../config/constants.js";
 
-// MCP Tool 응답 공통 모양 (@modelcontextprotocol/sdk 스펙과 호환)
+// MCP Tool 응답 공통 모양 (@modelcontextprotocol/server 스펙과 호환)
 export interface McpTextContent {
   type: "text";
   text: string;

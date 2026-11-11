@@ -33,7 +33,7 @@ MCP Inspector UI: `npm run mcp:inspect`. Field-style document review: `npm run m
 ## Stack & Conventions
 
 - Runtime: **Node.js >=22.12**, ES Modules, TypeScript `strict`
-- MCP: `@modelcontextprotocol/sdk` (stdio transport) · CLI: `commander` · Validation: `zod`
+- MCP: `@modelcontextprotocol/server` 2.x (stdio, 프로토콜 2026-07-28 + 이전 규격 동시 지원) · CLI: `commander` · Validation: `zod`
 - Graph: `graphology` over JSON-LD 1.1 node files (`src/ontology/graph/nodes/**`)
 - Standards: JSON-LD 1.1, RDF/OWL, SKOS, PROV-O, schema.org, ISO 45001; SHACL shapes for node validation
 - Comments: Korean (개발 주체가 라텔웍스). User-facing document output is Korean by design (target users are Korean safety managers).

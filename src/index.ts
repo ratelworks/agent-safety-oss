@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { serveStdio } from "@modelcontextprotocol/server/stdio";
+import { McpServer } from "@modelcontextprotocol/server";
 import {
   SERVER_NAME,
   SERVER_DESCRIPTION,
@@ -17,7 +17,8 @@ import { registerCapabilities } from "./capability-registry.js";
 // No-Lock-In Principle (PLAN §0.5): tools + resources 양쪽 capability 등록 →
 // Claude Desktop / Codex CLI / MCP Inspector 어느 하네스에서든 호환
 
-async function main(): Promise<void> {
+/** 연결 하나를 맡을 서버 인스턴스를 만든다 — 도구·리소스·capability 등록 포함 */
+function buildServer(): McpServer {
   const server = new McpServer(
     {
       name: SERVER_NAME,
@@ -33,9 +34,13 @@ async function main(): Promise<void> {
   registerSkeletonResources(server);
   registerCapabilities(server);  // capability registry → MCP Resource `safety://graph/capabilities`
                                  // LLM 이 도구 선택 시 capability node 통해 traversal 가능 (외부 평가 P0-1)
+  return server;
+}
 
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
+async function main(): Promise<void> {
+  // serveStdio 가 전송을 맡고, 연결을 여는 첫 교환으로 프로토콜 세대를 정한다 —
+  // 2026-07-28 규격(핸드셰이크 없음)과 그 이전 규격(initialize) 클라이언트를 모두 받는다.
+  serveStdio(buildServer);
 
   // stderr로만 상태 로그 출력 (stdout은 MCP 프로토콜 전용)
   /* eslint-disable no-console */

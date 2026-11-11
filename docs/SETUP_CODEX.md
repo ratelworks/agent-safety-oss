@@ -106,5 +106,5 @@ Codex 가 자동으로 다음 도구를 조합 호출합니다:
 ## 6. 그 외 host
 
 - **Claude Desktop**: [docs/SETUP_CLAUDE_DESKTOP.md](./SETUP_CLAUDE_DESKTOP.md)
-- **MCP Inspector**: 표준 MCP 1.x 프로토콜 — `npx -y agent-safety-oss serve` 명령으로 stdio transport 등록
-- **OpenAI Agents SDK / 기타 MCP client**: 표준 MCP 1.x 프로토콜 — `npx -y agent-safety-oss serve` 명령 stdio transport 등록
+- **MCP Inspector**: 표준 MCP 프로토콜(2026-07-28 및 이전 규격) — `npx -y agent-safety-oss serve` 명령으로 stdio transport 등록
+- **OpenAI Agents SDK / 기타 MCP client**: 표준 MCP 프로토콜(2026-07-28 및 이전 규격) — `npx -y agent-safety-oss serve` 명령 stdio transport 등록
