@@ -194,6 +194,22 @@ async function testGenerateSafetyDocumentIntegration(): Promise<void> {
   assert(textOf(doclang).includes("A동 굴착 &amp; 양중 &lt;테스트&gt;"), "doclang output must escape draft values");
   assert(parseXml(textOf(doclang)).doclang, "generated DocLang XML must parse");
 
+  // 공백 규칙(DocLang 0.9) — <content> 밖의 줄바꿈은 한 칸으로 읽히므로, 여러 줄 입력은 <content> 로 감싸 전달한다
+  const multiLine = await callTool("generate_safety_document", {
+    docId: DOC_ID,
+    useProfile: false,
+    format: "doclang",
+    draft: { ...TEST_DRAFT, todayWork: "1층 굴착\n2층 거푸집 조립" },
+  });
+  assert(
+    textOf(multiLine).includes("<value><content>1층 굴착\n2층 거푸집 조립</content></value>"),
+    "multi-line draft value must be wrapped in <content>",
+  );
+  // 대조군 — 한 줄 값은 감싸지 않는다
+  assert(!textOf(doclang).includes("<content>A동"), "single-line draft value must not be wrapped in <content>");
+  // 문단(<text>) 안에는 줄바꿈이 남지 않는다 — 여러 줄 본문은 줄마다 문단으로 나뉜다
+  assert(!/<text>[^<]*\n[^<]*<\/text>/.test(textOf(multiLine)), "<text> paragraphs must not contain line breaks");
+
   const mdStructured = explicitMd.structuredContent ?? {};
   const doclangStructured = doclang.structuredContent ?? {};
   for (const key of ["docId", "title", "koshaGuideCount", "hazardCount", "controlCount", "sectionsCount", "legalBasisCount", "bodyMarkdownLength"]) {

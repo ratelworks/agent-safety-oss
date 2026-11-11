@@ -1,4 +1,4 @@
-export const DOCLANG_VERSION = "0.8";
+export const DOCLANG_VERSION = "0.9";
 export const DOCLANG_NAMESPACE = "https://www.doclang.ai/ns/v0";
 
 import type { DocumentNode, DocumentSection, DocumentSectionField } from "./graph-nodes-loader.js";
@@ -14,8 +14,10 @@ const XML_ESCAPE_MAP: Record<string, string> = {
   "\"": "&quot;",
   "\u0000": "",
 };
+const LINE_BREAK_PATTERN = /\r?\n/;
 const TAG = {
   root: "doclang",
+  content: "content",
   head: "head",
   title: "title",
   description: "description",
@@ -170,6 +172,23 @@ function escapeXml(value: unknown): string {
   return String(value ?? "").replace(XML_ESCAPE_PATTERN, (char) => XML_ESCAPE_MAP[char] ?? "");
 }
 
+/**
+ * 본문 텍스트 — DocLang 0.9 는 `<content>` 밖의 연속 공백·줄바꿈을 한 칸으로 읽는다.
+ * 줄바꿈이 뜻을 가진 값(여러 줄 입력 등)은 `<content>` 로 감싸 그대로 전달하고,
+ * 그 밖에는 감싸지 않는다(규격: `<content>` 는 필요한 곳에만).
+ */
+function rawText(value: unknown): string {
+  const text = String(value ?? "");
+  const trimmed = text.trim();
+  if (!LINE_BREAK_PATTERN.test(trimmed)) return escapeXml(text);
+  return element(TAG.content, escapeXml(trimmed));
+}
+
+/** 여러 줄 텍스트를 줄 단위 문단으로 나눈다 (빈 줄 제외) */
+function splitLines(value: string): string[] {
+  return value.split(LINE_BREAK_PATTERN).map((line) => line.trim()).filter(Boolean);
+}
+
 function escapeXmlAttribute(value: unknown): string {
   return escapeXml(value);
 }
@@ -264,18 +283,18 @@ function cellTag(headerKind: HeaderKind): string {
 function serializeListBlock(block: DoclangCellBlock): string {
   const listClass = block.listType === LIST_CLASS_ORDERED ? LIST_CLASS_ORDERED : LIST_CLASS_UNORDERED;
   const children = (block.children ?? []).map((child) => serializeCellBlock(child)).filter(Boolean).join("\n");
-  const body = [emptyElement(TAG.listItem) + escapeXml(block.text), children].filter(Boolean).join("\n");
+  const body = [emptyElement(TAG.listItem) + rawText(block.text), children].filter(Boolean).join("\n");
   return element(TAG.list, body, { class: listClass });
 }
 
 function serializeCellBlock(block: DoclangCellBlock): string {
   if (block.type === "heading") {
-    return element(TAG.heading, escapeXml(block.text), { level: clampHeadingLevel(block.level) });
+    return element(TAG.heading, rawText(block.text), { level: clampHeadingLevel(block.level) });
   }
   if (block.type === "list") return serializeListBlock(block);
   if (block.type === "table" && block.table) return tableToOtsl(block.table);
   const text = toText(block.text);
-  return text.trim() ? element(TAG.text, escapeXml(text)) : "";
+  return splitLines(text).map((line) => element(TAG.text, escapeXml(line))).join("\n");
 }
 
 function serializeCellBody(cell: DoclangTableCell): string {
@@ -283,7 +302,7 @@ function serializeCellBody(cell: DoclangTableCell): string {
     const body = cell.blocks.map((block) => serializeCellBlock(block)).filter(Boolean);
     if (body.length > 0) return body.join("");
   }
-  return escapeXml(toText(cell.text));
+  return rawText(toText(cell.text));
 }
 
 function createMarkGrid(inputTable: DoclangTable): GridMark[][] {
@@ -334,7 +353,7 @@ export function tableToOtsl(table: DoclangTable): string {
   const mark = createMarkGrid(table);
   const lines: string[] = [`<${TAG.table}>`];
 
-  if (table.caption?.trim()) lines.push(element(TAG.caption, escapeXml(table.caption)));
+  if (table.caption?.trim()) lines.push(element(TAG.caption, rawText(table.caption)));
   if (table.customXml) lines.push(table.customXml);
 
   for (const row of mark) {
@@ -355,8 +374,8 @@ export function tableToOtsl(table: DoclangTable): string {
 
 function metadataToHead(document: DocumentNode): string {
   const entries = [
-    element(TAG.title, escapeXml(document.title)),
-    document.description ? element(TAG.description, escapeXml(document.description)) : "",
+    element(TAG.title, rawText(document.title)),
+    document.description ? element(TAG.description, rawText(document.description)) : "",
   ].filter(Boolean);
   return element(TAG.head, entries.join("\n"));
 }
@@ -366,11 +385,11 @@ function customXml(entries: Array<{ tag: string; value?: unknown; values?: unkno
     .map((entry) => {
       if (entry.values) {
         const itemTag = entry.itemTag ?? CUSTOM_TAG.iri;
-        const items = entry.values.map((value) => element(itemTag, escapeXml(value))).join("");
+        const items = entry.values.map((value) => element(itemTag, rawText(value))).join("");
         return items ? element(entry.tag, items) : "";
       }
       if (entry.value === undefined || entry.value === null || entry.value === "") return "";
-      return element(entry.tag, escapeXml(entry.value));
+      return element(entry.tag, rawText(entry.value));
     })
     .filter(Boolean)
     .join("");
@@ -383,12 +402,12 @@ function heading(level: number, text: string, custom = ""): string {
 
 function textElement(text: unknown): string {
   const value = toText(text);
-  return value.trim() ? element(TAG.text, escapeXml(value)) : "";
+  return splitLines(value).map((line) => element(TAG.text, escapeXml(line))).join("\n");
 }
 
 function listElement(items: unknown[], listClass: typeof LIST_CLASS_ORDERED | typeof LIST_CLASS_UNORDERED = LIST_CLASS_UNORDERED): string {
   const body = items
-    .map((item) => emptyElement(TAG.listItem) + escapeXml(toText(item)))
+    .map((item) => emptyElement(TAG.listItem) + rawText(toText(item)))
     .filter((item) => item !== emptyElement(TAG.listItem))
     .join("\n");
   return body ? element(TAG.list, body, { class: listClass }) : "";
@@ -641,8 +660,8 @@ function fieldRegion(sections: DocumentSection[], draft: Record<string, unknown>
     const value = resolveDraftFieldValue(draft, field.key, field.label);
     const valueXml = isEmptyValue(value)
       ? element(TAG.value, "", { class: VALUE_CLASS_FILLABLE })
-      : element(TAG.value, escapeXml(toText(value)));
-    return element(TAG.fieldItem, element(TAG.key, escapeXml(field.label || field.key)) + valueXml);
+      : element(TAG.value, rawText(toText(value)));
+    return element(TAG.fieldItem, element(TAG.key, rawText(field.label || field.key)) + valueXml);
   });
   return element(TAG.fieldRegion, `\n${items.join("\n")}\n`);
 }
