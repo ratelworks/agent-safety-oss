@@ -670,9 +670,24 @@ function actionOf(c) {
   return ev ? { name: ev.name, payload: ev.context || {} } : null;
 }
 
+// 필수 입력 여부 — @checks 에 required 검사가 있는지
+function isRequired(c) {
+  return Array.isArray(c['@checks']) && c['@checks'].some(r => r && r.condition && r.condition['@call'] === 'required');
+}
+
+// 필수인데 비어 있는 입력칸의 라벨 목록
+function missingRequiredLabels() {
+  const missing = [];
+  document.querySelectorAll('[data-field-id][data-required="1"]').forEach((el) => {
+    if (!String(el.value || '').trim()) missing.push(el.dataset.fieldLabel || el.dataset.fieldKey || el.dataset.fieldId);
+  });
+  return missing;
+}
+
 function bindFieldMeta(el, c) {
   const ext = extensionsOf(c);
   el.dataset.fieldId = c.id;
+  if (isRequired(c)) { el.dataset.required = '1'; el.dataset.fieldLabel = c.label || ''; }
   if (ext.fieldKey) el.dataset.fieldKey = ext.fieldKey;
   if (ext.fieldKey) el.dataset.draftPath = ext.fieldKey;
   if (ext.profilePath) el.dataset.profilePath = ext.profilePath;
@@ -725,7 +740,7 @@ function renderComponent(id, all) {
       wrapper.className = 'field-block';
       const label = document.createElement('div');
       label.className = 'label';
-      label.textContent = c.label || '';
+      label.textContent = (c.label || '') + (isRequired(c) ? ' *' : '');
       wrapper.appendChild(label);
 
       // 입력 종류 — 확장 메타가 우선, 없으면 컴포넌트 종류와 variant 로 정한다
@@ -1635,6 +1650,12 @@ async function handleAction(action) {
     }
   } else if (action.name === 'submit_safety_document') {
     const docId = action.payload?.docId || currentTarget.replace('doc:', '');
+    // 0) 필수 입력칸이 비어 있으면 제출하지 않는다
+    const missingLabels = missingRequiredLabels();
+    if (missingLabels.length > 0) {
+      setStatus('err', '필수 항목 ' + missingLabels.length + '개가 비어 있습니다: ' + missingLabels.slice(0, 5).join(', ') + (missingLabels.length > 5 ? ' 외' : ''));
+      return;
+    }
     // 1) 입력 폼 명시 저장 (manual)
     const formValues = collectFormValues();
     await fetch('/api/draft/save', {

@@ -30,6 +30,7 @@ const YES_NO_OPTIONS = [
   { label: "아니오 / 부적합", value: "아니오" },
   { label: "해당없음", value: "해당없음" },
 ];
+const REQUIRED_MESSAGE = "필수 입력 항목입니다.";
 const YES_NO_VALUES = new Set(YES_NO_OPTIONS.map((o) => o.value));
 
 // ── 타입 ────────────────────────────────────────────────────────────
@@ -60,6 +61,8 @@ export interface FieldSpec {
   /** 입력 종류 — shortText·longText·date·datetime·time·number·currency·percentage·yesNo·check·signature·phone·email 등 */
   inputKind: string;
   placeholder?: string;
+  /** 필수 입력 여부 — 참이면 `@checks` 에 required 검사를 싣는다 */
+  required?: boolean;
   /** 사업장 정보 폼 전용 — 저장 위치 */
   profilePath?: string;
 }
@@ -112,6 +115,9 @@ export function fieldComponent(spec: FieldSpec): A2UIComponent {
     label: spec.label,
     value: { "@path": draftPath(spec.fieldKey) },
     "@metadata": { extensions },
+    ...(spec.required
+      ? { "@checks": [{ condition: { "@call": "required", args: { value: { "@path": draftPath(spec.fieldKey) } } }, message: REQUIRED_MESSAGE }] }
+      : {}),
   };
   const dateKind = DATE_KINDS[spec.inputKind];
   if (dateKind) {

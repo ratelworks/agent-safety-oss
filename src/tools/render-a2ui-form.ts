@@ -223,13 +223,22 @@ function formatExample(x: unknown): string {
   return String(x);
 }
 
-function flattenFields(node: any): Array<{ key: string; label: string; inputGuide?: string; examples?: string[] }> {
-  const out: Array<{ key: string; label: string; inputGuide?: string; examples?: string[] }> = [];
+interface FormFieldDef {
+  key: string;
+  label: string;
+  inputGuide?: string;
+  examples?: string[];
+  /** 필수 여부 — review_safety_document 와 같은 기준(required:false·optional:true 가 아니면 필수) */
+  required: boolean;
+}
+
+function flattenFields(node: any): FormFieldDef[] {
+  const out: FormFieldDef[] = [];
   function pushField(f: any): void {
     if (!f || typeof f !== "object" || !f.key || !f.label) return;
     const examples = Array.isArray(f.examples) ? f.examples.map(formatExample).filter((s: string) => s !== "") : undefined;
     const inputGuide = typeof f.inputGuide === "string" ? convertSectionMarks(f.inputGuide) : f.inputGuide;
-    out.push({ key: f.key, label: convertSectionMarks(f.label), inputGuide, examples });
+    out.push({ key: f.key, label: convertSectionMarks(f.label), inputGuide, examples, required: f.required !== false && f.optional !== true });
   }
   if (Array.isArray(node.sections)) {
     for (const sec of node.sections) {
@@ -585,6 +594,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
         fieldKey: f.key,
         label: f.label || f.key,
         inputKind,
+        required: f.required,
         placeholder: f.examples && f.examples.length > 0 ? f.examples[0] : undefined,
       }),
     );
@@ -720,6 +730,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       componentCount: components.length,
       fieldPathMap,
       fieldLabelMap,
+      requiredFieldKeys: fields.filter((f) => f.required).map((f) => f.key),
       a2uiVersion: A2UI_VERSION,
       format: args.format,
       messages,

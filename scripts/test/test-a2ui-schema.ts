@@ -61,6 +61,23 @@ function allDocIds(): string[] {
   return ids.sort();
 }
 
+/** 문서 노드에서 필수인 필드 키 — required:false·optional:true 가 아니면 필수 (검토 도구와 같은 기준) */
+function requiredKeysOfNode(docId: string): Set<string> {
+  for (const f of readdirSync(DOCS_DIR)) {
+    if (!f.endsWith(".jsonld")) continue;
+    const node = JSON.parse(readFileSync(resolve(DOCS_DIR, f), "utf8")) as {
+      docId?: string;
+      sections?: Array<{ fields?: Array<{ key?: string; label?: string; required?: boolean; optional?: boolean }> }>;
+      requiredFields?: Array<{ key?: string; label?: string; required?: boolean; optional?: boolean }>;
+    };
+    if (node.docId !== docId) continue;
+    const sectionFields = (node.sections ?? []).flatMap((s) => s.fields ?? []).filter((x) => x && x.key && x.label);
+    const source = sectionFields.length > 0 ? sectionFields : (node.requiredFields ?? []).filter((x) => x && x.key && x.label);
+    return new Set(source.filter((x) => x.required !== false && x.optional !== true).map((x) => x.key as string));
+  }
+  return new Set();
+}
+
 interface Component {
   id: string;
   component: string;
@@ -101,6 +118,16 @@ function testValidatorItself(): void {
     updateComponents: { surfaceId: "s", components: [{ id: "root", component: "Text", text: "x", ...extra }] },
   });
   check("정상 Text 통과", validateA2uiMessage(text({ variant: "caption" })).valid);
+  check(
+    "대조군: 없는 검사 함수",
+    !validateA2uiMessage({
+      version: "1.0",
+      updateComponents: {
+        surfaceId: "s",
+        components: [{ id: "root", component: "TextField", label: "x", value: { "@path": "/draft/x" }, "@checks": [{ condition: { "@call": "noSuchCheck", args: {} } }] }],
+      },
+    }).valid,
+  );
   // 대조군 — 아래는 모두 실패해야 한다
   check("대조군: version 없음", !validateA2uiMessage({ createSurface: { surfaceId: "s" } }).valid);
   check("대조군: 옛 version", !validateA2uiMessage({ version: "v0.9", createSurface: { surfaceId: "s", catalogId: "standard" } }).valid);
@@ -135,6 +162,7 @@ async function testAllDocumentForms(): Promise<void> {
   const ids = allDocIds();
   let ok = 0;
   let rendered = 0;
+  let requiredTotal = 0;
   for (const docId of ids) {
     const result = await callTool("render_a2ui_form", { docId, format: "jsonl", useProfile: false });
     if (result.isError) {
@@ -158,17 +186,27 @@ async function testAllDocumentForms(): Promise<void> {
       const bound = (c?.value as { "@path"?: string } | undefined)?.["@path"];
       return bound !== draftPath(key) || !(key in draft);
     });
-    const good = v.valid && orphans.length === 0 && unbound.length === 0 && Object.keys(fieldMap).length > 0;
+    // 필수 표시 — 문서 노드에서 필수인 필드만 required 검사를 싣는다 (노드 데이터와 직접 대조)
+    const expectedRequired = requiredKeysOfNode(docId);
+    const requiredMismatch = Object.entries(fieldMap).filter(([inputId, key]) => {
+      const c = comps.find((x) => x.id === inputId);
+      const checks = (c?.["@checks"] as Array<{ condition?: { "@call"?: string } }> | undefined) ?? [];
+      return checks.some((r) => r.condition?.["@call"] === "required") !== expectedRequired.has(key);
+    });
+    requiredTotal += expectedRequired.size;
+    const good =
+      v.valid && orphans.length === 0 && unbound.length === 0 && requiredMismatch.length === 0 && Object.keys(fieldMap).length > 0;
     if (good) ok += 1;
     check(
       `${docId}: 1.0 스키마·트리·바인딩`,
       good,
-      [...v.errors.slice(0, 3), orphans.length ? `트리 밖 ${orphans.slice(0, 3).join(",")}` : "", unbound.length ? `바인딩 누락 ${unbound.length}` : ""]
+      [...v.errors.slice(0, 3), orphans.length ? `트리 밖 ${orphans.slice(0, 3).join(",")}` : "", unbound.length ? `바인딩 누락 ${unbound.length}` : "", requiredMismatch.length ? `필수 표시 불일치 ${requiredMismatch.length}` : ""]
         .filter(Boolean)
         .join(" | "),
     );
   }
-  console.log(`[a2ui-schema] 문서 ${ids.length}종 · 폼 ${rendered}종 · 통과 ${ok}`);
+  console.log(`[a2ui-schema] 문서 ${ids.length}종 · 폼 ${rendered}종 · 통과 ${ok} · 필수 필드 ${requiredTotal}개`);
+  check("필수 필드가 하나 이상 있음(검사가 비어 있지 않음)", requiredTotal > 0);
   check("문서가 한 종 이상", ids.length > 0 && rendered > 0);
 }
 
@@ -200,7 +238,7 @@ async function testProfileAndUpdates(): Promise<void> {
     }
     const errors = update.flatMap((m) => validateA2uiMessage(m).errors);
     check(`${name}: a2uiUpdate 1.0 스키마`, errors.length === 0, errors.slice(0, 3).join(" | "));
-    // 갱신을 폼에 합친 뒤에도 새 카드가 뿌리에서 닿아야 한다 (화면에 실제로 보임)
+    // 갱신을 폼에 합친 뒤에도 새 카드가 뿌리에서 닿아야 한다 (메시지 트리 기준 — 렌더러의 실제 표시는 이 시험 범위 밖)
     const merged = new Map(formComps.map((c) => [c.id, c]));
     const added = update.flatMap((m) => (m as { updateComponents: { components: Component[] } }).updateComponents.components);
     for (const c of added) merged.set(c.id, c);
