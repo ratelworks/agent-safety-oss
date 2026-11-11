@@ -29,14 +29,6 @@ export const INVERSE_PAIRS: ReadonlyArray<readonly [string, string]> = [
   ["regulates", "regulatedBy"],
 ];
 
-/**
- * 역방향을 만들지 않는 간선 — KOSHA 가이드 절이 문서를 가리키는 legalBasisOf.
- * 가이드는 법적 근거가 아니라 기술 지침이라, 문서의 법령 근거(legalBasis)에 넣지 않는다.
- */
-function isExempt(subjectId: string, predicate: string): boolean {
-  return predicate === "legalBasisOf" && subjectId.startsWith("kosha:");
-}
-
 interface NodeFile {
   path: string;
   text: string;
@@ -119,7 +111,6 @@ export function findMissingInverseEdges(nodes: Map<string, Record<string, unknow
   for (const [forward, backward] of INVERSE_PAIRS) {
     for (const [a, b] of [[forward, backward], [backward, forward]] as const) {
       for (const [id, node] of nodes) {
-        if (isExempt(id, a)) continue;
         for (const target of refs(node[a])) {
           const targetNode = nodes.get(target);
           if (!targetNode) continue; // 그래프 밖 대상(노드 파일 없음)은 반대쪽을 적을 곳이 없다

@@ -11,11 +11,11 @@ priority: P1
 
 ## 반영
 
-- **역관계 일치**: `legalBasis`↔`legalBasisOf`, `delegates`↔`delegationOf`, `regulates`↔`regulatedBy` 가 한쪽 노드에만 적힌 간선 427건(legalBasis 79, delegationOf 39, regulatedBy 131, regulates 178)을 반대쪽에 채움. 노드 파일 141개. KOSHA 가이드 절이 문서를 가리키는 `legalBasisOf` 4건은 예외(가이드는 법령 근거가 아님). `hasArticle`/`partOf` 는 포함 경로가 달라 역관계로 다루지 않음.
+- **역관계 일치**: `legalBasis`↔`legalBasisOf`, `delegates`↔`delegationOf`, `regulates`↔`regulatedBy` 가 한쪽 노드에만 적힌 간선 427건(legalBasis 79, delegationOf 39, regulatedBy 131, regulates 178)을 반대쪽에 채움. 노드 파일 141개. KOSHA 가이드 절(P-94 4.2.1.4)이 작업허가서 4종을 가리키던 `legalBasisOf` 는 2.2.1 에서 문서 쪽 `informedBy` 로 옮겼다 — 역관계를 `owl:inverseOf` 로 선언하면 추론기가 가이드를 문서의 법령 근거로 읽기 때문이다. 예외 규칙은 없앴다. `hasArticle`/`partOf` 는 포함 경로가 달라 역관계로 다루지 않음.
   - 영향 확인(도구 출력 274건을 전후 비교): 문서 생성 96건·문서 컨텍스트 96건·가이드 연결 조회 41건은 동일, 현장 브리핑 41건 중 19건에 조문이 추가됨.
 - **표준 SHACL 검증을 실패하는 검사로**: `verify-all`·`ontology:gate` 에서 엄격 모드로 실행. 자체 검증기에만 있던 규칙(조문 제목·시행일·종류·효력·관할, 별표 제목·종류, 위험요인 설명·분류·ISO 45001, 적용성 조건·근거·강제 수준, 문서 ISO 45001 분류·검증 상태)을 표준 형태 정의로 옮김. 조문 하나를 일부러 깨뜨리면 엄격 모드가 실패하는 것을 확인.
 - **RDF 내보내기 검증**: 경로·어휘 주소가 틀리고 단언이 없던 옛 시험을 지우고, 원본에서 기대값을 계산해 대조하는 검증으로 교체(16 통과). 잘못된 어휘 주소로는 0건인 대조군 포함.
-- **어휘 색인**: 손으로 쓴 어휘 정의에 선언이 없는 자체 클래스 20종·속성 114종의 선언(속성 종류, 관찰된 주어·대상 클래스, 역관계)을 `src/ontology/graph/vocabulary.jsonld` 로 생성. 그래프와 다르면 게이트 실패.
+- **어휘 색인**: 손으로 쓴 어휘 정의에 선언이 없는 자체 클래스 20종·속성 114종의 선언(속성 종류, 관찰된 주어·대상 클래스, 역관계)을 `src/ontology/graph/vocabulary.jsonld` 로 생성. 그래프와 다르면 게이트 실패(2.2.1 부터 배포 전 검사 `verify-all` 에도 포함 — 2.2.0 에서는 `ontology:gate` 에만 있었다).
 
 ## 하지 않은 것
 

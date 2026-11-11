@@ -141,7 +141,7 @@ function main(): void {
   const mitigatedInRdf = count(predicate("mitigatedBy"), null);
   check("mitigatedBy 간선 수가 원본과 같음", mitigatedInSource > 0 && mitigatedInRdf === mitigatedInSource, `${mitigatedInRdf} vs ${mitigatedInSource}`);
 
-  // 7. 역관계 — RDF 에서도 양쪽이 일치 (KOSHA 가이드 절의 legalBasisOf 는 예외: 가이드는 법령 근거가 아님)
+  // 7. 역관계 — RDF 에서도 양쪽이 일치 (예외 없음 — owl:inverseOf 선언과 데이터가 같아야 한다)
   const subjects = new Set([...sources.keys()].map(expand));
   for (const [forward, backward] of INVERSE_PAIRS) {
     for (const [a, b] of [[forward, backward], [backward, forward]] as const) {
@@ -149,7 +149,6 @@ function main(): void {
       const oneSided: string[] = [];
       for (const q of store.getQuads(null, namedNode(predicate(a)), null, null)) {
         if (!subjects.has(q.object.value) || !subjects.has(q.subject.value)) continue;
-        if (a === "legalBasisOf" && q.subject.value.startsWith(expand("kosha:"))) continue;
         total += 1;
         if (store.countQuads(namedNode(q.object.value), namedNode(predicate(b)), namedNode(q.subject.value), null) === 0) {
           oneSided.push(`${q.subject.value} → ${q.object.value}`);

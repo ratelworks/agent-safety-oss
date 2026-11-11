@@ -5,6 +5,15 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] — 2026-11-12
+
+KOSHA 지침이 작업허가서의 법령 근거로 잘못 읽힐 수 있던 연결을 바로잡았습니다.
+
+### 수정
+
+- **KOSHA 안전작업허가 지침(P-94)과 작업허가서 4종의 연결을 "법령 근거"에서 "참고 자료"로 고쳤습니다.** 지침은 법령이 아니라 기술 지침입니다. 문서 본문과 법령 근거 목록은 종전과 같고, 표준 형식으로 내보낸 자료를 다른 도구로 읽을 때 지침이 법령 근거로 해석되지 않습니다.
+- 배포 전 검사에 내보낸 자료 검증과 용어 색인 점검을 넣었습니다. 2.2.0 에서는 이 두 점검이 배포 전 검사에 빠져 있었습니다.
+
 ## [2.2.0] — 2026-11-12
 
 법령·작업·문서 사이의 연결을 양쪽에서 같게 맞추고, 연결 데이터를 표준 도구로 검증하게 했습니다.
