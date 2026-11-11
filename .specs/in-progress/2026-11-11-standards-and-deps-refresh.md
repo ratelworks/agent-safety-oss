@@ -1,6 +1,6 @@
 ---
 spec_id: 2026-11-11-standards-and-deps-refresh
-status: plans
+status: in-progress
 created: 2026-11-11
 priority: P1
 estimated_hours: 10

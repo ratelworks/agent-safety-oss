@@ -280,6 +280,8 @@ program
   .command(`${CMD.CALL} <toolName>`)
   .description("Invoke a tool directly (arguments as --key value pairs)")
   .allowUnknownOption(true)
+  // commander 13+ 는 남는 인자를 기본으로 거부한다 — 도구 입력(--key value)을 직접 파싱하므로 허용
+  .allowExcessArguments(true)
   .action(async (toolName: string, _opts, cmd) => {
     const tool = findTool(toolName);
     if (!tool) {
