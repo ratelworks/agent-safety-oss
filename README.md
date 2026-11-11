@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D22.12-brightgreen)](https://nodejs.org)
 [![MCP](https://img.shields.io/badge/MCP-2026--07--28-purple)](https://modelcontextprotocol.io)
-[![Release](https://img.shields.io/badge/release-v2.1.0-blue.svg)](./CHANGELOG.md)
+[![Release](https://img.shields.io/badge/release-v2.2.0-blue.svg)](./CHANGELOG.md)
 [![Tools](https://img.shields.io/badge/MCP%20tools-92-orange.svg)](./docs/IDENTITY.md)
 
 **건설현장의 법정 안전문서 작성을 더 빠르고 정확하게.** 산안법·기준규칙·중처법·KOSHA 기술지원규정(가이드)을 기반으로 안전관리자와 현장소장의 문서 작성과 검토를 돕는 오픈소스 도구입니다.
@@ -66,9 +66,9 @@ LLM은 이 그래프를 보고 문서를 작성하거나 설명할 수 있지만
 | **KOSHA 기술지원규정 (가이드) <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** | 한국산업안전보건공단 발행 기술지침 전체 본문 (인터넷 없이 즉시 검색·인용) |
 | **양식 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL -->개** | 고용노동부·KOSHA 공식 HWP <!-- INV:FORMS_HWP -->14<!-- /INV:FORMS_HWP --> / PDF <!-- INV:FORMS_PDF -->23<!-- /INV:FORMS_PDF --> / XLSX <!-- INV:FORMS_XLSX -->1<!-- /INV:FORMS_XLSX --> 원본 + 자동 생성 Markdown 양식 <!-- INV:FORMS_MD -->94<!-- /INV:FORMS_MD -->개 (일부는 라이선스상 공식 다운로드 URL 안내로 대체) |
 | **MCP 도구 <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개** | 키 없이 바로 쓰는 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 + 공공 API 키 필요 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 (그중 <!-- INV:TOOLS_PLACEHOLDER -->2<!-- /INV:TOOLS_PLACEHOLDER -->개는 공공누리 라이선스 사유로 다운로드 URL 안내만 하는 placeholder) |
-| **위험·통제 정보망** | 작업 → 위험요인 → 통제대책 → 법령 근거 → 문서 자동 연결. 그래프 노드 <!-- INV:GRAPH_TOTAL -->3,375<!-- /INV:GRAPH_TOTAL -->개 (카테고리 1단계 <!-- INV:GRAPH_TOPLEVEL -->2,218<!-- /INV:GRAPH_TOPLEVEL --> + KOSHA Guide 1,039) · 엣지 약 <!-- INV:GRAPH_EDGES -->33,034<!-- /INV:GRAPH_EDGES --> · WorkActivity <!-- INV:GRAPH_ACTIVITIES -->41<!-- /INV:GRAPH_ACTIVITIES --> / Hazard <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS --> / Control <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS --> |
+| **위험·통제 정보망** | 작업 → 위험요인 → 통제대책 → 법령 근거 → 문서 자동 연결. 그래프 노드 <!-- INV:GRAPH_TOTAL -->3,375<!-- /INV:GRAPH_TOTAL -->개 (카테고리 1단계 <!-- INV:GRAPH_TOPLEVEL -->2,218<!-- /INV:GRAPH_TOPLEVEL --> + KOSHA Guide 1,039) · 엣지 약 <!-- INV:GRAPH_EDGES -->33,461<!-- /INV:GRAPH_EDGES --> · WorkActivity <!-- INV:GRAPH_ACTIVITIES -->41<!-- /INV:GRAPH_ACTIVITIES --> / Hazard <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS --> / Control <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS --> |
 
-→ 위 자료들이 **서로 연결**되어 있어, "굴착 작업"이라는 한 단어만 알면 적용 법령·KOSHA 가이드·위험·통제·양식이 자동으로 따라옵니다. (패키지 버전: <!-- INV:VERSION -->2.1.0<!-- /INV:VERSION -->)
+→ 위 자료들이 **서로 연결**되어 있어, "굴착 작업"이라는 한 단어만 알면 적용 법령·KOSHA 가이드·위험·통제·양식이 자동으로 따라옵니다. (패키지 버전: <!-- INV:VERSION -->2.2.0<!-- /INV:VERSION -->)
 
 ## 시작하기
 
@@ -344,7 +344,16 @@ SafetyDocument        →  KOSHA Guide (가이드)
 PhotoEvidence (사진)  →  SafetyIssue (이슈) → CorrectiveAction (조치) → SafetyReport (보고)
 ```
 
-채택 표준: JSON-LD 1.1, RDF/OWL, SKOS, PROV-O, schema.org, ISO 45001. 런타임은 무거운 그래프 DB 없이 로컬 파일 + MCP 도구로 동작합니다.
+채택 표준: JSON-LD 1.1, RDF/OWL, SHACL, SKOS, PROV-O, schema.org, ISO 45001. 런타임은 무거운 그래프 DB 없이 로컬 파일 + MCP 도구로 동작합니다.
+
+그래프는 표준 RDF 로 내보낼 수 있고(`npm run export-rdf` — N-Quads·Turtle), 내보낸 결과는 표준 도구로 검증합니다.
+
+- **형태 검증**: 표준 SHACL 엔진으로 전체 노드를 검증합니다(`npm run validate-shapes:strict`).
+- **역관계 일치**: 법령 근거(`legalBasis`↔`legalBasisOf`), 위임(`delegates`↔`delegationOf`), 규율(`regulates`↔`regulatedBy`)은 양쪽 노드에 같은 간선이 있어야 합니다(`npm run verify:inverse-edges`).
+- **내보내기 검증**: 내보낸 RDF 를 저장소에 올려 질의한 결과를 원본과 대조합니다(`npm run verify:rdf-export`).
+- **어휘 색인**: 그래프가 쓰는 자체 클래스·속성의 선언(종류, 쓰이는 대상, 역관계)을 `src/ontology/graph/vocabulary.jsonld` 에 둡니다. 쓰임에서 자동으로 만든 색인이라 뜻 설명은 담지 않습니다.
+
+아직 없는 것: 노드 식별자 주소(`https://safety.ratelworks.org/…`)는 웹에서 열리지 않습니다. 재사용하려면 내보낸 RDF 파일을 쓰세요. 도구(capability) 노드가 가리키는 동작·입력 형식·산출물 주소는 대부분 아직 그래프에 선언돼 있지 않습니다.
 
 상세 문서: [아키텍처](./docs/ARCHITECTURE.md) · [운영 온톨로지](./docs/OPERATIONAL-ONTOLOGY.md) · [핵심 객체 13종 (정체성)](./docs/IDENTITY.md) · [API 스펙](./docs/API-SPECS.md) · [JSON-LD 작성 가이드](./docs/JSONLD-AUTHORING-GUIDE.md)
 

@@ -1,6 +1,7 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:기준규칙:142",
+  "delegationOf": ["art:산안법:38"],
   "@type": [
     "Article",
     "Legislation"
@@ -48,7 +49,11 @@
   "jurisdiction": "KR",
   "temporalCoverage": "2025-01-02/..",
   "regulates": [
-    "activity:tower_crane"
+    "activity:tower_crane",
+    "activity:phc_pile_driving",
+    "activity:steel_structure",
+    "activity:tower_assembly",
+    "activity:tower_crane_maintenance"
   ],
   "appliesTo": [
     "applic:all_workplace"

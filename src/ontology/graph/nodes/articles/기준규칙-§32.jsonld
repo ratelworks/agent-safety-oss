@@ -1,6 +1,7 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:기준규칙:32",
+  "regulates": ["hazard:asphyxiation", "hazard:crushing", "hazard:machine_entanglement"],
   "@type": [
     "Article",
     "Legislation"
@@ -47,7 +48,8 @@
     "art:기준규칙:2"
   ],
   "delegationOf": [
-    "art:산안법:2"
+    "art:산안법:2",
+    "art:산안법:39"
   ],
   "amendmentHistory": [
     "2017-03-03",

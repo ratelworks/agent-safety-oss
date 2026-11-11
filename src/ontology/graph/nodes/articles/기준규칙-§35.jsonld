@@ -1,6 +1,7 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:기준규칙:35",
+  "regulates": ["activity:tbm_daily", "hazard:machine_entanglement"],
   "@type": [
     "Article",
     "Legislation"
@@ -46,7 +47,8 @@
     "art:기준규칙:16"
   ],
   "delegationOf": [
-    "art:산안법:16"
+    "art:산안법:16",
+    "art:산안법:39"
   ],
   "hasAnnex": [
     "annex:기준규칙:별표2",

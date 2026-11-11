@@ -339,3 +339,116 @@ safety:StandardDocumentApplyShape
     sh:class safety:WorkActivity ;
     sh:message "DocumentGeneral.appliesTo 가 있다면 WorkActivity IRI 여야 함 — appliesTo domain union(Action, StandardDocument, SafetyChecklist)."
   ] .
+
+# ─── 보강 규칙 — 조문·별표·위험요인·적용성·문서의 필수 메타 ──────────────────
+# 종전에는 자체 검증기(validate-shacl)에만 있던 규칙을 표준 SHACL 로 옮긴 것.
+# 두 검증기가 같은 규칙을 보도록 한다.
+
+safety:ArticleLegislationShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Article ;
+  rdfs:label "Article — 법령 메타 (제목·시행일·종류·효력·관할)" ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Article 은 제목(title) 필수"
+  ] ;
+  sh:property [
+    sh:path schema:legislationDate ;
+    sh:minCount 1 ;
+    sh:datatype xsd:date ;
+    sh:message "Article 은 시행일(legislationDate, YYYY-MM-DD) 필수"
+  ] ;
+  sh:property [
+    sh:path schema:legislationType ;
+    sh:minCount 1 ;
+    sh:in ( "Act" "Decree" "Rule" "Regulation" "Notice" "Notification" ) ;
+    sh:message "Article 의 legislationType 은 Act/Decree/Rule/Regulation/Notice/Notification 중 하나"
+  ] ;
+  sh:property [
+    sh:path schema:legislationLegalForce ;
+    sh:minCount 1 ;
+    sh:in ( "InForce" "Repealed" ) ;
+    sh:message "Article 의 legislationLegalForce 는 InForce 또는 Repealed"
+  ] ;
+  sh:property [
+    sh:path schema:jurisdiction ;
+    sh:minCount 1 ;
+    sh:hasValue "KR" ;
+    sh:message "Article 의 jurisdiction 은 KR"
+  ] .
+
+safety:AnnexMetaShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Annex ;
+  rdfs:label "Annex — 제목과 종류" ;
+  sh:property [
+    sh:path schema:name ;
+    sh:minCount 1 ;
+    sh:message "Annex 는 제목(title) 필수"
+  ] ;
+  sh:property [
+    sh:path safety:annexKind ;
+    sh:minCount 1 ;
+    sh:in ( "별표" "별지" "별첨" "서식" ) ;
+    sh:message "Annex 의 annexKind 는 별표/별지/별첨/서식 중 하나"
+  ] .
+
+safety:HazardClassificationShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Hazard ;
+  rdfs:label "Hazard — 설명·분류·ISO 45001 매핑" ;
+  sh:property [
+    sh:path schema:description ;
+    sh:minCount 1 ;
+    sh:message "Hazard 는 설명(description) 필수"
+  ] ;
+  sh:property [
+    sh:path schema:category ;
+    sh:in ( "physical" "chemical" "biological" "ergonomic" "psychological" "psychosocial" "environmental" ) ;
+    sh:message "Hazard 의 category 는 정해진 7개 값 중 하나"
+  ] ;
+  sh:property [
+    sh:path safety:iso45001Class ;
+    sh:minCount 1 ;
+    sh:hasValue <https://safety.ratelworks.org/iso45001#Hazard> ;
+    sh:message "Hazard 는 iso45001:Hazard 로 분류"
+  ] .
+
+safety:ApplicabilityRuleShape
+  a sh:NodeShape ;
+  sh:targetClass safety:Applicability ;
+  rdfs:label "Applicability — 조건·법령 근거·강제 수준" ;
+  sh:property [
+    sh:path safety:condition ;
+    sh:minCount 1 ;
+    sh:message "Applicability 는 조건(condition) 필수"
+  ] ;
+  sh:property [
+    sh:path safety:legalBasis ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Applicability 는 법령 근거(legalBasis) 1건 이상"
+  ] ;
+  sh:property [
+    sh:path safety:legalWeight ;
+    sh:minCount 1 ;
+    sh:in ( "mandatory" "recommended" "reference" ) ;
+    sh:message "Applicability 의 legalWeight 는 mandatory/recommended/reference 중 하나"
+  ] .
+
+safety:DocumentGovernanceShape
+  a sh:NodeShape ;
+  sh:targetClass safety:DocumentGeneral ;
+  rdfs:label "Document(General) — ISO 45001 분류와 검증 상태" ;
+  sh:property [
+    sh:path safety:iso45001Class ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:message "법정 문서는 ISO 45001 분류(iso45001Class) 필수"
+  ] ;
+  sh:property [
+    sh:path safety:verificationStatus ;
+    sh:in ( "verified" "pending" "auto-aligned" "kosha_live_verified" "simulation_passed" ) ;
+    sh:message "verificationStatus 는 정해진 5개 값 중 하나"
+  ] .

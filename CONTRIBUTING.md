@@ -138,6 +138,9 @@ npm run typecheck              # TypeScript 0 에러
 npm run build                  # tsc + ontology asset copy
 npm run verify-graph           # IRI 형식 / 도메인 외 참조 / JSON-LD expand
 npm run validate-shapes:strict # SHACL declarative 룰
+npm run verify:inverse-edges   # 역관계 양쪽 일치 (빠진 쪽 채우기: tsx scripts/ontology/materialize-inverse-edges.ts)
+npm run verify:rdf-export      # 내보낸 RDF 질의 결과를 원본과 대조
+npm run vocabulary:check       # 어휘 색인이 그래프와 같은지 (다시 만들기: npm run vocabulary:generate)
 npm run audit:strict           # 그래프 건강성 (dangling / <!-- INV:DOCUMENTS_TOTAL -->19<!-- /INV:DOCUMENTS_TOTAL -->종 추론 / DAG / 매트릭스 밀도)
 node build/cli.js tools --json # 도구 수 ≥<!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL --> 게이트
 # Smoke 6종: search_safety_laws / get_safety_law_article / analyze_construction_work_risks /

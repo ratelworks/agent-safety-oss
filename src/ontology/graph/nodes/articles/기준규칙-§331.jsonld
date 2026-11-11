@@ -1,6 +1,7 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:기준규칙:331",
+  "delegationOf": ["art:산안법:38"],
   "@type": [
     "Article",
     "Legislation"
@@ -41,7 +42,7 @@
   "legislationLegalForce": "InForce",
   "jurisdiction": "KR",
   "temporalCoverage": "2025-01-02/..",
-  "regulates": [],
+  "regulates": ["activity:concrete_work", "activity:formwork_shoring", "activity:rc_concrete"],
   "appliesTo": [
     "applic:all_workplace"
   ],

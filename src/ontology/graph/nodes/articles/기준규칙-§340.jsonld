@@ -1,6 +1,7 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:기준규칙:340",
+  "delegationOf": ["art:산안법:38"],
   "@type": [
     "Article",
     "Legislation"
@@ -42,7 +43,10 @@
   "jurisdiction": "KR",
   "temporalCoverage": "2025-01-02/..",
   "regulates": [
-    "activity:excavation_2m_plus"
+    "activity:excavation_2m_plus",
+    "activity:drainage_sewerage",
+    "activity:earthwork_landfill",
+    "activity:phc_pile_driving"
   ],
   "appliesTo": [
     "applic:all_workplace"
