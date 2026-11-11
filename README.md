@@ -3,7 +3,7 @@
 [![CI](https://github.com/ratelworks/agent-safety-oss/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ratelworks/agent-safety-oss/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/ratelworks/agent-safety-oss/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/ratelworks/agent-safety-oss/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D20.19-brightgreen)](https://nodejs.org)
+[![Node](https://img.shields.io/badge/node-%3E%3D22.12-brightgreen)](https://nodejs.org)
 [![MCP](https://img.shields.io/badge/MCP-1.x-purple)](https://modelcontextprotocol.io)
 [![Release](https://img.shields.io/badge/release-v1.9.0-blue.svg)](./CHANGELOG.md)
 [![Tools](https://img.shields.io/badge/MCP%20tools-92-orange.svg)](./docs/IDENTITY.md)
@@ -72,7 +72,7 @@ LLM은 이 그래프를 보고 문서를 작성하거나 설명할 수 있지만
 
 ## 시작하기
 
-Node.js 20.19 이상이 필요합니다 ([nodejs.org](https://nodejs.org)). 환경에 맞는 경로 하나를 고르세요.
+Node.js 22.12 이상이 필요합니다 ([nodejs.org](https://nodejs.org)). 환경에 맞는 경로 하나를 고르세요.
 
 | 사용자 환경 | 진입 경로 | 난이도 |
 |---|---|:---:|

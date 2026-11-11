@@ -84,7 +84,7 @@ npm run mcp:inspect
 ### 4.1 언어 / 환경
 
 - **언어**: TypeScript (ES Module)
-- **Node**: >= 20.19 (package.json `engines.node` SSoT, CI matrix 20.19 + 22.x)
+- **Node**: >= 22.12 (package.json `engines.node` SSoT, CI matrix 22.12 + 22.x · 24.x · 26.x)
 - **빌드**: `tsc` + `tsx scripts/build/copy-ontology-assets.ts`
 - **linter**: typecheck strict (`npm run typecheck`)
 
@@ -130,7 +130,7 @@ Co-Authored-By: Name <email>"
 
 ### 5.2 자동 검증 (CI — `.github/workflows/ci.yml` SSoT)
 
-PR 머지 전 다음이 자동 실행됩니다 (Node matrix 20.19 + 22.x):
+PR 머지 전 다음이 자동 실행됩니다 (Node matrix 22.12 + 22.x · 24.x · 26.x):
 
 ```
 npm audit --audit-level=high   # high+ 취약점 회귀 차단

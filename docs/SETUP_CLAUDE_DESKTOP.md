@@ -5,7 +5,7 @@
 ## 준비물
 
 - Claude Desktop
-- Node.js 20.19 이상
+- Node.js 22.12 이상
 - 선택: 공공 OpenAPI 검색용 `AGENTHQ_API_KEY`
 
 키 없이도 다음 기능은 사용할 수 있습니다.
@@ -148,7 +148,7 @@ Claude가 `register_site`, `register_project`, `register_person` 계열 도구�
 ### 도구가 보이지 않음
 
 - JSON 문법을 확인합니다.
-- `node --version`이 20.19 이상인지 확인합니다.
+- `node --version`이 22.12 이상인지 확인합니다.
 - `npx -y agent-safety-oss tools`가 터미널에서 실행되는지 확인합니다.
 - Claude Desktop을 완전히 종료 후 재실행합니다.
 

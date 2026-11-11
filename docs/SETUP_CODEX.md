@@ -8,7 +8,7 @@ Codex CLI 는 본 OSS 의 **2대 메인 MCP host** 중 하나입니다 (Claude D
 
 ## 사전 준비
 
-- **Node.js 20.19 이상** (`node --version` 으로 확인)
+- **Node.js 22.12 이상** (`node --version` 으로 확인)
 - **OpenAI Codex CLI 설치**: 공식 안내 (https://github.com/openai/codex) 참조
 - (선택) `AGENTHQ_API_KEY` 환경변수 — 공공 OpenAPI 검색 도구 (<!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개) 활성화. 없어도 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 도구 정상 동작.
 

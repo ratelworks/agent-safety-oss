@@ -166,7 +166,7 @@ const body = `${sectionAbs}
 
 ## 설치 / 업그레이드
 
-처음 시작 (Node.js 20.19+ 만 있으면 됩니다):
+처음 시작 (Node.js 22.12+ 만 있으면 됩니다):
 
 \`\`\`bash
 npx -y agent-safety-oss viewer   # 브라우저 입력 폼이 바로 열립니다

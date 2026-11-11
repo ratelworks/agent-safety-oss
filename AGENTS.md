@@ -32,7 +32,7 @@ MCP Inspector UI: `npm run mcp:inspect`. Field-style document review: `npm run m
 
 ## Stack & Conventions
 
-- Runtime: **Node.js >=20.19**, ES Modules, TypeScript `strict`
+- Runtime: **Node.js >=22.12**, ES Modules, TypeScript `strict`
 - MCP: `@modelcontextprotocol/sdk` (stdio transport) · CLI: `commander` · Validation: `zod`
 - Graph: `graphology` over JSON-LD 1.1 node files (`src/ontology/graph/nodes/**`)
 - Standards: JSON-LD 1.1, RDF/OWL, SKOS, PROV-O, schema.org, ISO 45001; SHACL shapes for node validation
