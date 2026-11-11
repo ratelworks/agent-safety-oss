@@ -1,13 +1,13 @@
 /**
  * render_a2ui_form
  *
- * docId 를 받아 그래프의 requiredFields/sections.fields 를 A2UI v0.9 JSONL 폼 정의로 변환.
+ * docId 를 받아 그래프의 requiredFields/sections.fields 를 A2UI 1.0 JSONL 폼 정의로 변환.
  * Claude Desktop·MCP Inspector·기타 A2UI 호환 클라이언트가 직접 렌더링.
  *
  * 동작:
  *   1. 노드 로드 → requiredFields 추출
  *   2. profile.jsonld 로드 → 자동 채움 가능한 값 prefill
- *   3. A2UI v0.9 JSONL 메시지 생성 (createSurface + updateComponents)
+ *   3. A2UI 1.0 JSONL 메시지 생성 (createSurface + updateComponents)
  *   4. 사용자 입력 흐름:
  *      - 클라이언트가 폼 렌더 → 사용자 입력
  *      - 패키지 내장 viewer (src/viewer.ts → `agent-safety-oss viewer`) 는 자체적으로 generate_safety_document 호출 + archive + MD 다운로드까지 수행
@@ -27,6 +27,19 @@ import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { findDoc } from "../lib/master-loader.js";
 import { loadProfile, autoFillFromProfile } from "../lib/site-profile.js";
 import { graphRepository } from "../lib/graph-repository.js";
+import {
+  A2UI_VERSION,
+  createSurfaceMessage,
+  updateComponentsMessage,
+  textComponent,
+  fieldComponent,
+  assistPanelComponent,
+  ASSIST_PANEL_ID,
+  initialDraftValue,
+  toJsonl,
+  type A2UIComponent,
+  type A2UIMessage,
+} from "../lib/a2ui.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const NODES_DIR = (() => {
@@ -46,18 +59,6 @@ const inputSchema = z.object({
 });
 
 
-interface A2UIComponent {
-  id: string;
-  component: string;
-  [key: string]: unknown;
-}
-
-interface A2UIMessage {
-  createSurface?: { surfaceId: string; catalogId: string };
-  updateComponents?: { surfaceId: string; root: string; components: A2UIComponent[] };
-  updateDataModel?: { surfaceId: string; op: string; path: string; value: unknown };
-}
-
 function loadNode(docId: string): any | null {
   for (const f of readdirSync(NODES_DIR)) {
     if (!f.endsWith(".jsonld")) continue;
@@ -69,9 +70,9 @@ function loadNode(docId: string): any | null {
   return null;
 }
 
-// 라벨·키를 정밀 분류 → A2UI usageHint 반환.
+// 라벨·키를 정밀 분류 → 입력 종류(inputKind) 반환.
 // 우선순위 — 더 구체적인 패턴 먼저. 미매칭 시 shortText fallback.
-function detectUsageHint(label: string, key: string): string {
+function detectInputKind(label: string, key: string): string {
   const L = (label || "").trim();
   const K = (key || "").trim();
   const lk = `${L}\n${K}`; // 라벨·키를 \n 으로 구분 (단어 경계 보존)
@@ -379,8 +380,8 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const surface = args.surfaceId;
   const messages: A2UIMessage[] = [];
 
-  // 1. createSurface
-  messages.push({ createSurface: { surfaceId: surface, catalogId: "standard" } });
+  // 1. createSurface 는 필드를 다 본 뒤 맨 앞에 넣는다 (자동 채움 값을 데이터 모델로 함께 보냄)
+  const draftModel: Record<string, unknown> = {};
 
   // 2. components — root Column 안에 [title, info, ...fields, submit]
   const components: A2UIComponent[] = [];
@@ -393,7 +394,8 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   // root
   const rootChildren: string[] = ["header", "info-card"];
   if (hasWritingGuide) rootChildren.push("guide-card");
-  rootChildren.push("fields-section", "actions");
+  rootChildren.push("fields-section", ASSIST_PANEL_ID, "actions");
+  components.push(assistPanelComponent());
   components.push({
     id: "root",
     component: "Column",
@@ -401,12 +403,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   });
 
   // header
-  components.push({
-    id: "header",
-    component: "Text",
-    text: node.title ?? args.docId,
-    usageHint: "h1",
-  });
+  components.push(textComponent("header", node.title ?? args.docId, "h1"));
 
   // info card — decision 002 강화: graph-context + lifecycle 추가
   const infoColChildren: string[] = ["info-purpose", "info-meta", "info-laws"];
@@ -432,12 +429,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     component: "Column",
     children: infoColChildren,
   });
-  components.push({
-    id: "info-purpose",
-    component: "Text",
-    text: masterDoc?.purpose ?? node.description?.slice(0, 200) ?? "법정 의무 문서 작성",
-    usageHint: "body",
-  });
+  components.push(textComponent("info-purpose", masterDoc?.purpose ?? node.description?.slice(0, 200) ?? "법정 의무 문서 작성", "body"));
   // 카테고리 코드 → 한국어 (B_위평·G_점검 등 raw enum 노출 방지)
   const CATEGORY_KO: Record<string, string> = {
     A_체제: "안전보건관리체제",
@@ -464,17 +456,12 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     `⏰ 마감: ${masterDoc?.submitDeadline ?? "?"}`,
     `🗄 보관: ${masterDoc?.retention ?? "?"}`,
   ].join(" · ");
-  components.push({ id: "info-meta", component: "Text", text: metaText, usageHint: "caption" });
+  components.push(textComponent("info-meta", metaText, "caption"));
   if (Array.isArray(node.legalBasis) && node.legalBasis.length > 0) {
     const human = node.legalBasis.slice(0, 5).map((iri: string) => humanizeArticleIri(iri));
-    components.push({
-      id: "info-laws",
-      component: "Text",
-      text: `⚖️ 법령근거: ${human.join(" · ")}${node.legalBasis.length > 5 ? ` 외 ${node.legalBasis.length - 5}건` : ""}`,
-      usageHint: "caption",
-    });
+    components.push(textComponent("info-laws", `⚖️ 법령근거: ${human.join(" · ")}${node.legalBasis.length > 5 ? ` 외 ${node.legalBasis.length - 5}건` : ""}`, "caption"));
   } else {
-    components.push({ id: "info-laws", component: "Text", text: "", usageHint: "caption" });
+    components.push(textComponent("info-laws", "", "caption"));
   }
 
   // decision 002 — info-graph-context 인라인 (assemble_doc_context 요약)
@@ -514,12 +501,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
           .join(" · ")})`,
       );
     }
-    components.push({
-      id: "info-graph-context",
-      component: "Text",
-      text: parts.join("\n"),
-      usageHint: "caption",
-    });
+    components.push(textComponent("info-graph-context", parts.join("\n"), "caption"));
   }
 
   // decision 002 — info-lifecycle 인라인
@@ -530,12 +512,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     if (masterDoc?.electronicSubmission?.available)
       lifecycleParts.push(`💻 전자제출: ${masterDoc.electronicSubmission.url ?? "지원"}`);
     if (masterDoc?.retention) lifecycleParts.push(`🗄 보관: ${masterDoc.retention}`);
-    components.push({
-      id: "info-lifecycle",
-      component: "Text",
-      text: lifecycleParts.join(" · "),
-      usageHint: "caption",
-    });
+    components.push(textComponent("info-lifecycle", lifecycleParts.join(" · "), "caption"));
   }
 
   // decision 002 — guide-card (writingGuide 노출)
@@ -544,33 +521,13 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     components.push({ id: "guide-card", component: "Card", child: "guide-col" });
     if (writingGuide.commonMistakes && writingGuide.commonMistakes.length > 0) {
       guideColChildren.push("guide-mistakes-title", "guide-mistakes");
-      components.push({
-        id: "guide-mistakes-title",
-        component: "Text",
-        text: "⚠️ 흔한 실수",
-        usageHint: "h2",
-      });
-      components.push({
-        id: "guide-mistakes",
-        component: "Text",
-        text: writingGuide.commonMistakes.map((m) => `• ${m}`).join("\n"),
-        usageHint: "body",
-      });
+      components.push(textComponent("guide-mistakes-title", "⚠️ 흔한 실수", "h2"));
+      components.push(textComponent("guide-mistakes", writingGuide.commonMistakes.map((m) => `• ${m}`).join("\n"), "body"));
     }
     if (writingGuide.bestPractices && writingGuide.bestPractices.length > 0) {
       guideColChildren.push("guide-practices-title", "guide-practices");
-      components.push({
-        id: "guide-practices-title",
-        component: "Text",
-        text: "✅ 모범 사례",
-        usageHint: "h2",
-      });
-      components.push({
-        id: "guide-practices",
-        component: "Text",
-        text: writingGuide.bestPractices.map((p) => `• ${p}`).join("\n"),
-        usageHint: "body",
-      });
+      components.push(textComponent("guide-practices-title", "✅ 모범 사례", "h2"));
+      components.push(textComponent("guide-practices", writingGuide.bestPractices.map((p) => `• ${p}`).join("\n"), "body"));
     }
     components.push({ id: "guide-col", component: "Column", children: guideColChildren });
   }
@@ -613,28 +570,24 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
     const fieldChildren: string[] = [labelId, inputId, guideId];
 
-    components.push({
-      id: labelId,
-      component: "Text",
-      text: f.label || f.key,
-      usageHint: "h2",
-    });
+    components.push(textComponent(labelId, f.label || f.key, "h2"));
 
     const prefillValue = (prefill as Record<string, unknown>)[f.key];
-    // examples가 [√]/[v]/[O]/[X]/[×]/[ ] 같은 체크 마크 패턴이면 usageHint='check' 강제
+    // examples가 [√]/[v]/[O]/[X]/[×]/[ ] 같은 체크 마크 패턴이면 입력 종류를 check 로 강제
     const isCheckField =
       Array.isArray(f.examples) &&
       f.examples.some((ex) => /^\s*\[\s*(√|v|V|O|o|×|X|x| )\s*\]/.test(String(ex)));
-    components.push({
-      id: inputId,
-      component: "TextField",
-      fieldKey: f.key,
-      draftPath: f.key,
-      label: f.label,
-      value: typeof prefillValue === "string" || typeof prefillValue === "number" ? String(prefillValue) : "",
-      usageHint: isCheckField ? "check" : detectUsageHint(f.label, f.key),
-      ...(f.examples && f.examples.length > 0 ? { placeholder: f.examples[0] } : {}),
-    });
+    const inputKind = isCheckField ? "check" : detectInputKind(f.label, f.key);
+    draftModel[f.key] = initialDraftValue(inputKind, prefillValue);
+    components.push(
+      fieldComponent({
+        id: inputId,
+        fieldKey: f.key,
+        label: f.label || f.key,
+        inputKind,
+        placeholder: f.examples && f.examples.length > 0 ? f.examples[0] : undefined,
+      }),
+    );
 
     // decision 002 — guide 강화 (inputGuide + examples + checkPoints)
     const guideParts: string[] = [];
@@ -644,23 +597,13 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     if (checkPoints && checkPoints.length > 0) {
       guideParts.push(`☑️ 점검: ${checkPoints.slice(0, 3).join(" / ")}`);
     }
-    components.push({
-      id: guideId,
-      component: "Text",
-      text: guideParts.join("  ·  ") || "",
-      usageHint: "caption",
-    });
+    components.push(textComponent(guideId, guideParts.join("  ·  ") || "", "caption"));
 
     // decision 002 — fieldHint (writingGuide.fieldHints 라벨 매칭) — 있을 때만
     const fieldHint = findFieldHint(f.label, f.key);
     if (fieldHint) {
       fieldChildren.push(hintId);
-      components.push({
-        id: hintId,
-        component: "Text",
-        text: `🧠 ${fieldHint}`,
-        usageHint: "caption",
-      });
+      components.push(textComponent(hintId, `🧠 ${fieldHint}`, "caption"));
     }
 
     fieldGroupChildren.push(fieldId);
@@ -684,7 +627,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       "preview-btn",
       "submit-btn",
     ],
-    distribution: "spaceBetween",
+    justify: "spaceBetween",
   });
 
   // decision 002 — analyze-btn: 작업명 → 그래프 종합 컨텍스트
@@ -692,10 +635,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "analyze-btn",
     component: "Button",
     child: "analyze-text",
-    action: {
-      name: "analyze_work_context",
-      payload: { docId: args.docId, surfaceId: surface },
-    },
+    action: { event: { name: "analyze_work_context", context: { docId: args.docId, surfaceId: surface } } },
   });
   components.push({
     id: "analyze-text",
@@ -708,10 +648,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "controls-btn",
     component: "Button",
     child: "controls-text",
-    action: {
-      name: "suggest_controls_for_hazard",
-      payload: { docId: args.docId, surfaceId: surface },
-    },
+    action: { event: { name: "suggest_controls_for_hazard", context: { docId: args.docId, surfaceId: surface } } },
   });
   components.push({
     id: "controls-text",
@@ -724,10 +661,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "help-btn",
     component: "Button",
     child: "help-text",
-    action: {
-      name: "request_field_help",
-      payload: { docId: args.docId, surfaceId: surface },
-    },
+    action: { event: { name: "request_field_help", context: { docId: args.docId, surfaceId: surface } } },
   });
   components.push({
     id: "help-text",
@@ -740,10 +674,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "preview-review-btn",
     component: "Button",
     child: "preview-review-text",
-    action: {
-      name: "preview_review",
-      payload: { docId: args.docId, surfaceId: surface, scope: "all" },
-    },
+    action: { event: { name: "preview_review", context: { docId: args.docId, surfaceId: surface, scope: "all" } } },
   });
   components.push({
     id: "preview-review-text",
@@ -756,7 +687,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "preview-btn",
     component: "Button",
     child: "preview-text",
-    action: { name: "assemble_doc_context", payload: { docId: args.docId } },
+    action: { event: { name: "assemble_doc_context", context: { docId: args.docId } } },
   });
   components.push({ id: "preview-text", component: "Text", text: "🧭 온톨로지 그래프" });
 
@@ -765,22 +696,17 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "submit-btn",
     component: "Button",
     child: "submit-text",
-    action: { name: "submit_safety_document", payload: { docId: args.docId, surfaceId: surface } },
+    action: { event: { name: "submit_safety_document", context: { docId: args.docId, surfaceId: surface } } },
   });
   components.push({ id: "submit-text", component: "Text", text: "📥 작성 완료" });
 
-  messages.push({
-    updateComponents: {
-      surfaceId: surface,
-      root: "root",
-      components,
-    },
-  });
+  messages.push(createSurfaceMessage(surface, draftModel));
+  messages.push(updateComponentsMessage(surface, components));
 
   // 출력 — JSONL (A2UI 표준) 또는 단일 JSON
   const output =
     args.format === "jsonl"
-      ? messages.map((m) => JSON.stringify(m)).join("\n")
+      ? toJsonl(messages)
       : JSON.stringify({ messages }, null, 2);
 
   return {
@@ -794,7 +720,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       componentCount: components.length,
       fieldPathMap,
       fieldLabelMap,
-      a2uiVersion: "v0.9",
+      a2uiVersion: A2UI_VERSION,
       format: args.format,
       messages,
       // decision 002 — 그래프 컨텍스트 + writingGuide 노출 (LLM 능동 호출에 활용)
@@ -832,7 +758,7 @@ export const renderA2UIFormTool: ToolDefinition = {
   name: "render_a2ui_form",
   title: "A2UI 안전문서 입력 폼 렌더 (Active Graph Authoring Loop)",
   description:
-    "docId 를 받아 그래프 노드의 작성 필드를 A2UI v0.9 JSONL 폼 정의로 변환한다. decision 002 강화: (1) info-card 에 그래프 컨텍스트 inline (위험요인·통제대책·KOSHA Guide·연계문서·라이프사이클) (2) _meta.writingGuide.commonMistakes / bestPractices 를 guide-card 로 노출 (3) 필드별 inputGuide·examples·checkPoints + _meta.writingGuide.fieldHints 매칭 (4) actions Row 에 6 개 액션 버튼 — analyze_work_context / suggest_controls_for_hazard / request_field_help / preview_review / assemble_doc_context / submit_safety_document. profile.jsonld 자동 채움. 비-개발자 안전관리자가 브라우저(viewer)/Claude Desktop/Inspector 에서 직접 사용 가능. 동적 입력 협업의 진입점이자 decision 002 Active Graph Authoring Loop 의 1단계.",
+    "docId 를 받아 그래프 노드의 작성 필드를 A2UI 1.0 JSONL 폼 정의로 변환한다. decision 002 강화: (1) info-card 에 그래프 컨텍스트 inline (위험요인·통제대책·KOSHA Guide·연계문서·라이프사이클) (2) _meta.writingGuide.commonMistakes / bestPractices 를 guide-card 로 노출 (3) 필드별 inputGuide·examples·checkPoints + _meta.writingGuide.fieldHints 매칭 (4) actions Row 에 6 개 액션 버튼 — analyze_work_context / suggest_controls_for_hazard / request_field_help / preview_review / assemble_doc_context / submit_safety_document. profile.jsonld 자동 채움. 비-개발자 안전관리자가 브라우저(viewer)/Claude Desktop/Inspector 에서 직접 사용 가능. 동적 입력 협업의 진입점이자 decision 002 Active Graph Authoring Loop 의 1단계.",
   inputSchema,
   handler,
 };

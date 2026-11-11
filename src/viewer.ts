@@ -1,7 +1,7 @@
 /**
  * viewer.ts
  *
- * A2UI v0.9 JSONL 을 브라우저에서 폼으로 렌더링하는 운영 viewer.
+ * A2UI 1.0 JSONL 을 브라우저에서 폼으로 렌더링하는 운영 viewer.
  * agent-safety-oss 의 사용자 표면 — 비-개발자 안전관리자가 직접 사용.
  * 의존성 0 (Node 표준만) → 빌드되어 npm 패키지(build/viewer.js)에 포함된다.
  *
@@ -219,7 +219,7 @@ const HTML = `<!doctype html>
   .Row.spaceBetween { justify-content: space-between; }
   .Card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: var(--space-6); margin: var(--space-3) 0; }
 
-  /* Text usageHint variants */
+  /* Text 종류별 모양 */
   .h1 { font-family: var(--font-display); font-size: 26px; font-weight: 800; margin: var(--space-4) 0 var(--space-2); color: var(--foreground); letter-spacing: -0.02em; }
   .h2 { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin: var(--space-6) 0 var(--space-2); color: var(--foreground); padding-top: var(--space-3); border-top: 1px solid var(--border); }
   .body { color: var(--foreground); font-size: 14px; margin: var(--space-1) 0; }
@@ -614,26 +614,68 @@ async function loadForm(target) {
   }
 }
 
+// A2UI 1.0 — 지원하는 메시지 버전과 뿌리 컴포넌트 id
+const A2UI_VERSION = '1.0';
+const ROOT_COMPONENT_ID = 'root';
+let surfaceDataModel = {};
+
 function render(messages, summary) {
-  // A2UI v0.9 렌더링 — createSurface + updateComponents
+  // A2UI 1.0 렌더링 — createSurface(데이터 모델) + updateComponents, 뿌리는 id 가 root 인 컴포넌트
   const allComponents = {};
+  surfaceDataModel = {};
   for (const m of messages) {
+    if (m.version !== A2UI_VERSION) {
+      setStatus('err', '지원하지 않는 A2UI 버전: ' + (m.version || '(없음)'));
+      return;
+    }
+    if (m.createSurface && m.createSurface.dataModel) surfaceDataModel = m.createSurface.dataModel;
     if (m.updateComponents) {
       for (const c of m.updateComponents.components) {
         allComponents[c.id] = c;
       }
-      const rootId = m.updateComponents.root || 'root';
-      const el = renderComponent(rootId, allComponents);
-      root.appendChild(el);
     }
+  }
+  if (allComponents[ROOT_COMPONENT_ID]) {
+    root.appendChild(renderComponent(ROOT_COMPONENT_ID, allComponents));
   }
 }
 
+// 컴포넌트의 확장 메타(양식 필드 키·입력 종류·저장 위치)
+function extensionsOf(c) {
+  return (c['@metadata'] && c['@metadata'].extensions) || {};
+}
+
+// 데이터 모델 경로(JSON Pointer)에서 값 읽기
+function readDataModel(pointer) {
+  let cur = surfaceDataModel;
+  for (const raw of String(pointer).split('/').slice(1)) {
+    const seg = raw.replace(/~1/g, '/').replace(/~0/g, '~');
+    if (cur == null || typeof cur !== 'object') return undefined;
+    cur = cur[seg];
+  }
+  return cur;
+}
+
+// 입력 컴포넌트의 현재 값 — 경로 바인딩이면 데이터 모델에서, 선택형 목록은 첫 원소
+function boundValue(c) {
+  let v = c.value;
+  if (v && typeof v === 'object' && !Array.isArray(v) && typeof v['@path'] === 'string') v = readDataModel(v['@path']);
+  if (Array.isArray(v)) v = v.length > 0 ? v[0] : '';
+  return v == null ? '' : v;
+}
+
+// 버튼 동작 — 이벤트 이름과 문맥
+function actionOf(c) {
+  const ev = c.action && c.action.event;
+  return ev ? { name: ev.name, payload: ev.context || {} } : null;
+}
+
 function bindFieldMeta(el, c) {
+  const ext = extensionsOf(c);
   el.dataset.fieldId = c.id;
-  if (c.fieldKey) el.dataset.fieldKey = c.fieldKey;
-  if (c.draftPath) el.dataset.draftPath = c.draftPath;
-  if (c.profilePath) el.dataset.profilePath = c.profilePath;
+  if (ext.fieldKey) el.dataset.fieldKey = ext.fieldKey;
+  if (ext.fieldKey) el.dataset.draftPath = ext.fieldKey;
+  if (ext.profilePath) el.dataset.profilePath = ext.profilePath;
 }
 
 function renderComponent(id, all) {
@@ -651,7 +693,7 @@ function renderComponent(id, all) {
     }
     case 'Row': {
       const div = document.createElement('div');
-      div.className = 'Row' + (c.distribution === 'spaceBetween' ? ' spaceBetween' : '');
+      div.className = 'Row' + (c.justify === 'spaceBetween' ? ' spaceBetween' : '');
       for (const childId of (c.children || [])) {
         div.appendChild(renderComponent(childId, all));
       }
@@ -664,13 +706,20 @@ function renderComponent(id, all) {
       return div;
     }
     case 'Text': {
-      const tag = c.usageHint === 'h1' ? 'h1' : c.usageHint === 'h2' ? 'h2' : c.usageHint === 'body' ? 'p' : 'small';
+      // 제목은 Markdown 머리표(# / ##), 주석은 variant caption, 그 밖은 본문
+      let textValue = String(c.text || '');
+      let kind = c.variant === 'caption' ? 'caption' : 'body';
+      if (textValue.startsWith('## ')) { kind = 'h2'; textValue = textValue.slice(3); }
+      else if (textValue.startsWith('# ')) { kind = 'h1'; textValue = textValue.slice(2); }
+      const tag = kind === 'h1' ? 'h1' : kind === 'h2' ? 'h2' : kind === 'body' ? 'p' : 'small';
       const el = document.createElement(tag);
-      el.className = c.usageHint || 'body';
+      el.className = kind;
       // 이모지 → Material Symbols 인라인 치환
-      el.innerHTML = replaceEmojiWithIcons(c.text || '');
+      el.innerHTML = replaceEmojiWithIcons(textValue);
       return el;
     }
+    case 'DateTimeInput':
+    case 'ChoicePicker':
     case 'TextField': {
       const wrapper = document.createElement('div');
       wrapper.className = 'field-block';
@@ -679,7 +728,12 @@ function renderComponent(id, all) {
       label.textContent = c.label || '';
       wrapper.appendChild(label);
 
-      const hint = c.usageHint || 'shortText';
+      // 입력 종류 — 확장 메타가 우선, 없으면 컴포넌트 종류와 variant 로 정한다
+      const fallbackKind = c.component === 'DateTimeInput'
+        ? (c.enableDate && c.enableTime ? 'datetime' : c.enableTime ? 'time' : 'date')
+        : c.component === 'ChoicePicker' ? 'choice' : (c.variant || 'shortText');
+      const hint = extensionsOf(c).inputKind || fallbackKind;
+      const fieldValue = boundValue(c);
 
       // 명백 enum 라벨 → select (성별/국적/고용형태/근로형태/혼인/잔존 위험도)
       const ENUM_BY_LABEL = {
@@ -702,7 +756,7 @@ function renderComponent(id, all) {
         for (const [val, txt] of opts) {
           const o = document.createElement('option');
           o.value = val; o.textContent = txt;
-          if (c.value === val) o.selected = true;
+          if (fieldValue === val) o.selected = true;
           select.appendChild(o);
         }
         wrapper.appendChild(select);
@@ -728,8 +782,8 @@ function renderComponent(id, all) {
 
         const buttons = [];
         let curState = '';
-        // prefill 분석: c.value가 "[√] ..." 형태면 prefix 매칭
-        const initVal = String(c.value ?? '');
+        // prefill 분석: 값이 "[√] ..." 형태면 prefix 매칭
+        const initVal = String(fieldValue);
         for (const s of STATES) {
           if (initVal.startsWith(s.prefix)) {
             curState = s.val;
@@ -773,7 +827,21 @@ function renderComponent(id, all) {
         for (const opt of [['', '— 선택 —'], ['예', '예 / 적합'], ['아니오', '아니오 / 부적합'], ['해당없음', '해당없음']]) {
           const o = document.createElement('option');
           o.value = opt[0]; o.textContent = opt[1];
-          if (c.value === opt[0]) o.selected = true;
+          if (fieldValue === opt[0]) o.selected = true;
+          select.appendChild(o);
+        }
+        wrapper.appendChild(select);
+        return wrapper;
+      }
+
+      // 그 밖의 선택형 → 컴포넌트가 준 선택지로 select
+      if (hint === 'choice') {
+        const select = document.createElement('select');
+        bindFieldMeta(select, c);
+        for (const opt of [{ value: '', label: '— 선택 —' }, ...(c.options || [])]) {
+          const o = document.createElement('option');
+          o.value = opt.value; o.textContent = opt.label;
+          if (fieldValue === opt.value) o.selected = true;
           select.appendChild(o);
         }
         wrapper.appendChild(select);
@@ -783,14 +851,14 @@ function renderComponent(id, all) {
       // longText → textarea
       if (hint === 'longText') {
         const ta = document.createElement('textarea');
-        ta.value = String(c.value ?? '');
+        ta.value = String(fieldValue);
         ta.placeholder = c.placeholder || '';
         bindFieldMeta(ta, c);
         wrapper.appendChild(ta);
         return wrapper;
       }
 
-      // 그 외 input — usageHint 별 type 매핑
+      // 그 외 input — 입력 종류별 type 매핑
       const TYPE_MAP = {
         date: 'date',
         datetime: 'datetime-local',
@@ -817,7 +885,7 @@ function renderComponent(id, all) {
       if (hint === 'signature') input.placeholder = c.placeholder || '성명 (서명)';
 
       // value 정규화 — TS template literal escape 회피 위해 [0-9] 사용
-      let v = c.value == null ? '' : String(c.value);
+      let v = String(fieldValue);
       if (input.type === 'date') {
         const m = v.match(/([0-9]{4}-[0-9]{2}-[0-9]{2})/);
         v = m ? m[1] : '';
@@ -839,7 +907,8 @@ function renderComponent(id, all) {
     }
     case 'Button': {
       const btn = document.createElement('button');
-      const isPrimary = c.action?.name?.includes('save') || c.action?.name?.includes('submit');
+      const action = actionOf(c);
+      const isPrimary = c.variant === 'primary' || action?.name?.includes('save') || action?.name?.includes('submit');
       btn.className = 'Button ' + (isPrimary ? 'primary' : 'secondary');
       // Material Symbols 매핑
       const ICON_MAP = {
@@ -848,7 +917,7 @@ function renderComponent(id, all) {
         assemble_doc_context: 'hub',
         clear_site_profile: 'delete',
       };
-      const iconName = c.action?.name ? ICON_MAP[c.action.name] : null;
+      const iconName = action?.name ? ICON_MAP[action.name] : null;
       if (iconName) {
         const icon = document.createElement('span');
         icon.className = 'material-symbols-outlined';
@@ -865,7 +934,7 @@ function renderComponent(id, all) {
       }
       btn.onclick = (e) => {
         e.preventDefault();
-        handleAction(c.action);
+        handleAction(action);
       };
       return btn;
     }

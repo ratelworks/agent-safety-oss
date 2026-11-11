@@ -21,7 +21,7 @@
  *
  * 반환:
  *   - content: Markdown 컨텍스트 요약
- *   - structuredContent.a2uiUpdate: viewer 가 적용 가능한 updateComponents JSONL
+ *   - structuredContent.a2uiUpdate: viewer 가 적용 가능한 updateComponents 메시지(A2UI 1.0)
  *   - nextActions: LLM 후속 도구 추천
  */
 import { z } from "zod";
@@ -32,6 +32,7 @@ import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { graphRepository } from "../lib/graph-repository.js";
 import { renderIri } from "../lib/iri-renderer.js";
 import { extractArticleBody, extractAnnexBody } from "../lib/law-body-extractor.js";
+import { updateComponentsMessage, textComponent, assistPanelComponent, type A2UIMessage } from "../lib/a2ui.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -432,32 +433,17 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     .filter(Boolean)
     .join(" · ");
   const a2uiUpdate = [
-    {
-      updateComponents: {
-        surfaceId: args.surfaceId,
-        root: "root",
-        components: [
+    updateComponentsMessage(args.surfaceId, [
+          assistPanelComponent([cardId]),
           { id: cardId, component: "Card", child: colId },
           {
             id: colId,
             component: "Column",
             children: [titleId, summaryId],
           },
-          {
-            id: titleId,
-            component: "Text",
-            text: `📋 "${args.workName}" 그래프 컨텍스트`,
-            usageHint: "h2",
-          },
-          {
-            id: summaryId,
-            component: "Text",
-            text: summaryText || "(매칭 결과 없음 — workName 키워드 조정 권장)",
-            usageHint: "body",
-          },
-        ],
-      },
-    },
+          textComponent(titleId, `📋 "${args.workName}" 그래프 컨텍스트`, "h2"),
+          textComponent(summaryId, summaryText || "(매칭 결과 없음 — workName 키워드 조정 권장)", "body"),
+    ]),
   ];
 
   return {

@@ -24,6 +24,7 @@
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { reviewSafetyDocumentTool } from "./review-safety-document.js";
+import { updateComponentsMessage, textComponent, assistPanelComponent, type A2UIMessage } from "../lib/a2ui.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("법정문서 docId"),
@@ -135,7 +136,7 @@ function buildA2UIUpdate(
   surfaceId: string,
   overall: string,
   checks: CheckResult[],
-): Array<Record<string, unknown>> {
+): A2UIMessage[] {
   const cardId = `preview-review-${Date.now()}-card`;
   const colId = `${cardId}-col`;
   const titleId = `${cardId}-title`;
@@ -153,36 +154,21 @@ function buildA2UIUpdate(
   const failRows = checks
     .filter((c) => c.status === "fail")
     .slice(0, 5)
-    .map((c, i) => ({
-      id: `${cardId}-fail-${i}`,
-      component: "Text",
-      text: `❌ ${c.rule}${c.reason ? ` — ${c.reason}` : ""}`,
-      usageHint: "body",
-    }));
+    .map((c, i) => (textComponent(`${cardId}-fail-${i}`, `❌ ${c.rule}${c.reason ? ` — ${c.reason}` : ""}`, "body")));
 
   return [
-    {
-      updateComponents: {
-        surfaceId,
-        root: "root",
-        components: [
+    updateComponentsMessage(surfaceId, [
+          assistPanelComponent([cardId]),
           { id: cardId, component: "Card", child: colId },
           {
             id: colId,
             component: "Column",
             children: [titleId, summaryId, ...failRows.map((r) => r.id)],
           },
-          {
-            id: titleId,
-            component: "Text",
-            text: `📝 부분 검토 결과`,
-            usageHint: "h2",
-          },
-          { id: summaryId, component: "Text", text: overallText, usageHint: "body" },
+          textComponent(titleId, `📝 부분 검토 결과`, "h2"),
+          textComponent(summaryId, overallText, "body"),
           ...failRows,
-        ],
-      },
-    },
+    ]),
   ];
 }
 

@@ -140,7 +140,7 @@ npx -y agent-safety-oss viewer
 5. **검수** → 빠진 필수 항목 / 결재 가능 여부 / 환각 차단 검증
 6. **MD 다운로드** 또는 LocalStorage 보관
 
-> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/) · 한글/한컴오피스 · [Typora](https://typora.io/) 등으로 변환합니다. 이 폼은 [Google A2UI](https://github.com/google/a2ui) v0.9 (Agent-UI 표준) 기반입니다.
+> PDF 출력이 필요하면 다운로드한 `.md` 를 [Pandoc](https://pandoc.org/) · 한글/한컴오피스 · [Typora](https://typora.io/) 등으로 변환합니다. 이 폼은 [A2UI](https://github.com/a2ui-project/a2ui) 1.0 (에이전트 UI 표준) 기반입니다.
 
 ### C. 터미널 · CI · 개발자
 

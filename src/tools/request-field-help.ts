@@ -15,12 +15,13 @@
  *
  * 반환:
  *   - content: Markdown 도움말 (LLM 이 그대로 폼에 push 가능)
- *   - structuredContent.a2uiUpdate: viewer 가 직접 적용 가능한 updateComponents JSONL
+ *   - structuredContent.a2uiUpdate: viewer 가 직접 적용 가능한 updateComponents 메시지(A2UI 1.0)
  *   - nextActions: LLM 후속 도구 추천
  */
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { graphRepository } from "../lib/graph-repository.js";
+import { updateComponentsMessage, textComponent, assistPanelComponent, type A2UIMessage } from "../lib/a2ui.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("법정문서 docId (예: daily_tbm)"),
@@ -144,21 +145,16 @@ function buildA2UIUpdate(
   surfaceId: string,
   field: FieldDefinition,
   helpText: string,
-): Array<Record<string, unknown>> {
+): A2UIMessage[] {
   // updateComponents 메시지 — help 카드를 폼에 push
   const helpCardId = `help-${field.key}-card`;
   const helpTextId = `help-${field.key}-text`;
   return [
-    {
-      updateComponents: {
-        surfaceId,
-        root: "root",
-        components: [
+    updateComponentsMessage(surfaceId, [
+          assistPanelComponent([helpCardId]),
           { id: helpCardId, component: "Card", child: helpTextId },
-          { id: helpTextId, component: "Text", text: helpText, usageHint: "body" },
-        ],
-      },
-    },
+          textComponent(helpTextId, helpText, "body"),
+    ]),
   ];
 }
 

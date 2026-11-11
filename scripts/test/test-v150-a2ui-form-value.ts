@@ -5,7 +5,7 @@
  * v1.5.0 양방향 그래프 통합이 A2UI 폼 (사용자 진입점) 에 노출하는 가이드/법령
  * 빈칸 자동 채움 효과 정밀 측정.
  *
- * render_a2ui_form 의 v0.9 JSONL 결과를 파싱하여:
+ * render_a2ui_form 의 A2UI 1.0 JSONL 결과를 파싱하여:
  *   - info-card 안에 노출된 KOSHA Guide IRI 카운트
  *   - info-card 안에 노출된 art:* 법령 IRI 카운트
  *   - guide-card / hazard-card 등 추가 데이터 영역 카운트

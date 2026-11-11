@@ -17,7 +17,7 @@
  *
  * 반환:
  *   - content: Markdown 위계별 표
- *   - structuredContent.a2uiUpdate: viewer 가 적용 가능한 updateComponents JSONL
+ *   - structuredContent.a2uiUpdate: viewer 가 적용 가능한 updateComponents 메시지(A2UI 1.0)
  *   - nextActions: LLM 후속 도구 추천
  */
 import { z } from "zod";
@@ -26,6 +26,7 @@ import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { graphRepository } from "../lib/graph-repository.js";
+import { updateComponentsMessage, textComponent, assistPanelComponent, type A2UIMessage } from "../lib/a2ui.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const HAZARDS_DIR = (() => {
@@ -208,38 +209,23 @@ function buildA2UIUpdate(
   surfaceId: string,
   hazardLabel: string,
   controls: ControlInfo[],
-): Array<Record<string, unknown>> {
+): A2UIMessage[] {
   const cardId = `controls-${Date.now()}-card`;
   const colId = `${cardId}-col`;
   const titleId = `${cardId}-title`;
-  const rows = controls.map((c, i) => ({
-    id: `${cardId}-row-${i}`,
-    component: "Text",
-    text: `[${c.ericLabel}] ${c.label}${c.isDirectForDoc ? " ⭐" : ""}`,
-    usageHint: "body",
-  }));
+  const rows = controls.map((c, i) => (textComponent(`${cardId}-row-${i}`, `[${c.ericLabel}] ${c.label}${c.isDirectForDoc ? " ⭐" : ""}`, "body")));
   return [
-    {
-      updateComponents: {
-        surfaceId,
-        root: "root",
-        components: [
+    updateComponentsMessage(surfaceId, [
+          assistPanelComponent([cardId]),
           { id: cardId, component: "Card", child: colId },
           {
             id: colId,
             component: "Column",
             children: [titleId, ...rows.map((r) => r.id)],
           },
-          {
-            id: titleId,
-            component: "Text",
-            text: `🛡 "${hazardLabel}" 통제대책 추천 (ERIC-PP 위계)`,
-            usageHint: "h2",
-          },
+          textComponent(titleId, `🛡 "${hazardLabel}" 통제대책 추천 (ERIC-PP 위계)`, "h2"),
           ...rows,
-        ],
-      },
-    },
+    ]),
   ];
 }
 

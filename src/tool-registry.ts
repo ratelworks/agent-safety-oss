@@ -158,7 +158,7 @@ export const TOOLS: ToolDefinition[] = [
   listDownloadableFormsTool, // ⭐ 132종 양식 인덱스·필터 (§1.2 작성)
   exportDraftedDocumentTool, // ⭐ draft → HTML/Markdown 출력 (§1.2·§1.4)
   assembleDocContextTool, // ⭐⭐ docId → 그래프 traversal 완전 컨텍스트 조립 (LLM 추측 없는 결정론적 작성 지원)
-  renderA2UIFormTool, // ⭐⭐ docId → A2UI v0.9 JSONL 폼 (Claude Desktop·Inspector 직접 렌더 + 동적 입력)
+  renderA2UIFormTool, // ⭐⭐ docId → A2UI 1.0 JSONL 폼 (Claude Desktop·Inspector 직접 렌더 + 동적 입력)
   renderProfileInputFormTool, // ⭐⭐⭐ Profile 통합 입력 폼 (사업장+현장+인력 한 번 등록 → 94종 자동 채움)
   saveProfileFromFormTool, // ⭐⭐⭐ Profile 폼 입력값 → profile.jsonld 일괄 저장
   // ─── 8. Active Graph Authoring Loop (decision 002, 2026-05-21) — A2UI ↔ LLM ↔ Graph 능동 루프 ───

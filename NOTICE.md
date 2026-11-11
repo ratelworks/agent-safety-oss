@@ -11,6 +11,13 @@ All source code in this repository is licensed under the **MIT License** —
 see [`LICENSE`](./LICENSE). You may use, modify, and redistribute the code
 freely, including commercially, as long as you preserve the copyright notice.
 
+### Third-Party Test Fixtures
+
+- **A2UI specification schemas** (`scripts/test/fixtures/a2ui-1.0/`) — copied
+  unmodified from <https://github.com/a2ui-project/a2ui>, licensed under the
+  Apache License 2.0. Used only by the test suite to validate A2UI output;
+  not included in the published npm package.
+
 ---
 
 ## 2. Upstream Data License

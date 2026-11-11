@@ -19,6 +19,16 @@
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { loadProfile } from "../lib/site-profile.js";
+import {
+  A2UI_VERSION,
+  createSurfaceMessage,
+  updateComponentsMessage,
+  textComponent,
+  fieldComponent,
+  initialDraftValue,
+  toJsonl,
+  type A2UIComponent,
+} from "../lib/a2ui.js";
 
 const inputSchema = z.object({
   surfaceId: z.string().default("profile-form"),
@@ -28,11 +38,6 @@ const inputSchema = z.object({
 });
 
 
-interface A2UIComponent {
-  id: string;
-  component: string;
-  [key: string]: unknown;
-}
 
 // 섹션별 필드 정의 (key, label, inputGuide, examples, profile path)
 interface FormField {
@@ -126,6 +131,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const prefill = args.prefillFromExisting ? await buildPrefill() : {};
 
   const components: A2UIComponent[] = [];
+  const draftModel: Record<string, unknown> = {};
 
   // root
   components.push({
@@ -134,24 +140,14 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     children: ["title", "intro", "intro-note", "section-site", "section-project", "section-person", "actions"],
   });
 
-  components.push({ id: "title", component: "Text", text: "공통 메타 등록 (모든 양식 자동 채움)", usageHint: "h1" });
-  components.push({
-    id: "intro",
-    component: "Text",
-    text: "94종 법정문서가 공통으로 사용하는 핵심 14개 필드만 받습니다. 사업장 5 + 공사 5 + 결재선 4명. 한 번 입력하면 모든 양식에 자동 채움.",
-    usageHint: "body",
-  });
-  components.push({
-    id: "intro-note",
-    component: "Text",
-    text: "💡 자격번호·연락처·산재보험번호·안전보건경영방침 본문 등 양식별 부가 정보는 별도 등록 도구로 추가하세요.",
-    usageHint: "caption",
-  });
+  components.push(textComponent("title", "공통 메타 등록 (모든 양식 자동 채움)", "h1"));
+  components.push(textComponent("intro", "94종 법정문서가 공통으로 사용하는 핵심 14개 필드만 받습니다. 사업장 5 + 공사 5 + 결재선 4명. 한 번 입력하면 모든 양식에 자동 채움.", "body"));
+  components.push(textComponent("intro-note", "💡 자격번호·연락처·산재보험번호·안전보건경영방침 본문 등 양식별 부가 정보는 별도 등록 도구로 추가하세요.", "caption"));
 
   // 섹션 빌더
   function buildSection(sectionId: string, title: string, fields: FormField[]): void {
     const sectionChildren: string[] = [`${sectionId}-title`];
-    components.push({ id: `${sectionId}-title`, component: "Text", text: title, usageHint: "h2" });
+    components.push(textComponent(`${sectionId}-title`, title, "h2"));
 
     for (const f of fields) {
       const fieldId = `${sectionId}-${f.key.replace(/\./g, "-")}`;
@@ -161,18 +157,20 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
         component: "Column",
         children: [`${fieldId}-input`, `${fieldId}-guide`],
       });
-      components.push({
-        id: `${fieldId}-input`,
-        component: "TextField",
-        fieldKey: f.key,
-        profilePath: f.profilePath,
-        label: f.label,
-        value: prefill[f.key] ?? "",
-        placeholder: f.examples[0] ?? "",
-        usageHint: f.label.includes("본문") ? "longText" : "shortText",
-      });
+      const inputKind = f.label.includes("본문") ? "longText" : "shortText";
+      draftModel[f.key] = initialDraftValue(inputKind, prefill[f.key]);
+      components.push(
+        fieldComponent({
+          id: `${fieldId}-input`,
+          fieldKey: f.key,
+          profilePath: f.profilePath,
+          label: f.label,
+          inputKind,
+          placeholder: f.examples[0] || undefined,
+        }),
+      );
       const guide = `💡 ${f.inputGuide}` + (f.examples[0] ? ` · 예: ${f.examples[0]}` : "");
-      components.push({ id: `${fieldId}-guide`, component: "Text", text: guide, usageHint: "caption" });
+      components.push(textComponent(`${fieldId}-guide`, guide, "caption"));
     }
 
     components.push({ id: sectionId, component: "Card", child: `${sectionId}-col` });
@@ -194,27 +192,24 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "actions",
     component: "Row",
     children: ["save-btn", "clear-btn"],
-    distribution: "spaceBetween",
+    justify: "spaceBetween",
   });
   components.push({
     id: "save-btn",
     component: "Button",
     child: "save-text",
-    action: { name: "save_profile_from_form", payload: { surfaceId: surface } },
+    action: { event: { name: "save_profile_from_form", context: { surfaceId: surface } } },
   });
   components.push({ id: "save-text", component: "Text", text: "💾 저장 — 이후 모든 양식에 자동 채움" });
   components.push({
     id: "clear-btn",
     component: "Button",
     child: "clear-text",
-    action: { name: "clear_site_profile", payload: { confirm: true } },
+    action: { event: { name: "clear_site_profile", context: { confirm: true } } },
   });
   components.push({ id: "clear-text", component: "Text", text: "🗑 초기화" });
 
-  const messages = [
-    { createSurface: { surfaceId: surface, catalogId: "standard" } },
-    { updateComponents: { surfaceId: surface, root: "root", components } },
-  ];
+  const messages = [createSurfaceMessage(surface, draftModel), updateComponentsMessage(surface, components)];
 
   // 모든 form key → profile path 매핑 (save_profile_from_form 가 사용)
   const fieldPathMap: Record<string, string> = {};
@@ -226,7 +221,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   const output =
     args.format === "jsonl"
-      ? messages.map((m) => JSON.stringify(m)).join("\n")
+      ? toJsonl(messages)
       : JSON.stringify({ messages }, null, 2);
 
   return {
@@ -241,7 +236,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       prefilledCount: Object.keys(prefill).length,
       componentCount: components.length,
       fieldPathMap,
-      a2uiVersion: "v0.9",
+      a2uiVersion: A2UI_VERSION,
       principle: "공통 메타만 — autoFillFromProfile 이 매 양식마다 fillIfEmpty 호출하는 14 필드",
       nextActions: [
         "Claude Desktop / MCP Inspector 가 폼 렌더 → 사용자 입력",
@@ -257,7 +252,7 @@ export const renderProfileInputFormTool: ToolDefinition = {
   name: "render_profile_input_form",
   title: "공통 메타 입력 폼 (모든 양식 자동 채움)",
   description:
-    "94종 법정문서가 공통으로 사용하는 핵심 14 필드만 받는 A2UI v0.9 폼. 사업장 5(사업장명·사업자번호·주소·업종코드·대표자) + 현재 공사 5(공사명·기간·금액·공종) + 결재선 4명(안전관리자·관리감독자·현장소장·근로자대표 성명). 한 번 저장하면 모든 양식이 자동 채움. 부가 정보는 register_* 도구로 별도 등록.",
+    "94종 법정문서가 공통으로 사용하는 핵심 14 필드만 받는 A2UI 1.0 폼. 사업장 5(사업장명·사업자번호·주소·업종코드·대표자) + 현재 공사 5(공사명·기간·금액·공종) + 결재선 4명(안전관리자·관리감독자·현장소장·근로자대표 성명). 한 번 저장하면 모든 양식이 자동 채움. 부가 정보는 register_* 도구로 별도 등록.",
   inputSchema,
   handler,
 };
