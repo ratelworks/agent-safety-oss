@@ -5,6 +5,15 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] — 2026-11-11
+
+AI 비서 연결이 MCP 최신 규격(2026-07-28)을 지원합니다. 이전 규격을 쓰는 AI 비서도 그대로 연결됩니다.
+
+### 변경
+
+- **MCP 최신 규격(2026-07-28)으로 연결할 수 있습니다.** 새 규격을 쓰는 AI 비서와 이전 규격을 쓰는 AI 비서를 같은 서버가 모두 받습니다. 설정은 바꿀 필요가 없고, 도구 92개와 자료 28건은 어느 쪽에서든 같은 결과를 냅니다.
+- 설명서를 현재 지원 규격과 확인된 범위, 남은 한계에 맞게 고쳤습니다.
+
 ## [2.0.0] — 2026-11-11
 
 입력 폼과 구조화 문서 출력을 최신 표준으로 맞췄습니다. Node.js 22.12 이상이 필요합니다.
