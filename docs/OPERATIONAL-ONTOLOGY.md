@@ -1,6 +1,6 @@
 # Operational Ontology Profile
 
-> release: **v<!-- INV:VERSION -->2.2.1<!-- /INV:VERSION --> · <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL --> tools · <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY --> KOSHA Guides**
+> release: **v<!-- INV:VERSION -->2.2.2<!-- /INV:VERSION --> · <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL --> tools · <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY --> KOSHA Guides**
 > 목적: 중소 건설사가 실제 업무에서 사용할 수 있는 경량 운영 온톨로지 그래프
 
 ## 1. 목적
@@ -148,7 +148,7 @@ npm run audit:strict
 
 - Operational ontology: 41/41 통과
 - Full graph: <!-- INV:GRAPH_TOTAL -->3,375<!-- /INV:GRAPH_TOTAL --> nodes (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함). 카테고리 1단계만 = <!-- INV:GRAPH_TOPLEVEL -->2,218<!-- /INV:GRAPH_TOPLEVEL --> (Article 1,306 + Document 96 + Annex 227 + Acts 8 + ...).
-- Graph edges: 약 <!-- INV:GRAPH_EDGES -->33,461<!-- /INV:GRAPH_EDGES --> (주요 EDGE_FIELDS: mitigatedBy / causedBy / hasArticle / guidedBy / partOf …)
+- Graph edges: 약 <!-- INV:GRAPH_EDGES -->33,382<!-- /INV:GRAPH_EDGES --> (주요 EDGE_FIELDS: mitigatedBy / causedBy / hasArticle / guidedBy / partOf …)
 - Semantic object type: 16/16 통과
 - Semantic link type: 6/6 통과
 - Kinetic action type: 12/12 통과

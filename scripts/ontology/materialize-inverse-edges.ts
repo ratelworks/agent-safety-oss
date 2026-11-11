@@ -24,10 +24,16 @@ const NODES_DIR = resolve(__dirname, "..", "..", "src", "ontology", "graph", "no
 
 /** 역관계 쌍 — [정방향, 역방향]. 어휘 정의(skeleton)의 owl:inverseOf 선언과 같아야 한다 */
 export const INVERSE_PAIRS: ReadonlyArray<readonly [string, string]> = [
-  ["legalBasis", "legalBasisOf"],
   ["delegates", "delegationOf"],
   ["regulates", "regulatedBy"],
 ];
+
+/**
+ * 한 방향만 맞추는 쌍 — [정방향, 역방향]. 정방향 간선에는 역방향이 있어야 하지만 그 반대는 요구하지 않는다.
+ * 문서의 법령 근거(legalBasis)는 검토를 거쳐 문서 본문에 실리는 목록이다. 조문 쪽에만 적힌
+ * legalBasisOf 는 검토되지 않은 느슨한 연결이 섞여 있어, 문서의 법령 근거로 자동 승격하지 않는다.
+ */
+export const FORWARD_ONLY_PAIRS: ReadonlyArray<readonly [string, string]> = [["legalBasis", "legalBasisOf"]];
 
 interface NodeFile {
   path: string;
@@ -108,8 +114,12 @@ export interface MissingEdge {
 /** 빠진 역방향 간선을 모은다 — (object) -[반대 술어]-> (subject) 형태로 돌려준다 */
 export function findMissingInverseEdges(nodes: Map<string, Record<string, unknown>>): MissingEdge[] {
   const missing: MissingEdge[] = [];
-  for (const [forward, backward] of INVERSE_PAIRS) {
-    for (const [a, b] of [[forward, backward], [backward, forward]] as const) {
+  const directions: Array<readonly [string, string]> = [
+    ...INVERSE_PAIRS.flatMap(([f, b]) => [[f, b], [b, f]] as const),
+    ...FORWARD_ONLY_PAIRS,
+  ];
+  {
+    for (const [a, b] of directions) {
       for (const [id, node] of nodes) {
         for (const target of refs(node[a])) {
           const targetNode = nodes.get(target);
@@ -142,7 +152,7 @@ function main(): void {
 
   if (check) {
     if (missing.length === 0) {
-      console.log(`✅ 역관계 일치 — ${INVERSE_PAIRS.map((p) => p.join("↔")).join(", ")} (노드 ${files.size}개)`);
+      console.log(`✅ 역관계 일치 — ${INVERSE_PAIRS.map((p) => p.join("↔")).join(", ")}, ${FORWARD_ONLY_PAIRS.map((p) => p.join("→")).join(", ")} (노드 ${files.size}개)`);
       return;
     }
     console.error(`❌ 한쪽에만 적힌 역관계 ${missing.length}건 ${JSON.stringify(byPredicate)}`);

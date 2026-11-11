@@ -29,10 +29,13 @@ const WRONG_VOCAB = "https://safety.ratelworks.org/vocab#";
 const SAMPLE_ARTICLE = "art:산안법:36";
 const SAMPLE_DOCUMENT_ID = "work_plan_excavation";
 const SAMPLE_PENALIZED_ARTICLE = "art:기준규칙:38";
-const INVERSE_PAIRS: ReadonlyArray<readonly [string, string]> = [
+/** [a, b] — a 간선마다 반대쪽 b 가 있어야 한다. 법령 근거는 문서 쪽(legalBasis)에서만 요구한다 */
+const REQUIRED_REVERSE: ReadonlyArray<readonly [string, string]> = [
   ["legalBasis", "legalBasisOf"],
   ["delegates", "delegationOf"],
+  ["delegationOf", "delegates"],
   ["regulates", "regulatedBy"],
+  ["regulatedBy", "regulates"],
 ];
 
 let pass = 0;
@@ -141,10 +144,10 @@ function main(): void {
   const mitigatedInRdf = count(predicate("mitigatedBy"), null);
   check("mitigatedBy 간선 수가 원본과 같음", mitigatedInSource > 0 && mitigatedInRdf === mitigatedInSource, `${mitigatedInRdf} vs ${mitigatedInSource}`);
 
-  // 7. 역관계 — RDF 에서도 양쪽이 일치 (예외 없음 — owl:inverseOf 선언과 데이터가 같아야 한다)
+  // 7. 역관계 — RDF 에서도 일치 (법령 근거는 문서 쪽에서만 요구: 조문 쪽에만 있는 연결은 검토 전이다)
   const subjects = new Set([...sources.keys()].map(expand));
-  for (const [forward, backward] of INVERSE_PAIRS) {
-    for (const [a, b] of [[forward, backward], [backward, forward]] as const) {
+  {
+    for (const [a, b] of REQUIRED_REVERSE) {
       let total = 0;
       const oneSided: string[] = [];
       for (const q of store.getQuads(null, namedNode(predicate(a)), null, null)) {
