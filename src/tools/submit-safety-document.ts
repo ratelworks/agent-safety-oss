@@ -10,6 +10,8 @@ import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { archiveDocument, ARCHIVE_FORMATS, type ArchiveFormat } from "../lib/local-storage.js";
 import { escapeHtml } from "../lib/html-escape.js";
 import { generateSafetyDocumentTool } from "./generate-safety-document.js";
+import { normalizeChoiceValues } from "../lib/a2ui.js";
+import { choiceFieldKeys } from "./render-a2ui-form.js";
 
 const HTML_ARCHIVE_STYLE = [
   "body{font-family:'Malgun Gothic',Arial,sans-serif;max-width:920px;margin:32px auto;padding:0 20px;line-height:1.6;color:#1f2933;}",
@@ -72,9 +74,11 @@ export function formatGeneratedDocumentForArchive(args: {
 
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const args = inputSchema.parse(rawInput ?? {});
+  // 폼의 선택형 입력은 문자열 목록으로 돌아온다 — 문서 초안에는 문자열로 넣는다
+  const draft = normalizeChoiceValues(args.draft, choiceFieldKeys(args.docId));
   const generated = await generateSafetyDocumentTool.handler({
     docId: args.docId,
-    draft: args.draft,
+    draft,
     useProfile: args.useProfile,
   });
   if (generated.isError) return generated;

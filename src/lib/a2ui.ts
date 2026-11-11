@@ -162,6 +162,19 @@ export function buttonComponent(
 /** 이벤트 문맥에 싣는 입력값 묶음 바인딩 — 렌더러가 버튼을 누를 때 현재 입력값으로 풀어 보낸다 */
 export const DRAFT_BINDING = { "@path": `/${DRAFT_ROOT}` } as const;
 
+/** 선택형 필드의 값(문자열 목록)을 초안 문자열로 푼다 — 빈 목록은 빈 문자열, 한 원소는 그 원소 */
+export function choiceValueToText(value: unknown): unknown {
+  if (!Array.isArray(value)) return value;
+  return value.length === 0 ? "" : value.length === 1 ? value[0] : value.join(", ");
+}
+
+/** 초안에서 선택형 필드 키의 목록 값만 문자열로 푼다 (다른 필드의 목록 값은 건드리지 않는다) */
+export function normalizeChoiceValues(draft: Record<string, unknown>, choiceKeys: string[]): Record<string, unknown> {
+  const out = { ...draft };
+  for (const key of choiceKeys) if (key in out) out[key] = choiceValueToText(out[key]);
+  return out;
+}
+
 // ── 데이터 모델 ─────────────────────────────────────────────────────
 /** JSON Pointer 로 데이터 모델 값을 읽는다 */
 export function readPointer(dataModel: unknown, pointer: string): unknown {

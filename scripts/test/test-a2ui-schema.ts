@@ -20,7 +20,6 @@ import {
   ASSIST_PANEL_ID,
   dataModelToDraft,
   draftPath,
-  draftValuesToDraft,
   resolveEventContext,
 } from "../../src/lib/a2ui.js";
 import {
@@ -36,6 +35,8 @@ const ROOT = resolve(__dirname, "..", "..");
 const DOCS_DIR = resolve(ROOT, "src/ontology/graph/nodes/documents");
 const OFFICIAL_EXAMPLE = resolve(__dirname, "fixtures/a2ui-1.0/contact_form_example.jsonl");
 const SAMPLE_DOC_ID = "daily_tbm";
+/** 예/아니오 선택형 필드가 있는 문서 */
+const CHOICE_DOC_ID = "ad_hoc_risk_assessment";
 const SURFACE = "safety-form";
 
 let pass = 0;
@@ -296,11 +297,32 @@ async function testEventCarriesInput(): Promise<void> {
   check("대조군: 바인딩 없는 문맥에는 입력값이 없음", withoutBinding.draft === undefined);
   const submitted = await callTool("submit_safety_document", {
     docId: resolved.docId,
-    draft: draftValuesToDraft(resolved.draft),
+    draft: resolved.draft,
     useProfile: false,
     archive: false,
   });
   check("이벤트로 받은 입력값이 문서 본문에 반영됨", textOf(submitted).includes("A동 굴착 작업"), textOf(submitted).slice(0, 80));
+
+  // 선택형 입력 — 이벤트로 받은 값을 변환 없이 그대로 제출 도구에 넘겨도 본문에 문자열로 들어가야 한다
+  const choiceForm = await callTool("render_a2ui_form", { docId: CHOICE_DOC_ID, format: "jsonl", useProfile: false });
+  const choiceComps = componentsOf(textOf(choiceForm));
+  const picker = choiceComps.find((c) => c.component === "ChoicePicker");
+  check("선택형 필드가 있는 문서로 시험함", !!picker);
+  const choiceKey = ((picker?.["@metadata"] as { extensions: { fieldKey: string } } | undefined)?.extensions.fieldKey) ?? "";
+  const choiceLabel = String(picker?.label ?? "");
+  const cFirst = JSON.parse(textOf(choiceForm).split("\n")[0]) as { createSurface: { dataModel: { draft: Record<string, unknown> } } };
+  const choiceSubmit = eventOf(choiceComps, "submit_safety_document");
+  const rowOf = async (value: unknown): Promise<string> => {
+    cFirst.createSurface.dataModel.draft[choiceKey] = value;
+    const ctx = resolveEventContext(choiceSubmit?.context ?? {}, cFirst.createSurface.dataModel);
+    const out = await callTool("submit_safety_document", { docId: ctx.docId, draft: ctx.draft, useProfile: false, archive: false });
+    return textOf(out).split("\n").find((l) => l.includes(choiceLabel) && l.includes("|")) ?? "";
+  };
+  const selectedRow = await rowOf(["예"]);
+  check("선택한 값이 문자열로 본문에 들어감", /\|\s*예\s*\|/.test(selectedRow) && !selectedRow.includes("["), selectedRow.slice(0, 100));
+  const emptyRow = await rowOf([]);
+  const blankRow = await rowOf("");
+  check("선택하지 않은 값은 빈 입력과 같은 본문", emptyRow === blankRow && !emptyRow.includes("0건"), emptyRow.slice(0, 100));
 
   // 사업장 정보 폼 — 저장 이벤트 문맥이 save_profile_from_form 의 입력(formValues) 모양이어야 한다
   const profile = await callTool("render_profile_input_form", { format: "jsonl", prefillFromExisting: false });

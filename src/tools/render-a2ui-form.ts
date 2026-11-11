@@ -313,6 +313,22 @@ async function loadInlineGraphContext(docNode: Record<string, any>): Promise<Inl
   return { hazards, controls, relatedDocs, legalArticles, koshaGuides };
 }
 
+/** 필드의 입력 종류 — 예시가 점검표 표기([√]/[X] 등)면 check, 아니면 라벨·키로 분류 */
+function inputKindOf(f: FormFieldDef): string {
+  const isCheckField =
+    Array.isArray(f.examples) && f.examples.some((ex) => /^\s*\[\s*(√|v|V|O|o|×|X|x| )\s*\]/.test(String(ex)));
+  return isCheckField ? "check" : detectInputKind(f.label, f.key);
+}
+
+/** 폼에서 선택형(ChoicePicker)으로 나가는 필드 키 — 이 필드의 입력값은 문자열 목록으로 돌아온다 */
+export function choiceFieldKeys(docId: string): string[] {
+  const node = loadNode(docId);
+  if (!node) return [];
+  return flattenFields(node)
+    .filter((f) => inputKindOf(f) === "yesNo")
+    .map((f) => f.key);
+}
+
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const args = inputSchema.parse(rawInput);
 
@@ -583,11 +599,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     components.push(textComponent(labelId, f.label || f.key, "h2"));
 
     const prefillValue = (prefill as Record<string, unknown>)[f.key];
-    // examples가 [√]/[v]/[O]/[X]/[×]/[ ] 같은 체크 마크 패턴이면 입력 종류를 check 로 강제
-    const isCheckField =
-      Array.isArray(f.examples) &&
-      f.examples.some((ex) => /^\s*\[\s*(√|v|V|O|o|×|X|x| )\s*\]/.test(String(ex)));
-    const inputKind = isCheckField ? "check" : detectInputKind(f.label, f.key);
+    const inputKind = inputKindOf(f);
     draftModel[f.key] = initialDraftValue(inputKind, prefillValue);
     components.push(
       fieldComponent({
