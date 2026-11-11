@@ -1,4 +1,5 @@
-export const DOCLANG_VERSION = "0.6";
+export const DOCLANG_VERSION = "0.8";
+export const DOCLANG_NAMESPACE = "https://www.doclang.ai/ns/v0";
 
 import type { DocumentNode, DocumentSection, DocumentSectionField } from "./graph-nodes-loader.js";
 import { kstToday } from "./datetime-kst.js";
@@ -676,5 +677,5 @@ export function serializeSafetyDocumentToDoclang(input: SafetyDocumentDoclangInp
     fieldRegion(genericSections, draft),
   ].filter(Boolean);
 
-  return `<${TAG.root} version="${DOCLANG_VERSION}">\n${body.join("\n")}\n</${TAG.root}>\n`;
+  return `<${TAG.root} xmlns="${DOCLANG_NAMESPACE}" version="${DOCLANG_VERSION}">\n${body.join("\n")}\n</${TAG.root}>\n`;
 }

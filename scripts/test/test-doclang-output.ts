@@ -10,6 +10,7 @@ import type { McpToolResult } from "../../src/lib/types.js";
 import type { DocumentNode } from "../../src/lib/graph-nodes-loader.js";
 import {
   DOCLANG_VERSION,
+  DOCLANG_NAMESPACE,
   serializeSafetyDocumentToDoclang,
   tableToOtsl,
 } from "../../src/lib/doclang-serializer.js";
@@ -39,6 +40,11 @@ async function callTool(name: string, input: Record<string, unknown>): Promise<M
 
 function assert(condition: unknown, message: string): void {
   if (!condition) throw new Error(message);
+}
+
+/** 루트 요소가 DocLang 네임스페이스를 선언하고 현재 버전을 적었는지 */
+function hasDoclangRoot(xml: string): boolean {
+  return xml.startsWith(`<doclang xmlns="${DOCLANG_NAMESPACE}" version="${DOCLANG_VERSION}">`);
 }
 
 function textOf(result: McpToolResult): string {
@@ -139,7 +145,10 @@ function testSerializerStructure(): void {
     missingRequiredCount: 1,
   });
 
-  assert(xml.startsWith(`<doclang version="${DOCLANG_VERSION}">`), "root must pin DocLang version");
+  assert(hasDoclangRoot(xml), "root must declare DocLang namespace and pin version");
+  // 대조군 — 네임스페이스 선언이 빠진 루트, 버전이 다른 루트는 실패해야 한다
+  assert(!hasDoclangRoot(xml.replace(` xmlns="${DOCLANG_NAMESPACE}"`, "")), "root without namespace must be rejected");
+  assert(!hasDoclangRoot(xml.replace(`version="${DOCLANG_VERSION}"`, 'version="0.6"')), "root with another version must be rejected");
   assert(xml.includes("<head>"), "metadata head must exist");
   assert(xml.includes("<title>테스트 &amp; &lt;문서&gt;</title>"), "head/title must be XML escaped");
   assert(!/<doclang[^>]*>\s*<custom>/.test(xml), "root-level custom must not be emitted");
@@ -179,7 +188,7 @@ async function testGenerateSafetyDocumentIntegration(): Promise<void> {
   });
 
   assert(textOf(defaultMd) === textOf(explicitMd), "omitted format must keep existing md output");
-  assert(textOf(doclang).startsWith(`<doclang version="${DOCLANG_VERSION}">`), "doclang format must return XML");
+  assert(hasDoclangRoot(textOf(doclang)), "doclang format must return XML with namespace and version");
   assert(textOf(doclang).includes("<field_region>"), "doclang output must include field_region");
   assert(textOf(doclang).includes("<custom>"), "doclang output must preserve element-level custom metadata");
   assert(textOf(doclang).includes("A동 굴착 &amp; 양중 &lt;테스트&gt;"), "doclang output must escape draft values");

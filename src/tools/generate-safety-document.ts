@@ -61,7 +61,7 @@ const inputSchema = z.object({
   format: z
     .enum(["md", "doclang"])
     .default("md")
-    .describe("출력 포맷. md=기존 Markdown, doclang=DocLang v0.6 XML (experimental)."),
+    .describe("출력 포맷. md=기존 Markdown, doclang=DocLang v0.8 XML (experimental)."),
   scale: z
     .object({
       workforce: z.number().optional(),
@@ -1188,7 +1188,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 export const generateSafetyDocumentTool: ToolDefinition = {
   name: "generate_safety_document",
   description:
-    "법정 안전관리 문서의 **초안 본문**을 결정론적으로 생성한다. v0.7 — Document.sections 기반 generic renderer로 모든 docId 자동 처리. 그래프 추론(KOSHA·Hazard·Control·법령) + 작업 조건 합성 → Markdown. `format=doclang` 은 DocLang v0.6 XML experimental 출력. PDF·docx 변환은 클라이언트. **⚠️ 작성 보조: 본 도구 단독 결과는 초안일 뿐, 결재 가능 여부 확인은 `review_safety_document` 호출 필수. 작성 주체는 안전관리자이며 MCP는 보조. 중대재해·산업재해 관련 문서는 법무·노무 검토 필요.**",
+    "법정 안전관리 문서의 **초안 본문**을 결정론적으로 생성한다. v0.7 — Document.sections 기반 generic renderer로 모든 docId 자동 처리. 그래프 추론(KOSHA·Hazard·Control·법령) + 작업 조건 합성 → Markdown. `format=doclang` 은 DocLang v0.8 XML experimental 출력. PDF·docx 변환은 클라이언트. **⚠️ 작성 보조: 본 도구 단독 결과는 초안일 뿐, 결재 가능 여부 확인은 `review_safety_document` 호출 필수. 작성 주체는 안전관리자이며 MCP는 보조. 중대재해·산업재해 관련 문서는 법무·노무 검토 필요.**",
   inputSchema,
   handler,
 };
