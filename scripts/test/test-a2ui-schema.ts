@@ -14,7 +14,15 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { TOOLS } from "../../src/tool-registry.js";
 import type { McpToolResult } from "../../src/lib/types.js";
-import { A2UI_VERSION, A2UI_BASIC_CATALOG_ID, ASSIST_PANEL_ID, dataModelToDraft, draftPath } from "../../src/lib/a2ui.js";
+import {
+  A2UI_VERSION,
+  A2UI_BASIC_CATALOG_ID,
+  ASSIST_PANEL_ID,
+  dataModelToDraft,
+  draftPath,
+  draftValuesToDraft,
+  resolveEventContext,
+} from "../../src/lib/a2ui.js";
 import {
   validateA2uiJsonl,
   validateA2uiMessage,
@@ -258,24 +266,56 @@ function testDataModelToDraft(): void {
   check("경로 이스케이프", draftPath("a/b~c") === "/draft/a~1b~0c");
 }
 
-// ── 6. 폼 데이터 모델 → 문서 생성 ───────────────────────────────────
-async function testDataModelRoundTrip(): Promise<void> {
+// ── 6. 버튼 이벤트로 입력값 전달 ────────────────────────────────────
+type EventAction = { event: { name: string; context: Record<string, unknown> } };
+
+function eventOf(components: Component[], name: string): EventAction["event"] | undefined {
+  for (const c of components) {
+    const ev = (c.action as EventAction | undefined)?.event;
+    if (c.component === "Button" && ev?.name === name) return ev;
+  }
+  return undefined;
+}
+
+async function testEventCarriesInput(): Promise<void> {
+  // 문서 폼 — 사용자가 입력한 뒤 작성 완료를 누른 상황을 렌더러 대신 재현한다
   const form = await callTool("render_a2ui_form", { docId: SAMPLE_DOC_ID, format: "jsonl", useProfile: false });
-  const first = JSON.parse(textOf(form).split("\n")[0]) as { createSurface: { dataModel: { draft: Record<string, unknown> } } };
+  const first = JSON.parse(textOf(form).split("\n")[0]) as {
+    createSurface: { sendDataModel?: boolean; dataModel: { draft: Record<string, unknown> } };
+  };
+  check("문서 폼: 동작 때 데이터 모델을 돌려받도록 설정", first.createSurface.sendDataModel === true);
   const model = first.createSurface.dataModel;
   check("초기 데이터 모델에 todayWork 자리가 있음", "todayWork" in model.draft);
   model.draft.todayWork = "A동 굴착 작업";
-  const generated = await callTool("generate_safety_document", {
-    docId: SAMPLE_DOC_ID,
+  const submit = eventOf(componentsOf(textOf(form)), "submit_safety_document");
+  check("작성 완료 이벤트가 있음", !!submit);
+  const resolved = resolveEventContext(submit?.context ?? {}, model);
+  check("작성 완료 이벤트 문맥에 입력값이 실림", (resolved.draft as Record<string, unknown> | undefined)?.todayWork === "A동 굴착 작업");
+  // 대조군 — 입력값 바인딩이 없는 문맥은 입력값을 전달하지 못한다
+  const withoutBinding = resolveEventContext({ docId: SAMPLE_DOC_ID, surfaceId: SURFACE }, model);
+  check("대조군: 바인딩 없는 문맥에는 입력값이 없음", withoutBinding.draft === undefined);
+  const submitted = await callTool("submit_safety_document", {
+    docId: resolved.docId,
+    draft: draftValuesToDraft(resolved.draft),
     useProfile: false,
-    draft: dataModelToDraft(model),
+    archive: false,
   });
-  check("데이터 모델 입력값이 문서 본문에 반영됨", textOf(generated).includes("A동 굴착 작업"));
+  check("이벤트로 받은 입력값이 문서 본문에 반영됨", textOf(submitted).includes("A동 굴착 작업"), textOf(submitted).slice(0, 80));
+
+  // 사업장 정보 폼 — 저장 이벤트 문맥이 save_profile_from_form 의 입력(formValues) 모양이어야 한다
+  const profile = await callTool("render_profile_input_form", { format: "jsonl", prefillFromExisting: false });
+  const pFirst = JSON.parse(textOf(profile).split("\n")[0]) as { createSurface: { dataModel: { draft: Record<string, unknown> } } };
+  pFirst.createSurface.dataModel.draft["site.name"] = "시험 사업장";
+  const save = eventOf(componentsOf(textOf(profile)), "save_profile_from_form");
+  const pResolved = resolveEventContext(save?.context ?? {}, pFirst.createSurface.dataModel);
+  const formValues = pResolved.formValues as Record<string, unknown> | undefined;
+  check("저장 이벤트 문맥에 입력값이 실림", formValues?.["site.name"] === "시험 사업장");
+  check("저장 이벤트 입력값은 모두 문자열", !!formValues && Object.values(formValues).every((v) => typeof v === "string"));
 }
 
 async function main(): Promise<void> {
   testValidatorItself();
-  await testDataModelRoundTrip();
+  await testEventCarriesInput();
   await testAllDocumentForms();
   await testProfileAndUpdates();
   testDataModelToDraft();

@@ -33,6 +33,7 @@ import {
   updateComponentsMessage,
   textComponent,
   fieldComponent,
+  DRAFT_BINDING,
   assistPanelComponent,
   ASSIST_PANEL_ID,
   initialDraftValue,
@@ -706,7 +707,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "submit-btn",
     component: "Button",
     child: "submit-text",
-    action: { event: { name: "submit_safety_document", context: { docId: args.docId, surfaceId: surface } } },
+    action: { event: { name: "submit_safety_document", context: { docId: args.docId, surfaceId: surface, draft: DRAFT_BINDING } } },
   });
   components.push({ id: "submit-text", component: "Text", text: "📥 작성 완료" });
 

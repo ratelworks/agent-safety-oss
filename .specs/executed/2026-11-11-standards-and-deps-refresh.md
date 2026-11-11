@@ -58,14 +58,15 @@ v1.9.0(`82c627b`) 기준 점검(2026-11-11)에서 확인된, 상류 규격보다
 - SYSTEM SHALL `render_a2ui_form`·`render_profile_input_form` 과 `a2uiUpdate` 를 돌려주는 도구(`request_field_help`·`analyze_work_context`·`suggest_controls_for_hazard` 등)의 모든 메시지가 1.0 스키마(`agent_to_renderer.json`)와 기본 카탈로그 v1 을 통과하게 한다.
 - 날짜·일시·시각 필드는 `DateTimeInput`, 예/아니오 필드는 `ChoicePicker`, 그 밖(서명·점검표 표기 포함)은 `TextField` 로 옮긴다. 양식 필드 키와 세부 입력 종류는 `@metadata.extensions`(`fieldKey`·`inputKind`)에 싣는다. 기본 카탈로그에 없는 컴포넌트·속성은 쓰지 않는다. 필드 안내·예시·점검 사항처럼 지금 비표준 속성으로 싣는 정보는 `Text`(`caption`) 컴포넌트나 `@metadata.extensions` 로 옮기되, 화면에 보이던 정보가 사라지지 않게 한다.
 - 필수 필드는 `@checks` 의 `required` 함수로 표현한다. 필수 기준은 검토 도구와 같다 — 문서 노드 필드의 `required: false`·`optional: true` 가 아니면 필수(96종 합계 1,311개). viewer 는 필수 칸에 `*` 를 붙이고, 비어 있으면 작성 완료를 막고 빈 항목을 알린다.
+- 작성 완료·저장 버튼의 이벤트 문맥에 입력값 묶음 바인딩(`{"@path": "/draft"}`)을 싣고 `createSurface` 에 `sendDataModel: true` 를 둔다 — 표준 렌더러에서 버튼을 눌렀을 때 입력값이 이벤트로 전달된다.
 - 부분 갱신(`a2uiUpdate`)은 폼의 보조 패널 컴포넌트를 함께 다시 보내 새 카드가 폼 트리에 붙게 한다(종전에는 어느 부모에도 연결되지 않았다). 이는 메시지 구조 기준이다 — 내장 viewer 는 이 네 동작(작업 분석·통제대책·필드 도움말·부분 검토) 버튼을 아직 처리하지 않는다(이번 변경 전부터).
 - SYSTEM SHALL `src/viewer.ts` 가 1.0 메시지를 렌더한다 — `version` 확인, `variant`, Markdown 제목, `@path` 바인딩된 초기값을 데이터 모델에서 읽는다. 버전이 다른 메시지는 렌더하지 않고 알린다. 폼 입력 → `generate_safety_document` 호출 → 결과 내려받기 흐름이 옮기기 전과 같이 동작해야 한다.
 - 도구 설명·capability 노드·README·docs 의 "A2UI v0.9" 표기를 1.0 으로 고친다. 도구 결과의 `a2uiVersion` 은 `"1.0"`.
 - 공식 스키마(1.0 `json/*.json`, 기본 카탈로그)를 시험 fixture 로 저장소에 넣고(Apache-2.0 — `NOTICE.md` 에 출처·라이선스 추가), 문서 노드 전 종류의 `render_a2ui_form` 출력과 `render_profile_input_form` 출력, `a2uiUpdate` 를 내는 도구의 대표 출력을 그 스키마로 검증하는 시험을 `npm test` 에 건다. 스키마 검증기가 필요하면 개발 의존성으로만 더한다. 시험에는 실패해야 하는 입력(예: `version` 없는 메시지, `usageHint` 를 쓴 컴포넌트)을 대조군으로 함께 둔다.
 
 완료 기준
-- [x] 문서 노드 전 종류 × `render_a2ui_form` 출력이 1.0 스키마·기본 카탈로그 검증 통과: 96종 · 통과 96 · 실패 0 (`npm run mcp:test:a2ui-schema` 130 통과 / 0 실패)
-- [x] `npm run mcp:test:a2ui` 와 새 스키마 시험 통과, 대조군 입력 9종은 실패
+- [x] 문서 노드 전 종류 × `render_a2ui_form` 출력이 1.0 스키마·기본 카탈로그 검증 통과: 96종 · 통과 96 · 실패 0 (`npm run mcp:test:a2ui-schema` 136 통과 / 0 실패)
+- [x] `npm run mcp:test:a2ui` 와 새 스키마 시험 통과, 대조군 입력 10종은 실패
 - [x] viewer 를 띄워 브라우저로 확인: `daily_tbm` 폼 렌더(입력 14칸, 제목·날짜 입력 정상) → 필수 14칸이 빈 채 작성 완료를 누르면 막힘 → 입력 → 작성 완료 → 본문에 입력값 반영, 사업장 정보 저장 뒤 자동 채움 값이 데이터 모델에서 입력칸으로 들어감, 옛 버전 메시지는 렌더하지 않음
 - [x] 저장소에 "A2UI v0.9"·`usageHint` 표기가 남지 않는다(CHANGELOG 과거 항목, 시험의 대조군 제외) — 입력 파일이 없어 돌지 않던 옛 자체 검증 스크립트 2개는 공식 스키마 시험으로 대체해 지웠다
 

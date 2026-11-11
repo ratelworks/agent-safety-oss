@@ -25,6 +25,7 @@ import {
   updateComponentsMessage,
   textComponent,
   fieldComponent,
+  DRAFT_BINDING,
   initialDraftValue,
   toJsonl,
   type A2UIComponent,
@@ -198,7 +199,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     id: "save-btn",
     component: "Button",
     child: "save-text",
-    action: { event: { name: "save_profile_from_form", context: { surfaceId: surface } } },
+    action: { event: { name: "save_profile_from_form", context: { surfaceId: surface, formValues: DRAFT_BINDING } } },
   });
   components.push({ id: "save-text", component: "Text", text: "💾 저장 — 이후 모든 양식에 자동 채움" });
   components.push({

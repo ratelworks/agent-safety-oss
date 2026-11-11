@@ -45,6 +45,7 @@ export interface A2UIMessage {
   createSurface?: {
     surfaceId: string;
     catalogId: string;
+    sendDataModel?: boolean;
     dataModel?: Record<string, unknown>;
   };
   updateComponents?: { surfaceId: string; components: A2UIComponent[] };
@@ -68,13 +69,14 @@ export interface FieldSpec {
 }
 
 // ── 메시지 ──────────────────────────────────────────────────────────
-/** surface 생성 — 초기 입력값(자동 채움)은 데이터 모델로 함께 보낸다 */
+/** surface 생성 — 초기 입력값(자동 채움)은 데이터 모델로 함께 보내고, 사용자 동작 때 데이터 모델을 돌려받는다 */
 export function createSurfaceMessage(surfaceId: string, draft: Record<string, unknown> = {}): A2UIMessage {
   return {
     version: A2UI_VERSION,
     createSurface: {
       surfaceId,
       catalogId: A2UI_BASIC_CATALOG_ID,
+      sendDataModel: true,
       dataModel: { [DRAFT_ROOT]: draft },
     },
   };
@@ -157,7 +159,30 @@ export function buttonComponent(
   };
 }
 
+/** 이벤트 문맥에 싣는 입력값 묶음 바인딩 — 렌더러가 버튼을 누를 때 현재 입력값으로 풀어 보낸다 */
+export const DRAFT_BINDING = { "@path": `/${DRAFT_ROOT}` } as const;
+
 // ── 데이터 모델 ─────────────────────────────────────────────────────
+/** JSON Pointer 로 데이터 모델 값을 읽는다 */
+export function readPointer(dataModel: unknown, pointer: string): unknown {
+  let cur: unknown = dataModel;
+  for (const raw of pointer.split("/").slice(1)) {
+    if (cur === null || typeof cur !== "object") return undefined;
+    cur = (cur as Record<string, unknown>)[raw.replace(/~1/g, "/").replace(/~0/g, "~")];
+  }
+  return cur;
+}
+
+/** 이벤트 문맥의 경로 바인딩을 데이터 모델 값으로 푼다 (렌더러가 동작을 보낼 때 하는 일) */
+export function resolveEventContext(context: Record<string, unknown>, dataModel: unknown): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(context)) {
+    const path = value && typeof value === "object" ? (value as Record<string, unknown>)["@path"] : undefined;
+    out[key] = typeof path === "string" ? readPointer(dataModel, path) : value;
+  }
+  return out;
+}
+
 /** 자동 채움 값을 입력 종류에 맞는 데이터 모델 값으로 바꾼다 (선택형은 문자열 목록) */
 export function initialDraftValue(inputKind: string, value: unknown): unknown {
   const text = typeof value === "string" || typeof value === "number" ? String(value) : "";
@@ -167,7 +192,11 @@ export function initialDraftValue(inputKind: string, value: unknown): unknown {
 
 /** 데이터 모델의 입력값을 문서 초안으로 옮긴다 — 한 원소 목록은 그 원소, 빈 목록은 빈 문자열 */
 export function dataModelToDraft(dataModel: unknown): Record<string, unknown> {
-  const root = (dataModel as Record<string, unknown> | null | undefined)?.[DRAFT_ROOT];
+  return draftValuesToDraft((dataModel as Record<string, unknown> | null | undefined)?.[DRAFT_ROOT]);
+}
+
+/** 입력값 묶음(데이터 모델의 draft 가지, 또는 이벤트 문맥으로 받은 값)을 문서 초안으로 옮긴다 */
+export function draftValuesToDraft(root: unknown): Record<string, unknown> {
   if (!root || typeof root !== "object" || Array.isArray(root)) return {};
   const draft: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(root as Record<string, unknown>)) {
