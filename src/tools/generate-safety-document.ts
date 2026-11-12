@@ -958,7 +958,7 @@ async function buildWorkStepTable(
       for (const r of h.risks) {
         const measures = r.measures
           .slice(0, WORK_STEP_MEASURES_PER_ROW)
-          .map((m) => `${m.measure}${m.controlLevel ? ` [${m.controlLevel}]` : ""}${m.basisRef ? ` (${m.basisRef.replace("산업안전보건기준에 관한 규칙", "안전보건규칙")})` : ""}`);
+          .map((m) => `${m.variant ? `(${m.variant}) ` : ""}${m.measure}${m.controlLevel ? ` [${m.controlLevel}]` : ""}${m.basisRef ? ` (${m.basisRef.replace("산업안전보건기준에 관한 규칙", "안전보건규칙")})` : ""}`);
         rows.push([step.name, `${h.hazardLabel} — ${r.statement}`, measures]);
       }
       if (h.risks.length > 0) continue;

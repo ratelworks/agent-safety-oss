@@ -219,7 +219,8 @@ function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
           .map((r) => ({
             statement: r.statement,
             ...(r.priority ? { priority: r.priority } : {}),
-            measures: r.measures.slice(0, MAX_MEASURES_PER_RISK).map((m) => m.measure),
+            // 특정 공법·조건에만 해당하는 대책은 그 구분을 앞에 적는다
+            measures: r.measures.slice(0, MAX_MEASURES_PER_RISK).map((m) => `${m.variant ? `(${m.variant}) ` : ""}${m.measure}`),
           })),
         basis: h.basis.slice(0, maxBasis).map((b) => ({
           ref: b.ref,
