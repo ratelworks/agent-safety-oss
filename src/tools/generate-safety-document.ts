@@ -17,6 +17,7 @@
 //   - LLM 추론이 아닌 그래프 탐색 결과
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { saveHwpx, type HwpxExportResult } from "../lib/hwpx-export.js";
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import {
@@ -59,9 +60,9 @@ const inputSchema = z.object({
     .optional()
     .describe("자동 채움에 사용할 현장 ID. 미지정 시 사업장의 첫 현장 사용."),
   format: z
-    .enum(["md", "doclang"])
+    .enum(["md", "doclang", "hwpx"])
     .default("md")
-    .describe("출력 포맷. md=기존 Markdown, doclang=DocLang v0.9 XML (experimental)."),
+    .describe("출력 포맷. md=기존 Markdown, doclang=DocLang v0.9 XML (experimental), hwpx=한글 파일로 저장하고 파일 경로를 돌려줌 (결재·제출용으로 정리한 본문)."),
   scale: z
     .object({
       workforce: z.number().optional(),
@@ -74,6 +75,8 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>;
 type OutputFormat = Input["format"];
+/** 글자로 돌려주는 형식 — hwpx 는 파일로 저장한다 */
+type TextFormat = Exclude<OutputFormat, "hwpx">;
 
 interface KoshaGuideInfo {
   iri: string;
@@ -968,7 +971,7 @@ function renderDoclangOutput(context: DocumentRenderContext): string {
   return serializeSafetyDocumentToDoclang(serializerInput);
 }
 
-const DOCUMENT_RENDERERS: Record<OutputFormat, (context: DocumentRenderContext) => Promise<string> | string> = {
+const DOCUMENT_RENDERERS: Record<TextFormat, (context: DocumentRenderContext) => Promise<string> | string> = {
   md: renderMarkdownOutput,
   doclang: renderDoclangOutput,
 };
@@ -1123,7 +1126,16 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     otherErrorCount,
   };
   const markdownBody = await DOCUMENT_RENDERERS.md(renderContext);
-  const fullBody = input.format === "md" ? markdownBody : await DOCUMENT_RENDERERS[input.format](renderContext);
+  let hwpxFile: HwpxExportResult | undefined;
+  let fullBody: string;
+  if (input.format === "hwpx") {
+    hwpxFile = await saveHwpx(input.docId, markdownBody, doc.title);
+    fullBody =
+      `HWPX(한글) 파일을 저장했습니다.\n\n- 파일: ${hwpxFile.path}\n- 크기: ${hwpxFile.bytes} bytes\n- 상태: ${usabilityStatusText(missingRequiredCount, otherErrorCount)}\n\n` +
+      "파일에는 결재·제출용으로 정리한 본문이 들어 있습니다(작성 안내와 검사 상태 머리말 제외). 한글에서 열어 내용과 서식을 확인한 뒤 사용하세요.";
+  } else {
+    fullBody = input.format === "md" ? markdownBody : await DOCUMENT_RENDERERS[input.format](renderContext);
+  }
 
   // 폼 UI 자동 채움 카드 — handler 시작에서 캐시한 400자 본문 재사용
   const legalArticles = (doc.legalBasis ?? []).map((l) => ({
@@ -1181,6 +1193,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       sectionsCount: (doc.sections ?? []).length,
       legalBasisCount: (doc.legalBasis ?? []).length,
       bodyMarkdownLength: markdownBody.length,
+      ...(hwpxFile ? { hwpxPath: hwpxFile.path, hwpxBytes: hwpxFile.bytes } : {}),
       // decision 006 — 위험 출처/폴백 차단 여부 (환각 차단 관찰용)
       documentCategory,
       hazardSource: hasWhitelist ? "whitelist" : hazardFallbackAllowed ? "guide_fallback" : "suppressed_administrative",

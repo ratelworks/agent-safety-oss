@@ -111,6 +111,21 @@ async function testServer(): Promise<void> {
     });
     check("큰 본문은 413", big.status === 413, String(big.status));
 
+    const hwpx = await send({
+      method: "POST",
+      path: "/api/export-hwpx",
+      headers: { Host: `localhost:${PORT}`, Origin: `http://localhost:${PORT}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ markdown: "# 시험\n\n본문", title: "시험" }),
+    });
+    check("한글 내보내기는 ZIP 파일을 돌려줌", hwpx.status === 200 && hwpx.body.startsWith("PK"), String(hwpx.status));
+    const emptyHwpx = await send({
+      method: "POST",
+      path: "/api/export-hwpx",
+      headers: { Host: `localhost:${PORT}`, Origin: `http://localhost:${PORT}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ markdown: "" }),
+    });
+    check("본문 없는 한글 내보내기는 400", emptyHwpx.status === 400, String(emptyHwpx.status));
+
     const lan = Object.values(networkInterfaces()).flat().find((i) => i && i.family === "IPv4" && !i.internal)?.address;
     if (lan) check(`다른 기기용 주소(${lan})로는 접속되지 않음`, !(await canConnect(lan)));
     else console.log("  (외부용 네트워크 주소가 없어 바인딩 확인은 건너뜀)");

@@ -2,7 +2,7 @@
  * export_drafted_document
  *
  * generate_safety_document 또는 사용자가 작성한 draft 를 표현 포맷(html/markdown)으로
- * 결정론적 변환. 의존성 0 — Node 표준 라이브러리만 사용. PDF/HWPX 는 외부 도구로 위임.
+ * 결정론적 변환. 의존성 0 — Node 표준 라이브러리만 사용. HWPX(한글)는 파일로 저장한다. PDF 는 HTML 을 브라우저에서 인쇄.
  *
  * docs/LEGAL-DUTY-LIFECYCLE.md §1.2 작성 + §1.4 결재 (서명·결재선 포함 표현).
  */
@@ -10,11 +10,12 @@ import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { findDoc } from "../lib/master-loader.js";
 import { escapeHtml } from "../lib/html-escape.js";
+import { saveHwpx } from "../lib/hwpx-export.js";
 
 const inputSchema = z.object({
   docId: z.string().describe("법정문서 docId (제목·메타 자동 보강용)"),
   draft: z.record(z.string(), z.unknown()).describe("작성된 draft (key: value). generate_safety_document 의 출력 그대로 가능"),
-  format: z.enum(["html", "markdown"]).default("html").describe("출력 포맷 (PDF/HWPX 는 외부 도구 위임)"),
+  format: z.enum(["html", "markdown", "hwpx"]).default("html").describe("출력 포맷. hwpx 는 한글 파일로 저장하고 파일 경로를 돌려줌 (PDF 는 HTML 을 브라우저에서 인쇄)"),
   includeApprovalChain: z.boolean().default(true).describe("결재선 표시 (draft.approvalChain)"),
 });
 
@@ -150,6 +151,14 @@ ${approvalHtml}
 
 async function handler(rawInput: unknown): Promise<McpToolResult> {
   const args = inputSchema.parse(rawInput);
+  const title = findDoc(args.docId)?.title ?? args.docId;
+  if (args.format === "hwpx") {
+    const file = await saveHwpx(args.docId, renderMarkdown(args), title);
+    return {
+      content: [{ type: "text", text: `HWPX(한글) 파일을 저장했습니다.\n\n- 파일: ${file.path}\n- 크기: ${file.bytes} bytes\n\n한글에서 열어 내용과 서식을 확인한 뒤 사용하세요.` }],
+      structuredContent: { docId: args.docId, format: args.format, title, hwpxPath: file.path, hwpxBytes: file.bytes },
+    };
+  }
   const output = args.format === "html" ? renderHtml(args) : renderMarkdown(args);
   return {
     content: [{ type: "text", text: output }],
@@ -160,7 +169,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       title: findDoc(args.docId)?.title ?? args.docId,
       nextActions: [
         "HTML 결과를 브라우저로 열어 인쇄 → PDF 변환 가능",
-        "HWPX(한글) 파일은 이 도구가 만들지 않습니다 — HTML 을 한글에서 열어 저장하거나 별도 HWPX 변환 도구를 쓰세요",
+        "한글 파일이 필요하면 format: \"hwpx\" 로 다시 호출",
         `\`get_retention_status({docId: \"${args.docId}\", compileDate: \"YYYY-MM-DD\"})\` 로 보관·갱신 추적`,
       ],
     },
@@ -171,7 +180,7 @@ export const exportDraftedDocumentTool: ToolDefinition = {
   name: "export_drafted_document",
   title: "작성문서 출력 (HTML / Markdown)",
   description:
-    "draft 를 표현 포맷(html/markdown)으로 결정론적 변환. 결재선·메타·법령근거 자동 포함. 의존성 0 (Node 표준만). PDF 는 HTML → 브라우저 인쇄. HWPX(한글) 파일은 만들지 않음.",
+    "draft 를 표현 포맷(html/markdown)으로 결정론적 변환. 결재선·메타·법령근거 자동 포함. 의존성 0 (Node 표준만). PDF 는 HTML → 브라우저 인쇄. format=hwpx 는 한글 파일로 저장.",
   inputSchema,
   handler,
 };

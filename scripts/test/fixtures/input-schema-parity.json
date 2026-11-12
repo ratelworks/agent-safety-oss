@@ -3531,11 +3531,12 @@
     "format": {
      "type": "enum",
      "optional": true,
-     "description": "출력 포맷. md=기존 Markdown, doclang=DocLang v0.9 XML (experimental).",
+     "description": "출력 포맷. md=기존 Markdown, doclang=DocLang v0.9 XML (experimental), hwpx=한글 파일로 저장하고 파일 경로를 돌려줌 (결재·제출용으로 정리한 본문).",
      "default": "md",
      "enumValues": [
       "md",
-      "doclang"
+      "doclang",
+      "hwpx"
      ]
     },
     "scale": {
@@ -4395,11 +4396,12 @@
     "format": {
      "type": "enum",
      "optional": true,
-     "description": "출력 포맷 (PDF/HWPX 는 외부 도구 위임)",
+     "description": "출력 포맷. hwpx 는 한글 파일로 저장하고 파일 경로를 돌려줌 (PDF 는 HTML 을 브라우저에서 인쇄)",
      "default": "html",
      "enumValues": [
       "html",
-      "markdown"
+      "markdown",
+      "hwpx"
      ]
     },
     "includeApprovalChain": {

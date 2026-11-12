@@ -100,3 +100,7 @@ credit the project correctly have the canonical citation:
   the manufacturer's/importer's statutory MSDS obligations.
 - KOSHA Guide responses include a mandatory notice that guides are
   technical recommendations without statutory force.
+
+## HWPX 패키지 구성 참고
+
+한글(HWPX) 파일의 패키지 구성과 요소 배열은 kordoc(https://github.com/chrisryugj/kordoc, MIT License)이 만드는 HWPX 를 참고해 독자적으로 구현했습니다. kordoc 의 코드는 포함하지 않습니다.

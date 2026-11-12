@@ -26,6 +26,8 @@ import { spawnSync, spawn } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { buildHwpx } from "./lib/hwpx-export.js";
+import { HWPX_MIME_TYPE } from "./lib/hwpx-writer.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 // 컴파일본(build/viewer.js)·소스 dev(src/viewer.ts) 양쪽에서 동작하도록
@@ -1088,6 +1090,7 @@ function buildPreviewActions() {
     '<div class="preview-actions">' +
       '<button type="button" class="Button secondary preview-action" onclick="onRefreshPreview()" title="우측 양식 다시 그리기"><span class="material-symbols-outlined">refresh</span>갱신</button>' +
       '<button type="button" class="Button secondary preview-action" onclick="onSaveMarkdown()" title="현재 양식을 .md 로 다운로드"><span class="material-symbols-outlined">download</span>MD 저장</button>' +
+      '<button type="button" class="Button secondary preview-action" onclick="onSaveHwpx()" title="현재 양식을 한글(.hwpx) 파일로 다운로드"><span class="material-symbols-outlined">description</span>한글 저장</button>' +
       '<button type="button" class="Button secondary preview-action" onclick="window.print()" title="브라우저 인쇄로 PDF 저장"><span class="material-symbols-outlined">print</span>인쇄/PDF</button>' +
       '<button type="button" class="Button secondary preview-action" onclick="onResetForm()" title="좌측 입력 초기화"><span class="material-symbols-outlined">restart_alt</span>초기화</button>' +
     '</div>'
@@ -1100,6 +1103,32 @@ function onRefreshPreview() {
   if (lastGeneratedDoc) { lastGeneratedDoc = null; } // generate 본문 표시 중이었으면 양식으로 복귀
   refreshFormPreview(true);
   setStatus('info', '양식 갱신 완료');
+}
+
+// 현재 우측 본문을 한글(.hwpx) 파일로 다운로드 — 서버가 결재·제출용으로 정리해 파일로 만든다
+async function onSaveHwpx() {
+  if (!lastRenderedMd) { setStatus('err', '저장할 본문이 없습니다 — 양식을 먼저 갱신하세요'); return; }
+  const docId = (currentTarget && currentTarget.startsWith('doc:')) ? currentTarget.replace('doc:', '') : 'document';
+  const filename = docId + '-' + new Date().toISOString().slice(0, 10) + '.hwpx';
+  try {
+    const r = await fetch('/api/export-hwpx', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ markdown: lastRenderedMd, title: currentDocTitle || docId }),
+    });
+    if (!r.ok) { setStatus('err', '한글 파일을 만들지 못했습니다'); return; }
+    const url = URL.createObjectURL(await r.blob());
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+    setStatus('ok', '한글 파일 다운로드 — ' + filename);
+  } catch (e) {
+    setStatus('err', '한글 파일을 만들지 못했습니다');
+  }
 }
 
 // 현재 우측 마크다운을 .md 파일로 다운로드
@@ -2056,6 +2085,23 @@ async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise
       data, // structured 전체 — 클라이언트가 한국어 라벨로 렌더
       summary: { totalReferences: meta.totalReferences ?? 0, resolvedReferences: meta.resolvedReferences ?? 0, unresolvedRefs: (meta.unresolvedRefs ?? []).length },
     }));
+  }
+
+  if (url.pathname === "/api/export-hwpx" && req.method === "POST") {
+    const body = await readBody(req);
+    let parsed: { markdown?: unknown; title?: unknown };
+    try {
+      parsed = JSON.parse(body) as { markdown?: unknown; title?: unknown };
+    } catch {
+      return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "요청 형식 오류" }));
+    }
+    if (typeof parsed.markdown !== "string" || parsed.markdown.trim() === "") {
+      return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "내보낼 본문이 없습니다" }));
+    }
+    const data = buildHwpx(parsed.markdown, typeof parsed.title === "string" ? parsed.title : "");
+    res.writeHead(200, { "Content-Type": HWPX_MIME_TYPE, "Content-Length": data.length, "Cache-Control": "no-cache" });
+    res.end(data);
+    return;
   }
 
   send(res, 404, "text/plain", "Not Found");
