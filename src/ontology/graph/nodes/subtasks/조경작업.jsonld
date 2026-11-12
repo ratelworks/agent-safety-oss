@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "hasHazard": [
     "hazard:fall_from_height",
@@ -161,7 +160,93 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "가지치기용 이동식 사다리가 뒤집히며 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수목식재 전 수목의 가지치기 작업 시에 이동식 사다리를 사용할 때 뒤집힘 방지 조치를 실시하고 반드시 근로자 2인1조로 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "계단식 사다리에서 작업 시에는 최상부 발판으로부터 상부 3개 발판에서의 작업은 금지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "3개 이상의 버팀대를 가지고 지면으로부터 안정적으로 세울 수 있는 구조를 갖춘 이동식 사다리를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4
+                  }
+                },
+                {
+                  "measure": "평탄하고 견고하며 미끄럽지 않은 바닥에 이동식 사다리를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 견고한 시설물에 연결하여 고정하거나, 아웃트리거를 설치하거나, 다른 근로자가 지지하여 넘어지지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 설치한 바닥면에서 높이 3.5미터 이하의 장소에서만 작업한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "이동식 사다리의 최상부 발판 및 그 하단 디딤대에 올라서서 작업하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "안전모를 착용하되, 작업 높이가 2미터 이상인 경우에는 안전모와 안전대를 함께 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "이동식 사다리 사용 전 변형 및 이상 유무 등을 점검하여 이상이 발견되면 즉시 수리하거나 그 밖에 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 7
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "절단·베임·찔림",
@@ -183,7 +268,40 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:crushing"
+          "hazard": "hazard:crushing",
+          "risks": [
+            {
+              "statement": "정지한 나뭇가지에 찔리거나 인양 중 옷이 걸려 끌려감",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수목식재 전 수목의 가지를 다듬어 주어야 하고, 지엽이 무성한 것은 속가지를 수형에 부합되게 정지해야하며, 근로자의 찔림 및 인양작업 시 옷 걸림 사고를 예방하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "수목의 운반에 지장이 되는 비교적 큰 가지를 제거하여야 하며 가지는 운반에 지장이 없도록 간편하게 결박하여야 한다. 또한 비포장 도로 운반 시에 충격을 받지 않도록 완충재를 이용하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -204,7 +322,47 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "굴취 중인 수목이 넘어지며 근로자를 덮침",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "수목의 굴취는 수직으로 파내려 가지 말고 주변의 상황에 따라 계단식으로 수목을 굴취 하여야 한다. 근원부의 잡초를 제거하고 근원직경의 3∼5배 이상 크기로 뿌리분을 떠야 하며, 분의 흙이 떨어지지 않도록 새끼, 가마니, 철사, 보호재료로 결박시켜야 한다. 또한 수목 굴취시 수목이 넘어지는 것을 방지하기 위하여 수목에 지주를 설치하여 고정해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "특수한 수목에 대하여 필요한 경우 굴취 전에 가지주를 세우고 수목굴취에 착수하여 수목의 넘어짐을 방지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "제품, 자재, 부재 등이 넘어지지 않도록 붙들어 지탱하게 하는 등 안전 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:3",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "수목을 굴취하여 뿌리분 및 수관을 잘 포장해야 하며, 뿌리분 등의 포장은 새끼, 마대, 짚 등으로 싸매주어 뿌리 및 수피에 손상이 없도록 반드시 근로자 2인 이상 공동 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -242,7 +400,95 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "한 구덩이에서 곡괭이 작업을 동시에 하다 서로를 타격함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "곡괭이 작업시 곡괭이의 상태를 점검하고, 2인이 한구덩이 안에서 동시작업을 하지 못하도록 주지하거나 통제하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "근로자작업과 장비작업 시 동시작업을 금지하여야 하며, 다만, 근로자와 장비가 동시작업을 하는 경우에는 신호수를 배치하고 작업하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "인양·하차 작업반경 안에 근로자가 들어와 부딪힘",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "장비를 이용하여 수목을 인양, 하차시 및 운반 장소의 작업반경내 관계 근로자외의 사람이 출입하지 못하도록 통제한 상태에서 작업해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "인양할 하물을 바닥에서 끌어당기거나 밀어내는 작업을 하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니한다. 다만 신호하는 사람에 의하여 작업을 하는 경우는 제외한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "장비 작업구간에는 반드시 유도자 및 작업지휘자를 배치하여 정해진 운행 경로를 확보해야 하며, 화물자동차의 적재함에 근로자를 탑승시켜서는 안된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등을 사용하여 작업을 하는 경우에 하역 또는 운반 중인 화물이나 그 차량계 하역운반기계등에 접촉되어 근로자가 위험해질 우려가 있는 장소에는 근로자를 출입시켜서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:172",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등을 사용하는 작업을 할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자에게 위험을 미칠 우려가 있는 경우에는 유도자를 배치하고 지반의 부동침하 및 갓길 붕괴를 방지하기 위한 조치를 해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:171"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -308,7 +554,146 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "인양용 와이어로프·샤클이 파단되며 수목이 낙하함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "인양용 공구를 이용한 중량의 수목 운반 작업 전에 와이어로프, 슬링벨트, 훅 안전고리, 샤클의 손상, 체결방법 등의 적합 여부를 점검해야하며, 주기적인 교체로 작업 중 와이어로프의 탈락 및 파단의 원인을 제거하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "화물의 하중을 직접 지지하는 달기와이어로프 또는 달기체인의 안전계수가 5 이상이 아닌 경우에는 이를 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "훅, 샤클, 클램프, 리프팅 빔의 안전계수가 3 이상이 아닌 경우에는 이를 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "달기구의 경우 최대허용하중 등의 표식이 견고하게 붙어 있는 것을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "꼬임이 끊어진 섬유로프 등을 화물운반용 또는 고정용으로 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:387",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "심하게 손상되거나 부식된 섬유로프 등을 화물운반용 또는 고정용으로 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:387",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "수목의 운반 및 상·하차 시에는 헝겊을 싸서 수목의 손상을 방지하고 대형목인 경우에는 체인 블럭이나 이동식 크레인을 사용하여야 한다. 이동식 크레인을 이용하여 상, 하차시 수목이 회전하지 않도록 걸이를 하여야 하며, 크레인 설치시에 넘어짐을 방지하기 위하여 지형 및 주변 상황에 맞게 장비위치를 선정하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "운반 중 결박이 풀려 수목이 차량에서 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수목을 운반 시에는 2개소 이상에 결박하여 떨어짐을 방지하고, 수목식별 표지를 별도로 설치하여 이동시 부딪힘을 예방하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "운반 시에는 차량의 용량에 따라 적정 수량만을 적재하고 이중적재를 금지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "하중이 한쪽으로 치우치지 않도록 적재하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:173",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "구내운반차 또는 화물자동차의 경우 화물의 붕괴 또는 낙하에 의한 위험을 방지하기 위하여 화물에 로프를 거는 등 필요한 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:173",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "운전자의 시야를 가리지 않도록 화물을 적재하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:173",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "화물을 적재하는 경우에는 최대적재량을 초과해서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:173",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "수목굴취에서 식재까지의 시간은 짧을수록 좋으며 운반 경로를 사전에 검토하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "수목은 반입 당일에 식재하는 것이 원칙이나 부득이한 경우에는 가이식하여 수목을 보호하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -343,6 +728,66 @@
             {
               "article": "art:기준규칙:666",
               "controlLevel": "administrative"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "목도 운반 중 키 차이로 하중이 쏠려 허리를 다침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "목도운반 등 인력 운반 시에는 허리에 재해가 발생할 수 있으므로 준비 운동을 실시하고, 가급적 높낮이 차이가 나지 않도록 키가 비슷한 근로자가 인양하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 과도한 무게로 인하여 근로자의 목·허리 등 근골격계에 무리한 부담을 주지 않도록 최대한 노력해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:663"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리거나 운반하는 작업을 하는 경우에 근로자가 취급하는 물품의 중량·취급빈도·운반거리·운반속도 등 인체에 부담을 주는 작업의 조건에 따라 작업시간과 휴식시간 등을 적정하게 배분해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:664"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 무게중심을 낮추거나 대상물에 몸을 밀착하도록 하는 등 근로자에게 신체의 부담을 줄일 수 있는 자세에 대하여 알려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:666"
+                  }
+                },
+                {
+                  "measure": "주로 취급하는 물품에 대하여 근로자가 쉽게 알 수 있도록 물품의 중량과 무게중심에 대하여 작업장 주변에 안내표시를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "취급하기 곤란한 물품은 손잡이를 붙이거나 갈고리, 진공빨판 등 적절한 보조도구를 활용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 2
+                  }
+                }
+              ]
             }
           ]
         }
@@ -380,7 +825,63 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "백호 작업반경 안에 근로자가 들어와 부딪힘",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "기반을 조성하는 공사 시에는 작업반경내 관계 근로자외의 사람이 출입하지 못하도록 통제한 상태에서 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.4"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시켜서는 아니 된다. 다만, 유도자를 배치하고 해당 차량계 건설기계를 유도하는 경우에는 그러하지 아니하다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:200",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 운전자는 유도자가 유도하는 대로 따라야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:200",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계 사용 시 작업반경내 관계 근로자외의 사람을 출입금지 조치 또는 유도자 배치 등 차량계 건설기계 접촉방지 조치를 철저히 하여야 한다. 또한 장비 운행시 승차석외에 근로자 탑승을 금지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 이용한 고르기 작업 및 수목규격에 맞는 구덩이 파기 작업 시에는 유도자를 배치하여 신호에 따라 작업 및 이동 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.4"
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등, 차량계 건설기계를 사용하여 작업을 하는 경우 미리 작업장소의 지형 및 지반 상태 등에 적합한 제한속도를 정하고, 운전자로 하여금 준수하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:98",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -423,7 +924,87 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "지반이 고르지 않아 장비가 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지반이 평탄하지 않을 경우, 장비의 넘어짐 위험이 있으므로 장비 운반로는 고르게 정리하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.4"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하는 작업할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자가 위험해질 우려가 있는 경우에는 유도하는 사람을 배치하고 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:199"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하는 작업에 대하여 해당 기계의 굴러 떨어짐, 지반의 붕괴 등으로 인한 근로자의 위험을 방지하기 위한 해당 작업장소의 지형 및 지반 상태를 사전조사하고, 그 결과를 기록·보존하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "조경공사는 현장여건과 설계도서를 검토하여 안전한 작업계획을 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "작업장의 지형, 지반 및 지층상태 등에 대한 사전조사를 실시하여 산업안전보건기준에 관한 규칙 별표4의 구분에 따른 사항을 포함한 작업계획서를 작성하고, 그 내용을 근로자에게 주지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "운전자가 버킷을 올린 채 자리를 비워 버킷이 내려앉음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "차량계 하역운반기계등, 차량계 건설기계의 운전자가 운전위치를 이탈하는 경우 포크, 버킷, 디퍼 등의 장치를 가장 낮은 위치 또는 지면에 내려 두도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:99",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "원동기를 정지시키고 브레이크를 확실히 거는 등 차량계 하역운반기계등, 차량계 건설기계의 갑작스러운 이동을 방지하기 위한 조치를 하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:99",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "운전석을 이탈하는 경우에는 시동키를 운전대에서 분리시키도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:99",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -453,7 +1034,54 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "백호 버킷이 이탈하여 낙하함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "백호 버켓의 탈장착과 관련한 작업방법을 사전에 운전원에게 교육시키고, 이탈방지용 안전핀을 체결하는 등의 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.4"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 수리나 부속장치의 장착 및 해체작업을 하는 경우 그 작업을 지휘하는 사람을 지정하여 작업순서를 결정하고 작업을 지휘하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:176",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 수리나 부속장치의 장착 및 해체작업을 하는 경우 안전지지대 또는 안전블록 등의 사용 상황 등을 점검하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:176",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "장비 작업 전에 브레이크, 후진경보등, 후방감지기 등 안전장치의 설치상태 및 과부하방지장치, 권과방지장치 등 방호장치에 대하여 검정기관의 검정 합격 여부, 운전원의 자격여부를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계에 전조등을 갖추어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:197"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -488,7 +1116,62 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "구덩이 파기 중 굴착면이 무너져 매몰됨",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "조경 부지정리 작업 시 토사의 무너짐 위험 등이 없는지 주변 지반상태를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.4"
+                  }
+                },
+                {
+                  "measure": "지반 등을 굴착하는 경우 굴착면의 기울기를 별표 11의 기준에 맞도록 해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:339",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "비가 올 경우를 대비하여 측구를 설치하거나 굴착경사면에 비닐을 덮는 등 빗물 등의 침투에 의한 붕괴재해를 예방하기 위하여 필요한 조치를 해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:339",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "굴착작업 시 토사등의 붕괴 또는 낙하에 의하여 근로자에게 위험을 미칠 우려가 있는 경우에는 미리 흙막이 지보공의 설치, 방호망의 설치 및 근로자의 출입 금지 등 그 위험을 방지하기 위하여 필요한 조치를 해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:340"
+                  }
+                },
+                {
+                  "measure": "굴착작업을 할 때에 작업장소 및 그 주변의 부석·균열의 유무를 사전에 조사하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:338",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "굴착작업을 할 때에 함수·용수 및 동결의 유무 또는 상태의 변화를 사전에 조사하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:338",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -547,7 +1230,167 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "이동식 크레인 아웃트리거가 침하하며 장비가 넘어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "이동식 크레인은 아웃트리거를 설치하고, 와이어로프, 슬링벨트, 훅 안전고리, 샤클의 상태, 훅 해지장치의 상태 등을 수시 점검해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인의 아웃트리거 설치시 받침 등 매트나 미끄럼 방지장치를 준비하여 지지력을 확보한 견고한 받침판을 깔고 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인을 사용하는 경우에 그 이동식 크레인이 넘어지거나 그 이동식 크레인의 구조 부분을 구성하는 강재 등이 변형되거나 부러지는 일 등을 방지하기 위하여 해당 이동식 크레인의 설계기준을 준수하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:147"
+                  }
+                },
+                {
+                  "measure": "수목 하역 및 식재장소로는 굴착 면에서 충분히 이격된 평탄하고 다짐이 잘 되어 있는 안전한 장소를 선정하고, 수목이 움직이지 않도록 받침목을 설치하는 등 적절한 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 주용도 외의 용도로 사용하여서는 아니 되며 수목을 인양하여 식재하는 때에는 이동식크레인을 사용하여 작업을 진행하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "식재 중인 수목이 고정되기 전에 넘어져 근로자를 덮침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "식재 작업 시에 수목이 넘어지지 않도록 보조 지주을 설치하고 필요시 장비를 이용하여 고정 시까지 지지조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "식재는 설계 위치에 뿌리분 크기의 약 1.5배 이상으로 여유있게 구덩이를 파고 식물생육에 유해한 자갈, 불순물 등을 제거한 다음, 좋은 흙을 넣고 바닥을 부드럽게 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "식재 전 주변 흙 정리와 경관을 고려한 식재작업을 위한 흙쌓기 조형을 선행하고 주변 흙 레벨보다 약간 높게 심어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "제품, 자재, 부재 등이 넘어지지 않도록 붙들어 지탱하게 하는 등 안전 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:3",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "목도 운반으로 80kg 이상 수목을 옮기다 신호가 어긋나 떨어뜨림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "중량 80kg이상의 수목을 근로자 2명 이상이 목도 운반하는 때에는 준비 운동 및 일정한 신호방법을 정하고, 신호방법에 따라 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 과도한 무게로 인하여 근로자의 목·허리 등 근골격계에 무리한 부담을 주지 않도록 최대한 노력해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:663"
+                  }
+                },
+                {
+                  "measure": "주로 취급하는 물품에 대하여 근로자가 쉽게 알 수 있도록 물품의 중량과 무게중심에 대하여 작업장 주변에 안내표시를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "지주 결속이 느슨해 강풍에 수목이 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지주는 못 박기, 철선 결박 등을 튼튼히 하여 흔들림이 없도록 하여야 하며, 결박하는 부위의 철선은 완충재를 대어 수목에 직접 닿지 않도록 고무판을 대주고 끈으로 묶음으로써 수목의 손상을 방지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "삼각형 지주 등은 수목의 교착하는 부분에 2곳 이상 결속하여야 한다. 또한 강풍에 의한 흔들림을 방지하여 수목 활착이 원활히 이루어지도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "식재지역에 지반침하가 우려되는 경우에는 지주가 유동하지 않도록 조치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -596,7 +1439,88 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "인양 중인 수목이 흔들리며 탈락해 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "인양작업 시 가지치기 작업으로 나뭇가지에 옷 등이 걸리지 않도록 하고, 와이어로프, 섬유벨트 등으로 2줄 걸이 하는 등의 흔들리지 않도록 균형을 유지하는 방법으로 수목이 탈락되지 않도록 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "수목 인양로프는 끊어지지 않도록 견고한 것을 사용하고 허용중량이상의 강도를 가진 로프를 사용하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "고정된 물체를 직접 분리·제거하는 작업을 하지 아니한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "화물의 하중을 직접 지지하는 달기와이어로프 또는 달기체인의 안전계수가 5 이상이 아닌 경우에는 이를 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍 중 식재작업을 강행하다 인양 수목이 흔들려 사고가 남",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "강풍 시 사고 위험성이 있으므로 풍속의 크기를 측정하여 확인하고, 풍속이 초당 10미터를 초과하는 경우에는 작업을 중지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "강풍 등의 악천후 시 식재작업으로 인하여 근로자에게 위험을 미칠 우려가 있는 경우에는 작업을 중지해야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -633,7 +1557,70 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "크레인에 근로자를 매달거나 태워 작업하다 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "이동식 크레인을 사용하여 근로자를 운반하거나 근로자를 달아 올린 상태에서 작업에 종사시켜서는 안 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:86",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "크레인을 사용하여 근로자를 운반하거나 근로자를 달아 올린 상태에서 작업에 종사시켜서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:86",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "경사면 식재 중 미끄러져 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "경사면 식재작업 시 근로자가 떨어지지 않도록 안전대 부착설비를 설치하고, 안전대를 착용하고 작업을 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "추락할 위험이 있는 높이 2미터 이상의 장소에서 근로자에게 안전대를 착용시킨 경우 안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "안전대 및 부속설비의 이상 유무를 작업을 시작하기 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업을 하는 근로자에게 안전대를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -659,7 +1646,69 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "근로자와 장비가 동시에 작업하다 근로자가 시야에서 벗어남",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자 작업과 차량계 건설기계작업 시 동시작업을 금지해야 하며, 다만, 근로자와 장비가 동시작업을 하게 되는 경우에는 신호수를 배치하고 작업하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "식재를 위한 구덩이는 근로자 2명 이상 작업을 금지하여 파고, 설계도서에 의한 수종 및 규격에 따라 지정된 소정의 비료 또는 퇴비를 넣은 후 양질토로 5cm 정도 덮고, 그 위에 수목을 앉혀서 식재하여야 하며 근로자와 장비가 동시작업 시 근로자의 식별이 용이한 장소에서 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등, 차량계 건설기계의 작업계획서를 작성하고, 작업지휘자를 지정하여 작업계획서에 따라 작업을 지휘하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등을 사용하는 작업을 하는 경우 작업지휘자를 지정하여 작업계획서에 따라 작업을 지휘하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:39",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "좁은 공간에서 여럿이 삽·곡괭이로 굴착하다 서로를 타격함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "삽이나 곡괭이 사용에 의한 인력굴착 작업 시 좁은 공간에서 다수의 인원의 작업을 금지해야 하며, 근로자 상호간 사고를 방지하기 위해 작업 중에 2m이상의 충분한 거리를 유지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "식재를 위하여 뿌리 절단 시 삽날이나 곡괭이를 이용하여 자르지 않도록 해야 하고, 가위나 톱을 이용하여 잘라야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -703,7 +1752,74 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "지주 결박 중 손이 끼이거나 사다리가 넘어져 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지주 설치 시에는 결박작업 시 끼임 사고가 발생하지 않도록 가급적 근로자 2인 1조 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "사다리를 이용한 수목에 지주 연결 작업 시에는 보조로프를 사용하여 사다리가 넘어지지 않도록 수목과 결속을 실시하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "근로자가 떨어지는 것을 방지하기 위하여 안전대 부착설비를 설치하고, 안전대를 착용하여 승·하강을 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "지주목 설치 및 가지치기 작업은 발판을 설치하거나 고소작업대 사용을 원칙으로 하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "사다리식 통로는 견고한 구조로 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "심한 손상·부식 등이 없는 재료를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "사다리가 넘어지거나 미끄러지는 것을 방지하기 위한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -719,7 +1835,31 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "적재한 지주목에 걸려 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지주 적재 시에는 근로자가 걸려 넘어지지 않도록 자재를 정리하고, 통로를 확보 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "근로자가 작업장에서 넘어지거나 미끄러지는 등의 위험이 없도록 작업장 바닥 등을 안전하고 청결한 상태로 유지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:3",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -783,6 +1923,112 @@
               "article": "art:기준규칙:666",
               "controlLevel": "administrative"
             }
+          ],
+          "risks": [
+            {
+              "statement": "지주목을 무리하게 운반하다 근골격계에 부담이 감",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지주 운반 시에는 적정한 중량을 초과하지 않도록 하여 근골격계에 무리한 부담을 주지 아니하여야 하며, 신체에 부담을 감소시킬 수 있는 자세를 근로자에게 주지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.6"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 무게중심을 낮추거나 대상물에 몸을 밀착하도록 하는 등 근로자에게 신체의 부담을 줄일 수 있는 자세에 대하여 알려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:666"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리거나 운반하는 작업을 하는 경우에 근로자가 취급하는 물품의 중량·취급빈도·운반거리·운반속도 등 인체에 부담을 주는 작업의 조건에 따라 작업시간과 휴식시간 등을 적정하게 배분해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:664"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "옥외 식재작업 중 체감온도 33도 이상 폭염에 노출되어 열사병이 발생함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자가 폭염특보의 기준이 되는 체감온도 33도 이상인 작업장소에서 폭염작업을 하는 경우에는 매 2시간 이내에 20분 이상의 휴식을 주어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "근로자가 폭염작업을 하는 경우에는 냉방 또는 통풍 등을 위한 적절한 온도·습도 조절장치를 설치·가동한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "작업시간대의 조정 등 폭염 노출을 줄일 수 있는 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "폭염작업으로 인한 건강장해 예방을 위하여 필요한 적절한 휴식시간을 부여한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "폭염작업이 예상되는 작업장소에 온·습도계 등 온도·습도를 측정하는 기기를 상시 갖추어 둔다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자에게 폭염작업에 따른 건강장해의 증상 및 예방조치, 응급조치 요령 등에 관한 사항을 폭염작업 전에 미리 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "폭염작업이 이루어진 작업장소에서 측정한 체감온도와 조치사항을 일자별로 기록하고, 그 내용을 폭염작업이 있었던 해당 연도 12월 31일까지 보관한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "근로자의 폭염작업으로 인하여 열사병 등 건강장해가 발생되었거나 발생한 것으로 의심되는 경우에는 지체 없이 사업장 소재지를 관할하는 소방관서에 직접 신고하거나 근로자로 하여금 신고하게 하는 등 필요한 적절한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -814,7 +2060,55 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "크레인 붐이나 수목이 가공전선에 접촉하여 감전됨",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "충전전로에 인근 작업 시 크레인 등을 충전전로의 충전부로부터 300센티미터 이상 이격하거나 산업안전보건기준에 관한 규칙 제322조의 충전전로 인근에서 차량·기계장치 작업을 준수하고 신호수를 배치하여 고압선에 접촉하지 않도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.5"
+                  }
+                },
+                {
+                  "measure": "충전전로 인근에서 차량, 기계장치 등의 작업이 있는 경우에는 차량등을 충전전로의 충전부로부터 300센티미터 이상 이격시켜 유지시키되, 대지전압이 50킬로볼트를 넘는 경우 이격시켜 유지하여야 하는 거리는 10킬로볼트 증가할 때마다 10센티미터씩 증가시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자가 차량등의 그 어느 부분과도 접촉하지 않도록 울타리를 설치하거나 감시인 배치 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "충전전로 인근에서 접지된 차량등이 충전전로와 접촉할 우려가 있을 경우에는 지상의 근로자가 접지점에 접촉하지 않도록 조치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 4
+                  }
+                },
+                {
+                  "measure": "충전전로의 인근에서 작업 시에는 충전부로부터 300센티미터 이상 이격하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -885,6 +2179,139 @@
               "item": 5,
               "controlLevel": "elimination"
             }
+          ],
+          "risks": [
+            {
+              "statement": "방제 중 막힌 분사구를 입으로 불어내다 농약을 흡입함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "방제기구의 막힌 분사구를 뚫기 위하여 입으로 불어내지 않도록 하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:670",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "방제 작업 시에는 방독마스크 등 개인보호구를 착용하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.7"
+                  }
+                },
+                {
+                  "measure": "농약원재료를 취급하는 경우에는 담배를 피우거나 음식물을 먹지 않도록 하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:670",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "농약을 방제기구에 넣다 넘쳐흐르거나 역류하여 신체에 닿음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "방제기구에 농약을 넣는 경우에는 넘쳐흐르거나 역류하지 않도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:670",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "농약원재료를 혼합하는 경우에는 화학반응 등의 위험성이 있는지를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:670",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "작업을 시작하기 전에 농약의 방제기술과 지켜야 할 안전조치에 대하여 교육을 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:670",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "약제 살포 작업 시에는 유해·위험 물질에 대한 물질안전보건자료를 파악하여 취급시의 주의사항 등을 근로자에게 교육시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.7"
+                  }
+                },
+                {
+                  "measure": "지속적인 물주기 및 병충해 방제 작업을 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "비료를 과중하게 운반하다 허리를 다침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비료 등 운반 시에 25kg이상 초과하여 운반하지 않도록 주의하며 운반시에는 올바른 자세를 유지하여 무리한 작업을 금지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.7"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 과도한 무게로 인하여 근로자의 목·허리 등 근골격계에 무리한 부담을 주지 않도록 최대한 노력해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:663"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 무게중심을 낮추거나 대상물에 몸을 밀착하도록 하는 등 근로자에게 신체의 부담을 줄일 수 있는 자세에 대하여 알려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:666"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리거나 운반하는 작업을 하는 경우에 근로자가 취급하는 물품의 중량·취급빈도·운반거리·운반속도 등 인체에 부담을 주는 작업의 조건에 따라 작업시간과 휴식시간 등을 적정하게 배분해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:664"
+                  }
+                },
+                {
+                  "measure": "주로 취급하는 물품에 대하여 근로자가 쉽게 알 수 있도록 물품의 중량과 무게중심에 대하여 작업장 주변에 안내표시를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -929,7 +2356,74 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "가지치기 중 안전대 없이 높은 곳에서 작업하다 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "가지치기 작업 시에는 근로자가 떨어지지 않도록 안전대 부착설비 설치 및 안전대를 착용후 작업을 실시해야 하며, 작업 종료시에 주변 정리정돈을 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.7"
+                  }
+                },
+                {
+                  "measure": "가지치기를 할 경우 수형이 파괴되지 않는 범위 내에서 실시하며 이동식 사다리 사용시 근로자 2인 1조로 작업하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.7"
+                  }
+                },
+                {
+                  "measure": "추락할 위험이 있는 높이 2미터 이상의 장소에서 근로자에게 안전대를 착용시킨 경우 안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "안전대 및 부속설비의 이상 유무를 작업을 시작하기 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 설치한 바닥면에서 높이 3.5미터 이하의 장소에서만 작업한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "안전모를 착용하되, 작업 높이가 2미터 이상인 경우에는 안전모와 안전대를 함께 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 견고한 시설물에 연결하여 고정하거나, 아웃트리거를 설치하거나, 다른 근로자가 지지하여 넘어지지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -945,7 +2439,39 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "위험성평가·작업 전 점검 없이 착수하여 위험요인이 방치됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "모든 작업은 사전 위험성평가를 실시하여 잠재위험요인에 대한 안전대책을 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "산업안전보건기준에 관한 규칙 별표 3에서 정하는 바에 따라 작업을 시작하기 전에 관리감독자로 하여금 필요한 사항을 점검하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-75-2013",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "추락에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

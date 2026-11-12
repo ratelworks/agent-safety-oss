@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "hasHazard": [
     "hazard:fall_object",
@@ -100,7 +99,117 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "설치간격·내민 길이·각도가 기준에 못 미쳐 낙하물이 하부에 도달함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "낙하물 방지망의 설치간격은 매 10m 이내로 하여야 하며, 첫 단의 설치 높이는 근로자를 낙하물에 의한 위험으로부터 방호할 수 있도록 가능한 낮은 위치에 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망이 수평면과 이루는 각도는 20°~30°로 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망의 내민 길이는 비계 외측으로부터 수평거리 2.0m 이상으로 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반을 설치하는 경우에는 높이 10미터 이내마다 설치하고, 내민 길이는 벽면으로부터 2미터 이상으로 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "수평면과의 각도는 20도 이상 30도 이하를 유지한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "방망 결속·겹침이 불량하여 틈으로 낙하물이 통과함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "방망의 가장자리는 테두리 로프를 그물코를 통과하는 방법으로 방망과 결합시키고 로프와 방망을 재봉사 등으로 묶어 고정한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "방망의 겹침 폭은 30cm 이상으로 테두리로프로 결속하여 방망과 방망 사이의 틈이 없도록 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "방망을 지지하는 긴결재의 강도는 15 kN 이상의 인장력에 견딜 수 있는 로프 등을 사용한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "매다는 지지재의 간격은 3m 이상으로 하되 방망의 수평투영면의 폭이 전체 구간에 걸쳐 2m 이상 유지되도록 조치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "그물코가 커서 못·볼트 등 작은 낙하물이 통과하여 통행인이 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자, 통행인 등의 왕래가 빈번한 장소인 경우 최하단의 방망은 크기가 작은 못·볼트·콘크리트 부스러기 등의 낙하물이 떨어지지 못하도록 방망의 그물코 크기가 0.3cm 이하인 망을 설치한다(낙하물 방호선반을 설치하였을 경우는 제외)",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망은 「산업표준화법」에 따른 한국산업표준에서 정하는 성능기준에 적합한 것을 사용한다",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -116,7 +225,39 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "정기점검·적치물 제거를 하지 않아 방망이 손상된 채 방치됨",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "낙하물 방지망은 설치 후 3개월 이내마다 정기점검을 실시하여야 하며, 낙하물이 발생하였거나 유해환경에 노출되어 방망이 손상된 경우에는 즉시 교체 또는 보수한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "방망에 적치되어 있는 낙하물 등은 즉시 제거한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망을 설치하기 전에 제조자명 또는 그 약호, 제조 연월, 안전인증번호의 표시 사항을 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -127,7 +268,23 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "방망 주변 용접·절단 불티가 방망에 인화하여 화재가 발생함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "낙하물 방지망 주변에서 용접이나 컷팅 작업을 할 때, 용접불티 비산방지덮개, 용접방화포 등 불꽃, 불티 등 비산방지조치를 실시하고 작업이 끝나면 방망의 손상여부를 점검한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -138,7 +295,23 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "비계 바깥쪽에서 방망을 설치·해체하다 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "건축물 바깥쪽에 방망을 설치 또는 해체하는 경우 가급적 건축물 안쪽에서만 작업이 이루어지도록 하며, 불가피하게 바깥쪽으로 나가서 설치 및 해체 작업을 해야 하는 특정구간의 경우에는 고소작업대 사용 또는 안전대 착용 등 적절한 추락 방지조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-26-2017",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -43,6 +43,8 @@ import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDo
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 const WORK_STEP_BASIS_PER_ROW = 3;
+/** 위험요인 한 줄에 적는 감소대책 수 */
+const WORK_STEP_MEASURES_PER_ROW = 6;
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -952,6 +954,14 @@ async function buildWorkStepTable(
   const rows: WorkStepTable["rows"] = [];
   for (const step of found.result.steps) {
     for (const h of step.hazards) {
+      // 위험요인마다 한 줄 — 유해·위험요인과 감소대책(근거)
+      for (const r of h.risks) {
+        const measures = r.measures
+          .slice(0, WORK_STEP_MEASURES_PER_ROW)
+          .map((m) => `${m.measure}${m.controlLevel ? ` [${m.controlLevel}]` : ""}${m.basisRef ? ` (${m.basisRef.replace("산업안전보건기준에 관한 규칙", "안전보건규칙")})` : ""}`);
+        rows.push([step.name, `${h.hazardLabel} — ${r.statement}`, measures]);
+      }
+      if (h.risks.length > 0) continue;
       const basis = h.basis.slice(0, WORK_STEP_BASIS_PER_ROW).map((x) => {
         const title = x.kind === "kosha_guide" && x.text ? x.text.replace(/^[\d.]+\s+/, "") : x.title;
         return `${x.ref} ${title}${x.controlLevel ? ` (${x.controlLevel})` : ""}`.trim();
@@ -964,10 +974,10 @@ async function buildWorkStepTable(
     .join(", ");
   return {
     title: `작업 단계별 위험요인·근거 — ${found.result.work}`,
-    headers: ["단계", "재해유형", "근거 (대책 위계)"],
+    headers: ["단계", "유해·위험요인", "감소대책 [위계] (근거)"],
     rows,
     notice:
-      "공종의 작업 단계마다 살필 재해유형과 근거를 연결한 참고 자료입니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다." +
+      "공종의 작업 단계별 유해·위험요인과 감소대책을 근거와 함께 정리한 참고 자료입니다(안전보건공단 자료 기반). 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다." +
       (notices ? ` 함께 볼 표준안전 작업지침(권고 기준): ${notices}.` : ""),
   };
 }

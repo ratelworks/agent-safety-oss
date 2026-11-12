@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:formwork_shoring",
   "hasHazard": [
@@ -117,7 +116,176 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "무자격·미교육 작업자가 시스템폼을 설치하여 체결 불량이 발생함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업자는 사전에 제작사의 시스템폼 기술과 안전교육을 받은 자만이 작업을 할 수 있고 설치 시에는 안전대를 착용한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                },
+                {
+                  "measure": "시스템폼의 제작·설치·운용·해체 작업자는 「유해·위험작업의 취업제한에 관한 규칙」에 적합한 자격, 기능, 경험 및 해당교육기관에서 교육을 이수한 자만이 작업을 한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "콘크리트 강도가 부족한 상태에서 슈를 설치하여 앵커가 뽑히며 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "설치 전에 구조검토서에서 제시한 콘크리트 강도(최소 10MPa 이상)가 충분히 나오는지 반드시 확인하고 콘크리트 강도 및 거푸집 존치기간은 표준시방서를 준수한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                },
+                {
+                  "measure": "거푸집이 콘크리트면에 지지될 때에 콘크리트의 굳기정도와 거푸집의 무게, 풍압 등의 영향으로 거푸집의 갑작스런 이탈 또는 낙하로 인해 근로자가 위험해질 우려가 있는 경우에는 설계도서에서 정한 콘크리트의 양생기간을 준수하거나 콘크리트면에 견고하게 지지하는 등 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331의3",
+                    "paragraph": 3,
+                    "item": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "클라이밍 콘·스레디드 플레이트 체결이 불완전하여 슈가 이탈함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "붉은 색 칠이 보이지 않을 때까지 클라이밍 콘과 스레디드 플레이트를 돌려서 체결한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "타설 전 클라이밍 콘 및 스레디드 플레이트는 정확히 체결하고 월 슈 고정 시 고강도 육각볼트를 정확하게 체결하고 월 슈가 클라이밍 콘에 정확히 체결되었는지 콘크리트 벽체면과 유격이 없는지 확인한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "클라이밍 슈와 월 슈를 설치할 때 구조체와 유격이 없이 확실하게 조여졌는지 반드시 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "관통형의 앵커는 반대쪽의 카운트 플레이트가 정확히 체결되었는지 확인하며, 내부 폼 해체 시 다시 체결할 때 주의한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "설치 전에 앵커 매립, 클라이밍 콘과 스레디드 플레이트의 위치는 정확한지 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                },
+                {
+                  "measure": "클라이밍 슈와 월 슈가 매립된 클라이밍 콘에 정확하고 긴밀하게 체결하였는지 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "앵커 자재에 용접·화기를 가해 강도가 저하되어 파단됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "모든 앵커 자재, 특히 디비닥 타이로드는 용접 및 화기 접촉을 금지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "타이로드와 체결용 볼트에 용접이나 불을 가한 것은 사용하여서는 안 되며 스레디드 플레이트와 클라이밍 콘 체결을 정확히 한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "볼트 위치·규격을 확인하지 않고 설치하여 지지력이 부족함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "시스템폼은 앵커볼트, 월슈, 클라이밍 슈, 콘크리트 강도 등에 의하여 지지되므로 제작도와 부위별 볼트위치, 볼트규격, 핀 등이 정확한 위치에 정확히 설치되었는지 확인과 측량을 하여 불완전한 상태가 발생하지 않도록 한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                },
+                {
+                  "measure": "매립된 앵커에 슈를 연결하기 위한 작업발판을 설치하고 인양하여 설치할 수 있는 크레인의 인양반경과 하중을 검토한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                },
+                {
+                  "measure": "슈를 열어 놓은 상태로 클라이밍 콘에 볼트로 연결하고 크레인으로 거푸집발판을 슈에 걸어서 설치한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.1"
+                  }
+                },
+                {
+                  "measure": "클라이밍 슈의 좌우 핀을 상부로 들어 올리고 클라이밍 슈의 좌우 날개를 클라이밍 레일의 홈에 꼭 맞게 닫은 후 좌우 핀을 내려서 닫힌 상태를 고정시킨다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -127,7 +295,23 @@
               "section": "8.2.2"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "대형 거푸집이 바람을 받아 인양 중 흔들려 충돌함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "시스템폼은 대형거푸집으로 바람의 영향에 직접적으로 영향을 받으므로 인양 및 설치 시에는 본체만을 유도 로프를 이용하여 바람에 영향을 최소화한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -137,7 +321,23 @@
               "section": "8.2.2"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "작업발판 위 잡자재·공구가 적재하중을 늘리거나 낙하함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업발판 위에 잡자재나 공구 등이 놓여 있어 적재하중 증가, 거푸집 설치 및 해체 시 서로 간섭, 낙하 등의 위험이 발생하지 않도록 깨끗이 치운다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.2"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -152,7 +352,77 @@
               "section": "8.2.5"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "폼타이를 제거하지 않았거나 상부에 작업자가 남은 채 인양하여 파손·추락함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "인양 전에 벽체의 폼타이는 모두 제거 되었는지 확인하고 콘크리트 타설용 발판에 작업자가 없어야 한다",
+                  "variant": "갱폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "인양 시는 펌프공 1인과 발판상태 확인자 1인, 슈 진입확인자 1인으로 하여 모두 3인 1조로 경험이 있는 숙련공이 인양작업을 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "인양 전에 클라이밍 레일의 미끄러지는 부분은 깨끗하게 기름칠을 한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "인양 중 개구부·발판 틈이 열린 상태로 방치되어 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업발판 위의 수평 및 수직 개구부는 인양 중이 아닐 때에는 덮개가 덮여 있어야 하고 사다리 및 계단을 안전하게 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "발판과 발판 사이와 발판과 구조체 사이는 안전한 덮개로 덮여 있어야 하고 발판이 심하게 처져서는 안 된다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "안전난간대와 안전망은 손상된 것이 있는지 항상 확인한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "골조가 진행됨에 따라 거푸집이 선 인양되어 단부에 개구부가 발생한 상태에서 작업하는 일이 없도록 인양 작업계획을 세운다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -178,7 +448,93 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "슈 잠금 상태를 확인하지 않고 실린더를 조작하여 발판이 추락함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "상부작업대의 슈를 잠금 상태로 전환하고 중간작업대 슈에 실린더를 설치하며, 월 슈와 클라이밍 콘 연결 시 벽체와 유격이 없도록 확실히 조인다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.6"
+                  }
+                },
+                {
+                  "measure": "슈가 메인볼트에 걸리는지 확인되면 실린더를 줄이고 클라이밍 레일이 상부 슈에 진입 직전까지 반복하여 발판을 인양한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.6"
+                  }
+                },
+                {
+                  "measure": "클라이밍 레일이 상부 슈에 진입하기 전에 레일슈가 평행한지 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.6"
+                  }
+                },
+                {
+                  "measure": "중간 슈가 잠금 상태를 재확인하고 하부 슈가 풀린 상태로 전환한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.6"
+                  }
+                },
+                {
+                  "measure": "클라이밍 콘을 제거할 때 하부 슈인지 반드시 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.6"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍·강우 중 운용을 강행하여 체결부가 이완되고 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "운용작업을 할 수 있는 날씨조건을 사전에 확인하고 강풍이나 강우 시에는 각 부속품 및 시설물의 체결상태와 각 앵커 볼트 및 슈의 조임 상태를 확인하고 작업을 중지한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "강풍이 불어 온 후 다시 작업을 할 때에는 부재, 앵커 등 이상 유무를 점검한 후 작업을 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "각종 볼트류 체결 상태를 확인하고 모든 자재는 중량물이므로 취급 시 주의한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -188,7 +544,31 @@
               "section": "8.2.5"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "거푸집과 구조물 사이로 낙하물이 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "본 작업 전에 거푸집과 구조물 사이에 힌지를 이용한 덮개를 설치하여 거푸집 설치·해체작업 시 낙하물이 발생하지 않도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "발판 위에 낙하할 수 있는 자재나 공구 등이 놓여 있거나 중량물이 한 곳에 집중하여 적재하여서는 안 된다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -198,7 +578,23 @@
               "section": "8.2.5"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "용접 불티·보양 난로가 수직망·천막에 인화하여 화재가 발생함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철근 용접이나 동절기 보양 난로 등으로 불티가 거푸집 수직망 또는 보양 천막에 인화하지 않도록 하고, 현장에는 잘 보이는 장소에 소화기를 비치하고 비상시 사용 가능하도록 사용방법을 숙지시킨다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -250,7 +646,154 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "인양로프에 걸지 않고 탈형하여 시스템폼이 낙하함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "최상층 등 콘크리트 타설 작업이 완료된 상태와 건물 평면이 다른 상태에서 시스템폼 해체 시에는 반드시 타워크레인 인양로프로 거푸집 및 시스템폼의 인양고리에 안전하게 걸고 해체작업을 한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                },
+                {
+                  "measure": "갱 폼을 조립하거나 해체하는 경우에는 갱 폼을 인양장비에 매단 후에 작업을 실시하도록 하고, 인양장비에 매달기 전에 지지 또는 고정철물을 미리 해체하지 않도록 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331의3",
+                    "paragraph": 2,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "크레인과 거푸집 및 시스템폼 인양고리 체결상태, 인양로프 등 해체 작업에 사용되는 모든 도구는 사전에 안전점검을 하고 해체 작업자는 시스템폼의 해체작업 안전교육을 받은 자가 작업을 한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "유압펌프 이상·누유를 방치하여 인양 중 발판이 급강하함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "유압호스나 커플러에 누유 상태는 확인 후 누유가 있을 시 즉시 교체 또는 수리를 한 후 사용한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "유압식 클라이밍 시스템의 경우 압력게이지, 유압호스 누유 여부, 밸브작동상태를 매일 점검한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "유압 펌프에 이상이 발생한 때에는 즉시 전력을 차단하고 시스템폼 전문가에게 연락한다",
+                  "controlLevel": "elimination",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "유압 펌프의 오일양은 평균치를 일정하게 유지하고 수치 미만 시는 채운다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "유압 펌프를 가동하지 않을 때에 마스터 스위치는 항상 꺼져 있도록 한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "전력선이나 소켓류가 파손되어 있는지 확인하고 파손 시 바로 교체한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "유압 펌프 위에 이물질이나 잡자재, 공구 등이 놓여 있지 않아야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "유압 펌프 선이나 전력 케이블 주위에 이물질이 있을 시는 즉시 제거한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "수직하중을 받는 슈를 먼저 제거하여 시스템폼이 낙하함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "제1작업자는 먼저 크레인 인양고리를 지정된 위치에 볼트를 사용하여 고정하고 크레인으로 살짝 인양해서 시스템폼 발판이 안전하게 고정된 것이 확실히 확인되면, 제2작업자가 슈 및 클라이밍 콘을 제거한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.8"
+                  }
+                },
+                {
+                  "measure": "마지막으로 수직하중을 직접 받고 있는 슈와 클라이밍 콘을 제거하고 낙하 위험이 없는 안전한 곳으로 옮겨 둔다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.8"
+                  }
+                },
+                {
+                  "measure": "거푸집과 스트롱백 체결 자재를 제거한 다음 크레인으로 스트롱백과 헤비듀티스핀들을 먼저 해체하고, 거푸집을 해체한다",
+                  "controlLevel": "administrative",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.8"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -260,7 +803,75 @@
               "section": "8.2.9"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "다른 구조물에 끼인 상태로 해체를 강행하여 부재가 튕겨 나감",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "시스템 특성에 맞도록 해체 작업계획서를 작성하고 해체 시는 발판에 낙하물을 제거하고 다른 거푸집과 다른 구조물에 간섭이 되거나 끼인 상태가 없도록 확인한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                },
+                {
+                  "measure": "크레인 인양고리는 발판의 균형이 잘 맞는 지점에 연결하고 신호수는 발판을 해체하여 하강 시 간섭이 될 만한 곳이 있는지 확인한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체 작업반경 하부에 근로자가 있어 낙하물에 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "해체 작업 시 모든 발판의 부산물과 기타 부착물은 제거 상태를 확인하고 유도로프 2개소를 설치하여 작업반경 내 안전거리를 유지하고 하부는 신호수를 배치하여 출입을 통제한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                },
+                {
+                  "measure": "해체 작업자는 안전대를 착용하고 해체 작업 중에 건물 외부로 노출되는 작업자가 있는지 확인하고 해체 작업장 하부는 근로자가 있는지 확인한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "인양능력·하역장소를 검토하지 않아 해체 자재가 낙하함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "각 시스템폼의 중량과 크레인 양중능력을 검토하고 지상에 해체한 자재를 안전하게 내려놓을 장소는 확보되었는지 확인하고 관리감독자를 작업현장에 배치한다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                },
+                {
+                  "measure": "모든 도구 및 자재는 중량물이므로 취급 시 주의한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -270,7 +881,23 @@
               "section": "8.2.9"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "절단작업 중 불꽃·불티가 비산하여 화재가 발생함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "절단작업의 경우 불꽃·불티 비산방지 방염포 설치와 소화기를 비치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.9"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -280,7 +907,39 @@
               "section": "8.2.7"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "수평이동 인양 중 발판 간 단차가 생겨 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "인양된 발판과 인양되지 않은 발판 사이에 단차가 발생할 수 있어 수평이동 시 추락하지 않도록 주의한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.7"
+                  }
+                },
+                {
+                  "measure": "실린더를 사용하여 작업발판을 인양하고 마지막 발판의 인양작업이 완료되면 실린더를 해체하며, 인양이 완료되면 모든 낙하방지용 덮개를 바로 덮는다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.7"
+                  }
+                },
+                {
+                  "measure": "유압호스의 암·수 커플러를 결합한 채로 이동해야 이물질이 들어가지 않는다",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.2.7"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

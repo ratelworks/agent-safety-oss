@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "hasHazard": [
     "hazard:struck_by_overturn",
@@ -110,7 +109,46 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "벌목한 나무가 예상과 다른 방향으로 넘어져 근로자가 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "벌목하려는 경우에는 미리 대피로 및 대피장소를 정해 둔다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "벌목하려는 나무의 가슴높이지름이 20센티미터 이상인 경우에는 수구(베어지는 쪽의 밑동 부근에 만드는 쐐기 모양의 절단면)의 상면ㆍ하면의 각도를 30도 이상으로 하며, 수구 깊이는 뿌리부분 지름의 4분의 1 이상 3분의 1 이하로 만든다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "벌목작업 중에는 벌목하려는 나무로부터 해당 나무 높이의 2배에 해당하는 직선거리 안에서 다른 작업을 하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "유압식 벌목기에는 견고한 헤드 가드(head guard)를 부착한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:405"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -144,7 +182,67 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "다른 나무에 걸린 나무를 무리하게 처리하다 낙하하는 나무에 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "나무가 다른 나무에 걸려있는 경우에는 걸려있는 나무 밑에서 작업을 하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 4,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "받치고 있는 나무를 벌목하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 4,
+                    "subitem": "나"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "장비 운전자가 낙하물·전도로 재해",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "암석이 떨어질 우려가 있는 등 위험한 장소에서 차량계 건설기계[불도저, 트랙터, 굴착기, 로더(loader), 스크레이퍼(scraper), 덤프트럭, 모터그레이더(motor grader), 로드롤러(road roller), 천공기, 항타기 및 항발기로 한정한다]를 사용하는 경우에는 해당 차량계 건설기계에 견고한 낙하물 보호구조를 갖춰야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:198"
+                  }
+                },
+                {
+                  "measure": "어두운 장소에서 사용하는 차량계 건설기계에는 전조등을 갖추어야 하며, 다만 작업을 안전하게 수행하기 위하여 필요한 조명이 있는 장소에서 사용하는 경우에는 그러하지 아니하다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:197"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 승차석이 아닌 위치에 근로자를 탑승시켜서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:202"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하여 작업을 하는 경우 그 차량계 건설기계가 넘어지거나 붕괴될 위험 또는 붐ㆍ암 등 작업장치가 파괴될 위험을 방지하기 위하여 그 기계의 구조 및 사용상 안전도 및 최대사용하중을 준수하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:203"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -166,7 +264,43 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "표토제거 장비가 근로자와 접촉하여 협착",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시켜서는 아니 된다. 다만, 유도자를 배치하고 해당 차량계 건설기계를 유도하는 경우에는 그러하지 아니하다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:200"
+                  }
+                },
+                {
+                  "measure": "운전자는 유도자가 유도하는 대로 따라야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:200"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 운전자가 운전위치를 이탈하는 경우 해당 운전자에게 포크, 버킷, 디퍼 등의 장치를 가장 낮은 위치 또는 지면에 내려 두도록 하고, 원동기를 정지시키고 브레이크를 확실히 거는 등 갑작스러운 주행이나 이탈을 방지하기 위한 조치를 하도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:99"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하여 작업을 할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자가 위험해질 우려가 있는 경우에는 그 기계를 유도하는 사람을 배치하고 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:199"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -184,7 +318,36 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "작업계획서 없이 착수하여 지반 붕괴·전도 위험이 통제되지 않음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "해당 기계의 굴러 떨어짐, 지반의 붕괴 등으로 인한 근로자의 위험을 방지하기 위한 해당 작업장소의 지형 및 지반상태, 차량계 건설기계의 종류 및 성능, 차량계 건설기계의 운행경로, 차량계 건설기계에 의한 작업방법을 작업계획서에 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-3호"
+                  }
+                },
+                {
+                  "measure": "비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37"
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -223,7 +386,95 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "가설도로가 견고하지 않아 운행 중 장비가 전도",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "도로는 장비와 차량이 안전하게 운행할 수 있도록 견고하게 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:379",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하여 작업을 할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자가 위험해질 우려가 있는 경우에는 그 기계를 유도하는 사람을 배치하고 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:199"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 이동경로와 진·출입로 및 화물을 싣거나 내리는 장소의 지반 부동침하와 갓길 붕괴방지 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "운전자는 운행 중 차량의 전도․전락 등의 위험이 발생하지 않도록 지반의 평탄성 등 지반의 안전 상태를 확인하며 운전하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "도로 배수 불량으로 노면이 연약해져 침하·전도",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "도로는 배수를 위하여 경사지게 설치하거나 배수시설을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:379",
+                    "item": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "건설기계 이송을 위해 발판으로 싣고 내리다 전도",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "차량계 건설기계를 이송하기 위하여 자주(自主) 또는 견인에 의하여 화물자동차 등에 싣거나 내리는 작업을 할 때에 발판ㆍ성토 등을 사용하는 경우에는 차량계 건설기계의 넘어짐 또는 굴러떨어짐에 의한 위험을 방지하기 위하여 싣거나 내리는 작업은 평탄하고 견고한 장소에서 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:201"
+                  }
+                },
+                {
+                  "measure": "발판을 사용하는 경우에는 충분한 길이ㆍ폭 및 강도를 가진 것을 사용하고 적당한 경사를 유지하기 위하여 견고하게 설치할 것을 준수하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:201"
+                  }
+                },
+                {
+                  "measure": "가설대 등을 사용하는 경우에는 충분한 폭ㆍ강도와 적당한 경사를 확보할 것을 준수하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:201"
+                  }
+                },
+                {
+                  "measure": "싣거나 내리는 작업은 평탄하고 견고한 장소에서 할 것, 발판은 충분한 길이ㆍ폭 및 강도를 가진 것을 사용하고 적당한 경사 유지를 위하여 견고하게 설치할 것, 가설대 등을 사용하는 경우에는 충분한 폭과 강도 및 적당한 경사를 확보할 것, 지정운전자의 성명ㆍ연락처 등을 보기 쉬운 곳에 표시하고 지정운전자 외에는 운전하지 않도록 할 것을 준수하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -249,7 +500,63 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "도로와 작업장 경계에서 장비·차량이 작업장으로 진입하여 근로자를 침범",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "도로와 작업장이 접하여 있을 경우에는 울타리 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:379",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "차량의 속도제한 표지를 부착한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:379",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "관리감독자는 주행로와 진·출입로의 안전을 확인하고, 화물을 싣거나 내리는 작업 장소에는 운전원이 확인할 수 있는 위치에 유도자 또는 신호수를 배치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 화물을 싣거나 내리는 작업 장소에는 화물이나 장비 등의 접촉으로 근로자가 위험의 우려가 있는 장소에는 관계자 외 근로자의 출입을 금지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "운전자는 도로와 현장 내에서의 제한속도를 준수하여 운행하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "운전자는 차량과 차량 간의 안전거리를 확보하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -273,7 +580,45 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "장비 수리·점검 중 붐·암이 하강하여 근로자가 협착",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "차량계 건설기계의 붐ㆍ암 등을 올리고 그 밑에서 수리ㆍ점검작업 등을 하는 경우 붐ㆍ암 등이 갑자기 내려옴으로써 발생하는 위험을 방지하기 위하여 해당 작업에 종사하는 근로자에게 안전지지대 또는 안전블록 등을 사용하도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:205"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 수리나 부속장치의 장착 및 해체작업을 하는 경우 그 작업을 지휘하는 사람을 지정하여 작업순서를 결정하고 작업을 지휘하는 일, 안전지지대 또는 안전블록 등의 사용 상황 등을 점검하는 일을 수행하게 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:206"
+                  }
+                },
+                {
+                  "measure": "차량의 하부 수리, 점검, 부속장치의 장착 및 교체작업을 하는 경우 작업지휘자를 지정하여 작업순서를 결정하고 작업을 지휘하며, 협착재해 방지를 위하여 안전지지대 또는 안전블럭 등의 사용 상황 등을 점검하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "덤프트럭 적재함 하부 점검시 안전지주 또는 안전블럭을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -293,7 +638,38 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "건설기계를 주용도 외로 사용하여 재해",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "차량계 건설기계를 그 기계의 주된 용도에만 사용하여야 하며, 다만 근로자가 위험해질 우려가 없는 경우에는 그러하지 아니하다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:204"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 덤프 및 화물자동차의 적재함 등이 출고시와 달리 구조변경 여부를 확인하여야 하며, 주된 용도 외의 사용(다른 차량의 견인 행위 등)을 금지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 자동차 등록증 보유와 운전원의 자격 및 보험가입 여부를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-114-2020",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

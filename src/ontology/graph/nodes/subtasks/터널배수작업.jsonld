@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:tunnel_excavation",
   "hasHazard": [
@@ -135,7 +134,189 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "누수를 방치하여 배면 토사가 유출되고 상부지반에 공극이 생겨 터널이 붕괴",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "뿜어붙이기 콘크리트 부위에 토사유출의 용수 발생시 즉시 작업을 중단하고 지중침하, 지표면 침하 등의 계측 결과를 확인하고 정밀지반 조사후 급결그라우팅 주입 등의 조치를 취한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.2"
+                  }
+                },
+                {
+                  "measure": "누수개소를 발견한 때에는 토사 유출로 인한 상부지반의 공극발생 여부를 확인하여야 하며 규정된 용량의 용기에 의한 분당 누출 누수량을 측정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.2"
+                  }
+                },
+                {
+                  "measure": "터널내의 누수개소, 누수량 측정 등의 목적으로 담당자를 선임한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.2"
+                  }
+                },
+                {
+                  "measure": "누수에 의한 붕괴위험이 있는 개소에는 약액주입공법 등 지반보강 조치를 하여야 하며 정밀지층조사, 채수대 여부, 투수성판단 등의 조치를 사전에 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.5"
+                  }
+                },
+                {
+                  "measure": "낙반ㆍ출수(出水) 등에 의하여 산업재해가 발생할 급박한 위험이 있는 경우에는 즉시 작업을 중지하고 근로자를 안전한 장소로 대피시킨다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:360"
+                  }
+                },
+                {
+                  "measure": "재해발생위험을 관계 근로자에게 신속히 알리기 위한 비상벨 등 통신설비 등을 설치하고, 그 설치장소를 관계 근로자에게 알려 준다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:360"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "배수·방수 계획 없이 시공하여 예상 누수량을 감당하지 못하고 침수·붕괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "터널내의 누수로 인한 붕괴위험 및 근로자의 작업안전을 위하여 배수 및 방수계획을 수립하여야 하며 그 계획에는 지하수위 및 투수계수에 의한 예상 누수량 산출, 배수펌프 소요대수 및 용량, 배수방식의 선정 및 집수구 설치방식, 터널내부 누수개소 조사 및 점검 담당자 선임, 누수량 집수유도 계획 또는 방수계획, 굴착상부지반의 체수대 조사가 포함되어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.1"
+                  }
+                },
+                {
+                  "measure": "계획에 따라 배수로를 설치하고 지반의 안정조건, 근로자의 양호한 작업조건을 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.4"
+                  }
+                },
+                {
+                  "measure": "터널구조상 2중 아치, 3중 아치의 구조에 있어서 시공중 가설배수로 유도는 아치 접합부 상단에 임시배수 관로 등을 설치하여 배수 안전조치를 취한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "배수 처리 방식을 잘못 선택하여 오히려 탈수·과다수압으로 붕괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "누수 및 용출수 처리에 있어서는 누수에 토사의 혼입정도 여부, 배면 또는 상부지층의 지하수위 및 지질상태, 누수를 위한 배수로 설치시 탈수 또는 토사유출로 인한 붕괴 위험성 검토, 방수로 인한 지수처리시 배면 과다 수압에 의한 붕괴의 임계한도, 용출수량의 단위시간 변화 및 증가량을 확인후 집수유도로 설치 또는 방수의 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.2"
+                  }
+                },
+                {
+                  "measure": "확인 사항에 대한 적절한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "계측을 하지 않아 지반 거동·지보공 변위를 놓치고 붕괴에 대비하지 못함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "터널작업시 사전에 계측계획을 수립하고 그 계획에 따른 계측을 하여야 하며 계측 계획에는 측정위치 개소 및 측정의 기능 분류, 계측시 소요장비, 계측빈도, 계측결과 분석방법, 변위 허용치 기준, 이상 변위시 조치 및 보강대책, 계측 전담반 운영계획, 계측관리 기록분석 계통기준 수립이 포함되어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.2"
+                  }
+                },
+                {
+                  "measure": "터널 계측은 굴착지반의 거동, 지보공 부재의 변위, 응력의 변화 등에 대한 정밀 측정을 실시함으로써 시공의 안전성을 사전에 확보하고 설계시의 조사치와 비교분석하여 현장조건에 적정하도록 수정, 보완하는데 그 목적이 있으며 터널내 변형관측, 내공변위 측정, 천단침하 측정, 지표면 침하측정, 지중변위 측정, 지중침하 측정, 지중수평변위 측정, 지하수위 측정, 록 볼트 축력측정, 뿜어붙이기 콘크리트 응력측정, 터널내 탄성파 속도 측정, 주변 구조물의 변형상태 조사를 기준으로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.1"
+                  }
+                },
+                {
+                  "measure": "계측결과를 설계 및 시공에 반영하여 공사의 안전성을 도모할 수 있도록 측정기준을 명확히 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.2"
+                  }
+                },
+                {
+                  "measure": "계측관리의 구분은 일상계측과 대표계측으로 하며 계측빈도 기준은 측정 특성별로 별도 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.2"
+                  }
+                },
+                {
+                  "measure": "계측결과를 시공관리 및 장래계획에 반영할 수 있도록 그 기록을 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "계측값이 부정확하여 붕괴 징후를 잘못 판단",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "계측시행에 있어 전문교육을 받은 계측 전담원을 지정하여 지정된 자만이 계측할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.4"
+                  }
+                },
+                {
+                  "measure": "설치된 계측기 및 센서 등의 정밀기기는 관계자 이외에 취급을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.4"
+                  }
+                },
+                {
+                  "measure": "계측기록의 결과를 분석후 시공중 조치사항에 대하여는 충분한 기술자료 및 표준지침에 의거한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "10.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -146,7 +327,39 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "수중배수 펌프·갱내 가설전기의 누전으로 근로자가 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "수중배수 펌프 설치시에는 근로자의 감전재해를 방지하기 위하여 펌프 외함에 접지를 하여야 하며 수시로 누전상태 등의 확인을 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.6"
+                  }
+                },
+                {
+                  "measure": "갱내 조명등, 수중펌프 등에는 반드시 누전차단기 회로와 연결되어야 하며 표준방식의 접지를 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.6"
+                  }
+                },
+                {
+                  "measure": "터널내 각종 가설전기 안전상태를 확인하여야 하며 근로자가 접촉되지 않도록 충분한 높이의 측면에 가설하여 수중 배선이 되지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "11.6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

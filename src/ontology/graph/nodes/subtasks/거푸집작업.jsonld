@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:formwork_shoring",
   "hasHazard": [
@@ -101,7 +100,30 @@
               "article": "art:기준규칙:330"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "변형·부식된 재사용 가설기자재를 확인 없이 반입하여 조립 후 지지력 부족으로 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거푸집 및 동바리에 사용하는 각 부재의 안전인증기준 또는 한국산업표준 적합여부 및 변형·부식·손상 등의 여부를 확인한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "거푸집 및 동바리를 사용하는 경우에는 거푸집의 형상 및 콘크리트 타설방법 등에 따른 견고한 구조의 것을 사용한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:330"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -118,7 +140,38 @@
               "item": 2
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "자재를 하차·운반하는 중 중량물이 굴러 깔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                },
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -133,7 +186,31 @@
               "item": 1
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "적치한 자재가 무너져 맞음",
+              "measures": [
+                {
+                  "measure": "작업장의 바닥, 도로 및 통로 등에서 낙하물이 근로자에게 위험을 미칠 우려가 있는 경우 보호망을 설치하는 등 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험 또는 근로자가 추락할 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -305,7 +382,410 @@
               "item": 5
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "구조검토·조립도 없이 조립하여 상부하중을 견디지 못하고 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거푸집 및 동바리를 조립하는 경우에는 그 구조를 검토한 후 조립도를 작성하고, 그 조립도에 따라 조립하도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "조립도에는 거푸집 및 동바리를 구성하는 부재의 재질·단면규격·설치간격 및 이음방법 등을 명시한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "거푸집 및 동바리를 사용하는 경우에는 거푸집의 형상 및 콘크리트 타설방법 등에 따른 견고한 구조의 것을 사용한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:330"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "동바리 하부가 침하하여 슬래브가 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "받침목이나 깔판의 사용, 콘크리트 타설, 말뚝박기 등 동바리의 침하를 방지하기 위한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "동바리의 상하 고정 및 미끄러짐 방지 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "상부·하부의 동바리가 동일 수직선상에 위치하도록 하여 깔판·받침목에 고정시킨다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "거푸집의 형상에 따른 부득이한 경우를 제외하고는 깔판이나 받침목은 2단 이상 끼우지 않도록 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 8
+                  }
+                },
+                {
+                  "measure": "깔판이나 받침목을 이어서 사용하는 경우에는 그 깔판·받침목을 단단히 연결한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 9
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "동절기·해빙기에 동결된 지반 위에 동바리를 설치하여 해빙 시 침하로 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "동절기 및 해빙기에 콘크리트를 타설하는 경우에는 동바리가 동결된 지반 상부에 직접 설치되었는지를 확인하여 침하 등의 우려가 있는 경우 보수한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "파이프서포트를 3개 이상 이어 쓰거나 수평연결재를 빠뜨려 좌굴로 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "파이프 서포트를 3개 이상 이어서 사용하지 않도록 한다",
+                  "controlLevel": "elimination",
+                  "variant": "파이프서포트",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 1,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "파이프 서포트를 이어서 사용하는 경우에는 4개 이상의 볼트 또는 전용철물을 사용하여 잇는다",
+                  "controlLevel": "engineering",
+                  "variant": "파이프서포트",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 1,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "높이가 3.5미터를 초과하는 경우에는 높이 2미터 이내마다 수평연결재를 2개 방향으로 만들고 수평연결재의 변위를 방지한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 1,
+                    "subitem": "다"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강관틀 동바리의 교차가새·수평연결재·띠장틀을 빠뜨려 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "강관틀과 강관틀 사이에 교차가새를 설치한다",
+                  "variant": "강관틀",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 2,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "최상단 및 5단 이내마다 동바리의 측면과 틀면의 방향 및 교차가새의 방향에서 5개 이내마다 수평연결재를 설치하고 수평연결재의 변위를 방지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 2,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "최상단 및 5단 이내마다 동바리의 틀면의 방향에서 양단 및 5개틀 이내마다 교차가새의 방향으로 띠장틀을 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 2,
+                    "subitem": "다"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "조립강주의 수평연결재를 빠뜨려 무너짐",
+              "measures": [
+                {
+                  "measure": "조립강주의 높이가 4미터를 초과하는 경우에는 높이 4미터 이내마다 수평연결재를 2개 방향으로 설치하고 수평연결재의 변위를 방지한다",
+                  "variant": "조립강주",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "시스템동바리의 수직재 연결부가 탈락하거나 겹침길이가 부족하여 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "수평재는 수직재와 직각으로 설치해야 하며, 흔들리지 않도록 견고하게 설치한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템동바리",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 4,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "연결철물을 사용하여 수직재를 견고하게 연결하고, 연결부위가 탈락 또는 꺾어지지 않도록 한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템동바리",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 4,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "수직 및 수평하중에 대해 동바리의 구조적 안정성이 확보되도록 조립도에 따라 수직재 및 수평재에는 가새재를 견고하게 설치한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템동바리",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 4,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "동바리 최상단과 최하단의 수직재와 받침철물은 서로 밀착되도록 설치하고 수직재와 받침철물의 연결부의 겹침길이는 받침철물 전체길이의 3분의 1 이상 되도록 한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템동바리",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 4,
+                    "subitem": "라"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "보 형식 동바리의 걸침길이가 부족하여 미끄러져 탈락함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "접합부는 충분한 걸침 길이를 확보하고 못, 용접 등으로 양끝을 지지물에 고정시켜 미끄러짐 및 탈락을 방지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 5,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "양끝에 설치된 보 거푸집을 지지하는 동바리 사이에는 수평연결재를 설치하거나 동바리를 추가로 설치하는 등 보 거푸집이 옆으로 넘어지지 않도록 견고하게 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 5,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "설계도면, 시방서 등 설계도서를 준수하여 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332의2",
+                    "item": 5,
+                    "subitem": "다"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "개구부 상부에 받침대 없이 동바리를 세워 하중을 견디지 못하고 무너짐",
+              "measures": [
+                {
+                  "measure": "개구부 상부에 동바리를 설치하는 경우에는 상부하중을 견딜 수 있는 견고한 받침대를 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "긴결재·버팀대 부족으로 타설 압력에 거푸집이 변형·전도됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거푸집을 조립하는 경우에는 거푸집이 콘크리트 하중이나 그 밖의 외력에 견딜 수 있거나, 넘어지지 않도록 견고한 구조의 긴결재, 버팀대 또는 지지대를 설치하는 등 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331의2",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "거푸집은 콘크리트의 압력 등에 의해 부상하지 않도록 견고하게 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "8.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "곡면 거푸집이 콘크리트 압력으로 떠올라 무너짐",
+              "measures": [
+                {
+                  "measure": "거푸집이 곡면인 경우에는 버팀대의 부착 등 그 거푸집의 부상을 방지하기 위한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331의2",
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "타설 중 거푸집·동바리의 변형을 감시하지 않아 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "당일의 작업을 시작하기 전에 해당 작업에 관한 거푸집 및 동바리의 변형·변위 및 지반의 침하 유무 등을 점검하고 이상이 있으면 보수한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:334",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "작업 중에는 감시자를 배치하는 등의 방법으로 거푸집 및 동바리의 변형·변위 및 침하 유무 등을 확인해야 하며, 이상이 있으면 작업을 중지하고 근로자를 대피시킨다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:334",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설작업 시 거푸집 붕괴의 위험이 발생할 우려가 있으면 충분한 보강조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:334",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "감시자는 콘크리트 타설작업 중에 비정상적인 처짐이나 거푸집의 이탈이나 분리, 모르타르의 누출, 이동, 경사, 침하, 접합부의 느슨해짐 등이 발생하는 경우 즉시 관리감독자에게 알린다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 거푸집 동바리의 이상 징후를 보고 받은 경우 즉시 작업을 중지하고 근로자를 대피시킨 다음 충분히 보강 조치하여 안전을 확인한 다음 작업을 재개한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설작업은 콘크리트 타설순서 등 타설계획을 수립한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설작업은 작업 전 청소를 실시하고 조립도 준수 여부를 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "한쪽에 몰아 타설하여 편심 하중으로 거푸집이 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "콘크리트를 타설하는 경우에는 편심이 발생하지 않도록 골고루 분산하여 타설한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:334",
+                    "item": 5
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "악천후에 조립을 강행하여 거푸집이 무너지거나 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -342,7 +822,86 @@
               "item": 1
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "U헤드 단판 없이 멍에를 올려 멍에가 전도·이탈하여 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "U헤드 등의 단판이 없는 동바리의 상단에 멍에 등을 올릴 경우에는 해당 상단에 U헤드 등의 단판을 설치하고, 멍에 등이 전도되거나 이탈되지 않도록 고정시킨다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "동바리의 이음은 같은 품질의 재료를 사용한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "강재의 접속부 및 교차부는 볼트·클램프 등 전용철물을 사용하여 단단히 연결한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:332",
+                    "item": 7
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "자재·공구를 던져 올리거나 내려 하부 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "재료, 기구 또는 공구 등을 올리거나 내리는 경우에는 근로자로 하여금 달줄·달포대 등을 사용하도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "해당 작업을 하는 구역에는 관계 근로자가 아닌 사람의 출입을 금지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "철근을 한 군데만 묶어 인양하다 낙하하여 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "양중기로 철근을 운반할 경우에는 두 군데 이상 묶어서 수평으로 운반한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -386,7 +945,95 @@
               "paragraph": 2
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "타설장비의 붐·호스 요동으로 근로자가 떨어지거나 장비가 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업을 시작하기 전에 콘크리트타설장비를 점검하고 이상을 발견하였으면 즉시 보수한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:335",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "건축물의 난간 등에서 작업하는 근로자가 호스의 요동·선회로 인하여 추락하는 위험을 방지하기 위하여 안전난간 설치 등 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:335",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "콘크리트타설장비의 붐을 조정하는 경우에는 주변의 전선 등에 의한 위험을 예방하기 위한 적절한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:335",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "작업 중에 지반의 침하나 아웃트리거 등 콘크리트타설장비 지지구조물의 손상 등에 의하여 콘크리트타설장비가 넘어질 우려가 있는 경우에는 이를 방지하기 위한 적절한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:335",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "콘크리트 펌프 주변 및 콘크리트 펌프카 붐대 하단에는 근로자 출입 및 접근 금지 등의 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "조립 작업 중 2미터 이상 높이에서 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "작업위치의 높이가 2미터 이상일 경우에는 작업발판을 설치하거나 안전대를 착용하게 하는 등 위험 방지를 위하여 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업을 하는 근로자에게 안전대를 지급하고 착용하도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -415,7 +1062,85 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "양생기간을 지키지 않고 해체하여 슬래브가 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "설계도서상의 콘크리트 양생기간을 준수하여 거푸집 및 동바리를 해체한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:334",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "거푸집 동바리의 해체 시기는 설계도서상의 거푸집 존치기간이나 거푸집 해체가능강도를 준수하여 해체한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체 자재를 슬래브 위에 몰아 쌓아 재령 부족 슬래브가 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "해체한 자재는 신속하게 반출하여 작업공간을 확보하고, 안전한 장소에 적재한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "해체 자재를 슬래브 위에 쌓아 놓는 경우에는 콘크리트 재령에 따른 허용하중을 추정하여 분산 적치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "동바리를 해체한 층에 하중이 재하되어 구조물이 손상됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거푸집 및 동바리를 해체한 직후 구조물에 재하하는 하중은 콘크리트의 강도, 구조물의 종류, 작용하중의 종류와 크기 등을 고려하여 유해한 균열이나 기타 손상이 발생하지 않는 범위 이내로 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "동바리를 해체한 후에 그 당시 재령에서 저항할 수 있는 강도를 초과하는 하중이 해당 부재에 재하될 경우에는 사전 구조검토를 통해 하중재하 전 동바리 해체 및 재설치 여부를 결정하고, 연속하여 시공하는 다층 구조의 경우 타설층을 포함하여 최소 3개 층에 걸쳐 동바리를 존치하거나 적절하게 재설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "동바리 재설치는 지지하는 구조물에 변형이 없도록 밀착하되, 이로 인해 재설치된 동바리에 별도의 하중이 재하되지 않도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -430,7 +1155,62 @@
               "item": 4
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "해체 시기·순서 계획 없이 해체하여 부재가 낙하함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거푸집 동바리 해체작업은 작업 전 해체 시기 순서 등 해체작업 안전계획을 수립한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "해체 시기·범위 및 절차 등의 해체작업 안전계획은 해체작업 근로자에게 교육한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "낙하·충격에 의한 돌발적 재해를 방지하기 위하여 버팀목을 설치하고 거푸집 및 동바리를 인양장비에 매단 후에 작업을 하도록 하는 등 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체 구역 하부에 출입통제 없이 작업하여 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "해체 작업 구역에는 해당 작업에 종사하는 근로자 및 관련자 이외에는 출입을 금지하기 위하여 출입금지 안전표지를 부착한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "재료, 기구 또는 공구 등을 올리거나 내리는 소운반 작업은 근로자로 하여금 달줄·달포대 등을 사용하도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -440,7 +1220,23 @@
               "section": "9.3"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "악천후에 해체를 강행하여 부재가 낙하하거나 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-9-2026",
+                    "section": "9.3"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -461,7 +1257,33 @@
               "item": 5
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "인양 중 부재가 낙하하여 하부 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 않는다(신호하는 사람에 의하여 작업을 하는 경우는 제외한다)",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -485,7 +1307,45 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "고정된 거푸집을 크레인으로 직접 뜯어내어 전도·낙하함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "고정된 물체를 직접 분리·제거하는 작업을 하지 않는다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "인양할 하물을 바닥에서 끌어당기거나 밀어내는 작업을 하지 않는다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "낙하·충격에 의한 돌발적 재해를 방지하기 위하여 버팀목을 설치하고 거푸집 및 동바리를 인양장비에 매단 후에 작업을 하도록 하는 등 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

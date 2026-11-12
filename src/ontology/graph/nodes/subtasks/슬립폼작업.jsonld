@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:formwork_shoring",
   "hasHazard": [
@@ -93,7 +92,128 @@
               "section": "8.3.2"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "구조적 안정성을 검토하지 않고 제작하여 사용 중 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "구조계산서 또는 제작사 인증서를 통해 하중(자중, 작업하중, 풍하중 등)에 대한 안정성을 사전에 검토한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "작업발판은 거푸집 및 동바리 설계기준에 따라 설계한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "접속부, 연결핀, 체결볼트 등은 전용품을 사용하고 임의 절단, 용접, 변형을 금지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "슬립폼 부재 조립 시는 볼트 체결상태를 반드시 확인한다",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "슬립폼 작업계획을 경험 없는 자가 수립하거나 구조 안전성을 검토하지 않아 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "공사현장의 제반 여건과 구조물의 형상을 파악한 후 슬립폼의 설치, 슬립업, 해체작업 등 단계별 안전작업 방법과 순서, 장비에 대한 안전조치 사항 등이 포함된 작업계획을 수립한다",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "슬립폼에 작용하는 하중을 고려하여 슬립폼의 안전성 여부를 검토하여야 하며, 로드와 유압잭은 거푸집 자중, 작업하중, 장비 등에 충분한 강도를 갖도록 그 수량 및 용량을 결정한다",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "작업계획서는 슬립폼 공법에 풍부한 경험과 지식을 갖춘 사람이 수립하여야 하며, 공사 중 계획서의 내용이 제대로 이행되는지의 여부를 수시로 확인할 수 있도록 한다",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "철근 조립, 콘크리트 타설, 슬립업 등 작업공종별 투입인원 및 시기 등을 반영한 작업계획을 수립한다",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "지반·지장물을 조사하지 않아 기초가 침하하거나 지장물과 간섭함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "공사 목적구조물의 위치에 대한 지질조사 및 주변 지장물 조사를 실시하고, 슬립폼 조립에 필요한 가설전기 설치위치와 연약지반일 경우 기초 가시설 설치 등의 사항에 대한 사전 검토를 철저히 한다",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인을 사용하여 설치·해체 등을 하는 때에는 이동식 크레인의 전도를 방지하기 위하여 충분한 넓이와 지내력이 확보된 작업장을 형성한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "구조물의 평면 배치에 따른 양중기 설치 위치를 우선 선정하고, 이에 따른 타워크레인 등의 설치계획 수립과 건설용 리프트의 설치 대수, 위치 설정 계획 등을 포함하여 수립한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "정전으로 유압잭이 정지하여 슬립폼이 고착·경사됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "가설전기 시설은 정전을 대비하여 비상발전 계획을 수립한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -117,7 +237,55 @@
               "section": "9"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "작업대 단부에 안전난간이 없어 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "각 작업대 단부에는 근로자의 추락 등에 의한 위험을 방지하기 위한 안전난간을 설치하여야 하며, 안전난간대는 지름 2.7cm 이상의 금속재 파이프나 그 이상의 강도를 가진 재료로서 가장 취약한 지점에서 가장 취약한 방향으로 작용하는 100kg 이상의 하중에 견딜 수 있는 튼튼한 구조로 하고, 안전난간 하부에는 낙하물을 방지하기 위한 발끝막이판을 설치한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "작업발판 접근을 위한 전용 계단, 사다리 또는 클라이밍타워 내 통로를 확보한다",
+                  "controlLevel": "engineering",
+                  "variant": "시스템폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "9"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업대 간 승강통로 미설치로 이동 중 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "각 작업대 사이에는 계단, 사다리 등 안전한 승강통로를 설치하며, 사다리를 설치할 경우 추락방지용 등받이를 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "승하강 중 추락 방지를 위해 이동식 안전난간 또는 안전대 부착 지점을 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "9"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -127,7 +295,22 @@
               "section": "8.3.2"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "양중기 작업반경 내에 자재를 적치하여 충돌·낙하가 발생함",
+              "measures": [
+                {
+                  "measure": "통로 주변은 자재가 적치되지 않도록 크레인 등의 양중기 작업반경 내에 자재 야적장을 별도로 확보한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -137,7 +320,22 @@
               "section": "8.3.2"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "작업대에 소화설비가 없어 화재가 확대됨",
+              "measures": [
+                {
+                  "measure": "각각의 작업대에는 화재를 대비하여 소화기를 비치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.2"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -157,7 +355,55 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "콘크리트 경화 깊이를 확인하지 않고 슬립업하여 구조물이 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "슬립업 작업 전에 콘크리트의 경화 깊이를 측정하고 탈형 후 콘크리트가 부담하는 전 하중과 콘크리트가 발휘하여야 하는 압축강도, 품질, 시공조건 등을 고려하여 슬립폼의 슬립업 속도를 결정한다",
+                  "controlLevel": "administrative",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.4"
+                  }
+                },
+                {
+                  "measure": "슬립업 속도기준은 구조물의 강도와 형상에 따라 차이가 있지만 시간당 10~17cm를 기준으로 하되 기온과 콘크리트 경화속도에 따라 적절히 조절한다",
+                  "controlLevel": "administrative",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "타설 높이·청결 관리 미흡으로 콘크리트가 거푸집 내부로 밀려들어가 고착됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "콘크리트 타설은 균일하게 20~30cm 높이로 하며, 거푸집 내부에는 콘크리트가 항상 일정 높이에 있도록 유지하고, 작업대 위에 남겨진 콘크리트가 경화되어 거푸집 내부로 밀려들어가지 않도록 작업대와 분배기는 항상 청결한 상태를 유지한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.3"
+                  }
+                },
+                {
+                  "measure": "콘크리트는 콘크리트 분배용 슈트를 사용하여 타설하고 콘크리트가 작업장 내에 튀지 않도록 주의하여 주입한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -167,7 +413,22 @@
               "section": "8.3.2"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "슬립업 이후 설치한 전기시설·리프트가 간섭하여 부딪힘",
+              "measures": [
+                {
+                  "measure": "슬립업을 시작한 이후 설치하는 전기시설, 건설용 리프트 등은 정확한 위치를 확보하여 간섭되지 않도록 한다",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -192,7 +453,64 @@
               "item": 4
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "조립등 작업 중 이동·양중 장비의 고장·오조작으로 근로자가 위험에 노출됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "조립등 작업 시 거푸집 부재의 변형 여부와 연결 및 지지재의 이상 유무를 확인한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331의3",
+                    "paragraph": 3,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "조립등 작업과 관련한 이동·양중·운반 장비의 고장·오조작 등으로 인해 근로자에게 위험을 미칠 우려가 있는 장소에는 근로자의 출입을 금지하는 등 위험 방지 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331의3",
+                    "paragraph": 3,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "연결 또는 지지 형식으로 조립된 부재의 조립등 작업을 하는 경우에는 거푸집을 인양장비에 매단 후에 작업을 하도록 하는 등 낙하·붕괴·전도의 위험 방지를 위하여 필요한 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:331의3",
+                    "paragraph": 3,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "콘크리트를 상부로 운반하는 중 잔재물이 낙하하여 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "콘크리트를 상부로 운반할 경우에는 상·하부에 신호수를 배치하여야 하며 무전기 등을 이용하여 장비 운전원 등과 직접 교신을 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.3"
+                  }
+                },
+                {
+                  "measure": "콘크리트 운반 시 잔재물 낙하에 대비하여 작업반경 내 근로자의 출입을 금지시킨다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -202,7 +520,23 @@
               "section": "8.3.3"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "철근 조립 중 발생한 개구부에서 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철근 조립작업 시 발생되는 개구부 등에는 방호조치를 하여야 하며 작업자는 안전대를 착용하고 작업하는 등 추락방지 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -212,7 +546,22 @@
               "section": "8.3.3"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "야간작업 조도가 부족하여 넘어지거나 떨어짐",
+              "measures": [
+                {
+                  "measure": "야간작업이 예상되는 경우에는 모든 작업대에는 조명 설비를 설치하여 75럭스 이상의 조도를 확보한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -228,7 +577,33 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "해체 순서를 지키지 않아 작업대가 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "작업이 완료되면 슬립폼을 해체하여 안전하게 지면에 내려놓아야 하며, 정해진 해체 순서에 따라 작업대 상부의 추가 하중 제거부터 순차적으로 해체한다",
+                  "controlLevel": "administrative",
+                  "variant": "슬립폼",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.5"
+                  }
+                },
+                {
+                  "measure": "작업시작 전 작업방법, 작업순서 및 안전조치사항을 근로자에게 주지시킨다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -238,7 +613,23 @@
               "section": "8.3.5"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "상부에서 부재를 용단하다 불꽃이 비산하여 화재가 발생함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "상부에서 부재를 용단하는 작업을 하는 경우 불꽃 비산방지 시설을 설치한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -249,7 +640,24 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "상부 부재 해체로 생긴 개구부에서 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "상부 부재 해체작업에 따라 발생되는 개구부는 방호조치를 철저히 하고, 개구부 방호조치가 곤란할 경우 안전대 부착설비를 설치하고 작업자에게 안전대를 착용하도록 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -259,7 +667,31 @@
               "section": "8.3.5"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "고소에서 부재를 해체하다 부재가 낙하하여 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "부재 인양 시는 신호수를 배치하고 신호 규정을 준수한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.5"
+                  }
+                },
+                {
+                  "measure": "고소작업을 피해 부재는 가급적 지상으로 내려 해체하고 작업반경 내에는 출입금지 조치를 한다",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-8-2026",
+                    "section": "8.3.5"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

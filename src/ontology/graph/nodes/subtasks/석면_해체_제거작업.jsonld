@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:asbestos_removal",
   "hasHazard": [
@@ -119,6 +118,76 @@
               "article": "art:기준규칙:489",
               "paragraph": 2,
               "controlLevel": "administrative"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "석면 함유 여부를 조사하지 않고 일반 해체로 착수하여 근로자 전원이 석면분진에 노출",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "건축물·설비를 철거하거나 해체하려는 건축물·설비의 소유주 또는 임차인 등은 그 건축물이나 설비의 석면함유 여부를 맨눈, 설계도서, 자재이력 등 적절한 방법을 통하여 조사한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:488",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "조사에도 불구하고 해당 건축물이나 설비의 석면 함유 여부가 명확하지 않은 경우에는 석면의 함유 여부를 성분분석하여 조사한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:488",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "건축물이나 설비, 자재 등에 석면 함유 유무를 사전에 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-47-2023",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "석면해체·제거작업 계획 없이 착수하여 흩날림 방지와 보호조치가 누락됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면해체·제거작업을 하기 전에 일반석면조사 또는 기관석면조사 결과를 확인한 후 석면해체·제거작업의 절차와 방법, 석면 흩날림 방지 및 폐기방법, 근로자 보호조치가 포함된 석면해체·제거작업 계획을 수립하고, 이에 따라 작업을 수행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:489",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "석면이 함유된 건축물이나 설비를 해체할 때에는 근로자의 건강장해를 예방하기 위하여 작업절차, 작업방법, 근로자 보호조치 등이 포함된 석면해체 작업계획서를 작성한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-56-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "석면해체·제거작업 계획을 수립한 경우에 이를 해당 근로자에게 알려야 하며, 작업장에 대한 석면조사 방법 및 종료일자, 석면조사 결과의 요지를 해당 근로자가 보기 쉬운 장소에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:489",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "근로자가 석면분진을 들이마시거나 석면분진에 오염되지 않도록 작업방법을 정하고 지휘하는 업무를 수행하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표2",
+                    "item": 18
+                  }
+                }
+              ]
             }
           ]
         }
@@ -187,6 +256,125 @@
               "subitem": "나",
               "controlLevel": "engineering"
             }
+          ],
+          "risks": [
+            {
+              "statement": "작업장소를 밀폐하지 않고 석면을 제거하여 석면분진이 인접 구역으로 확산",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "분무된 석면이나 석면이 함유된 보온재 또는 내화피복재의 해체·제거작업 시 작업장이 실내인 경우 창문·벽·바닥 등은 비닐 등 불침투성 차단재로 밀폐하고 해당 장소를 음압으로 유지하고 그 결과를 기록·보존한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 1,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "석면이 함유된 벽체, 바닥타일 및 천장재의 해체·제거작업 시 창문·벽·바닥 등은 비닐 등 불침투성 차단재로 밀폐한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 2,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "석면함유 벽체·바닥타일·천장재를 물리적으로 깨거나 기계 등을 이용하여 절단하는 작업인 경우에는 작업장소를 음압으로 유지하고 그 결과를 기록·보존한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 2,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "작업장소를 밀폐시킨 후 습식작업, 음압상태 유지 등 석면분진이 흩날리지 않도록 조치 후 작업한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-56-2017",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "실외 작업이라 밀폐가 불가능한데 포집장치도 가동하지 않아 석면분진이 그대로 흩날림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업장이 실외인 경우에는 작업 시 석면분진이 흩날리지 않도록 고성능 필터가 장착된 석면분진 포집장치를 가동하는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 1,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "석면이 함유된 그 밖의 자재의 해체·제거작업 시 작업장이 실외인 경우에는 석면분진이 흩날리지 않도록 석면분진 포집장치를 가동하는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 4,
+                    "subitem": "나"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "보호구를 착용하지 않은 사람이 석면작업장에 출입하여 노출",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면해체·제거작업 계획을 숙지하고 개인보호구를 착용한 사람 외에는 석면해체·제거작업장에 출입하게 해서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:492",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자는 출입이 금지된 장소에 사업주의 허락 없이 출입해서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:492",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "위생설비를 작업장과 연결하지 않아 오염된 작업복 그대로 작업장 밖으로 나가 오염이 확산",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업장이 실내인 경우에는 평상복 탈의실, 샤워실 및 작업복 탈의실 등의 위생설비를 작업장과 연결하여 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 1,
+                    "subitem": "라"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "지붕 근처 통풍구를 밀폐하지 않고 환기설비를 가동한 채 작업하여 석면분진이 건물 전체로 퍼짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면이 함유된 지붕재의 해체·제거작업 시 난방이나 환기를 위한 통풍구가 지붕 근처에 있는 경우에는 이를 밀폐하고 환기설비의 가동을 중단한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 3,
+                    "subitem": "다"
+                  }
+                }
+              ]
+            }
           ]
         }
       ]
@@ -254,6 +442,136 @@
               "subitem": "다",
               "controlLevel": "engineering"
             }
+          ],
+          "risks": [
+            {
+              "statement": "건식으로 석면을 뜯어내 석면분진이 대량으로 흩날려 근로자가 흡입",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "분무된 석면이나 석면이 함유된 보온재 또는 내화피복재의 해체·제거작업 시 물이나 습윤제를 사용하여 습식으로 작업한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 1,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "석면이 함유된 벽체, 바닥타일 및 천장재의 해체·제거작업 시 물이나 습윤제를 사용하여 습식으로 작업한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 2,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "석면이 함유된 지붕재의 해체·제거작업 시 물이나 습윤제를 사용하여 습식으로 작업한다. 다만 습식작업 시 안전상 위험이 있는 경우는 제외한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 3,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "석면이 함유된 그 밖의 자재의 해체·제거작업 시 물이나 습윤제를 사용하여 습식으로 작업한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 4,
+                    "subitem": "다"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "일반 방진마스크만 쓰고 석면을 제거하여 석면섬유가 호흡기로 침투",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면해체·제거작업에 근로자를 종사하도록 하는 경우에 특등급 방진마스크나 송기마스크 또는 전동식 호흡보호구를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:491",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "분무된 석면이나 석면이 함유된 보온재 또는 내화피복재의 해체·제거작업에 종사하는 경우에는 송기마스크 또는 전동식 호흡보호구를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:491",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "신체를 감싸는 보호복, 보호장갑 및 보호신발을 지급하여 착용하도록 하며, 근로자의 눈 부분이 노출될 경우에는 고글형 보호안경을 지급한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:491",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "석면해체 작업장은 노출기준인 0.1 개/㎤ 이하로 관리하고 근로자는 방진마스크, 보호의 등의 보호구를 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-56-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "근로자는 지급된 개인보호구를 사업주의 지시에 따라 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:491",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체한 석면 지붕재를 그대로 땅으로 던져 파쇄되며 석면분진이 비산",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면이 함유된 지붕재의 해체·제거작업 시 해체된 지붕재는 직접 땅으로 떨어뜨리거나 던지지 말아야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:495",
+                    "item": 3,
+                    "subitem": "가"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "석면 제거 중 포집장치·음압기가 정지한 것을 알아채지 못해 노출이 계속됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업장에 설치되어 있는 석면분진 포집장치, 음압기 등의 장비의 이상 유무를 점검하고 필요한 조치를 하는 업무를 수행하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표2",
+                    "item": 18
+                  }
+                },
+                {
+                  "measure": "근로자의 보호구 착용 상황을 점검하는 업무를 수행하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표2",
+                    "item": 18
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -276,7 +594,40 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "석면 지붕재 해체 중 노후 지붕을 밟아 지붕이 파괴되며 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업에 종사하는 근로자에게 안전대를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -315,6 +666,74 @@
               "article": "art:기준규칙:497의3",
               "paragraph": 2,
               "controlLevel": "ppe"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "석면 잔재물을 작업장에 남긴 채 밀폐를 해제하여 잔류 석면분진이 확산",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면해체·제거작업이 완료된 후 그 작업 과정에서 발생한 석면함유 잔재물 등이 해당 작업장에 남지 아니하도록 청소 등 필요한 조치를 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:496",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "석면 잔재물을 밀봉하지 않고 반출하여 운반 중 석면분진이 새어나옴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면해체·제거작업 및 청소 중에 발생한 석면함유 잔재물 등을 비닐이나 그 밖에 이와 유사한 재질의 포대에 담아 밀봉한 후 표지를 붙여 폐기물관리법에 따라 처리한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:496",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "석면이 함유된 폐기물은 불침투성 용기 또는 자루에 넣어 밀봉한 후 처리한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-56-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "건축물이나 설비, 자재 등에 석면이 함유된 경우에는 근로자의 건강장해를 예방하기 위해 관계 법령과 고시에서 정하는 바에 따라 조사를 실시하고 해체·제거한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-47-2023",
+                    "section": "6.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "석면 폐기물과 사용한 보호구를 처리하는 과정에서 석면분진이 다시 발생하여 노출",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석면을 1퍼센트 이상 함유한 폐기물을 처리하는 작업으로서 석면분진이 발생할 우려가 있는 작업에 근로자를 종사하도록 하는 경우에는 석면분진 발산원을 밀폐하거나 국소배기장치를 설치하거나 습식방법으로 작업하도록 하는 등 석면분진이 발생하지 않도록 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:497의3",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "석면의 제거작업 등에 사용된 비닐시트·방진마스크·작업복 등을 포함한 석면함유 폐기물을 처리하는 작업에도 개인보호구 지급·착용 및 출입금지 조치를 준용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:497의3",
+                    "paragraph": 2
+                  }
+                }
+              ]
             }
           ]
         }

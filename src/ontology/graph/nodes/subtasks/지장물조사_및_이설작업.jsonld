@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:underground_utility",
   "hasHazard": [
@@ -110,7 +109,165 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "도면만 믿고 기계굴착하여 실제 위치가 다른 매설물을 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "공사구역 내 산재되어 있는 지하매설물에 대해서는 지하매설물 대장 및 도면에 표시된 위치를 조사한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "도면에 표시된 지하매설물 위치는 실제 위치와는 일치하지 않는 경우가 많으므로 인력굴착으로 재확인하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "지하매설물의 매설깊이는 공사구역 내 인근 맨홀에서 개략깊이를 확인하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "인력 등으로 줄파기를 실시하여 지하 매설물의 위치를 재확인하고 위치표시를 점검하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "줄파기 깊이가 부족하여 매설물을 발견하지 못한 채 굴착",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "줄파기 작업 시 굴착 깊이는 인력으로 최소 1.5m 이상 실시하고 배관탐지기로 매설여부를 확인 후 관노출시까지 인력줄파기를 시행한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "줄파기 작업 중 지하매설물을 발견한 때에는 발견된 지하매설물 밑에 또 다른 지장물이 있는지 여부를 확인하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.1"
+                  }
+                },
+                {
+                  "measure": "오래된 도로부의 지하에서는 매설물이 보통구간보다 깊이 매설되어 있으므로 줄파기를 충분한 깊이로 시행하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "발견된 매설물에 표지가 없어 후속 작업에서 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "줄파기 결과 지하매설물이 확인되었을 때 현장 근로자 누구나가 알 수 있도록 지하매설물의 종류를 기입한 표지판을 설치한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴착기계로 지하 공작물을 파손하고도 작업을 계속",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴착기계등의 사용으로 가스도관, 지중전선로, 그 밖에 지하에 위치한 공작물이 파손되어 그 결과 근로자가 위험해질 우려가 있는 경우에는 그 기계를 사용한 굴착작업을 중지한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:342",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "매설물·조적벽·콘크리트벽 또는 옹벽 등의 건설물에 근접한 장소에서 굴착작업을 할 때에 해당 가설물의 파손 등에 의하여 근로자가 위험해질 우려가 있는 경우에는 해당 건설물을 보강하거나 이설하는 등 해당 위험을 방지하기 위한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:341",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "위치탐지장치·시험굴착 없이 본굴착을 시작하여 매설물을 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업구역 내 혹은 근처에 있는 어떤 시설물의 위치는 위치탐지장치를 사용하여 가능한 한 정확히 확인해야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "우선 위치탐지장치를 사용하여 작업위치와 통로를 확인한 후 굴착작업을 진행하는데 필요한 경우 먼저 적절한 수공구를 사용하여 시험적으로 예비 굴착을 하여 매설된 시설물의 위치를 확인한 후 본 굴착작업을 실행한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "작업구역에 매설되어 있는 모든 시설물에 대한 설계도 혹은 지하 매설물의 위치, 지형, 수량 등 다른 적절하고 정확한 정보들이 굴착 작업 개시 전 작업이 계획되는 과정에서 확보되어야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "위험성 평가 시에는 작업지역의 여러 환경적 측면을 확인하면서 어떻게 작업을 수행할 것인지를 고려해야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -146,7 +303,93 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "케이블 매설 구간을 기계로 굴착하여 관로를 파손하고 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "소형 브레이커에 의한 케이블 또는 관로의 파손 방지를 위하여 케이블 매설장소 부근은 표면층을 제외하고는 인력굴착을 하고 공사 착수 전에 시험굴착을 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.5"
+                  }
+                },
+                {
+                  "measure": "굴착기로 굴착 중 굴착 깊이가 케이블 또는 관로의 토피보다 얕을 경우에도 백호우의 날 부분으로 관로가 손상될 때가 있으므로 표지를 설치하거나 인력으로 굴착한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.5"
+                  }
+                },
+                {
+                  "measure": "공사의 계획단계 등 착공 전에 전력 및 전기통신 설비의 위치와 규모에 대해서 관계 기관에 조회하고 실태파악을 하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "매설물 근접 구간에서 전동공구·기계식 굴착기를 사용하여 케이블을 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지하 매설물이 탐지된 곳 위 혹은 가까이에서 굴착작업을 할 때에는 각별한 주의를 기울여야 하며, 손에 들고 쓰는 전동공구와 기계적 굴착기는 주요한 위험요인이므로 이것들을 지하 매설물 가까이에서 사용해서는 안 된다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "딱딱한 표면을 깨기 위해 손에 들고 쓰는 전동 공구들을 사용할 때는 표면 아래 매설된 케이블 선으로부터 최소한 500mm 이상 떨어져서 사용해야 하며, 가능한 경우에는 케이블의 위치추적기를 사용하여 굴착에 도움이 되도록 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "콘크리트 속에 매설된 케이블에 대한 굴착은 원칙적으로 금한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "기계식 굴착기는 지하 케이블 근접거리에서는 신중히 사용해야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "기계적 굴착기는 배관망에 최소 500mm 이상의 거리를 두고 사용할 수 있다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -202,7 +445,204 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "가스관 매설위치를 확인하지 않고 근접 천공하여 관을 손상",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "굴착공사 착공 전에 관계기관의 협조를 받아 가스관 탐지기 등을 이용하여 가스관의 매설위치를 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "가스관의 매설위치를 표시하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "천공은 가스관 외면으로부터 1m 이상의 수평거리를 유지한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "가스관 등 화재·폭발물의 위험이 있는 경우에는 방호방법을 검토하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "노출된 가스관의 방진·보호 조치가 없어 진동·충격으로 파손",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "노출된 가스관의 길이가 15m 이상이 되는 배관으로 매달기 방호조치가 되어있는 경우에는 진동방지 기능을 목적으로 15m 이내의 간격으로 횡방향 방진조치를 취한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "노출 가스관은 배관의 피복손상과 외부충격을 완화할 수 있는 고무판, 부직포 등을 사용하여 보호 조치한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "굴착작업에 의하여 노출된 매설물 등이 파손됨으로써 근로자가 위험해질 우려가 있는 경우에는 해당 매설물 등에 대한 방호조치를 하거나 이설하는 등 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:341",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "건설작업 시 중장비가 가스 배관망 상부를 지나는 때에는 그 교차점을 최소로 하고 배관망에 강철판 등으로 방호조치를 강화해야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "도로 혹은 보도에 설치된 배관망은 적절한 깊이의 덮개로 외부 충격을 방지해야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "가스 배관 등 가스 관련 시설은 선명한 표지로 경고 표지를 해야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "설계도에 나타나지 않는 배관 연결 지점을 찾기 위해서는 굴착 장비를 사용하기 전에 수작업으로 파서 가스 배관망의 위치를 정확히 찾아낼 필요가 있다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "굴착작업 시 기계적 충격을 방지하기 위해서 목재판 혹은 모래주머니 등의 물리적 수단을 사용할 수 있다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "가스 누출 감지·경보장치 없이 작업하여 누출을 놓침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "노출된 가스관 주위에는 가스 누출 시에 이를 감지하기 위한 자동가스검지 및 경보장치 등을 설치하고 측정 담당자를 지정하여 상시 점검토록 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "가스관 관리대장의 비치 및 관리자를 임명한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "가스밸브 위치 및 키 보관위치를 사전에 확인하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "가스배관 주위에서 화기를 사용하거나 발파하여 폭발",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "가스배관 주위에서는 화기 사용을 금지하며, 부득이 사용할 경우는 가스누출여부의 확인과 안전조치를 취한 후 작업을 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "가스 누출의 가능성에 대비해서 가스 배관망 근처에서의 흡연이나 혹은 불꽃을 발생시킬 수 있는 작업을 금한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "가스관 근접 장소에서의 화약 발파작업을 금지하며, 부득이 가스관 근접장소에서 작업을 하는 경우에는 버력의 비산 및 진동에 대비한 보호조치를 강구한 후 작업을 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.2"
+                  }
+                },
+                {
+                  "measure": "도시가스의 누출, 메탄가스 등의 발생이 우려되는 경우에는 화기를 사용하여서는 아니 된다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -213,7 +653,33 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "흙막이 토류판 틈새로 토사가 유출되어 전력 관로가 침하·손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "흙막이지보공 토류판의 틈새로 토사가 유출되어 관로가 침하되는 것을 예방하기 위하여 굴착부근의 지반침하 및 관로의 방호상태를 점검하고 이상 발견 시는 응급처치를 함과 동시에 신속히 관계기관에 통보하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.5"
+                  }
+                },
+                {
+                  "measure": "지반개량 작업 중 약액 주입재료가 관로 안으로 유입되어 고결됨으로써 케이블의 설치작업이 불가능하게 되는 경우에 대비하여 사전에 관계기관과 공법, 시공시기, 대책 등에 대하여 협의한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.5"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -229,7 +695,33 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "매설물이 손상됐는데 소유자에게 알리지 않고 근접 작업을 계속",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "케이블에 대한 파손은 케이블 소유자에게 즉시 알려야 하며, 손상된 케이블로부터 근접거리 내에서의 작업은 금한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "상하수도 배관망 혹은 그 덮개 등이 훼손되었을 때는 다른 지하 매설물에도 영향을 줄 수 있으므로 관련기관에 즉시 통보해야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/G-29-2011",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -250,7 +742,48 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "매설물 방호작업을 지휘 없이 실시하여 관을 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "매설물 등의 방호작업에 대하여 관리감독자에게 해당 작업을 지휘하도록 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:341",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "굴착작업에 의하여 노출된 매설물 등이 파손됨으로써 근로자가 위험해질 우려가 있는 경우에는 해당 매설물 등에 대한 방호조치를 하거나 이설하는 등 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:341",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "파일 제거 시 진동·지반침하로 매설관이 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "파일 제거 시 진동 또는 지반침하로 토류판 뒷면에 매설된 상수도관이 손상되지 않도록 조치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -261,7 +794,24 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "매달기 방호를 조기에 해체하여 관이 낙하",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "매달기 턴버클 등의 해체는 관의 기초가 마무리되고 관의 중심선까지 되메우기가 끝난 후 충격이 가지 않도록 서서히 해체하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -277,7 +827,48 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "자갈·암석이 섞인 흙으로 되메워 관 피복이 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "되메우기 작업 시에는 관 및 피복도장 부위에 손상을 줄 우려가 있는 자갈이나 암석 등 이물질을 제거시킨 되메우기 흙을 사용하고 관의 양쪽 측면으로 되메우기를 실시한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.3"
+                  }
+                },
+                {
+                  "measure": "되메우기 전 관 받침 시설은 관접합부를 피하여 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "곡관부에 보호공을 하지 않아 이탈",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "곡관부위 등 취약지점은 콘크리트 등으로 보호공을 실시하여 추후에 이탈 등의 사고가 발생하지 않도록 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

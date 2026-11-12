@@ -243,6 +243,14 @@
       ]
     },
     {
+      "@id": "https://construction.ratelworks.org/ontology/v1/measure",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "measure",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://construction.ratelworks.org/ontology/v1/paragraph",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "paragraph",
@@ -251,9 +259,33 @@
       }
     },
     {
+      "@id": "https://construction.ratelworks.org/ontology/v1/priority",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "priority",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/risk",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "risk",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://construction.ratelworks.org/ontology/v1/section",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "section",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/statement",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "statement",
       "rdfs:isDefinedBy": {
         "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
       }
@@ -270,6 +302,14 @@
       "@id": "https://construction.ratelworks.org/ontology/v1/subitem",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "subitem",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/variant",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "variant",
       "rdfs:isDefinedBy": {
         "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
       }

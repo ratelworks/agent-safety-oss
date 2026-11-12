@@ -628,6 +628,18 @@
     "item": "cc:item",
     "subitem": "cc:subitem",
     "section": "cc:section",
-    "controlLevel": "cc:controlLevel"
+    "controlLevel": "cc:controlLevel",
+    "risks": {
+      "@id": "cc:risk",
+      "@container": "@list"
+    },
+    "statement": "cc:statement",
+    "priority": "cc:priority",
+    "measures": {
+      "@id": "cc:measure",
+      "@container": "@list"
+    },
+    "measure": "schema:text",
+    "variant": "cc:variant"
   }
 }

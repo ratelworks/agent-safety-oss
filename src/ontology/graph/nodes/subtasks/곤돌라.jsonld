@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "hasHazard": [
     "hazard:cave_in",
@@ -94,7 +93,64 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "지지대 고정 미흡으로 곤돌라가 전도 또는 이탈하여 무너짐",
+              "measures": [
+                {
+                  "measure": "지지대를 고정한 상태에서 불필요한 틈새가 있는지, 전도 또는 이탈 위험은 없는지 를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "곤돌라를 설치할 때에는 곤돌라가 전도 이탈 또는 낙하하지 않게 구조물에 와이어 로프 및 앵커 볼트 등을 사용하여 구조적으로 견고하게 설치하고 지지한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "와이어로프 결속 미흡으로 곤돌라가 낙하하여 무너짐",
+              "measures": [
+                {
+                  "measure": "지지대의 와이어로프 및 보조 와이어로프의 결속 및 고정상태를 점검하여야 한다. 이때, 보조 와이어로프는 주 와이어로프와 별개로 다른 곳에 지지한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "설치상태 부적합(구조검토 미실시 등)으로 곤돌라가 무너짐",
+              "measures": [
+                {
+                  "measure": "곤돌라는「위험기계․기구 자율안전 확인(노동부 고시)」에서 정하는 제작기준과 안전기준에 적합한 구조이어야 한다. 다만 부득이한 사유로 구조를 변경 할 경우에는 제작․설치 전 구조검토를 반드시 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "곤돌라를 설치한 때에는 설치상태가 구조검토서 및 매뉴얼에 적합한지를 관리감독자가 확인하고 이를 승인한 후 사용한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-79-2015",
+                    "section": "6.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -115,7 +171,43 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "구명줄 미설치 또는 고정 불량으로 곤돌라 낙하 시 작업자가 맞음",
+              "measures": [
+                {
+                  "measure": "구명줄은 지지대와 별도로 콘크리트 기둥 등 견고한 구조물에 설치하고 로프가 풀 리지 않는가를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.4"
+                  }
+                },
+                {
+                  "measure": "곤돌라의 낙하에 의한 위험을 방지하기 위하여 곤돌라와는 별개로 콘크리트 기둥 등 견고한 구조물에 구명줄을 설치하고 그 구명줄에 안전대(추락방지대)를 걸고 운 반구에 탑승하여 작업을 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업공구·자재 낙하로 맞음",
+              "measures": [
+                {
+                  "measure": "작업공구 및 자재의 낙하를 방지할 수 있도록 정리정돈을 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -126,7 +218,22 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "고압선 근접작업 중 절연조치 미흡으로 감전",
+              "measures": [
+                {
+                  "measure": "고압선이 지나는 장소에서 작업할 경우에는 충전전로에 절연용 방호구를 설치하거 나 작업자에게 보호구를 착용시키는 등 활선근접작업 시 감전재해예방조치를 취하 여야 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -187,7 +294,191 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "점검 미실시로 곤돌라 안전장치·브레이크가 작동하지 않아 떨어짐",
+              "measures": [
+                {
+                  "measure": "그밖에 권과방지장치, 과부하방지장치 등 각종 안전장치를 부착한 곤돌라를 제작하 고 사용한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "브레이크의 작동상태, 가속방지장치, 과부하방지장치, 권과방지장치, 리밋스위치, 레버, 로드, 핀, 스프링 등의 비상정지장치 등 안전장치 작동상태 확인과, 변형이나 손상유무를 점검하고 이상한 냄새가 나는지를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.6"
+                  }
+                },
+                {
+                  "measure": "작업시작 전에는 반드시 각종 방호장치, 브레이크의 기능, 와이어로프 등의 상태를 점검표에 의거 점검을 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "와이어로프·연결부 손상을 점검하지 않아 파단되어 떨어짐",
+              "measures": [
+                {
+                  "measure": "이음매가 있는 것, 꼬인 것, 심하게 변형 또는 부식된 것은 사용하여서는 아니 된 다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "와이어로프의 연결부 및 연결 상태를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "승강핸들 및 축의 손상 유무 확인과 균형추 부착상태, 권상드럼의 표면상태, 안내홈 의 접합이나 돌기상태, 와이어로프 감기는 상태, 접합볼트의 풀림, 부식, 탈락 등의 유무를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "지지대·바닥재·이동바퀴 상태를 점검하지 않아 곤돌라가 기울어 떨어짐",
+              "measures": [
+                {
+                  "measure": "바닥재의 파손, 부식, 미끄럼방지조치가 되어 있는지를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "설치상태, 볼트의 체결상태, 용접부의 균열, 부식, 변형유무를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "이동용 바퀴의 상태, 완충고무의 손상 또는 이탈유무를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "지지대 프레임은 부식과 변형이 없고, 용접부의 접합상태가 양호한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "지지대의 점검은 매 작업시작 전에 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "승강장치 베어링·기어 이상을 점검하지 않아 승강 중 정지·역주행하여 떨어짐",
+              "measures": [
+                {
+                  "measure": "베어링의 이상음이 있는지, 풀림이나 흔들림이 없는지, 급유상태가 양호한지 등을 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.5"
+                  }
+                },
+                {
+                  "measure": "기어장치의 체결상태, 이상마모, 이상소음, 급유상태, 덮개나 울 등이 견고하게 부착 되어 있는지를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.5"
+                  }
+                },
+                {
+                  "measure": "승강장치의 점검은 매 작업시작 전에 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "배선·제어반 손상을 점검하지 않아 오작동 또는 감전",
+              "measures": [
+                {
+                  "measure": "배선의 손상이나 연결부 점검, 전선 인입구의 피복 상태, 누전차단기의 작동상태, 전자 접촉기의 각 접점의 마멸상태 등을 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.6"
+                  }
+                },
+                {
+                  "measure": "제어반의 작동상태, 작동방향에 대한 정확한 표시여부, 각 버튼스위치의 작동상태 확인과 조작반의 외함 등 파손이나 탈락유무를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.6"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "구명줄이 끊어지거나 풀려 점검자가 자유낙하하여 떨어짐",
+              "measures": [
+                {
+                  "measure": "구명줄의 변질, 이음, 변색, 소선절단 등 손상된 부분이 없어야 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.4"
+                  }
+                },
+                {
+                  "measure": "구명줄의 안전계수는 10 이상 이도록 한다",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.4"
+                  }
+                },
+                {
+                  "measure": "구명줄의 점검은 매 작업시작 전에 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.4"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -228,7 +519,108 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "곤돌라 운반구가 정지하지 않은 상태에서 탑승하거나 내리다 떨어짐",
+              "measures": [
+                {
+                  "measure": "작업은 운반구가 정지한 상태에서만 실시한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                },
+                {
+                  "measure": "탑승하거나 탑승자가 내릴 때에는 반드시 운반구를 정지한 상태에서 행동을 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "곤돌라 운반구 안에서 발판·사다리 등을 사용하다 넘어지거나 떨어짐",
+              "measures": [
+                {
+                  "measure": "운반구 안에서 발판, 사다리 등을 사용하지 않아야 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업종료 후 운반구를 바닥에 고정하지 않아 바람·진동 등으로 흔들리다 떨어짐",
+              "measures": [
+                {
+                  "measure": "작업종료 후는 운반구가 매달린 채 그냥 두지 말고 최하부 바닥에 고정시켜 놓아 야 한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "운반구에 최대적재하중 표지판이 없어 과적재로 낙하하여 맞음",
+              "measures": [
+                {
+                  "measure": "운반구의 잘 보이는 곳에 최대적재하중 표지판을 부착하고 바닥 끝부분은 발끝막이 판을 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "안전대·안전모 등 개인보호구 없이 곤돌라에 탑승하여 떨어짐",
+              "measures": [
+                {
+                  "measure": "곤돌라 작업 시에는 작업자에게 특별안전교육을 실시하고 안전대, 안전모, 안전화 등 개인보호구를 착용하도록 한다",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "지정되지 않은 자가 곤돌라를 조작하다 조작 실수로 떨어짐·맞음",
+              "measures": [
+                {
+                  "measure": "곤돌라 조작은 지정된 자 만 하고 작업원은 곤돌라에 관한 특별안전교육을 받은 작 업자 만 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "2인 이상 탑승 시 구명줄 미설치로 1명 추락 시 연쇄적으로 떨어짐",
+              "measures": [
+                {
+                  "measure": "이상 작업자가 탑승하여 작업할 경우는 작업 인원 수 만큼 구명줄을 별도로 설 치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -244,7 +636,35 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "곤돌라 지지대와 운반구가 수평이 아닌 상태에서 작업하다 운반구가 기울거나 전복되어 무너짐",
+              "measures": [
+                {
+                  "measure": "곤돌라의 지지대와 운반구는 항상 수평을 유지하여 작업을 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "벽면에 운반구가 닿은 상태에서 작업하다 운반구가 이탈하거나 전도되어 무너짐",
+              "measures": [
+                {
+                  "measure": "벽면에 운반구가 닿지 않도록 유의하고 필요한 경우에는 운반구 전면에 보호용 고 무 등을 부착한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -270,7 +690,74 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "정전·고장 시 운반구가 제어 불능으로 낙하하여 맞음",
+              "measures": [
+                {
+                  "measure": "전동식 곤돌라를 사용할 때 정전 또는 고장 발생시 작업원은 승강 제어기가 정지 위치에 있는 것을 확인한 후 책임자의 지시를 받아야 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "붙잡음 장치 없이 승강 와이어로프가 풀려 운반구가 허용 하강속도 초과로 낙하하여 맞음",
+              "measures": [
+                {
+                  "measure": "블록 스토퍼(Block stopper) 붙잡음 이송 방식의 승강장치를 가진 곤돌라는 동일한 원리를 이용한 소형 붙잡음 장치를 설치하여 곤돌라 작업대가 허용 하강속도를 초과할 때 승강 와이어로프를 붙잡아 작업대의 하강을 정지시키는데 사용한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "과부하 방지장치 미설치로 정격하중 초과 적재 시 운반구가 낙하하여 맞음",
+              "measures": [
+                {
+                  "measure": "과부하 방지장치 정격하중 이상의 하중이 부하되었을 경우 자동적으로 정지시켜주는 장치로서 과부 하방지장치 작동 시 전원이 차단되고 경보음이나 경보등이 작동되며 곤돌라는 움직 이지 않아야 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "와이어로프 안전계수 미확보로 파단되어 운반구가 낙하하여 맞음",
+              "measures": [
+                {
+                  "measure": "와이어로프 안전계수는 근로자가 탑승하는 경우 10 이상, 화물을 취급하는 경우 5 이상 이도록 한다",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "운반구 점검 미실시로 파손·결함 상태에서 사용하다 운반구가 낙하하여 맞음",
+              "measures": [
+                {
+                  "measure": "운반구의 점검은 매 작업시작 전에 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-62-2012",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:finishing_paint",
   "hasHazard": [
@@ -184,6 +183,128 @@
               "paragraph": 2,
               "controlLevel": "ppe"
             }
+          ],
+          "risks": [
+            {
+              "statement": "낡은 도막·부착물을 제거하며 분진이 심하게 흩날려 흡입함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "분진이 심하게 흩날리는 작업장에 대하여 물을 뿌리는 등 분진이 흩날리는 것을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:4의2"
+                  }
+                },
+                {
+                  "measure": "분진작업을 하는 근로자에게 적절한 호흡용 보호구를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:617",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자 개인전용 보호구를 지급하고, 보관함을 설치하는 등 오염 방지를 위하여 필요한 조치를 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:617",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "물체가 흩날릴 위험이 있는 작업을 하는 근로자에게 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "연마재를 분사하여 소지처리하는 실내작업장에 분진이 체류하여 흡입함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "분진작업을 하는 실내작업장에 대하여 분진을 줄이기 위하여 밀폐설비나 국소배기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:607"
+                  }
+                },
+                {
+                  "measure": "분진 발산 면적이 넓어 밀폐설비나 국소배기장치를 설치하기 곤란한 경우에 전체환기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:608"
+                  }
+                },
+                {
+                  "measure": "근로자에게 분진의 유해성과 노출경로를 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자에게 분진의 발산 방지와 작업장의 환기 방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "근로자에게 호흡용 보호구의 사용 방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "분진 노출기준을 초과했는데도 관리 없이 작업을 계속하여 호흡기질환이 진행됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "분진의 작업환경측정 결과 노출기준을 초과하는 사업장은 호흡기보호 프로그램을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:616",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "분진작업으로 인하여 근로자에게 건강장해가 발생한 사업장은 호흡기보호 프로그램을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:616",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "근로자에게 분진에 관련된 질병 예방 방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "근로자에게 작업장 및 개인위생 관리를 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 3
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -238,7 +359,96 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "제거한 낡은 도막·부착물이 아래로 떨어져 통행자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반은 높이 10미터 이내마다 설치하고, 내민 길이는 벽면으로부터 2미터 이상으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반의 수평면과의 각도는 20도 이상 30도 이하를 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "작업장의 바닥, 도로 및 통로 등에서 낙하물이 근로자에게 위험을 미칠 우려가 있는 경우 보호망을 설치하는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업 구역을 통제하지 않아 제3자가 바탕처리 구간 아래로 들어옴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업자는 작업 구역 주변에 통행금지 표지판을 설치하고 필요한 경우 유도자를 배치하여 안전을 확보한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "작업장 아래에 통행금지 및 위험구역을 표시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "외부인 출입을 통제하기 위하여 안전 가림막 및 표지판을 설치하고 신호수를 배치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "추락에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -547,6 +757,523 @@
               "paragraph": 3,
               "controlLevel": "engineering"
             }
+          ],
+          "risks": [
+            {
+              "statement": "통풍이 충분하지 않은 실내에서 도장하여 유기용제 증기에 중독됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "실내작업장에서 관리대상 유해물질을 취급하는 업무에 종사하는 경우 그 작업장에 관리대상 유해물질의 가스·증기 또는 분진의 발산원을 밀폐하는 설비 또는 국소배기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:422"
+                  }
+                },
+                {
+                  "measure": "실내작업장의 벽·바닥 또는 천장에 대하여 관리대상 유해물질 취급업무를 수행할 때 발산 면적이 넓어 설비를 설치하기 곤란한 경우에는 급기·배기 환기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:425",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "국소배기장치를 설치하는 경우에 별표 13에 따른 제어풍속을 낼 수 있는 성능을 갖춘 것을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:429"
+                  }
+                },
+                {
+                  "measure": "전체환기장치의 배풍기를 관리대상 유해물질의 발산원에 가장 가까운 위치에 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:430",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "유기화합물의 발생이 혼합물질인 경우에는 각각의 환기량을 모두 합한 값을 필요환기량으로 적용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:430",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질을 취급하는 실내작업장의 바닥에 불침투성의 재료를 사용하고 청소하기 쉬운 구조로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:431"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "국소배기장치를 수리한 뒤 성능을 확인하지 않고 도장을 재개하여 증기가 배출되지 않음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "국소배기장치를 설치한 후 처음으로 사용하는 경우 또는 분해하여 개조하거나 수리한 후 처음으로 사용하는 경우에는 사용 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:441",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "덕트와 배풍기의 분진 상태를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:441",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "덕트 접속부가 헐거워졌는지 여부를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:441",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "흡기 및 배기 능력을 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:441",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "점검 결과 이상이 발견되었을 때에는 즉시 청소·보수 또는 그 밖에 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:441",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "벤젠을 함유한 스토다드 솔벤트를 신너로 쓰면서 임시작업으로 보아 국소배기장치를 생략함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "관리대상 유해물질 중 별표 12에 따른 특별관리물질을 취급하는 작업장에는 임시작업인 경우에도 밀폐설비나 국소배기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:423",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질 중 별표 12에 따른 특별관리물질을 취급하는 작업장에는 단시간작업인 경우에도 밀폐설비나 국소배기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:424",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "근로자가 특별관리물질을 취급하는 경우에는 그 물질이 특별관리물질이라는 사실과 발암성 물질, 생식세포 변이원성 물질 또는 생식독성 물질 등 중 어느 것에 해당하는지에 관한 내용을 게시판 등을 통하여 근로자에게 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:440"
+                  }
+                },
+                {
+                  "measure": "특별관리물질을 취급하는 경우에는 근로자의 이름을 적어 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:439",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "특별관리물질을 취급하는 경우에는 특별관리물질의 명칭을 적어 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:439",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "특별관리물질을 취급하는 경우에는 취급량을 적어 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:439",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "특별관리물질을 취급하는 경우에는 작업내용을 적어 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:439",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "특별관리물질을 취급할 때에는 작업 시 착용한 보호구를 적어 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:439",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "누출, 오염, 흡입 등의 사고가 발생한 경우 피해 내용 및 조치 사항을 적어 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:439",
+                    "item": 6
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "유기화합물을 넣었던 탱크 내부에서 페인트칠하며 송기마스크를 착용하지 않아 질식·중독됨",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "유기화합물을 넣었던 탱크 내부에서의 세척 및 페인트칠 업무를 하는 근로자에게 송기마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:450",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "유기화합물 취급 특별장소에서 유기화합물을 취급하는 업무를 하는 근로자에게 송기마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:450",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "송기마스크를 착용시키려는 경우에 신선한 공기를 공급할 수 있는 성능을 가진 장치가 부착된 송기마스크를 지급한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:450",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질에 관하여 필요한 지식을 가진 사람이 해당 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:437",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "작업을 하는 설비의 내부에 대하여 작업 전에 관리대상 유해물질의 농도를 측정하거나 그 밖의 방법에 따라 근로자가 건강에 장해를 입을 우려가 있는지를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:437",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "설비 내부에 관리대상 유해물질이 있는 경우에는 설비 내부를 환기장치로 충분히 환기시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:437",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "유기화합물이 탱크로부터 배출된 후 탱크 내부에 재유입되지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:437",
+                    "paragraph": 1,
+                    "item": 7,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "물이나 수증기 등으로 탱크 내부를 씻은 후 그 씻은 물이나 수증기 등을 탱크로부터 배출시킨다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:437",
+                    "paragraph": 1,
+                    "item": 7,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "탱크 용적의 3배 이상의 공기를 채웠다가 내보내거나 탱크에 물을 가득 채웠다가 배출시킨다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:437",
+                    "paragraph": 1,
+                    "item": 7,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "비상시에 작업설비 내부의 근로자를 즉시 대피시키거나 구조하기 위한 기구와 그 밖의 설비를 갖추어 둔다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:437",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "도료가 피부나 눈에 직접 닿아 화학적 손상을 입음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "피부 자극성 또는 부식성 관리대상 유해물질을 취급하는 경우에 불침투성 보호복·보호장갑·보호장화 및 피부보호용 바르는 약품을 갖추어 두고, 이를 사용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:451",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질이 흩날리는 업무를 하는 경우에 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:451",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질이 근로자의 피부나 눈에 직접 닿을 우려가 있는 경우에 즉시 물로 씻어낼 수 있도록 세면·목욕 등에 필요한 세척시설을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:451",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "세면·목욕·세탁 및 건조를 위한 시설을 설치하고 필요한 용품과 용구를 갖추어 둔다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:448",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "오염된 작업복과 평상복을 구분하여 보관할 수 있는 구조로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:448",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "도료·희석제를 밀폐하지 않고 방치하여 증기가 계속 발산됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "관리대상 유해물질을 운반하거나 저장하는 경우에 그 물질이 새거나 발산될 우려가 없는 뚜껑 또는 마개가 있는 튼튼한 용기를 사용하거나 단단하게 포장을 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:443",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "저장장소에는 관계 근로자가 아닌 사람의 출입을 금지하는 표시를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:443",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "저장장소에는 관리대상 유해물질의 증기를 실외로 배출시키는 설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:443",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질을 저장할 경우에 일정한 장소를 지정하여 저장한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:443",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질의 운반·저장 등을 위하여 사용한 용기 또는 포장을 밀폐하거나 실외의 일정한 장소를 지정하여 보관한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:444"
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질을 취급하는 실내작업장에 관계 근로자가 아닌 사람의 출입을 금지하고, 그 내용을 보기 쉬운 장소에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:446",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질이나 이에 따라 오염된 물질은 일정한 장소를 정하여 폐기·저장 등을 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:446",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "도료의 유해성을 모른 채 배치되어 보호구 없이 취급함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자를 작업에 배치하기 전에 관리대상 유해물질의 명칭 및 물리적·화학적 특성을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:449",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자를 작업에 배치하기 전에 인체에 미치는 영향과 증상을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:449",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "근로자를 작업에 배치하기 전에 착용하여야 할 보호구와 착용방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:449",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "근로자를 작업에 배치하기 전에 위급상황 시의 대처방법과 응급조치 요령을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:449",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질을 취급하는 작업장의 보기 쉬운 장소에 관리대상 유해물질의 명칭, 인체에 미치는 영향, 취급상 주의사항, 착용하여야 할 보호구, 응급조치와 긴급 방재 요령을 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:442",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "게시하는 경우에는 인체에 미치는 영향이 유사한 관리대상 유해물질별로 분류하여 게시할 수 있다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:442",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "별표 12 제1호13)·46)·59)·71)·101)·111)의 물질을 취급하는 경우에 근로자가 작업을 시작하기 전에 해당 물질이 급성 독성을 일으키는 물질임을 근로자에게 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:449",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질을 취급하는 실내작업장에서 근로자가 담배를 피우거나 음식물을 먹지 않도록 하고, 그 내용을 보기 쉬운 장소에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:447",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "관리대상 유해물질을 취급하는 실내작업장, 휴게실 또는 식당 등에 관리대상 유해물질로 인한 오염을 제거하기 위하여 청소 등을 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:445"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "환기장치가 고장나 기능을 잃었는데도 도장을 계속하여 중독됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "환기를 위하여 설치한 환기장치의 고장으로 그 기능이 저하되거나 상실된 경우에 즉시 작업을 중지하고 근로자를 그 장소에서 대피시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:438",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "취급하는 장소의 내부가 관리대상 유해물질에 의하여 오염되거나 관리대상 유해물질이 새는 경우에 즉시 작업을 중지하고 근로자를 그 장소에서 대피시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:438",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "작업을 중지한 경우에 오염되거나 새어 나온 것이 제거될 때까지 관계자가 아닌 사람의 출입을 금지하고, 그 내용을 보기 쉬운 장소에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:438",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "밀폐설비나 국소배기장치가 설치되지 아니한 장소에서 유기화합물 취급업무를 하는 근로자에게 송기마스크나 방독마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:450",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "유기화합물 취급 장소에 설치된 환기장치 내의 기류가 확산될 우려가 있는 물체를 다루는 유기화합물 취급업무를 하는 근로자에게 송기마스크나 방독마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:450",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -629,7 +1356,133 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:asphyxiation"
+          "hazard": "hazard:asphyxiation",
+          "risks": [
+            {
+              "statement": "건성유를 함유하는 페인트가 건조되기 전 밀폐된 지하실에 들어가 산소가 결핍되어 질식함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "밀폐공간에서 작업을 시작하기 전에 산소 및 유해가스 농도의 측정 및 평가에 관한 지식과 실무경험이 있는 자를 지정하여 해당 밀폐공간의 산소 및 유해가스 농도를 측정하고 적정공기가 유지되고 있는지를 평가하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "밀폐공간 작업 전 산소 및 유해가스 농도를 측정하고 후속조치를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정 및 평가하는 자에 대하여 작업을 시작하기 전에 밀폐공간의 위험성의 숙지여부를 확인하고 필요한 교육을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정 및 평가하는 자에 대하여 측정장비의 이상 유무 확인 및 조작 방법의 숙지여부를 확인하고 필요한 교육을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정 및 평가하는 자에 대하여 밀폐공간 내에서의 산소 및 유해가스 농도 측정방법의 숙지여부를 확인하고 필요한 교육을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정 및 평가하는 자에 대하여 적정공기의 기준과 평가 방법의 숙지여부를 확인하고 필요한 교육을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 2,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "작업 중 불활성가스·유해가스의 누출·유입·발생 가능성을 검토하고 후속조치를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619",
+                    "paragraph": 2,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "작업을 시작하기 전과 작업 중에 해당 작업장을 적정공기 상태가 유지되도록 환기한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:620",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정한 결과 적정공기가 유지되고 있지 아니하다고 평가된 경우에는 작업장을 환기시키거나, 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "사업장 내 밀폐공간을 사전에 파악하여 관계 근로자가 아닌 사람의 출입을 금지하고, 출입금지 표지를 밀폐공간 근처의 보기 쉬운 장소에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:622",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:623",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업장과 외부의 감시인 간에 항상 연락을 취할 수 있는 설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:623",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "산소결핍이나 유해가스로 인하여 추락할 우려가 있는 경우에는 안전대나 구명밧줄, 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:624",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서의 작업이 종료될 때까지 확인 내용을 해당 작업장 출입구에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -673,7 +1526,80 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "신너 증기가 체류한 실내에서 점화원에 접촉하여 폭발함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "인화성 액체를 함유하는 도료 및 접착제 등을 제조·저장·취급 또는 도포하는 설비에 대하여 확실한 방법으로 접지를 하거나, 도전성 재료를 사용하거나 가습 및 점화원이 될 우려가 없는 제전장치를 사용하는 등 정전기의 발생을 억제하거나 제거하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:325",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "화재 또는 폭발의 위험이 있는 장소에는 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 9
+                  }
+                },
+                {
+                  "measure": "사용 도료의 인화성을 고려하여 화기 취급을 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "도료, 희석제 등 유해화학물질 취급 안전교육을 실시하고 소화기 비치를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "스프레이 도장 중 인체에 대전된 정전기가 방전되어 도료 증기에 인화됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "유압, 압축공기 또는 고전위정전기 등을 이용하여 인화성 액체나 인화성 고체를 분무하거나 이송하는 설비에 대하여 정전기의 발생을 억제하거나 제거하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:325",
+                    "paragraph": 1,
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "인체에 대전된 정전기에 의한 화재 또는 폭발 위험이 있는 경우에는 정전기 대전방지용 안전화 착용, 제전복 착용, 정전기 제전용구 사용 등의 조치를 하거나 작업장 바닥 등에 도전성을 갖추도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:325",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "정전기의 대전에 의한 위험이 있는 작업을 하는 근로자에게 안전화를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -726,7 +1652,86 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "이동식 사다리에 올라 천장을 도장하다 사다리가 넘어져 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "3개 이상의 버팀대를 가지고 지면으로부터 안정적으로 세울 수 있는 구조를 갖춘 이동식 사다리를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4
+                  }
+                },
+                {
+                  "measure": "평탄하고 견고하며 미끄럽지 않은 바닥에 이동식 사다리를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 견고한 시설물에 연결하여 고정하거나, 아웃트리거를 설치하거나, 다른 근로자가 지지하여 넘어지지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 설치한 바닥면에서 높이 3.5미터 이하의 장소에서만 작업한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "이동식 사다리의 최상부 발판 및 그 하단 디딤대에 올라서서 작업하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "안전모를 착용하되, 작업 높이가 2미터 이상인 경우에는 안전모와 안전대를 함께 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "이동식 사다리의 제조사가 정하여 표시한 최대사용하중을 초과하지 않는 범위 내에서만 사용한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "이동식 사다리 사용 전 변형 및 이상 유무 등을 점검하여 이상이 발견되면 즉시 수리하거나 그 밖에 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 7
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -885,7 +1890,445 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "승인된 작업계획서 없이 착수하여 준비 상태를 확인하지 못한 채 하강함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작성된 작업계획서는 외벽도장 보수공사 작업을 시작하기 전에 안전보건관리책임자 또는 현장소장의 승인을 받은 후 원도급사, 발주처 승인을 받는다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업을 시작하기 전에 승인된 작업계획서와 같이 준비된 상태를 확인하여 작업 실시여부를 결정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업 위치 또는 작업 경로, 작업 방법이 변경되었을 경우 작업 전에 작업계획서를 작성한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "풍속, 화학물질 변경, 장비 교체 등 위험도 변화 시 작업계획서를 재작성한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "관리감독자가 작업을 시작하기 전에 교육을 통하여 작업계획서 내용을 숙지하도록 하고, 서면 확인서를 징구하며 주요 내용을 현장 게시판에 요약하여 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업개요에 공종, 작업장소, 작업기간, 총 작업량, 작업지휘자, 신호방법, 개인보호구 지급품목, 작업방법 및 순서, 특기사항을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "로프 고정점이 파손되어 도장 중 작업대와 함께 추락함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "고정지점의 구조물 안정성 및 이탈 방지 여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "지지점은 작업자 하중과 충격 하중을 충분히 견딜 수 있는 콘크리트 매립 고리, 철골 구조물 등을 사용하도록 관리한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "작업용 로프와 구명줄의 2개 이상의 지지점에 대한 견고한 고정여부를 관리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "작업하는 근로자의 하중을 견딜 수 있을 정도의 강도를 가진 작업용 섬유로프, 구명줄 및 고정점을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 2,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "달비계의 연결 부위·받침 부위·고정 부위의 안전성을 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "필요시 정적 하중시험을 통해 인장력을 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "추락방지대의 화살표를 거꾸로 장착하여 추락 시 제동이 걸리지 않음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "화살표가 위쪽을 향하도록 설치하여 추락 시 제동이 걸리도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.2.5"
+                  }
+                },
+                {
+                  "measure": "추락방지대 개폐판을 누른 상태에서 연결 고리를 열고, 수직 구조대에 추락방지대를 올바르게 장착한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.2.5"
+                  }
+                },
+                {
+                  "measure": "안전대의 D링에 코브라의 후크를 올바르게 연결한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.2.5"
+                  }
+                },
+                {
+                  "measure": "로프의 마모나 파손 여부, 톱니의 마모 상태를 꼼꼼하게 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.2.5"
+                  }
+                },
+                {
+                  "measure": "코브라는 수직 방향으로만 사용하고, 로프는 비틀어서 사용하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.2.5"
+                  }
+                },
+                {
+                  "measure": "안전대 추락방지대의 구명줄 체결을 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "추락방지대 아래 안전 공간이 부족하여 제동 전에 지면에 충돌함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업 전 추락 시 지면에 닿지 않도록 충분한 안전 공간을 확보하고 있는지 체크한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.2.5"
+                  }
+                },
+                {
+                  "measure": "작업 중 신체가 지면에 닿지 않도록 추락 방지대 고정 위치를 허리보다 높게 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "5.2.5"
+                  }
+                },
+                {
+                  "measure": "이중고리의 높은 위치 결속 여부와 안전한 결속 여부, 안전대의 죔줄 길이와 부착설비 적합성 여부를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍·강우 중 도장을 강행하여 작업대가 흔들리며 추락함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "순간풍속 초당 10m/s 초과, 강우량이 시간당 1밀리미터 이상, 강설량이 시간당 1센티미터 이상인 경우 고소작업을 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "풍속 초과 시 작업 중지 절차를 작업계획서에 포함시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "우천 시나 강한 바람이 불 때는 작업을 중단하며, 먼지가 많을 때도 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "9"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "도장면에 닿으려고 몸을 내밀어 무게중심이 작업대를 벗어나 이탈함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업대에서 과도하게 몸을 내밀어 작업을 할 경우 작업대에서 이탈하여 추락할 우려가 있으므로 가급적 무게 중심이 작업대에서 벗어나지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "작업의자형 달비계에 탑승하기 전에 반드시 안전모와 안전대를 착용하고 안전대를 안전대 부착설비에 부착한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "작업대 탑승 전 준비단계부터의 안전고리 체결여부를 관리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "달비계 및 작업대의 과적 여부를 집중 관리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "근로자에게 안전대를 착용하도록 하고 근로자가 착용한 안전줄을 달비계의 구명줄에 체결하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 2,
+                    "item": 10,
+                    "subitem": "나"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "옥상 단부·개구부에서 로프를 결속하다 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "난간등을 설치하는 것이 매우 곤란하거나 작업의 필요상 임시로 난간등을 해체하여야 하는 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "추락할 위험이 있는 높이 2미터 이상의 장소에서 근로자에게 안전대를 착용시킨 경우 안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "안전대 및 부속설비의 이상 유무를 작업을 시작하기 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업을 하는 근로자에게 안전대를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "경사지붕에서 준비작업 중 미끄러져 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지붕의 가장자리에 안전난간을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:45",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "채광창에는 견고한 구조의 덮개를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:45",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "슬레이트 등 강도가 약한 재료로 덮은 지붕에는 폭 30센티미터 이상의 발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:45",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "안전난간을 설치하기 곤란한 경우에는 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:45",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "개인보호구로 미끄럼 방지화 착용 여부를 확인한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업지휘자·신호수 없이 작업하여 이상 상황에 대응하지 못함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업지휘자는 계획단계부터 모든 과정에 걸쳐 계획을 수립하고 작업원에 대한 교육, TBM리더, 작업계획서에 의한 작업 전·중·후 관리감독의 업무를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "신호수 배치 위치와 무전기 등 통신 방법의 적정성을 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "긴급 상황 발생 시 즉시 연락하고 대피할 수 있도록 신호 체계 및 연락 체계를 구축하고, 비상시 대피 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "장비 해체 시 작업지휘자의 입회 후 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "장비 교체·정비 중 제3자가 로프 결속부를 임의로 해체함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "작업용 로프와 구명줄 체결부의 임의 해체를 방지하기 위하여 경고표지판 또는 시건장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "작업용 섬유로프 또는 구명줄이 결속된 고정점의 로프는 다른 사람이 풀지 못하게 하고 작업 중임을 알리는 경고표지를 부착한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 2,
+                    "item": 7
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -951,6 +2394,176 @@
               "paragraph": 3,
               "controlLevel": "administrative"
             }
+          ],
+          "risks": [
+            {
+              "statement": "에어 스프레이 호스 연결부가 파열되어 고압 도료가 신체에 분사됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "압축기 및 호스 연결부의 누기 여부와 압력 게이지 정상 작동여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "노즐의 막힘, 균열, 변형 여부 및 분사 패턴 이상여부를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "탱크, 호스, 밸브의 누수여부 및 도료 흐름 이상여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "작업 전·후 장비 내부 및 외부 청소여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "사용 도료의 물질안전 보건자료를 확인하고 적절한 보호구 착용여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "붓, 로울러 등의 장비는 정비 후 사용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "9"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "폐도료·오염된 보호복을 방치하여 작업 후에도 유해물질에 노출됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "도료, 희석제 등 유해물질 및 폐자재를 분리 보관한 후 위탁처리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.5"
+                  }
+                },
+                {
+                  "measure": "오염된 보호복 및 장비를 세척하고 건조한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.5"
+                  }
+                },
+                {
+                  "measure": "작업 후 발생되는 폐기물은 법규에 따라 안전하게 처리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "장비 및 공구 등을 점검한 후 안전한 장소에 보관한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "외벽도장 중 체감온도 33도 이상 폭염에 장시간 노출되어 열사병이 발생함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자가 폭염특보의 기준이 되는 체감온도 33도 이상인 작업장소에서 폭염작업을 하는 경우에는 매 2시간 이내에 20분 이상의 휴식을 주어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "근로자가 폭염작업을 하는 경우에는 냉방 또는 통풍 등을 위한 적절한 온도·습도 조절장치를 설치·가동한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "작업시간대의 조정 등 폭염 노출을 줄일 수 있는 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "폭염작업으로 인한 건강장해 예방을 위하여 필요한 적절한 휴식시간을 부여한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:560",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "폭염작업이 예상되는 작업장소에 온·습도계 등 온도·습도를 측정하는 기기를 상시 갖추어 둔다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자에게 폭염작업에 따른 건강장해의 증상 및 예방조치, 응급조치 요령 등에 관한 사항을 폭염작업 전에 미리 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "폭염작업이 이루어진 작업장소에서 측정한 체감온도와 조치사항을 일자별로 기록하고, 그 내용을 폭염작업이 있었던 해당 연도 12월 31일까지 보관한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "근로자의 폭염작업으로 인하여 열사병 등 건강장해가 발생되었거나 발생한 것으로 의심되는 경우에는 지체 없이 사업장 소재지를 관할하는 소방관서에 직접 신고하거나 근로자로 하여금 신고하게 하는 등 필요한 적절한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:562",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -968,7 +2581,32 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "스프레이 장비의 전선 피복이 손상되어 감전됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "전선 피복 손상, 접지 상태, 모터 작동여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "감전의 대전에 의한 위험이 있는 작업을 하는 근로자에게 안전화를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -999,7 +2637,55 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "도료통·붓·롤러가 손에서 놓여 하부 통행자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업의자형 달비계를 이용한 작업구역에는 출입금지 구역을 설정하고 경고 표지를 작업장소 아래에 설치하여 다른 작업자가 쉽게 알 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.4"
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반을 설치하고 하부위험구역을 설정한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "7.3"
+                  }
+                },
+                {
+                  "measure": "작업 중 낙하물 방지를 위해 낙하물 방지망을 설치하고, 필요시 보행자 통로를 확보하여 낙하물로 인한 2차 피해를 방지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "작업 중 위험으로부터 주변 차량이나 건물, 보행자 등을 보호하기 위한 조치를 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-13-2026",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:drainage_sewerage",
   "hasHazard": [
@@ -156,7 +155,251 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "트렌치 굴착면이 붕괴하여 작업자가 매몰",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "트렌치 굴착 바닥 정지작업 시 굴착면의 붕괴위험 요소를 사전에 점검한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.7"
+                  }
+                },
+                {
+                  "measure": "지반 등을 굴착하는 경우 굴착면의 기울기를 기준에 맞도록 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:339",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "굴착작업 시 토사등의 붕괴 또는 낙하에 의하여 근로자에게 위험을 미칠 우려가 있는 경우에는 미리 흙막이 지보공의 설치, 방호망의 설치 및 근로자의 출입 금지 등 그 위험을 방지하기 위하여 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:340"
+                  }
+                },
+                {
+                  "measure": "굴착면 상부의 부석, 토사 등을 제거하여야 하며, 지하수 및 지표수가 유입되지 않도록 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "시공도를 확인하고 맨홀 치수 등을 고려하여 필요한 경우 흙막이지보공을 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.6"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "흙막이 없이 1.5m를 넘게 트렌치를 파거나 폭이 좁아 붕괴·대피 불가",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "토사지반으로서 흙막이지보공을 설치하지 않는 경우 굴착 깊이는 1.5m 이하로 하여야 하며, 굴착 깊이가 1.5m 이하이더라도 현장여건 및 지반붕괴의 우려가 있는 경우에는 흙막이지보공을 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "수분을 많이 함유한 지반의 경우나 뒷채움 지반인 경우 또는 차량의 통행 등으로 붕괴되기 쉬운 경우에는 반드시 흙막이지보공을 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "굴착 폭은 작업 및 대피가 용이하도록 충분한 넓이를 확보하여야 하며 굴착 깊이가 2m 이상일 경우에는 1m 이상 폭으로 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "흙막이널판을 사용할 경우에는 널판길이 1/3 이상의 근입장을 확보하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "바닥면의 굴착 깊이를 확인하면서 작업하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴착토사를 굴착면 가까이 쌓아 하중으로 트렌치가 붕괴",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "굴착토사는 굴착바닥에서 45° 이상 경사선에서 깊이의 2배 이상의 위치에 적치하도록 하고 건설기계가 통행하는 장소에는 별도의 통행로를 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "굴착토사나 자재 등을 굴착면 및 흙막이 상단에 쌓아 두지 않도록 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "우천 또는 해빙으로 인해 토사무너짐이 우려되는 경우에는 작업 전 안전점검을 실시하여야 하고, 특히 굴착면 상단에는 중량물의 적치를 금지하며 대형 건설기계 통과 시에는 지반다짐을 양호하게 하는 등 적절한 조치를 실시하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "승강설비 없이 트렌치를 오르내리거나 굴착 저면에서 휴식하다 매몰",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴착 깊이에 관계없이 적어도 30m 간격 이내로 사다리, 계단 등 승강설비를 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "굴착 깊이가 1.5m 이상인 경우는 30m 이내마다 1개소 이상 사다리, 계단 등의 통로를 설치하고 쓰러지지 않도록 상·하부를 단단히 고정하여야 하며, 장기간 공사 시에는 비계 등을 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "굴착 저면에서 휴식을 취하여서는 안 된다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "일일 작업 전 점검·교육 없이 착수하여 불안전 상태를 놓침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "관리감독자는 작업계획 및 내용을 확인하고, 근로자에게 작업계획서의 내용을 주지시켜야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "작업 전에 작업장소의 불안전한 상태를 점검하고 미비점이 있을 경우 즉시 조치하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "근로자가 사용하는 기계·공구 등의 이상유무를 확인하고, 당일작업량, 작업방법, 작업 단위별 순서 등을 고려한 위험요인 및 대책을 근로자에게 교육하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "근로자의 안전모 착용 및 복장상태, 추락의 위험이 있는 고소작업자는 안전대를 착용하고 있는가 등을 확인하여야 한다",
+                  "controlLevel": "ppe",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "관리감독자의 작업지휘 하에 작업을 하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴착면이 높은데 소단 없이 굴착하여 붕괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴착면이 높은 경우는 소단을 두어 굴착하고, 소단의 폭은 수평거리 2m 이상으로 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "깎기면이 높은 경우에는 굴착장비가 안전하게 이동할 수 있는 등판용 가설도로를 설치하되 적정 노폭을 유지토록하고 침하 우려가 없어야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -212,7 +455,150 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "굴착면 선단부에 관을 적재하여 굴러떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "굴착면 선단부에는 관을 적재하지 않도록 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.7"
+                  }
+                },
+                {
+                  "measure": "굴착면 상단부에는 굴러 떨어질 위험이 있는 관 등의 자재를 적치하지 않는다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "굴착면 상부에 자재적치를 금지한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "흄관 등 중량자재를 인양하는 중 낙하하여 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "흄관 등 중량자재의 하역, 운반 시에는 반드시 2줄걸이를 실시하고 인양장비를 사용하여 작업을 실시하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "정격하중을 초과하여 인양을 금지한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "인양작업 시 서서히 감아 올려 지상 약 10cm 지점에서 정지하고 확인하며, 이 경우에 매달린 물체에 접근을 금지한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "와이어로프 등은 크레인의 후크 중심에 설치하고, 매다는 각도는 60° 이내로 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "인양물체 위에 근로자 탑승을 금지하고, 와이어로프를 주기적으로 점검하여 불량품을 제거한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "떨어짐 위험구역 내에는 출입금지 조치를 하고 감시인을 배치하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "핸드브레이커로 견고한 지반을 깨다 파편·소음에 노출",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "핸드브레이커를 이용하여 견고한 지반을 굴착할 경우에는 보호장갑, 보안경 등의 보호구를 착용하여야 한다",
+                  "controlLevel": "ppe",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "핸드브레이커 사용을 위한 공기압축기는 작업이나 통행에 지장이 없는 장소에 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "상·하부 동시작업으로 상부에서 부석·자재가 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "상·하부 동시작업은 금지하여야 하나, 부득이한 경우 견고한 낙하물 방호시설 설치, 부석 제거, 작업장소에 불필요한 기계 등의 방치 금지, 신호수 및 담당자 배치 조치를 취하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "상부에서 붕괴·낙하 위험이 있는 장소에서의 작업을 금지하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -237,7 +623,59 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "중량물 하역 작업계획 없이 적치·운반하여 깔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "중량물의 종류, 형태, 취급방법, 순서, 작업장소의 넓이 및 지형 등을 고려하여 작업계획서를 작성하고 근로자에게 주지시켜야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "작업지휘자를 지정하여 자재반입, 운반작업을 통제하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "경사면에 원형 등의 중량물을 적치할 때에는 구름 멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 방지하고, 중량물이 구르는 방향인 경사면 아래에 근로자의 출입을 금지한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.4"
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -258,7 +696,66 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "하역장비·운전원 자격을 확인하지 않고 자재를 반입하여 부딪힘",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "하역장비의 적정성 및 운전원 자격을 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계에 후진경보기를 부착한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "크레인 아웃트리거 인출 및 와이어로프 상태, 후크해지장치 부착을 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                },
+                {
+                  "measure": "장비 유도자를 배치하고 신호체계를 수립하며, 하역작업 반경 내 근로자 출입을 통제하고 자재 적치장소의 안전성을 확보한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴착작업자와 차량운전원 간 연락체계가 없어 접촉",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴착된 흙을 차량으로 운반할 경우 통로를 확보하고, 굴착작업자와 차량운전원이 상호연락 할 수 있도록 하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -274,7 +771,42 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "통행자가 많은 장소에서 방호울·조명 없이 굴착하여 제3자가 추락·접촉",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "통행자가 많은 장소에서 굴착하는 경우 굴착장소에 방호울 등을 사용하여 접근을 금지시키고 안전표지판을 식별이 용이한 장소에 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "야간에는 최소 조도기준을 확보할 수 있도록 작업장에 충분한 조명시설을 하여야 하며 임시로 설치 사용하는 시설물에는 형광벨트, 경광등 등을 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "7.3.4"
+                  }
+                },
+                {
+                  "measure": "야간작업이 필요할 경우 충분한 조명시설을 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -285,7 +817,24 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "수중펌프·벨트콘베이어 누전으로 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수중 펌프나 벨트콘베이어 등 전기기계·기구를 사용할 경우는 누전차단기를 설치하고 작동여부를 확인하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "질식",
@@ -307,7 +856,43 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:asphyxiation"
+          "hazard": "hazard:asphyxiation",
+          "risks": [
+            {
+              "statement": "굴착부의 산소결핍·인화성가스에 노출되어 질식",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "산소결핍의 우려가 있는 작업장소는 산소농도를 측정하고 적정한 공기가 유지되도록 환기를 하거나 근로자에게 공기호흡기 또는 송기마스크를 지급·착용하도록 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "도시가스, 메탄가스 등의 인화성가스 누출이 우려되는 경우에는 화기를 사용하여서는 안 된다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.3"
+                  }
+                },
+                {
+                  "measure": "밀폐공간 작업 전 산소 및 유해가스 농도를 측정하고 후속조치를 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:619",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -347,7 +932,107 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "매달린 관 하부에 출입하여 낙하물에 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "관을 들어올리고 내려놓을 때에는 작업자가 아래로 출입하지 않도록 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.7"
+                  }
+                },
+                {
+                  "measure": "관 등을 올리고 내려놓을 때에는 작업자가 매달린 관의 하부에 출입하지 않도록 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "기성제품의 맨홀을 인양, 운반 시에는 중량물 취급 안전에 적합하도록 인양물 아래에는 출입금지조치, 신호수 배치, 달기구 점검 등의 안전조치를 하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.6"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴착기를 크레인 대용으로 사용하여 관이 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "버킷 굴착기를 크레인 대용으로 사용하지 않도록 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.7"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 그 기계의 주된 용도에만 사용한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:204"
+                  }
+                },
+                {
+                  "measure": "자재 등 중량물의 인양은 크레인을 사용하고, 크레인의 뒤집힘 방지를 위해 평탄하고 견고한 지반 위에 아웃트리거를 설치하여 작업하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "자재 인양용으로 사용하는 와이어로프, 훅의 해지장치 등은 파손되지 않은 상태에서 사용하여야 하며, 줄걸이 방법을 준수하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴착기 버킷·퀵커플러 체결 상태를 확인하지 않아 버킷이 이탈",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴착기 버킷의 연결상태, 용접된 인양고리의 고정·용접상태 및 퀵 커플러 안전핀의 체결여부 등을 사전에 확인하고 작업을 하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "굴착기 등 건설장비 사용 시에는 사용 전 점검을 실시하고 안전한 상태에서 작업을 실시하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -363,7 +1048,42 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "관 연결 작업 중 손이 끼임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "관 연결작업 시 손 끼임을 방지하기 위해서 관을 로우프로 잡고 있는 상태에서 시공하도록 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.7"
+                  }
+                },
+                {
+                  "measure": "관 연결 작업 시 손 끼임을 방지하기 위하여 관을 손으로 잡지 않고 로프를 이용한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "관 등을 인력으로 운반 및 위치 변경 시에는 지렛대 등을 이용하여 안전한 작업자세로 작업하도록 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -379,7 +1099,33 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "장비가 굴착면에 근접하여 작업해 토사가 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴착기 등 건설장비 작업 중량에 따라 토사무너짐 위험이 없도록 굴착면에서 충분히 떨어진 장소에서 작업을 하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                },
+                {
+                  "measure": "굴착기 등 장비작업 시에는 유도자를 배치하여야 하고, 유도자는 안전모 등 개인보호구를 착용한 상태에서 작업계획서에 따라 작업을 시행하여 근로자가 해당장비에 부딪히지 않도록 하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "질식",
@@ -431,7 +1177,127 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:asphyxiation"
+          "hazard": "hazard:asphyxiation",
+          "risks": [
+            {
+              "statement": "맨홀·관내 청소 중 산소결핍·유해가스로 질식",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "작업 전 산소농도(18% 이상)를 측정하고 유해공기의 농도가 기준농도를 넘어가지 않도록 환기설비를 설치하여 충분한 환기를 실시하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.9"
+                  }
+                },
+                {
+                  "measure": "작업장소에서 메탄가스, 황화수소 등의 가스가 발생할 가능성이 있을 경우에는 계속 환기를 실시하고 출입하지 않아야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.9"
+                  }
+                },
+                {
+                  "measure": "밀폐공간 작업 전 산소 및 유해가스 농도를 측정하고 후속조치를 확인한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:619",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "작업 시작 전과 작업 중에 적정공기 상태가 유지되도록 환기한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:620",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "관계 근로자 외 출입을 금지하고 출입금지 표지를 밀폐공간 근처에 게시한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:622",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업상황을 감시할 감시인을 밀폐공간 외부에 배치하고, 내부와 상시 연락할 수 있는 설비를 설치한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:623",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "산소결핍 및 유해가스에 의한 질식우려가 있는 장소에서 작업할 때에는 작업 전에 산소농도(18% 이상) 및 가스농도를 측정하고, 유해가스의 농도가 기준농도를 넘어가지 않도록 적절한 환기시설을 설치하여 작업하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.2.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "맨홀 내에서 엔진양수기를 사용하여 일산화탄소에 중독",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "맨홀 내에서는 엔진양수기의 사용을 금하도록 하여야 하고 맨홀 내부로 침수방지조치를 하여야 한다",
+                  "controlLevel": "elimination",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.9"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "질식 사고 발생 시 보호구 없이 구조하러 들어가 2차 재해",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "맨홀공간 내에서 응급사태 발생 시에는 외부에 환기설비를 설치하고 환기를 실시하여야 하며, 구조요청 후 환기 전에는 투입을 금지한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.9"
+                  }
+                },
+                {
+                  "measure": "재해자 구조 시에는 반드시 공기호흡기, 송기마스크 등 호흡용 보호구를 착용한 후 밀폐공간 내로 들어가도록 하여야 한다",
+                  "controlLevel": "ppe",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.9"
+                  }
+                },
+                {
+                  "measure": "산소결핍이나 유해가스로 인한 추락 우려가 있으면 안전대·구명밧줄·공기호흡기 또는 송기마스크를 지급하여 착용하게 한다",
+                  "controlLevel": "ppe",
+                  "variant": "기본",
+                  "basis": {
+                    "article": "art:기준규칙:624",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -447,7 +1313,33 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "수중양수기 누전으로 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수중양수기는 사용 전에 절연저항 측정, 접지상태 확인, 누전차단기 설치 여부 등을 확인하도록 하여야 한다",
+                  "controlLevel": "administrative",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.9"
+                  }
+                },
+                {
+                  "measure": "수중양수기 인양로프는 마닐라로프를 사용하도록 하여야 한다",
+                  "controlLevel": "substitution",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.9"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -458,7 +1350,24 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "보행자가 맨홀 공사구간에 접근하여 추락",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "보행자 추락방지를 위하여 공사구간에는 방책을 설치하여야 한다",
+                  "controlLevel": "engineering",
+                  "variant": "기본",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-11-2026",
+                    "section": "8.1.6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

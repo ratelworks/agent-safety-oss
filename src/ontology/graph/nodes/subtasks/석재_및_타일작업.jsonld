@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:finishing_tile",
   "hasHazard": [
@@ -126,7 +125,39 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "타일박스를 들어 올리거나 내리다 손이 바닥면에 끼임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "타일박스를 들어 올리거나 내릴 경우에는 손이 타일박스와 바닥면에 끼일 우려가 높으므로 적정 받침목을 설치하는 등 안전대책을 강구하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "자재를 인력운반 시에는 자재를 떨어뜨려 발 등에 재해를 당할 우려가 있으므로 적당한 양을 운반하고 안전화를 착용하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "취급하기 곤란한 물품은 손잡이를 붙이거나 갈고리, 진공빨판 등 적절한 보조도구를 활용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -161,6 +192,90 @@
             {
               "article": "art:기준규칙:666",
               "controlLevel": "administrative"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "석재·타일을 인력으로 반복해 들어올려 허리를 다침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석재를 인력으로 들어올리는 작업을 하는 때에는 과도한 중량으로 인하여 근로자의 목, 허리 등 근골격계에 무리한 부담을 주지 않도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "석재의 중량과 형상을 고려하여 무게중심을 낮추고 대상물에 몸을 밀착하는 등 신체에 부담을 감소시킬 수 있는 자세에 대해 근로자에게 알려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "석재의 무게가 5킬로그램 이상인 중량물을 들어올리는 작업을 하는 때에는 석재 중량과 무게중심에 대하여 작업장 주변에 안내표시를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 과도한 무게로 인하여 근로자의 목·허리 등 근골격계에 무리한 부담을 주지 않도록 최대한 노력해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:663"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 무게중심을 낮추거나 대상물에 몸을 밀착하도록 하는 등 근로자에게 신체의 부담을 줄일 수 있는 자세에 대하여 알려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:666"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리거나 운반하는 작업을 하는 경우에 근로자가 취급하는 물품의 중량·취급빈도·운반거리·운반속도 등 인체에 부담을 주는 작업의 조건에 따라 작업시간과 휴식시간 등을 적정하게 배분해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:664"
+                  }
+                },
+                {
+                  "measure": "주로 취급하는 물품에 대하여 근로자가 쉽게 알 수 있도록 물품의 중량과 무게중심에 대하여 작업장 주변에 안내표시를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                },
+                {
+                  "measure": "타일자재 운반 작업 시에는 근골격계 재해예방을 위한 안전작업방법을 강구하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "운반 작업 전 근로자에 대하여 충분한 준비운동을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -198,7 +313,71 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "적재해 둔 석재가 전도되거나 충격을 받아 파손되며 근로자를 덮침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "자재반입 시는 적재높이, 적재방법 등을 사전에 검토한 후 반입하고, 반입된 부재가 전도 또는 외력에 의한 충격에 파손되지 않도록 지정된 장소에 적재하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "자재반입은 현장 작업공정을 고려하여 공장에서 순서에 맞게 반입하고, 바닥재 및 벽재 등 용도별로 부재를 적재하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "제품, 자재, 부재 등이 넘어지지 않도록 붙들어 지탱하게 하는 등 안전 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:3",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "하적단의 붕괴 또는 화물의 낙하에 의하여 근로자가 위험해질 우려가 있는 경우에는 그 하적단을 로프로 묶거나 망을 치는 등 위험을 방지하기 위하여 필요한 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:392",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "하적단을 헐어내는 경우에는 위에서부터 순차적으로 층계를 만들면서 헐어내어야 하며, 중간에서 헐어내어서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:392",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -214,7 +393,71 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "하역 신호가 맞지 않아 장비와 근로자가 부딪힘",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "하역작업 시에는 신호수를 배치하여 정해진 신호에 따라야 하며 신호는 장비 운전원이 잘 볼 수 있는 있는 곳에서 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "반입된 자재의 하역작업은 단위자재별 중량 및 적재상태 등을 고려하여 적절한 하역방법을 선정하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "지게차 이용 작업 시에는 작업지휘자 또는 유도자를 지정하고, 신호수는 운전원이 가장 잘 볼 수 있는 위치에서 신호하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "지게차를 이용하여 자재를 운반 시에는 지게차로 인한 충돌, 깔림 재해 등을 예방할 수 있도록 작업계획을 수립하고, 그 작업계획에 따라 작업을 수행하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "지게차로 팔레트를 이용하여 타일을 운반 시에는 팔레트가 지게차로부터 이탈하지 않도록 조치하여 운반하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "지게차는 급출발, 급정지 및 급선회를 하지 못하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "허용하중 및 운행상황을 고려한 그 밖의 능력을 초과하여 지게차를 사용하여서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -270,7 +513,113 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "크레인·윈치로 석재를 양중하다 결속이 풀려 낙하함",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "크레인을 이용하여 석재를 양중 할 때는 자재가 낙하하지 않도록 석재의 결속 상태를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "전동식 윈치를 이용하여 석재를 운반할 경우에는 윈치의 고정지점 등 지지방법의 안전성을 사전에 검토하고, 윈치의 권과방지장치, 과부하방지장치 등 안전장치의 이상 유무를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "전동식 윈치에 의한 석재 양중작업 시 석재가 다른 물체에 부딪혀 탈락하지 않도록 유도 로프를 사용하여야 하고, 윈치를 비계상에 설치할 경우에는 흔들림 방지를 위하여 보강조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "인양할 하물을 바닥에서 끌어당기거나 밀어내는 작업을 하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니한다. 다만 신호하는 사람에 의하여 작업을 하는 경우는 제외한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "화물의 하중을 직접 지지하는 달기와이어로프 또는 달기체인의 안전계수가 5 이상이 아닌 경우에는 이를 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "훅, 샤클, 클램프, 리프팅 빔의 안전계수가 3 이상이 아닌 경우에는 이를 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "달기구의 경우 최대허용하중 등의 표식이 견고하게 붙어 있는 것을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "리프트를 이용하여 석재를 운반할 경우에는 리프트의 과부하방지장치, 권과방지장치 등 안전장치의 정상작동 여부를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "타일자재를 떨어뜨려 발 등에 맞음",
+              "measures": [
+                {
+                  "measure": "자재를 인력운반 시에는 자재를 떨어뜨려 발 등에 재해를 당할 우려가 있으 므로 적당한 양을 운반하고 안전화를 착용한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -286,7 +635,55 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "자재반입 계획 없이 착수하여 떨어짐·낙하 방지 조치가 빠짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "현장 여건을 고려하여 자재반입, 운반, 적재, 양중, 설치 작업 시 근로자 떨어짐 및 자재 등 낙하물에 의한 맞음 방지계획 등이 포함된 안전 작업계획을 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "타일공사 작업계획은 타일공사 작업장의 제반 여건과 설계도서에서 정하고 있는 작업별 작업방법 및 절차에 부합하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "작업계획서는 타일공사 시 작업용 수공구, 기계공구 등 기계·기구·장비를 사용함에 있어 안전·보건상의 문제가 없는지 검토한 후 구체적인 작업계획을 수립하여 관리감독자의 승인을 받아야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "작업계획서에는 타일공사 시 근로자 안전보건 공통사항으로서 안전한 구조의 작업발판 확보계획 및 시행규칙에서 정하는 안전표지 부착 계획을 포함하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "작업계획서는 적용할 타일부착 공법에 이해와 경험을 갖춘 자가 수립하여야 하며 공사 중에는 작업책임자가 계획서의 내용에 의한 시공 실시 여부를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "4"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -332,7 +729,87 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:crushing"
+          "hazard": "hazard:crushing",
+          "risks": [
+            {
+              "statement": "절단기로 타일을 절단하다 손이 날에 닿아 베임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "절단기로 타일을 절단 시에는 절단면을 가볍게 누른 상태로 손은 가능한 멀리 잡도록 절단자세를 취한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "절단기로 타일을 절단 시에는 자재가 절단 중 움직이지 않도록 평탄한 곳에 설치하고, 1회에 한 장씩 차례차례 절단하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "핸드그라인더 등 연삭숫돌은 회전부위에 방호덮개를 반드시 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "회전 중인 연삭숫돌이 근로자에게 위험을 미칠 우려가 있는 경우에 그 부위에 덮개를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:122",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "연삭숫돌은 작업시작 전에 결함유무를 확인하고, 제조사에서 정한 최고 사용회전속도를 초과하여 사용하여서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "연삭숫돌을 사용하는 작업의 경우 작업을 시작하기 전에는 1분 이상, 연삭숫돌을 교체한 후에는 3분 이상 시험운전을 하고 해당 기계에 이상이 있는지를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:122",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "연삭숫돌의 최고 사용회전속도를 초과하여 사용하도록 해서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:122",
+                    "paragraph": 4
+                  }
+                },
+                {
+                  "measure": "측면을 사용하는 것을 목적으로 하지 않는 연삭숫돌을 사용하는 경우 측면을 사용하도록 해서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:122",
+                    "paragraph": 5
+                  }
+                },
+                {
+                  "measure": "시험운전에 사용하는 연삭숫돌은 작업시작 전에 결함이 있는지를 확인한 후 사용하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:122",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -360,7 +837,49 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "타일·석재 가공 중 파편이 튀어 눈에 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "타일가공 작업 시에는 타일조각의 비산으로 인한 눈 등 신체부위의 부상 방지를 위하여 보안경 등 당해 작업에 부합하는 개인보호구를 착용하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "물체가 흩날릴 위험이 있는 작업을 하는 근로자에게 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "타일가공 작업 중 주변의 잔여자재 등은 즉시 치우는 등 청소를 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -426,6 +945,128 @@
               "article": "art:기준규칙:664",
               "controlLevel": "administrative"
             }
+          ],
+          "risks": [
+            {
+              "statement": "석재 가공 분진이 확산되어 흡입함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "타일가공 작업 시에는 핸드그라인더 등으로 인해 발생된 분진이 확산되지 않도록 집진설비를 설치하거나 외부로 배출되도록 환기설비를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "현장 석재가공 시 발생하는 소음과 분진으로부터 근로자를 보호하기 위해 귀마개, 방진마스크 등 개인보호구를 착용하도록 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "분진작업을 하는 실내작업장에 대하여 분진을 줄이기 위하여 밀폐설비나 국소배기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:607"
+                  }
+                },
+                {
+                  "measure": "분진 발산 면적이 넓어 밀폐설비나 국소배기장치를 설치하기 곤란한 경우에 전체환기장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:608"
+                  }
+                },
+                {
+                  "measure": "분진작업을 하는 근로자에게 적절한 호흡용 보호구를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:617",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자 개인전용 보호구를 지급하고, 보관함을 설치하는 등 오염 방지를 위하여 필요한 조치를 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:617",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "분진이 심하게 흩날리는 작업장에 대하여 물을 뿌리는 등 분진이 흩날리는 것을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:4의2"
+                  }
+                },
+                {
+                  "measure": "근로자에게 분진의 유해성과 노출경로를 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자에게 분진의 발산 방지와 작업장의 환기 방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "근로자에게 호흡용 보호구의 사용 방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "분진의 작업환경측정 결과 노출기준을 초과하는 사업장은 호흡기보호 프로그램을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:616",
+                    "item": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "비계 작업발판 위에서 가공하거나 바닥에 쭈그려 가공하다 다침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "타일가공은 별도의 작업대에서 하고, 말비계, 틀비계, 강관비계 등 상부의 작업발판에서 가공하는 것을 지양한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "다량의 자재를 절단하는 가공작업 시에는 가공공구를 바닥면에 설치하여 허리를 굽힌 상태에서 작업하는 것을 지양하고, 별도의 작업대에 가공공구를 설치하도록 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리거나 운반하는 작업을 하는 경우에 근로자가 취급하는 물품의 중량·취급빈도·운반거리·운반속도 등 인체에 부담을 주는 작업의 조건에 따라 작업시간과 휴식시간 등을 적정하게 배분해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:664"
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -470,7 +1111,74 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "전동식 절단기가 젖은 상태에서 절연이 파손되어 감전됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "석재의 현장가공을 위해 전동식 절단기를 사용할 때는 이중 절연구조의 절단기를 사용하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "이동식 전동기계·기구는 접지를 실시하거나 누전차단기와 결속하여 절연파손에 의한 감전재해를 예방하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "물 등 도전성이 높은 액체가 있는 습윤장소에서 사용하는 저압용 전기기계·기구에 대하여 누전에 의한 감전위험을 방지하기 위하여 해당 전로의 정격에 적합하고 감도가 양호하며 확실하게 작동하는 감전방지용 누전차단기를 설치해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "대지전압이 150볼트를 초과하는 이동형 또는 휴대형 전기기계·기구에 감전방지용 누전차단기를 설치해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "임시배선의 전로가 설치되는 장소에서 사용하는 이동형 또는 휴대형 전기기계·기구에 감전방지용 누전차단기를 설치해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "감전방지용 누전차단기를 설치하기 어려운 경우에는 작업시작 전에 접지선의 연결 및 접속부 상태 등이 적합한지 확실하게 점검하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "과전류차단장치는 반드시 접지선이 아닌 전로에 직렬로 연결하여 과전류 발생 시 전로를 자동으로 차단하도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:305",
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -481,7 +1189,30 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "작업대 없이 바닥에 앉아 타일을 절단하다 허리를 다침",
+              "measures": [
+                {
+                  "measure": "다량의 자재를 절단하는 가공작업 시에는 가공공구를 바닥면에 설치하여 허리 를 굽힌 상태에서 작업하는 것을 지양하고, 별도의 작업대에 가공공구 를 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "타일가공은 별도의 작업대에서 하고, 말비계, 틀비계, 강관비계 등 상부 의 작업발판에서 가공하는 것을 지양한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -492,7 +1223,22 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "핸드그라인더 방호덮개 없이 사용하다 끼임",
+              "measures": [
+                {
+                  "measure": "핸드그라인더 등 연삭숫돌은 회전부위에 방호덮개를 반드시 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -503,7 +1249,22 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "보안경 없이 타일 파편 튀어 눈에 맞음",
+              "measures": [
+                {
+                  "measure": "타일가공 작업 시에는 타일조각의 비산으로 인한 눈 등 신체부위의 부상 방지를 위하여 보안경 등 당해 작업에 부합하는 개인보호구를 착용한다",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "이상온도·화상",
@@ -514,7 +1275,22 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:thermal_burn"
+          "hazard": "hazard:thermal_burn",
+          "risks": [
+            {
+              "statement": "집진·환기설비 없이 분진 흡입함",
+              "measures": [
+                {
+                  "measure": "타일가공 작업 시에는 핸드그라인더 등으로 인해 발생된 분진이 확산되지 않 도록 집진설비를 설치하거나 외부로 배출되도록 환기설비를 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.4"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -572,7 +1348,164 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "붙인 석재가 탈락하여 아래로 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "설치한 석재의 낙하 등을 예방하기 위해 구조체가 설계기준강도 이상이거나, 바탕면이 시공된 후 1개월 이상 경과한 후 붙이기 작업을 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "붙여진 석재의 낙하를 방지하기 위해 하단의 석재에 충격을 주지 않도록 하고, 하단석재 사이에 쐐기를 끼우고 연결철물을 사용하여 고정한 후 사춤모르타르로 채워야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.1"
+                  }
+                },
+                {
+                  "measure": "세로 맞댐 면에는 촉, 연결철물, 꺽쇠를 사용하여 붙여대고 모서리 구석은 꺽쇠로 고정하여 석재의 변형과 낙하를 방지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.1"
+                  }
+                },
+                {
+                  "measure": "벽의 최하단에 석재를 설치하기 위해서는 슬래브 또는 기초 등이 없는 부분에는 석재붙임 완료 후 영구적으로 침하가 되지 않는 구조의 브라켓이나 기초를 설치해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "1일 작업을 마무리 할 경우에는 폭우 등 외부환경요인에 의해 석재 또는 부속철물의 낙하방지를 위해 상부에 보호덮개나 견고한 구조의 방호선반을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.1"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반은 높이 10미터 이내마다 설치하고, 내민 길이는 벽면으로부터 2미터 이상으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반의 수평면과의 각도는 20도 이상 30도 이하를 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "건식공법 앵커·긴결재가 탈락하며 석재가 통째로 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "석재 부착 시 앵커볼트 및 연결철물은 1개의 석재에 2개소 이상 설치하여야 하며 석재의 크기 및 중량, 바탕건조 등에 따라 설치위치, 규격 등에 대한 구조 검토를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                },
+                {
+                  "measure": "긴결재 고정을 위해 사용하는 앵커는 콘크리트 가장자리에 설치하면 콘크리트가 깨져 긴결재가 탈락할 우려가 있으므로 앵커의 고정 지점을 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                },
+                {
+                  "measure": "긴결재 앵커의 구멍은 적정규격을 사용하고 인발력을 검토하고, 너트 조임시 회전 인발되지 않도록 고정하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                },
+                {
+                  "measure": "긴결재는 편심이 생기지 않게 직선으로 설치하고 조절 가능한 제품을 사용여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                },
+                {
+                  "measure": "앵커볼트 및 1차 긴결재를 설치한 다음 수직, 수평 기준선을 띄우고 최 하단 석재의 하단부에 쐐기를 끼워 고정하고, 바닥으로부터 30센티미터 높이까지 석재배면에 시멘트 모르타르를 밀실하게 충진하여 상부 하중에 안전하도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                },
+                {
+                  "measure": "최 하단 석재 설치 완료 후 하단 석재의 상단에 설치되어 있는 촉에 맞추어 상부 석재를 가설치 한 다음 상부석재의 상단부를 1차 및 2차 긴결재, 촉 등에 의하여 연결 조립시켜야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                },
+                {
+                  "measure": "석재를 부착하기 전에 바탕처리 및 기준 먹메김, 창호, 기타 매설물의 설치 고정 등에 대하여 검사하고 앵커볼트의 위치에 구멍을 뚫고 구멍을 깨끗이 청소하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                },
+                {
+                  "measure": "앵커볼트 설치를 위해 전동식 드릴을 사용할 때는 접지를 실시하거나 누전차단기와 결속하여 절연파손에 의한 감전재해를 예방하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "붙임재료 배합 시 보호울 미설치로 모르타르 비산 맞음",
+              "measures": [
+                {
+                  "measure": "회전날을 이용한 배합 시에는 모르타르 등이 비산하지 않도록 작업구간 주변에 보호울을 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -602,7 +1535,54 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "비계 위에 석재를 과적하여 비계가 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "석재를 설치하기 위하여 비계 위에 석재를 적재하는 때에는 비계구조의 안전성을 고려하여 허용하중을 정하고 이를 초과하여 적재하지 아니하도록 하여야 하며, 근로자가 쉽게 알 수 있도록 허용적재하중을 표기하여야 한다. 또한 작업자, 모르타르, 석재 및 연결철물 등의 하중을 고려하여 집중하중의 작용을 지양하고, 비계상에 균등하게 분산배치되도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.1"
+                  }
+                },
+                {
+                  "measure": "비계의 구조 및 재료에 따라 작업발판의 최대적재하중을 정하고, 이를 초과하여 실어서는 안 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:55"
+                  }
+                },
+                {
+                  "measure": "석재를 붙이는 면에 외부 강관비계의 벽연결이 있을 경우에는 기준강도 이상의 보강재를 설치하고 벽연결을 해체하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.1"
+                  }
+                },
+                {
+                  "measure": "작업발판의 지지물은 하중에 의하여 파괴될 우려가 없는 것을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "발판재료는 작업할 때의 하중을 견딜 수 있도록 견고한 것으로 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -684,7 +1664,213 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "외부 비계·작업발판에서 붙임 작업 중 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "석재 설치 작업 시 떨어짐 재해를 예방하기 위해 안전난간과 승강통로가 확보된 작업발판을 설치하여야 하고, 또한 자재의 낙하에 의한 물체에 맞음 재해를 예방하기 위하여 낙하물 방지망, 수직보호망 및 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "타일줄눈 및 타일붙이기 작업 시에는 작업여건에 부합하는 안전한 구조의 작업발판을 설치하여야 하며, 페인트통, 박스 등을 작업발판으로 사용하여서는 안된다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "작업발판의 틈은 3센티미터 이내로 하고, 작업발판의 단부에는 안전난간 및 발끝막이 판을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "타일붙이기 작업 시에는 사다리를 작업발판으로 사용하지 않도록 하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "타일붙이기 작업구간에는 작업발판으로 통하는 안전한 구조의 가설통로를 확보하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "천장타일 붙이기 작업 시 작업높이가 확보되지 않을 경우 적절한 작업발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "작업발판의 폭은 40센티미터 이상으로 하고, 발판재료 간의 틈은 3센티미터 이하로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "추락의 위험이 있는 장소에는 안전난간을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "상부 난간대는 바닥면·발판 또는 경사로의 표면으로부터 90센티미터 이상 지점에 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "발끝막이판은 바닥면등으로부터 10센티미터 이상의 높이를 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "추락할 위험이 있는 높이 2미터 이상의 장소에서 근로자에게 안전대를 착용시킨 경우 안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업을 하는 근로자에게 안전대를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "외부 석공사 중 기상이 나빠졌는데도 작업을 계속함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "건축물 외부 석공사 작업 시 비, 눈 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 작업을 중지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "석재 설치 작업 시 위험요인 및 안전대책이 포함된 안전작업계획서를 작성하고 이에 따라 작업하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "안전작업계획서 수립 시 석재의 형태, 중량, 기상조건, 작업범위 등을 고려한 일정을 검토하여 반영하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "안전작업계획서 수립 시 양중장비의 종류, 설치 장소 및 양중방법을 검토하여 반영하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "안전작업계획서 수립 시 석재 설치에 따른 구조적 안전성 검토 여부를 반영하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "부적합한 발판을 딛고 벽체 타일 붙임작업을 하다 떨어짐",
+              "measures": [
+                {
+                  "measure": "작업계획서에는 타일공사 시 근로자 안전보건 공통사항으로서 안전한 구조의 작업발판(용도외의 자재를 발판으로 사용금지 등) 확보계획 및 시행규칙에 서 정하는 안전표지(금지, 경고, 지시, 안내) 부착 계획을 포함한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "벽체 타일 바탕 만들기 및 타일나누기 작업 시에는 추락재해 예방을 위하여 작업여건과 진행공종에 부합하는 작업발판을 설치하여 작업공간 을 확보한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "붙임재료·바탕면 불량으로 부착강도가 부족해 타일이 탈락하여 맞음",
+              "measures": [
+                {
+                  "measure": "타일줄눈 및 타일붙이기 작업 시에는 타일이 탈락되는 것을 방지하기 위 하여 타일의 적정한 바탕면 처리 및 타일의 종류와 공법에 부합하는 붙임재료 를 선택하여 타일붙이기 작업을 수행한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "붙임재료·바탕면 불량으로 부착강도가 부족해 타일이 탈락하여 맞음",
+              "measures": [
+                {
+                  "measure": "타일 붙이기 작업 시에는 타일의 뒷발모양에 따른 붙임시간(Open Time)을 준수하여 적정한 접착강도를 확보한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -700,7 +1886,31 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "판 석재를 맞추다 손이 석재 사이에 끼임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "판 석재를 붙이는 작업 시 손 등의 끼임 재해를 예방하기 위해 붙이는 순서에 의해 판재를 붙이고, 위치 조정 시 무리한 힘을 주지 않아야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "석재붙임과 동시에 석재표면으로부터 3～5 mm 이상의 깊이까지 시멘트 페이스트를 밀실하게 주입 충진하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -730,6 +1940,62 @@
               "paragraph": 1,
               "controlLevel": "ppe"
             }
+          ],
+          "risks": [
+            {
+              "statement": "사춤모르타르 혼합 중 시멘트 분진을 흡입함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "사춤모르타르를 혼합할 때는 시멘트 분진에 의한 건강장해를 예방하기위해 방진마스크 등 개인용 보호구를 착용하도록 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.3.1"
+                  }
+                },
+                {
+                  "measure": "시멘트 포대를 뜯어 사용할 경우에는 시멘트가 날리지 않도록 천천히 작업을 실시하고, 방진마스크 등을 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "근로자는 코팅장갑이나 고무장갑을 착용하여 시멘트가 직접적으로 손 등에 묻지 않도록 조치한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "분진작업을 하는 근로자에게 적절한 호흡용 보호구를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:617",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자에게 분진에 관련된 질병 예방 방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "근로자에게 작업장 및 개인위생 관리를 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 3
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -741,7 +2007,22 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "붙임재료 배합작업 중 폐드럼통 사용으로 화재·폭발",
+              "measures": [
+                {
+                  "measure": "붙임재료 배합작업 시 사용하는 배합 용기는 정해진 용도의 것을 사용하고, 화재· 폭발 우려가 있는 폐드럼통 등을 가스 절단하여 사용하여서는 안된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -752,7 +2033,22 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "배합작업 전 준비운동 미실시로 요통 발생",
+              "measures": [
+                {
+                  "measure": "또는 흙손 등을 사용하여 붙임재료(배합모르타르 등)를 배합하는 경우에는 요통재해를 예방하기 위하여 사전에 준비운동을 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -808,7 +2104,136 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "넓은 범위의 줄눈 작업을 무리하게 하다 넘어지거나 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "한 번에 넓은 범위의 줄눈 넣기 작업을 수행하는 경우에는 허리, 손 등에 무리한 힘이 가해져 전도, 추락 등의 재해가 발생하지 않도록 적당한 작업 범위를 설정하고 무리한 작업을 수행하여서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "외부 비계 상에서의 타일 붙이기 작업 시에는 추락방지를 위한 제반 조치를 취하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "타일시공 시에는 추락방지를 위한 제반 조치를 취하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "타일붙이기 작업 시에는 안전모 등 개인보호구 착용상태를 수시 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "보양용 시트·필름을 설치하다 시트가 날리며 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "직사광선 및 비를 차단하기 위하여 설치하는 시트 및 폴리에틸렌 필름 설치작업은 날리지 않도록 별도의 지지로프를 설치하고, 추락 등 재해를 예방하기 위하여 작업구간에 작업발판 및 안전난간을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                },
+                {
+                  "measure": "꼬임이 끊어진 섬유로프를 지지에 사용하지 않는다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:387",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "심하게 손상되거나 부식된 섬유로프를 지지에 사용하지 않는다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:387",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "실란트 작업 중 작업발판이 이미 해체되어 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "실란트 작업은 작업발판을 해체하기 전에 하여야 하며, 근로자의 추락재해예방을 위해 안전대 부착설비, 보호구 착용 등에 대한 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망, 수직보호망 또는 방호선반의 설치 등 필요한 조치는 실란트 작업 등 마감작업이 완료 될 때까지 안전한 상태를 유지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "실란트에 유해화학물질이 함유된 경우에는 화학물질의 명칭·성분, 함유량, 안전·보건상의 취급주의 사항 등이 포함된 물질안전보건자료를 작성하여 취급근로자가 쉽게 볼 수 있는 장소에 게시 또는 비치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-57-2017",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "안전대 및 부속설비의 이상 유무를 작업을 시작하기 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "붙임재료·바탕면 불량으로 부착강도가 부족해 타일이 탈락하여 맞음",
+              "measures": [
+                {
+                  "measure": "타일의 보양 및 청소작업 시에는 타일의 탈락으로 인한 낙하재해를 예방 하기 위하여 타일의 종류, 뒷발모양 등에 따른 접착 강도를 확보한 후 수행 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -843,7 +2268,83 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "줄눈·잔여자재로 바닥이 미끄러워 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업구간에는 작업자의 작업동선을 고려하여 돌출물 등 장애물이 없도록 하고, 작업장 및 통로바닥은 미끄러지지 않도록 타일 잔여자재 등에 대하여 작업 전 청소하는 등의 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "작업 중 물고임에 의한 미끄럼을 예방하기 위해 적정 기울기를 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "근로자가 작업장에서 넘어지거나 미끄러지는 등의 위험이 없도록 작업장 바닥 등을 안전하고 청결한 상태로 유지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:3",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자가 작업하는 장소를 항상 청결하게 유지·관리하여야 하며, 폐기물은 정해진 장소에만 버려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:4"
+                  }
+                },
+                {
+                  "measure": "건물내부 공간에서의 타일붙이기 작업 시에는 적정 조도를 확보하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "바닥타일 보양 미실시로 보행 중 미끄러져 넘어짐",
+              "measures": [
+                {
+                  "measure": "작업구간에는 작업자의 작업동선을 고려하여 돌출물 등 장애물이 없도록 하고, 작업장 및 통로바닥은 미끄러지지 않도록 타일 잔여자재 등에 대하여 작업 전 청소하는 등의 조치를 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "바닥타일 보양작업 시에는 관리감독자의 승인을 얻어 보행판 등을 깔고 보행한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                },
+                {
+                  "measure": "작업장 바닥은 걸려 넘어지거나 미끄러지지 않도록 작업 전 청소하는 등 정리 정돈을 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -864,7 +2365,63 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "보양·청소 중 접착이 덜 된 타일이 탈락하여 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "타일의 보양 및 청소작업 시에는 타일의 탈락으로 인한 낙하재해를 예방하기 위하여 타일의 종류, 뒷발모양 등에 따른 접착 강도를 확보한 후 수행하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                },
+                {
+                  "measure": "타일 붙이기 작업 시에는 타일의 뒷발모양에 따른 붙임시간을 준수하여 적정한 접착강도를 확보하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "타일줄눈 및 타일붙이기 작업 시에는 타일이 탈락되는 것을 방지하기 위하여 타일의 적정한 바탕면 처리 및 타일의 종류와 공법에 부합하는 붙임재료를 선택하여 타일붙이기 작업을 수행하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "천장타일 붙이기 작업 시 습식, 건식 등 작업특성을 고려하여 붙인 타일이 탈락되지 않도록 작업을 시행하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.5"
+                  }
+                },
+                {
+                  "measure": "타일의 보양 및 청소작업 시에는 당해 작업에 부합하는 안전모, 보안경, 안전화, 방진마스크 등 개인보호구를 적정 지급 및 착용한 상태로 작업할 수 있도록 관리감독을 철저히 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                },
+                {
+                  "measure": "바닥타일 보양작업 시에는 관리감독자의 승인을 얻어 보행판 등을 깔고 보행하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -879,6 +2436,60 @@
               "paragraph": 1,
               "item": 4,
               "controlLevel": "ppe"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "공업용 염산 등 세척제에 신체가 노출됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "공업용 염산, 타일 접착제 등을 청소하는 경우에는 근로자를 대상으로 당해 물질의 유해·위험성 및 응급처치 등에 대하여 작업 전 반드시 숙지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                },
+                {
+                  "measure": "청소작업에 사용되는 공업용 염산 등 세척제에 대하여는 안전보건규칙에서 정하는 물질안전보건자료 기준에 의거하여 당해 물질의 유해성 및 사용 시 유의사항에 대하여 게시토록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                },
+                {
+                  "measure": "물체가 흩날릴 위험이 있는 작업을 하는 근로자에게 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "세척제 MSDS 미게시 및 유해성 미교육으로 신체 노출",
+              "measures": [
+                {
+                  "measure": "공업용 염산, 타일 접착제 등을 청소하는 경우에는 근로자를 대상으로 당해 물질의 유해․위험성 및 응급처치 등에 대하여 작업 전 반드시 숙지 시켜야 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                },
+                {
+                  "measure": "청소작업에 사용되는 공업용 염산 등 세척제에 대하여는 안전보건규칙에 서 정하는 물질안전보건자료(MSDS) 기준에 의거하여 당해 물질의 유해 성 및 사용 시 유의사항에 대하여 게시토록 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.6"
+                  }
+                }
+              ]
             }
           ]
         }
@@ -922,7 +2533,134 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "벽체타일을 아래에서 위로 철거하다 상부 타일이 탈락해 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "벽체타일을 철거할 경우에는 타일의 탈락으로 인한 낙하사고 예방을 위하여 위에서 아래 방향으로 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철거작업 계획수립 시 철거 부위의 구조, 타일의 부착상태, 상·하 동시작업의 유무 등을 조사하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "작업책임자는 조사결과에 따른 철거방법, 철거물의 처분계획, 철거작업용 기계·기구 등이 포함된 철거계획서를 작성하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자에 대하여는 보안경, 안전모, 안전화, 안전장갑 등 개인보호구를 지급하고, 당해 작업에 부합하는 개인보호구를 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "수동·전동기계 점검 없이 반입해 이상 발생 후 맞음",
+              "measures": [
+                {
+                  "measure": "철거작업에 사용되는 수동 및 전동기계․기구에 대하여는 반입 전에 이상 유무 점검을 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "타일 부착상태 조사 없이 철거하다 탈락해 맞음",
+              "measures": [
+                {
+                  "measure": "철거작업 계획수립 시 철거 부위의 구조, 타일의 부착상태, 상․하 동시 작업의 유무 등을 조사한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "드릴 적정 힘 미확보로 미끄러지거나 손에서 이탈해 맞음",
+              "measures": [
+                {
+                  "measure": "바닥타일을 전동해머드릴로 철거할 경우에는 드릴이 바닥면에서 미끄 러지거나 손에서 이탈되지 않도록 적정 힘으로 드릴을 잡아야 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "돌출물·절연파괴전선·깨진 부위 제거 없이 철거하다 맞음",
+              "measures": [
+                {
+                  "measure": "작업장소 주변에는 돌출물, 절연파괴 전선 및 타일의 깨진 부위 등 유해․ 위험요소를 사전에 제거한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "철거자재와 타일·콘크리트 분리하지 않아 혼합 낙하해 맞음",
+              "measures": [
+                {
+                  "measure": "타일, 콘크리트, 유리 등을 동시에 철거하는 경우에는 별도로 분리하여 처분한다",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "철거 자재를 부적합한 마대에 담아 깨진 타일이 튀어나와 맞음",
+              "measures": [
+                {
+                  "measure": "철거 자재를 마대에 담아서 처분할 경우에는 깨진 타일 등이 튀어나오지 않 도록 마대를 선택한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -953,7 +2691,55 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "철거용 작업발판이 없어 높은 곳에서 철거하다 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철거작업 시에는 작업높이에 따른 안전한 구조의 작업발판을 설치하고, 발판단부에는 안전난간을 설치하여야 하며, 발판까지의 통행을 위하여 승강설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "작업발판의 폭은 40센티미터 이상으로 하고, 발판재료 간의 틈은 3센티미터 이하로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "추락의 위험이 있는 장소에는 안전난간을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "작업발판재료는 뒤집히거나 떨어지지 않도록 둘 이상의 지지물에 연결하거나 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "상부 난간대는 바닥면·발판 또는 경사로의 표면으로부터 90센티미터 이상 지점에 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "절단·베임·찔림",
@@ -988,7 +2774,97 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:crushing"
+          "hazard": "hazard:crushing",
+          "risks": [
+            {
+              "statement": "전동해머드릴이 바닥면에서 미끄러지거나 손에서 이탈함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "바닥타일을 전동해머드릴로 철거할 경우에는 드릴이 바닥면에서 미끄러지거나 손에서 이탈되지 않도록 적정 힘으로 드릴을 잡아야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철거작업에 사용되는 수동 및 전동기계·기구에 대하여는 반입 전에 이상 유무 점검을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "작업장소 주변에는 돌출물, 절연파괴 전선 및 타일의 깨진 부위 등 유해·위험요소를 사전에 제거하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "회전 중인 연삭숫돌이 근로자에게 위험을 미칠 우려가 있는 경우에 그 부위에 덮개를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:122",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "깨진 타일 조각을 운반·청소하다 찔리거나 베임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철거 자재를 운반·청소하는 근로자는 깨진 타일 등에 찔리거나 베이지 않도록 안전장갑을 착용하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철거 자재를 마대에 담아서 처분할 경우에는 깨진 타일 등이 튀어나오지 않도록 마대를 선택하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "타일, 콘크리트, 유리 등을 동시에 철거하는 경우에는 별도로 분리하여 처분하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "근로자가 작업하는 장소를 항상 청결하게 유지·관리하여야 하며, 폐기물은 정해진 장소에만 버려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "안전장갑 미착용으로 깨진 타일에 찔리거나 베임",
+              "measures": [
+                {
+                  "measure": "철거 자재를 운반․청소하는 근로자는 깨진 타일 등에 찔리거나 베이지 않도록 안전장갑을 착용한다",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -1031,6 +2907,95 @@
               "item": 2,
               "controlLevel": "substitution"
             }
+          ],
+          "risks": [
+            {
+              "statement": "중량의 전동공구를 장시간 사용하여 요통이 생김",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "전동해머드릴 등 중량의 전동 공구를 사용할 경우에는 요통재해를 예방하기 위하여 작업 전 준비 운동을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리거나 운반하는 작업을 하는 경우에 근로자가 취급하는 물품의 중량·취급빈도·운반거리·운반속도 등 인체에 부담을 주는 작업의 조건에 따라 작업시간과 휴식시간 등을 적정하게 배분해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:664"
+                  }
+                },
+                {
+                  "measure": "취급하기 곤란한 물품은 손잡이를 붙이거나 갈고리, 진공빨판 등 적절한 보조도구를 활용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "철거 분진이 발생하여 흡입함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "분진이 심하게 흩날리는 작업장에 대하여 물을 뿌리는 등 분진이 흩날리는 것을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:4의2"
+                  }
+                },
+                {
+                  "measure": "분진작업을 하는 근로자에게 적절한 호흡용 보호구를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:617",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자 개인전용 보호구를 지급하고, 보관함을 설치하는 등 오염 방지를 위하여 필요한 조치를 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:617",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "근로자에게 분진의 유해성과 노출경로를 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자에게 호흡용 보호구의 사용 방법을 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:614",
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업 전 준비운동 없이 중량공구 장시간 사용해 요통 생김",
+              "measures": [
+                {
+                  "measure": "전동해머드릴 등 중량의 전동 공구를 사용할 경우에는 요통재해를 예방 하기 위하여 작업 전 준비 운동을 실시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -1052,7 +3017,52 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "철거 자재가 통로에 널려 있어 걸려 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업장 바닥은 걸려 넘어지거나 미끄러지지 않도록 작업 전 청소하는 등 정리 정돈을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "자재 등 운반 시에는 작업수행 전 근로자 동선을 확보하고 운반통행로 주변에 장애물이 없도록 조치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "근로자가 작업장에서 넘어지거나 미끄러지는 등의 위험이 없도록 작업장 바닥 등을 안전하고 청결한 상태로 유지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:3",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "돌출물·바닥 미끄럼 방치해 걸려 넘어짐",
+              "measures": [
+                {
+                  "measure": "인력운반 구간의 바닥면 등에 돌출물 등이 있을 경우에는 전도재해예방을 위하여 즉시 제거하고, 바닥면은 미끄럽지 않도록 유지한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -1063,7 +3073,22 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "이동식 믹서 전원 차단 없이 전선 연결·제거하다 감전",
+              "measures": [
+                {
+                  "measure": "이동식 믹서의 전선을 연결 또는 제거 시에는 전원을 차단한 상태에서 작업 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-6-2015",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:tunnel_excavation",
   "hasHazard": [
@@ -171,7 +170,353 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:asphyxiation"
+          "hazard": "hazard:asphyxiation",
+          "risks": [
+            {
+              "statement": "산소농도·유해가스를 측정하지 않고 방수작업 공간에 들어가 질식",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "밀폐공간에서 근로자에게 작업을 하도록 하는 경우 작업을 시작하기 전에 밀폐공간의 산소 및 유해가스 농도의 측정 및 평가에 관한 지식과 실무경험이 있는 자를 지정하여 그로 하여금 해당 밀폐공간의 산소 및 유해가스 농도를 측정하여 적정공기가 유지되고 있는지를 평가하도록 해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2"
+                  }
+                },
+                {
+                  "measure": "산소농도 및 유해가스 유무를 확인하기 위해 작업장소의 수직방향 및 수평방향으로 각각 3개소 이상 측정하여야 하며 측정가스 기준농도는 산소 18% ~ 23.5%, 탄산가스 1.5% 미만, 황화수소 10ppm 미만, 가연성가스 하한치 10% 이하로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "작업 전에 산소농도를 측정하여 산소농도가 18% 이상 23.5% 미만으로 유지될 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정한 결과 적정공기가 유지되고 있지 아니하다고 평가된 경우에는 작업장을 환기시키거나, 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 하는 등 근로자의 건강장해 예방을 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:619의2"
+                  }
+                },
+                {
+                  "measure": "밀폐공간의 산소 및 유해가스 농도를 측정 및 평가하는 자에 대하여 밀폐공간에서 작업을 시작하기 전에 밀폐공간의 위험성, 측정장비의 이상 유무 확인 및 조작 방법, 밀폐공간 내에서의 산소 및 유해가스 농도 측정방법, 적정공기의 기준과 평가 방법의 숙지여부를 확인하고 필요한 교육을 실시해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2"
+                  }
+                },
+                {
+                  "measure": "작업 전이나 작업 중 유해가스 및 산소농도의 측정장소, 측정방법 등 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "환기가 불충분하거나 중단된 상태에서 작업을 계속하여 질식",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "밀폐공간에서 작업을 하는 경우에 작업을 시작하기 전과 작업 중에 해당 작업장을 적정공기 상태가 유지되도록 환기하여야 하며, 폭발이나 산화 등의 위험으로 인하여 환기할 수 없거나 작업의 성질상 환기하기가 매우 곤란한 경우에는 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:620"
+                  }
+                },
+                {
+                  "measure": "작업 중에 정전 등에 의한 환기 중단 시에는 즉시 외부로 대피한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업 중에 산소농도의 지속적 측정으로 산소농도 결핍우려가 있을 경우 근로자를 즉시 대피시킬 수 있도록 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업 중에 수시로 유해가스 상태를 점검하고 유해가스의 농도가 기준치를 초과하였을 경우는 추가 환기 할 수 있도록 조치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "밀폐공간 작업장의 환기를 위한 급기구는 외부의 신선한 공기를 공급할 수 있도록 설치하여야 하며, 배기구는 유해한 공기를 외부로 배출되도록 설치하되 배출된 유해한 공기가 다시 유입되지 않는 구조로 설치하여 작업장 내 공기를 적정한 공기 상태로 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업 전 및 작업 중 산소농도를 측정하여 적정한 공기상태로 유지되도록 환기설비 계획을 수립하여야 하며 환기량은 적정한 필요 환기량을 산정하여 강제 환기를 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "작업 전 및 작업 중 유해가스를 조사하여 유해가스의 처리방법ㆍ시기 등의 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "사고 발생을 외부가 인지하지 못해 구조가 지연되어 사망",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 동안 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:623"
+                  }
+                },
+                {
+                  "measure": "감시인은 밀폐공간에 종사하는 근로자에게 이상이 있을 경우에 구조요청 등 필요한 조치를 한 후 이를 즉시 관리감독자에게 알려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:623"
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 동안 그 작업장과 외부의 감시인 간에 항상 연락을 취할 수 있는 설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:623"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서의 방수작업은 반드시 2인 1조로 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업 중 발생할 수 있는 위험상황에 대처할 수 있도록 감시인 배치 계획 및 작업모니터링 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "비상상황 발생시 외부와 연락할 수 있는 통신장비 등의 연락체계를 구축한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 그 장소에 근로자를 입장시킬 때와 퇴장시킬 때마다 인원을 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:621"
+                  }
+                },
+                {
+                  "measure": "투입인원 및 퇴장인원을 반드시 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "구조 준비가 없어 재해자를 구하러 들어간 사람까지 질식",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "보호구, 응급구조체계, 구조장비, 통신장비 구비 및 경보설비의 정상여부를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "구조자는 공기호흡기, 구명줄 등 구조에 필요한 장비 및 응급장비(인공호흡기, 인공호흡 마스크 등)을 지참한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "비상시 외부에 있는 사람에게 연락하여 구조 요청을 시작할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "인근지역의 119 또는 응급기관에 구조요청을 하고, 응급처치 및 후송할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "응급기관이 도착하였을 때 신속한 구조조치가 이루어질 수 있도록 밀폐공간의 특정한 위험에 대한 정보를 제공한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "대피용 기구의 비치(공기호흡기, 송기마스크, 휴대용랜턴, 무전기) 및 구조훈련 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "공기호흡기 또는 송기마스크 등 호흡용 보호구 지급 및 점검계획을 수립한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "작업장의 환기가 곤란한 경우에는 공기호흡기 또는 송기마스크 등 호흡용 보호구를 지급하고, 개인보호구 수시 점검 및 착용 여부를 확인한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "허가 절차 없이 작업이 시작되어 안전조치가 누락된 채 진행",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업자는 밀폐공간 방수작업 시 작업개요, 안전담당자 지정 및 감시인 배치 유무, 산소농도측정 유무, 유해가스 부위별 측정 결과, 환기설비 설치 유무, 연락설비 구비 유무, 개인보호구 지급 및 점검 유무, 방폭용 전기기계ㆍ기구의 사용 유무, 소화기 비치 유무, 호흡용 보호구 비치 유무, 사고발생시 대응조치 계획, 조명 설치 계획, 안전교육 실시, 안전통로 확보가 포함된 안전보건작업허가서를 작성하여 관리감독자에게 허가 승인을 받은 후에 작업을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "사업장 내 밀폐공간의 위치 파악 및 관리 방안, 밀폐공간 내 질식ㆍ중독 등을 일으킬 수 있는 유해ㆍ위험 요인의 파악 및 관리 방안, 밀폐공간 작업 시 사전 확인이 필요한 사항에 대한 확인 절차, 안전보건교육 및 훈련, 그 밖에 밀폐공간 작업 근로자의 건강장해 예방에 관한 사항이 포함된 밀폐공간 작업 프로그램을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서 작업을 시작하기 전에 작업 일시, 기간, 장소 및 내용 등 작업 정보와 관리감독자, 근로자, 감시인 등 작업자 정보, 산소 및 유해가스 농도의 측정결과 및 후속조치 사항, 작업 중 불활성가스 또는 유해가스의 누출ㆍ유입ㆍ발생 가능성 검토 및 후속조치 사항, 작업 시 착용하여야 할 보호구의 종류, 비상연락체계를 확인하여 근로자가 안전한 상태에서 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서의 작업이 종료될 때까지 확인 내용을 해당 작업장 출입구에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619"
+                  }
+                },
+                {
+                  "measure": "사전 위험성평가를 실시하여 안전대책을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "밀폐공간의 작업 여건 및 도면을 검토한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "출입구 구조, 승ㆍ하강 설비, 조명 등의 현장조사를 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "밀폐공간의 방수작업과 관련된 법규를 검토한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "관계자 외 출입으로 미인지 상태의 사람이 질식",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "사업장 내 밀폐공간을 사전에 파악하여 밀폐공간에는 관계 근로자가 아닌 사람의 출입을 금지하고, 출입금지 표지를 밀폐공간 근처의 보기 쉬운 장소에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:622"
+                  }
+                },
+                {
+                  "measure": "작업 중에는 관계자외 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업완료 후 외부인 출입으로 인한 질식사고가 발생할 수 있기 때문에 출입구에 시건장치를 하여 출입을 통제한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -207,7 +552,71 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "방수재의 유기용제 증기가 체류한 상태에서 점화원이 발생하여 폭발",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "방수재료인 신나, 방수재 등 화재발생의 위험이 있으므로 작업장소에 점화물질 휴대를 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "가연성가스에 의한 폭발위험성이 있는 경우에는 방폭형 전기기계ㆍ기구를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "화재·폭발의 우려가 있는 장소에서는 방폭형 구조의 장비 등을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "화재의 위험이 있는 장소에 소화기를 비치하여 초기 소화할 수 있도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "해당 작업에 종사하는 근로자에게 소화설비의 설치장소 및 사용방법을 주지시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:356",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "작업종료 후 인화성 가스 발생으로 인한 폭발 등의 사고가 발생할 수 있기 때문에 전기기계ㆍ기구의 전원을 차단한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.3"
+                  }
+                },
+                {
+                  "measure": "터널 등의 내부에서 금속의 용접ㆍ용단 또는 가열작업을 하는 경우에는 화재를 예방하기 위하여 부근에 있는 넝마, 나무부스러기, 종이부스러기, 그 밖의 인화성 액체를 제거하거나, 그 인화성 액체에 불연성 물질의 덮개를 하거나, 그 작업에 수반하는 불티 등이 날아 흩어지는 것을 방지하기 위한 격벽을 설치한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:356",
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -221,6 +630,54 @@
               "guide": "doc:kosha_guide/C-14-2012",
               "section": "4.1",
               "controlLevel": "administrative"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "방수재의 유해성을 모른 채 취급하여 중독·피부장해",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "방수재료의 구성성분과 물성 및 위험특성 등 물질안전보건자료(MSDS)를 정확히 파악하여 유해성 여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "방수에 사용하는 도료, 신나 등의 재료에 대한 물질안전보건자료(MSDS)를 파악하여 취급시 주의사항 등을 교육시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업자의 건강상태를 수시 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 작업 전에 근로자에게 작업위험요인과 이에 대한 대응방법, 응급처치 등에 대하여 교육을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "밀폐공간의 방수안전 작업방법, 응급처치 등 안전보건교육 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -247,7 +704,62 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "벽체·천정 방수작업 중 승강설비나 작업발판에서 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "등받이 울이 설치되어 있지 않은 지상으로부터 2.5미터이상의 승강사다리를 이용하여 승ㆍ하강 시에는 안전대 및 구명줄을 사용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "밀폐공간 내 벽체, 천정 방수작업 시 작업발판, 안전난간 등 추락방지시설은 안전보건규칙에 준하여 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "이동식비계 사용 시 안전보건규칙에 준하여 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업의 높이에 따른 이동식비계 등 작업발판의 설치 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서 작업하는 근로자가 산소결핍이나 유해가스로 인하여 추락할 우려가 있는 경우에는 해당 근로자에게 안전대나 구명밧줄, 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:624"
+                  }
+                },
+                {
+                  "measure": "작업장 내 승ㆍ하강 설비 설치 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -268,7 +780,47 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "자재 운반·정리 불량으로 걸려 넘어지거나 낙하물에 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "밀폐공간에서 자재를 반입 및 반출시에는 달줄 또는 달포대를 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "손수레 등으로 자재를 소운반 할 때에는 무리한 적재를 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "작업 전에 작업장의 자재를 정리ㆍ정돈하여 작업 중 자재에 걸려 넘어지지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "방수재료, 자재 등 운반 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -294,7 +846,47 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "갱내 전기기계·기구의 합선·누전으로 감전되거나 전기화재",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "핸드그라인더, 조명등 전기기계ㆍ기구 사용시 누전차단기 및 접지가 되어 있는 분전반에서 인출한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "전기기계ㆍ기구 사용시 합선 및 과부하에 의한 전기화재 등을 예방하기 위하여 사용 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "전기기계ㆍ기구 사용을 위한 가설전기의 설치 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                },
+                {
+                  "measure": "가스검지기 및 경보기 설치 계획을 수립한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -310,7 +902,31 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "조도가 부족하여 작업 중 위험을 인지하지 못함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업장 출입구 및 내부에는 작업에 알맞은 조명(150lux 이상의 조도)을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-14-2012",
+                    "section": "4.2"
+                  }
+                },
+                {
+                  "measure": "근로자의 안전을 위하여 터널 작업면에 대한 조명장치 및 설비를 확인하여야 하며 조도의 기준은 막장구간 60 LUX 이상, 터널중간구간 50 LUX 이상, 터널 입출구ㆍ수직구 구간 30 LUX 이상으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "12.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

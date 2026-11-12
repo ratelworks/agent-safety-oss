@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:tunnel_excavation",
   "hasHazard": [
@@ -103,7 +102,46 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "벌목한 나무가 예상과 다른 방향으로 넘어져 근로자가 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "벌목하려는 경우에는 미리 대피로 및 대피장소를 정해 둔다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "벌목하려는 나무의 가슴높이지름이 20센티미터 이상인 경우에는 수구(베어지는 쪽의 밑동 부근에 만드는 쐐기 모양의 절단면)의 상면ㆍ하면의 각도를 30도 이상으로 하며, 수구 깊이는 뿌리부분 지름의 4분의 1 이상 3분의 1 이하로 만든다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "벌목작업 중에는 벌목하려는 나무로부터 해당 나무 높이의 2배에 해당하는 직선거리 안에서 다른 작업을 하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "유압식 벌목기에는 견고한 헤드 가드(head guard)를 부착한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:405"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -121,7 +159,33 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "걸린 나무를 무리하게 처리하다가 낙하하는 나무에 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "나무가 다른 나무에 걸려있는 경우에는 걸려있는 나무 밑에서 작업을 하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 4,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "받치고 있는 나무를 벌목하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:405",
+                    "item": 4,
+                    "subitem": "나"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -131,7 +195,22 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "악천후로 지반이 약해진 상태에서 표토제거를 계속하여 사면이 붕괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -155,7 +234,37 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "갱구부 출입구 부근의 지반이 붕괴하거나 토사가 낙하하여 근로자가 매몰",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "터널 등의 건설작업을 할 때에 터널 등의 출입구 부근의 지반의 붕괴나 토사등의 낙하에 의하여 근로자가 위험해질 우려가 있는 경우에는 흙막이 지보공이나 방호망을 설치하는 등 위험을 방지하기 위하여 필요한 조치를 해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:352"
+                  }
+                },
+                {
+                  "measure": "작업구, 환기구 등 수직갱 굴착계획구간의 연약지층ㆍ지반을 정밀조사하여야 하며 필요시 발주자와 협의한 다음 지반보강말뚝공법, 지반고결공법, 그라우팅 등의 보강 조치를 취하여 굴착중 발생되는 붕괴에 대비하여 안전한 공법을 계획한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "낙반 등에 의하여 근로자가 위험해질 우려가 있는 경우에 터널 지보공 및 록볼트의 설치, 부석(浮石)의 제거 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:351"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -165,7 +274,22 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "갱구부 상부에서 낙석이 떨어져 근로자가 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -179,7 +303,29 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "갱구부 사면 상단에서 작업 중 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소 또는 기계ㆍ설비ㆍ선박블록 등에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42"
+                  }
+                },
+                {
+                  "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하여야 하며, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:42"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

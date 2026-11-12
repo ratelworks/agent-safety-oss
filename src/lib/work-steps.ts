@@ -47,6 +47,8 @@ interface StepHazard {
   hazardLabel: string;
   hazard?: string;
   basis: BasisRef[];
+  /** 위험요인과 그 대책 */
+  risks?: { statement: string; priority?: string; measures: { measure: string; controlLevel?: string; variant?: string; basis?: BasisRef }[] }[];
 }
 interface WorkStep {
   name: string;
@@ -106,8 +108,20 @@ export interface ResolvedWorkSteps {
   relatedDocuments?: RelatedDocument[];
   steps: {
     name: string;
-    hazards: { hazardLabel: string; hazard?: string; basis: ResolvedBasis[]; omittedBasis?: number }[];
+    hazards: {
+      hazardLabel: string;
+      hazard?: string;
+      /** 위험요인(어떤 상황에서 무슨 재해가 나는가)과 대책. priority 는 중요도 표시(★·★★) */
+      risks: ResolvedRisk[];
+      basis: ResolvedBasis[];
+      omittedBasis?: number;
+    }[];
   }[];
+}
+export interface ResolvedRisk {
+  statement: string;
+  priority?: string;
+  measures: { measure: string; controlLevel?: string; variant?: string; basisRef?: string }[];
 }
 
 let worksCache: Work[] | null = null;
@@ -317,9 +331,24 @@ export async function getWorkSteps(
         if (r) resolved.push(r);
       }
       const omitted = h.basis.length - Math.min(h.basis.length, MAX_BASIS_PER_HAZARD);
+      const risks: ResolvedRisk[] = [];
+      for (const r of h.risks ?? []) {
+        const measures: ResolvedRisk["measures"] = [];
+        for (const m of r.measures) {
+          const rb = m.basis ? await resolveBasis(m.basis) : null;
+          measures.push({
+            measure: m.measure,
+            ...(m.controlLevel ? { controlLevel: CONTROL_LEVEL_KO[m.controlLevel] ?? m.controlLevel } : {}),
+            ...(m.variant ? { variant: m.variant } : {}),
+            ...(rb ? { basisRef: rb.ref } : {}),
+          });
+        }
+        risks.push({ statement: r.statement, ...(r.priority ? { priority: r.priority } : {}), measures });
+      }
       hazards.push({
         hazardLabel: h.hazardLabel,
         ...(h.hazard ? { hazard: h.hazard } : {}),
+        risks,
         basis: resolved,
         ...(omitted > 0 ? { omittedBasis: omitted } : {}),
       });

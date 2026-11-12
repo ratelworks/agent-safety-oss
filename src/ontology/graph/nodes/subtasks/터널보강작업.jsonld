@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:tunnel_excavation",
   "hasHazard": [
@@ -208,7 +207,277 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "지보공 설치가 지연되어 그 사이 굴착면이 붕락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "강아치지보공은 발파굴착면의 절리발달, 편암붕락 등 원지반에 불리한 파괴응력이 발생하기전에 가능한 신속히 설치한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                },
+                {
+                  "measure": "설계조건의 암반보다 구조적으로 불리한 경우에는 강아치지보공의 간격을 적절한 기준으로 축소한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.1"
+                  }
+                },
+                {
+                  "measure": "터널 지보공을 설치하는 장소의 지반과 관계되는 지질ㆍ지층ㆍ함수ㆍ용수ㆍ균열 및 부식의 상태와 굴착 방법에 상응하는 견고한 구조의 터널 지보공을 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:362"
+                  }
+                },
+                {
+                  "measure": "예상치 못했던 막장의 구조적 불안정 등과 같은 비상의 상황에 대비하여 충분한 양의 비상용 통나무와 쐐기목, 급결재, 시멘트 등을 준비해 두어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "조립도 없이 또는 조립도와 다르게 조립하여 지보공이 하중을 견디지 못하고 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "터널 지보공을 조립하는 경우에는 미리 그 구조를 검토한 후 조립도를 작성하고, 그 조립도에 따라 조립하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:363"
+                  }
+                },
+                {
+                  "measure": "조립도에는 재료의 재질, 단면규격, 설치간격 및 이음방법 등을 명시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:363"
+                  }
+                },
+                {
+                  "measure": "강아치지보공을 조립할 때에는 설계, 시방에 부합하는 조립도를 작성하고 당해 조립도에 따라 조립하여야 하며 재질기준, 설치간격, 접합볼트체결 등의 기준을 준수한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.1"
+                  }
+                },
+                {
+                  "measure": "터널 지보공의 재료로 변형ㆍ부식 또는 심하게 손상된 것을 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:361"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강아치 주재의 연결·쐐기 조치가 부실하여 아치작용을 못하고 붕괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "주재가 아치작용을 충분히 할 수 있도록 쐐기를 박는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 4,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "연결볼트 및 띠장 등을 사용하여 주재 상호간을 튼튼하게 연결한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 4,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "조립간격은 조립도에 따른다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 4,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "주재(主材)를 구성하는 1세트의 부재는 동일 평면 내에 배치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "강아치지보공의 상호연결볼트 및 연결재는 충분히 조여야 하며 용접을 금하고 덧댐판으로 볼트, 너트 구조의 접합을 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                },
+                {
+                  "measure": "강아치지보공은 정해진 위치에 정확히 설치하여야 하며 건립후 그의 위치 중심, 고저차에 대하여 수시로 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "지보공 기둥이 침하하여 지보공 전체가 기울어져 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "기둥에는 침하를 방지하기 위하여 받침목을 사용하는 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "터널 등의 출입구 부분에는 받침대를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 4,
+                    "subitem": "라"
+                  }
+                },
+                {
+                  "measure": "강아치 지보공 및 목재지주식 지보공 외의 터널 지보공에 대해서는 터널 등의 출입구 부분에 받침대를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "강아치지보공의 설치에 있어서는 지질 및 지층의 특성에 따라 침하발생이 우려될 경우 쐐기, 앵커 등의 고정장치를 강구한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                },
+                {
+                  "measure": "강아치지보공의 받침은 목재받침을 금하고 철근류 및 양질의 콘크리트 블록 등으로 고정한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "설치된 지보공의 변형·이완을 발견하지 못해 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "터널 지보공을 설치한 경우에 부재의 손상ㆍ변형ㆍ부식ㆍ변위 탈락의 유무 및 상태, 부재의 긴압 정도, 부재의 접속부 및 교차부의 상태, 기둥침하의 유무 및 상태를 수시로 점검하여야 하며, 이상을 발견한 경우에는 즉시 보강하거나 보수한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:366"
+                  }
+                },
+                {
+                  "measure": "강아치지보공에 변형, 부재이완, 설치간격불량 등의 이상이 있다고 인정되는 경우에는 즉시 안전하고 확실한 방법으로 보강을 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                },
+                {
+                  "measure": "프리그라우팅 및 포아폴링 등의 보강작업시 사용되는 봉, 파이프 등에 의하여 강아치지보공이 이동하거나 뒤틀리는 것을 막아야 하며, 이 경우 설치오차는 수평거리 10cm이내로 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "하중이 걸린 지보공 부재를 해체하여 상부가 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "하중이 걸려 있는 터널 지보공의 부재를 해체하는 경우에는 해당 부재에 걸려있는 하중을 터널 거푸집 및 동바리가 받도록 조치를 한 후에 그 부재를 해체한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:365"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "목재 지주식 지보공의 긴압·고정이 불균등하여 넘어지거나 비틀림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "목재의 터널 지보공은 그 터널 지보공의 각 부재의 긴압 정도가 균등하게 되도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "주기둥은 변위를 방지하기 위하여 쐐기 등을 사용하여 지반에 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 5,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "양끝에는 받침대를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 5,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "터널 등의 목재 지주식 지보공에 세로방향의 하중이 걸림으로써 넘어지거나 비틀어질 우려가 있는 경우에는 양끝 외의 부분에도 받침대를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 5,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "부재의 접속부는 꺾쇠 등으로 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 5,
+                    "subitem": "라"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -225,7 +494,32 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "지보공 조립 중 부재가 전도되거나 부재 사이에 끼임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "강아치지보공 조립시에는 부재운반, 부재전도, 협착 등 안전조치를 취한 후 조립작업을 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "7.1"
+                  }
+                },
+                {
+                  "measure": "낙하물이 근로자에게 위험을 미칠 우려가 있는 경우에는 널판 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:364",
+                    "item": 4,
+                    "subitem": "마"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -254,7 +548,53 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "지보공 용접·용단 작업의 불티가 갱내 인화물에 옮겨붙어 화재",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "부근에 있는 넝마, 나무부스러기, 종이부스러기, 그 밖의 인화성 액체를 제거하거나, 그 인화성 액체에 불연성 물질의 덮개를 하거나, 그 작업에 수반하는 불티 등이 날아 흩어지는 것을 방지하기 위한 격벽을 설치한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:356",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "해당 작업에 종사하는 근로자에게 소화설비의 설치장소 및 사용방법을 주지시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:356",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "해당 작업 종료 후 불티 등에 의하여 화재가 발생할 위험이 있는지를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:356",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "터널 내부의 화기나 아크를 사용하는 장소에 방화담당자를 지정하여 화기나 아크 사용 상황을 감시하고 이상을 발견한 경우에는 즉시 필요한 조치를 하는 일, 불 찌꺼기가 있는지를 확인하는 일을 이행하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:358"
+                  }
+                },
+                {
+                  "measure": "해당 터널 내부의 화기나 아크를 사용하는 장소 또는 배전반, 변압기, 차단기 등을 설치하는 장소에 소화설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:359"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -275,7 +615,77 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "부석을 정리하지 않고 뿜어붙이기하여 콘크리트째로 암반이 탈락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "뿜어붙이기 작업전 필히 대상암반면의 절리상태, 부석, 탈락, 붕락 등의 사전 조사를 실시하고 유동성 부석은 완전하게 정리한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "지반의 이완변형을 최소한으로 하기 위하여 굴착후 최단시간 내에 뿜어 붙이기 콘크리트 작업을 신속하게 시행한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "뿜어붙이기 두께·강도 부족으로 지보 기능을 못해 암반이 붕락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "지반 및 암반의 상태에 따라 뿜어붙이기 콘크리트의 최소 두께는 약간 취약한 암반 2cm, 약간 파괴되기 쉬운 암반 3cm, 파괴되기 쉬운 암반 5cm, 매우 파괴되기 쉬운 암반 7cm(철망병용), 팽창성의 암반 15cm(강재 지보공과 철망병용) 이상이어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "뿜어붙이기 콘크리트의 압축강도는 24시간 이내에 100kgf/㎠이상, 28일 강도 200kgf/㎠이상을 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철망 고정용 앵커는 10㎡당 2본을 표준으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철망은 철선굵기 ø3mm～6mm 눈금간격 사방 100mm의 것을 사용하여야 하며, 이음부위는 20cm이상 겹치도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철망은 원지반으로부터 1.0cm이상 이격거리를 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -301,7 +711,99 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "용수 구간에 뿜어붙여 수막분리로 접착이 끊기고 콘크리트가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "뿜어붙이기 작업대상구간에 용수가 있을 경우에는 작업전 누수공 설치, 배수관 매입에 의한 누수유도 등 적절한 배수처리를 하거나 급결성 모르터 등으로 지수하여 접착면의 누수에 의한 수막분리현상을 방지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "접착불량, 혼합비율불량 등 불량한 뿜어붙이기 콘크리트가 발견되었을 시에는 신속히 양호한 뿜어붙이기 콘크리트로 대체하여 콘크리트 덩어리의 분리 낙하로 인한 재해를 예방한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "노즐 분사압·리바운드 재료가 튀어 작업자의 눈·안면에 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업전 근로자에게 분진마스크, 귀마개, 보안경 등 개인보호구를 지급하고 착용여부를 확인한 후 작업한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "뿜어붙이기 콘크리트 노즐분사압력은 2~3kgf/㎠를 표준으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "물의 압력은 압축공기의 압력보다 1kgf/㎠ 높게 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "작업계획에는 사용목적 및 투입장비, 건식공법ㆍ습식공법 등 공법의 선택, 노즐의 분사출력기준, 압송거리, 분진방지대책, 재료의 혼입기준, 리바운드 방지대책, 작업의 안전수칙이 포함되어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "작업계획을 근로자에게 교육시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "압송 기계가 고장·폐색된 상태에서 무리하게 작업하여 호스가 이탈",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "기계의 고장 등으로 작업이 중단되지 않도록 기계의 점검 및 유지 보수를 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "뿜어붙이기 콘크리트 작업시에는 부근의 건조물 등의 오손을 방지하기 위하여 작업전 경계부위에 필요한 방호조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -314,6 +816,29 @@
             {
               "article": "art:기준규칙:353",
               "controlLevel": "engineering"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "뿜어붙이기 분진·급결재 분말에 장기 노출되어 호흡기 장해",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업전 근로자에게 분진마스크 등 개인보호구를 지급하고 착용여부를 확인한 후 작업한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "터널 내부의 시계(視界)가 배기가스나 분진 등에 의하여 현저하게 제한되는 경우에는 환기를 하거나 물을 뿌리는 등 시계를 유지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:353"
+                  }
+                }
+              ]
             }
           ]
         }
@@ -351,7 +876,161 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "록 볼트 정착력이 부족하여 암반을 지지하지 못하고 붕락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "록 볼트의 조이기는 삽입후 즉시 록 볼트의 항복강도를 넘지 않는 범위에서 충분한 힘으로 조여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트 천공작업은 소정의 위치, 천공직경 및 천공깊이의 적정성을 확인하고 굴착면에 직각으로 천공하여야 하며, 볼트 삽입전에 유해한 녹ㆍ석분 등 이물질이 남지 않도록 청소한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "모든 형태의 지지판은 지반의 변형을 구속하는 효과를 발휘하고, 지반의 붕락방지를 위하여 암석이나 뿜어붙이기 콘크리트 표면에 완전히 밀착 되도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트는 뿜어붙이기 콘크리트의 경화후 가능한 한 빠른시기에 시공한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트 선정에 있어서는 2～3종류의 록 볼트를 선정하여 현장부근의 조건이 동일한 장소에서 시험시공, 인발시험 등을 시행하여 록 볼트 강도를 사전확인함으로써 가장 적합한 종류의 록 볼트를 선정할 수 있도록 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "록 볼트 이완을 발견하지 못해 지지력을 잃고 암반이 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "록 볼트의 다시 조이기는 시공후 1일정도 경과한 후 실시하여야 하며, 그 후에도 정기적으로 점검하여, 소정의 긴장력이 도입되어 있는지를 확인하고, 이완되어 있는 경우에는 다시 조이기를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트는 시공후 정기적으로 인발시험을 실시하고 축력변화에 대한 기록을 정확히하여 암반거동의 기록을 분석, 안전에 유의한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "터널벽면의 변형이 록 볼트 길이의 약 6%이상으로 판단되는 경우, 록 볼트의 인발시험결과로부터 충분한 인발내력이 얻어지지 않는 경우, 록 볼트 길이의 약 반이상으로부터 지반 심부까지의 사이에 축력분포의 최대치가 존재하는 경우, 소성영역의 확대가 록 볼트 길이를 초과한 것으로 판단되는 경우에는 록 볼트의 추가시공을 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "암반상태, 지질의 상황과 계측결과에 따라 필요한 경우에는 록 볼트설치의 증가 등 보완조치를 신속하게 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트 작업의 표준시공방식으로서 시스템 볼팅을 실시하여야 하며 인발시험, 내공변위측정, 천단침하측정, 지중변위측정 등의 계측결과로부터 록 볼트의 추가시공을 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "록 볼트 천공 중 용수가 발생하여 지반이 연약해지고 붕락",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "록 볼트의 천공에 따라 용수가 발생한 경우에는 단위면적기준 중앙 집수유도방식 및 각공별 차수방식 등에 의하여 용출수 유도 및 차수를 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트공 작업에 있어서는 작업전 지반의 강도, 절리의 간격 및 방향, 균열의 상태, 용수상황, 천공직경의 확대유무 및 정도, 보아홀의 거리정도 및 자립여부, 뿜어붙이기 콘크리트 타설방향, 시공관리의 용이성, 정착의 확실성, 경제성을 검토하여 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "록 볼트 규격·접착재 선정이 부적합하여 조기에 지지력을 상실",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "록 볼트 재질선정에 있어서는 암반조건, 설계시방 등을 고려하여 선정하여야 하며, 록 볼트의 직경은 25mm를 원칙으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "록 볼트 접착재 선정에 있어서는 조기 접착력이 크고, 취급이 간단하여야 하며 내구성이 양호한 조건의 것을 선정한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "록 볼트 삽입간격 및 길이의 기준은 원지반의 강도와 암반특성, 절리의 간격 및 방향, 터널의 단면규격, 사용목적을 고려하여 결정한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "록 볼트 설치작업의 분류기준은 선단정착형, 전면접착형, 병용형을 기준으로 하며 작업전 설계, 시방에 준하는 적정한 방식여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -366,7 +1045,30 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "경사방향 록 볼트 시공 중 상부 낙석에 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "경사방향 록 볼트의 시공에 있어서는 소정의 각도를 준수하여야 하며, 낙석으로 인한 근로자의 안전조치를 선행한 후에 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "낙반 등에 의하여 근로자가 위험해질 우려가 있는 경우에 터널 지보공 및 록볼트의 설치, 부석(浮石)의 제거 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:351"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -387,7 +1089,39 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "천공기 드릴 마모·회전부에 신체가 끼임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "록 볼트 시공시 천공장의 규격에 따라 싱커, 크롤라드릴 등 천공기를 선별하여야 하며, 사용하기 전 드릴의 마모, 동력전달상태 등 장비의 점검 및 유지보수를 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트의 삽입장비는 시방규격의 회전속도(r.p.m)를 확보할 수 있는 에어오거 등 표준모델의 장비이어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "록 볼트 작업은 천공 및 볼트 삽입 작업시 근로자의 안전을 위하여 개인 보호구를 착용하여야 하며 관리감독자는 이를 확인한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "8.2"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -418,7 +1152,145 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "연약지반 막장에 보강 없이 굴착하여 막장이 붕락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "막장에 연약지반 발생시 포아폴링, 프리그라우팅 등 지반보강 조치를 한 후 굴착한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                },
+                {
+                  "measure": "굴착작업 시작전에 뿜어붙이기 콘크리트를 비상시에 타설할 수 있도록 준비한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                },
+                {
+                  "measure": "성능이 좋은 급결재를 항상 준비해 두어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                },
+                {
+                  "measure": "철망, 소철선, 마대, 강관 등을 갱내의 찾기 쉬운 곳에 준비하여 두어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "이상 용수·막장 자립도 이상을 감지하고도 작업을 계속하여 붕괴에 매몰",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "이상용수 발생 또는 막장 자립도에 이상이 있을 때에는 즉시 작업을 중단하고 이에 대한 조치를 한 후 작업한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                },
+                {
+                  "measure": "막장에는 항상 작업자를 배치하여야 하며 주ㆍ야간 교대시에는 막장에서 교대하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                },
+                {
+                  "measure": "작업장에는 관리감독자를 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "언더피닝·파이프루프 보강구간의 지지력이 부족하여 상부 지반이 침하·붕괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "보강구간의 정밀지질조사, 지하매설물 등의 사전검토를 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "지반지지력구조 계산시 통과차량, 지진 등에 대한 충분한 안전율을 적용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "언더피닝구간 등의 가설구조는 응력계, 침하계, 수위계에 의한 주기적 분석의 변위 허용기준을 설정한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "언더피닝구간 등의 토사굴착은 사전에 단계별 순서와 토량을 정확하게 산정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "기계ㆍ장비 굴착에 의한 진동을 최소화한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "보강 굴착 중 용출수·누수가 발생하여 지반이 유실",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴착중 용출수 및 누수 발생시 급결제 등의 방수 및 배출수 유도시설을 강구한 후 굴착 및 기타 작업을 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "필요시 수평보링, 수직보링을 추가 실시하고 지층단면도를 정확하게 작성하여 굴착계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.10"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -429,7 +1301,23 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "보강용 재키가 작동 불량으로 하중을 놓쳐 구조물이 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "재키의 시험성과 합격품목 여부 및 마모, 작동 등의 이상유무를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-45-2012",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

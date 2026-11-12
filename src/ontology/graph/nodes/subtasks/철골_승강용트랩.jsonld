@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "hasHazard": [
     "hazard:fall_from_height"
@@ -112,7 +111,77 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "승강용트랩이 견고하지 않거나 부식되어 파손으로 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "사다리식 통로는 견고한 구조로 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "심한 손상·부식 등이 없는 재료를 사용한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "발판의 간격은 일정하게 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "고정식 승강용트랩의 높이가 커 등받이울·추락방지시스템 없이 승강하다 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "고정식 사다리식 통로의 기울기는 90도 이하로 하고, 그 높이가 7미터 이상인 경우에는 등받이울이 있어도 근로자 이동에 지장이 없는 경우 바닥으로부터 높이가 2.5미터 되는 지점부터 등받이울을 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 9,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "등받이울이 있으면 근로자가 이동이 곤란한 경우에는 한국산업표준에서 정하는 기준에 적합한 개인용 추락 방지 시스템을 설치하고 근로자로 하여금 한국산업표준에서 정하는 기준에 적합한 전신안전대를 사용하도록 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 9,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "사다리식 통로의 길이가 10미터 이상인 경우에는 5미터 이내마다 계단참을 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:24",
+                    "paragraph": 1,
+                    "item": 8
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

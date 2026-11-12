@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:phc_pile_driving",
   "hasHazard": [
@@ -229,7 +228,192 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "항타기 조립 중 권상기에 쐐기장치·역회전방지 브레이크가 없어 감아올리던 리더가 역회전하며 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "항타기 또는 항발기에 사용하는 권상기에 쐐기장치 또는 역회전방지용 브레이크를 부착한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "항타기 또는 항발기의 권상기가 들리거나 미끄러지거나 흔들리지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "그 밖에 조립·해체에 필요한 사항은 제조사에서 정한 설치·해체 작업 설명서에 따른다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "설치·조립 또는 해체 매뉴얼에 제시된 절차를 작업팀장의 책임 하에 준수한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.7"
+                  }
+                },
+                {
+                  "measure": "항타기를 조립·해체·변경 또는 이동하는 작업의 방법과 절차를 정하여 근로자에게 주지시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "조립 작업 전에 사전에 충분한 공간을 확보한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "조립·해체 시 본체 연결부·리더 고정상태를 점검하지 않아 작업 중 부재가 풀려 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "본체 연결부의 풀림 또는 손상의 유무를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "리더(leader)의 버팀 방법 및 고정상태의 이상 유무를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 2,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "본체·부속장치 및 부속품에 심한 손상·마모·변형 또는 부식이 있는지 여부를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 2,
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "본체·부속장치 및 부속품의 강도가 적합한지 여부를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 2,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "모든 도르래, 케이블, 기계류, 훅걸이 및 항타기의 주요 부분을 작업 전에 점검하고, 마모되거나 파손된 부품이나 기계는 즉시 수리하거나 교환한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "사용 작업 전에는 산업안전보건기준에 관한 규칙 제207조(조립시 점검)에서 제221조(가스배관 등의 손상방지)에 따라 점검하고, 필요시 수리·교체 후 그 결과를 작업계획서에 기록한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.6"
+                  }
+                },
+                {
+                  "measure": "항타기·항발기를 조립·해체·변경 또는 이동하여 작업하는 경우 작업지휘자를 지정하여 지휘·감독하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:39",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "결함이 있는 권상용 와이어로프를 사용하여 인양 중 로프가 끊어지고 매단 물체가 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "권상용 와이어로프로 이음매가 있는 것 등 제63조제1항제1호 각 목에 해당하는 것을 사용하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:210"
+                  }
+                },
+                {
+                  "measure": "권상용 와이어로프의 안전계수가 5 이상이 아니면 사용하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:211"
+                  }
+                },
+                {
+                  "measure": "작업 전 와이어로프에 대하여 점검을 실시하고 이음매가 있는 것, 와이어로프의 한 꼬임에서 끊어진 소선의 수가 10퍼센트 이상인 것에 해당되는 것은 사용을 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "권상용 와이어로프는 권상장치의 드럼에 클램프·클립 등을 사용하여 견고하게 고정한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:212",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "권상용 와이어로프에서 추·해머 등과의 연결은 클램프·클립 등을 사용하여 견고하게 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:212",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "클램프·클립 등은 한국산업표준 제품이거나 한국산업표준이 없는 제품의 경우에는 이에 준하는 규격을 갖춘 제품을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:212",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "도르래나 도르래 뭉치를 부착하는 경우에는 부착부가 받는 하중에 의하여 파괴될 우려가 없는 브라켓·샤클 및 와이어로프 등으로 견고하게 부착한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:216",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -321,7 +505,182 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "연약한 지반에 세운 항타기의 아웃트리거가 침하하여 장비가 넘어지며 근로자를 덮침",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "연약한 지반에 설치하는 경우에는 아웃트리거·받침 등 지지구조물의 침하를 방지하기 위하여 깔판·받침목 등을 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:209",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "아웃트리거·받침 등 지지구조물이 미끄러질 우려가 있는 경우에는 말뚝 또는 쐐기 등을 사용하여 해당 지지구조물을 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:209",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "상단 부분은 버팀대·버팀줄로 고정하여 안정시키고, 그 하단 부분은 견고한 버팀·말뚝 또는 철골 등으로 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:209",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "레일 클램프는 체결 토크 300～350 N·m 이상, 아웃트리거 지지력은 장비별 요구 지지력 이상을 확보하고 쐐기·아웃트리거 등의 이상유무를 정확히 확인한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.6"
+                  }
+                },
+                {
+                  "measure": "지반의 상태를 정확히 확인한 후 장비를 정확히 고정하고 작업을 진행할 수 있도록 관리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.6"
+                  }
+                },
+                {
+                  "measure": "장비 이동 시에는 바닥의 평탄성과 침하 예방을 위한 지내력을 확보하고 필요할 경우 도괴의 방지를 위하여 깔판·깔목 등을 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하는 작업을 하는 경우 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:199"
+                  }
+                },
+                {
+                  "measure": "시설 또는 가설물 등에 설치하는 경우에는 그 내력을 확인하고 내력이 부족하면 그 내력을 보강한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:209",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "항타기·항발기 설치 과정에서 위험도가 있다고 판단하는 경우 그 내용을 감독 기관에 즉시 보고하고 그에 따른 보강구조물 등의 조치를 취한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.6"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "파일을 하차·적치하는 중 파일이 굴러 근로자가 깔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "파일 하차 및 운반 작업 시에는 파일이 구르거나 떨어지지 않도록 구름 방지 기구 등 안전시설을 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "파일 하차 및 운반 작업 시에는 신호수 또는 유도원을 배치하여 운반 작업장 주변의 출입을 통제한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                },
+                {
+                  "measure": "지게차 등 장비를 이용한 운반 시에는 급제동 및 급전환을 금지하고, 주변 장애물과 충돌 등을 예방한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "작업장소로의 운반 시에는 부재별 형상에 적합한 운반 장비를 선정하고 사용하며, 운반경로 상에 관계자외 출입을 통제하고 안전통로를 확보한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업 전에 근로자 이동통로, 자재하역 장소 및 운반통로를 확보하고, 작업 중 자재에 걸려 넘어지지 않도록 정리·정돈한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "굴착기로 파일을 인양하는 경우 굴착기 제조사에서 정한 정격하중이 확인되는 굴착기를 사용하고, 인양 대상 화물의 무게는 정격하중을 넘지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:221의5",
+                    "paragraph": 2,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "굴착기 인양작업 시 사람을 지정하여 인양작업을 신호하게 하고, 인양물과 근로자가 접촉할 우려가 있는 장소에 근로자의 출입을 금지시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:221의5",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "굴착기 인양작업은 지반의 침하 우려가 없고 평평한 장소에서 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:221의5",
+                    "paragraph": 2,
+                    "item": 4
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -375,7 +734,178 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "궤도·차로로 이동하는 항타기가 고정되지 않아 불시에 움직이며 근로자를 침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "궤도 또는 차로 이동하는 항타기 또는 항발기에 대해서는 불시에 이동하는 것을 방지하기 위하여 레일 클램프(rail clamp) 및 쐐기 등으로 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:209",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "두 개의 지주 등으로 지지하는 항타기 또는 항발기를 이동시키는 경우에는 각 부위를 당김으로 인하여 넘어지는 것을 방지하기 위하여 반대측에서 윈치로 장력와이어로프를 사용하여 확실히 제동한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:220"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 싣거나 내리는 경우에는 평탄하고 견고한 장소에서 하고, 발판을 사용하는 경우에는 충분한 길이·폭 및 강도를 가진 것을 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:201"
+                  }
+                },
+                {
+                  "measure": "이동 시에는 주행로의 지형·지반 등에 의한 미끄러질 위험, 주행속도, 방향 전환 시, 연약지반 통과 시 및 경사면에서 잠시 정지할 때 등의 점검·확인사항을 체크리스트로 만들어 작업계획서에 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.5"
+                  }
+                },
+                {
+                  "measure": "작업종료 후 정차 시에는 정차장소, 경사면에 세울 경우, 잠금장치, 엔진 정지 중의 점검·확인사항을 체크리스트로 만들어 작업계획서에 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.5"
+                  }
+                },
+                {
+                  "measure": "수송 시에는 운반기계에 건설기계를 적재할 경우와 적재한 후의 주의사항 등 점검·확인사항을 체크리스트로 만들어 작업계획서에 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "무자격자가 항타기를 운전하거나 작업계획서 없이 착수하여 장비가 통제를 벗어남",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "차량계 건설기계를 사용하는 작업을 하는 경우 사전조사 결과를 고려하여 별표 4의 구분에 따른 사항을 포함한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하는 작업의 사전조사 내용은 해당 기계의 굴러 떨어짐, 지반의 붕괴 등으로 인한 근로자의 위험을 방지하기 위한 해당 작업장소의 지형 및 지반 상태로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-3호"
+                  }
+                },
+                {
+                  "measure": "작업계획서에는 사용하는 차량계 건설기계의 종류 및 성능, 차량계 건설기계의 운행경로, 차량계 건설기계에 의한 작업방법을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-3호"
+                  }
+                },
+                {
+                  "measure": "유자격 운전자(건설기계 조종사 면허)를 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업계획도에는 장비위치 및 작업진행 방향, 운반경로, 넘어짐 방지대책, 신호수와 근로자 위치, 지장물(가공전선 등) 위치를 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.2"
+                  }
+                },
+                {
+                  "measure": "작업장소 지형 및 지반상태도를 작업계획서에 첨부한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.2"
+                  }
+                },
+                {
+                  "measure": "사용 전 점검·확인사항을 체크리스트로 만들어 작업계획서에 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.5"
+                  }
+                },
+                {
+                  "measure": "안전장치에 대한 점검·확인사항을 체크리스트로 만들어 작업계획서에 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.5"
+                  }
+                },
+                {
+                  "measure": "작업 단계별 위험성평가를 실시하여 유해 위험요인을 도출하고 세부공정별 사전 안전대책을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "장비투입 계획 수립 시 장비조립위치, 플랜트위치, 파일 야적위치 등을 사전에 충분히 검토한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "각 작업 단위별 필요한 안전시설물의 종류와 설치순서와 방법, 시기 등을 정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "작업 중 추락, 낙하, 전도, 협착, 붕괴 사고에 대비하여 예방대책을 수립하여 반영하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.6"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 작업 전에 근로자에게 위험요인과 이에 대한 대응 방법 등에 대하여 교육을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업 전 근로자가 지켜야 할 사항에 대하여 위험예지활동을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -401,7 +931,47 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "가설전기 분전함에 접지·누전차단기가 없어 전기기계·기구 사용 중 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "전기기계·기구 사용을 위한 가설전기 배전반의 접지 및 누전차단기설치 계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "전기기계·기구 사용 시 접지 및 누전차단기가 되어 있는 분전함에서 인출한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "전기기계·기구 사용 시 합선 및 과부하에 의한 화재, 감전 등을 예방하기 위하여 사용 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "전기 기기류는 방수용 시트 등으로 덮는다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -421,7 +991,38 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "천공 중 오거로 가스배관·지중전선로를 파손하여 폭발하거나 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "항타기를 사용하여 작업할 때에 가스배관, 지중전선로 및 그 밖의 지하공작물의 손상으로 근로자가 위험에 처할 우려가 있는 경우에는 미리 작업장소에 가스배관·지중전선로 등이 있는지를 조사하여 이전 설치나 매달기 보호 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:221"
+                  }
+                },
+                {
+                  "measure": "파일 항타 위치에 가스관·지중선로 기타 지하매설물의 손괴에 의하여 근로자에게 위험을 미칠 우려가 있을 때에는 지장물 등의 유무를 조사하여 이설 또는 방호 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "화재의 위험이 있는 장소에는 소화기 등을 비치하여 초기 소화할 수 있도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -456,7 +1057,68 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "오거 회전 중 상부에서 흙·돌이 떨어져 주변 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "천공작업 시 상부에서 흙 및 돌 등이 낙하 할 수 있으므로 오거 주위에 출입을 통제한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "근로자는 작업 시에 안전모, 안전화, 방진마스크, 보안면, 귀마개 등 작업에 적합한 개인 보호구를 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험 또는 근로자가 추락할 위험이 있는 작업에는 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴착기 퀵커플러에 오거·브레이커를 장착하면서 잠금장치를 체결하지 않아 작업장치가 빠져 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "굴착기 퀵커플러(quick coupler)에 버킷, 브레이커(breaker), 크램셸(clamshell) 등 작업장치를 장착 또는 교환하는 경우에는 안전핀 등 잠금장치를 체결하고 이를 확인한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:221의4"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 수리나 부속장치의 장착 및 해체작업을 하는 경우 작업지휘자를 지정하여 작업순서를 결정하고 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:206"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -477,7 +1139,39 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "천공을 마친 홀을 덮지 않아 근로자가 빠지거나 토사가 유입되어 공벽이 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "천공 후에는 홀 상부에 덮개 등을 설치하여 토사유입 및 근로자의 추락을 예방한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치하며, 덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업장 및 통로 주변 개구부 등 추락위험장소에는 안전난간, 덮개 등 방호시설 설치여부와 통로의 바닥상태 등을 확인하고, 작업장에 안전표지를 부착한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -515,7 +1209,68 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "천공기 선회 반경 안에 근로자가 들어가 장비와 부딪힘",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업 시에는 유도자를 배치하여 건설장비 등을 유도하고 장비별 특성에 따른 일정한 표준 신호방법을 정하여 신호한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 우려가 있는 장소에 근로자를 출입시키지 않는다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:200"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 주된 용도에만 사용한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:204"
+                  }
+                },
+                {
+                  "measure": "굴착기에 사람이 부딪히는 것을 방지하기 위해 후사경과 후방영상표시장치 등 굴착기를 운전하는 사람이 좌우 및 후방을 확인할 수 있는 장치를 갖춘다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:221의2",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "굴착기로 작업을 하기 전에 후사경과 후방영상표시장치 등의 부착상태와 작동 여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:221의2",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "굴착기를 운전하는 사람이 좌석안전띠를 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:221의3",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계가 넘어지거나 붕괴될 위험 또는 붐·암 등 작업장치가 파괴될 위험을 방지하기 위하여 그 기계의 구조 및 사용상 안전도 및 최대사용하중을 준수한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:203"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -531,7 +1286,31 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "야간 천공작업에서 조도가 부족해 근로자가 장비·홀을 인지하지 못함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "야간작업 시에는 충분한 조도(일반작업 75럭스)를 확보한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -630,7 +1409,202 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "인양 중인 파일이 흔들리거나 결속이 풀려 떨어지며 하부 근로자를 침",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "항타기를 사용하여 말뚝 및 널말뚝 등을 끌어올리는 경우에는 그 훅 부분이 드럼 또는 도르래의 바로 아래에 위치하도록 하여 끌어올린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:218",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "항타기에 체인블록 등의 장치를 부착하여 말뚝 또는 널말뚝 등을 끌어 올리는 경우에는 제1항을 준용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:218",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "파일을 인양할 때에는 작업 반경내에 근로자의 출입을 통제한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "이음매가 있는 권상용 와이어로프는 사용을 금지하고, 훅블록 등이 최저의 위치에 있을 때 또는 파일을 인양하기 시작할 때를 기준으로 권상장치의 드럼에 적어도 2회 감기고 남을 수 있는 길이로 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "권상용 와이어로프는 추 또는 해머가 최저의 위치에 있을 때 또는 널말뚝을 빼내기 시작할 때를 기준으로 권상장치의 드럼에 적어도 2회 감기고 남을 수 있는 충분한 길이로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:212",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "신호수와 장비운전원간의 신호체계를 확립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "항타기 또는 항발기의 운전작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하며, 운전자는 그 신호에 따른다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:40",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "항타용 해머를 인양·이동하는 중 하부에 있던 근로자가 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "항타용 해머(Hammer) 인양 시 하부에 근로자의 출입을 통제한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "해머(Hammer) 이동시 신호수와 항타기 운전원과의 신호체계를 확립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "운전 중인 항타기 또는 항발기의 권상용 와이어로프 등의 부착 부분의 파손에 의하여 와이어로프가 벗겨지거나 드럼, 도르래 뭉치 등이 떨어져 근로자에게 위험을 미칠 우려가 있는 장소에 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 8
+                  }
+                },
+                {
+                  "measure": "운전 중인 항타기의 권상용 와이어로프 등의 부착 부분의 파손에 의하여 와이어로프가 벗겨지거나 드럼, 도르래 뭉치 등이 낙하하지 않도록 작업 전에 점검하여 이상 발견 시 수리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "권상장치에 하중을 건 채 운전자가 자리를 비워 매단 해머·파일이 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "항타기나 항발기의 권상장치에 하중을 건 상태로 정지하여 두는 경우에는 쐐기장치 또는 역회전방지용 브레이크를 사용하여 제동하는 등 확실하게 정지시켜 둔다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:217",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "항타기 또는 항발기(권상장치에 하중을 건 상태)를 운전하는 경우 운전자가 운전위치를 이탈하게 해서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:41",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "권상장치에 하중을 건 상태에서는 운전자가 운전위치를 이탈하게 해서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "권상장치의 드럼에 권상용 와이어로프가 꼬인 경우에는 와이어로프에 하중을 걸어서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:217",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "압축공기식 해머의 공기호스 접속부가 벗겨지며 호스가 튀어 근로자를 침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "해머의 운동에 의하여 공기호스와 해머의 접속부가 파손되거나 벗겨지는 것을 방지하기 위하여 그 접속부가 아닌 부위를 선정하여 공기호스를 해머에 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:217",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "공기를 차단하는 장치를 해머의 운전자가 쉽게 조작할 수 있는 위치에 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:217",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "항발기로 널말뚝을 뽑는 중 연결부가 빠지며 널말뚝이 튕겨 근로자를 침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "항발기의 권상용 와이어로프·도르래 등은 충분한 강도가 있는 샤클·고정철물 등을 사용하여 말뚝·널말뚝 등과 연결시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:213"
+                  }
+                },
+                {
+                  "measure": "권상장치의 드럼축과 권상장치로부터 첫 번째 도르래의 축 간의 거리를 권상장치 드럼폭의 15배 이상으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:216",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "도르래는 권상장치의 드럼 중심을 지나야 하며 축과 수직면상에 있어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:216",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -657,7 +1631,48 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "리더 상부에서 램을 해체하다 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "램(Ram) 해체 시에는 리더의 수직 사다리를 이용하여 이동해야 하며 수직 추락방지대(완강기)를 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "장비를 오르내리는 경우 승강설비를 설치하여 이용하는 등 안전하게 이동한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업에는 안전대를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "운전석 내부 및 장비는 청결히 하고 오르내리는 발판, 손잡이 등은 항상 깨끗이 하여 미끄러지지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -676,7 +1691,37 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "붐·리더를 올린 상태에서 수리·점검하다 붐이 내려와 근로자가 깔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "붐·암 등을 올리고 그 아래에서 수리·점검작업 등을 하는 경우 붐·암 등이 갑자기 내려옴으로써 발생하는 위험을 방지하기 위하여 안전지지대 또는 안전블록 등을 사용하도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:205"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계의 수리나 부속장치의 장착 및 해체작업을 하는 경우 작업지휘자를 지정하여 작업순서를 결정하고 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:206"
+                  }
+                },
+                {
+                  "measure": "유압, 체인 또는 로프 등에 의하여 지탱되어 있는 기계·기구의 덤프, 램, 리프트, 포크 및 암 등이 갑자기 작동함으로써 근로자에게 위험을 미칠 우려가 있는 장소에 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "이상온도·화상",
@@ -693,7 +1738,32 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:thermal_burn"
+          "hazard": "hazard:thermal_burn",
+          "risks": [
+            {
+              "statement": "파일 용접 이음 중 아크 불티·광선에 근로자가 화상을 입거나 눈을 다침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "파일의 용접 이음 작업 시에는 근로자에게 보안면을 지급하여 착용토록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "용접 시 불꽃이나 물체가 흩날릴 위험이 있는 작업에는 보안면을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -744,6 +1814,96 @@
               "article": "art:기준규칙:521",
               "controlLevel": "administrative"
             }
+          ],
+          "risks": [
+            {
+              "statement": "항타 해머의 강렬한 소음에 노출된 채 청력보호구 없이 작업을 이어가 소음성 난청에 걸림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자가 소음작업, 강렬한 소음작업 또는 충격소음작업에 종사하는 경우에 근로자에게 청력보호구를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:516",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "청력보호구는 근로자 개인 전용의 것으로 지급한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:516",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "강렬한 소음작업이나 충격소음작업 장소에 대하여 기계·기구 등의 대체, 시설의 밀폐·흡음 또는 격리 등 소음 감소를 위한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:513"
+                  }
+                },
+                {
+                  "measure": "해당 작업장소의 소음 수준, 인체에 미치는 영향과 증상, 보호구의 선정과 착용방법을 근로자에게 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:514"
+                  }
+                },
+                {
+                  "measure": "근로자가 소음작업, 강렬한 소음작업 또는 충격소음작업에 종사하는 사업장은 청력보존 프로그램을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:517",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "파일 항타 작업 시 소음, 진동에 대한 영향을 확인하여 환경기준을 준수토록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "안전보호구 지급계획(안전모, 안전대, 안전화, 방진마스크, 보안면, 귀마개 등)을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "5"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "동력을 이용한 해머의 진동에 반복 노출되어 근로자가 진동장해를 입음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "진동작업에 근로자를 종사하도록 하는 경우에 방진장갑 등 진동보호구를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:518",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "인체에 미치는 영향과 증상, 보호구의 선정과 착용방법, 진동 기계·기구 관리 및 사용 방법, 진동 장해 예방방법을 근로자에게 충분히 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:519"
+                  }
+                },
+                {
+                  "measure": "진동 기계·기구가 정상적으로 유지될 수 있도록 상시 점검하여 보수하는 등 관리를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:521"
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -765,7 +1925,39 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "항타 진동으로 인접 구조물에 침하·균열이 발생하고 그대로 작업을 이어가 구조물이 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "구축물등의 인근에서 굴착·항타작업 등으로 침하·균열 등이 발생하여 붕괴의 위험이 예상될 경우 구축물등에 대한 안전성 평가를 실시하여 위험성을 미리 제거한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:52",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "파일 항타 작업 시 소음, 진동에 대한 영향을 확인하여 환경기준을 준수토록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "지반의 상태를 정확히 확인한 후 장비를 정확히 고정하고 작업을 진행할 수 있도록 관리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "7.6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -786,7 +1978,30 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "압쇄기로 파일 두부를 파쇄하는 중 파일이 넘어지며 근로자를 침",
+              "measures": [
+                {
+                  "measure": "압쇄기 등을 이용한 파쇄 시 작업 순서 등이 포함된 계획을 수립하여 파일의 전도 등에 의한 재해를 예방한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "절단·베임·찔림",
@@ -813,7 +2028,52 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:crushing"
+          "hazard": "hazard:crushing",
+          "risks": [
+            {
+              "statement": "PC 강선을 절단할 때 강선이 튀어 근로자가 찔리거나 베임",
+              "measures": [
+                {
+                  "measure": "강선 절단 시 비산 및 찔림 등에 의한 재해 예방 조치를 취하고, 근로자는 보안면(경)과 같은 안면보호구와 보호 장갑을 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "물체가 흩날릴 위험이 있는 작업에는 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "그라인더로 두부를 절단하는 중 숫돌이 파열되어 파편이 날아옴",
+              "measures": [
+                {
+                  "measure": "그라인더 등 절단기 사용 시에는 숫돌의 최고 사용회전속도를 준수하고, 방호장치(안전커버)의 부착을 확인한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "그라인딩 작업 시 베임 또는 비산, 감전 등의 사고예방을 위해 안전교육을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -834,7 +2094,54 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "해체한 장비·부재를 양중·운반하는 중 매단 물체가 떨어짐",
+              "measures": [
+                {
+                  "measure": "해체된 장비를 양중, 운반 시에는 중량과 현상을 고려하여 적합한 장비를 선정하고 작업 반경내에 근로자의 출입을 통제한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "이동식크레인 등 작업에 적정한 양중장비를 선정하고, 자재 및 부재의 현장 반입은 작업공정 순서에 맞게 이루어질 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "해머, 어스오거 등은 마스트 최 하단으로 내린 후 결속하는 등의 조치를 취한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "장비를 해체하기 위한 고소작업 시 안전대를 착용하는 등의 추락재해 예방조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "장기간 보관할 때에는 제작사가 제공하는 장비 관리 기준에 따라 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-71-2012",
+                    "section": "7"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

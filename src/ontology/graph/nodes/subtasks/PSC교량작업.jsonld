@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:bridge_5m_30m",
   "hasHazard": [
@@ -148,7 +147,178 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "제작장 지반이 부등침하하여 제작 중인 거더가 전도",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "제작장의 지반은 부등침하가 발생하지 않도록 충분한 지지력을 확보하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "제작대는 기초콘크리트를 타설하여 평탄성을 유지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "제작대는 지면 보다 높게 설치하여 작업중 또는 강우 등으로 인한 배수가 원활히 이루어지도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "PS강재 긴장작업 시에는 침하현상이 일어나지 않도록 지반과 거푸집 지지대를 견고히 해야 하며 보의 자중과 철재 거푸집의 중량으로 인한 변형이 일어나지 않도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "PSC거더 제작과 야적에 충분한 면적을 확보하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "홍수위(H.W.L) 이상의 안전한 곳에 위치하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "풍수해의 영향, 지하매설물의 유무, 공사에 의한 공해 등의 방지에 유의하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "제작된 PSC거더의 반출이 용이한 곳을 선정하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "쉬스관·PS강재 배치 불량으로 긴장 시 부재가 파손",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "PS강재는 설계도서에 표시된 위치에 정확히 배치해야 하며 콘크리트 타설 및 양생중 움직이지 않도록 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "모든 쉬스관 및 정착장치는 프리스트레스 도입 후 그라우트를 주입할 수 있도록 파이프 또는 적절한 기타 연결부를 갖추어 조립하고 이동이 없도록 안전하게 제자리에 정착하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "쉬스관과 거푸집과의 접촉방지를 위해 사용되는 간격재는 승인된 모양과 치수의 프리캐스트 모르터 블럭이어야 하며, 쉬스관과 쉬스관 사이에는 모르터 블록이나 기타 적절한 방법으로 간격을 유지하여야 한다. 다만, 목재로 된 간격재를 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "포스트 텐션 부재를 제작하여 장기간 인장과 그라우팅 작업을 하지 못할 경우에는 PS강재에 녹이 발생하지 않도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "위험성평가·작업계획 없이 착수하여 공정별 위험이 통제되지 않음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "안전보건총괄책임자는 각 세부공정별로 위험성평가를 실시하고 위험등급에 따른 관리대상 공정을 정하여 재해예방대책을 수립하고 작업하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "공사현장의 제반여건과 설계도서에서 정하고 있는 작업단계별 작업방법이 부합하고 공사용 장비 적용상의 문제가 없는지 검토한 후 구체적인 작업계획을 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "작업계획서는 본 공법에 대한 이해와 경험을 갖춘 자가 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "기 제작된 PCT거더 구성부재, 추진코(Nose) 및 강제 거푸집 등은 반입해서 사용하기 전에 구조 전문가가 구조적 안전성 및 부재의 결함·손상여부를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "크레인을 사용하여 장비의 반입·반출, 부재의 조립 및 해체작업을 하는 경우에는 작업방법 및 순서 등이 포함된 중량물 취급 작업계획을 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "작업 방법 및 순서, 부재(部材)의 낙하ㆍ전도 또는 붕괴를 방지하기 위한 방법, 작업에 종사하는 근로자의 추락 위험을 방지하기 위한 안전조치 방법, 공사에 사용되는 가설 철구조물 등의 설치ㆍ사용ㆍ해체 시 안전성 검토 방법, 사용하는 기계 등의 종류 및 성능ㆍ작업방법, 작업지휘자 배치계획, 그 밖에 안전ㆍ보건에 관련된 사항을 작업계획서에 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-8호"
+                  }
+                },
+                {
+                  "measure": "설계도서의 시공순서를 준수하여야 하며, 다만 현장여건과 일치하지 않아 설계를 변경할 경우 관련 구조전문가의 검토를 통해 시공단계별 안전성이 확보되어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -164,7 +334,31 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "거더 한 본이 전도되어 인근 거더까지 연쇄 붕괴",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "제작대 횡방향 간격은 작업자가 충분히 통행할 수 있고 거푸집 조립 및 해체 시 장애가 되지 않도록 하여야 하며, 불의의 사고로 거더가 전도될 경우 인근 거더에 연속적인 피해를 주지 않도록 전도방지조치 또는 거더간에 충분한 간격을 유지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "5"
+                  }
+                },
+                {
+                  "measure": "제작된 순서대로 운반하여 사용할 수 있도록 공간을 충분히 확보하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "질식",
@@ -210,7 +404,126 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:asphyxiation"
+          "hazard": "hazard:asphyxiation",
+          "risks": [
+            {
+              "statement": "급열 양생 중 산소결핍·일산화탄소 중독",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "급열 양생 시에는 산소결핍증의 방지 및 일산화탄소 중독방지 등을 위해 근로자가 양생쉬트 내로 들어가지 않도록 하며, 만약 들어가는 경우에는 충분한 환기조치 후 들어가도록 하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서 근로자에게 작업을 하도록 하는 경우 작업을 시작하기 전에 밀폐공간의 산소 및 유해가스 농도의 측정 및 평가에 관한 지식과 실무경험이 있는 자를 지정하여 그로 하여금 해당 밀폐공간의 산소 및 유해가스 농도를 측정하여 적정공기가 유지되고 있는지를 평가하도록 해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2"
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정한 결과 적정공기가 유지되고 있지 아니하다고 평가된 경우에는 작업장을 환기시키거나, 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 하는 등 근로자의 건강장해 예방을 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:619의2"
+                  }
+                },
+                {
+                  "measure": "밀폐공간의 산소 및 유해가스 농도를 측정 및 평가하는 자에 대하여 밀폐공간에서 작업을 시작하기 전에 밀폐공간의 위험성, 측정장비의 이상 유무 확인 및 조작 방법, 밀폐공간 내에서의 산소 및 유해가스 농도 측정방법, 적정공기의 기준과 평가 방법의 숙지여부를 확인하고 필요한 교육을 실시해야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2"
+                  }
+                },
+                {
+                  "measure": "사업장 내 밀폐공간의 위치 파악 및 관리 방안, 밀폐공간 내 질식ㆍ중독 등을 일으킬 수 있는 유해ㆍ위험 요인의 파악 및 관리 방안, 밀폐공간 작업 시 사전 확인이 필요한 사항에 대한 확인 절차, 안전보건교육 및 훈련, 그 밖에 밀폐공간 작업 근로자의 건강장해 예방에 관한 사항이 포함된 밀폐공간 작업 프로그램을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서 작업을 시작하기 전에 작업 일시ㆍ기간ㆍ장소 및 내용 등 작업 정보, 관리감독자ㆍ근로자ㆍ감시인 등 작업자 정보, 산소 및 유해가스 농도의 측정결과 및 후속조치 사항, 작업 중 불활성가스 또는 유해가스의 누출ㆍ유입ㆍ발생 가능성 검토 및 후속조치 사항, 작업 시 착용하여야 할 보호구의 종류, 비상연락체계를 확인하여 근로자가 안전한 상태에서 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서의 작업이 종료될 때까지 확인 내용을 해당 작업장 출입구에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619"
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 동안 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:623"
+                  }
+                },
+                {
+                  "measure": "감시인은 밀폐공간에 종사하는 근로자에게 이상이 있을 경우에 구조요청 등 필요한 조치를 한 후 이를 즉시 관리감독자에게 알려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:623"
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 그 장소에 근로자를 입장시킬 때와 퇴장시킬 때마다 인원을 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:621"
+                  }
+                },
+                {
+                  "measure": "동절기에는 콘크리트 양생 시 밀폐된 공간에서 갈탄, 석유난로 또는 온풍기 등으로 가열하면서 양생하는 경우 유해가스 및 산소결핍에 의한 중독・질식 재해발생의 우려가 높으므로 밀폐공간에 들어가기 전에 반드시 환기를 실시하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "밀폐된 공간의 경우 환기 후 필요 시 공기호흡기 및 송기마스크 착용, 감시인 배치, 관계 근로자 외 출입금지 조치를 취하여 질식예방조치를 실시하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "양생장소 주변의 개구부에는 견고한 덮개를 설치하고 슬래브 단부에는 안전난간을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "거푸집 동바리 존치기간을 준수하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설직후 직사광선이나 바람으로 인한 표면건조로 초기균열이 발생하는 것을 방지하고 콘크리트의 강도증진을 위해 물에 적신 양생포로 덮어 습윤상태를 유지하여 양생하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "11"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -226,7 +539,31 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "양생 중 화기 사용으로 화재가 발생",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "양생작업 시에는 화재예방을 위하여 인근에 소화기 등을 비치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "거푸집 주변과 작업발판 위에는 발화물질의 적재 및 화기의 사용을 금하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -252,7 +589,71 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "PS강재 긴장 중 정착부가 파괴되어 강재가 튀어나감",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "인장장치 후방에는 인장력의 최대반력에 견딜 수 있는 방호벽을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "긴장장치 배면에서의 작업을 금지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "긴장 작업 시 관계자 이외의 접근을 금지시켜야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "긴장 작업 시에는 작업지휘자를 선임하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "프리스트레스 도입에 의한 PSC거더의 전도방지조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "우천 시 작업할 경우는 쉬트 등으로 덮거나 지붕을 설치하여 직접 비에 젖지 않도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "정착구의 지압면은 PS강재의 축선에 대해서 직각이 되도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "7"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -268,7 +669,31 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "가공선로에 접촉하여 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "가공선로에 대한 감전재해 방지조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "작업장 내 고압 송전선로, 전기ㆍ통신케이블 등 장애물 현황을 사전에 조사하여 이설하거나 방호시설을 갖추는 등의 안전조치를 하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -357,7 +782,206 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "인양 중 거더가 낙하하여 근로자가 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "PSC거더의 인양시 PSC거더의 리프팅 홀에 강봉을 삽입하고 상부 모서리에 패드 등으로 보호조치 후 와이어로프로 인양하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "중량물 부재를 크레인 등으로 인양하는 경우에는 부재에 인양용 고리를 견고하게 설치하고, 인양용 로프는 부재에 두 군데 이상 결속하여 인양하여야 하며, 중량물이 안전하게 거치되기 전까지는 걸이로프를 해제시키지 아니한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:369",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "두 대의 양중기를 이용하여 PSC거더 인양시 수평을 유지하며 서서히 인양하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "하부 작업범위 내에는 관계근로자 외 출입을 금지하고 경계구역을 설정하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니한다. 다만 신호하는 사람에 의하여 작업을 하는 경우는 제외한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "인양할 하물(荷物)을 바닥에서 끌어당기거나 밀어내는 작업을 하지 아니한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "PCT거더 제작 시 PCT거더 인양을 위한 Lug 위치 및 개수 등을 확인하고 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "인양 Lug, 샤클, 와이어 등 줄걸이 기구에 대한 적정성을 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "양중기 방호장치 결함·과부하로 붐이 꺾이거나 전도",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거치 작업 전 훅 해지장치ㆍ권과 방지장치ㆍ과부하 방지장치의 손상유무, 경보장치ㆍ브레이크 작동상태, 와이어로프 결손상태ㆍ클립체결상태 등이 포함된 양중기 상태를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "양중기의 전도방지를 위하여 부착된 모멘트 리미트(Moment limit)의 작동 유무를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "작업반경, 안전한 인양 하중범위 등을 고려하여 양중기를 선정하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.2"
+                  }
+                },
+                {
+                  "measure": "크레인 2대로 동시에 인양할 때에는 크레인의 정격용량 및 설치위치, 인양 방법 등을 고려한 작업계획서를 작성하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.2"
+                  }
+                },
+                {
+                  "measure": "양중기 작업장 및 통로는 평탄성과 다짐상태를 확인하고 연약지반의 경우 치환 후 충분한 다짐을 하거나 철판 등을 설치하여 침하에 대비하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.2"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인을 사용하여 설치·해체 등의 작업을 하는 때에는 이동식 크레인의 전도를 방지하기 위하여 충분한 넓이와 지내력이 확보된 작업장을 조성하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.4"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인은 작업조건, 주변의 환경, 공간확보, 제작사의 사용기준 등을 사전에 검토하여 적합한 장비를 선정하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.4"
+                  }
+                },
+                {
+                  "measure": "공사중 인양하중을 고려하여 크레인 용량을 검토하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "크레인에는 낙뢰에 대비하여 추가적으로 피뢰설비를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "11"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "상차 중 운전원이 이탈하거나 고정 전에 로프를 풀어 거더가 전도",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "제작장에서 트레일러 위에 PSC거더를 상차하는 경우 운전원은 트레일러에 고정완료 될 때까지 운전석을 이탈하여서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "운반용 트레일러 위의 PSC거더 고정조치는 양중기의 인양로프를 결속한 후에 해제하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "양중기 운전은 면허 소지자가 하여야 하며 자재를 매단체 운전석을 이탈하여서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "트레일러 또는 트럭 위의 PSC거더에 대해서 전도방지 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -403,7 +1027,95 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "손상된 와이어로프·훅이 인양 중 파단",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "양중기의 와이어로프로서 이음매가 있는 것, 한 꼬임에서 끊어진 소선(素線)의 수가 10퍼센트 이상인 것, 지름의 감소가 공칭지름의 7퍼센트를 초과하는 것, 꼬인 것, 심하게 변형되거나 부식된 것, 열과 전기충격에 의해 손상된 것을 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "양중기의 달기 체인으로서 길이가 달기 체인이 제조된 때의 길이의 5퍼센트를 초과한 것, 링의 단면지름이 달기 체인이 제조된 때의 해당 링의 지름의 10퍼센트를 초과하여 감소한 것, 균열이 있거나 심하게 변형된 것을 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "훅ㆍ샤클ㆍ클램프 및 링 등의 철구로서 변형되어 있는 것 또는 균열이 있는 것을 크레인 또는 이동식 크레인의 고리걸이용구로 사용해서는 아니 된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:168"
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하기 위해 제작하는 지그, 훅의 구조를 운반 중 주변 구조물과의 충돌로 슬링이 이탈되지 않도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:168"
+                  }
+                },
+                {
+                  "measure": "안전성 시험을 거쳐 안전율이 3 이상 확보된 중량물 취급용구를 구매하여 사용하거나 자체 제작한 중량물 취급용구에 대하여 비파괴시험을 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:168"
+                  }
+                },
+                {
+                  "measure": "와이어로프를 절단하여 양중작업용구를 제작하는 경우 반드시 기계적인 방법으로 절단하여야 하며, 가스용단 등 열에 의한 방법으로 절단해서는 아니 되고, 아크ㆍ화염ㆍ고온부 접촉 등으로 인하여 열영향을 받은 와이어로프를 사용해서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:165"
+                  }
+                },
+                {
+                  "measure": "양중기의 달기구의 경우 최대허용하중 등의 표식이 견고하게 붙어 있는 것을 사용하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:163"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍 중 인양을 강행하여 거더가 흔들려 재해",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "풍속이 10분간 계속하여 10m/sec 이상인 경우에는 작업을 중지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37"
+                  }
+                },
+                {
+                  "measure": "순간풍속이 초당 10미터를 초과하는 경우 타워크레인의 설치ㆍ수리ㆍ점검 또는 해체 작업을 중지하여야 하며, 순간풍속이 초당 20미터를 초과하는 경우에는 타워크레인의 운전작업을 중지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -429,7 +1141,55 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "신호 불일치로 인양물이 근로자를 가격",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "양중작업은 신호수의 신호에 따라 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "작업순서, 작업방법, 신호방법 등에 대하여 해당작업 양중기 운전원 및 근로자에 대한 안전교육을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.3"
+                  }
+                },
+                {
+                  "measure": "크레인 작업에는 신호수를 배치하고 운전원과 신호수간 신호를 통일하여 운영하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "타워크레인을 사용하여 작업을 하는 경우 타워크레인마다 근로자와 조종 작업을 하는 사람 간에 신호업무를 담당하는 사람을 각각 두어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "인양 시작 전에는 작업 인원수와 근로자 건강상태, 작업신호와 통신시설 상태, 고소작업용 안전대 등 개인보호구 상태, 낙하물 방지망ㆍ추락 방지망ㆍ안전난간 등과 같은 가시설 설치상태, 양중장비의 양중능력을 고려한 정격속도를 점검하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.4"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -460,7 +1220,55 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "보관 중인 거더가 부등침하·강풍으로 전도",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "PSC거더의 보관 시에는 받침대를 견고히 하여 부등침하가 일어나지 않도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "바람 등에 전도되지 않도록 횡방향 지지대를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "중량물 부품을 운반하여 지면에 임시 적재할 때에는 반드시 받침목을 괴고 균형을 맞추어 적재하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한하고, 중량물을 보관하거나 작업 중인 장소가 경사면인 경우에는 경사면 아래로는 근로자의 출입을 제한해야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -495,7 +1303,94 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "운반로 지내력·폭 부족으로 운반차량이 전도",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "운반로는 충분한 지내력과 적절한 폭이 확보되어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "부재를 싣고 내리는 장소의 지반은 충분한 지내력이 확보되어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "운반작업 전에 정격하중, 적재 길이의 확보 및 선회반경 등에 대해 외부사람이 충분히 인지하도록 표시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "운반로로 공공도로를 사용할 경우에는 도로사정, 교통상의 제약조건에 관해서 사전 조사하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "공사차량의 출입로를 확보하고 차량유도계획을 수립하여 제3자에게 피해를 주지 않도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "공사용 진입도로는 로폭, 경사도, 노면, 다짐도, 주위의 교통상황 등을 고려하여 작업차량이 안전하게 진출입이 가능한 위치에 두어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "진입도로의 마감처리는 모든 운반작업의 출입에 지장이 없고 악천후에 사용할 수 있고 시공작업이 용이하도록 하고, 현장내 및 주위에도 가설도로를 설치하고 마감면처리를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업진행에 따라 필요하면 연장하거나 이설해야 하며, 교통정체를 없게 하기 위해서는 필요한 우회도로를 두어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "차량이 현장구역외 지역 및 시가도로에 진입하기 전에 차륜에서 뻘이나 오물 등을 제거할 수 있는 세륜·세차설비를 갖추어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계ㆍ운반용구를 사용하여야 한다. 다만, 작업의 성질상 하역운반기계등을 사용하기 곤란한 경우에는 그러하지 아니하다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -511,7 +1406,31 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "운반 중 거더가 손상되어 거치 후 파괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "제작된 부재를 보관, 인양 등 취급시에는 균열이나 파손을 입지 않도록 각별히 주의하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "사전조사 후 재료조달 및 제작 후 가설현장으로 운송하는데 공공에 피해가 없도록 하고, 부재에 변형이나 손상이 없도록 안전하게 운송하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -542,7 +1461,55 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "거치 직후 고정 전에 거더가 전도되어 근로자가 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "각각의 PSC거더 거치 즉시 코핑상부에 매립된 고리에 턴버클로 와이어로프를 긴장하여 고정하고 삼각 프레임과 받침쐐기 등을 설치하여 PSC거더가 전도되지 않도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "PSC거더 상부의 돌출철근에 철근(ø25)을 5m간격으로 지그재그로 용접하여 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "PSC거더 전체가 결속된 상태로 설치된 후 거더 하부에 고정시킨 쐐기와 버팀목을 빼고 슈(Shoe) 용접을 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "자재나 부재의 낙하ㆍ전도 또는 붕괴 등에 의하여 근로자에게 위험을 미칠 우려가 있을 경우에는 출입금지구역의 설정, 자재 또는 가설시설의 좌굴(挫屈) 또는 변형 방지를 위한 보강재 부착 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:369",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "PCT거더 거치 후 상부슬래브에 콘크리트 타설시 자중에 의한 파괴를 방지하기 위해 구조 전문가에 의한 구조검토를 통한 안전한 작업임을 확인한 후 PCT거더를 인양 거치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -572,7 +1539,62 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "거더 위에서 작업 중 근로자가 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "PSC거더 위에 안전난간은 거치하기 전에 지상에서 조립하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.2"
+                  }
+                },
+                {
+                  "measure": "PSC거더 상부에 통로용 발판을 고정 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.2"
+                  }
+                },
+                {
+                  "measure": "PSC거더 위의 작업자는 안전난간에 반드시 안전대를 걸고 작업하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "PSC거더 간 연결통로를 설치하고 움직임이 없도록 철저하게 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소 또는 기계ㆍ설비ㆍ선박블록 등에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42"
+                  }
+                },
+                {
+                  "measure": "교각, 교대, 가교각 등에 설치되는 안전난간, 사다리 등의 안전시설은 고정형으로 설치하는 것을 원칙으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "11"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -597,7 +1619,54 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "거더 하부 도로·작업장으로 물체가 떨어져 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "한경간의 PSC거더 설치완료 후 PSC거더 하부에는 낙하 및 추락방지망을 설치하여 재해를 예방하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "PSC거더 하부가 도로나 작업장일 경우 낙하물방지망 또는 방호선반을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14"
+                  }
+                },
+                {
+                  "measure": "작업장 내 공구 및 자재를 정리정돈하여 낙하ㆍ비래 등의 재해를 예방하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "재료, 기구 또는 공구 등을 올리거나 내릴 경우에는 근로자로 하여금 달줄, 달포대 등을 사용하도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:369",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -663,7 +1732,301 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "가설벤트가 침하·전도되어 거치 중인 거더가 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "가설벤트 설치공사 시에는 사전에 구조검토 실시, 가설벤트 위치의 지반 지내력 확인 사항에 대해 검토하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "가설벤트는 작업시의 하중을 고려하여 구조검토를 실시하고 조립도를 작성하여 조립도의 순서에 따라 조립하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "가설벤트의 부등침하 방지를 위하여 지반은 철저히 다짐을 실시하거나 콘크리트를 타설하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "기초가 경사진 경우에는 가설벤트의 미끄럼 방지조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "최종적으로 가설벤트가 조립, 설치된 경우에는 레벨을 측정 점검하고 볼트의 체결상태 및 위치를 점검하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "가설벤트 재료의 이상 유무를 확인하여 균열, 부식, 휨 및 단면 부족 등의 결함이 있는 자재는 사용해서는 안된다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "가설벤트 작업대 단부에는 근로자들의 추락 등에 의한 위험을 방지하기 위한 안전난간을 설치하여야 하고, 안전난간 하부에는 낙하물을 방지하기 위한 발끝막이판(Toe board)을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "작업시작 전에 작업통로, 안전방망, 안전난간 등 안전시설의 설치상태와 이상유무를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "8.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "관리감독 없이 거치를 진행하여 위험이 통제되지 않음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업시작 전에 관리감독자를 지정하여 작업을 지휘하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 당해 작업의 위험요인과 이에 대한 안전수칙을 근로자에게 주지시키고 이행여부를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "근로자의 건강상태를 작업 전에 확인하여 작업배치 적정여부를 결정하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "안전모, 안전대 등 근로자의 개인보호구를 점검하고 작업 전에 보호구의 착용방법에 대한 교육을 실시한 다음 작업 중에 착용여부 및 상태를 확인하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "사용예정 장비는 안전점검을 실시하여 이상이 발견된 때에는 정상적인 장비로 교체하거나 정비하여 이상이 없음을 확인한 후 사용하도록 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "위험기계ㆍ기구의 방호장치의 이상 유무를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.1"
+                  }
+                },
+                {
+                  "measure": "단위 작업반 내에서 의사소통이 미흡한 경우 위험상황을 초래할 수 있으므로 작업반 구성시 외국인 근로자가 포함되는 경우 원활한 의사소통을 위하여 사전에 교육ㆍ훈련을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "본 공법에 사용되는 기계기구 등은 주기적으로 안전검검을 실시하여 이상이 발견된 때에는 정상적인 장비로 교체하거나 정비하여 이상이 없음을 확인한 후 사용하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "크레인 운전은 지정된 운전원이 하여야 하며, 크레인의 안전장치를 임의로 제거 또는 변경해서는 아니되고, 크레인 사용시 급운전ㆍ급정지ㆍ급강하ㆍ급상승을 하여서는 아니되며, 크레인의 정격 인양하중을 준수한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "11"
+                  }
+                },
+                {
+                  "measure": "작업전 관리감독자는 위험성 평가를 실시하여 유해 위험요소를 확인하고 작업 중에도 관리감독을 철저히 하여 재해예방을 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인을 사용하여 작업을 할 때 작업을 시작하기 전에 관리감독자로 하여금 권과방지장치나 그 밖의 경보장치의 기능, 브레이크·클러치 및 조정장치의 기능, 와이어로프가 통하고 있는 곳 및 작업장소의 지반상태를 점검하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "관리감독자로 하여금 안전한 작업방법을 결정하고 작업을 지휘하는 일, 재료·기구의 결함 유무를 점검하고 불량품을 제거하는 일, 작업 중 안전대 또는 안전모의 착용상황을 감시하는 일, 작업방법 및 근로자 배치를 결정하고 작업 진행상태를 감시하는 일을 수행하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "자재를 인양할 경우에는 인양중량 및 충격하중 등에 대한 충분한 인양능력을 가진 양중기를 선정하여 사용하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인의 경우 충분한 지내력이 확보된 견고한 지반위에 설치하여야 하고, 아웃트리거는 충분한 지내력이 확보된 견고한 지반위에 받침판을 깔고 설치하여야 하며, 인양작업 전 설치상태를 반드시 확인하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "크레인의 회전반경내에 안전휀스, 출입금지 표지판 설치 등 관계자 외 출입금지 조치를 취하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인의 후진 작업 시에는 유도자에 의해 작업해야 하며, 유도자는 운전자가 인식이 가능한 장소에서 유도하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "이동식 크레인에는 운전자 및 근로자들에게 잘 보이는 위치에 정격하중표지를 부착하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "장비의 진출입로 및 작업장소는 작업 중 장비의 넘어짐 재해가 발생하지 않도록 지반상태를 점검하고 안전성을 검토하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "가설통로 및 작업발판은 안전기준에 적합하게 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "추락위험이 있는 장소에는 안전난간, 추락방지망 등 추락재해 방지시설을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "작업발판의 단부에는 높이 10센티미터 이상의 발끝막이판을 설치하고 낙하 우려가 있는 재료, 공구 등은 작업발판 위에 두지 말아야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "전기기계·기구 사용 시 감전재해 방지를 위해 접지 및 누전차단기가 설치된 분전반의 전원을 사용하고, 전선의 피복손상 유무를 확인하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "충전전로의 인근에서 자재 하역 등의 작업이 있는 경우에는 차량 등을 충전전로의 충전부로부터 300센티미터 이상 이격하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "화재의 위험이 있는 용접 및 용단 작업장소에는 소화기, 방화수 등을 비치하여 초기 소화할 수 있도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "자재의 반입은 사용순서 및 시기를 고려하여 장기간 현장에 방치되지 않도록 그 반입시기를 적절히 조절하고 적치장소를 미리 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "가설기자재는 안전인증 규격에 적합한 제품을 사용하고, 재사용 가설기자재는 변형, 부식 또는 손상상태 등이 재사용 성능기준에 적합한 것을 사용하여야 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                },
+                {
+                  "measure": "일반인 및 근로자의 출입통제와 질서 및 보건 유지, 화재·도난·소음 등의 방지, 재료와 설비의 정리 및 관리, 주변도로의 정비ㆍ교통정리ㆍ교통안전관리 및 보호시설에 유의하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -692,7 +2055,45 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "고소에서 가로보 연결작업 중 근로자가 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "PSC거더 위의 작업자는 안전난간에 반드시 안전대를 걸고 작업하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "PSC거더 간 연결통로를 설치하고 움직임이 없도록 철저하게 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치하여야 하며, 덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43"
+                  }
+                },
+                {
+                  "measure": "난간등을 설치하는 것이 매우 곤란하거나 작업의 필요상 임시로 난간등을 해체하여야 하는 경우 추락방호망을 설치하여야 하며, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락할 위험을 방지하기 위하여 필요한 조치를 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:43"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -714,7 +2115,40 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "가로보 자재 인양 중 낙하하여 하부 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "한경간의 PSC거더 설치완료 후 PSC거더 하부에는 낙하 및 추락방지망을 설치하여 재해를 예방하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "12.4"
+                  }
+                },
+                {
+                  "measure": "가공 철근 인양작업시 낙하물이 발생하지 않도록 2줄 걸이로 하고, 달줄·달포대를 사용하여야 하며, 하부 및 부근에는 관계근로자 이외의 근로자들의 출입을 금지시켜야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "고정된 물체를 직접 분리ㆍ제거하는 작업을 하지 아니한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -725,7 +2159,31 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "돌출 철근·강재에 찔리거나 걸려 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "돌출된 철근 단부에는 근로자들이 찔리지 않도록 캡 등을 씌워야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "근로자들이 철근 조립작업중 바닥 철근에 걸려 전도할 우려가 있어 조립된 철근 상부에 안전한 통로를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -771,7 +2229,235 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "교대·교각 거푸집 조립 중 측압으로 거푸집이 터지거나 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거푸집을 가 조립한 상태에서 수직도 등을 검측하여 수정한 후 타이볼트를 체결하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "볼트는 고장력 볼트를 사용하고 볼트의 장력이 측압에 충분히 견딜 수 있는 것이어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "볼트의 길이는 부재를 체결하고 너트 밖으로 돌출된 여유길이가 1센티미터 이상되어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "작업발판을 설치하고 단부에는 안전난간을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "작업 중 추락위험이 있는 장소에는 안전대 부착설비를 설치하고 안전대의 착용 또는 추락방지망의 설치 등 추락방지시설을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.1"
+                  }
+                },
+                {
+                  "measure": "작업발판위에 자재를 적재할 경우에는 허용하중을 초과하지 않도록 주의하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "슬래브 거푸집이 타설 하중을 견디지 못하고 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "거푸집 및 거푸집동바리 조립도는 해당분야 전문가의 구조검토를 받아 작성하여야 하며, 조립 시 조립도에 의거하여 조립하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "슬래브 거푸집 동바리 작업 시에는 사전에 설계된 거푸집 동바리의 구조 도면 및 조립도를 준수하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "동바리의 침하를 방지하고 상·하부가 활동하지 않도록 콘크리트 기초 등에 견고하게 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "강관틀, 조립강주 및 시스템동바리 밑면에는 잭 베이스를 이용하고 깔판에 견고히 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "강관틀, 조립강주 및 시스템동바리 등을 조립하여 사용하는 경우에는 수직부재가 콘크리트기초에서 이격되지 않고 견고히 고정되도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "강관틀, 조립강주 및 시스템동바리 형식일 경우 보 및 멍에를 상단에 올릴 때에는 지주상단에 강재단판을 부착하여 보 또는 멍에를 고정시켜야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "파이프받침의 높이가 3.5미터 이상일 때에는 2미터마다 양방향으로 수평연결재를 설치하고 수평방향 10미터이내마다 교차가새를 설치하여 좌굴 및 비틀림을 방지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "경사진 바닥에 파이프받침을 설치할 때에는 하단에 쐐기 등을 설치하여 미끄러지지 않도록 유의하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "동바리 하부의 받침판 또는 받침목은 2단 이상 삽입하지 않으며, 이탈되지 않도록 고정시켜야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "멍에 또는 장선을 지지하는 동바리는 상부받이판에 못으로 2개소 이상을 고정하여 콘크리트 타설 시 거푸집의 들림으로 인한 동바리의 넘어짐 재해를 방지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "콘크리트를 타설하는 도중에는 거푸집 및 거푸집동바리의 이상 유무를 확인하여야 하고 작업지휘자를 배치하여 이상이 발생한 경우에는 신속히 안전조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "콘크리트를 타설시 편심하중에 의한 거푸집 및 동바리의 붕괴재해가 발생하지 않도록 타설계획 및 순서에 따라 균형있게 타설하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설은 계획된 타설순서 및 타설속도로 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "진동기는 적절히 사용되어야 하며 지나친 진동은 거푸집의 무너짐재해의 원인이 될 수 있으므로 주의하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체작업대의 턴테이블·레일클램프 결함으로 작업대가 이탈",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "턴테이블 회전 베어링의 이상 유무를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "작업대 연결볼트 및 각 연결부위의 이상 유무를 확인하고 특히 턴테이블 체결볼트가 설계도서와 일치하는지 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "레일 클램프(Rail clamp) 고정상태를 확인하고 이격발생시 교체하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "부재 변형여부 및 연결부, 접속부 이상 유무상태를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "작업대 사용 전 시험작동을 실시하고 안전시설의 작동상태를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "지브(Jib) 크레인 사용 전 시험작동하여 정상상태를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -796,7 +2482,68 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "슬래브 단부에서 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "슬래브의 양쪽에는 안전난간 설치기준에 따라 안전난간 등 추락방지시설을 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소 또는 기계ㆍ설비ㆍ선박블록 등에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체작업대 하부 발판·사다리에서 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "하부 작업발판 단부에 안전난간을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "상ㆍ하 이동용 사다리 및 등받이를 설치하고 적정여부를 확인하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "작업 중에는 관리감독자를 배치하여 관리감독 하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                },
+                {
+                  "measure": "작업시작 전에 작업대의 작업방법, 이용방법, 작업순서 및 안전조치 사항에 대하여 근로자에게 주지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-41-2011",
+                    "section": "13"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -846,7 +2593,202 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "슬래브 하부 통행차량·근로자가 낙하물에 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "차량 통행구간에는 슬래브 하부에 낙하물 방호선반을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "콘크리트 펌프카가 전도되거나 호스 요동으로 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "콘크리트 펌프카를 이용하여 콘크리트를 타설하는 경우 전도재해 방지를 위한 조치를 취하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "콘크리트 펌프카를 이용하여 콘크리트를 타설시 배관단부에 부착된 호스를 직접 잡고 움직여서는 안되며, 이동을 위한 안내줄(Guy rope)을 사용하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                },
+                {
+                  "measure": "콘크리트 펌프카의 넘어짐 재해 방지를 위해 견고한 지반위에 아웃트리거(Outrigger) 설치 등 침하 방지조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "콘크리트 펌프카 설치지반이 연약지반인 경우에는 충분한 지내력이 발휘될 수 있도록 콘크리트 기초 타설 등의 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "콘크리트 펌프카 작업반경 위험구역 내에는 근로자의 출입을 제한하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "콘크리트 펌프카의 플렉시블 호스(Flexible hose)는 슬래브 단부 등 구조물의 끝에서 요동치지 않도록 손잡이를 설치하여 확실히 붙잡고 타설하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "콘크리트 펌프카 작업 시 고압 가공전선에 대한 감전예방 조치를 실시하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "레미콘 트럭의 진입 및 후진 시 유도자를 배치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "타설장비는 시공장소에 근접하게 설치하되, 평단하고 바닥이 견고하여 장비의 넘어짐 위험이 없는 곳에 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "10"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "거푸집 해체 중 부재가 떨어지거나 못에 찔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "거푸집 해체는 설계도서의 거푸집 존치기간에 의거하여 결정하되 압축강도 시험결과 기준치 이상일 경우에 실시하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "거푸집 해체작업 순서는 조립의 역순으로 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 거푸집 해체시기, 해체순서, 해체방법 등을 결정하고 근로자에게 주지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "거푸집 해체 시 안전담당자를 배치하고 안전담당자의 지시에 따라 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "해체작업 장소 및 주변지역은 출입금지 구역으로 설정하고 관계자 이외의 근로자 출입을 금지시켜야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "해체된 거푸집 기타 각목 등을 올리거나 내릴 때에는 달줄 또는 달포대 등을 사용하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "상·하에서 해체작업을 동시에 하는 것을 금지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "해체된 자재는 종류별, 규격별로 구분하고 재사용 가능여부를 판단하여 정리정돈 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "풍속이 순간초속 10미터 이상인 경우, 강우량이 시간당 1밀리미터 이상인 경우, 적설량이 시간당 1센티미터 이상인 경우의 악천 후시에는 해체작업을 중지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "해체작업에 사용되는 가시설물, 기계·기구 등은 작업 전에 이상유무를 점검하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                },
+                {
+                  "measure": "양중기는 사용 전에 안전점검을 실시하고 이상이 발견될 때에는 즉시 정비하고 사용하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-94-2013",
+                    "section": "12"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -857,7 +2799,23 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "진동다짐기 사용 중 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "진동다짐기의 감전방지를 위해 접지 및 누전차단기가 설치된 분전반의 전원을 사용하고, 작업전선도 피복손상 유무를 확인하며, 사용후에는 분해해서 깨끗하게 청소하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "9"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -873,7 +2831,39 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "제작장 해체 중 산소절단 불꽃으로 화재",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "산소절단에 의한 제작장 해체작업 시 불꽃으로 인한 점화원이 화재로 연결되지 않도록 충분한 안전조치를 취하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "제작장 해체작업 시작 전 근로자에게 작업순서 및 위험에 대한 교육을 실시한 후 당해 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "10"
+                  }
+                },
+                {
+                  "measure": "되메우기 시에도 장비 작업반경 등을 고려하여 구획을 설정하고 안전담당자를 배치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-83-2013",
+                    "section": "10"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

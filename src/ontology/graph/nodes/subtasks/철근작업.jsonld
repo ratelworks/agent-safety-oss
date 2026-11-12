@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:rc_concrete",
   "hasHazard": [
@@ -153,7 +152,112 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "지게차로 철근을 하역하는 중 편하중이 발생해 철근 다발이 포크에서 미끄러져 아래 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "지게차로 철근을 하역·운반하는 경우 편하중이 발생되지 않도록 철근을 포크 중앙에 적재하고 철근이 미끄러지지 않도록 단단히 고정한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "지게차의 포크 또는 그에 의하여 지탱되어 있는 화물의 밑에 근로자가 출입하지 않도록 울타리를 설치하는 등 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "지게차 작업반경 내 근로자의 출입을 통제한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있으므로 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "양중기로 철근 다발을 내리는 중 한 군데만 묶어 다발이 빠져나가 아래 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "양중기로 철근을 운반하는 경우에는 두 군데 이상 묶어서 수평으로 운반한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "양중기로 철근을 운반하는 경우 작업반경 내 근로자의 출입을 통제한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "철근을 달아 올리는 부근에는 관계 근로자 이외의 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "운반작업 시에는 작업 책임자를 배치하여 수신호 또는 표준신호 방법에 의하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "작업장의 바닥, 도로 및 통로 등에서 낙하물이 근로자에게 위험을 미칠 우려가 있는 경우 보호망을 설치하는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -194,7 +298,71 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "야적한 철근 다발이 굴러 근로자가 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "침하 우려가 없는 튼튼한 기반 위에 적재한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:393",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "불안정할 정도로 높이 쌓아 올리지 않는다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:393",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "하중이 한쪽으로 치우치지 않도록 쌓는다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:393",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "건물의 칸막이나 벽 등이 화물의 압력에 견딜 만큼의 강도를 지니지 아니한 경우에는 칸막이나 벽에 기대어 적재하지 않도록 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:393",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "철근 다발을 내려놓을 때는 던지지 않고 천천히 내려놓도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -234,7 +402,70 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "하역 계획과 지휘 없이 차량과 근로자가 뒤섞여 부딪힘",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "차량계 하역운반기계등을 사용하는 작업을 하는 경우 사전조사를 하고 그 결과를 고려하여 작업계획서를 작성한 후 그 계획에 따라 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "중량물의 취급작업을 하는 경우 사전조사를 하고 그 결과를 고려하여 작업계획서를 작성한 후 그 계획에 따라 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 11
+                  }
+                },
+                {
+                  "measure": "중량물의 취급작업 계획서에는 추락위험·낙하위험·전도위험·협착위험·붕괴위험을 예방할 수 있는 안전대책을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-11호"
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등을 사용하는 작업의 계획서에는 추락·낙하·전도·협착 및 붕괴 등의 위험 예방대책과 운행경로 및 작업방법을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-2호"
+                  }
+                },
+                {
+                  "measure": "작업계획서를 작성한 경우 작업지휘자를 지정하여 작업계획서에 따라 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:39",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작성한 작업계획서의 내용을 해당 근로자에게 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에는 하역운반기계·운반용구를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -261,7 +492,56 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:crushing"
+          "hazard": "hazard:crushing",
+          "risks": [
+            {
+              "statement": "철근을 기계로 절단하는 중 절단 부위가 탄력으로 튀어 근로자가 베이거나 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "기계절단 작업 시 철근 탄력에 의한 재해방지를 위해 철근 절단 시 절단 부위가 튀지 않도록 주의하여 작업한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "절단기의 절단날이 마모되어 미끄러질 우려가 있는 것을 사용하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "해머절단을 하는 경우 해머자루에 금이 가거나 쪼개진 부분이 없는지 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "물체가 흩날릴 위험이 있으므로 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "철근은 상온에서 가공하는 것을 원칙으로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -292,7 +572,63 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "철근 절곡기의 풋 스위치가 오작동하여 절곡 범위 안에 있던 손이 끼임",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "오작동 방지를 위한 풋 스위치에 보호 덮개를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "철근이 절곡되는 작업 범위 내에 근로자의 접근을 방지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "철근 절곡기에는 비상정지장치를 설치하고, 비상정지장치가 정상적으로 작동하도록 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "기계·기구 또는 설비에 설치한 방호장치를 해체하거나 사용을 정지해서는 아니 되며, 방호장치의 수리·조정 및 교체 등의 작업을 하는 경우에만 예외로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:93",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "방호장치에 대하여 수리·조정 또는 교체 등의 작업을 완료한 후에는 즉시 방호장치가 정상적인 기능을 발휘할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:93",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "기계의 원동기·회전축·기어·풀리·플라이휠·벨트 및 체인 등 근로자가 위험에 처할 우려가 있는 부위에 덮개·울·슬리브 및 건널다리 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:87",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -364,7 +700,153 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "접지되지 않은 철근 가공기계에 누전되어 조작 중 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철근 절곡기에는 접지를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "기계절단 작업 시 기계에는 접지를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "고정형·이동형 또는 휴대형 전동기계·기구의 노출된 비충전 금속체에 접지를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:302",
+                    "paragraph": 1,
+                    "item": 4,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "임시배선의 전로가 설치되는 장소에서 사용하는 이동형 또는 휴대형 전기기계·기구에 감전방지용 누전차단기를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "근로자가 접촉할 우려가 있는 배선 또는 이동전선의 절연피복이 손상되거나 노화되지 않도록 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:313",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "배근된 철근 위에서 아크 용접 이음을 하던 근로자가 용접봉 홀더에 접촉하여 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "추락할 위험이 있는 높이 2미터 이상의 장소로 철골 등 도전성이 높은 물체에 근로자가 접촉할 우려가 있는 장소에서 교류아크용접기를 사용하는 경우 자동전격방지기를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:306",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "아크용접 등의 작업에 사용하는 용접봉의 홀더는 한국산업표준에 적합하거나 그 이상의 절연내력 및 내열성을 갖춘 것을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:306",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "아크 용접 이음 작업을 하는 경우 배전반 또는 스위치는 쉽게 조작할 수 있는 곳에 설치하고, 접지상태를 항상 확인한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "철판·철골 위 등 도전성이 높은 장소에서 사용하는 이동형 또는 휴대형 전기기계·기구에 감전방지용 누전차단기를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "감전의 위험이 있는 작업이므로 절연용 보호구를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "철근이나 운반장비가 인근 충전전로에 접촉하여 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "충전전로 인근에서 차량, 기계장치 등의 작업이 있는 경우에는 차량등을 충전전로의 충전부로부터 300센티미터 이상 이격시켜 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "철근 운반작업을 하는 바닥 부근에는 전선이 배치되어 있지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철근 운반작업을 하는 주변의 전선은 사용 철근의 최대길이 이상의 높이에 배선하고 이격거리는 최소한 2미터 이상으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "운반장비는 반드시 전선의 배선 상태를 확인한 후 운행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "근로자가 차량등의 그 어느 부분과도 접촉하지 않도록 울타리를 설치하거나 감시인을 배치하는 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -397,7 +879,81 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "철근 이음 화기작업의 불티가 인근 가연성물질에 옮겨 붙어 화재",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "화기작업에 따른 인근 가연성물질에 대한 방호조치를 하고 소화기구를 비치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "용접불티 비산방지덮개, 용접방화포 등 불꽃, 불티 등의 비산을 방지하는 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "작업 준비 및 작업 절차를 수립하고, 작업장 내 위험물의 사용·보관 현황을 파악한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "인화성 액체의 증기 및 인화성 가스가 남아 있지 않도록 환기 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "작업반경 11미터 이내에 가연성물질이 있는 장소에서 용접·용단 작업을 하는 경우 화재감시자를 지정하여 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:241의2",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "배치된 화재감시자에게 업무 수행에 필요한 확성기, 휴대용 조명기구 및 화재 대피용 마스크를 지급한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:241의2",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "작업근로자에 대한 화재예방 및 피난교육 등 비상조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                },
+                {
+                  "measure": "용접 시 불꽃이나 물체가 흩날릴 위험이 있으므로 보안면을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -418,7 +974,47 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "철근을 인력으로 운반하던 근로자가 통로에서 실족하여 넘어지고 철근에 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "운반하는 작업자가 넘어지지 않도록 실족방지망 등을 설치하여 안전하게 통행할 수 있도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "2인 이상이 1조가 되어 어깨메기로 운반하는 등 안전을 도모한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철근 다발을 운반하는 경우에는 양끝을 묶어 운반한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철근 가공 작업장 주위는 정리 정돈되어 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -435,6 +1031,36 @@
             {
               "article": "art:기준규칙:663",
               "controlLevel": "administrative"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "무거운 철근을 반복해 인력으로 들어올려 목·허리 등 근골격계에 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "1회 25킬로그램 이상을 하루에 10회 이상 운반하지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 과도한 무게로 인하여 근로자의 목·허리 등 근골격계에 무리한 부담을 주지 않도록 최대한 노력한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:663"
+                  }
+                },
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에는 하역운반기계·운반용구를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -486,7 +1112,83 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "허용하중을 초과해 매단 철근의 달기구가 파단되어 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철근을 달아 올리는 경우에는 로프와 기구의 허용하중을 검토하여 과다하게 달아 올리지 않는다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "화물의 하중을 직접 지지하는 달기와이어로프 또는 달기체인의 안전계수가 5 이상이 아니면 사용하지 않는다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "훅, 샤클, 클램프, 리프팅 빔의 안전계수가 3 이상이 아니면 사용하지 않는다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "달기구는 최대허용하중 등의 표식이 견고하게 붙어 있는 것을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "섬유로프 등을 사용하여 화물취급작업을 하는 경우 해당 섬유로프 등을 점검하고 이상을 발견한 것은 즉시 교체한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:388"
+                  }
+                },
+                {
+                  "measure": "인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 않는다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "고정된 물체를 직접 분리·제거하는 작업을 하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "인양할 하물을 바닥에서 끌어당기거나 밀어내는 작업을 하지 않는다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -502,7 +1204,31 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "비계·거푸집·데크플레이트에 철근을 과다 적재하여 가설구조물이 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비계, 거푸집, 데크플레이트 등 가설구조물에는 철근을 과다하게 적재하지 않는다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.2"
+                  }
+                },
+                {
+                  "measure": "철근 상세도에 표시된 형상, 치수 및 재질이 일치하도록 가공하여 계획된 물량 이상이 반입·적치되지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -550,7 +1276,79 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "추락 위험이 있는 장소에서 철근을 조립하던 근로자가 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "추락 위험이 있는 장소에서 철근을 조립하는 경우 작업발판과 안전난간을 설치하고, 불가피한 경우 안전대를 착용하도록 하는 등 위험 방지를 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "작업위치의 높이가 2미터 이상일 경우에는 작업발판을 설치하거나 안전대를 착용하게 하는 등 위험 방지를 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:333",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에 비계를 조립하는 등의 방법으로 작업발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업이므로 안전대를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "기상상태가 나쁜 상태에서 조립을 강행하다 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -566,7 +1364,39 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "자립 한계를 넘긴 수직 철근이 조립 중 전도되어 근로자가 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "구조물 벽체 시공 중 수직 철근이 전도되지 않고 자립할 수 있는 최대높이를 초과하는 경우 전도 방지를 위해 버팀대 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "기초와 벽체 철근을 동시에 조립하는 경우 전도 방지를 위하여 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "철근 상세도에 따라 바른 위치에 배치하고, 콘크리트를 타설할 때 움직이지 않도록 충분히 견고하게 조립한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "절단·베임·찔림",
@@ -588,7 +1418,40 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:crushing"
+          "hazard": "hazard:crushing",
+          "risks": [
+            {
+              "statement": "배근된 철근 단부에 근로자가 접촉하여 찔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "조립된 철근에 근로자가 접촉함으로써 찔림, 화상 등의 위험이 발생할 우려가 있으면 위험 방지를 위하여 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "추락에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "물체의 낙하·충격, 물체에의 끼임의 위험이 있는 작업이므로 안전화를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -599,7 +1462,23 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "정리되지 않은 가공·조립장에 관계자 아닌 사람이 들어와 자재에 부딪힘",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철근 가공 작업장 주위는 정리 정돈되어 있도록 하고, 작업자 이외의 사람의 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -615,7 +1494,39 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "조립 상태를 확인하지 않아 타설 중 철근이 밀려 구조물이 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "철근을 조립한 다음 장기간 경과한 경우에는 콘크리트 타설 전 다시 조립 검사를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "철근 조립이 끝난 후 철근상세도에 맞게 조립되어 있는지 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.3"
+                  }
+                },
+                {
+                  "measure": "철근 이음에 가스압접 이음, 기계적 이음, 용접 이음, 슬리브 이음 등을 적용할 경우 각각 사전에 준비된 이음 지침에 따르도록 하며, 이음 지침이 구비되지 않은 경우에는 건설기준에 따른다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-15-2026",
+                    "section": "6.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

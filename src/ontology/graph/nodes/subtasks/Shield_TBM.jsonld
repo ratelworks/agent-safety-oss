@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:tunnel_excavation",
   "hasHazard": [
@@ -108,7 +107,85 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "지질·지장물 조사 없이 착수하여 굴착 중 지하매설물을 손괴하거나 붕괴",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "공사 위치에 대한 지질조사 및 주변 지장물 조사를 실시하고 공사에 필요한 가설전기 설치위치 선정 등의 사항에 대한 사전 검토를 철저히 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "공사 전 작업구간 내에 기 설치되어 있는 상수도 및 하수관로, 송유관, 통신 및 전력케이블, 도시 가스관, 지하갱도 등의 지하 지장물의 종류, 심도 및 크기를 파악하여 안전한 시공이 가능하도록 조치한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "지질 및 지층에 관한 조사를 실시하고 시추(보링) 위치, 토층 분포 상태, 투수계수, 지하수위, 지반의 지지력 등을 확인하여 시공계획에 반영한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.1"
+                  }
+                },
+                {
+                  "measure": "공사현장의 제반 여건과 터널 형상을 파악한 후 가시설물 설치계획, 수직터널 및 수평 보조 터널 등 세부작업 단계별 안전작업 방법과 순서, 장비에 대한 안전조치 사항 등이 포함된 작업계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "작업계획서는 본 공법에 풍부한 경험과 지식을 갖춘 자가 수립하여야 하며 공사 중 계획서의 내용이 제대로 이행되는지의 여부를 수시로 확인할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "수직구 굴착 중 용수·흙막이 변위를 놓쳐 붕괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수직구 굴착공사 시 세부공정표, 지반깊이별 굴착방법, 단계별 벽체 시공방법, 사용장비ㆍ굴착토사 인양ㆍ적재ㆍ운반ㆍ사토 방법 등이 포함된 작업계획을 작성한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "흙막이지보공에 대한 계측을 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "굴착작업 진행 중 용수량에 적합한 배수시설을 확보한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -119,7 +196,31 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "수직구 굴착단부에서 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수직구 굴착단부에는 추락 및 낙하물방지를 위한 안전난간 및 발끝막이판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "지면에서 굴착작업장소까지는 계단구조의 승강통로를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -140,7 +241,53 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "굴착토사 인양 중 버킷에서 토사가 떨어져 하부 근로자가 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "굴착토사 인양 중 낙하재해 예방을 위하여 인양 버킷은 정량 적재 후 20 % 이상의 여유높이가 갖게 하거나, 덮개를 설치하고 하부에는 작업자 대피소를 확보한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "굴착지면에 투입되는 굴삭기의 운전석은 낙하물에 대비한 헤드가드를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "양중장비 간 간섭·용량 부족으로 인양물이 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "세그먼트 블록 투입과 버력 반출용 양중장비 설치 및 작업계획을 작성하고 1개 수직구에 2개의 인양장비 설치 여부 검토, 장비형식ㆍ설치위치ㆍ용량ㆍ장비 간 간섭여부 확인, 부재 중량 및 조립작업용 장비ㆍ기자재ㆍ작업순서 및 방법 결정 등을 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "장비 반입ㆍ반출 등 크레인을 사용하여 조립, 해체 공정을 진행할 때에는 작업방법 및 순서 등이 포함된 중량물 취급 작업계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -156,7 +303,39 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "항타기가 전도되어 근로자가 깔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "H-Pile 시공을 위한 항타기의 전도방지를 위해 작업하중에 적합한 지반의 평편성과 지내력을 확보한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "건설기계 반입 및 작업 시 지반침하방지 조치, 동선 확보 등을 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "건설기계 반입 전 작업방법, 작업내용에 따른 용량 형식을 결정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "화재·폭발",
@@ -167,7 +346,23 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "습윤 막장에서 전기뇌관을 사용하여 미주전류로 조기 기폭",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "발파작업 시 발파면이 습윤포화 상태의 경우 비전기식 뇌관을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -178,7 +373,23 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "가설도로·절성토 구간에서 장비가 근로자와 충돌",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "가설도로 개설 및 가시설물 설치 시 절ㆍ성토 공사 시 굴착면 기울기 준수, 토공장비ㆍ다짐장비 및 덤프트럭 등의 작업 시 신호수 배치, 수전 설비에 대한 접근성ㆍ주변 조건ㆍ접지ㆍ전선방호ㆍ위험지역 구획 및 격리 등의 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -216,7 +427,88 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "세그먼트를 조립하지 않은 채 굴진하여 막장이 붕락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "암판정 및 설계에 의한 무지보구간 이외에는 세그먼트가 조립되지 않은 상태로의 굴진은 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "장비성능과 지반상태에 따른 굴진속도 기준을 설정하여 굴진하여야 하며, 지반상태는 막장관찰과 버력상태로 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "커터헤드 비트 교체를 위해 막장면에 진입했다가 낙석·붕락에 매몰",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "커터헤드부 회전판의 비트(Bit) 교체를 위해 막장면 진입 시에는 비트교체는 수명도달 전 안정지반에서 조기 교체하고, 진입 전 반드시 낙석 또는 붕락위험 여부를 확인하며, 이상발견 시 안전한 위치로 추가 굴진하고, 막장과 커터헤드 이격을 최소화하며, 부득이한 경우 막장부 보강조치 후 진입 및 내부에 감시자를 비상대기시킨다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "낙반 등에 의하여 근로자가 위험해질 우려가 있는 경우에 터널 지보공 및 록볼트의 설치, 부석(浮石)의 제거 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:351"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "정전·비상 시 갱내가 암전되어 대피하지 못함",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업 중 정전 및 비상사태에 대비하여 비상조명 설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "터널 내ㆍ외부 연락을 위한 통신시설을 갖추어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "재해발생위험을 관계 근로자에게 신속히 알리기 위한 비상벨 등 통신설비 등을 설치하고, 그 설치장소를 관계 근로자에게 알려 준다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:360"
+                  }
+                },
+                {
+                  "measure": "터널건설작업을 할 때에 낙반ㆍ출수(出水) 등에 의하여 산업재해가 발생할 급박한 위험이 있는 경우에는 즉시 작업을 중지하고 근로자를 안전한 장소로 대피시킨다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:360"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -237,7 +529,61 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "이렉터·세그먼트 운반구역에서 근로자가 끼임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "세그먼트 블럭의 조립은 원격조정이 가능한 이렉터로 작업하되 이렉터 및 세그먼트 블록 운반구역에는 근로자 진입을 통제하기 위한 설비와 비상정치장치를 갖추어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "운반설비에서 후방설비로 세그먼트 블록을 하역 시에는 전용 기계설비를 사용하되 작업자는 세그먼트 블록의 운반경로 이외의 장소에서 작업한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "광차 등 운반설비에 세그먼트 블록 적재 및 운반 시에는 이탈방지를 위해 고임목 등의 고정기구를 사용하여 견고히 고정한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "굴진장비 회전부·유압설비 결함으로 파손·누유되어 재해",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "굴진장비는 1회/일 점검표를 이용하여 점검하되 점검표에는 살수 및 유압설비 연결부 누수ㆍ누유 여부, 기계 회전부의 마모 및 소음 상태, 설비 연결부(볼트, 용접)의 이완여부, 운전실 계기 작동상태, 벨트컨베이어 롤러 및 벨트상태, 경암 천공 및 굴진 작업 중 진동 및 소음 상태가 포함되어야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "Shield-T.B.M 장비는 전문 시공업체의 주기적인 검사를 실시하여야 하며 작업대차 이동 중 충돌사고 예방을 위한 대피장소 지정 및 장비 사용으로 인한 매연, 분진 발생에 따른 환기설비 설치 등 근로자 건강보호대책을 수립 후 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -258,7 +604,55 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "광차가 근로자 통로로 진입하거나 제동 불량으로 깔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "광차의 운행공간과 근로자 이동통로는 반드시 분리ㆍ설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "광차에는 비상정지장치, 경광등을 설치하고 근로자 탑승석에는 이탈방지 설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "광차의 운전속도는 10 km/h 로 제한한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "광차는 브레이크 및 비상정지 장치 작동상태, 조명 및 경광등 상태, 차량간 연결부 및 바퀴 이상유무를 포함하여 1회/일 이상 점검을 통해 정상상태를 유지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "광차의 견인차는 축전 전동식을 원칙으로 하며 장비정지에 따른 예비견인 설비를 확보한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -284,7 +678,61 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "수직구 인양작업 중 하부 근로자가 인양물에 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "수직구에서 버력반출을 위한 크레인작업 시 상ㆍ하연락은 유ㆍ무선 수신기를 이용하고 인양작업 시 하부작업자는 대피장소에 대피한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                },
+                {
+                  "measure": "수직구에는 근로자의 안전한 출입을 위해 가설통로를 설치하여야 하며 건설용 리프트를 설치 할 경우에는 사용 전 완성검사를 실시하고 하부의 건수(乾水)를 고려하여 바닥에서 일정높이를 이격하여 탑승구를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "장비 해체·반출 중 중량물이 낙하하거나 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "기계해체 및 반출 시에는 안전작업 방법ㆍ해체순서 및 투입인력, 해체작업에 따른 수직구 투입 인양장비 선정 및 보조기구 사용계획, 이동식 전기기계ㆍ기구 사용에 따른 감전재해예방 계획, 해체작업용 발판 등 가시설 설치계획 등의 내용이 포함된 작업계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "마감작업을 위해 사용하는 작업대는 추락재해예방을 위한 안전시설(승강설비, 안전난간, 안전대 부착설비 등)을 확보한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.4"
+                  }
+                },
+                {
+                  "measure": "보조터널에서의 장비조립을 위해서는 장비거치 및 굴진용 레일 설치 계획, 부재 투입순서 및 부재별 중량표 작성, 수직구 투입 인양장비 선정 및 보조기구 사용계획, 조립순서 및 방법, 조립작업용 발판 등 가시설 설치계획, 시운전 전ㆍ후 안전점검사항 등의 내용이 포함된 작업계획을 수립한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -298,6 +746,36 @@
               "guide": "doc:kosha_guide/C-61-2012",
               "section": "5.4",
               "controlLevel": "engineering"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "마감공사 유기용제 증기가 갱내에 체류하여 중독",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "마감공사를 위해 유기용제 등을 사용 할 경우에는 환기시설을 설치해야 하며 가스농도측정기를 사용하여 수시로 점검하고, 유해화학물질이 함유된 물질을 취급하는 경우에는 화학물질의 명칭ㆍ성분, 함유량, 안전ㆍ보건상의 취급주의 사항 등이 포함된 물질안전보건자료(MSDS)를 작성하여 취급근로자가 쉽게 볼 수 있는 장소에 게시 또는 비치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "벨트컨베이어 버력 낙하로 분진이 비산되어 흡입",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "벨트컨베이어에서 버력낙하 시 분진비산방지를 위해 살수 및 집진설비를 갖추어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-61-2012",
+                    "section": "5.3"
+                  }
+                }
+              ]
             }
           ]
         }

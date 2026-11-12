@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "hasHazard": [
     "hazard:cave_in",
@@ -98,7 +97,85 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "마스트 부재 강도 미확보로 좌굴로 무너짐",
+              "measures": [
+                {
+                  "measure": "리프트의 마스트 등 부속품은 설치높이 및 운행속도 등에 적합한 강도를 갖는지를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-79-2015",
+                    "section": "5.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "설치높이별 구조검토 미수행으로 마스트 부재가 축소되어 좌굴·무너짐",
+              "measures": [
+                {
+                  "measure": "타워크레인은 건축물 부재의 최대중량 또는 인양하고자 하는 설비의 최대 중량, 작업반경, 인양속도, 마스트의 상승방법, 해체방법 등을 검토하여 그에 적합한 장비종류, 정격하중 및 설치위치를 선정한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-79-2015",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "곤돌라는 외부마감공사를 위하여 설치하는 것이 주된 목적이므로 사용목적 에 적합한 구조성능 및 설치위치를 계획한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-79-2015",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "건설용 리프트는 설치높이에 따른 별도의 구조검토를 수행하여야 하며, 설치 높이가 증가함에 따른 마스트 부재의 축소를 고려한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-79-2015",
+                    "section": "6.4"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "기상 악화 시 작업으로 무너짐 또는 떨어짐",
+              "measures": [
+                {
+                  "measure": "사업주는 리프트의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 하여야 한다. 비, 눈, 그 밖에 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:156",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "부적합 강도·구조의 마스트 사용으로 무너짐",
+              "measures": [
+                {
+                  "measure": "리프트의 마스트 등 부속품은 설치높이 및 운행속도 등에 적합한 강도를 갖는지를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-79-2015",
+                    "section": "5.2"
+                  }
+                },
+                {
+                  "measure": "건설용 리프트는 설치높이에 따른 별도의 구조검토를 수행하여야 하며, 설치 높이가 증가함에 따른 마스트 부재의 축소를 고려한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-79-2015",
+                    "section": "6.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -114,7 +191,35 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "관계자 외 출입을 막지 않아 운반구 승강부에 끼임",
+              "measures": [
+                {
+                  "measure": "사업주는 리프트의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 하여야 한다. 작업을 할 구역에 관계 근로자가 아닌 사람의 출입을 금지하고 그 취지를 보기 쉬운 장소에 표시할 것",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:156",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "임의 조작으로 맞음 또는 끼임",
+              "measures": [
+                {
+                  "measure": "사업주는 리프트 조작반(盤)에 잠금장치를 설치하는 등 관계 근로자가 아닌 사람이 리프트를 임의로 조작함으로써 발생하는 위험을 방지하기 위하여 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:152",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -130,7 +235,35 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "관계자 외 출입금지 미실시로 작업자 끼임",
+              "measures": [
+                {
+                  "measure": "사업주는 리프트의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 하여야 한다. 작업을 할 구역에 관계 근로자가 아닌 사람의 출입을 금지하고 그 취지를 보기 쉬운 장소에 표시할 것",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:156",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "조작반 잠금 미설치로 임의조작 중 끼임",
+              "measures": [
+                {
+                  "measure": "사업주는 리프트 조작반(盤)에 잠금장치를 설치하는 등 관계 근로자가 아닌 사람이 리프트를 임의로 조작함으로써 발생하는 위험을 방지하기 위하여 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:152",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -155,7 +288,63 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "지반침하, 불량자재, 헐거운 결선으로 리프트가 붕괴되거나 넘어짐",
+              "measures": [
+                {
+                  "measure": "사업주는 지반침하, 불량한 자재사용 또는 헐거운 결선(結線) 등으로 리프트가 붕괴되거나 넘어지지 않도록 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:154",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "사업주는 순간풍속이 초당 35미터를 초과하는 바람이 불어올 우려가 있는 경우 건설용 리프트(지하에 설치되어 있는 것은 제외한다)에 대하여 받침의 수를 증가시키는 등 그 붕괴 등을 방지하기 위한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:154",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "지반침하, 불량자재, 헐거운 결선으로 리프트가 붕괴되거나 넘어짐",
+              "measures": [
+                {
+                  "measure": "사업주는 지반침하, 불량한 자재사용 또는 헐거운 결선(結線) 등으로 리프트가 붕괴되거나 넘어지지 않도록 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:154",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "사업주는 순간풍속이 초당 35미터를 초과하는 바람이 불어올 우려가 있는 경우 건설용 리프트(지하에 설치되어 있는 것은 제외한다)에 대하여 받침의 수를 증가시키는 등 그 붕괴 등을 방지하기 위한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:154",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "운반구 이탈로 리프트가 무너짐",
+              "measures": [
+                {
+                  "measure": "사업주는 리프트(자동차정비용 리프트는 제외한다. 이하 이 관에서 같다)의 운반구 이탈 등의 위험을 방지하기 위하여 권과방지장치, 과부하방지장치, 비상정지장치 등을 설치하는 등 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:151"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -166,7 +355,22 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "운반구 내부에만 탑승조작장치가 있는데 사람이 없는 상태로 작동하여 끼임",
+              "measures": [
+                {
+                  "measure": "사업주는 운반구의 내부에만 탑승조작장치가 설치되어 있는 리프트를 사람이 탑승하지 아니한 상태로 작동하게 해서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:152",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -177,7 +381,22 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "운반구 내부에만 탑승조작장치가 있어 사람이 탑승하지 않은 상태에서 작동하다 떨어짐",
+              "measures": [
+                {
+                  "measure": "사업주는 운반구의 내부에만 탑승조작장치가 설치되어 있는 리프트를 사람이 탑승하지 아니한 상태로 작동하게 해서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:152",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

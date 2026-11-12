@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "hasHazard": [
     "hazard:struck_by_overturn",
@@ -159,7 +158,118 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "적재된 부재의 고정 로프를 푸는 순간 부재가 무너져 깔림",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "로프 풀기 작업은 적재함의 화물이 떨어질 위험이 없음을 확인한 후에 하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:177",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "관리감독자는 고정용 로프를 풀었을 때 부재가 무너질 위험이 없는가를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "작업순서 및 그 순서마다의 작업방법을 정하고 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:177",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "해당 작업을 하는 장소에 관계 근로자가 아닌 사람이 출입하는 것을 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:177",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "기구와 공구를 점검하고 불량품을 제거한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:177",
+                    "item": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "반입된 유니트 부재를 불안정하게 적재하여 전도·도괴",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "반입된 부재는 전도 및 도괴가 되지 않도록 바닥상태, 적재높이, 적재방법 등을 사전에 검토하여 안전하게 적재한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "부재 운반용으로 팔레트 등을 사용하는 경우 적재물이 움직이지 않도록 차량에 결속 처리한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "화물의 붕괴 또는 낙하에 의한 위험을 방지하기 위하여 화물에 로프를 거는 등 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:173",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "부재는 각 유니트 부재마다 번호를 기재하여 현장 설치순서에 적합하도록 배치 및 적재한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "화물을 적재하는 경우에는 최대적재량을 초과해서는 아니 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:173",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -215,7 +325,106 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "하역 중 신호가 맞지 않아 매달린 부재가 흔들려 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "하역작업 시에는 신호수를 배치하여 정해진 신호에 따라야 하며 신호는 장비 운전원이 잘 볼 수 있는 곳에서 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "양중기를 사용하는 작업은 일정한 신호방법을 정하여 신호하도록 하며 운전자는 그 신호에 따른다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:40",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물을 2명 이상의 근로자가 취급하거나 운반하는 작업도 일정한 신호방법을 정하여 신호하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:40",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "타워크레인을 사용하여 작업을 하는 경우 타워크레인마다 근로자와 조종 작업을 하는 사람 간에 신호업무를 담당하는 사람을 각각 둔다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "중량물 취급 작업계획서와 작업지휘자 없이 양중하여 통제가 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "중량물의 취급작업은 사전조사를 하고 그 조사결과를 고려한 작업계획서를 작성하여 그 계획에 따라 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 11
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등을 사용하는 작업도 사전조사를 하고 그 조사결과를 고려한 작업계획서를 작성하여 그 계획에 따라 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "중량물의 취급작업 작업계획서를 작성한 경우 작업지휘자를 지정하여 작업계획서에 따라 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:39",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작성한 작업계획서의 내용을 해당 근로자에게 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "부재를 현장으로 운반하기 전에 운반차량의 차종과 주행시간, 진입경로, 운반물량, 차량 적재 및 결속방법, 상하차 시 안전작업, 부재 적재장소 확보 등이 포함된 부재 운반계획서를 작성한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -248,6 +457,59 @@
               "item": 2,
               "controlLevel": "administrative"
             }
+          ],
+          "risks": [
+            {
+              "statement": "판유리·창호재를 인력으로 들어 옮기다 목·허리 손상",
+              "measures": [
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                },
+                {
+                  "measure": "취급하기 곤란한 물품은 손잡이를 붙이거나 갈고리, 진공빨판 등 적절한 보조도구를 활용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "5킬로그램 이상의 중량물을 인력으로 들어올리는 작업을 하는 경우 물품의 중량과 무게중심에 대하여 작업장 주변에 안내표시를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "과도한 무게로 인하여 근로자의 목·허리 등 근골격계에 무리한 부담을 주지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:663"
+                  }
+                },
+                {
+                  "measure": "자재 하역작업 시에는 부재의 형상, 종류, 중량, 양중장비 능력, 현장여건 등을 고려하여 하역장비 사용을 결정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "부재의 현장 반입은 작업공정 순서에 맞게 이루어지도록 하여 불필요한 과다 반입과 소운반을 최소화한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -279,7 +541,54 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "하역장소가 통로·타 공종과 겹쳐 부딪힘",
+              "measures": [
+                {
+                  "measure": "부재 하역장소는 근로자의 통행에 불편을 주지 않고 타 작업에 간섭이 발생하지 않는 위치를 선정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "작업장으로 통하는 장소 또는 작업장 내에 근로자가 사용할 안전한 통로를 설치하고 항상 사용할 수 있는 상태로 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:22",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "통로면으로부터 높이 2미터 이내에는 장애물이 없도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:22",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "통로의 주요 부분에 통로표시를 하고 근로자가 안전하게 통행할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:22",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등의 포크·버킷·암 또는 이들에 의하여 지탱되어 있는 화물의 밑에는 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 7
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -571,7 +880,509 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "창호 설치를 위해 개구부 방호를 걷어낸 상태에서 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "난간등을 설치하는 것이 매우 곤란하거나 작업의 필요상 임시로 난간등을 해체하여야 하는 경우에는 추락방호망을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락할 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "부재 설치 시 추락 및 부재의 낙하·비래 재해예방을 위하여 폭 40센티미터 이상의 작업발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "작업여건상 작업발판의 설치가 곤란한 경우에는 안전대 부착설비를 설치하고 안전대를 착용하고 작업하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "어두운 장소에서도 알아볼 수 있도록 개구부임을 표시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "추락방호망의 설치위치는 가능하면 작업면으로부터 가까운 지점에 설치하고 작업면으로부터 망의 설치지점까지의 수직거리는 10미터를 초과하지 아니한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "추락방호망은 수평으로 설치하고 망의 처짐은 짧은 변 길이의 12퍼센트 이상이 되도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "건축물 등의 바깥쪽으로 설치하는 경우 추락방호망의 내민 길이는 벽면으로부터 3미터 이상 되도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "추락방호망은 한국산업표준에서 정하는 성능기준에 적합한 것을 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "리프트·양중 부위의 좁은 공간에 유니트를 끼워 넣다 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "리프트 및 부재 양중 부위에 대한 설치작업은 좁은 공간에 유니트 부재를 끼워서 설치하므로 작업 전에 추락방지를 위한 시설과 유니트 부재를 지지할 수 있는 보조용 로프 등의 안전시설을 반드시 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에는 비계를 조립하는 등의 방법으로 작업발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업발판을 설치하기 곤란한 경우에는 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "추락할 위험이 있는 높이 2미터 이상의 장소에서 근로자에게 안전대를 착용시킨 경우 안전대를 안전하게 걸어 사용할 수 있는 설비를 설치한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "안전대 및 부속설비의 이상 유무를 작업을 시작하기 전에 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:44",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "발판재료는 작업할 때의 하중을 견딜 수 있도록 견고한 것으로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "작업발판의 폭은 40센티미터 이상으로 하고 발판재료 간의 틈은 3센티미터 이하로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "높이 또는 깊이가 2미터를 초과하는 장소에서 작업하는 경우 근로자가 안전하게 승강하기 위한 건설용 리프트 등의 설비를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:46"
+                  }
+                },
+                {
+                  "measure": "작업발판의 지지물은 하중에 의하여 파괴될 우려가 없는 것을 사용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "작업발판재료는 뒤집히거나 떨어지지 않도록 둘 이상의 지지물에 연결하거나 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "작업발판을 작업에 따라 이동시킬 경우에는 위험 방지에 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:56",
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "리프트를 이용하여 부재를 양중할 때에는 적재 중량 확인, 출입문 닫힘상태 및 통로 발판 설치가 양호한지 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "곤돌라·달비계에서 실란트 작업 중 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "곤돌라의 운반구에 근로자를 탑승시키는 경우에는 운반구가 뒤집히거나 떨어지지 않도록 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "variant": "곤돌라",
+                  "basis": {
+                    "article": "art:기준규칙:86",
+                    "paragraph": 5
+                  }
+                },
+                {
+                  "measure": "안전대나 구명줄을 설치하고, 안전난간을 설치할 수 있는 구조인 경우에는 안전난간을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:86",
+                    "paragraph": 5
+                  }
+                },
+                {
+                  "measure": "실란트 작업 시 추락재해 예방을 위해서 안전한 작업방법, 작업순서, 작업대, 안전대 부착설비, 개인보호구 지급 및 착용 등에 대한 조치를 우선한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "달기 와이어로프, 달기 체인, 달기 강선, 달기 강대는 한쪽 끝을 비계의 보 등에, 다른 쪽 끝을 내민 보, 앵커볼트 또는 건축물의 보 등에 각각 풀리지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "이음매가 있는 것, 심하게 변형되거나 부식된 와이어로프는 달비계에 사용하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "곤돌라에 과부하방지장치, 권과방지장치, 비상정지장치 및 제동장치가 정상적으로 작동될 수 있도록 미리 조정해 둔다.",
+                  "controlLevel": "administrative",
+                  "variant": "곤돌라",
+                  "basis": {
+                    "article": "art:기준규칙:134",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "달비계의 작업발판은 폭을 40센티미터 이상으로 하고 틈새가 없도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "작업발판의 재료는 뒤집히거나 떨어지지 않도록 비계의 보 등에 연결하거나 고정시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "달기 강선 및 달기 강대는 심하게 손상·변형 또는 부식된 것을 사용하지 않도록 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "고소작업대에서 부재를 설치하다 과상승·전도로 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "고소작업대에 끼임·충돌 등 재해를 예방하기 위한 가드 또는 과상승방지장치를 설치한다.",
+                  "controlLevel": "engineering",
+                  "variant": "고소작업대",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "갑작스러운 이동을 방지하기 위하여 아웃트리거 또는 브레이크 등을 확실히 사용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "작업대의 붐대를 상승시킨 상태에서 탑승자는 작업대를 벗어나지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 4,
+                    "item": 8
+                  }
+                },
+                {
+                  "measure": "작업대는 정격하중을 초과하여 물건을 싣거나 탑승하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 4,
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "작업자가 안전모·안전대 등의 보호구를 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 4,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "고소작업대를 이동하는 경우에는 작업대를 가장 낮게 내리고 작업자를 태우고 이동하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "variant": "고소작업대",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 3,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "바닥과 고소작업대는 가능하면 수평을 유지하도록 한다.",
+                  "controlLevel": "administrative",
+                  "variant": "고소작업대",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "안전한 작업을 위하여 적정수준의 조도를 유지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 4,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "이동통로의 요철상태 또는 장애물의 유무 등을 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:186",
+                    "paragraph": 3,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "고소작업대를 이용하여 부재를 설치할 경우에는 고소작업대 안전보건작업 지침의 규정에 따른다.",
+                  "controlLevel": "engineering",
+                  "variant": "고소작업대",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "개구부에 설치한 안전난간이 규격·강도에 미달하여 기대는 순간 무너져 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "안전난간은 구조적으로 가장 취약한 지점에서 가장 취약한 방향으로 작용하는 100킬로그램 이상의 하중에 견딜 수 있는 튼튼한 구조로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "안전난간은 상부 난간대, 중간 난간대, 발끝막이판 및 난간기둥으로 구성한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "상부 난간대는 바닥면·발판 또는 경사로의 표면으로부터 90센티미터 이상 지점에 설치하고, 상부 난간대를 120센티미터 이하에 설치하는 경우에는 중간 난간대는 상부 난간대와 바닥면등의 중간에 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "발끝막이판은 바닥면등으로부터 10센티미터 이상의 높이를 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "난간기둥은 상부 난간대와 중간 난간대를 견고하게 떠받칠 수 있도록 적정한 간격을 유지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "상부 난간대와 중간 난간대는 난간 길이 전체에 걸쳐 바닥면등과 평행을 유지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "난간대는 지름 2.7센티미터 이상의 금속제 파이프나 그 이상의 강도가 있는 재료로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:13",
+                    "item": 6
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "실내측 창호 마감을 이동식 사다리 위에서 하다 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "이동식 사다리는 평탄하고 견고하며 미끄럽지 않은 바닥에 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "이동식 사다리의 넘어짐을 방지하기 위하여 견고한 시설물에 연결하여 고정하거나 아웃트리거를 설치하거나 다른 근로자가 지지하여 넘어지지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 설치한 바닥면에서 높이 3.5미터 이하의 장소에서만 작업한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "이동식 사다리의 최상부 발판 및 그 하단 디딤대에 올라서서 작업하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "안전모를 착용하되 작업 높이가 2미터 이상인 경우에는 안전모와 안전대를 함께 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "제조사가 정하여 표시한 이동식 사다리의 최대사용하중을 초과하지 않는 범위 내에서만 사용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "이동식 사다리 사용 전 변형 및 이상 유무 등을 점검하여 이상이 발견되면 즉시 수리하거나 그 밖에 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 7
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -667,7 +1478,225 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "유니트 양중 중 줄걸이가 탈락하여 부재가 낙하",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "화물의 하중을 직접 지지하는 달기와이어로프 또는 달기체인은 안전계수가 5 이상인 것을 사용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "훅, 샤클, 클램프, 리프팅 빔은 안전계수가 3 이상인 것을 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "이음매가 있는 와이어로프는 양중기에 사용하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:166"
+                  }
+                },
+                {
+                  "measure": "타워크레인이나 이동식크레인으로 부재를 양중할 때에는 전담 신호수를 배치하고 작업 전 양중용 로프의 이상 유무를 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "달기구는 최대허용하중 등의 표식이 견고하게 붙어 있는 것을 사용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:163",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "인양할 하물을 바닥에서 끌어당기거나 밀어내는 작업을 하지 아니한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "고정된 물체를 직접 분리·제거하는 작업을 하지 아니한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "구조체 강도가 부족하거나 부착철물이 변형된 상태에서 유니트를 걸어 커튼월 틀이 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "부재 설치는 구조체 콘크리트의 압축강도가 설계기준강도 이상일 때 실시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "철물설치는 수직, 수평 및 높낮이를 확인한 후에 구조용 기둥 및 슬래브 철근 등에 움직이지 않도록 용접 등의 방법으로 고정한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설 시에는 철물이 움직이거나 틀어짐이 없는지 확인하고 변형이 발생되면 즉시 수정조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "긴결재 설치는 고정용 구멍에 볼트를 끼우고 1차 긴결재를 가조립한 후 중량물인 유니트를 가조립하여 전도, 도괴 등을 방지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "유니트 설치 전에 공장제작 시 각종 철물들이 잘 부착되었는지를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍 중 설치 도중인 커튼월이 변형·이탈하여 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "강풍 등 외부 환경적인 요인으로 커튼월의 변형 및 낙하를 방지하기 위하여 부착철물과 커튼월의 접합부에 대한 처리를 철저히 한다.",
+                  "controlLevel": "administrative",
+                  "variant": "커튼월",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "순간풍속이 초당 15미터를 초과하는 경우에는 타워크레인의 운전작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "작업 일정은 커튼월의 형식, 규모, 기상조건, 휴일, 작업범위 등을 고려하여 정한다.",
+                  "controlLevel": "administrative",
+                  "variant": "커튼월",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "설치용 공구가 낙하하여 하부 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "부재 설치용 공구는 낙하 위험이 있으므로 공구함을 만들고 사용한 공구는 반드시 공구함에 넣어 관리한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "추락에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험 또는 근로자가 추락할 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반은 높이 10미터 이내마다 설치하고 내민 길이는 벽면으로부터 2미터 이상으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "낙하물 방지망 또는 방호선반의 수평면과의 각도는 20도 이상 30도 이하를 유지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 3,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "보호구를 받거나 착용지시를 받은 근로자는 그 보호구를 착용하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -697,7 +1726,58 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "먹메김 중 구조물 돌출물에 걸려 넘어짐",
+              "measures": [
+                {
+                  "measure": "부재 설치 전 구조물에 먹메김 시 돌출물에 의한 추락, 전도 등의 재해위험이 있으므로 사전에 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "창호 설치 전 실내측 조도가 부족하여 자재에 걸려 넘어지거나 공구에 다침",
+              "measures": [
+                {
+                  "measure": "근로자가 상시 작업하는 장소의 보통작업 작업면 조도를 150럭스 이상으로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:8",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "부재 하역장소는 근로자의 통행에 불편을 주지 않고 타 작업에 간섭이 발생하지 않는 위치를 선정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "통로면으로부터 높이 2미터 이내에는 장애물이 없도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:22",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "절단·베임·찔림",
@@ -720,7 +1800,40 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:crushing"
+          "hazard": "hazard:crushing",
+          "risks": [
+            {
+              "statement": "판유리 취급·파손 중 파편에 베임",
+              "measures": [
+                {
+                  "measure": "물체가 흩날릴 위험이 있는 작업에는 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "물체의 낙하·충격, 물체에의 끼임, 감전 또는 정전기의 대전에 의한 위험이 있는 작업에는 안전화를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "취급하기 곤란한 물품은 손잡이를 붙이거나 갈고리, 진공빨판 등 적절한 보조도구를 활용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:665",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -775,7 +1888,90 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "가설전기로 전동공구를 사용하다 감전",
+              "measures": [
+                {
+                  "measure": "임시배선의 전로가 설치되는 장소에서 사용하는 이동형 또는 휴대형 전기기계·기구에 감전방지용 누전차단기를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "누전차단기는 정격감도전류가 30밀리암페어 이하이고 작동시간은 0.03초 이내인 것으로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 5,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "전기기계·기구를 사용하기 전에 해당 누전차단기의 작동상태를 점검하고 이상이 발견되면 즉시 보수하거나 교환한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 4
+                  }
+                },
+                {
+                  "measure": "전기 기계·기구의 금속제 외함, 금속제 외피 및 철대에 접지를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:302",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "작업 중에 접촉하거나 접촉할 우려가 있는 배선 또는 이동전선의 절연피복이 손상되거나 노화됨으로 인한 감전의 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:313",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "설치된 접지설비에 대하여 항상 적정상태가 유지되는지를 점검하고 이상이 발견되면 즉시 보수하거나 재설치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:302",
+                    "paragraph": 4
+                  }
+                },
+                {
+                  "measure": "감전방지용 누전차단기를 설치하기 어려운 경우에는 작업시작 전에 접지선의 연결 및 접속부 상태 등이 적합한지 확실하게 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "분기회로 또는 전기기계·기구마다 누전차단기를 접속한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:304",
+                    "paragraph": 5,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "전선을 서로 접속하는 경우에는 해당 전선의 절연성능 이상으로 절연될 수 있는 것으로 충분히 피복하거나 적합한 접속기구를 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:313",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -783,6 +1979,28 @@
             {
               "guide": "doc:kosha_guide/C-55-2015",
               "controlLevel": "administrative"
+            }
+          ],
+          "risks": [
+            {
+              "statement": "청소 약품의 유해성을 확인하지 않고 사용하여 건강장해",
+              "measures": [
+                {
+                  "measure": "커튼월 작업을 완료한 후 청소에 필요한 약품 사용 시는 유해 여부를 확인한 후 보건상의 안전조치를 취한다.",
+                  "controlLevel": "administrative",
+                  "variant": "커튼월",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "부재에 결함 등이 발생하여 보수 및 보강 시는 별도의 안전작업 계획을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
             }
           ]
         }

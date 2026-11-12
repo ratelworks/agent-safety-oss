@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:bridge_5m_30m",
   "hasHazard": [
@@ -97,7 +96,155 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "교각 브라켓 고정 불량으로 이동식 비계 하중을 지지하지 못하고 붕괴",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "브라켓을 크레인 등으로 인양하여 교각에 설치할 때에는 고강도 강봉 등의 인장재로 교각에 견고하게 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                },
+                {
+                  "measure": "이동식 비계의 하중을 교각으로 전달하는 형태인 부착형 교각 브라켓을 설치할 때에는 브라켓 구조에 따라 교각에 고정할 수 있도록 홈을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                },
+                {
+                  "measure": "이동식 비계의 하중을 지주를 통하여 교각의 기초로 전달하는 형태인 지주형 브라켓은 교각의 양쪽에 설치하고 교각을 감싸는 형태로 보강재 또는 고강도 강봉 등의 인장재로 교각에 견고하게 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                },
+                {
+                  "measure": "이동식 비계는 이동식 비계에 작용하는 하중을 고려하여 안전성 여부를 검토하고, 이동식 비계의 설치, 이동, 해체작업 단계별 작업방법과 순서, 안전작업 매뉴얼, 근로자와 장비에 대한 안전조치 사항 등이 포함된 작업계획서를 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                },
+                {
+                  "measure": "이동식 비계에 사용되는 부재의 재질 및 용접상태, 볼트 등의 이상유무를 사전에 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "비계보가 지지되지 않거나 로울러가 불시 이동하여 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "지상에서 비계보의 각 분절(Segment)을 모두 연결하여 조립한 비계보를 설치할 때에는 전ㆍ후 교각의 이동대차 위에 안전하게 지지되도록 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "비계보는 설치 즉시 이동을 방지하기 위하여 로프 등으로 교각에 결속하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "비계보 조립 중에 로울러가 불시에 이동하지 않도록 각 로울러 앞ㆍ뒤에는 구름방지 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "비계보를 설치하기 위하여 전ㆍ후방 교각 사이에 가 벤트(Bent)를 설치할 때에는 가 벤트에 작용하는 비계보 하중과 지반 지지력을 검토하여 안전한 구조로 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "비계보를 조립할 때에는 이동용 레일 위에 로울러를 설치한 다음 그 위에서 비계보를 조립하도록 하고, 이때 비계보 이동에 장애가 되지 않는 다른 부재도 함께 설치하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "교대 후방의 지상에서 비계보 전체길이를 조립하여 이동ㆍ설치할 때에는 추진코 등 모든 부재를 조립하여 이동시킬 수 있도록 이동용 레일의 길이를 충분하게 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "조립이 완료된 비계보는 윈치 또는 유압 실린더 등을 사용하여 교량 상부구조물을 가설하여야 할 위치로 천천히 이동시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "후방 가로보 설치 전 강도·인장 미확인으로 슬래브 손상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "후방 가로보를 설치하기 전에 설치장소의 콘크리트 강도 및 교량 상부 구조물의 강연선 인장작업 완료여부를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "교량 상부 슬래브 하부에 있는 비계보를 고강도의 강봉 등 현수재로 후방 가로보에 매다는 작업시에는 교량 상부 슬래브에 손상을 주지 않도록 유의하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "이동식 비계의 본체 및 유압시스템의 전동기 외함에는 접지를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                },
+                {
+                  "measure": "브라켓의 측면 작업발판과 연결통로는 제작장에서 제작ㆍ설치되어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -118,7 +265,63 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "비계보를 공중에서 연결하다 근로자가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비계보 분절을 크레인으로 인양하여 공중에서 연결할 때에는 작업대(Cage)를 설치하여 작업하도록 하는 등 추락재해 예방조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "가로보 및 추진코를 크레인 등으로 인양하여 공중에서 비계보에 조립할 때에는 작업대 등을 설치하여 추락재해를 예방하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "외부 거푸집 조립시에는 측면 거푸집의 작업발판 단부에 미리 지상에서 표준안전난간을 설치한 후 인양하여 조립하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "이동식 비계에 설치하는 작업발판, 통로, 안전난간 등 안전시설은 고정형으로 설치하는 것을 원칙으로 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.5"
+                  }
+                },
+                {
+                  "measure": "이동식 비계 제작공장에서 설치할 안전시설은 운반 및 보관하는 동안 손상되지 않도록 관리하고, 운반 시 손상을 방지하기 위하여 안전시설을 분리할 때는 인양하여 설치하기 전에 지상에서 미리 부착하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.5"
+                  }
+                },
+                {
+                  "measure": "추락 및 낙하ㆍ비래 재해예방을 위한 안전방망은 부재의 조립ㆍ해체 등 고소작업을 시작하기 전에 고소작업장 하부 전체에 걸쳐 견실하게 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.5"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -143,7 +346,46 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "외부 거푸집 인양·설치 중 하부 근로자가 맞음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "외부 거푸집을 크레인으로 인양하여 설치할 경우에는 신호수를 배치하고 하부의 근로자를 대피시킨 상태에서 하부의 지주 연결핀을 체결하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.2"
+                  }
+                },
+                {
+                  "measure": "이동식 비계의 각 부재를 크레인으로 인양할 때에는 인양용 와이어로프를 부재의 2지점 이상에 결속하고 별도의 유도 로프를 설치하여 안전하게 유도하여야 하고, 공중에서 연결할 때는 작업이 종료될 때까지 크레인에 부재를 확실하게 매달고 있어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.1"
+                  }
+                },
+                {
+                  "measure": "낙하물로부터 통행차량을 보호하기 위하여 도로횡단구간의 이동식 비계 하부에 안전방망 또는 방호선반을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.5"
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -173,7 +415,100 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "이동식 비계가 이동 중 균형을 잃거나 불시 이동하여 붕괴",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "유압시스템 작동시 시스템 조작자와 각 브라켓의 유도원 사이에 신호체제를 유지하여 이동식 비계의 본체가 균형을 유지할 수 있도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "종단구배를 가진 공사구간에서 이동식 비계를 이동할 때에는 추진용유압 실린더가 비계보로부터 분리되어 있을 때 이동식 비계가 중력에 의하여 불시에 이동하지 않도록 이동식 비계의 본체를 항상 수평으로 유지ㆍ이동시켜야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "이동식 비계를 다음 작업 경간으로 이동할 때에는 이동작업 방법과 순서에 따라 천천히 이동시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "이동식 비계를 교량 상부구조물 가설높이에서 이동높이까지 내릴 때(약 100mm정도)에는 콘크리트 구조물이 파손되지 않도록 이동식 비계의 균형을 유지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "이동대차의 슬라이딩 부분에는 그리스 주입 및 테프론 미끄럼판 안착상태를 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "비계를 이동하는 동안에는 교각 및 브라켓에 충돌하지 않도록 주의하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "작업시작 전에 이동작업의 작업방법, 작업순서 및 안전조치 사항에 대하여 근로자에게 주지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍 중 비계를 이동하여 전도",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "강풍이 예보되면 이동식 비계의 이동작업을 중지하고 강풍에 의하여 전도되지 않도록 비계보를 서로 결속하는 보강재를 설치한 후 교각에 견고히 고정하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "최소 1주일 이상의 장기 일기예보를 파악하여 강풍ㆍ강우 등의 악천후가 없는 기간에 작업을 완료할 수 있도록 작업계획을 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.3"
+                  }
+                },
+                {
+                  "measure": "비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:37"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -194,7 +529,87 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "해체 중 부재를 매달지 않고 연결핀을 풀어 부재가 낙하",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "후방 가로보, 추진코, 가로보 등의 부재를 해체할 때에는 크레인 등 인양기계에 매단 상태에서 부재를 연결하고 있는 연결핀 또는 볼트를 해체하여 완전히 분리시킨 후 지상으로 내려야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "비계보 해체 시에는 비계보의 이동을 방지하기 위해 크레인에 비계보를 매단 상태에서 비계보와 이동대차를 연결하고 있는 추진용 유압 실린더를 해체하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "교각에 설치된 브라켓을 해체할 때는 서로 결속하고 있는 인장재를 풀기 전에 브라켓을 와이어로프 등으로 교각 상부에 고정하거나, 크레인 등 인양기계에 매달고 있어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "이동대차 해체 시에는 이동대차의 차륜 전ㆍ후에 구름방지장치를 설치하여 고정된 상태에서 이동대차와 브라켓을 연결하고 있는 유압 실린더를 해체하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "부재를 해체하여 지면으로 내릴 때에는 신호수를 배치하여 신호하고 해체작업장 하부에는 근로자의 출입을 금지하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "거푸집을 크레인으로 인양하여 지상으로 내릴 때에는 해체되지 않은 다른 부재와 충돌하지 않도록 유도용 로프를 설치하여 유도하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "해체할 비계보를 지면으로 내리기 위하여 크레인으로 인양할 때는 와이어로프를 비계보의 2지점 이상 결속하고 유도 로프를 설치하여 유도하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "해체작업순서는 설치순서의 역순으로 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "작업시작 전에 해체작업의 작업방법, 작업순서 및 안전조치 사항을 근로자에게 주지시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -220,7 +635,47 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "가로보 하부 작업발판 위에서 연결핀을 제거하다 함께 추락",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비계보에서 가로보 해체 시에는 가로보 하부에 부착된 작업발판 위에서 연결핀 또는 볼트를 제거하지 않도록 하여야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "비계보를 해체하기 위하여 전ㆍ후방 교각 사이에 가 벤트를 설치할 때는 상부에 작용하는 비계보 하중과 지반 지지력을 검토하여 안전한 구조로 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.4"
+                  }
+                },
+                {
+                  "measure": "이동식 비계의 설치, 이동 및 해체 작업 시에 근로자가 추락할 위험이 있는 개구부와 작업발판의 단부에 안전난간을 설치하고, 소형 바닥 개구부에는 덮개를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.5"
+                  }
+                },
+                {
+                  "measure": "MSS 구조물 및 관련 작업 공간에는 안전난간, 작업발판 등 고정형 안전시설을 설치하여 추락 위험을 최소화한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -251,7 +706,87 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "작업구역 구획 없이 장비가 운행되어 부딪힘·끼임",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업 구역과 이동 경로를 명확히 구획하고, 근로자 외의 인원의 접근을 제한하여 부딪힘 및 끼임 사고를 예방한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "크레인 및 기타 이동 장비 작업 시 신호수를 배치하고, 운전원과 신호수 간의 신호를 통일하여 명확한 의사소통을 유지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "작업 시작 전에 안전담당자를 지정하여 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "사용되는 모든 기계와 장비에 대해 주기적으로 안전점검을 실시하며, 이상이 발견되면 장비를 교체하거나 정비하여 이상이 없음을 확인한 후 사용한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "야간 작업 시 충분한 조명을 설치하여 작업 구역의 시야를 확보하고, 감전 위험을 방지하기 위해 전기 설비는 절연 처리한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "근로자에게 작업 전 안전 교육을 실시하여 작업 절차와 안전수칙을 숙지시키며, 외국인 근로자가 포함된 경우 원활한 의사소통을 위한 언어 교육을 추가로 실시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "작업 중 발생할 수 있는 비상 상황에 대비한 대응 계획을 수립하고, 근로자들에게 이를 교육하여 신속한 대응이 가능하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "근로자의 건강 상태를 작업 전에 확인하고, 작업 배치의 적정성을 결정한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                },
+                {
+                  "measure": "안전모, 안전대 등 개인보호구의 상태를 점검하고, 착용 방법을 교육하며, 작업 중에는 착용 여부 및 상태를 확인한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-2-2025",
+                    "section": "9.6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

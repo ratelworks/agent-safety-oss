@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:excavation_2m_plus",
   "hasHazard": [
@@ -114,7 +113,55 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fire_explosion"
+          "hazard": "hazard:fire_explosion",
+          "risks": [
+            {
+              "statement": "줄파기 없이 천공하여 지하에 묻힌 가스관·전력케이블을 파손해 폭발하거나 감전됨",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "지반굴착을 위한 천공 또는 항타 전에 천공위치에 따라 지하매설물 심도 이상 줄파기를 하여 지하 매설물의 유무 및 위치를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.1"
+                  }
+                },
+                {
+                  "measure": "주요 시설물에 대해서는 관계 법령에 따라 시설물 관리자에게 사전 통보하여 굴착 작업 시에 입회할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.1"
+                  }
+                },
+                {
+                  "measure": "줄파기로 노출된 매설물 등이 파손됨으로써 근로자가 위험해질 우려가 있는 경우에는 해당 매설물 등에 대한 방호조치를 하거나 이설하는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:341",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "매설물 등의 방호작업에 대하여 관리감독자에게 해당 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:341",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "매설물·조적벽·콘크리트벽 또는 옹벽 등의 건설물에 근접한 장소에서 굴착작업을 할 때에 해당 가설물의 파손 등에 의하여 근로자가 위험해질 우려가 있는 경우에는 해당 건설물을 보강하거나 이설하는 등 해당 위험을 방지하기 위한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:341",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -135,7 +182,47 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "줄파기 구간을 방호하지 않아 보행자가 굴착부로 떨어지거나 이완된 지반이 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "가능한 적은 범위 내에서 줄파기를 하고, 보행자의 안전을 위해 보도 경계선에 가설 울타리를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.1"
+                  }
+                },
+                {
+                  "measure": "줄파기 작업 시에는 부근의 노면 건조물, 매설물 등에 피해가 없도록 하고, 지반이 이완되지 않도록 주의하며, 필요시에는 가복공 또는 가포장한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.1"
+                  }
+                },
+                {
+                  "measure": "시험굴착 및 줄파기는 흙막이 벽체 설치 진행을 고려하여 소정의 범위 밖에서 시행하며, 작업완료 후 조속히 표준도에 따라 복구하여 교통소통에 지장이 없도록 하고 복구 후 노면을 유지 보수한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.1"
+                  }
+                },
+                {
+                  "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -156,7 +243,47 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "천공을 마친 구멍을 덮지 않고 방치하여 근로자가 빠지고 공벽이 무너짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "흙막이 벽체 설치를 위한 천공 시 주변지반 침하 발생 등 주변지반에 피해가 예상되는 경우에는 케이싱 설치 등의 방법으로 시공하고 천공 즉시 흙막이 벽체 부재를 근입하여야 하며 천공구멍은 덮개 등으로 방호조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "천공한 구멍은 슬라임(Slime) 제거와 천공 심도를 확인하고 추락 등 재해를 방지하기 위해 덮개를 설치하는 등 방호조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "흙막이 벽체를 설치 후 천공 구멍은 양질의 토사, 모래, 소일시멘트(soil cement) 등으로 완전히 충진시킨 후에 후속 공정을 시행한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "깔림",
@@ -187,7 +314,77 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "천공기가 연약한 지반에서 침하하여 넘어지며 근로자를 덮침",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "장비 전도나 지하 매설물을 보호하기 위해 천공 장비가 위치하는 곳에는 철판을 설치하는 등의 방법으로 지반보강 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "천공 장비는 천공 깊이, 지층 및 지하수 상태 등을 종합적으로 고려하여 당해 현장에 적합한 장비를 선택한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "차량계 건설기계를 사용하는 작업을 하는 경우 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:199"
+                  }
+                },
+                {
+                  "measure": "연약한 지반에 설치하는 경우에는 아웃트리거·받침 등 지지구조물의 침하를 방지하기 위하여 깔판·받침목 등을 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:209",
+                    "item": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "항타로 벽체를 설치하면서 부적합한 장비를 써서 말뚝이 손상되거나 장비가 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "항타로 흙막이 벽체를 설치할 경우 항타장비는 말뚝의 종류, 중량, 근입깊이, 타입 본수, 토질, 주위환경 등을 고려하여 현장 여건에 적합한 안전하고 경제적인 장비를 선택한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "말뚝의 항타는 연속적으로 타입하되, 소정의 심도까지 반드시 근입하여야 한다. 토사인 경우 굴착저면 아래로 최소한 2m 이상 근입한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "항타기 또는 항발기를 조립하거나 해체하는 경우 항타기 또는 항발기의 권상기가 들리거나 미끄러지거나 흔들리지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:207",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -227,7 +424,137 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "근입깊이·수직도가 확보되지 않은 벽체가 굴착 후 측압을 못 버티고 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "흙막이 벽체의 선단은 설계도서에 의거 충분한 근입깊이를 확보한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "천공기의 수직도(설계기준 또는 말뚝길이의 1/200 이하)를 유지하기 위해 장비 자체의 경사계 및 트랜싯 등을 활용하여 수직도를 관리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "천공 깊이는 설계도서에서 정하는 깊이 이상을 확보하여야 하며, 굴착 토사를 관찰하는 등의 방법을 통하여 설계 당시 반영한 지층의 두께, 지질의 상태, 지하수위 등과의 동일 여부를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "천공 깊이는 천공 장비에 깊이 표시를 하거나, 삽입되는 H-Pile에 길이를 표시하는 등의 방법으로 천공 깊이를 확인할 수 있도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "흙막이 벽체 설치 시 설계도서에서 명시한 간격을 준수하고 수직도를 확인한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "흙막이지보공의 재료로 변형·부식되거나 심하게 손상된 것을 사용해서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:345"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "설계와 다른 지반이 나왔는데도 작업을 계속해 벽체가 지지력을 잃고 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "천공 작업을 시행하는 중 설계에 반영된 지반 조건과 상당한 차이가 있어 구조적인 안정성에 영향을 미칠 것으로 판단될 경우에는 작업을 중지하고 천공 깊이를 재검토한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "흙막이지보공을 조립하는 경우 미리 그 구조를 검토한 후 조립도를 작성하여 그 조립도에 따라 조립하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:346",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "조립도에는 흙막이판·말뚝·버팀대 및 띠장 등 부재의 배치·치수·재질 및 설치방법과 순서가 명시되어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:346",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "굴착작업의 사전조사 내용은 형상·지질 및 지층의 상태, 균열·함수(含水)·용수 및 동결의 유무 또는 상태, 매설물 등의 유무 또는 상태, 지반의 지하수위 상태로 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-6호"
+                  }
+                },
+                {
+                  "measure": "굴착작업의 작업계획서에는 굴착방법 및 순서, 토사등 반출 방법, 필요한 인원 및 장비 사용계획, 매설물 등에 대한 이설·보호대책, 사업장 내 연락방법 및 신호방법, 흙막이 지보공 설치방법 및 계측계획, 작업지휘자의 배치계획을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-6호"
+                  }
+                },
+                {
+                  "measure": "굴착작업을 하는 경우 사전조사 결과를 고려하여 별표 4의 구분에 따른 사항을 포함한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "H-Pile 이음부를 같은 높이에 두거나 용접이 부실하여 이음부가 파단되며 벽체가 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "흙막이 벽체 부재를 이음 할 경우에는 응력이 최소가 되는 곳으로써 지중에서 동일 높이를 피한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "흙막이 벽체 부재의 이음은 흙, 녹 등 이물질을 제거한 후 용접을 실시하여야 하며 용접 이음부는 모재의 응력 부담능력 이상이 되도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -253,7 +580,61 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "천공 장비로 케이싱을 인양하는 중 결속이 풀려 자재가 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "천공 장비로 케이싱을 인양할 때는 자재가 불시에 낙하하지 않도록 자재의 결속 상태를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:14",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "토사등이 떨어질 우려가 있는 등 위험한 장소에 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 11
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "흙막이 상단부가 배면 지반보다 낮아 지표수와 토석이 굴착부로 쏟아짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "흙막이 벽체는 흙막이 배면부 지반 높이 보다 약 0.2m 높게 시공하고 동 위치에 발끝막이판을 설치하는 등 흙막이 상단부의 지표수 유입 방지, 낙석, 낙하 발생 방지 위한 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "흙막이 가시설과 시공되는 구조물 사이에는 충분한 작업공간을 확보한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "건강장해",
@@ -274,6 +655,39 @@
               "item": 4,
               "controlLevel": "ppe"
             }
+          ],
+          "risks": [
+            {
+              "statement": "천공 중 발생한 흙이 날리고 소음·분진에 노출되어 근로자가 눈을 다치거나 건강장해를 입음",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "천공 작업 시 흙의 비산을 방지하기 위해 천공기 모터 토출구에 가림막을 설치하는 등의 방법으로 토사 비산 방지대책을 강구한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "천공 작업 시 발생하는 소음과 분진으로부터 근로자를 보호하기 위해 귀마개, 방진 마스크 등 개인용 보호구를 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "물체가 흩날릴 위험이 있는 작업에는 보안경을 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            }
           ]
         },
         {
@@ -290,7 +704,39 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "슬라임을 방치하거나 함부로 처리하여 근로자가 미끄러지고 침사 설비가 넘침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "천공 및 슬라임(Slime) 굴착 토는 주변 현장을 더럽히지 않도록 즉시 처리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "천공 시 지하수와 함께 다량의 슬라임(Slime) 발생 시 별도의 침사지를 설치하여 토사가 하수관으로 직접 유입되지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                },
+                {
+                  "measure": "침사된 슬라임(Slime)은 폐기물로 간주되므로 건조한 흙과 섞어 사토장으로 처리한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.1.4"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -330,7 +776,76 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "토류판 배면에 공극이 남아 배면토가 유실되고 지반이 꺼지면서 근로자가 매몰됨",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "토류판을 설치한 후 토류판 배면에는 공극이 발생되지 않도록 신속히 양질의 토사, 소일 시멘트 등으로 뒷채움하여 흙막이벽의 안전성을 확보한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.2.4"
+                  }
+                },
+                {
+                  "measure": "토류판은 흙막이 벽면과 밀착되게 하고 각 토류판 사이에 틈새가 발생되지 않도록 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.2.4"
+                  }
+                },
+                {
+                  "measure": "흙막이 지보공을 설치하여 위험을 방지하기 위한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:50",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "토사등의 붕괴 또는 낙하가 발생할 우려가 있는 굴착작업 장소 및 그 아래에 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 11
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "두께가 부족하거나 재사용한 토류판이 측압을 못 버티고 파괴되어 흙이 쏟아짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "토류판 부재는 최종 굴착 깊이에서 최대 측압강도로 계산된 판의 두께 이상의 것으로 전 흙막이벽에 사용한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.2.4"
+                  }
+                },
+                {
+                  "measure": "재사용 토류판과 이음처리가 된 토류판은 사용치 말아야 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.2.4"
+                  }
+                },
+                {
+                  "measure": "흙막이지보공의 재료로 변형·부식되거나 심하게 손상된 것을 사용해서는 아니 된다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:345"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -347,7 +862,32 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "토류판 양끝단이 H-Pile 플랜지에 충분히 걸리지 않아 토류판이 빠지며 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "토류판의 양끝단은 설계기준 이상으로써 판 두께 이상이 엄지말뚝(H-pile)의 플랜지(Flange)에 지지되도록 하고 그 후면이 굴착 지반면에 밀착되도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-1-2025",
+                    "section": "7.2.4"
+                  }
+                },
+                {
+                  "measure": "흙막이지보공을 설치하였을 때에는 부재의 손상·변형·부식·변위 및 탈락의 유무와 상태를 정기적으로 점검하고 이상을 발견하면 즉시 보수한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:347",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:electric_work_50v_plus",
   "hasHazard": [
@@ -147,7 +146,76 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn"
+          "hazard": "hazard:struck_by_overturn",
+          "risks": [
+            {
+              "statement": "전선드럼·분전반 등 중량물을 인력으로 취급하다 깔림",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "중량물을 운반하거나 취급하는 경우에는 하역운반기계 또는 운반용구를 사용한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:385"
+                  }
+                },
+                {
+                  "measure": "중량물의 취급작업을 하는 경우 사전조사를 하고 그 결과를 기록·보존하며, 조사결과를 고려한 작업계획서를 작성하여 그 계획에 따라 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 11
+                  }
+                },
+                {
+                  "measure": "중량물 취급 작업계획서에는 추락위험·낙하위험·전도위험·협착위험·붕괴위험을 예방할 수 있는 안전대책을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-11호"
+                  }
+                },
+                {
+                  "measure": "중량물 취급작업의 작업계획서를 작성한 경우 작업지휘자를 지정하여 작업계획서에 따라 작업을 지휘하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:39",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작성한 작업계획서의 내용을 해당 근로자에게 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "원통형 전선드럼이 굴러 근로자를 덮침",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "드럼통 등 구를 위험이 있는 중량물을 보관하거나 작업 중 취급하는 경우에는 구름멈춤대와 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한하며, 보관하거나 작업 중인 장소가 경사면인 경우에는 경사면 아래로 출입을 제한한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:386",
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -179,7 +247,56 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "하역운반기계의 포크나 화물 밑에 들어갔다가 화물이 떨어져 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "지게차·구내운반차·화물자동차 등 차량계 하역운반기계의 포크·버킷·암 또는 이들에 의하여 지탱되어 있는 화물의 밑에 있는 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "유압·체인 또는 로프 등에 의하여 지탱되어 있는 기계·기구의 램·리프트·포크 및 암 등이 갑자기 작동함으로써 근로자에게 위험을 미칠 우려가 있는 장소에는 출입을 금지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등을 사용하는 작업의 사전조사를 하고 작업계획서를 작성하여 그 계획에 따라 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "차량계 하역운반기계등을 사용하는 작업계획서에는 추락·낙하·전도·협착 및 붕괴 등의 위험 예방대책과 차량계 하역운반기계등의 운행경로 및 작업방법을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-2호"
+                  }
+                },
+                {
+                  "measure": "물체가 떨어지거나 날아올 위험이 있는 작업에는 안전모를 지급하고 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:32",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -205,7 +322,63 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "가공배전선 아래로 자재운반 차량이 통과하다 붐이 충전전로에 접촉하여 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "충전전로 인근에서 차량, 기계장치 등의 작업이 있는 경우에는 차량등을 충전전로의 충전부로부터 300센티미터 이상 이격시켜 유지시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "대지전압이 50킬로볼트를 넘는 경우 이격시켜 유지하여야 하는 거리는 10킬로볼트 증가할 때마다 10센티미터씩 증가시킨다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "차량등의 높이를 낮춘 상태에서 이동하는 경우에는 이격거리를 120센티미터 이상으로 할 수 있다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자가 차량등의 그 어느 부분과도 접촉하지 않도록 울타리를 설치하거나 감시인 배치 등의 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "충전전로 인근에서 접지된 차량등이 충전전로와 접촉할 우려가 있을 경우에는 지상의 근로자가 접지점에 접촉하지 않도록 조치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 4
+                  }
+                },
+                {
+                  "measure": "충전전로의 전압에 적합한 절연용 방호구 등을 설치한 경우에는 이격거리를 절연용 방호구 앞면까지로 할 수 있다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:322",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -340,7 +513,223 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "무자격자가 전기기기의 설치·정비 작업을 하다 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "감전위험이 있는 전기기계·기구 또는 전로의 설치·해체·정비·점검 등의 작업을 하는 경우에는 「유해·위험작업의 취업 제한에 관한 규칙」 제3조에 따른 자격·면허·경험 또는 기능을 갖춘 유자격자가 작업을 수행하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:318"
+                  }
+                },
+                {
+                  "measure": "제318조에 따른 전기작업의 사전조사를 하고 작업계획서를 작성하여 그 계획에 따라 작업하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "전기작업 작업계획서에는 전기작업의 목적 및 내용, 전기작업 근로자의 자격 및 적정 인원, 작업 범위·작업책임자 임명·전격·아크 섬광·아크 폭발 등 전기 위험 요인 파악·접근 한계거리·활선접근 경보장치 휴대 등 작업시작 전에 필요한 사항, 전로차단에 관한 작업계획 및 전원 재투입 절차 등 작업 상황에 필요한 안전 작업 요령, 절연용 보호구 및 방호구·활선작업용 기구 등의 준비·점검·착용·사용 절차 및 방법을 포함한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "annex": "annex:기준규칙:별표4-5호"
+                  }
+                },
+                {
+                  "measure": "작성한 작업계획서의 내용을 해당 근로자에게 알린다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:38",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "전로를 차단하지 않고 노출 충전부 부근에서 작업하다 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "근로자가 노출된 충전부 또는 그 부근에서 작업함으로써 감전될 우려가 있는 경우에는 작업에 들어가기 전에 해당 전로를 차단한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "전기기기등에 공급되는 모든 전원을 관련 도면, 배선도 등으로 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 2,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "전원을 차단한 후 각 단로기 등을 개방하고 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 2,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "차단장치나 단로기 등에 잠금장치 및 꼬리표를 부착한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 2,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "개로된 전로에서 유도전압 또는 전기에너지가 축적되어 근로자에게 전기위험을 끼칠 수 있는 전기기기등은 접촉하기 전에 잔류전하를 완전히 방전시킨다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 2,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "검전기를 이용하여 작업 대상 기기가 충전되었는지를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 2,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "전기기기등이 다른 노출 충전부와의 접촉, 유도 또는 예비동력원의 역송전 등으로 전압이 발생할 우려가 있는 경우에는 충분한 용량을 가진 단락 접지기구를 이용하여 접지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 2,
+                    "item": 6
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업 중 제3자가 전원을 재투입하여 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "작업기구, 단락 접지기구 등을 제거하고 전기기기등이 안전하게 통전될 수 있는지를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 3,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "모든 작업자가 작업이 완료된 전기기기등에서 떨어져 있는지를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 3,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "잠금장치와 꼬리표는 설치한 근로자가 직접 철거하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 3,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "모든 이상 유무를 확인한 후 전기기기등의 전원을 투입한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:319",
+                    "paragraph": 3,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "근로자가 전기위험에 노출될 수 있는 정전전로 또는 그 인근에서 작업하거나 정전된 전기기기 등과 접촉할 우려가 있는 경우에 작업 전에 차단장치나 단로기 등에 잠금장치 및 꼬리표가 부착되어 있는지를 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:320"
+                  }
+                },
+                {
+                  "measure": "차단기 등의 과전류 차단장치에 의하여 자동 차단된 후에는 전기회로 또는 전기기계·기구가 안전하다는 것이 증명되기 전까지는 과전류 차단장치를 재투입하지 않도록 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:317",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "도전성 사다리를 노출 충전부가 있는 곳에서 사용하다 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "근로자가 사다리를 노출 충전부가 있는 곳에서 사용하는 경우에는 도전성 재질의 사다리를 사용하지 않도록 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:317",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "근로자가 착용하거나 취급하고 있는 도전성 공구·장비 등이 노출 충전부에 닿지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:317",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자가 젖은 손으로 전기기계·기구의 플러그를 꽂거나 제거하지 않도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:317",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "근로자가 전기회로를 개방, 변환 또는 투입하는 경우에는 전기 차단용으로 특별히 설계된 스위치, 차단기 등을 사용하도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:317",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "이동 및 휴대장비 등을 사용하는 전기작업에 사용하는 절연용 보호구등은 각각의 사용목적에 적합한 종별·재질 및 치수의 것을 사용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:323",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -395,7 +784,105 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "천장 속·전기실에서 배선작업 중 작업발판 없이 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 사용하는 경우 이동식 사다리를 설치한 바닥면에서 높이 3.5미터 이하의 장소에서만 작업한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "이동식 사다리의 최상부 발판 및 그 하단 디딤대에 올라서서 작업하지 않는다. 다만 높이 1미터 이하의 사다리는 제외한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "이동식 사다리를 견고한 시설물에 연결하여 고정하거나, 아웃트리거를 설치하거나, 다른 근로자가 지지하여 넘어지지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "안전모를 착용하되 작업 높이가 2미터 이상인 경우에는 안전모와 안전대를 함께 착용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:42",
+                    "paragraph": 4,
+                    "item": 6
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "케이블 관통 개구부에 덮개가 없어 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치하고, 어두운 장소에서도 알아볼 수 있도록 개구부임을 표시한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "난간등을 설치하는 것이 매우 곤란하거나 작업의 필요상 임시로 난간등을 해체하여야 하는 경우 추락방호망을 설치하고, 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:43",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "추락에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:20",
+                    "item": 1
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -458,7 +945,103 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "노출 충전부가 있는 지하 전력구·핸드홀 내부에 진입하여 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "근로자가 작업이나 통행 등으로 인하여 접촉하거나 접촉할 우려가 있는 충전부분에 대하여 감전을 방지하기 위하여 폐쇄형 외함이 있는 구조로 하거나, 충전부에 충분한 절연효과가 있는 방호망이나 절연덮개를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:301",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "발전소·변전소 및 개폐소 등 구획되어 있는 장소로서 관계 근로자가 아닌 사람의 출입이 금지되는 장소에 충전부를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:301",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "근로자가 노출 충전부가 있는 맨홀 또는 지하실 등의 밀폐공간에서 작업하는 경우에는 노출 충전부와의 접촉으로 인한 전기위험을 방지하기 위하여 덮개, 울타리 또는 절연 칸막이 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:301",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서의 전기작업에 사용하는 절연용 보호구등은 각각의 사용목적에 적합한 종별·재질 및 치수의 것을 사용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:323",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 시작하기 전에 산소 및 유해가스 농도를 측정하여 적정공기가 유지되고 있는지를 평가한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 작업을 시작하기 전과 작업 중에 해당 작업장을 적정공기 상태가 유지되도록 환기한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:620",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 상시 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:623"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "수배전반 조작부를 점검하다 작업공간이 좁아 충전부에 접촉하여 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "전기기계·기구의 조작부분을 점검하거나 보수하는 경우에는 근로자가 안전하게 작업할 수 있도록 전기 기계·기구로부터 폭 70센티미터 이상의 작업공간을 확보한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:310",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "작업공간을 확보하는 것이 곤란하여 근로자에게 절연용 보호구를 착용하도록 한 경우에는 폭 70센티미터 이상의 작업공간을 확보하지 아니할 수 있다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:310",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자가 상시 작업하는 장소의 작업면 조도를 보통작업은 150럭스 이상, 그 밖의 작업은 75럭스 이상이 되도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:8",
+                    "item": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "질식",
@@ -520,7 +1103,113 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:asphyxiation"
+          "hazard": "hazard:asphyxiation",
+          "risks": [
+            {
+              "statement": "전력구·케이블 피트에 산소결핍이나 유해가스가 차 있어 질식",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "밀폐공간에서 근로자에게 작업을 하도록 하는 경우 밀폐공간 작업 프로그램을 수립하여 시행한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "밀폐공간의 산소 및 유해가스 농도의 측정 및 평가에 관한 지식과 실무경험이 있는 자를 지정하여 측정하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "산소 및 유해가스 농도를 측정한 결과 적정공기가 유지되고 있지 아니하다고 평가된 경우에는 작업장을 환기시키거나 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 하는 등 필요한 조치를 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:619의2",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "진입 전에 산소농도가 18퍼센트 이상 23.5퍼센트 미만, 이산화탄소의 농도가 1.5퍼센트 미만, 일산화탄소의 농도가 30피피엠 미만, 황화수소의 농도가 10피피엠 미만인 적정공기 상태인지 확인한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:618",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "관계 근로자가 아닌 사람의 출입을 금지하고 그 내용을 보기 쉬운 장소에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:622"
+                  }
+                },
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 그 장소에 근로자를 입장시킬 때와 퇴장시킬 때마다 인원을 점검한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:621"
+                  }
+                },
+                {
+                  "measure": "공기호흡기 또는 송기마스크, 사다리 및 섬유로프 등 비상시에 근로자를 피난시키거나 구출하기 위하여 필요한 기구를 갖추어 둔다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:625"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "전력구에서 쓰러진 동료를 보호구 없이 구조하러 들어가 2차 재해",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 산소결핍이나 유해가스로 인한 질식·화재·폭발 등의 우려가 있으면 즉시 작업을 중단시키고 해당 근로자를 대피하도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:639",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "근로자를 대피시킨 경우 적정공기 상태임이 확인될 때까지 그 장소에 관계자가 아닌 사람이 출입하는 것을 금지하고 그 내용을 보기 쉬운 곳에 게시한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:639",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "비상연락체계 운영, 구조용 장비의 사용, 공기호흡기 또는 송기마스크의 착용, 응급처치 등에 관한 훈련을 6개월에 1회 이상 주기적으로 실시하고 그 결과를 기록하여 보존한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:640"
+                  }
+                },
+                {
+                  "measure": "밀폐공간에서 작업하는 근로자가 산소결핍이나 유해가스로 인하여 추락할 우려가 있는 경우에는 해당 근로자에게 안전대나 구명밧줄, 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:624",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "안전대나 구명밧줄을 착용하도록 하는 경우에 이를 안전하게 착용할 수 있는 설비 등을 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:624",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "이상온도·화상",
@@ -539,7 +1228,37 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:thermal_burn"
+          "hazard": "hazard:thermal_burn",
+          "risks": [
+            {
+              "statement": "부하전류가 흐르는 상태에서 단로기를 개폐하여 아크로 화상",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "부하전류를 차단할 수 없는 고압 또는 특별고압의 단로기 또는 선로개폐기를 개로·폐로하는 경우에는 그 단로기등의 오조작을 방지하기 위하여 근로자에게 해당 전로가 무부하임을 확인한 후에 조작하도록 주의 표지판 등을 설치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:307"
+                  }
+                },
+                {
+                  "measure": "그 단로기등에 전로가 무부하로 되지 아니하면 개로·폐로할 수 없도록 하는 연동장치를 설치한 경우에는 주의 표지판 등을 설치하지 아니할 수 있다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:307"
+                  }
+                },
+                {
+                  "measure": "전기적 불꽃 또는 아크에 의한 화상의 우려가 있는 고압 이상의 충전전로 작업에 근로자를 종사시키는 경우에는 방염처리된 작업복 또는 난연성능을 가진 작업복을 착용시킨다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:310",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -647,7 +1366,238 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "충전전로를 정전 없이 취급하다 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "충전전로를 정전시키는 경우에는 제319조에 따른 전로차단 조치를 한다.",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "충전전로를 방호, 차폐하거나 절연 등의 조치를 하는 경우에는 근로자의 신체가 전로와 직접 접촉하거나 도전재료, 공구 또는 기기를 통하여 간접 접촉되지 않도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "충전전로를 취급하는 근로자에게 그 작업에 적합한 절연용 보호구를 착용시킨다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "충전전로에 근접한 장소에서 전기작업을 하는 경우에는 해당 전압에 적합한 절연용 방호구를 설치한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "고압 및 특별고압의 전로에서 전기작업을 하는 근로자에게 활선작업용 기구 및 장치를 사용하도록 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                },
+                {
+                  "measure": "근로자가 절연용 방호구의 설치·해체작업을 하는 경우에는 절연용 보호구를 착용하거나 활선작업용 기구 및 장치를 사용하도록 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "충전전로에서의 전기작업에 사용하는 절연용 보호구등은 각각의 사용목적에 적합한 종별·재질 및 치수의 것을 사용한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:323",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "유자격자가 아닌 근로자가 충전전로 인근 높은 곳에서 접근한계거리 이내로 접근하여 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "유자격자가 아닌 근로자가 충전전로 인근의 높은 곳에서 작업할 때에 근로자의 몸 또는 긴 도전성 물체가 방호되지 않은 충전전로에서 대지전압이 50킬로볼트 이하인 경우에는 300센티미터 이내로 접근할 수 없도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "대지전압이 50킬로볼트를 넘는 경우에는 10킬로볼트당 10센티미터씩 더한 거리 이내로 접근할 수 없도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 7
+                  }
+                },
+                {
+                  "measure": "유자격자가 충전전로 인근에서 작업하는 경우에는 노출 충전부에 충전전로의 선간전압별 접근한계거리 이내로 접근하거나 절연 손잡이가 없는 도전체에 접근할 수 없도록 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 8
+                  }
+                },
+                {
+                  "measure": "근로자가 노출 충전부로부터 절연된 경우 또는 해당 전압에 적합한 절연장갑을 착용한 경우에는 접근한계거리 이내로 접근할 수 있다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 1,
+                    "item": 8,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "절연이 되지 않은 충전부나 그 인근에 근로자가 접근하는 것을 막거나 제한할 필요가 있는 경우에는 울타리를 설치하고 근로자가 쉽게 알아볼 수 있도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "전기와 접촉할 위험이 있는 경우에는 도전성이 있는 금속제 울타리를 사용하거나 접근 한계거리 이내에 설치하지 않는다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "울타리를 설치하는 조치가 곤란한 경우에는 근로자를 감전위험에서 보호하기 위하여 사전에 위험을 경고하는 감시인을 배치한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:321",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "기설 송전선과 접근·교차하는 구간에서 전자유도로 전선에 고전압이 유기되어 감전",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "기설 송전선과 접근 또는 교차하는 경우에는 전자유도 작용에 의해 전선 등에 고전압이 유기될 수 있으므로 유도방지장치를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선을 설치하거나 철거시 다른 모든 설비는 접지하여야 하고 접지가 되지 않았으면 충전된 도체로 취급하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "충전된 선로가 근접하여 있고 유도전압이 발생될 가능성이 있는 곳에서 전선을 설치하거나 철거 시는 휴전작업에 관한 사항을 준수하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "횡단공작물이 전력선인 경우 활선작업, 정전작업을 구분하여 관계기관과 충분한 협의를 하고 연락체계를 수립하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선 펴기 중 특고압선로, 철도, 도로 등 중요 횡단개소에는 보선원을 배치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "엔진장, 드럼장에는 주위의 낙뢰 등을 유도하기 위하여 38제곱밀리미터 이상 동연선을 사용하여 접지를 하도록 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "금속성 작업발판·사다리를 활선 근처에 세워 접촉하거나 넘어져 전력시설물을 파손",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "금속성 작업발판·사다리 등 안전지지물은 안전거리 및 활선작업거리를 검토하여 위험하지 않다고 판단될 경우에는 제한적으로 사용할 수 있으며 안전지지물의 넘어짐 등으로 전력시설물에 피해를 주지 않도록 조치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "자재·기구나 근로자가 철탑 구조물, 발판 사다리 또는 기중기, 데릭 등의 일부분을 이용하지 않으면 안될 때는 이동 가능성 여부 및 그 강도를 확인 후 시행하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "발판은 그 위에 놓일 중량의 4배를 지지할 수 있어야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "근로자가 사다리를 노출 충전부가 있는 곳에서 사용하는 경우에는 도전성 재질의 사다리를 사용하지 않도록 한다.",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:317",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -673,7 +1623,225 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "승탑 중 안전대를 사용하지 않거나 활선 여부를 확인하지 않고 올라가 떨어지거나 감전",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "승탑 작업 시는 반드시 안전대를 사용하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "승탑하는 철탑에 활선이 있을 때에는 전압이 얼마이며 어느 회선이 활선인가를 완전히 파악하기 전까지는 승탑하여서는 안 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "근로자는 승탑 전 작업내용 및 작업위치를 숙지하고 작업장 주변상황을 조사 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "승탑 근로자는 안전모, 안전대 등 개인보호구를 가지고 있어야 하며, 안전한 상태에서 이를 사용하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "철탑의 부재에 빙설이 쌓여 있으면 이를 제거한 후 승탑하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "다른 사람이 승탑하고 있는 바로 위나 바로 밑에서는 동시에 승강하지 말아야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "철탑을 오르기 전에 안전화에 진흙, 기타 미끄러운 물질이 묻어있지 않은가를 살펴보아야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "철탑 조립 중 떨어짐 방지장치가 없어 추락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "철탑 조립작업 중 근로자 떨어짐 방지와 공구, 부재 등의 떨어짐으로 인한 재해를 방지하기 위하여 제 1 수평재 완성 후에는 안전방망을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "수직로프는 주주재의 꼭대기와 지면 간에 미리 설치하여 근로자가 주주재를 승강할 경우 사용하도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "근로자는 주주재로 승강할 경우 승강안전기를 수직로프에 부착한 후 안전대의 키락 본체에 연결하고 주주재에 승강하도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "수평로프는 철탑 부재간 등에 미리 설치하여야 하며, 근로자는 수평재 위를 이동할 경우 수평로프를 이용하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "2줄걸이 안전대를 사용하여야 하고, 죄임줄은 2줄 걸이로 사용해서 동시에 풀리지 않도록 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "키락 본체는 안전대에 장착하고, 안전로프의 락 레버와 연결하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "철탑 승강기는 승강중 동력을 상실하였을 경우에 아래로 떨어지지 않는 구조여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "근로자는 키락이 확실하게 잠겨있는지 확인하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "승강안전기는 수직로프에 부착하면 자동으로 잠기므로 승강안전기를 억지로 분리하려고 해서는 안 되며, 수직로프에서 분리할 경우가 발생하면 승강안전기 열쇠로 해제하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "키락 방식에서는 이동과 작업에 앞서 이동경로와 작업장소 부근에 각종 로프를 설치하지 않은 상태에서는 이동과 작업을 할 수 없으므로 각종 로프를 용도에 맞게 미리 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍·폭우 중 철탑 조립작업을 강행하여 부재가 날리거나 근로자가 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "공사 중 강풍, 폭우 등과 같은 악천우 시에는 작업을 중지하여야 하며, 특히 강풍 시에는 높은 곳에 있는 부재나 공구류가 떨어지지 않도록 조치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "작업을 중지해야 하는 악천후는 풍속 초당 10미터 이상, 강우량 1시간당 1밀리미터 이상, 강설량 1시간당 1센티미터 이상인 경우를 말한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:37",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "기상악화 등으로 철탑 조립작업 중지 시에는 지브는 철탑 주주재 등의 사이에 가능한 한 눕혀 놓고, 훅은 최고 위치에 감아놓아야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "심신이 불안정한 상태로 고소작업에 종사하다 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "높은 곳에서 작업할 때 알코올 중독증 등 심신이 불안정한 자는 작업에 종사시키지 말아야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "고혈압, 저혈압, 당뇨병 증세가 있는 자는 증세가 가볍고 고소작업에 지장이 없는 것으로 판단될 경우에 한하여 작업에 종사시켜야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "철탑을 조립하기 전에 관리감독자는 철탑 기초의 되메우기 상태 및 작업가능여부를 확인한 후 작업에 착수토록 하여야 하며, 공사착수에 앞서 작업공정에 대한 설명과 안전확보 및 안전 유의사항을 교육한 후 작업에 임하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -704,7 +1872,187 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "철탑 상부에서 볼트·공구가 떨어져 지상 근로자가 맞음",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "철탑 조립 시 볼트, 너트 등의 낙하물에 의한 사고를 방지하기 위하여 승탑 근로자 뿐 아니라 지상 근로자도 반드시 안전모, 안전화 등 개인보호구를 착용토록 하여야 한다.",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "공구 등을 철탑 상부로 운반 시에는 공구 운반함을 사용토록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "볼트, 너트 및 공구류는 전용가방이나 견고한 주머니 등을 사용하여 떨어지는 일이 없도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "작업성격상 부득이 승탑작업과 지상 작업을 동시에 시행할 때는 하부에 방호선반을 설치하거나 출입금지구역을 설정하는 등 조치를 하고 긴밀한 연락 하에 실시하되 작업지시는 단계적으로 명확히 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "부재 등을 들어 올리는 장소의 지상 근로자는 직하로부터 대피하여 떨어짐 등에 의한 재해를 방지하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "작업장 출입구에는 위험요소에 대한 안내간판, 안전표지판 등을 미리 설치하여 근로자 및 일반인에게 주의를 환기시키도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "철탑 조립시 낙하물 우려가 있는 장소에는 접근금지표지 및 구획을 하여야 하고, 작업 종료 후에는 반드시 작업장 부지 내에 일반인이 출입하지 않도록 조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "철재류 등은 지상으로 끌거나 던지는 경우가 없도록 운반하고, 훅 및 운반기구에 의한 손상이 발생하지 않도록 적절한 방호조치를 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "연선 중 장력이 걸린 전선이 튕겨 근로자를 가격",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "근로자는 장력이 걸린 전선이나 와이어가 만든 각도 밖에서 작업하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "설치되거나 철거되는 전선은 항상 감시 하에 두어 전선설치장력의 급격한 변화를 방지하여야 하며, 장력변화로 인하여 인접설비나 근로자가 손상되지 않도록 이격거리를 충분하게 유지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "장시간 연선을 중지할 경우는 캄아롱 등으로 연선차 앞에 전선을 붙들어 매어 전선이 미끄러져 풀리는 것을 방지하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "활차 사용시 활차걸이에 걸리는 힘은 연선와이어가 형성하는 각도 및 와이어 장력에 의하여 크게 변하므로 충분한 강도가 있는 것을 사용하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선설치용 블록은 홈이 마모, 손상되었거나 회전이 불량한 것을 사용해서는 안 되며, 사용 전에 홈을 깨끗이 청소하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "메신저 와이어를 사용하여 가선할 때는 충분한 강도의 와이어로프를 사용하고 전선이 늘어져 지면에 닿지 않도록 조치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "연선 구간에서 연락이 끊겨 상호 위치를 모른 채 장비가 작동됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "연선 구간 내에서는 항상 연락이 확실하고 신속하게 되도록 유선 또는 무선전화 설비를 전선설치장비, 철탑, 기타 중요장소에 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선 와이어의 상태와 활차의 회전에 유의하여 상호연락하면서 연선 작업을 실시하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 유, 무선 전화기를 병용하여 드럼장, 엔진장 장소와의 연락을 긴밀히 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선설치장비의 시동, 정지, 속도조정은 각 작업개소와 긴밀하게 연락하면서 행하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선드럼 또는 엔진을 설치한 장소에서는 연선구간 배치도를 비치하고 전선펴기구간의 전선 1조당 길이 및 전선접속위치, 엔진장소 구간내의 철탑 각도 및 고저차, 작업원의 배치상황을 명확히 구분하여 이로 인한 사고를 예방하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전기적인 유도가 예상되는 장소의 유선전화설비는 위험방지 조치를 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -725,7 +2073,117 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "크레인으로 철탑 부재를 인양하다 지반이 침하되어 전도",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "크레인 설치 장소가 충분한 지지력을 갖도록 바닥면을 다짐하고 성토면은 안전한 경사각을 유지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "성토 장소나 지반이 불량한 경우에는 침목, 복공판, 철판 등으로 보강하여 지반 무너짐이 없도록 안전하게 조성해야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "크레인 운전시 정격하중을 초과하는 중량물을 운반해서는 안 되며, 정격 경사각 범위 내에서 운전하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "운전자는 정해진 신호에 따라 행동하여야 하고, 중량물을 매단채로 운전위치를 이탈하여서는 안 된다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "상부재의 짐 걸기는 반드시 슬링 등 적절한 기구를 사용하여 걸어야 하고, 작업 시작 전에 슬링 등의 이상유무 상태를 점검하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                },
+                {
+                  "measure": "조립용 장비, 공구 및 로프 등은 충분한 강도를 갖는 것을 사용하여야 하며 사전에 철저히 점검하여 안전사고 예방에 만전을 기하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "한쪽 암의 전선만 설치·철거하여 불평형 장력으로 철탑이 넘어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "전선을 설치하거나 철거시에는 한쪽 암의 전선만 설치 또는 철거하여 불평형 장력으로 인하여 철탑이 회전·굴절, 넘어지지 않도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선펴기 경계철탑은 원칙적으로 가지선을 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "가지선의 굵기 및 조수는 철연선 38제곱밀리미터 2조 이상 또는 동등 이상의 강연선으로 하고 각 암 마다 개별로 매설된 근가에 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "철탑 암에 부착하는 가지선은 수평각도 30도 이하로 하여 암이 수직하중 증가로 인한 굴절을 방지하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "연선경계철탑을 보강하는 가지선의 부착방향은 원칙적으로 선로중심 방향과 평행으로 하고 부착각도는 수평지면과 가지선이 이루는 각이 45도 이하가 되도록 하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "가지선의 회전방지를 위하여 턴버클에는 통나무나 각재를 끼워야 하며 외부인의 접근을 방지하기 위하여 구획로프나 표지를 설치하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "부딪힘",
@@ -741,7 +2199,79 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by"
+          "hazard": "hazard:struck_by",
+          "risks": [
+            {
+              "statement": "전선설치 장비를 미숙련자가 조작하거나 고정이 불충분하여 위치가 변동됨",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "드럼장 전선설치 차의 조작, 연선작업, 긴선작업, 전선설치 엔진의 운전, 활선접근작업 등 중요작업은 숙련공을 배치하여 작업하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선펴기 차는 드럼대와의 거리를 10미터 이상으로 하고 충격에 의하여 위치변동이 없도록 견고하게 고정하여야 한다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "윈치 등 동력기계를 사용할 경우 설치장소, 조립도, 용량 등을 고려한 작업계획서를 작성하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "엔진장 설치 시에는 충분한 깊이에 근가 목을 매설 후 충분한 힘을 견딜 수 있는 지의 여부와 주변지반의 이상 유무를 확인토록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "권상용 윈치가 작업 중 주재, 부재, 발판볼트 등에 접촉되지 않도록 확인 후 작업하도록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "발받침, 활차개소, 수목접촉 우려개소, 인상·인하 수평각이 큰 개소 등에는 관리감독자를 배치하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선설치작업이 높은 곳에서 이루어질 때는 관리감독자를 임명하여 감시토록 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                },
+                {
+                  "measure": "전선펴기 차의 제동장치는 특히 방습에 유의, 정상상태에서만 사용토록 시험을 하여야 한다.",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-98-2014",
+                    "section": "8"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

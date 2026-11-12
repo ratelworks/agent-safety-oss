@@ -29,6 +29,10 @@ const MAX_CITATIONS = 3;
 // 단계별 확인 — 오늘 하는 단계가 특정되면 그 단계의 근거를, 아니면 단계별 재해유형만 보여 준다
 const MAX_STEP_BASIS_FOCUSED = 3;
 const MAX_STEP_BASIS_OVERVIEW = 1;
+/** 재해유형 한 칸에 보여 줄 위험요인 수 — 단계를 짚었을 때 / 공종 전체를 볼 때 */
+const MAX_STEP_RISKS_FOCUSED = 4;
+const MAX_STEP_RISKS_OVERVIEW = 1;
+const MAX_MEASURES_PER_RISK = 3;
 
 // 매일 사이클 흐름: TBM 주제 생성 후 → 본문 문서 생성 / 통제수단·PPE 보완 / 사진 증빙 업로드.
 const SUGGESTED_NEXT_TOOLS = [
@@ -178,7 +182,12 @@ interface StepTopics {
   focusStep?: string;
   steps: Array<{
     name: string;
-    hazards: Array<{ hazardLabel: string; basis: Array<{ ref: string; title: string; controlLevel?: string }> }>;
+    hazards: Array<{
+      hazardLabel: string;
+      /** 위험요인과 대책 (중요도 높은 것부터) */
+      risks: Array<{ statement: string; priority?: string; measures: string[] }>;
+      basis: Array<{ ref: string; title: string; controlLevel?: string }>;
+    }>;
   }>;
   /** 이 공사를 다루는 표준안전 작업지침 (권고 기준) */
   relatedNotices?: ResolvedWorkSteps["relatedNotices"];
@@ -204,6 +213,14 @@ function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
       name: step.name,
       hazards: step.hazards.map((h) => ({
         hazardLabel: h.hazardLabel,
+        risks: [...h.risks]
+          .sort((x, y) => (y.priority?.length ?? 0) - (x.priority?.length ?? 0))
+          .slice(0, focused.length > 0 ? MAX_STEP_RISKS_FOCUSED : MAX_STEP_RISKS_OVERVIEW)
+          .map((r) => ({
+            statement: r.statement,
+            ...(r.priority ? { priority: r.priority } : {}),
+            measures: r.measures.slice(0, MAX_MEASURES_PER_RISK).map((m) => m.measure),
+          })),
         basis: h.basis.slice(0, maxBasis).map((b) => ({
           ref: b.ref,
           // 가이드는 조항 제목(번호는 ref 에 이미 있다), 조문은 조문 제목
@@ -424,6 +441,9 @@ function renderTbmMarkdown(payload: {
       for (const h of step.hazards) {
         const basis = h.basis.map((b) => `${b.ref} ${b.title}`.trim()).join(" / ");
         lines.push(`  - ${h.hazardLabel}${basis ? ` — ${basis}` : ""}`);
+        for (const r of h.risks) {
+          lines.push(`    - ${r.priority ? `${r.priority} ` : ""}${r.statement}${r.measures.length > 0 ? ` → ${r.measures.join(" / ")}` : ""}`);
+        }
       }
     }
     if (ws.relatedNotices && ws.relatedNotices.length > 0) {

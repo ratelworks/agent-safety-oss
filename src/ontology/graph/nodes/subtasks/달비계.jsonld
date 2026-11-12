@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:scaffolding_assembly",
   "hasHazard": [
@@ -171,7 +170,165 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "결함이 있는 와이어로프를 달비계에 사용하여 파단으로 추락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "이음매가 있는 와이어로프를 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 1,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "와이어로프의 한 꼬임에서 끊어진 소선의 수가 10퍼센트 이상인 것을 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 1,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "지름의 감소가 공칭지름의 7퍼센트를 초과하는 와이어로프를 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 1,
+                    "subitem": "다"
+                  }
+                },
+                {
+                  "measure": "꼬인 와이어로프를 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 1,
+                    "subitem": "라"
+                  }
+                },
+                {
+                  "measure": "심하게 변형되거나 부식된 와이어로프를 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 1,
+                    "subitem": "마"
+                  }
+                },
+                {
+                  "measure": "열과 전기충격에 의해 손상된 와이어로프를 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 1,
+                    "subitem": "바"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "결함이 있는 달기 체인을 사용하여 파단으로 추락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "달기 체인의 길이가 달기 체인이 제조된 때의 길이의 5퍼센트를 초과한 것을 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 2,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "링의 단면지름이 달기 체인이 제조된 때의 해당 링의 지름의 10퍼센트를 초과하여 감소한 것을 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 2,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "균열이 있거나 심하게 변형된 달기 체인을 달비계에 사용하지 않는다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 2,
+                    "subitem": "다"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "손상·변형·부식된 달기 강선·강대를 사용하여 파단으로 추락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "달기 강선 및 달기 강대는 심하게 손상·변형 또는 부식된 것을 사용하지 않도록 한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "달기재의 양쪽 끝 결속이 풀려 달비계가 낙하",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "달기 와이어로프, 달기 체인, 달기 강선, 달기 강대는 한쪽 끝을 비계의 보 등에, 다른 쪽 끝을 내민 보, 앵커볼트 또는 건축물의 보 등에 각각 풀리지 않도록 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 5
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업발판의 폭이 좁거나 틈새·고정 불량으로 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "작업발판은 폭을 40센티미터 이상으로 하고 틈새가 없도록 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "작업발판의 재료는 뒤집히거나 떨어지지 않도록 비계의 보 등에 연결하거나 고정시킨다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 7
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -183,7 +340,24 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "선반 비계의 보 접속부·교차부 연결이 불량하여 무너짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "선반 비계에서는 보의 접속부 및 교차부를 철선·이음철물 등을 사용하여 확실하게 접속시키거나 단단하게 연결시킨다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 9
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -244,7 +418,110 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "구명줄·안전대 없이 작업하다 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "달비계에 구명줄을 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 10,
+                    "subitem": "가"
+                  }
+                },
+                {
+                  "measure": "근로자에게 안전대를 착용하도록 하고 근로자가 착용한 안전줄을 달비계의 구명줄에 체결하도록 한다",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 10,
+                    "subitem": "나"
+                  }
+                },
+                {
+                  "measure": "달비계에 안전난간을 설치할 수 있는 구조인 경우에는 달비계에 안전난간을 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 10,
+                    "subitem": "다"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "달비계가 흔들리거나 뒤집혀 떨어짐",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "비계가 흔들리거나 뒤집히는 것을 방지하기 위하여 비계의 보·작업발판 등에 버팀을 설치하는 등 필요한 조치를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:63",
+                    "paragraph": 1,
+                    "item": 8
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업 전 점검을 하지 않아 로프 부착 상태·매단 장치 이상을 놓쳐 추락",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "달비계에서 근로자에게 작업을 시키는 경우에 작업을 시작하기 전에 그 달비계에 대하여 점검하고 이상을 발견하면 즉시 보수한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:64"
+                  }
+                },
+                {
+                  "measure": "로프의 부착 상태 및 매단 장치의 흔들림 상태를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:58",
+                    "item": 6
+                  }
+                },
+                {
+                  "measure": "연결 재료 및 연결 철물의 손상 또는 부식 상태를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:58",
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "발판 재료의 손상 여부 및 부착 또는 걸림 상태를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:58",
+                    "item": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "최대적재하중을 초과하여 적재해 달기재가 파단",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비계의 구조 및 재료에 따라 작업발판의 최대적재하중을 정하고, 이를 초과하여 실지 않는다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:55"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -284,7 +561,59 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "지휘·주지·출입통제 없이 해체하여 부재가 낙하",
+              "priority": "★★",
+              "measures": [
+                {
+                  "measure": "근로자가 관리감독자의 지휘에 따라 작업하도록 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:57",
+                    "paragraph": 1,
+                    "item": 1
+                  }
+                },
+                {
+                  "measure": "조립·해체 또는 변경의 시기·범위 및 절차를 그 작업에 종사하는 근로자에게 주지시킨다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:57",
+                    "paragraph": 1,
+                    "item": 2
+                  }
+                },
+                {
+                  "measure": "조립·해체 또는 변경 작업구역에는 해당 작업에 종사하는 근로자가 아닌 사람의 출입을 금지하고 그 내용을 보기 쉬운 장소에 게시한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:57",
+                    "paragraph": 1,
+                    "item": 3
+                  }
+                },
+                {
+                  "measure": "해체 전 비계 설치상태를 점검하고, 안전 상 문제가 없을 경우 해체작업을 실시하며, 해체는 상부에서 하부 순서로 실시하고 동시에 여러 구간을 해체하지 않는다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-7-2026",
+                    "section": "8.3"
+                  }
+                },
+                {
+                  "measure": "재료·기구 또는 공구 등을 올리거나 내리는 경우에는 근로자가 달줄 또는 달포대 등을 사용하게 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:57",
+                    "paragraph": 1,
+                    "item": 6
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -301,7 +630,32 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "악천후에 해체를 강행하여 떨어짐",
+              "priority": "★",
+              "measures": [
+                {
+                  "measure": "비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킨다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:57",
+                    "paragraph": 1,
+                    "item": 4
+                  }
+                },
+                {
+                  "measure": "풍속 10m/s 이상, 우천, 결빙, 시야불량 시 작업을 중지한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-7-2026",
+                    "section": "8.1"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

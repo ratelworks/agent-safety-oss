@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:tower_crane",
   "hasHazard": [
@@ -96,7 +95,103 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "기초 지내력 미달로 침하되어 무너짐",
+              "measures": [
+                {
+                  "measure": "타워크레인 위치의 확정 후 기초도면에 준하여 터파기를 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "기초의 지내력은 타워크레인 기종별 앵커도면을 참조한다. 기초의 지내력이 미달되는 경우 별도의 구조검토를 수행하며, 그 결 과에 따라 필요시 보강한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "크레인의 성능, 사용조건 등에 따라 충분한 응력(應力)을 갖는 구조로 기초를 설치하고 침하 등이 일어나지 않도록 할 것",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:141"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "앵커 설치 불량으로 기초 이동·전도되어 무너짐",
+              "measures": [
+                {
+                  "measure": "기초 앵커의 셋팅 순서는 버림 콘크리트 타설, 먹매김, 앵커 설치, 철 근배근, 콘크리트 타설 순으로 진행한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "버림 콘크리트는 10cm이상 타설하여야 하며 수평을 유지한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "먹매김 후 물이 고이면 완전히 제거한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "앵커 설치 시 레벨을 현장에서 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "앵커 셋팅 완료 후 현장 담당자 입회하에 레벨 확인서를 작성한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설 시 앵커가 밀리지 않도록 조심한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "콘크리트는 앵커에 미리 표시된 높이만큼만 타설한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설 시 양생기간을 준수한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "콘크리트 타설, 양생 후 앵커의 레벨을 현장에서 재확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -111,7 +206,36 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "방호울타리 미설치로 근로자가 넘어지거나 부딪힘",
+              "measures": [
+                {
+                  "measure": "전원 케이블은 타워크레인 단독으로 가설한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "타워크레인 방호울타리를 설치한다. 방호울타리의 규격은 높이 1.8m이상, 기초 규격 내의 크기를 설치한다.(권장사항)",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "타워크레인 방호울타리는 설치 후 주변 사용 전기분전반이 방호울타리 내부에 설치 되지 않도록 타워크레인 기초 콘크리트 타설시에는 전기 매입전선관을 방호울타리 밖으로 배치할 것",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "8.6"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -126,7 +250,52 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "가이드 레일·안내롤러·유압장치 점검 미흡으로 텔레스코픽 케이지 오작동하여 떨어짐",
+              "measures": [
+                {
+                  "measure": "텔레스코픽 케이지 가이드 레일, 안내롤러 및 유압장치의 시험 작 동상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업발판·난간 볼트 고정 미흡으로 발판 파손되어 떨어짐",
+              "measures": [
+                {
+                  "measure": "텔레스코픽 케이지 상하부 작업발판, 난간의 견고성 및 볼트고정 상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "텔레스코픽 케이지 상, 하부 작업발판․난간 설치의 견고성 및 볼트 고정 상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "실린더 슈·받침대 손상·작동불량으로 텔레스코픽 케이지 오작동하여 떨어짐",
+              "measures": [
+                {
+                  "measure": "실린더 작동전 슈, 받침대의 손상여부와 작동상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -144,7 +313,69 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "양쪽 지브 균형 유지 미흡으로 타워크레인 전도하여 무너짐",
+              "measures": [
+                {
+                  "measure": "상승작업 중 타워크레인 양쪽 지브의 균형 유지를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "가드레일 변형·기능 이상으로 마스트 삽입 중 전도하여 무너짐",
+              "measures": [
+                {
+                  "measure": "새로운 마스트 상차전 가드레일의 변형, 기능 이상 유무를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "텔레스코핑 슈 브레이싱 미완전 안착으로 삽입 중 전도하여 무너짐",
+              "measures": [
+                {
+                  "measure": "텔레스코핑 슈의 브레이싱이 완전하게 안착되었는지를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "과도한 압력상승 방지 안전밸브 미조정 또는 고장 상태로 운전하여 타워크레인 전도하여 무너짐",
+              "measures": [
+                {
+                  "measure": "사업주는 유압을 동력으로 사용하는 크레인의 과도한 압력상승을 방지하기 위한 안전밸브에 대하여 정격하중(지브 크레인은 최대의 정격하중으로 한다)을 건 때의 압력 이하로 작동되도록 조정하여야 한다. 다만, 하중시험 또는 안전도시험을 하는 경우 그러하지 아니하다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:136"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "기자재를 균형 유지하지 않고 들어 올리다 전도하여 무너짐",
+              "measures": [
+                {
+                  "measure": "들어올리거나 내리는 기자재는 균형을 유지하면서 작업을 하도록 할 것",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:141"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "끼임·감김",
@@ -154,7 +385,33 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:machine_entanglement"
+          "hazard": "hazard:machine_entanglement",
+          "risks": [
+            {
+              "statement": "상승 중 케이지와 마스트 사이 이동·작업 허용으로 끼임",
+              "measures": [
+                {
+                  "measure": "상승작업 중 케이지와 마스트 사이에서 작업 및 이동 금지를 확인 한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "상승 중 트롤리·선회 작동 허용으로 끼임",
+              "measures": [
+                {
+                  "measure": "상승작업 중 트롤리의 이동 및 선회 작동 금지를 확인한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -177,7 +434,97 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "카운터웨이트 조립 중 지브 균형 유지 실패로 무너짐",
+              "measures": [
+                {
+                  "measure": "매뉴얼상의 인양지점과 일치한지를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "매뉴얼상의 순서에 따라 카운터 웨이트가 설치되는지 설치순서 준수 및 총 중량을 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "지브의 균형유지 여부를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "메인 지브 해체에 따른 카운터 지브 불균형 상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "사업주는 지브 크레인을 사용하여 작업을 하는 경우에 크레인 명세서에 적혀 있는 지브의 경사각(인양하중이 3톤 미만인 지브 크레인의 경우에는 제조한 자가 지정한 지브의 경사각)의 범위에서 사용하도록 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:138"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "고장력 볼트·핀 누락 또는 적정토크 미체결로 접합부가 풀려 무너짐",
+              "measures": [
+                {
+                  "measure": "모든 고장력 볼트 또는 핀의 누락 여부 및 적정토크 체결 여부를 확인 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "상단부 마스트 미완전 안착 상태에서 핀 미체결 후 작동하여 무너짐",
+              "measures": [
+                {
+                  "measure": "상단부가 마스트에 완전히 안착된 상태에서 마스트 핀 체결 후의 작동을 확인한다. 핀이 체결되지 않은 상태에서는 절대로 작동을 금한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "카운터웨이트를 메인지브 해체 전에 인양하여 조립 중 무너짐",
+              "measures": [
+                {
+                  "measure": "카운터 웨이트를 메인지브 해체 후 해체한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "강풍·악천후 시 작업하여 인양물 또는 구조물이 넘어지거나 떨어짐",
+              "measures": [
+                {
+                  "measure": "바람이 초속 5～10미터 이상 불면 인양하중표에서 20%를 감하여 야 하고, 비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나 쁜 경우에는 산업안전보건기준에 관한 규칙 제37조, 제141조 등 을 준용하여 작업을 중지한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -204,7 +551,115 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "고정핀·볼트 체결 누락으로 지브·카운터웨이트가 탈락하여 넘어짐",
+              "measures": [
+                {
+                  "measure": "턴테이블과 텔레스코픽 케이지와의 핀조립 누락 여부를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "카운터 지브 인양용 와이어로프의 꼬인 것, 변형, 부식 등이 없는지 준비상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "메인 지브 및 카운터지브의 위치 및 방향을 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "텔레스코픽 케이지와 턴테이블 고정핀 체결 상태에 대한 핀 또는 볼트 체결 누락 여부를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "타이바에서 해체된 핀, 볼트 등의 낙하 방지조치로 보관함을 사용한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "와이어로프 설치 - 와이어로프 단말처리 상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "텔레스코픽 케이지와 턴테이블 고정핀의 체결 누락여부를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "새로운 마스트 인양시 상단부가 마스트에 완전 안착된 상태에서 안전핀 체결 누락 여부를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "중량물 인양 중 하물이 작업자 머리 위로 통과하여 맞음",
+              "measures": [
+                {
+                  "measure": "중량물 인양 시 보행자를 전면 통제한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. 미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 할 것",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "인양하물을 바닥에서 끌어당기거나 밀어내다 하물이 넘어지거나 떨어져 맞음",
+              "measures": [
+                {
+                  "measure": "사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. 인양할 하물(荷物)을 바닥에서 끌어당기거나 밀어내는 작업을 하지 아니할 것",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해지장치 없는 훅에서 와이어로프가 벗겨져 하물이 떨어져 맞음",
+              "measures": [
+                {
+                  "measure": "사업주는 훅걸이용 와이어로프 등이 훅으로부터 벗겨지는 것을 방지하기 위한 장치(이하 \"해지장치\"라 한다)를 구비한 크레인을 사용하여야 하며, 그 크레인을 사용하여 짐을 운반하는 경우에는 해지장치를 사용한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:137"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -218,7 +673,35 @@
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "와이어로프·체인 등 인양설비 불량 상태로 중량물 인양 중 파단으로 떨어짐",
+              "measures": [
+                {
+                  "measure": "마스트 인양용 와이어로프를 준비한다",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "작업도구 - 토크렌치 준비를 확인한다. - 체인블럭 준비를 확인한다. - 샤클 준비를 확인한다. - 받침목 준비를 확인한다. - 와이어로프 준비를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                },
+                {
+                  "measure": "턴테이블 인양용 와이어로프의 꼬인 것, 변형, 부식 등이 없는지 준비상태를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -228,7 +711,21 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "메인 지브·카운터 지브 위치·방향 오류로 조립 중 구조물 넘어짐",
+              "measures": [
+                {
+                  "measure": "메인 지브와 카운터 지브의 위치 및 방향을 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -274,7 +771,115 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "자립고 이상 높이에서 벽체에 지지하지 않아 타워크레인이 넘어짐",
+              "measures": [
+                {
+                  "measure": "타워크레인의 지지방법을 결정한다. 사업주는 타워크레인을 자립고 이상의 높이로 설치 하는 경우 건축물 등의 벽체에 지지한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "산업안전보건 기준에 관한 규칙 제142조(타워크레인의 지지) 규정을 준수한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "8.2"
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 자립고(自立高) 이상의 높이로 설치하는 경우 건축물 등의 벽체에 지지하도록 하여야 한다. 다만, 지지할 벽체가 없는 등 부득이한 경우에는 와이어로프에 의하여 지지할 수 있다.",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 1
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 「산업안전보건법 시행규칙」 제110조제1항제2호에 따른 서면심사에 관한 서류(「건설기계관리법」 제18조에 따른 형식승인서류를 포함한다) 또는 제조사의 설치작업설명서 등에 따라 설치할 것",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 제1호의 서면심사 서류 등이 없거나 명확하지 아니한 경우에는 「국가기술자격법」에 따른 건축구조ㆍ건설기계ㆍ기계안전ㆍ건설안전기술사 또는 건설안전분야 산업안전지도사의 확인을 받아 설치하거나 기종별ㆍ모델별 공인된 표준방법으로 설치할 것",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 콘크리트구조물에 고정시키는 경우에는 매립이나 관통 또는 이와 같은 수준 이상의 방법으로 충분히 지지되도록 할 것",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 2
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 건축 중인 시설물에 지지하는 경우에는 그 시설물의 구조적 안정성에 영향이 없도록 할 것",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 2
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "와이어로프 지지 시 각도·지지점·전용 프레임 기준을 지키지 않아 넘어짐",
+              "measures": [
+                {
+                  "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 제2항제1호 또는 제2호의 조치를 취할 것",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프를 고정하기 위한 전용 지지프레임을 사용할 것",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프 설치각도는 수평면에서 60도 이내로 하되, 지지점은 4개소 이상으로 하고, 같은 각도로 설치할 것",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프와 그 고정부위는 충분한 강도와 장력을 갖도록 설치하고, 와이어로프를 클립ㆍ샤클(shackle, 연결고리) 등의 고정기구를 사용하여 견고하게 고정시켜 풀리지 않도록 하며, 사용 중에는 충분한 강도와 장력을 유지하도록 할 것. 이 경우 클립ㆍ샤클 등의 고정기구는 한국산업표준 제품이거나 한국산업표준이 없는 제품의 경우에는 이에 준하는 규격을 갖춘 제품이도록 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 3
+                  }
+                },
+                {
+                  "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프가 가공전선(架空電線)에 근접하지 않도록 할 것",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:142",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -302,7 +907,82 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "양쪽 지브 균형 유지하지 않고 해체하다 무너짐",
+              "measures": [
+                {
+                  "measure": "해체작업 중 타워크레인 양쪽 지브의 균형 유지를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체 순서와 맞지 않는 차량을 투입하여 인양 중 무너짐",
+              "measures": [
+                {
+                  "measure": "타워크레인 해체순서에 맞도록 차량을 투입한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "설치·해체 크레인 제원 미확인으로 조립·해체 중 무너짐",
+              "measures": [
+                {
+                  "measure": "설치․해체 크레인의 제원을 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "매뉴얼 절차 미준수로 해체 중 무너짐",
+              "measures": [
+                {
+                  "measure": "타워크레인의 설치․조립․해체 시 작업팀장의 책임 하에 각 근로자는 제작회사 에서 제공하는 설치․조립 또는 해체 매뉴얼에 제시된 절차를 준수한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026",
+                    "section": "8.7"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "순간풍속 30m/s 초과 또는 지진 후 이상 유무 미점검으로 무너짐",
+              "measures": [
+                {
+                  "measure": "사업주는 순간풍속이 초당 30미터를 초과하는 바람이 불거나 중진(中震) 이상 진도의 지진이 있은 후에 옥외에 설치되어 있는 양중기를 사용하여 작업을 하는 경우에는 미리 기계 각 부위에 이상이 있는지를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:143"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "비규격 조립용 볼트 사용, 대칭 순서 어겨 조립·해체 중 무너짐",
+              "measures": [
+                {
+                  "measure": "규격품인 조립용 볼트를 사용하고 대칭되는 곳을 차례로 결합하고 분해할 것",
+                  "controlLevel": "substitution",
+                  "basis": {
+                    "article": "art:기준규칙:141"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "감전",
@@ -312,7 +992,21 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock"
+          "hazard": "hazard:electric_shock",
+          "risks": [
+            {
+              "statement": "전력케이블 정리정돈 안 해 감전",
+              "measures": [
+                {
+                  "measure": "운전실 해체전 전력케이블 정리정돈 여부를 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -336,7 +1030,71 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "통제요원 미배치로 타워크레인 해체 중 부딪힘",
+              "measures": [
+                {
+                  "measure": "설치․해체 작업구간 내 통제요원을 배치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "작업자 신호체계 미유지로 해체 중 부딪힘",
+              "measures": [
+                {
+                  "measure": "작업자 혼란방지를 위해 작업자간 신호체계를 유지한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "해체 크레인의 작업 공간을 확보하지 않아 선회 중 부딪힘",
+              "measures": [
+                {
+                  "measure": "설치․해체 크레인의 작업 공간을 확보한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "하물이 보이지 않는 상태에서 크레인 동작시켜 맞음",
+              "measures": [
+                {
+                  "measure": "사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. 인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니할 것(신호하는 사람에 의하여 작업을 하는 경우는 제외한다)",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 1
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "신호업무 담당자 미배치로 크레인 운전 중 맞음",
+              "measures": [
+                {
+                  "measure": "사업주는 타워크레인을 사용하여 작업을 하는 경우 타워크레인마다 근로자와 조종 작업을 하는 사람 간에 신호업무를 담당하는 사람을 각각 두어야 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "article": "art:기준규칙:146",
+                    "paragraph": 3
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "떨어짐",
@@ -346,7 +1104,21 @@
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "안전대 등 개인보호구를 준비하지 않고 해체작업하다 떨어짐",
+              "measures": [
+                {
+                  "measure": "설치․해체 작업자의 안전 장구류를 사전에 준비한다",
+                  "controlLevel": "ppe",
+                  "basis": {
+                    "guide": "doc:kosha_guide/D-C-10-2026"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

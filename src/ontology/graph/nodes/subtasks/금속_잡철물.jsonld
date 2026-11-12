@@ -51,9 +51,8 @@
   "jurisdiction": "KR",
   "_meta": {
     "createdAt": "2026-11-12",
-    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
-    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
-    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+    "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
   "broader": "activity:facade_work",
   "hasHazard": [
@@ -84,7 +83,46 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "부재를 바닥상태·적재높이 검토 없이 쌓아 전도되어 깔림",
+              "measures": [
+                {
+                  "measure": "반입된 부재는 전도 및 도괴가 되지 않도록 바닥상태, 적재높이, 적재방법 등을 사전에 검토하여 안전하게 적재한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "자재 하역작업 시에는 부재의 형상, 종류, 중량, 양중장비 능력, 현장여건 등을 고려하여 하역장비 사용을 결정한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "관리감독자는 부재의 차량 적재 높이, 적재폭 등이 교통법규에 위반 사항이 없는 지 점검하고 고정용 로프를 풀었을 때 부재가 무너질 위험이 없는가를 확인 하여 야 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "부재 운반용으로 팔레트 등을 사용하는 경우, 적재물이 움직이지 않도록 차량에 결속 처리하며 차량적재 후 결속부위는 마찰에 의한 결함이 발생하지 않도록 조 치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -95,7 +133,30 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "부재 과다 반입·소운반으로 넘어짐",
+              "measures": [
+                {
+                  "measure": "공장에서 제작된 부재를 현장으로 운반하기 전에 운반차량의 차종과 주행시간, 진입경로, 운반물량, 차량 적재 및 결속방법, 상․하차 시 안전작업, 부재 적재장소 확보 등이 포함된 부재 운반계획서를 작성한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                },
+                {
+                  "measure": "부재의 현장 반입은 작업공정 순서에 맞게 이루어지도록 하여 불필요한 과다 반입과 소운반을 최소화 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015",
+                    "section": "4"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -114,7 +175,45 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height"
+          "hazard": "hazard:fall_from_height",
+          "risks": [
+            {
+              "statement": "작업발판 미설치 또는 안전대 미착용으로 떨어짐",
+              "measures": [
+                {
+                  "measure": "부재 설치 시 추락 및 부재의 낙하․비래 재해예방을 위하여 폭 40 cm 이상의 작업발판을 설치하여야 하며 작업여건상 작업발판의 설치가 곤란한 경우에는 안전대 부착설비 설치 및 안전대를 착용하고 작업하도록 한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "리프트 적재중량 미확인, 통로 발판 미설치로 떨어짐",
+              "measures": [
+                {
+                  "measure": "리프트를 이용하여 부재를 양중 시에는 적재 중량 확인, 출입문 닫힘상태 및 통로 발판 설치가 양호한지 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "양중 부위 안전시설 미설치로 떨어짐, 유니트 낙하",
+              "measures": [
+                {
+                  "measure": "리프트 및 부재 양중 부위에 대한 설치작업은 좁은 공간에 유니트 부재를 끼워 서 설치하여야 하므로 근로자의 추락, 유니트 부재의 낙하 등의 우려가 있으므로 작 업 전에 추락방지를 위한 시설, 유니트 부재를 지지할 수 있는 보조용 로프 등의 안전시설을 반드시 설치한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "무너짐",
@@ -132,7 +231,59 @@
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in"
+          "hazard": "hazard:cave_in",
+          "risks": [
+            {
+              "statement": "구조체 콘크리트 강도 미확보로 커튼월 틀 낙하",
+              "measures": [
+                {
+                  "measure": "부재 설치 시 구조체의 강도저하로 인한 커튼월 틀 낙하 등의 사고예방을 위하여 구조체 콘크리트의 압축강도가 설계기준강도 이상일 때 실시한다",
+                  "controlLevel": "elimination",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "긴결재를 가조립하지 않고 유니트를 세워 전도됨",
+              "measures": [
+                {
+                  "measure": "긴결재 설치는 고정용 구멍에 볼트를 끼우고 1차 긴결재를 가조립한 후 중량물인 유니트를 가조립하여 전도, 도괴 등을 방지한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "유니트를 조립한 후 상부 양중용 구멍에 부착된 원형 걸고리를 우측 한곳은 제거하고 유니트와 유니트를 연결 시켜주는 슬리브를 우측에서 좌측으로 밀어 놓고 결합하여 전도 방지 및 접합부의 변형을 방지한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                },
+                {
+                  "measure": "유니트를 결합시킨 후에 설치 기준선을 이용 수평거리를 확인하고 수평 측량기로 수평기준선을 기준으로 높낮이를 조정한 후에 좌측에 있는 원형고리를 제거하여 커튼월의 뒤틀림과 변형을 방지한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "부착철물과 커튼월 접합부 보강 미흡으로 강풍에 커튼월이 변형·낙하하여 맞음",
+              "measures": [
+                {
+                  "measure": "커튼월 설치 작업 중 강풍 등 외부 환경적인 요인으로 커튼월의 변형 및 낙하 방지를 위해서 부착철물과 커튼월의 접합부에 대한 처리를 철저히 한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "넘어짐",
@@ -142,7 +293,21 @@
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip"
+          "hazard": "hazard:trip_slip",
+          "risks": [
+            {
+              "statement": "구조물 먹메김 중 돌출물에 걸려 넘어지거나 떨어짐",
+              "measures": [
+                {
+                  "measure": "부재 설치 전 구조물에 먹메김 시 돌출물에 의한 추락, 전도 등의 재해위험이 있으 므로 사전에 확인한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           "hazardLabel": "물체에 맞음",
@@ -156,7 +321,33 @@
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object"
+          "hazard": "hazard:fall_object",
+          "risks": [
+            {
+              "statement": "양중용 로프 점검 미흡으로 부재가 낙하",
+              "measures": [
+                {
+                  "measure": "타워크레인이나 이동식크레인으로 부재를 양중 할 때에는 반드시 전담 신호수를 배치 하여야 하며 작업 전 양중용 로프의 이상 유무를 점검한다",
+                  "controlLevel": "administrative",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            },
+            {
+              "statement": "공구함 미사용으로 공구가 낙하",
+              "measures": [
+                {
+                  "measure": "부재 설치용 공구는 낙하 위험이 있으므로 공구함을 만들고 사용한 공구는 반드시 공구함에 넣어 관리한다",
+                  "controlLevel": "engineering",
+                  "basis": {
+                    "guide": "doc:kosha_guide/C-55-2015"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }
