@@ -263,8 +263,12 @@ async function main(): Promise<void> {
   const SYNONYM_QUERY = "항타기로 파일을 박는데 지반이 무르다";
   const briefingText = (await fieldSafetyBriefingTool.handler({ workOrTopic: SYNONYM_QUERY })).content[0]?.text ?? "";
   const tbmText = (await generateTbmTopicsTool.handler({ activityLabel: SYNONYM_QUERY })).content[0]?.text ?? "";
-  const silent = [["현장 브리핑", briefingText], ["TBM 주제", tbmText]].filter(([, t]) => t.includes("기초파일작업") && !t.includes("찾은 낱말: ")).map(([n]) => n);
-  check("사전으로 찾은 공종은 찾은 낱말을 글에 적는다", briefingText.includes("기초파일작업") && silent.length === 0, silent.join(", "));
+  // 도구마다 따로 본다 — 공종 이름과, 공종 찾기가 실제로 돌려준 낱말이 그대로 나와야 한다
+  const expectedNote = `찾은 낱말: ${(bySynonym?.matchedBy ?? []).join(", ")})`;
+  for (const [tool, text] of [["현장 브리핑", briefingText], ["TBM 주제", tbmText]] as const) {
+    const ok = (bySynonym?.matchedBy?.length ?? 0) > 0 && text.includes("기초파일작업") && text.includes(expectedNote);
+    check(`${tool}: 사전으로 찾은 공종과 찾은 낱말을 글에 적는다`, ok, ok ? expectedNote : `공종 ${text.includes("기초파일작업") ? "있음" : "없음"}, "${expectedNote}" ${text.includes(expectedNote) ? "있음" : "없음"}`);
+  }
   const unrelated: string[] = [];
   for (const q of ["점심 메뉴를 추천해 달라", "오늘 날씨가 좋아서 기분이 좋다", "회의실 예약을 도와 달라"]) {
     const hit = await findWork(q);
