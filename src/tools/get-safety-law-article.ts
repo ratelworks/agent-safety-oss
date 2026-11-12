@@ -10,6 +10,8 @@ import { legalRefToIri } from "../lib/article-iri-map.js";
 import { getNode } from "../lib/graph-nodes-loader.js";
 
 // 파일 최상단 상수 — 특정 조문 원문 조회
+/** 법률인 법령 키 — 시행령·시행규칙·규칙(regulation)과 구분한다. 조문 노드의 법령 종류 표기는 일부가 섞여 있어 키로 가른다 */
+const STATUTE_KEYS: ReadonlySet<string> = new Set(["산안법", "중처법", "건진법"]);
 /** 조문 노드의 법령 종류 가운데 권고 기준인 것 (고시·지침) */
 const NOTICE_LEGISLATION_TYPES: ReadonlySet<string> = new Set(["Notification", "Notice"]);
 /** "굴착공사 표준안전 작업지침 제5조" · "… §5의2" → 법령명과 조 번호 */
@@ -83,7 +85,7 @@ async function findNoticeArticle(ref: string): Promise<McpToolResult | null> {
       article: num,
       title: node.title ?? "",
       source: "graph_node",
-      basisType: isNotice ? "notice" : "regulation",
+      basisType: isNotice ? "notice" : STATUTE_KEYS.has(canonical) ? "law" : "regulation",
       legalWeight: isNotice ? "recommended" : "mandatory",
     },
   };
