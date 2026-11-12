@@ -251,8 +251,18 @@ function buildTriggers(input: Input): string[] {
 async function checkRefExistence(ev: EvidenceItemT): Promise<RefCheck> {
   const reference = ev.reference ?? "";
 
-  // 비법령 evidence 는 검증 대상 외
+  // 비법령 evidence 는 검증 대상 외 — 다만 수록한 법령·고시의 조문을 가리키면 그 조문이 있는지 확인한다
+  // (근거 유형을 고시·지침으로 적었다는 이유로 없는 조문이 확인됨으로 넘어가지 않게)
   if (ev.basisType !== "law" && ev.basisType !== "regulation") {
+    if (reference) {
+      const resolved = await resolveReference(reference).catch(() => null);
+      if (resolved?.outcome === "confirmed") {
+        return { reference, outcome: "confirmed", exists: true, matched: `${resolved.iri} ${resolved.title ?? ""}`.trim() };
+      }
+      if (resolved?.outcome === "not_found") {
+        return { reference, outcome: "not_found", exists: false, reason: resolved.reason };
+      }
+    }
     return {
       reference,
       outcome: "confirmed",

@@ -38,7 +38,19 @@ function splitLawAndArticle(ref: string): { lawPart: string; articlePart: string
   if (m) {
     return { lawPart: m[1].trim(), articlePart: m[2].trim() };
   }
+  // "제5조"·"제5조의2" 표기 — 조문 노드로만 수록한 고시·지침은 본문 파일 조회로 찾을 수 없어
+  // 여기서 § 표기로 바꿔 그래프 조회 경로를 타게 한다.
+  const k = ref.match(/^(.*?)\s*제\s*(\d+)\s*조(?:\s*의\s*(\d+))?(.*)$/);
+  if (k && k[1].trim()) {
+    return { lawPart: k[1].trim(), articlePart: `§${k[2]}${k[3] ? `의${k[3]}` : ""}${k[4] ?? ""}` };
+  }
   return null;
+}
+
+/** 인용이 수록한 법령·고시(이름 연결표에 있는 것)의 조문을 가리키는가 */
+function refersToBundledLaw(ref: string): boolean {
+  const parts = splitLawAndArticle(ref.trim());
+  return Boolean(parts && parts.lawPart && legalRefToIri(parts.lawPart, parts.articlePart).canonical);
 }
 
 async function resolveLegalRefExistence(
@@ -614,7 +626,8 @@ async function reviewRiskAssessment(
     type RefDetail = { reference: string; exists: boolean; matched?: string; reason?: string };
     const refDetails: RefDetail[] = await Promise.all(
       citations.map(async (ev): Promise<RefDetail> => {
-        if (ev.basisType !== "law" && ev.basisType !== "regulation") {
+        // 법령·규칙이 아닌 근거(고시·지침·KOSHA Guide 등)는 수록한 법령·고시를 가리킬 때만 확인한다
+        if (ev.basisType !== "law" && ev.basisType !== "regulation" && !refersToBundledLaw(ev.reference ?? "")) {
           return {
             reference: ev.reference ?? "",
             exists: true,
@@ -986,7 +999,8 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       const lawShortNames = listLaws().map((l) => l.shortName).join(", ");
       const refDetails = await Promise.all(
         citations.map(async (ev) => {
-          if (ev.basisType !== "law" && ev.basisType !== "regulation") {
+          // 법령·규칙이 아닌 근거(고시·지침 등)는 수록한 법령·고시를 가리킬 때만 확인한다
+          if (ev.basisType !== "law" && ev.basisType !== "regulation" && !refersToBundledLaw(ev.reference ?? "")) {
             return {
               reference: ev.reference ?? "",
               exists: true,

@@ -59,9 +59,8 @@ export async function resolveCitation(law: string, article: string): Promise<Cit
   if (!mapped.iri) {
     return { outcome: "unverifiable", reason: `'${article}' 에서 조문 번호를 읽지 못함` };
   }
-  // 가지 조문(제36조의2)은 주소에 "의N" 이 붙는다
-  const branch = /§\s*\d+\s*의\s*(\d+)/.exec(article);
-  const iri = branch && mapped.kind === "Article" ? `${mapped.iri}의${branch[1]}` : mapped.iri;
+  // 가지 조문(제36조의2)의 "의N" 은 legalRefToIri 가 주소에 붙여 돌려준다
+  const iri = mapped.iri;
   const node = getNodeSync(iri) as { title?: string } | undefined;
   if (node) return { outcome: "confirmed", iri, title: node.title };
   if (mapped.kind === "Article" && (await fullyCoveredLaws()).has(mapped.canonical)) {

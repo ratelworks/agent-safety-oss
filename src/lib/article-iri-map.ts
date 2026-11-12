@@ -158,10 +158,11 @@ export function legalRefToIri(law: string, article: string): IriResolution {
   }
 
   // 조문 §N — 첫 번째 §숫자만 사용. 범위(§338~§347)는 첫 조만.
-  const m = trimmed.match(/§\s*(\d+)/);
+  // 가지 조문(§5의2 · §5조의2)은 본조와 다른 조문이다 — 번호에 "의N" 을 붙여 구분한다.
+  const m = trimmed.match(/§\s*(\d+)(?:\s*조?\s*의\s*(\d+))?/);
   if (m) {
     return {
-      iri: `art:${canonical}:${m[1]}`,
+      iri: `art:${canonical}:${m[1]}${m[2] ? `의${m[2]}` : ""}`,
       kind: "Article",
       canonical,
       matchedAliasKey: trimmedLaw,
