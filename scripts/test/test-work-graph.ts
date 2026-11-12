@@ -17,7 +17,7 @@ import { fileURLToPath } from "node:url";
 import jsonld from "jsonld";
 import { getNode, neighborsByEdge, listNodesByType } from "../../src/lib/graph-nodes-loader.js";
 import { findMeasuresCiting, findFieldMeasuresForHazard } from "../../src/lib/field-measures.js";
-import { getWorkSteps, LINK_BASIS_LABEL } from "../../src/lib/work-steps.js";
+import { findWork, getWorkSteps, LINK_BASIS_LABEL } from "../../src/lib/work-steps.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -236,6 +236,25 @@ async function main(): Promise<void> {
     if (Boolean(s.broader) === saysNoParent) gapMismatch += 1;
   }
   check("상위 작업이 없는 공종은 응답에 그 사실이 나온다", gapMismatch === 0, `빈 곳을 알린 공종 ${withGaps}개, 어긋남 ${gapMismatch}`);
+
+  // 고시는 이어졌는데 조문을 짚지 못한 공종도 그 사실이 나와야 한다
+  const noArticle = await getWorkSteps("지하연속벽");
+  const noticeArticles = (noArticle?.result.relatedNotices ?? []).reduce((n, x) => n + x.articles.length, 0);
+  check(
+    "고시 조문을 짚지 못한 공종은 응답에 그 사실이 나온다",
+    noticeArticles > 0 || (noArticle?.result.gaps ?? []).some((g) => g.includes("고시")),
+    `지하연속벽: 고시 조문 ${noticeArticles}개`,
+  );
+
+  // 8. 공종 이름이 없는 질문은 자료 안의 낱말로 찾고, 무관한 말은 찾지 않는다
+  const byContent = await findWork("항타기로 파일을 박는데 지반이 무르다");
+  check("공종 이름이 없는 질문을 자료의 낱말로 찾는다", byContent?.work.name === "기초파일작업" && (byContent.matchedBy?.length ?? 0) >= 2, `${byContent?.work.name ?? "없음"} ← ${byContent?.matchedBy?.join(", ") ?? ""}`);
+  const unrelated: string[] = [];
+  for (const q of ["점심 메뉴를 추천해 달라", "오늘 날씨가 좋아서 기분이 좋다", "회의실 예약을 도와 달라"]) {
+    const hit = await findWork(q);
+    if (hit) unrelated.push(`${q} → ${hit.work.name}`);
+  }
+  check("공사와 무관한 말은 공종에 맞추지 않는다", unrelated.length === 0, unrelated.join(" / "));
 
   const subtaskCount = (await listNodesByType("ConstructionSubtask")).length;
   console.log(`\n공종 ${subtaskCount} · 단계 ${stepIds.length} · 위험요인 ${riskIds.length} · 대책 노드 ${measureBody.size} · 고시 장·절 ${chapters.length}`);

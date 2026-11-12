@@ -6,6 +6,7 @@
  *   fixtures/field-questions.json 의 질문을 도구에 그대로 넣고, 돌아온 글에
  *   그 상황에서 반드시 나와야 하는 안전보건규칙 조문이 들어 있는지 센다.
  *   응답이 길어졌는지가 아니라, 맞는 조문이 빠지지 않는지를 본다.
+ *   통과 기준(--min)은 "한 도구의 답 하나에 정답이 다 나온 질문" 비율이다 — 여러 도구에 나뉘어 나온 것은 세지 않는다.
  *
  * 사용
  *   tsx scripts/test/test-field-questions.ts                 현재 빌드
@@ -95,7 +96,9 @@ async function main(): Promise<void> {
   console.log(`빌드: ${root}`);
   console.log(`질문 ${questions.length}개 · 정답 조문 ${questions.reduce((n, q) => n + q.expect.length, 0)}개\n`);
 
-  const columns = [...TOOLS.map((t) => t.label), "셋 중 하나"];
+  const columns = [...TOOLS.map((t) => t.label), "세 도구를 합쳐"];
+  /** 한 도구의 답 하나에 정답이 다 나온 질문 */
+  let singleToolHits = 0;
   const articleHits = columns.map(() => 0);
   const questionHits = columns.map(() => 0);
   const bytes = TOOLS.map(() => 0);
@@ -103,13 +106,16 @@ async function main(): Promise<void> {
 
   questions.forEach((q, qi) => {
     const texts = [...answers[qi], answers[qi].join("\n")];
+    const single = answers[qi].some((text) => q.expect.every((ref) => hasArticle(text, ref)));
+    if (single) singleToolHits += 1;
     texts.forEach((text, ci) => {
       const found = q.expect.filter((ref) => hasArticle(text, ref));
       articleHits[ci] += found.length;
       if (found.length === q.expect.length) questionHits[ci] += 1;
       if (ci < TOOLS.length) bytes[ci] += Buffer.byteLength(text, "utf-8");
-      if (ci === columns.length - 1 && found.length < q.expect.length) {
-        missed.push(`${q.id} ${q.question} — 빠짐: ${q.expect.filter((r) => !found.includes(r)).map((r) => `제${r}조`).join(", ")}`);
+      if (ci === columns.length - 1 && !single) {
+        const absent = q.expect.filter((r) => !found.includes(r)).map((r) => `제${r}조`);
+        missed.push(`${q.id} ${q.question} — ${absent.length ? `어느 도구에도 없음: ${absent.join(", ")}` : "정답이 여러 도구에 나뉘어 나옴"}`);
       }
     });
   });
@@ -123,11 +129,12 @@ async function main(): Promise<void> {
   });
 
   if (verbose || min !== undefined) {
-    console.log(`\n어느 도구에서도 정답이 다 나오지 않은 질문 ${missed.length}개`);
+    console.log(`\n한 도구의 답에 정답이 다 나오지 않은 질문 ${missed.length}개`);
     for (const line of missed) console.log(`  ${line}`);
   }
 
-  const rate = (questionHits[columns.length - 1] / questions.length) * 100;
+  console.log(`\n한 도구의 답 하나에 정답이 다 나온 질문: ${singleToolHits}/${questions.length}`);
+  const rate = (singleToolHits / questions.length) * 100;
   if (min !== undefined && rate < min) {
     console.error(`\n❌ 질문 적중률 ${rate.toFixed(1)}% < 기준 ${min}%`);
     process.exit(1);

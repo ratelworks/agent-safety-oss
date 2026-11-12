@@ -20,6 +20,12 @@ const SCORE_CONTAINS = 60;
 const SCORE_TOKEN = 20;
 /** 매칭에 쓰지 않는 흔한 낱말 */
 const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "설치", "해체", "조립"]);
+/** 내용으로 찾을 때 낱말 끝에서 떼어 보는 조사·어미 (긴 것부터) */
+const PARTICLES = ["으로", "에서", "하는데", "한다", "하고", "를", "을", "로", "에", "이", "가", "은", "는", "의", "와", "과", "도"];
+/** 내용으로 찾을 때 쓰는 낱말 — 이보다 많은 공종에 나오는 낱말은 공종을 가리지 못하므로 쓰지 않는다 */
+const CONTENT_TOKEN_MAX_WORKS = 8;
+/** 내용으로 찾았다고 보려면 맞은 낱말이 이만큼은 있어야 한다 — 낱말 하나로는 우연히 맞는 일이 많다 */
+const CONTENT_MIN_WORDS = 2;
 /** 공종 하나에 보여 줄 관련 문서 수 상한 */
 const MAX_RELATED_DOCUMENTS = 8;
 
@@ -169,6 +175,8 @@ export interface ResolvedWorkSteps {
   relatedNotices?: RelatedNotice[];
   /** 연결된 작업과 관련된 문서 — 작성 조건(when)에 해당할 때만 필요하다 */
   relatedDocuments?: RelatedDocument[];
+  /** 공종 이름이 아니라 자료 안의 낱말로 찾았을 때 그 낱말 — 맞는 공종인지 확인이 필요하다 */
+  matchedByContent?: string[];
   /** 연결 종류별로 그 연결을 정한 방식 (예: 상위 작업 = 내용을 읽고 정함) — 값의 뜻은 linkBasisLegend */
   linkBasis?: Record<string, string>;
   linkBasisLegend?: Record<string, string>;
@@ -220,7 +228,7 @@ function normalize(s: string): string {
 }
 
 /** 작업명으로 공종을 찾는다. 가장 잘 맞는 하나와, 같은 점수대의 다른 후보 이름을 돌려준다. */
-export async function findWork(query: string): Promise<{ work: Work; others: string[] } | null> {
+export async function findWork(query: string): Promise<{ work: Work; others: string[]; matchedBy?: string[] } | null> {
   const q = normalize(query);
   if (!q) return null;
   const tokens = query.split(/[\s.,()·]+/).filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t));
@@ -235,9 +243,74 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
     else score = tokens.filter((t) => name.includes(normalize(t))).length * SCORE_TOKEN;
     if (score >= SCORE_TOKEN) scored.push({ work: w, score });
   }
-  if (scored.length === 0) return null;
+  if (scored.length === 0) return findWorkByContent(tokens);
   scored.sort((a, b) => b.score - a.score);
   return { work: scored[0].work, others: scored.slice(1, 6).map((x) => x.work.name) };
+}
+
+/** 낱말에서 조사·어미를 떼어 본 후보 (원형 포함, 2글자 이상) */
+function stems(token: string): string[] {
+  const out = new Set([token]);
+  for (const p of PARTICLES) {
+    if (token.length - p.length >= 2 && token.endsWith(p)) out.add(token.slice(0, -p.length));
+  }
+  return [...out];
+}
+
+let contentCache: Map<string, string> | null = null;
+
+/** 공종마다 단계 이름·위험요인·대책 문장을 한 덩어리 글로 (한 번 만들고 재사용) */
+async function loadWorkContents(): Promise<Map<string, string>> {
+  if (contentCache) return contentCache;
+  contentCache = new Map();
+  for (const w of await loadWorks()) {
+    const parts: string[] = [];
+    for (const st of w.steps) {
+      parts.push(st.name);
+      for (const h of st.hazards) {
+        for (const r of h.risks ?? []) parts.push(r.statement, ...r.measures.map((m) => m.measure));
+      }
+    }
+    contentCache.set(w.iri, parts.join("\n"));
+  }
+  return contentCache;
+}
+
+/**
+ * 공종 이름으로 못 찾았을 때, 질문의 낱말이 공종 자료의 문장에 나오는지로 찾는다.
+ * ("항타기로 파일을 박는다" → 항타기가 나오는 공종). 몇 안 되는 공종에만 나오는 낱말만 쓰고,
+ * 드문 낱말일수록 크게 친다. 무엇으로 찾았는지는 matchedBy 에 적어 응답에 나간다.
+ */
+async function findWorkByContent(tokens: string[]): Promise<{ work: Work; others: string[]; matchedBy: string[] } | null> {
+  const works = await loadWorks();
+  const contents = await loadWorkContents();
+  const score = new Map<string, { score: number; words: string[] }>();
+  for (const token of tokens) {
+    // 조사를 뗀 후보 중 실제로 자료에 나오는 가장 긴 것 하나만 쓴다
+    const candidates = stems(token).sort((a, b) => b.length - a.length);
+    for (const word of candidates) {
+      const hit = works.filter((w) => (contents.get(w.iri) ?? "").includes(word));
+      if (hit.length === 0) continue;
+      if (hit.length <= CONTENT_TOKEN_MAX_WORKS) {
+        for (const w of hit) {
+          const cur = score.get(w.iri) ?? { score: 0, words: [] };
+          cur.score += 1 / hit.length;
+          cur.words.push(word);
+          score.set(w.iri, cur);
+        }
+      }
+      break;
+    }
+  }
+  const ranked = works
+    .filter((w) => (score.get(w.iri)?.words.length ?? 0) >= CONTENT_MIN_WORDS)
+    .sort((a, b) => (score.get(b.iri)?.score ?? 0) - (score.get(a.iri)?.score ?? 0) || a.iri.localeCompare(b.iri));
+  if (ranked.length === 0) return null;
+  return {
+    work: ranked[0],
+    others: ranked.slice(1, 6).map((w) => w.name),
+    matchedBy: score.get(ranked[0].iri)?.words ?? [],
+  };
 }
 
 /** 본문 구간에서 "N. …" 호(그리고 "가. …" 목)만 꺼낸다. 찾지 못하면 undefined. */
@@ -410,7 +483,7 @@ async function findRelatedDocuments(activity: string | undefined): Promise<Relat
  * 이 공종 자료에서 이어지지 않은 것을 글로 적는다.
  * 빈 곳을 조용히 넘기면 "해당 없음"으로 읽히므로, 연결이 없다는 사실을 그대로 알린다.
  */
-function collectGaps(work: Work, steps: ResolvedWorkSteps["steps"], noticeCount: number): string[] {
+function collectGaps(work: Work, steps: ResolvedWorkSteps["steps"], notices: RelatedNotice[]): string[] {
   const gaps: string[] = [];
   if (!work.activity) {
     gaps.push("상위 작업과 이어지지 않았다 — 작업별 문서·유해요인 자료는 이 공종에 붙지 않는다.");
@@ -436,8 +509,10 @@ function collectGaps(work: Work, steps: ResolvedWorkSteps["steps"], noticeCount:
   if (noBasis > 0) {
     gaps.push(`감소대책 ${measures}건 중 ${noBasis}건은 근거 조문·지침이 붙어 있지 않다.`);
   }
-  if (noticeCount === 0) {
-    gaps.push("이 공종과 이어진 표준안전 작업지침(고시) 조문이 없다.");
+  if (notices.length === 0) {
+    gaps.push("이 공종과 이어진 표준안전 작업지침(고시)이 없다.");
+  } else if (notices.every((n) => n.articles.length === 0)) {
+    gaps.push(`${notices.map((n) => n.law).join(", ")}: 고시는 이어졌으나 이 공종을 다루는 조문은 짚지 못했다 — 고시 전체를 살펴야 한다.`);
   }
   return gaps;
 }
@@ -484,13 +559,14 @@ export async function getWorkSteps(
   }
   const relatedNotices = await findRelatedNotices(found.work);
   const relatedDocuments = await findRelatedDocuments(found.work.activity);
-  const gaps = collectGaps(found.work, steps, relatedNotices.length);
+  const gaps = collectGaps(found.work, steps, relatedNotices);
   return {
     result: {
       iri: found.work.iri,
       group: found.work.group,
       work: found.work.name,
       activity: found.work.activity,
+      ...(found.matchedBy ? { matchedByContent: found.matchedBy } : {}),
       ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
       ...(relatedDocuments.length > 0 ? { relatedDocuments } : {}),
       ...(Object.keys(found.work.linkBasis).length > 0 ? { linkBasis: found.work.linkBasis, linkBasisLegend: LINK_BASIS_LABEL } : {}),
