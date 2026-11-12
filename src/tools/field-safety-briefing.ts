@@ -27,6 +27,7 @@ const FUSION_WEIGHT_SEARCH = 2;
 const NOTIFICATION_TYPE = "Notification";
 const SIMILAR_SECTION_HEAD = "## 🔎 문장이 비슷한 조문 (관련 여부 확인 필요)";
 const SIMILAR_SECTION_NOTE = "작업·위험·문서 이름으로는 찾지 못해, 질문 문장과 글이 비슷한 조문만 보여 줍니다. 건설 안전과 관계없는 질문이면 맞지 않습니다.";
+const SIMILAR_REST_HEAD = "- 글이 비슷해서 찾은 조문";
 const SIMILAR_MARK = " _(비슷한 문장)_";
 const SIMILAR_NOTE = "비슷한 문장 — 질문과 글이 비슷해서 찾은 조문입니다. 상황에 맞는지 확인하세요";
 const MAX_GUIDES = 5;
@@ -533,12 +534,16 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     }
     if (similarShown > 0) out += `> ${SIMILAR_NOTE} (${similarShown}건)\n`;
     if (restArticles.length > 0) {
-      const restText = restArticles.map((a) => {
+      const titleOf = (a: Record<string, unknown>): string => {
         const mark = reviewMark(a["@id"] as string);
         if (mark) unreviewedShown += 1;
         return `\`${a["@id"]}\` ${a.title}${mark}`;
-      });
-      out += `- 그 밖의 관련 조문 ${restArticles.length}개 (제목만): ${restText.join(" · ")}\n`;
+      };
+      // 이름으로 이어진 조문과 글이 비슷해서 찾은 조문을 한 줄에 섞지 않는다
+      const similarRest = unanchored ? [] : restArticles.filter((a) => searchOnlyIris.has(a["@id"] as string));
+      const linkedRest = restArticles.filter((a) => !similarRest.includes(a));
+      if (linkedRest.length > 0) out += `- 그 밖의 관련 조문 ${linkedRest.length}개 (제목만): ${linkedRest.map(titleOf).join(" · ")}\n`;
+      if (similarRest.length > 0) out += `${SIMILAR_REST_HEAD} ${similarRest.length}개 (제목만 · 상황에 맞는지 확인): ${similarRest.map(titleOf).join(" · ")}\n`;
     }
     out += `\n`;
   }

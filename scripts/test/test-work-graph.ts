@@ -55,6 +55,10 @@ const SEARCH_WIDE = 200;
 const NOTIFICATION_QUERY = "트럭 짐 위에 올라가 작업";
 /** 지침 이름이 그대로 든 질문 — 문장 검색 밖의 길로 지침이 들어오는지 본다 */
 const NOTIFICATION_QUERY_BY_NAME = "가설공사 안전 작업";
+/** 문서 이름으로 찾는 것이 있으면서 문장 검색 결과도 많이 붙는 질문 */
+const MIXED_QUERY = "MSDS 등록";
+/** 그 질문에 문장 검색으로만 들어오는 조문 (타워크레인 설치·해체업 등록요건) */
+const MIXED_SEARCH_ONLY_ARTICLE = "`art:산안법시행령:72`";
 const SUBTASK_LINK_KEYS = ["regulatedBy", "guidedBy", "steps", "hasHazard", "broader", "references"];
 const CHAPTER_LINK_KEYS = ["partOf", "hasArticle", "appliesTo", "appliesToActivity"];
 
@@ -347,6 +351,16 @@ async function main(): Promise<void> {
     if (text.includes("## 📖 법령 근거") || text.includes("## ⚖️") || !text.includes("관련 여부 확인 필요")) offTopic.push(q);
   }
   check("공사와 무관한 말에는 의무 조문·벌칙을 내지 않는다", offTopic.length === 0, offTopic.join(" / "));
+
+  // 이름으로 찾은 것이 있는 답에서, 문장 검색으로만 들어온 조문은 요약 줄이든 제목 줄이든 표시 없이 나오지 않는다
+  const mixedText = (await fieldSafetyBriefingTool.handler({ workOrTopic: MIXED_QUERY })).content[0]?.text ?? "";
+  const mixedSection = sectionOf(mixedText);
+  // 문장 검색으로만 들어오는 조문(MSDS 와 무관한 타워크레인 등록 조문)이 표시 없는 줄에 나오면 실패
+  const plainLines = mixedSection.split("\n").filter((line) => !line.includes("비슷한 문장") && !line.startsWith("- 글이 비슷해서 찾은 조문"));
+  const markedLines = mixedSection.split("\n").filter((line) => line.includes("비슷한 문장") || line.startsWith("- 글이 비슷해서 찾은 조문"));
+  const inPlain = plainLines.some((line) => line.includes(MIXED_SEARCH_ONLY_ARTICLE));
+  const inMarked = markedLines.some((line) => line.includes(MIXED_SEARCH_ONLY_ARTICLE));
+  check("글이 비슷해서 찾은 조문은 제목만 나오는 줄에서도 표시와 함께 나온다", inMarked && !inPlain, `${MIXED_SEARCH_ONLY_ARTICLE} — 표시된 줄 ${inMarked ? "있음" : "없음"}, 표시 없는 줄 ${inPlain ? "있음" : "없음"}`);
 
   const subtaskCount = (await listNodesByType("ConstructionSubtask")).length;
   console.log(`\n공종 ${subtaskCount} · 단계 ${stepIds.length} · 위험요인 ${riskIds.length} · 대책 노드 ${measureBody.size} · 고시 장·절 ${chapters.length}`);
