@@ -976,6 +976,7 @@ async function buildWorkStepTable(
     rows,
     notice:
       "공종의 작업 단계별 유해·위험요인과 감소대책을 근거와 함께 정리한 참고 자료입니다(안전보건공단 자료 기반). 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다." +
+      (found.result.matchedBySynonym?.length ? ` 공종 이름이 아니라 현장 용어 사전의 낱말로 찾은 공종입니다 (찾은 낱말: ${found.result.matchedBySynonym.join(", ")}). 맞는 공종인지 확인하세요.` : "") +
       (notices ? ` 함께 볼 표준안전 작업지침(권고 기준): ${notices}.` : ""),
   };
 }

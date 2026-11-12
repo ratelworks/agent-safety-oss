@@ -178,6 +178,8 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 interface StepTopics {
   group: string;
   work: string;
+  /** 공종 이름이 아니라 현장 용어 사전의 낱말로 찾았을 때 그 낱말 */
+  matchedBySynonym?: string[];
   /** 작업명에 단계 이름이 들어 있으면 그 단계들 (예: "강관비계 조립 및 해체" → 조립·해체) */
   focusStep?: string;
   steps: Array<{
@@ -236,6 +238,7 @@ function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
   return {
     group: ws.group,
     work: ws.work,
+    ...(ws.matchedBySynonym ? { matchedBySynonym: ws.matchedBySynonym } : {}),
     ...(focused.length > 0 ? { focusStep: focused.map((step) => step.name).join("·") } : {}),
     steps: chosen.map((step) => ({
       name: step.name,
@@ -457,6 +460,7 @@ function renderTbmMarkdown(payload: {
   const ws = payload.topics.workSteps;
   if (ws) {
     lines.push("", `## 단계별 확인 — ${ws.work}${ws.focusStep ? ` (${ws.focusStep})` : ""}`);
+    if (ws.matchedBySynonym?.length) lines.push(`> 공종 이름이 아니라 현장 용어 사전의 낱말로 찾은 공종입니다 (찾은 낱말: ${ws.matchedBySynonym.join(", ")}) — 맞는 공종인지 확인하세요.`);
     for (const step of ws.steps) {
       lines.push(`- **${step.name}**`);
       for (const h of step.hazards) {

@@ -385,6 +385,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   if (subtask) {
     const st = subtask.result;
     out += `## 🧱 공종·작업 단계 — ${st.work} (\`${st.iri}\`)\n`;
+    if (st.matchedBySynonym?.length) out += `> 공종 이름이 아니라 현장 용어 사전의 낱말로 찾은 공종입니다 (찾은 낱말: ${st.matchedBySynonym.join(", ")}) — 맞는 공종인지 확인하세요.\n`;
     for (const step of st.steps) {
       out += `- **${step.name}** — ${step.hazards.map((h) => h.hazardLabel).join(", ")}\n`;
     }

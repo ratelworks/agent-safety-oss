@@ -20,6 +20,8 @@ import jsonld from "jsonld";
 import { getNode, neighborsByEdge, listNodesByType } from "../../src/lib/graph-nodes-loader.js";
 import { findMeasuresCiting, findFieldMeasuresForHazard } from "../../src/lib/field-measures.js";
 import { findWork, getWorkSteps, LINK_BASIS_LABEL } from "../../src/lib/work-steps.js";
+import { fieldSafetyBriefingTool } from "../../src/tools/field-safety-briefing.js";
+import { generateTbmTopicsTool } from "../../src/tools/generate-tbm-topics.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -257,6 +259,12 @@ async function main(): Promise<void> {
   // 8. 공종 이름이 없는 질문은 동의어 사전으로 찾고, 사전에 없는 말은 찾지 않는다
   const bySynonym = await findWork("항타기로 파일을 박는데 지반이 무르다");
   check("공종 이름이 없는 질문을 동의어 사전으로 찾는다", bySynonym?.work.name === "기초파일작업" && (bySynonym.matchedBy?.length ?? 0) > 0, `${bySynonym?.work.name ?? "없음"} ← ${bySynonym?.matchedBy?.join(", ") ?? ""}`);
+  // 사전으로 찾은 공종은 어떤 낱말로 찾았는지 글에 나와야 한다 — 이름으로 찾은 것과 구분하도록
+  const SYNONYM_QUERY = "항타기로 파일을 박는데 지반이 무르다";
+  const briefingText = (await fieldSafetyBriefingTool.handler({ workOrTopic: SYNONYM_QUERY })).content[0]?.text ?? "";
+  const tbmText = (await generateTbmTopicsTool.handler({ activityLabel: SYNONYM_QUERY })).content[0]?.text ?? "";
+  const silent = [["현장 브리핑", briefingText], ["TBM 주제", tbmText]].filter(([, t]) => t.includes("기초파일작업") && !t.includes("찾은 낱말: ")).map(([n]) => n);
+  check("사전으로 찾은 공종은 찾은 낱말을 글에 적는다", briefingText.includes("기초파일작업") && silent.length === 0, silent.join(", "));
   const unrelated: string[] = [];
   for (const q of ["점심 메뉴를 추천해 달라", "오늘 날씨가 좋아서 기분이 좋다", "회의실 예약을 도와 달라"]) {
     const hit = await findWork(q);
