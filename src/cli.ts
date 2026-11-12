@@ -254,6 +254,7 @@ const TOOLS_NEEDING_API_KEY = new Set<string>([
   "search_safety_materials",
   "search_msds",
   "search_ppe_certification",
+  "search_safety_law_smart",
 ]);
 
 function categorizeTool(name: string): ToolCategory {

@@ -146,7 +146,7 @@ npm audit
 
 ### 6.1 키 거버넌스 차이 — AgentHQ vs `DATA_GO_KR_KEY` (외부 리뷰 P2, 2026-05-22)
 
-KOSHA OneAPI <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 도구는 두 가지 키 경로 중 하나를 선택할 수 있습니다. 두 경로의 거버넌스 차이는 다음과 같습니다.
+KOSHA OneAPI <!-- INV:TOOLS_KEYREQ -->8<!-- /INV:TOOLS_KEYREQ -->개 도구는 두 가지 키 경로 중 하나를 선택할 수 있습니다. 두 경로의 거버넌스 차이는 다음과 같습니다.
 
 | 항목 | **AgentHQ API 키** (라텔웍스 발행, 기본 권장) | **`DATA_GO_KR_KEY`** (사용자 직접 발급) |
 |---|---|---|

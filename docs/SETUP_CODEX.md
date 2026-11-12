@@ -1,6 +1,6 @@
 # OpenAI Codex CLI 설정
 
-`agent-safety-oss` 를 OpenAI Codex CLI 에서 MCP server 로 등록하고 안전관리 도메인 도구 <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 (KOSHA 키 없이 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개) 를 사용하는 방법.
+`agent-safety-oss` 를 OpenAI Codex CLI 에서 MCP server 로 등록하고 안전관리 도메인 도구 <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 (KOSHA 키 없이 <!-- INV:TOOLS_KEYLESS -->84<!-- /INV:TOOLS_KEYLESS -->개) 를 사용하는 방법.
 
 Codex CLI 는 본 OSS 의 **2대 메인 MCP host** 중 하나입니다 (Claude Desktop 과 대등 지원).
 
@@ -10,7 +10,7 @@ Codex CLI 는 본 OSS 의 **2대 메인 MCP host** 중 하나입니다 (Claude D
 
 - **Node.js 22.12 이상** (`node --version` 으로 확인)
 - **OpenAI Codex CLI 설치**: 공식 안내 (https://github.com/openai/codex) 참조
-- (선택) `AGENTHQ_API_KEY` 환경변수 — 공공 OpenAPI 검색 도구 (<!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개) 활성화. 없어도 <!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개 도구 정상 동작.
+- (선택) `AGENTHQ_API_KEY` 환경변수 — 공공 OpenAPI 검색 도구 (<!-- INV:TOOLS_KEYREQ -->8<!-- /INV:TOOLS_KEYREQ -->개) 활성화. 없어도 <!-- INV:TOOLS_KEYLESS -->84<!-- /INV:TOOLS_KEYLESS -->개 도구 정상 동작.
 
 ---
 

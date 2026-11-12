@@ -25,7 +25,7 @@ LocalStorage(`~/.agent-safety-oss/`)는 첫 실행 시 자동 생성됩니다. �
 
 ## 공공 OpenAPI 사용 시
 
-`get_kosha_guide_md` 외 <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개 Live 도구는 다음 두 경로 중 하나로 호출합니다.
+`get_kosha_guide_md` 외 <!-- INV:TOOLS_KEYREQ -->8<!-- /INV:TOOLS_KEYREQ -->개 Live 도구는 다음 두 경로 중 하나로 호출합니다.
 
 - **A. 라텔웍스 발행 키** (`AGENTHQ_API_KEY=ASF_xxxx_yyyy`) — <https://ratelworks.co.kr/agenthq/api-key> 에서 즉시 무료 발급
 - **B. 자체 data.go.kr 키** (`DATA_GO_KR_KEY=<발급키>`) — data.go.kr 에서 KOSHA OpenAPI 즉시 신청·발급
