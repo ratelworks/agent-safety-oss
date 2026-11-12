@@ -13,6 +13,7 @@
  *   tsx scripts/test/test-field-questions.ts --root <폴더>   다른 빌드 (전후 비교)
  *   tsx scripts/test/test-field-questions.ts --min 60        질문 적중률(%)이 이보다 낮으면 exit 1
  *   tsx scripts/test/test-field-questions.ts --verbose       빠진 조문을 질문별로 출력
+ *   tsx scripts/test/test-field-questions.ts --fixture field-questions-holdout.json   맞춰 보지 않은 질문 묶음
  */
 import { execFile } from "node:child_process";
 import { readFile } from "node:fs/promises";
@@ -23,7 +24,8 @@ import { promisify } from "node:util";
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, "..", "..");
-const FIXTURE = resolve(__dirname, "fixtures", "field-questions.json");
+const FIXTURES = resolve(__dirname, "fixtures");
+const DEFAULT_FIXTURE = "field-questions.json";
 /** 질문을 자연어로 받는 도구와 그 입력 이름 */
 const TOOLS: { name: string; flag: string; label: string }[] = [
   { name: "field_safety_briefing", flag: "--workOrTopic", label: "현장 브리핑" },
@@ -85,7 +87,8 @@ async function main(): Promise<void> {
   const root = resolve(arg("--root") ?? REPO);
   const min = arg("--min") ? Number(arg("--min")) : undefined;
   const verbose = process.argv.includes("--verbose");
-  const { questions } = JSON.parse(await readFile(FIXTURE, "utf-8")) as { questions: Question[] };
+  const fixture = arg("--fixture") ?? DEFAULT_FIXTURE;
+  const { questions } = JSON.parse(await readFile(resolve(FIXTURES, fixture), "utf-8")) as { questions: Question[] };
 
   const answers = await mapLimit(questions, CONCURRENCY, async (q) => {
     const texts: string[] = [];
@@ -93,7 +96,7 @@ async function main(): Promise<void> {
     return texts;
   });
 
-  console.log(`빌드: ${root}`);
+  console.log(`빌드: ${root} · 질문 묶음: ${fixture}`);
   console.log(`질문 ${questions.length}개 · 정답 조문 ${questions.reduce((n, q) => n + q.expect.length, 0)}개\n`);
 
   const columns = [...TOOLS.map((t) => t.label), "세 도구를 합쳐"];

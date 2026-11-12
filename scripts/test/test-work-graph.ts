@@ -10,6 +10,8 @@
  *   5. 조문의 법령 종류가 소속 법령과 같다
  *   6. 고시의 장·절이 조문을 빠짐없이 담고, 연결한 공종·작업이 실제 노드다
  *   7. 연결마다 정한 방식(원천·이름 대응·내용 판단)이 적혀 있고, 응답에 그 표기와 빈 곳이 나온다
+ *   8. 공종 이름이 없는 질문은 동의어 사전으로 찾는다 (사전에 없는 말은 추측하지 않는다)
+ *   9. 유해요인 → 조문 연결은 공종 대책의 근거에서 끌어내고, 끌어낸 것임을 적는다
  */
 import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
@@ -252,24 +254,34 @@ async function main(): Promise<void> {
   }
   check("조문을 짚지 못한 고시는 응답에 그 사실이 나온다", silentEmptyNotice === 0, `조문 없는 고시 연결 ${emptyNotices}건, 알리지 않은 것 ${silentEmptyNotice}`);
 
-  // 8. 공종 이름이 없는 질문은 자료 안의 낱말로 찾고, 무관한 말은 찾지 않는다
-  const byContent = await findWork("항타기로 파일을 박는데 지반이 무르다");
-  check("공종 이름이 없는 질문을 자료의 낱말로 찾는다", byContent?.work.name === "기초파일작업" && (byContent.matchedBy?.length ?? 0) >= 2, `${byContent?.work.name ?? "없음"} ← ${byContent?.matchedBy?.join(", ") ?? ""}`);
-  // 근거의 단위는 원형이다 — 되풀이·조사 변형·다른 낱말에 들어 있는 낱말은 하나로 친다
-  const sameWord: string[] = [];
-  for (const q of ["항타기 항타기로", "항타기로 항타기를", "항타 항타기", "압쇄기 압쇄기는 압쇄기의"]) {
-    const hit = await findWork(q);
-    if (hit) sameWord.push(`${q} → ${hit.work.name} ← ${hit.matchedBy?.join(", ")}`);
-  }
-  check("같은 낱말의 되풀이·조사 변형을 두 낱말로 세지 않는다", sameWord.length === 0, sameWord.join(" / "));
-  const withNoise = await findWork("항타기로 파일을 박는다 항타기에서요");
-  check("자료에 없는 낱말이 섞여도 쓸 수 있는 근거는 남는다", withNoise?.work.name === "기초파일작업", `${withNoise?.work.name ?? "없음"} ← ${withNoise?.matchedBy?.join(", ") ?? ""}`);
+  // 8. 공종 이름이 없는 질문은 동의어 사전으로 찾고, 사전에 없는 말은 찾지 않는다
+  const bySynonym = await findWork("항타기로 파일을 박는데 지반이 무르다");
+  check("공종 이름이 없는 질문을 동의어 사전으로 찾는다", bySynonym?.work.name === "기초파일작업" && (bySynonym.matchedBy?.length ?? 0) > 0, `${bySynonym?.work.name ?? "없음"} ← ${bySynonym?.matchedBy?.join(", ") ?? ""}`);
   const unrelated: string[] = [];
   for (const q of ["점심 메뉴를 추천해 달라", "오늘 날씨가 좋아서 기분이 좋다", "회의실 예약을 도와 달라"]) {
     const hit = await findWork(q);
     if (hit) unrelated.push(`${q} → ${hit.work.name}`);
   }
   check("공사와 무관한 말은 공종에 맞추지 않는다", unrelated.length === 0, unrelated.join(" / "));
+  const synonymTargets = (JSON.parse(await readFile(resolve(GRAPH, "..", "synonyms.json"), "utf-8")) as { groups: { expandsTo: string[] }[] }).groups
+    .flatMap((g) => g.expandsTo)
+    .filter((iri) => iri.startsWith("subtask:") || iri.startsWith("hazard:"));
+  const missingSynonymTargets: string[] = [];
+  for (const iri of new Set(synonymTargets)) if (!(await getNode(iri))) missingSynonymTargets.push(iri);
+  check("동의어 사전이 가리키는 공종·유해요인이 모두 있는 노드다", missingSynonymTargets.length === 0, `대상 ${new Set(synonymTargets).size}개, 없는 것 ${missingSynonymTargets.join(", ") || 0}`);
+
+  // 9. 유해요인 → 조문: 공종 자료에서 끌어낸 연결이 있고, 끌어낸 것임이 적혀 있다
+  const hazardNodes = await readDir("hazards");
+  const derivedBad: string[] = [];
+  let derivedCount = 0;
+  for (const h of hazardNodes) {
+    const meta = (h._meta ?? {}) as { derivedRegulatedBy?: string[]; linkBasis?: Record<string, string> };
+    for (const a of meta.derivedRegulatedBy ?? []) {
+      derivedCount += 1;
+      if (!((h.regulatedBy ?? []) as string[]).includes(a) || meta.linkBasis?.derivedRegulatedBy !== "derived" || !(await getNode(a))) derivedBad.push(`${String(h["@id"])}→${a}`);
+    }
+  }
+  check("유해요인의 끌어낸 조문 연결이 표기와 함께 있다", derivedCount > 0 && derivedBad.length === 0, `끌어낸 연결 ${derivedCount}개, 어긋남 ${derivedBad.length}`);
 
   const subtaskCount = (await listNodesByType("ConstructionSubtask")).length;
   console.log(`\n공종 ${subtaskCount} · 단계 ${stepIds.length} · 위험요인 ${riskIds.length} · 대책 노드 ${measureBody.size} · 고시 장·절 ${chapters.length}`);

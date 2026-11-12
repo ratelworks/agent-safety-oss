@@ -6,6 +6,7 @@
  */
 
 import { getNode, listDocuments, listNodesByType, neighborsByEdge } from "./graph-nodes-loader.js";
+import { loadSynonymGroups, matchedTerm } from "./synonyms.js";
 import { getKoshaGuideMd } from "./kosha-guides-loader.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
@@ -20,12 +21,6 @@ const SCORE_CONTAINS = 60;
 const SCORE_TOKEN = 20;
 /** 매칭에 쓰지 않는 흔한 낱말 */
 const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "설치", "해체", "조립"]);
-/** 내용으로 찾을 때 낱말 끝에서 떼어 보는 조사·어미 (긴 것부터) */
-const PARTICLES = ["하는데", "으로", "에서", "한다", "하고", "를", "을", "로", "에", "이", "가", "은", "는", "의", "와", "과", "도"];
-/** 내용으로 찾을 때 쓰는 낱말 — 이보다 많은 공종에 나오는 낱말은 공종을 가리지 못하므로 쓰지 않는다 */
-const CONTENT_TOKEN_MAX_WORKS = 8;
-/** 내용으로 찾았다고 보려면 맞은 낱말이 이만큼은 있어야 한다 — 낱말 하나로는 우연히 맞는 일이 많다 */
-const CONTENT_MIN_WORDS = 2;
 /** 공종 하나에 보여 줄 관련 문서 수 상한 */
 const MAX_RELATED_DOCUMENTS = 8;
 
@@ -142,11 +137,13 @@ export interface ResolvedBasis {
  *   source    원천 자료에 그대로 있는 연결
  *   mapped    이름 대응표로 이은 연결
  *   editorial 내용을 읽고 정한 연결 — 현장 검토 전
+ *   derived   다른 연결에서 끌어낸 연결 (예: 유해요인의 조문 ← 공종 대책의 근거)
  */
 export const LINK_BASIS_LABEL: Record<string, string> = {
   source: "원천 자료에 있는 연결",
   mapped: "이름 대응표로 이은 연결",
   editorial: "내용을 읽고 정한 연결 (현장 검토 전)",
+  derived: "다른 연결에서 끌어낸 연결",
 };
 
 export interface RelatedNotice {
@@ -175,8 +172,8 @@ export interface ResolvedWorkSteps {
   relatedNotices?: RelatedNotice[];
   /** 연결된 작업과 관련된 문서 — 작성 조건(when)에 해당할 때만 필요하다 */
   relatedDocuments?: RelatedDocument[];
-  /** 공종 이름이 아니라 자료 안의 낱말로 찾았을 때 그 낱말 — 맞는 공종인지 확인이 필요하다 */
-  matchedByContent?: string[];
+  /** 공종 이름이 아니라 동의어 사전의 낱말로 찾았을 때 그 낱말 */
+  matchedBySynonym?: string[];
   /** 연결 종류별로 그 연결을 정한 방식 (예: 상위 작업 = 내용을 읽고 정함) — 값의 뜻은 linkBasisLegend */
   linkBasis?: Record<string, string>;
   linkBasisLegend?: Record<string, string>;
@@ -243,78 +240,34 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
     else score = tokens.filter((t) => name.includes(normalize(t))).length * SCORE_TOKEN;
     if (score >= SCORE_TOKEN) scored.push({ work: w, score });
   }
-  if (scored.length === 0) return findWorkByContent(tokens);
+  if (scored.length === 0) return findWorkBySynonym(query);
   scored.sort((a, b) => b.score - a.score);
   return { work: scored[0].work, others: scored.slice(1, 6).map((x) => x.work.name) };
 }
 
-/** 낱말에서 조사·어미를 뗀 원형 — 질문의 "항타기로"·"항타기를"은 모두 "항타기"다 (2글자 미만이 되면 떼지 않는다) */
-function stem(token: string): string {
-  for (const p of PARTICLES) {
-    if (token.length - p.length >= 2 && token.endsWith(p)) return token.slice(0, -p.length);
-  }
-  return token;
-}
-
 /**
- * 질문을 근거로 셀 낱말 묶음으로 바꾼다.
- * 근거의 단위는 글자열이 아니라 원형이다 — 같은 낱말의 조사 변형·되풀이, 다른 낱말에 통째로 들어 있는 낱말은 하나로 친다.
+ * 공종 이름으로 못 찾았을 때 동의어 사전으로 찾는다.
+ * 사전의 묶음이 공종을 가리키면("항타기" → 기초파일작업) 그 공종을 돌려주고, 어떤 낱말로 찾았는지 matchedBy 에 적는다.
+ * 사전에 없는 말은 추측하지 않는다.
  */
-function evidenceWords(tokens: string[], appears: (word: string) => boolean): string[] {
-  // 자료에 나오는 낱말끼리만 견준다 — 자료에 없는 긴 낱말이 쓸 수 있는 근거를 지우지 않게
-  const words = [...new Set(tokens.map(stem))].filter(appears);
-  return words.filter((w) => !words.some((other) => other !== w && other.includes(w)));
-}
-
-let contentCache: Map<string, string> | null = null;
-
-/** 공종마다 단계 이름·위험요인·대책 문장을 한 덩어리 글로 (한 번 만들고 재사용) */
-async function loadWorkContents(): Promise<Map<string, string>> {
-  if (contentCache) return contentCache;
-  contentCache = new Map();
-  for (const w of await loadWorks()) {
-    const parts: string[] = [];
-    for (const st of w.steps) {
-      parts.push(st.name);
-      for (const h of st.hazards) {
-        for (const r of h.risks ?? []) parts.push(r.statement, ...r.measures.map((m) => m.measure));
-      }
-    }
-    contentCache.set(w.iri, parts.join("\n"));
-  }
-  return contentCache;
-}
-
-/**
- * 공종 이름으로 못 찾았을 때, 질문의 낱말이 공종 자료의 문장에 나오는지로 찾는다.
- * ("항타기로 파일을 박는다" → 항타기가 나오는 공종). 몇 안 되는 공종에만 나오는 낱말만 쓰고,
- * 드문 낱말일수록 크게 친다. 무엇으로 찾았는지는 matchedBy 에 적어 응답에 나간다.
- */
-async function findWorkByContent(tokens: string[]): Promise<{ work: Work; others: string[]; matchedBy: string[] } | null> {
+async function findWorkBySynonym(query: string): Promise<{ work: Work; others: string[]; matchedBy: string[] } | null> {
   const works = await loadWorks();
-  const contents = await loadWorkContents();
-  const score = new Map<string, { score: number; words: string[] }>();
-  const texts = [...contents.values()];
-  for (const word of evidenceWords(tokens, (w) => texts.some((t) => t.includes(w)))) {
-    const hit = works.filter((w) => (contents.get(w.iri) ?? "").includes(word));
-    // 너무 많은 공종에 나오는 낱말은 공종을 가리지 못한다
-    if (hit.length === 0 || hit.length > CONTENT_TOKEN_MAX_WORKS) continue;
-    for (const w of hit) {
-      const cur = score.get(w.iri) ?? { score: 0, words: [] };
-      cur.score += 1 / hit.length;
-      cur.words.push(word);
-      score.set(w.iri, cur);
+  const hits = new Map<string, string[]>();
+  for (const group of await loadSynonymGroups()) {
+    const term = matchedTerm(query, group);
+    if (!term) continue;
+    for (const iri of group.expandsTo) {
+      if (!iri.startsWith("subtask:")) continue;
+      hits.set(iri, [...(hits.get(iri) ?? []), term]);
     }
   }
+  // 여러 묶음이 가리킨 공종부터, 같으면 묶음에 먼저 적힌 공종부터
+  const order = [...hits.keys()];
   const ranked = works
-    .filter((w) => (score.get(w.iri)?.words.length ?? 0) >= CONTENT_MIN_WORDS)
-    .sort((a, b) => (score.get(b.iri)?.score ?? 0) - (score.get(a.iri)?.score ?? 0) || a.iri.localeCompare(b.iri));
+    .filter((w) => hits.has(w.iri))
+    .sort((a, b) => (hits.get(b.iri)?.length ?? 0) - (hits.get(a.iri)?.length ?? 0) || order.indexOf(a.iri) - order.indexOf(b.iri));
   if (ranked.length === 0) return null;
-  return {
-    work: ranked[0],
-    others: ranked.slice(1, 6).map((w) => w.name),
-    matchedBy: score.get(ranked[0].iri)?.words ?? [],
-  };
+  return { work: ranked[0], others: ranked.slice(1, 6).map((w) => w.name), matchedBy: hits.get(ranked[0].iri) ?? [] };
 }
 
 /** 본문 구간에서 "N. …" 호(그리고 "가. …" 목)만 꺼낸다. 찾지 못하면 undefined. */
@@ -573,7 +526,7 @@ export async function getWorkSteps(
       group: found.work.group,
       work: found.work.name,
       activity: found.work.activity,
-      ...(found.matchedBy ? { matchedByContent: found.matchedBy } : {}),
+      ...(found.matchedBy ? { matchedBySynonym: found.matchedBy } : {}),
       ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
       ...(relatedDocuments.length > 0 ? { relatedDocuments } : {}),
       ...(Object.keys(found.work.linkBasis).length > 0 ? { linkBasis: found.work.linkBasis, linkBasisLegend: LINK_BASIS_LABEL } : {}),

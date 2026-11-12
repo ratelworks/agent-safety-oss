@@ -24,7 +24,14 @@
     "guidedByMatchScript": "title-keyword-matching",
     "descriptionFilledAt": "2026-04-28",
     "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
-    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "derivedRegulatedBy": [
+      "art:기준규칙:122"
+    ],
+    "derivedRegulatedByNote": "공종 단계의 감소대책이 근거로 든 조문에서 끌어낸 연결 — 이 유해요인이 나오는 공종 16개 중 3개 이상이 근거로 든 조문",
+    "linkBasis": {
+      "derivedRegulatedBy": "derived"
+    }
   },
   "mitigatedBy": [
     "control:elim_automation",
@@ -37,7 +44,8 @@
     "control:ppe_eye_protection"
   ],
   "regulatedBy": [
-    "art:기준규칙:32"
+    "art:기준규칙:32",
+    "art:기준규칙:122"
   ],
   "guidedBy": [
     "doc:kosha_guide/B-M-37-2026",

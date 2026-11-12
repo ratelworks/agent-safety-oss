@@ -1,7 +1,7 @@
 {
   "$schema": "./synonyms.schema.json",
   "version": "1.0.0",
-  "updatedAt": "2026-04-28",
+  "updatedAt": "2026-11-12",
   "purpose": "현장 친화 동의어·축약어 사전. field_safety_briefing 검색 정확도 핵심 개선. 한국 건설안전 도메인 한정.",
   "groups": [
     {
@@ -548,7 +548,8 @@
         "art:기준규칙:338",
         "art:기준규칙:339",
         "doc:ad_hoc/formwork_shoring_drawing",
-        "doc:ad_hoc/concrete_placement_plan"
+        "doc:ad_hoc/concrete_placement_plan",
+        "subtask:거푸집작업"
       ],
       "explicitlyExcludes": [
         "art:기준규칙:365"
@@ -580,7 +581,8 @@
         "art:기준규칙:345",
         "art:기준규칙:346",
         "art:기준규칙:347",
-        "doc:ad_hoc/earth_retaining_drawing"
+        "doc:ad_hoc/earth_retaining_drawing",
+        "subtask:굴착작업"
       ]
     },
     {
@@ -788,7 +790,8 @@
         "art:산안법:119",
         "art:산안법:122",
         "art:산안법:142",
-        "doc:ad_hoc/asbestos_investigation_report"
+        "doc:ad_hoc/asbestos_investigation_report",
+        "subtask:석면_해체_제거작업"
       ]
     },
     {
@@ -827,7 +830,13 @@
         "절연",
         "접지",
         "전격방지기",
-        "교류아크용접기"
+        "교류아크용접기",
+        "충전전로",
+        "충전부",
+        "살아 있는 전선",
+        "전선 가까이",
+        "가공전선",
+        "전기설비"
       ],
       "expandsTo": [
         "activity:electric_work_50v_plus",
@@ -836,7 +845,9 @@
         "art:기준규칙:306",
         "art:기준규칙:318",
         "art:기준규칙:319",
-        "doc:ad_hoc/work_permit_loto"
+        "doc:ad_hoc/work_permit_loto",
+        "subtask:전기설비작업",
+        "subtask:가설전기작업"
       ]
     },
     {
@@ -892,6 +903,75 @@
         "activity:tbm_daily",
         "doc:daily/daily_tbm",
         "doc:daily/pre_work_inspection"
+      ]
+    },
+    {
+      "id": "demolition",
+      "primary": "철거",
+      "synonyms": [
+        "철거공사",
+        "해체공사",
+        "구조물 해체",
+        "건물 해체",
+        "압쇄기",
+        "브레이커 해체",
+        "크러셔"
+      ],
+      "expandsTo": [
+        "subtask:구조물_해체작업",
+        "activity:demolition"
+      ]
+    },
+    {
+      "id": "piling",
+      "primary": "항타",
+      "synonyms": [
+        "항타기",
+        "항발기",
+        "항타·항발",
+        "파일 항타",
+        "말뚝 박기",
+        "파일을 박",
+        "PHC파일",
+        "기초파일"
+      ],
+      "expandsTo": [
+        "subtask:기초파일작업",
+        "activity:phc_pile_driving"
+      ]
+    },
+    {
+      "id": "heat",
+      "primary": "폭염",
+      "synonyms": [
+        "폭염작업",
+        "폭염특보",
+        "온열질환",
+        "열사병",
+        "무더위",
+        "혹서기",
+        "체감온도"
+      ],
+      "expandsTo": [
+        "hazard:heat_stress",
+        "art:기준규칙:560",
+        "art:기준규칙:562"
+      ],
+      "applicabilityNote": "폭염작업의 조치·휴식은 기준규칙 제560조 제2항·제3항, 예방 조치는 제562조 제2항. 제566조는 2025-07-17 개정으로 고열·한랭·다습 작업만 다룬다."
+    },
+    {
+      "id": "falling_object",
+      "primary": "낙하물",
+      "synonyms": [
+        "떨어지는 물체",
+        "자재 낙하",
+        "공구 낙하",
+        "비래",
+        "낙하물 방지망",
+        "상하 동시작업"
+      ],
+      "expandsTo": [
+        "hazard:fall_object"
       ]
     }
   ]

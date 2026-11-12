@@ -20,7 +20,14 @@
     "graphEnrichmentNote": "ERIC-PP 위계 + KOSHA 도메인 매트릭스 기반 mitigatedBy/regulatedBy 일괄 채움",
     "descriptionFilledAt": "2026-04-28",
     "descriptionSource": "KOSHA 산업재해 발생형태 분류 + ILO/OSHA 표준 + 황룡건설(주) + 라텔웍스",
-    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)"
+    "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
+    "derivedRegulatedBy": [
+      "art:기준규칙:200"
+    ],
+    "derivedRegulatedByNote": "공종 단계의 감소대책이 근거로 든 조문에서 끌어낸 연결 — 이 유해요인이 나오는 공종 48개 중 10개 이상이 근거로 든 조문",
+    "linkBasis": {
+      "derivedRegulatedBy": "derived"
+    }
   },
   "mitigatedBy": [
     "control:eng_isolation_barrier",
@@ -68,5 +75,8 @@
     "doc:kosha_guide/C-114-2020",
     "doc:kosha_guide/G-10-2023",
     "doc:kosha_guide/D-C-4-2025"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:200"
   ]
 }

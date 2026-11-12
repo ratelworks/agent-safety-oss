@@ -9,6 +9,10 @@ import { getWorkSteps } from "../lib/work-steps.js";
 // 파일 최상단 상수 — 현장 사용자(현장소장·안전관리자) 친화 통합 brief
 // 작업명 입력 → 5초 안에 위험·통제·법령·의무문서·KOSHA 한 화면 요약
 // synonyms.json 동의어 사전 + doc.searchKeywords + activity.searchKeywords + penaltyMap 활용
+/** 조문이 답에 들어온 길의 무게 — 찾은 공종의 근거 조문 > 작업·문서에 이어진 조문 > 유해요인에 이어진 조문 */
+const WEIGHT_SUBTASK = 2000;
+const WEIGHT_ACTIVITY = 1000;
+const WEIGHT_HAZARD = 500;
 const MAX_ARTICLES = 15;  // expansion IRI 모두 포함 가능 수준
 const MAX_GUIDES = 5;
 const MAX_DOCS = 10;
@@ -25,6 +29,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const NODES = resolve(__dirname, "..", "ontology", "graph", "nodes");
 const SYNONYMS_PATH = resolve(__dirname, "..", "ontology", "synonyms.json");
 
+/** 공종 노드에서 읽는 부분 */
+interface SubtaskNode {
+  hasHazard?: string[];
+  regulatedBy?: string[];
+  steps?: { stepHazards?: { risks?: { measures?: { basis?: { basisArticle?: string } }[] }[] }[] }[];
+}
 interface SynonymGroup {
   id: string;
   primary: string;
@@ -259,11 +269,42 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       }
     }
   }
-  // 위험요인 → 통제 derive
+  // 공종 — 작업명이 공종(강관비계·지하연속벽 등)을 가리키면 그 공종의 유해요인과 근거 조문을 잇는다
+  const subtask = await getWorkSteps(q);
+  /** 조문이 답에 들어온 길의 무게 — 조문 구획의 순서를 정한다 (찾은 공종의 대책이 많이 근거로 든 조문부터) */
+  const graphWeight = new Map<string, number>();
+  const bump = (iri: string, weight: number): void => {
+    graphWeight.set(iri, Math.max(graphWeight.get(iri) ?? 0, weight));
+  };
+  for (const iri of linkedArticleIris) bump(iri, WEIGHT_ACTIVITY);
+  if (subtask) {
+    const node = all.find((n) => n["@id"] === subtask.result.iri) as SubtaskNode | undefined;
+    for (const h of node?.hasHazard ?? []) linkedHazardIris.add(h);
+    const cites = new Map<string, number>();
+    for (const step of node?.steps ?? []) {
+      for (const slot of step.stepHazards ?? []) {
+        for (const risk of slot.risks ?? []) {
+          for (const m of risk.measures ?? []) {
+            const art = m.basis?.basisArticle;
+            if (art) cites.set(art, (cites.get(art) ?? 0) + 1);
+          }
+        }
+      }
+    }
+    for (const iri of (node?.regulatedBy ?? []).filter((r) => r.startsWith("art:"))) {
+      linkedArticleIris.add(iri);
+      bump(iri, WEIGHT_SUBTASK + (cites.get(iri) ?? 0));
+    }
+  }
+  // 위험요인 → 통제·조문 derive
   for (const hIri of linkedHazardIris) {
     const haz = hazards.find(h => h["@id"] === hIri);
     if (!haz) continue;
     for (const c of (haz.mitigatedBy as string[] | undefined) ?? []) linkedControlIris.add(c);
+    for (const a of ((haz.regulatedBy as string[] | undefined) ?? []).filter((r) => r.startsWith("art:"))) {
+      linkedArticleIris.add(a);
+      bump(a, WEIGHT_HAZARD);
+    }
   }
 
   // ─── 4. 직접 article 검색 (fallback + 가중) ───
@@ -340,8 +381,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     out += `\n`;
   }
 
-  // 공종 노드 — 작업명이 공종(강관비계·지하연속벽 등)을 가리키면 단계와 관련 지침을 잇는다
-  const subtask = await getWorkSteps(q);
+  // 공종 노드 — 단계와 관련 지침
   if (subtask) {
     const st = subtask.result;
     out += `## 🧱 공종·작업 단계 — ${st.work} (\`${st.iri}\`)\n`;
@@ -409,19 +449,22 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     .filter(a => !penaltyArticles.has(a!["@id"] as string))
     .map(a => {
       const text = `${a!.title}\n${a!.description}`;
-      return { node: a!, score: scoreMatch(text, strongTerms, weakTerms) };
+      return { node: a!, score: scoreMatch(text, strongTerms, weakTerms), weight: graphWeight.get(a!["@id"] as string) ?? 0 };
     })
-    .sort((a, b) => b.score - a.score)
+    // 그래프로 이어진 조문 먼저(공종 > 작업 > 유해요인), 같으면 질문 낱말과 많이 겹치는 조문 먼저
+    .sort((a, b) => b.weight - a.weight || b.score - a.score)
     .map(x => x.node);
 
   const seen = new Set<string>();
   const obligationArticles: Record<string, unknown>[] = [];
+  /** 상한을 넘은 조문 — 버리지 않고 제목만 적는다 */
+  const restArticles: Record<string, unknown>[] = [];
   for (const a of [...expansionArts, ...otherArts]) {
     const id = a!["@id"] as string;
     if (seen.has(id)) continue;
     seen.add(id);
-    obligationArticles.push(a!);
-    if (obligationArticles.length >= MAX_ARTICLES) break;
+    if (obligationArticles.length < MAX_ARTICLES) obligationArticles.push(a!);
+    else restArticles.push(a!);
   }
   if (obligationArticles.length > 0) {
     out += `## 📖 법령 근거 (의무 조문)\n`;
@@ -431,6 +474,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       const mark = reviewMark(a!["@id"] as string);
       if (mark) unreviewedShown += 1;
       out += `- **${a!["@id"]}** ${a!.title}${mark} — ${summary}\n`;
+    }
+    if (restArticles.length > 0) {
+      out += `- 그 밖의 관련 조문 ${restArticles.length}개 (제목만): ${restArticles.map((a) => `\`${a["@id"]}\` ${a.title}`).join(" · ")}\n`;
     }
     out += `\n`;
   }
