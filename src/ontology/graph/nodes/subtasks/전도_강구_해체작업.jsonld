@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:전도_강구_해체작업",
   "@type": [
     "ConstructionSubtask"
@@ -82,77 +40,93 @@
   ],
   "steps": [
     {
+      "@id": "workstep:전도_강구_해체작업/1",
+      "@type": "WorkStep",
       "stepName": "사전 취약화 및 철근 절단",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.12",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.12",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.12",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.12",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.12",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.12",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:전도_강구_해체작업/1.1",
+              "@type": "WorkRisk",
               "statement": "전도방향 전면 철근을 먼저 모두 절단하여 구조물이 계획과 반대방향으로 넘어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:24605b1f2635",
+                  "@type": "WorkMeasure",
                   "measure": "기둥철근 절단 순서는 전도방향의 전면 그리고 양측면, 마지막으로 뒷부분 철근을 절단하도록 하고, 반대방향 전도를 방지하기 위해 전도방향 전면 철근을 2본 이상 남겨 두어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 },
                 {
+                  "@id": "workmeasure:de111d352ff0",
+                  "@type": "WorkMeasure",
                   "measure": "전도를 목적으로 절삭할 부분은 시공계획 수립 시 결정하고 절삭되지 않는 단면은 안전하게 유지되도록 하여 계획과 반대방향의 전도를 방지한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 },
                 {
+                  "@id": "workmeasure:a9a72ba911ba",
+                  "@type": "WorkMeasure",
                   "measure": "벽체의 절삭 부분 철근 절단 시는 가로철근은 아래에서 위쪽으로, 세로 철근은 중앙에서 양단방향으로 차례로 절단한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:전도_강구_해체작업/1.2",
+              "@type": "WorkRisk",
               "statement": "절삭한 상태로 구조물을 방치하여 야간·무인 상태에서 자중으로 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f07cb26e12d1",
+                  "@type": "WorkMeasure",
                   "measure": "전도 작업은 반드시 연속해서 실시하고, 그날 중으로 종료시키도록 하며 절삭한 상태로 방치해서는 안된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 },
                 {
+                  "@id": "workmeasure:c55095b7c79f",
+                  "@type": "WorkMeasure",
                   "measure": "전도 작업은 작업순서가 임의로 변경될 경우 대형재해의 위험을 초래하므로 사전 작업계획에 따라 작업하여야 하며 순서에 의한 단계별 작업을 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 }
               ]
@@ -161,121 +135,139 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-56-2017",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-56-2017",
+              "guideSection": "6",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:241",
+              "basisArticle": "art:기준규칙:241",
               "paragraph": 2,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:241",
+              "basisArticle": "art:기준규칙:241",
               "paragraph": 2,
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:241",
+              "basisArticle": "art:기준규칙:241",
               "paragraph": 2,
               "item": 6,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:241",
+              "basisArticle": "art:기준규칙:241",
               "paragraph": 4,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:241의2",
+              "basisArticle": "art:기준규칙:241의2",
               "paragraph": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:241의2",
+              "basisArticle": "art:기준규칙:241의2",
               "paragraph": 3,
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:전도_강구_해체작업/1.3",
+              "@type": "WorkRisk",
               "statement": "철근 용단 불티가 해체 구조물 내부의 가연물에 착화되어 화재",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ce6be084509b",
+                  "@type": "WorkMeasure",
                   "measure": "철근 용단 등의 작업을 위해 화기를 사용할 경우에는 용접방화포 등 불꽃, 불티 등의 비산방지조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:0058e6ce2579",
+                  "@type": "WorkMeasure",
                   "measure": "가연성물질이 있는 장소에서 화재위험작업을 하는 경우에는 작업장 내 위험물의 사용·보관 현황을 파악하고 화기작업에 따른 인근 가연성물질에 대한 방호조치 및 소화기구를 비치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:241",
+                    "basisArticle": "art:기준규칙:241",
                     "paragraph": 2,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:dce2d4f16c5d",
+                  "@type": "WorkMeasure",
                   "measure": "작업반경 11미터 이내에 건물구조 자체나 내부에 가연성물질이 있는 장소에서 용접·용단 작업을 하도록 하는 경우에는 화재감시자를 지정하여 용접·용단 작업 장소에 배치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:241의2",
+                    "basisArticle": "art:기준규칙:241의2",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:86a74eddaef4",
+                  "@type": "WorkMeasure",
                   "measure": "용접 또는 용단작업 시 용접불꽃의 비산에 의한 화재, 화상 등의 재해를 예방하기 위하여 작업장 주위의 인화성 물질을 제거하고 불꽃 비산방지포를 설치한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-56-2017",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-56-2017",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:760d3ef56b0c",
+                  "@type": "WorkMeasure",
                   "measure": "인화성 액체의 증기 및 인화성 가스가 남아 있지 않도록 환기 등의 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:241",
+                    "basisArticle": "art:기준규칙:241",
                     "paragraph": 2,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:a330e423d462",
+                  "@type": "WorkMeasure",
                   "measure": "작업근로자에 대한 화재예방 및 피난교육 등 비상조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:241",
+                    "basisArticle": "art:기준규칙:241",
                     "paragraph": 2,
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:b6b5bc14c27d",
+                  "@type": "WorkMeasure",
                   "measure": "화재위험작업이 시작되는 시점부터 종료될 때까지 작업내용, 작업일시, 안전점검 및 조치에 관한 사항 등을 해당 작업장소에 서면으로 게시한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:241",
+                    "basisArticle": "art:기준규칙:241",
                     "paragraph": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:c6fd2a783eac",
+                  "@type": "WorkMeasure",
                   "measure": "배치된 화재감시자에게 업무 수행에 필요한 확성기, 휴대용 조명기구 및 화재 대피용 마스크 등 대피용 방연장비를 지급한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:241의2",
+                    "basisArticle": "art:기준규칙:241의2",
                     "paragraph": 3
                   }
                 }
@@ -285,38 +277,44 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.12",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.12",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-56-2017",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-56-2017",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:전도_강구_해체작업/1.4",
+              "@type": "WorkRisk",
               "statement": "취약화 작업 중인 구조물이 예정보다 일찍 넘어져 절단 작업자가 깔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c2c6ec6749c9",
+                  "@type": "WorkMeasure",
                   "measure": "전도 작업 시에는 미리 일정신호를 정하여 작업자에게 주지시켜야 하며 안전한 거리에 대피소를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 },
                 {
+                  "@id": "workmeasure:9db0cfcccc5f",
+                  "@type": "WorkMeasure",
                   "measure": "전도공법에 의한 해체작업 시 벽체, 기둥 등 해체부재의 전도위치와 파편의 비산거리 등을 검토하여 위험구역을 설정하고 강관비계, 철골 등으로 가설 방호벽을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-56-2017",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-56-2017",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -326,120 +324,142 @@
       ]
     },
     {
+      "@id": "workstep:전도_강구_해체작업/2",
+      "@type": "WorkStep",
       "stepName": "전도·강구 타격 해체",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.13",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.13",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.3",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.3",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:163",
+              "basisArticle": "art:기준규칙:163",
               "paragraph": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:384",
+              "basisArticle": "art:기준규칙:384",
               "paragraph": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:전도_강구_해체작업/2.1",
+              "@type": "WorkRisk",
               "statement": "전도 위치와 파편 비산거리를 예측하지 않고 무너뜨려 작업반경 안의 사람이 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:89bda16fd9e5",
+                  "@type": "WorkMeasure",
                   "measure": "구축물등을 무너뜨리는 작업을 하기 전에 구축물등이 넘어지는 위치, 파편의 비산거리 등을 고려하여 해당 작업 반경 내에 사람이 없는지 미리 확인한 후 작업을 실시하고, 무너뜨리는 작업 중에는 해당 작업 반경 내에 관계 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:384",
+                    "basisArticle": "art:기준규칙:384",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:5b8f7e4ba42e",
+                  "@type": "WorkMeasure",
                   "measure": "외벽, 기둥 등을 무너뜨리는 작업을 할 경우에는 전도 위치와 파편 비산거리 등을 예측하여 작업 반경을 설정한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:948883ead7f0",
+                  "@type": "WorkMeasure",
                   "measure": "무너뜨리는 작업을 할 때에는 작업자 이외에는 모두 대피시킨 뒤 작업을 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:5ad8c3e2f579",
+                  "@type": "WorkMeasure",
                   "measure": "강구 작업반경 내와 해체물이 떨어짐, 넘어짐 또는 비산하는 구간을 설정하고, 통행인의 출입을 통제한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.13"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.13"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:전도_강구_해체작업/2.2",
+              "@type": "WorkRisk",
               "statement": "차체 지지력을 초과하는 강구를 매달아 크레인이 전도되어 깔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e22132bbab68",
+                  "@type": "WorkMeasure",
                   "measure": "강구는 중량과 작업반경을 고려하여 차체의 붐, 후레임 및 차체 지지력을 초과하지 않도록 설치한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d408e4a9a4ee",
+                  "@type": "WorkMeasure",
                   "measure": "강구는 해체대상물에 적합한 형상과 중량의 것을 선정한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:b3e30e018072",
+                  "@type": "WorkMeasure",
                   "measure": "크레인 설치위치의 적정여부를 확인하여야 하며 붐 회전반경 및 강구 사양을 사전에 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.13"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.13"
                   }
                 },
                 {
+                  "@id": "workmeasure:97bca576589b",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 탑승하는 운반구를 지지하는 것 외의 달기구의 안전계수 기준에 맞지 아니한 달기구는 사용해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:163",
+                    "basisArticle": "art:기준규칙:163",
                     "paragraph": 1
                   }
                 }
@@ -449,159 +469,187 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.13",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.13",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.3",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.3",
               "controlLevel": "administrative"
             },
             {
-              "annex": "annex:기준규칙:별표2",
+              "basisAnnex": "annex:기준규칙:별표2",
               "item": 8,
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.12",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.12",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.12",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.12",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.3",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.3",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-56-2017",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-56-2017",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:40",
+              "basisArticle": "art:기준규칙:40",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:전도_강구_해체작업/2.3",
+              "@type": "WorkRisk",
               "statement": "예정 하중으로 넘어지지 않는 구조체에 반동을 주어 당기다 와이어로프가 끊어지며 튕김",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:931d59bcec7b",
+                  "@type": "WorkMeasure",
                   "measure": "와이어로프를 끌어당길 때에는 서서히 하중을 가하도록 하고 구조체가 넘어지지 않을 때에는 반동을 주어 당겨서는 안되며, 예정 하중으로 넘어지지 않을 때는 가력을 중지하고 절삭부분을 더 깎아 내어 자중에 의하여 전도되게 유도한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 },
                 {
+                  "@id": "workmeasure:5308830155f5",
+                  "@type": "WorkMeasure",
                   "measure": "인양 와이어로프는 2본 이상이어야 하며 대상 구조물의 규격에 따라 적정한 위치를 선정한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:전도_강구_해체작업/2.4",
+              "@type": "WorkRisk",
               "statement": "손상된 와이어로프로 강구를 매달아 로프가 끊어지며 강구가 낙하",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:118b5d70c392",
+                  "@type": "WorkMeasure",
                   "measure": "강구를 매단 와이어로프는 작업 전에 반드시 점검하도록 하고 작업 중에도 와이어로프가 손상되지 않도록 주의한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.13"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.13"
                   }
                 },
                 {
+                  "@id": "workmeasure:ae5c73ced4fb",
+                  "@type": "WorkMeasure",
                   "measure": "킹크, 소선절단, 단면이 감소된 와이어로프는 즉시 교체하여야 하며 결속부는 사용전후 항상 점검한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:806b984208b6",
+                  "@type": "WorkMeasure",
                   "measure": "강구를 매단 와이어로프의 종류와 직경 등은 적절한 것을 사용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2dc234002334",
+                  "@type": "WorkMeasure",
                   "measure": "강구와 와이어로프의 결속은 경험이 많은 자를 선임하여 작업을 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e03bab4e3cdb",
+                  "@type": "WorkMeasure",
                   "measure": "이음매가 있거나 심하게 변형되거나 부식된 와이어로프는 사용해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:4461ac2e50d5",
+                  "@type": "WorkMeasure",
                   "measure": "강구공법에 의한 해체작업 시 강구가 크레인으로부터 이탈하지 않도록 접속부위 및 와이어로프의 상태를 수시로 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-56-2017",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-56-2017",
+                    "guideSection": "5.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:전도_강구_해체작업/2.5",
+              "@type": "WorkRisk",
               "statement": "복합 작업방식으로 현장이 혼란해져 위험구간에 근로자가 진입",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:dca856fb57c8",
+                  "@type": "WorkMeasure",
                   "measure": "강구공법에 의한 해체작업은 작업방식이 복합적이어서 현장의 혼란과 위험을 초래하게 되므로 정리정돈에 노력하여야 하며, 위험작업구간에는 관리감독자를 배치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.13"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.13"
                   }
                 },
                 {
+                  "@id": "workmeasure:1e70751134b1",
+                  "@type": "WorkMeasure",
                   "measure": "작업 중 안전대 및 안전모 등 보호구 착용 상황을 감시하는 일을 수행하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표2",
+                    "basisAnnex": "annex:기준규칙:별표2",
                     "item": 8
                   }
                 },
                 {
+                  "@id": "workmeasure:aefa7f69f3a8",
+                  "@type": "WorkMeasure",
                   "measure": "양중기를 사용하는 작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하며, 운전자는 그 신호에 따른다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:40",
+                    "basisArticle": "art:기준규칙:40",
                     "paragraph": 1,
                     "item": 1
                   }
@@ -612,60 +660,72 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.13",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.13",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "6.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:전도_강구_해체작업/2.6",
+              "@type": "WorkRisk",
               "statement": "벽·기둥 상단을 수직 타격하여 구조물이 통제되지 않은 방향으로 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:00b0b207e490",
+                  "@type": "WorkMeasure",
                   "measure": "슬래브와 보 등과 같은 수평재는 강구를 수직으로 낙하시켜 해체하고, 벽, 기둥 등은 수평으로 선회시켜 타격에 의해 해체하도록 하며 수직으로 타격할 때에는 특히 벽과 기둥의 상단을 타격하지 않도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.13"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.13"
                   }
                 },
                 {
+                  "@id": "workmeasure:ae0ec4ced75e",
+                  "@type": "WorkMeasure",
                   "measure": "기둥과 벽은 강구를 수평으로 선회시켜 원심력에 의한 타격력으로 해체하며, 이때 선회거리와 속도 등의 조건을 사전에 검토한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.13"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.13"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:전도_강구_해체작업/2.7",
+              "@type": "WorkRisk",
               "statement": "전도물 규모를 줄이지 않아 낙하 충격으로 지반이 진동하며 인접 구조물이 손상",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:faae15e52001",
+                  "@type": "WorkMeasure",
                   "measure": "전도공법의 경우 전도물 규모를 작게 하여 중량을 최소화하고 전도대상물의 높이는 되도록 작게 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:172a53eb6f63",
+                  "@type": "WorkMeasure",
                   "measure": "강구공법의 경우 강구의 중량과 낙하높이를 가능한 한 낮게 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "6.1"
                   }
                 }
               ]
@@ -676,45 +736,53 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.12",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.12",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.13",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.13",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:4의2",
+              "basisArticle": "art:기준규칙:4의2",
               "controlLevel": "engineering"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:전도_강구_해체작업/2.8",
+              "@type": "WorkRisk",
               "statement": "전도·타격 충격으로 발생한 분진이 흩날려 시야가 차단되고 근로자가 흡입",
               "measures": [
                 {
+                  "@id": "workmeasure:e193e9f96088",
+                  "@type": "WorkMeasure",
                   "measure": "대상물의 전도 시 분진발생을 억제하기 위해 전도물과 완충재에는 충분한 물을 뿌려야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.12"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.12"
                   }
                 },
                 {
+                  "@id": "workmeasure:ebe02b5e8a48",
+                  "@type": "WorkMeasure",
                   "measure": "분진발생 방지 조치를 하며, 방진벽, 비산파편방지망 등을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.13"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.13"
                   }
                 },
                 {
+                  "@id": "workmeasure:4ef32065698a",
+                  "@type": "WorkMeasure",
                   "measure": "분진이 심하게 흩날리는 작업장에 대하여 물을 뿌리는 등 분진이 흩날리는 것을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:4의2"
+                    "basisArticle": "art:기준규칙:4의2"
                   }
                 }
               ]

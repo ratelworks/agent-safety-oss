@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:가설_경사로",
   "@type": [
     "ConstructionSubtask"
@@ -70,41 +28,49 @@
   ],
   "steps": [
     {
+      "@id": "workstep:가설_경사로/1",
+      "@type": "WorkStep",
       "stepName": "설치 및 사용",
       "stepHazards": [
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:가설_경사로/1.1",
+              "@type": "WorkRisk",
               "statement": "경사가 과다하거나 미끄럼 방지가 없어 미끄러져 넘어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:a49280faf26b",
+                  "@type": "WorkMeasure",
                   "measure": "가설통로의 경사는 30도 이하로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:9e59784e3cfd",
+                  "@type": "WorkMeasure",
                   "measure": "경사가 15도를 초과하는 경우에는 미끄러지지 아니하는 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 3
                   }
                 }
@@ -114,50 +80,58 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 7,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 4,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:가설_경사로/1.2",
+              "@type": "WorkRisk",
               "statement": "견고하지 않은 구조·난간 미설치로 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0782b81f7f7d",
+                  "@type": "WorkMeasure",
                   "measure": "가설통로는 견고한 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:b77e025c3be3",
+                  "@type": "WorkMeasure",
                   "measure": "추락할 위험이 있는 장소에는 안전난간을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:a27e8db90a31",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간은 구조적으로 가장 취약한 지점에서 가장 취약한 방향으로 작용하는 100킬로그램 이상의 하중에 견딜 수 있는 튼튼한 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 7
                   }
                 }

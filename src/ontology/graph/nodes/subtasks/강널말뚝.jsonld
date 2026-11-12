@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:강널말뚝",
   "@type": [
     "ConstructionSubtask"
@@ -79,88 +37,104 @@
   ],
   "steps": [
     {
+      "@id": "workstep:강널말뚝/1",
+      "@type": "WorkStep",
       "stepName": "강널말뚝 줄파기·시험굴착",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.1.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:341",
+              "basisArticle": "art:기준규칙:341",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:341",
+              "basisArticle": "art:기준규칙:341",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:341",
+              "basisArticle": "art:기준규칙:341",
               "paragraph": 3,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/1.1",
+              "@type": "WorkRisk",
               "statement": "줄파기 없이 항타하여 지하에 묻힌 가스관·전력케이블을 파손해 폭발하거나 감전됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f126f8a753fb",
+                  "@type": "WorkMeasure",
                   "measure": "지반굴착을 위한 천공 또는 항타 전에 천공위치에 따라 지하매설물 심도 이상 줄파기를 하여 지하 매설물의 유무 및 위치를 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d3a3c0feb4f2",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝박기 구역에 대한 지하수위를 지속적으로 확인하고 항타 지점에 지장물이 있으면 사전에 제거하여야 하며 공사 구역을 표시하는 등 안전한 작업환경을 조성한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a9ec93e426d4",
+                  "@type": "WorkMeasure",
                   "measure": "주요 시설물에 대해서는 관계 법령에 따라 시설물 관리자에게 사전 통보하여 굴착 작업 시에 입회할 수 있도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:8f6086b1f2f2",
+                  "@type": "WorkMeasure",
                   "measure": "줄파기로 노출된 매설물 등이 파손됨으로써 근로자가 위험해질 우려가 있는 경우에는 해당 매설물 등에 대한 방호조치를 하거나 이설하는 등 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:341",
+                    "basisArticle": "art:기준규칙:341",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:03ee3a7d4965",
+                  "@type": "WorkMeasure",
                   "measure": "매설물 등의 방호작업에 대하여 관리감독자에게 해당 작업을 지휘하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:341",
+                    "basisArticle": "art:기준규칙:341",
                     "paragraph": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:a5646a02d344",
+                  "@type": "WorkMeasure",
                   "measure": "매설물·조적벽·콘크리트벽 또는 옹벽 등의 건설물에 근접한 장소에서 굴착작업을 할 때에 해당 가설물의 파손 등에 의하여 근로자가 위험해질 우려가 있는 경우에는 해당 건설물을 보강하거나 이설하는 등 해당 위험을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:341",
+                    "basisArticle": "art:기준규칙:341",
                     "paragraph": 1
                   }
                 }
@@ -170,46 +144,54 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.1.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.1.1",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/1.2",
+              "@type": "WorkRisk",
               "statement": "줄파기 구간을 방호하지 않아 보행자가 굴착부로 떨어지거나 이완된 지반이 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b00763260d36",
+                  "@type": "WorkMeasure",
                   "measure": "가능한 적은 범위 내에서 줄파기를 하고, 보행자의 안전을 위해 보도 경계선에 가설 울타리를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:0e8cfbe83661",
+                  "@type": "WorkMeasure",
                   "measure": "줄파기 작업 시에는 부근의 노면 건조물, 매설물 등에 피해가 없도록 하고, 지반이 이완되지 않도록 주의하며, 필요시에는 가복공 또는 가포장한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d5e1853767bc",
+                  "@type": "WorkMeasure",
                   "measure": "시험굴착 및 줄파기는 흙막이 벽체 설치 진행을 고려하여 소정의 범위 밖에서 시행하며, 작업완료 후 조속히 표준도에 따라 복구하여 교통소통에 지장이 없도록 하고 복구 후 노면을 유지 보수한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.1"
                   }
                 }
               ]
@@ -219,88 +201,106 @@
       ]
     },
     {
+      "@id": "workstep:강널말뚝/2",
+      "@type": "WorkStep",
       "stepName": "강널말뚝 자재 반입·적치",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:385",
+              "basisArticle": "art:기준규칙:385",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/2.1",
+              "@type": "WorkRisk",
               "statement": "적치한 강널말뚝 더미가 무너져 근로자가 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:73f83103caa8",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝을 쌓아 놓을 때 받침목의 배열간격은 4미터 이내로 하고 적치높이는 2미터 이하로, 포개 쌓는 매수는 5장 이하로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:bbd0d811cb0f",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝의 보관 장소는 평탄한 곳으로서 강널말뚝의 조작, 출하, 소운반, 보수 등 작업하기에 충분한 넓이를 확보할 수 있고, 배수가 잘 되고, 강널말뚝의 자중에 의해 침하가 발생하지 않는 장소라야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:c092cdd7893b",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝은 유형별, 종류별, 규격별로 구분하여 반출 순서에 맞추어 쌓아 놓아야 한다. 장기간 적치할 경우에는 방수포 등을 덮어 눈이나 비로부터 보호한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:강널말뚝/2.2",
+              "@type": "WorkRisk",
               "statement": "지게차에 강널말뚝을 과적하거나 무게중심을 잃어 지게차가 넘어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d5269c67a5fe",
+                  "@type": "WorkMeasure",
                   "measure": "지게차에 강널말뚝을 실을 때에는 허용하중을 초과하여 적재하여서는 안 되며, 무게중심을 확보하여 전도의 위험을 방지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d4788e1224a2",
+                  "@type": "WorkMeasure",
                   "measure": "지게차로 강널말뚝 운반시 전방 시야가 나쁘므로 전후좌우를 충분히 관찰하여야 하며 사각지대의 안전을 확보한 뒤에 이동한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:f8ab9cbb34cc",
+                  "@type": "WorkMeasure",
                   "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:385"
+                    "basisArticle": "art:기준규칙:385"
                   }
                 }
               ]
@@ -309,54 +309,64 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.3",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/2.3",
+              "@type": "WorkRisk",
               "statement": "하역 중 매단 강널말뚝이 흔들리거나 결속이 풀려 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:662346783c6d",
+                  "@type": "WorkMeasure",
                   "measure": "하역작업 시에는 신호수를 배치하여 정해진 신호에 따라야 하며 신호는 장비 운전원이 잘 볼 수 있는 곳에서 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d3cd71d90fc7",
+                  "@type": "WorkMeasure",
                   "measure": "반입되는 장비 및 자재의 하역작업은 중량 및 적재상태 등을 고려하여 적절한 하역 방법을 선정한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2f0a0ad637d6",
+                  "@type": "WorkMeasure",
                   "measure": "운반 차량에 적재할 때는 적당한 간격으로 받침목 및 받침대를 배열하고 와이어로프 등으로 견고하게 묶어서 운반도중 충격이나 요동에 의해 강널말뚝에 손상 또는 변형이 생기지 않도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e3ce0bc11356",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝의 적재 운반과정에서 도장면(塗裝面), 이음부와 하단부에 손상을 입지 않도록 하고 단면 특성을 살리기 위하여 비틀림이나 변형이 발생하지 않도록 세심한 주의를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.3"
                   }
                 }
               ]
@@ -366,62 +376,74 @@
       ]
     },
     {
+      "@id": "workstep:강널말뚝/3",
+      "@type": "WorkStep",
       "stepName": "강널말뚝 세우기·항타",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:209",
+              "basisArticle": "art:기준규칙:209",
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/3.1",
+              "@type": "WorkRisk",
               "statement": "크레인 아웃트리거가 침하하여 세우기 작업 중 크레인이 넘어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7f8bb7b67223",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝 세우기 작업시 크레인의 수평도를 확인하고, 아웃 트리거를 설치할 위치의 지반 상태를 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:aa4aea0ab3d3",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝항타 장비를 이동할 경우에는 장비의 뒤집힘 및 쓰러짐을 방지하기 위하여 이동통로의 안전성을 확보하여야 하며, 근로자의 부딪힘 및 끼임 등의 재해를 방지하기 위하여 이동경로에는 출입통제를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:3960d4788161",
+                  "@type": "WorkMeasure",
                   "measure": "항타장비를 이동할 때는 반드시 해머와 리더를 내리고 이동하며, 항타작업을 할 때에는 붐을 60˚ 이하로 세우는 것 금지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:84aa5db31bac",
+                  "@type": "WorkMeasure",
                   "measure": "연약한 지반에 설치하는 경우에는 아웃트리거·받침 등 지지구조물의 침하를 방지하기 위하여 깔판·받침목 등을 사용한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:209",
+                    "basisArticle": "art:기준규칙:209",
                     "item": 1
                   }
                 }
@@ -431,100 +453,122 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:40",
+              "basisArticle": "art:기준규칙:40",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/3.2",
+              "@type": "WorkRisk",
               "statement": "세우는 중인 강널말뚝이 회전하거나 넘어지며 근로자를 침",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:d0c594f1ac7b",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝을 박기 위해서는 타입 법선의 휘어짐을 방지하고 강널말뚝 개개의 회전을 방지하기 위해서는 정확하고 견고한 기준틀을 매어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:d036fa3b80d4",
+                  "@type": "WorkMeasure",
                   "measure": "세우기는 기준틀을 이용하고, 직각 2방향에서 트랜싯으로 시준하여 강널말뚝의 위치와 연직성을 수정하면서 세워나간다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:8763344e8186",
+                  "@type": "WorkMeasure",
                   "measure": "세우기 작업시 해머의 타격은 최초에는 가급적 가볍게 치고 강널말뚝이 연직으로 세워진 것을 확인한 뒤에 소정의 타격력으로 타입한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:497f23729606",
+                  "@type": "WorkMeasure",
                   "measure": "크레인의 회전 반경내에 안전 휀스, 출입금지 표지판 설치 등 관계자외 출입을 금지하는 조치 여부를 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:0d30267e4e50",
+                  "@type": "WorkMeasure",
                   "measure": "크레인 인양 작업시 신호수를 배치하여야 하며, 운전원과 신호수의 신호 방법을 확인할 수 있는 장소에서 신호할 수 있도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:강널말뚝/3.3",
+              "@type": "WorkRisk",
               "statement": "인양 능력을 초과하거나 방호장치가 고장난 크레인으로 인양하다 강널말뚝이 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:cb153129884a",
+                  "@type": "WorkMeasure",
                   "measure": "크레인의 인양 반경에 따른 크레인 인양 능력을 사전에 검토한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:5937c4684865",
+                  "@type": "WorkMeasure",
                   "measure": "작업 시작 전에 권과방지장치나 그밖의 방호장치의 기능, 브레이크, 클러치 및 조정장치의 기능, 와이어로프가 통하고 있는 곳의 상태 등을 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:3bb203664002",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝항타 장비의 운전원은 자격을 갖춘 자로 하여야 하며, 크레인 및 항타기의 운전은 신호에 의하여 작동한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:e880b07323ec",
+                  "@type": "WorkMeasure",
                   "measure": "항타기 또는 항발기의 운전작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하며, 운전자는 그 신호에 따른다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:40",
+                    "basisArticle": "art:기준규칙:40",
                     "paragraph": 1,
                     "item": 4
                   }
@@ -535,118 +579,142 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.1.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.1.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.1.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.1.4",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/3.4",
+              "@type": "WorkRisk",
               "statement": "항타 중 이음부가 이탈하거나 말뚝이 경사진 채 시공되어 벽체에 틈이 생기고 배면토가 유실됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a6e5410d3e14",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝항타 도중에 이음부의 이탈이나 손상이 확인되면 즉시 이탈된 강널말뚝을 빼내고 다시 박아야 한다. 다시 박기가 불가능 할 경우는 보강대책을 수립하여 관리감독자와 협의한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:92740e1e0649",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝항타 작업 중 경사의 경향이 보이면 즉시 수정한다. 수정이 불가능하면 쐐기형의 이형 강널말뚝을 제작하여 박아 경사를 수정한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:70c0b1a7d360",
+                  "@type": "WorkMeasure",
                   "measure": "지반이 단단하거나 또는 지지층의 기복이 심한 경우에는 세우기와 동시에 항타작업을 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:5b1f67ab644f",
+                  "@type": "WorkMeasure",
                   "measure": "항타 전 강널말뚝의 연결부 부위를 건조한 상태로 유지하며 강널말뚝의 연결부 부위를 깨끗이 정리 후 지수재를 도포한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:0405f2b7b156",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 벽체의 선단은 설계도서에 의거 충분한 근입깊이를 확보한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:957c0365eade",
+                  "@type": "WorkMeasure",
                   "measure": "말뚝의 항타는 연속적으로 타입하되, 소정의 심도까지 반드시 근입하여야 한다. 토사인 경우 굴착저면 아래로 최소한 2m 이상 근입한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:강널말뚝/3.5",
+              "@type": "WorkRisk",
               "statement": "기준틀 위치가 어긋난 채 항타를 진행해 법선이 휘고 벽체가 설계 위치를 벗어남",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bbb7ef198118",
+                  "@type": "WorkMeasure",
                   "measure": "기준틀의 위치가 구조물의 법선을 결정하게 되므로 기준틀의 위치는 계획 법선에 맞추어 정확한 위치를 잡아야 한다. 위치를 정할 때는 공사감독자(또는 감리자)의 검측을 받아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:f2d3de2aabdc",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝 박을 위치를 용이하게 확인할 수 있는 기준점과 관측대를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:4d89340e467a",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝에 형식, 길이 번호를 표시하고 백색 페인트로 50센티미터 간격으로 눈금을 표시하여 항타 기록 등 강널말뚝박기 공사관리의 편리를 도모한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a961ac631124",
+                  "@type": "WorkMeasure",
                   "measure": "항타로 흙막이 벽체를 설치할 경우 항타장비는 말뚝의 종류, 중량, 근입깊이, 타입 본수, 토질, 주위환경 등을 고려하여 현장 여건에 적합한 안전하고 경제적인 장비를 선택한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.1.4"
                   }
                 }
               ]
@@ -655,51 +723,59 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/3.6",
+              "@type": "WorkRisk",
               "statement": "강널말뚝 이음 용접 중 용접기·전선으로 감전됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a40ea4e2ee44",
+                  "@type": "WorkMeasure",
                   "measure": "용접 작업시 용접기, 전선 등에 의한 감전 사고를 방지하도록 주의하며, 용접기는 소요 규격에 적합한 전격 방지 장치를 설치한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a5bf8d699604",
+                  "@type": "WorkMeasure",
                   "measure": "작업 및 주변 근로자에게 절연용 보호구(전기용 고무장갑, 전기용 안전모, 전기용 고무소매 등)를 착용시키고 특히 감전의 위험이 발생할 우려가 있는 곳에 절연용 방호구를 설치할 것",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:cf934ab2ebe9",
+                  "@type": "WorkMeasure",
                   "measure": "강널말뚝의 이음은 외부 작업장에서 용접하는 것이 원칙이나 부득이한 사유로 박기 작업 도중 이음작업을 하여야 할 경우에는 설계도면에 맞게 정밀하게 용접한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 }
               ]
@@ -708,25 +784,29 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/3.7",
+              "@type": "WorkRisk",
               "statement": "용접 불티가 인화성·가연성 물질이나 도장 작업 구역에 옮겨 붙어 불이 남",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f8a44f8b8030",
+                  "@type": "WorkMeasure",
                   "measure": "용접작업은 인화성, 가연성 물질의 격리 후 이루어져야 하며, 도장 작업 장소에는 동시작업을 하지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 }
               ]
@@ -735,38 +815,44 @@
         },
         {
           "hazardLabel": "이상온도·화상",
+          "hasHazard": "hazard:thermal_burn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "7.3.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 5,
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:thermal_burn",
           "risks": [
             {
+              "@id": "workrisk:강널말뚝/3.8",
+              "@type": "WorkRisk",
               "statement": "용접 유해광선과 비산 물질에 노출되어 근로자가 눈과 피부에 화상을 입음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:28dea4092b77",
+                  "@type": "WorkMeasure",
                   "measure": "유해광선이나 비산되는 물질로부터 눈이나 얼굴을 보호하기 위한 용접면을 착용 및 용접용 가죽장갑, 긴소매의 옷, 다리보호대, 가죽소재 등의 보호구를 사용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:aeefe7bf5ef3",
+                  "@type": "WorkMeasure",
                   "measure": "용접 시 불꽃이나 물체가 흩날릴 위험이 있는 작업에는 보안면을 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 5
                   }

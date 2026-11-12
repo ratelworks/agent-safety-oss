@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:방호선반",
   "@type": [
     "ConstructionSubtask"
@@ -67,142 +25,174 @@
   ],
   "steps": [
     {
+      "@id": "workstep:방호선반/1",
+      "@type": "WorkStep",
       "stepName": "설치",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-27-2011",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-27-2011",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-27-2011",
-              "section": "7.2",
+              "basisGuide": "doc:kosha_guide/C-27-2011",
+              "guideSection": "7.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-27-2011",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/C-27-2011",
+              "guideSection": "7.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-27-2011",
-              "section": "7.4",
+              "basisGuide": "doc:kosha_guide/C-27-2011",
+              "guideSection": "7.4",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:방호선반/1.1",
+              "@type": "WorkRisk",
               "statement": "방호선반이 풍압·충격으로 탈락하여 낙하함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:09d6c4a5ec02",
+                  "@type": "WorkMeasure",
                   "measure": "방호선반은 풍압, 진동, 충격 등으로 탈락하지 않도록 견고하게 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:faf1601ad9eb",
+                  "@type": "WorkMeasure",
                   "measure": "방호선반의 상·하 브래킷이 설치된 비계의 띠장에는 벽이음 철물을 수평거리 매 3.6m 이하마다 보강한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:방호선반/1.2",
+              "@type": "WorkRisk",
               "statement": "내민 길이·설치높이·각도가 부족하여 낙하물이 하부에 도달함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:78f7b7be7120",
+                  "@type": "WorkMeasure",
                   "measure": "방호선반의 내민 길이는 비계의 외측으로부터 수평거리 2m 이상 돌출되도록 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:bb0e0daf186b",
+                  "@type": "WorkMeasure",
                   "measure": "방호선반의 설치높이는 근로자를 낙하물에 의한 위험으로부터 방호할 수 있도록 가능한 낮은 위치에 설치하여야 하며, 8m를 초과하여 설치하지 않는다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:dfa94a8f7d44",
+                  "@type": "WorkMeasure",
                   "measure": "경사지게 설치하는 방호선반이 수평면과 이루는 각도는 방호선반의 최외측이 구조물 쪽보다 20° 이상 30° 이내로 높아야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:방호선반/1.3",
+              "@type": "WorkRisk",
               "statement": "바닥판 틈새·난간 미설치로 낙하물이 통과하거나 튕겨 나감",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:70d09a4aad35",
+                  "@type": "WorkMeasure",
                   "measure": "방호선반의 바닥판은 틈새가 없도록 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b96011729d19",
+                  "@type": "WorkMeasure",
                   "measure": "수평으로 설치하는 방호선반의 끝단에는 수평면으로부터 높이 60㎝ 이상의 난간을 설치하여야 하며, 난간은 방호선반에 낙하한 낙하물이 외부로 튕겨 나감을 방지할 수 있는 구조이어야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:방호선반/1.4",
+              "@type": "WorkRisk",
               "statement": "출입구·리프트 주변에 방호선반을 설치하지 않아 통행 근로자가 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:77c2b75dbb7e",
+                  "@type": "WorkMeasure",
                   "measure": "외부비계에 설치하는 낙하물 방호 설비 중 근로자, 보행자, 차량 등이 통행할 때에는 방호선반을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:e531f9502734",
+                  "@type": "WorkMeasure",
                   "measure": "근로자의 통행이 빈번한 출입구 및 임시출입구 상부에는 방호선반을 반드시 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2787115d7ade",
+                  "@type": "WorkMeasure",
                   "measure": "리프트와 방호선반의 틈간격은 4㎝ 이하로 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.4"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:866064267c34",
+                  "@type": "WorkMeasure",
                   "measure": "방호선반의 최외곽 받침기둥에는 방호울 또는 안전방망 등을 설치하여 방호선반 외측으로 낙하한 낙하물이 구조물 내부로 튀어 들어오는 것을 방지할 수 있어야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-27-2011",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-27-2011",
+                    "guideSection": "7.3"
                   }
                 }
               ]

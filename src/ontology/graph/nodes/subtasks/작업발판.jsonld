@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:작업발판",
   "@type": [
     "ConstructionSubtask"
@@ -77,55 +35,65 @@
   ],
   "steps": [
     {
+      "@id": "workstep:작업발판/1",
+      "@type": "WorkStep",
       "stepName": "설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.5.2",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.5.2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:56",
+              "basisArticle": "art:기준규칙:56",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:56",
+              "basisArticle": "art:기준규칙:56",
               "item": 5,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:작업발판/1.1",
+              "@type": "WorkRisk",
               "statement": "발판재료의 강도가 부족하거나 지지물이 파괴되어 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:594ddaa2c8c9",
+                  "@type": "WorkMeasure",
                   "measure": "발판재료는 작업할 때의 하중을 견딜 수 있도록 견고한 것으로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:56",
+                    "basisArticle": "art:기준규칙:56",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:9f3b9d53baac",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판의 지지물은 하중에 의하여 파괴될 우려가 없는 것을 사용한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:56",
+                    "basisArticle": "art:기준규칙:56",
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:4d9cdb9b0076",
+                  "@type": "WorkMeasure",
                   "measure": "재사용 강재 작업발판 사용 시에는 작업장에 작업발판을 반입하는 시점에 작업발판의 재료 성능에 대한 점검을 실시하여 이상여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.5.2"
                   }
                 }
               ]
@@ -134,69 +102,81 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.5.1",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.5.1",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:56",
+              "basisArticle": "art:기준규칙:56",
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:56",
+              "basisArticle": "art:기준규칙:56",
               "item": 4,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:작업발판/1.2",
+              "@type": "WorkRisk",
               "statement": "발판 폭이 좁거나 재료 간 틈이 벌어져 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:2100da10e51a",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판의 폭은 40센티미터 이상으로 하고, 발판재료 간의 틈은 3센티미터 이하로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:56",
+                    "basisArticle": "art:기준규칙:56",
                     "item": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업발판/1.3",
+              "@type": "WorkRisk",
               "statement": "추락 위험 장소에 안전난간을 설치하지 않아 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:cc851794a504",
+                  "@type": "WorkMeasure",
                   "measure": "추락의 위험이 있는 장소에는 안전난간을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:56",
+                    "basisArticle": "art:기준규칙:56",
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:629b50c37431",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간을 설치하는 것이 곤란한 경우 또는 작업의 필요상 임시로 안전난간을 해체할 때에는 추락방호망을 설치하거나 근로자로 하여금 안전대를 사용하도록 하는 등 추락위험 방지 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.5.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d75c8dbbb871",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간은 상부 난간대, 중간 난간대, 발끝막이판 및 난간기둥으로 구성한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 1
                   }
                 }
@@ -206,24 +186,28 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "article": "art:기준규칙:56",
+              "basisArticle": "art:기준규칙:56",
               "item": 6,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:작업발판/1.4",
+              "@type": "WorkRisk",
               "statement": "발판재료가 뒤집히거나 떨어져 하부 근로자가 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:63b4dda770d0",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판재료는 뒤집히거나 떨어지지 않도록 둘 이상의 지지물에 연결하거나 고정시킨다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:56",
+                    "basisArticle": "art:기준규칙:56",
                     "item": 6
                   }
                 }
@@ -233,25 +217,29 @@
         },
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.5.1",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.5.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:작업발판/1.5",
+              "@type": "WorkRisk",
               "statement": "고정용 못·철선·볼트에 걸려 넘어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:79b85ed5c213",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 작업발판 고정용 못, 철선 및 볼트 등에 걸려 넘어지지 않도록 조치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.5.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.5.1"
                   }
                 }
               ]
@@ -261,49 +249,59 @@
       ]
     },
     {
+      "@id": "workstep:작업발판/2",
+      "@type": "WorkStep",
       "stepName": "사용",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.5.2",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.5.2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:작업발판/2.1",
+              "@type": "WorkRisk",
               "statement": "작업 전 점검 없이 사용하여 발판 손상·걸림 불량을 놓쳐 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f089895ee466",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판 점검계획을 수립하여 당해 작업 시작 전에 작업발판에 대한 점검을 실시한 후 작업발판 안전점검표를 당해 작업장에 게시하고 작업발판 주변에 지적된 내용을 표시하여 작업발판을 사용하는 근로자가 점검내용을 확인할 수 있도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:50c18aea909b",
+                  "@type": "WorkMeasure",
                   "measure": "점검결과 설치된 작업발판이 안전기준에 부합되지 않을 때에는 근로자가 그 작업발판을 사용하기 전까지 개선한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:30067b0a5ee3",
+                  "@type": "WorkMeasure",
                   "measure": "발판 재료의 손상 여부 및 부착 또는 걸림 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 1
                   }
                 }
@@ -313,36 +311,42 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.5.2",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.5.2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:55",
+              "basisArticle": "art:기준규칙:55",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:작업발판/2.2",
+              "@type": "WorkRisk",
               "statement": "최대적재하중을 초과하여 적재해 발판이 파괴됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:52ee4ed5a1d0",
+                  "@type": "WorkMeasure",
                   "measure": "비계의 구조 및 재료에 따라 작업발판의 최대적재하중을 정하고, 이를 초과하여 실지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:55"
+                    "basisArticle": "art:기준규칙:55"
                   }
                 },
                 {
+                  "@id": "workmeasure:1fc2222731e6",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판의 최대적재하중 및 각 재료별 최대적재수량을 비계의 구조에 따라 정한 후 그 내용을 게시하여 근로자가 확인할 수 있도록 하고 이를 초과하여 적재하지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.5.2"
                   }
                 }
               ]
@@ -352,28 +356,34 @@
       ]
     },
     {
+      "@id": "workstep:작업발판/3",
+      "@type": "WorkStep",
       "stepName": "이동·해체",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:56",
+              "basisArticle": "art:기준규칙:56",
               "item": 7,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:작업발판/3.1",
+              "@type": "WorkRisk",
               "statement": "작업발판을 이동시키는 중 떨어지거나 부재가 낙하함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:18c7110ffeb3",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판을 작업에 따라 이동시킬 경우에는 위험 방지에 필요한 조치를 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:56",
+                    "basisArticle": "art:기준규칙:56",
                     "item": 7
                   }
                 }
@@ -383,38 +393,44 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.5.1",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.5.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 6,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:작업발판/3.2",
+              "@type": "WorkRisk",
               "statement": "해체 구역 하부에 출입통제 없이 작업하여 부재에 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:932baf4f9fa6",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판을 해체할 때 그 주변에는 관계자 외 출입을 금지시킨다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.5.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:44de37521da9",
+                  "@type": "WorkMeasure",
                   "measure": "재료·기구 또는 공구 등을 올리거나 내리는 경우에는 근로자가 달줄 또는 달포대 등을 사용하게 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 6
                   }

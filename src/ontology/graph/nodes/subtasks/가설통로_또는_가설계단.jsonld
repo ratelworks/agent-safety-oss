@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:가설통로_또는_가설계단",
   "@type": [
     "ConstructionSubtask"
@@ -78,55 +36,65 @@
   ],
   "steps": [
     {
+      "@id": "workstep:가설통로_또는_가설계단/1",
+      "@type": "WorkStep",
       "stepName": "설치",
       "stepHazards": [
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-11-2012",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-11-2012",
+              "guideSection": "5",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:가설통로_또는_가설계단/1.1",
+              "@type": "WorkRisk",
               "statement": "경사가 과다하거나 미끄럼 방지를 하지 않아 미끄러져 넘어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:3c4866499ac4",
+                  "@type": "WorkMeasure",
                   "measure": "가설통로의 경사는 30도 이하로 한다(계단을 설치하거나 높이 2미터 미만의 가설통로로서 튼튼한 손잡이를 설치한 경우는 제외)",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:9e59784e3cfd",
+                  "@type": "WorkMeasure",
                   "measure": "경사가 15도를 초과하는 경우에는 미끄러지지 아니하는 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:9c72d3e69b25",
+                  "@type": "WorkMeasure",
                   "measure": "발판 끝부분과 계단참의 표면은 미끄럼방지 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-11-2012",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-11-2012",
+                    "guideSection": "5"
                   }
                 }
               ]
@@ -135,51 +103,59 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-11-2012",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-11-2012",
+              "guideSection": "5",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:26",
+              "basisArticle": "art:기준규칙:26",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:가설통로_또는_가설계단/1.2",
+              "@type": "WorkRisk",
               "statement": "견고하지 않은 구조로 설치하여 통행 중 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0782b81f7f7d",
+                  "@type": "WorkMeasure",
                   "measure": "가설통로는 견고한 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:e05c383eb363",
+                  "@type": "WorkMeasure",
                   "measure": "계단 및 계단참을 설치하는 경우 매제곱미터당 500킬로그램 이상의 하중에 견딜 수 있는 강도를 가진 구조로 설치하여야 하며, 안전율은 4 이상으로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:26",
+                    "basisArticle": "art:기준규칙:26",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:75f2be5c8bf8",
+                  "@type": "WorkMeasure",
                   "measure": "계단의 재료는 충분한 강도를 유지하여야 하며 사용 중에 안전성이 있어야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-11-2012",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-11-2012",
+                    "guideSection": "5"
                   }
                 }
               ]
@@ -188,92 +164,108 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 4,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:23",
+              "basisArticle": "art:기준규칙:23",
               "item": 6,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:28",
+              "basisArticle": "art:기준규칙:28",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:30",
+              "basisArticle": "art:기준규칙:30",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:가설통로_또는_가설계단/1.3",
+              "@type": "WorkRisk",
               "statement": "계단참을 설치하지 않아 추락 시 낙하 높이가 커짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:980cc96758c1",
+                  "@type": "WorkMeasure",
                   "measure": "높이가 3미터를 초과하는 계단에 높이 3미터 이내마다 진행방향으로 길이 1.2미터 이상의 계단참을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:28"
+                    "basisArticle": "art:기준규칙:28"
                   }
                 },
                 {
+                  "@id": "workmeasure:a8a83c2c3669",
+                  "@type": "WorkMeasure",
                   "measure": "수직갱에 가설된 통로의 길이가 15미터 이상인 경우에는 10미터 이내마다 계단참을 설치한다",
                   "controlLevel": "engineering",
                   "variant": "갱내",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:057394371d36",
+                  "@type": "WorkMeasure",
                   "measure": "건설공사에 사용하는 높이 8미터 이상인 비계다리에는 7미터 이내마다 계단참을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 6
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:가설통로_또는_가설계단/1.4",
+              "@type": "WorkRisk",
               "statement": "개방된 측면에 안전난간이 없어 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:b5bfe183b14f",
+                  "@type": "WorkMeasure",
                   "measure": "추락할 위험이 있는 장소에는 안전난간을 설치한다(작업상 부득이한 경우에는 필요한 부분만 임시로 해체할 수 있다)",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:23",
+                    "basisArticle": "art:기준규칙:23",
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:e0b385a1eced",
+                  "@type": "WorkMeasure",
                   "measure": "높이 1미터 이상인 계단의 개방된 측면에 안전난간을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:30"
+                    "basisArticle": "art:기준규칙:30"
                   }
                 },
                 {
+                  "@id": "workmeasure:5b683a4a6f44",
+                  "@type": "WorkMeasure",
                   "measure": "상부 난간대는 바닥면등으로부터 90센티미터 이상 지점에 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 2
                   }
                 }
@@ -283,24 +275,28 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "article": "art:기준규칙:27",
+              "basisArticle": "art:기준규칙:27",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:가설통로_또는_가설계단/1.5",
+              "@type": "WorkRisk",
               "statement": "계단 폭이 좁아 교행 중 부딪히거나 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:20787464566c",
+                  "@type": "WorkMeasure",
                   "measure": "계단을 설치하는 경우 그 폭을 1미터 이상으로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:27",
+                    "basisArticle": "art:기준규칙:27",
                     "paragraph": 1
                   }
                 }
@@ -311,50 +307,60 @@
       ]
     },
     {
+      "@id": "workstep:가설통로_또는_가설계단/2",
+      "@type": "WorkStep",
       "stepName": "사용",
       "stepHazards": [
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-11-2012",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-11-2012",
+              "guideSection": "5",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:27",
+              "basisArticle": "art:기준규칙:27",
               "paragraph": 2,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:가설통로_또는_가설계단/2.1",
+              "@type": "WorkRisk",
               "statement": "계단에 자재·공구를 적재하거나 방치하여 걸려 넘어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:438ee057d6d5",
+                  "@type": "WorkMeasure",
                   "measure": "계단에 손잡이 외의 다른 물건 등을 설치하거나 쌓아 두지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:27",
+                    "basisArticle": "art:기준규칙:27",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:03e87dc19c08",
+                  "@type": "WorkMeasure",
                   "measure": "계단에는 자재나 공구 등을 적재하지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-11-2012",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-11-2012",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:f292dd726a3f",
+                  "@type": "WorkMeasure",
                   "measure": "계단 위와 주변에는 통행에 유해한 돌출된 못이나 철선 등이 없어야 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-11-2012",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-11-2012",
+                    "guideSection": "5"
                   }
                 }
               ]
@@ -363,38 +369,44 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-11-2012",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-11-2012",
+              "guideSection": "5",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:26",
+              "basisArticle": "art:기준규칙:26",
               "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:가설통로_또는_가설계단/2.2",
+              "@type": "WorkRisk",
               "statement": "구멍이 있는 발판재료 사이로 공구가 떨어져 하부 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:508fb7a77a20",
+                  "@type": "WorkMeasure",
                   "measure": "계단 및 승강구 바닥을 구멍이 있는 재료로 만드는 경우 렌치나 그 밖의 공구 등이 낙하할 위험이 없는 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:26",
+                    "basisArticle": "art:기준규칙:26",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:a975fcfb8896",
+                  "@type": "WorkMeasure",
                   "measure": "발판을 구멍이 있는 재료로 만들 때에는 렌치, 기타 공구 등이 낙하할 위험이 없는 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-11-2012",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-11-2012",
+                    "guideSection": "5"
                   }
                 }
               ]

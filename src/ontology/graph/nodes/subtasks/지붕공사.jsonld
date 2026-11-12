@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:지붕공사",
   "@type": [
     "ConstructionSubtask"
@@ -93,320 +51,374 @@
   ],
   "steps": [
     {
+      "@id": "workstep:지붕공사/1",
+      "@type": "WorkStep",
       "stepName": "평탄한 지붕",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.1",
               "controlLevel": "ppe"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 6,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 7,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 3,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:43",
+              "basisArticle": "art:기준규칙:43",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:43",
+              "basisArticle": "art:기준규칙:43",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:44",
+              "basisArticle": "art:기준규칙:44",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:45",
+              "basisArticle": "art:기준규칙:45",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:45",
+              "basisArticle": "art:기준규칙:45",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:45",
+              "basisArticle": "art:기준규칙:45",
               "paragraph": 2,
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/1.1",
+              "@type": "WorkRisk",
               "statement": "경사각 10도 미만 지붕의 단부에서 발을 헛디뎌 아래로 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:3cbecd137088",
+                  "@type": "WorkMeasure",
                   "measure": "지붕의 가장자리에 안전난간을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:45",
+                    "basisArticle": "art:기준규칙:45",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:486e033d9fa6",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 단부에서의 추락방지를 위한 안전난간과 낙하물 방지를 위한 발끝막이판 및 수직보호망을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3e79dfb31559",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간은 상부 난간대, 중간 난간대, 발끝막이판 및 난간기둥으로 구성한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:d4fb85382d09",
+                  "@type": "WorkMeasure",
                   "measure": "상부 난간대는 바닥면·발판 또는 경사로의 표면으로부터 90센티미터 이상 지점에 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:cef24dbeac77",
+                  "@type": "WorkMeasure",
                   "measure": "난간대는 지름 2.7센티미터 이상의 금속제 파이프나 그 이상의 강도가 있는 재료로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:d95865510af7",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간은 구조적으로 가장 취약한 지점에서 가장 취약한 방향으로 작용하는 100킬로그램 이상의 하중에 견딜 수 있는 튼튼한 구조로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 7
                   }
                 },
                 {
+                  "@id": "workmeasure:d9100c83a8f1",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간을 설치하기 곤란한 경우에는 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:45",
+                    "basisArticle": "art:기준규칙:45",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/1.2",
+              "@type": "WorkRisk",
               "statement": "지붕 바닥 개구부에 덮개가 없어 그대로 빠져 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b02dca764982",
+                  "@type": "WorkMeasure",
                   "measure": "지붕의 바닥 개구부에는 견고한 구조의 덮개와 안전표지판을 설치하거나 주변에 안전난간을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:8544671b2f0a",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치하여야 하며, 덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:43",
+                    "basisArticle": "art:기준규칙:43",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:266fac135fad",
+                  "@type": "WorkMeasure",
                   "measure": "난간등을 설치하는 것이 매우 곤란하거나 작업의 필요상 임시로 난간등을 해체하여야 하는 경우 추락방호망을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:43",
+                    "basisArticle": "art:기준규칙:43",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/1.3",
+              "@type": "WorkRisk",
               "statement": "지붕 모서리·깨지기 쉬운 부분의 지붕창에 다른 작업자가 접근했다 파손되며 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ca9e97b79034",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 모서리 또는 깨지기 쉬운 부분에 지붕창 등이 있을 경우에는 다른 작업자가 접근하지 못하도록 2미터 이상 거리를 유지하여 출입금지 표시판이나 가설휀스 등을 설치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b2c691529cdb",
+                  "@type": "WorkMeasure",
                   "measure": "채광창에는 견고한 구조의 덮개를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:45",
+                    "basisArticle": "art:기준규칙:45",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:cd2aa83ab4e7",
+                  "@type": "WorkMeasure",
                   "measure": "추락에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/1.4",
+              "@type": "WorkRisk",
               "statement": "안전난간을 설치할 수 없는 구간에서 추락방호망도 없이 작업함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ed3c95255fe6",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간 설치 등 추락방지를 위한 안전시설 확보가 불가능한 경우에는 추락방호망이나 안전대 부착설비 등을 확보하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:6a840c496f14",
+                  "@type": "WorkMeasure",
                   "measure": "지붕단부 및 개구부에는 추락방호망을 설치하되 작업자의 추락거리를 최소화하기 위해 가능한 작업위치와 가까운 아래에 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:a756bc9988db",
+                  "@type": "WorkMeasure",
                   "measure": "추락방호망의 설치위치는 가능하면 작업면으로부터 가까운 지점에 설치하여야 하며, 작업면으로부터 망의 설치지점까지의 수직거리는 10미터를 초과하지 아니하도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:7e3dd19930be",
+                  "@type": "WorkMeasure",
                   "measure": "추락방호망은 수평으로 설치하고, 망의 처짐은 짧은 변 길이의 12퍼센트 이상이 되도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:e6fc00d9709d",
+                  "@type": "WorkMeasure",
                   "measure": "건축물 등의 바깥쪽으로 설치하는 경우 추락방호망의 내민 길이는 벽면으로부터 3미터 이상 되도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:6672d06a3c21",
+                  "@type": "WorkMeasure",
                   "measure": "추락방호망을 설치하는 경우에는 한국산업표준에서 정하는 성능기준에 적합한 추락방호망을 사용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:16be89a5a8f4",
+                  "@type": "WorkMeasure",
                   "measure": "작업자는 그네식 안전대를 착용하고 충분한 강도를 가진 고정지점에 설치된 안전대 걸이용 로프 또는 안전블럭에 안전대를 걸고 작업하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b9db67889aac",
+                  "@type": "WorkMeasure",
                   "measure": "추락할 위험이 있는 높이 2미터 이상의 장소에서 근로자에게 안전대를 착용시킨 경우 안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:44",
+                    "basisArticle": "art:기준규칙:44",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:bc5922f6379d",
+                  "@type": "WorkMeasure",
                   "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업을 하는 근로자에게 안전대를 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 2
                   }
@@ -418,263 +430,319 @@
       ]
     },
     {
+      "@id": "workstep:지붕공사/2",
+      "@type": "WorkStep",
       "stepName": "경사진 지붕",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.2",
               "controlLevel": "ppe"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.1",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:44",
+              "basisArticle": "art:기준규칙:44",
               "paragraph": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:45",
+              "basisArticle": "art:기준규칙:45",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:45",
+              "basisArticle": "art:기준규칙:45",
               "paragraph": 2,
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/2.1",
+              "@type": "WorkRisk",
               "statement": "경사각 10도 이상 지붕에서 미끄러져 가장자리로 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:4c1573818dda",
+                  "@type": "WorkMeasure",
                   "measure": "추락 위험이 있는 지붕 가장자리에는 안전난간을 설치하여야 하고, 안전난간을 설치하기 곤란한 경우에는 추락방호망이나 안전대 부착설비 등을 설치하고 근로자에게 안전대를 착용하도록 하여 추락위험을 방지하기 위한 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3cbecd137088",
+                  "@type": "WorkMeasure",
                   "measure": "지붕의 가장자리에 안전난간을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:45",
+                    "basisArticle": "art:기준규칙:45",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:d9100c83a8f1",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간을 설치하기 곤란한 경우에는 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:45",
+                    "basisArticle": "art:기준규칙:45",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:ca49fc3fa277",
+                  "@type": "WorkMeasure",
                   "measure": "일반적으로 경사지붕 단부에 안전난간 및 작업발판을 설치하는 방법에서 열린 창문을 이용한 고정방법은 큰 하중에는 충분하지 않기 때문에 4.0 KN 이상의 하중이 걸릴 경우는 처마 바로 아래에 작업발판을 설치하는 방법으로 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/2.2",
+              "@type": "WorkRisk",
               "statement": "안전대 걸이용 로프를 지지력이 부족한 구조물에 걸어 하중을 못 견디고 파단됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:bba0b1750f2c",
+                  "@type": "WorkMeasure",
                   "measure": "작업 중 안전대 걸이용 로프는 충분한 지지력이 있는 구조물에 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:8bcac6d2c992",
+                  "@type": "WorkMeasure",
                   "measure": "안전대 걸이용 와이어로프, 마닐라로프, 밴드 등은 느슨하지 않도록 항상 긴장시켜야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:1453b10050c7",
+                  "@type": "WorkMeasure",
                   "measure": "안전대 걸이용 로프 등은 날카로운 모서리면에 접하여 당기지 않도록 하고 매듭이 없어야 하며 작업 중 응급조치로 연장시키지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:2fe0290f933d",
+                  "@type": "WorkMeasure",
                   "measure": "작업자가 사용하는 그네식 안전대는 안전인증여부 및 안전대 각부의 손상 등 사용가능여부를 확인한 후 사용하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:429c11e5b086",
+                  "@type": "WorkMeasure",
                   "measure": "안전대 및 부속설비의 이상 유무를 작업을 시작하기 전에 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:44",
+                    "basisArticle": "art:기준규칙:44",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/2.3",
+              "@type": "WorkRisk",
               "statement": "안전대 걸이줄이 길어 미끄러진 뒤 제동 없이 그대로 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b72f5bf2caa0",
+                  "@type": "WorkMeasure",
                   "measure": "안전대 걸이줄 길이가 긴 경우와 작업상황에 따라 미끄러지거나 추락위험이 있는 작업자는 추락방지대 등과 같은 멈춤 장치를 사용하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:ce66dafb2d04",
+                  "@type": "WorkMeasure",
                   "measure": "추락방지대나 안전블럭 장치 등의 사용은 작업 전에 작동상태를 확인하고 로프 등의 끝이 고리에서 빠지지 않게 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/2.4",
+              "@type": "WorkRisk",
               "statement": "경사 45도 이상 지붕에서 지붕보호벽 없이 작업하다 미끄러져 낙하함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:2e816dfbda11",
+                  "@type": "WorkMeasure",
                   "measure": "지붕경사가 45도 이상인 경우에는 지붕보호벽을 설치하여야 하며 작업장소와 지붕보호벽 밑부분 또는 지붕하부 작업발판 간의 수직거리는 5미터 이하이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:2b37f5e83889",
+                  "@type": "WorkMeasure",
                   "measure": "지붕보호벽의 버팀장치는 충분한 지지능력이 있는 중도리 등에 수직으로 관통하여 고정시켜야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:07a76c7dfde6",
+                  "@type": "WorkMeasure",
                   "measure": "지붕보호벽은 상부 작업발판의 좌·우 양측으로 최소 2미터 이상 연장하여 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:37ff07001645",
+                  "@type": "WorkMeasure",
                   "measure": "지붕보호벽은 최소 1미터 이상의 높이로 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9e66c1e561ad",
+                  "@type": "WorkMeasure",
                   "measure": "그물모양의 지붕보호벽을 설치할 경우 그물코의 넓이는 100밀리미터 이내 이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:b04af57287e3",
+                  "@type": "WorkMeasure",
                   "measure": "지붕보호벽을 설치하는 작업자는 그네식 안전대를 착용하고 안전대 걸이 시설에 안전대를 걸고 작업하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/2.5",
+              "@type": "WorkRisk",
               "statement": "트롤리 시스템 끝부분에서 이동기가 이탈하여 추락함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:9935fe871d71",
+                  "@type": "WorkMeasure",
                   "measure": "트롤리 시스템 끝부분에는 이탈방지장치를 설치하여야 하며 추락위험이 있을 경우에는 안전난간 및 지붕보호벽 등의 안전시설을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:c7e76d182a66",
+                  "@type": "WorkMeasure",
                   "measure": "트롤리 설치 방법에 관한 내용이 명시된 지붕에서는 설치 및 조립에 대한 제품 사양서 규정을 준수하여 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:5e2f28aef7b6",
+                  "@type": "WorkMeasure",
                   "measure": "트롤리를 지붕마루의 구조물 등에 설치할 경우에는 구조적으로 안전한지 확인하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3013bfcf2a85",
+                  "@type": "WorkMeasure",
                   "measure": "트롤리 시스템을 사용하는 경우 트롤리 접근 및 이동시에는 안전대 및 안전블록을 사용하는 등의 추락방지조치를 하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3316b2f36f20",
+                  "@type": "WorkMeasure",
                   "measure": "트롤리 이음부는 트롤리 이동 시 장애 없이 활주할 수 있도록 하여야 하며 사소한 정열오류라도 발생하지 않도록 주의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -684,161 +752,195 @@
       ]
     },
     {
+      "@id": "workstep:지붕공사/3",
+      "@type": "WorkStep",
       "stepName": "파손되기 쉬운 지붕",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:45",
+              "basisArticle": "art:기준규칙:45",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:45",
+              "basisArticle": "art:기준규칙:45",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/3.1",
+              "@type": "WorkRisk",
               "statement": "슬레이트·채광창을 밟아 재료가 깨지면서 지붕을 뚫고 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:30e2dd6d007f",
+                  "@type": "WorkMeasure",
                   "measure": "슬레이트 등 강도가 약한 재료로 덮은 지붕에는 폭 30센티미터 이상의 발판을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:45",
+                    "basisArticle": "art:기준규칙:45",
                     "paragraph": 1,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:d24dc9d560fc",
+                  "@type": "WorkMeasure",
                   "measure": "축사, 노후된 공장 등 부서지기 쉽고 강도가 약한 채광지붕, 부식된 금속판, 골마루판 등 강도가 약한 재료의 지붕 위에서 작업을 하는 경우 충분한 강도의 덮개와 폭 40센티미터 이상의 작업 통로용 발판을 설치하고 가장자리에는 안전난간을 설치하는 등 안전여부를 확인 후 작업하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d18c2260b6fa",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 작업 시 항상 주의가 필요한 곳에는 폭 500밀리미터 이상의 지붕 작업발판을 설치하고 측면에는 안전난간 등을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:b2c691529cdb",
+                  "@type": "WorkMeasure",
                   "measure": "채광창에는 견고한 구조의 덮개를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:45",
+                    "basisArticle": "art:기준규칙:45",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:1d63831a8cb4",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 작업 시 작업자가 밟았을 때 파손되기 쉬운 재질 주변에서 작업이나 이동을 하는 경우에는 성능 제작기준을 만족하는 지붕 채광창 전용 안전덮개를 설치하는 등 작업자의 추락을 예방할 수 있도록 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/3.2",
+              "@type": "WorkRisk",
               "statement": "경사 20도 이상 지붕에 규격 미달 작업발판을 놓아 발판이 미끄러지며 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:910998f7590c",
+                  "@type": "WorkMeasure",
                   "measure": "지붕경사가 20도 이상일 때 지붕작업발판의 길이는 3미터 이상이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:bfecfc866630",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업발판의 폭은 400밀리미터 이상이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:46ea89b238ae",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업발판은 미끄러지는 것과 옆으로 움직이는 것을 방지하는 구조이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:77843952f072",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업발판은 작업자 및 자재 등을 포함한 하중에 충분히 견딜 수 있는 구조이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:66150572b057",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업발판의 디딤발판 간격은 500밀리미터 이내이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:9214ca1fd414",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업발판의 목재 두께는 35밀리미터 이상이어야 하며 동등 이상의 강도를 가진 미끄러짐이 없는 재질이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/3.3",
+              "@type": "WorkRisk",
               "statement": "지붕사다리 고정걸이를 용마루 덮개나 처마 홈통에 걸어 지지물이 떨어져 나감",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:55dd65527fcb",
+                  "@type": "WorkMeasure",
                   "measure": "지붕사다리 끝부분의 고정걸이나 고정철물을 떨어지기 쉬운 용마루 덮개에 걸어서는 안된다. 다만 로프를 이용해 반대 경사면에 묶거나 고정시키는 경우에는 사용이 가능하다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:06b9ae86fc80",
+                  "@type": "WorkMeasure",
                   "measure": "처마의 홈통은 강도가 약하기 때문에 발 디딤대나 지붕사다리 지지대로 사용해서는 안된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 }
               ]
@@ -847,92 +949,112 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.4",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/3.4",
+              "@type": "WorkRisk",
               "statement": "지붕 재료가 파손되기 쉬운지 확인하지 않고 올라가 하부 구조물과 함께 붕괴됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:7d8ffbc65e81",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전 지붕이 깨지기 쉬운 재료인 함석, 슬레이트, 철망유리, 지붕채광용 주름 플라스틱판, 녹슨 골 함석판, 강화 절연판 등으로 되어있는지 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:f690729a2317",
+                  "@type": "WorkMeasure",
                   "measure": "건물구조 검사 및 위험성평가는 지붕 구성 부재 및 작업의 안전성을 확보하기 위해서는 반드시 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e61fb4e43bc9",
+                  "@type": "WorkMeasure",
                   "measure": "파손되기 쉬운 지붕은 사람 무게를 지지하지 못하여 하부 구조물이 붕괴될 때에는 작업자도 함께 추락할 가능성이 있으므로 발주자 및 작업관계자는 사전점검을 통해 지붕재료의 지지력 확인 및 설계상 검토를 통해 작업방법 변경 등 반드시 이에 대한 대책을 사전에 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:694817dcbcb4",
+                  "@type": "WorkMeasure",
                   "measure": "작업중에 발견한 위험한 장소는 접근금지 표시를 하여 다른 작업자가 접근하지 않도록 하고 지붕 위 추락방지 시설이 없다면 근로자가 지붕 위로 섣불리 다니지 않도록 그 내용을 알려야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/3.5",
+              "@type": "WorkRisk",
               "statement": "자재를 한곳에 몰아 적재하여 지붕 구조물이 하중을 못 견디고 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:fc612cdea789",
+                  "@type": "WorkMeasure",
                   "measure": "자재를 지붕 위에 적재하는 때에는 지붕 구조물의 안전계수가 3 이상이 확보되도록 허용적재하중을 제한하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:662b8243dcc6",
+                  "@type": "WorkMeasure",
                   "measure": "파손되기 쉬운 지붕자재를 크레인 등 양중기를 이용하여 운반할 경우에는 별도로 제작된 자재 적치대를 이용하여 함께 운반하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:6c4f611ea3fe",
+                  "@type": "WorkMeasure",
                   "measure": "자재로 인하여 지붕 위를 다니는 행위를 줄인다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:e04732dfffc6",
+                  "@type": "WorkMeasure",
                   "measure": "높은 곳에서의 작업시간을 최소화한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.4"
                   }
                 }
               ]
@@ -941,63 +1063,73 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:37",
+              "basisArticle": "art:기준규칙:37",
               "paragraph": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:387",
+              "basisArticle": "art:기준규칙:387",
               "item": 1,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:387",
+              "basisArticle": "art:기준규칙:387",
               "item": 2,
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/3.6",
+              "@type": "WorkRisk",
               "statement": "적재해 둔 판재가 강풍에 날아가 하부 통행자를 타격함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:134ac58a78e0",
+                  "@type": "WorkMeasure",
                   "measure": "판재 등으로 되어 있는 적재물에 대하여는 급작스런 강풍에 의하여 날아가지 않도록 로프 등을 이용하여 지붕구조물 등에 견고히 결속하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:166124c74111",
+                  "@type": "WorkMeasure",
                   "measure": "꼬임이 끊어진 섬유로프를 결속에 사용하지 않는다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:387",
+                    "basisArticle": "art:기준규칙:387",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:4e694d8750bc",
+                  "@type": "WorkMeasure",
                   "measure": "심하게 손상되거나 부식된 섬유로프를 결속에 사용하지 않는다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:387",
+                    "basisArticle": "art:기준규칙:387",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:44020043e7a8",
+                  "@type": "WorkMeasure",
                   "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:37",
+                    "basisArticle": "art:기준규칙:37",
                     "paragraph": 1
                   }
                 }
@@ -1008,78 +1140,90 @@
       ]
     },
     {
+      "@id": "workstep:지붕공사/4",
+      "@type": "WorkStep",
       "stepName": "강판지붕",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:43",
+              "basisArticle": "art:기준규칙:43",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/4.1",
+              "@type": "WorkRisk",
               "statement": "샌드위치 판넬 지붕의 단부·개구부에서 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f23f0db491e6",
+                  "@type": "WorkMeasure",
                   "measure": "작업중 근로자가 추락할 위험이 있는 개구부 주변, 지붕 단부에는 안전난간 등 추락방지 시설을 설치하여야 하며 하부에는 충분한 강도를 가진 추락방호망을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:c78347dfb89b",
+                  "@type": "WorkMeasure",
                   "measure": "트롤리 시스템을 적용하는 경우에는 철재물 등 견고한 고정물에 완전히 고정한 상태에서 설치, 사용하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a03f951285f6",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:43",
+                    "basisArticle": "art:기준규칙:43",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:a756bc9988db",
+                  "@type": "WorkMeasure",
                   "measure": "추락방호망의 설치위치는 가능하면 작업면으로부터 가까운 지점에 설치하여야 하며, 작업면으로부터 망의 설치지점까지의 수직거리는 10미터를 초과하지 아니하도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2,
                     "item": 1
                   }
@@ -1087,31 +1231,39 @@
               ]
             },
             {
+              "@id": "workrisk:지붕공사/4.2",
+              "@type": "WorkRisk",
               "statement": "휴식시간·작업종료 후 통제 없이 지붕에 올라갔다 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:224c6f04664e",
+                  "@type": "WorkMeasure",
                   "measure": "작업구역 내에는 지붕작업자 이외의 일반작업자 출입을 통제하고 작업자가 휴식시간과 작업종료 후에 지붕에 접근하는 것을 통제하여야 하며 지붕작업장 주변에는 출입금지 표지판 및 가설휀스 등을 설치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:cd2aa83ab4e7",
+                  "@type": "WorkMeasure",
                   "measure": "추락에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:fd6896981fb1",
+                  "@type": "WorkMeasure",
                   "measure": "일일 작업을 마친 후 지붕에는 자재 잔해물, 부속품 등이 남아있지 않도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.4"
                   }
                 }
               ]
@@ -1120,33 +1272,39 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.4",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/4.3",
+              "@type": "WorkRisk",
               "statement": "조립설명서를 확인하지 않고 판넬을 밟아 지지되지 않은 부위가 꺼짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c128ecd19004",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업 전에는 생산자의 조립설명서와 건설표준시방서를 확인하여 안전작업 방법을 결정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:ab790d2a402f",
+                  "@type": "WorkMeasure",
                   "measure": "강판지붕의 지붕경사도가 가파른 경우에는 경사진 지붕의 지침을 적용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.4"
                   }
                 }
               ]
@@ -1155,64 +1313,74 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:386",
+              "basisArticle": "art:기준규칙:386",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:386",
+              "basisArticle": "art:기준규칙:386",
               "item": 2,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/4.4",
+              "@type": "WorkRisk",
               "statement": "중도리 지지 범위를 넘겨 자재를 적재하고 적재물이 미끄러져 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:2dd3bbf881cb",
+                  "@type": "WorkMeasure",
                   "measure": "자재는 철골부재 등 중도리에 안전하게 지지할 수 있는 중량으로 수량을 제한하여 적재하여야 하며, 적재된 자재가 미끄러지지 않도록 멈춤턱 등을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:bc55ffb9fd63",
+                  "@type": "WorkMeasure",
                   "measure": "구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:386",
+                    "basisArticle": "art:기준규칙:386",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:4851a9306153",
+                  "@type": "WorkMeasure",
                   "measure": "중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:386",
+                    "basisArticle": "art:기준규칙:386",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:1e0c11a20f46",
+                  "@type": "WorkMeasure",
                   "measure": "물체가 떨어지거나 날아올 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 1
                   }
@@ -1224,244 +1392,286 @@
       ]
     },
     {
+      "@id": "workstep:지붕공사/5",
+      "@type": "WorkStep",
       "stepName": "지붕 개보수·청소",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.6",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.4",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "7.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "7.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 6,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 7,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:37",
+              "basisArticle": "art:기준규칙:37",
               "paragraph": 1,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/5.1",
+              "@type": "WorkRisk",
               "statement": "페인트로 가려진 지붕창·노후 연결부를 모른 채 밟아 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:1d40e2eabd18",
+                  "@type": "WorkMeasure",
                   "measure": "페인트 등으로 칠이 되어 잘 보이지 않는 지붕창 등 취약한 재질로 구성된 지붕에서의 작업 시에는 사전에 반드시 지붕의 상태를 세밀하게 확인하고 안전한 작업방법, 안전시설 설치계획 등을 포함한 작업계획서를 작성하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:8ed47386736b",
+                  "@type": "WorkMeasure",
                   "measure": "과거에 수리 작업된 연결부분 등 취약한 재질로 구성된 지붕에서의 작업 시에는 사전에 반드시 지붕의 상태를 세밀하게 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:bfebd34e81c3",
+                  "@type": "WorkMeasure",
                   "measure": "노후화로 파손되기 쉬운 상태로 된 지붕금속판 등에서의 작업 시에는 사전에 반드시 지붕의 상태를 세밀하게 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:c10094035e5d",
+                  "@type": "WorkMeasure",
                   "measure": "습기로 인해 약해지기 쉬운 목재 등으로 된 지붕 등에서의 작업 시에는 사전에 반드시 지붕의 상태를 세밀하게 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:8c9865ba9e6c",
+                  "@type": "WorkMeasure",
                   "measure": "작업 시작 전 건물구조 검사 시 지붕구성 부재의 내구성 등 안전성을 확인하여야 하며, 안전시설 설치가 어려운 마감작업 시 안전한 작업방법을 검토하여 반영하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/5.2",
+              "@type": "WorkRisk",
               "statement": "경험·기술이 없는 근로자가 부서지기 쉬운 지붕에 올라가 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:05036fdd2a36",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전 건물주는 건물 설계와 특성을 고려하여 지붕 위 적정 장비를 제대로 사용할 수 있는 경험과 기술이 없으면 근로자가 부서지기 쉬운 지붕 위로 올라가지 않도록 조치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:0322aebab3b0",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업자는 안전작업을 위해 지붕작업 유형별 사고사례, 사용하는 작업장비의 기능과 사용법 숙지, 개인 보호구 사용방법 및 안전한 작업절차 등에 대한 적절한 지식, 기술 그리고 경험이 필요하고 관련한 교육훈련을 받아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "7.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "7.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:db63b2ad7aba",
+                  "@type": "WorkMeasure",
                   "measure": "현장 감독자 임명 및 위험요소를 효과적으로 통제할 수 있는 담당자를 지명한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:7728da8f9166",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전 관리감독자는 작업에 필요한 보호구 및 안전설비의 이상 유·무를 확인하고 작업자에 대한 안전교육을 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/5.3",
+              "@type": "WorkRisk",
               "statement": "사다리로 지붕에 오르내리다 사다리가 미끄러지며 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:302592fb2768",
+                  "@type": "WorkMeasure",
                   "measure": "지붕위로 이동하는 승강시설은 구조적 적합성, 설치방법 및 높이에 대한 안전성을 사전에 검토하고 설치 사용하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:411cbfd2659d",
+                  "@type": "WorkMeasure",
                   "measure": "사다리를 승강시설로 사용할 경우에는 사다리를 오르내릴 때에는 양손에 아무것도 들지 않은 상태로 이동하도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5c84a7e9c5f0",
+                  "@type": "WorkMeasure",
                   "measure": "사다리식 통로는 견고한 구조로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:cf432d8fa8fa",
+                  "@type": "WorkMeasure",
                   "measure": "심한 손상·부식 등이 없는 재료를 사용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:b51d4461bdae",
+                  "@type": "WorkMeasure",
                   "measure": "발판과 벽과의 사이는 15센티미터 이상의 간격을 유지한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:956f974b4ce5",
+                  "@type": "WorkMeasure",
                   "measure": "사다리식 통로의 폭은 30센티미터 이상으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:3e891d2db02d",
+                  "@type": "WorkMeasure",
                   "measure": "사다리가 넘어지거나 미끄러지는 것을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:e075b69b8591",
+                  "@type": "WorkMeasure",
                   "measure": "사다리의 상단은 걸쳐놓은 지점으로부터 60센티미터 이상 올라가도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 7
                   }
@@ -1469,63 +1679,79 @@
               ]
             },
             {
+              "@id": "workrisk:지붕공사/5.4",
+              "@type": "WorkRisk",
               "statement": "강풍·강우·강설 중 지붕작업을 강행하다 미끄러져 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a10dab2d311f",
+                  "@type": "WorkMeasure",
                   "measure": "풍속이 초당 10미터 이상인 경우 지붕작업을 중지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:7fed610cc51c",
+                  "@type": "WorkMeasure",
                   "measure": "강우량이 시간당 1밀리미터 이상인 경우 지붕작업을 중지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:bbd28884f093",
+                  "@type": "WorkMeasure",
                   "measure": "강설량이 시간당 1센티미터 이상인 경우 지붕작업을 중지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:44020043e7a8",
+                  "@type": "WorkMeasure",
                   "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:37",
+                    "basisArticle": "art:기준규칙:37",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:c9a7e7d4e637",
+                  "@type": "WorkMeasure",
                   "measure": "비, 눈, 얼음, 바람속도 등 기상조건은 지붕 위 작업 시 안전을 위해 고려해야 할 중요한 사항이므로 기상상태에 따른 지붕 위의 상황을 작업 전 미리 점검하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.6"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:5aea1d40836b",
+                  "@type": "WorkMeasure",
                   "measure": "지붕의 경사도, 취급할 자재의 크기 또는 중량 등 지붕에서의 낙하 방지를 위해 취해야 할 조치를 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.6"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:17ce47067e00",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 위의 낙하 위험요인 유무를 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.6"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.6"
                   }
                 }
               ]
@@ -1534,25 +1760,29 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.5",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/5.5",
+              "@type": "WorkRisk",
               "statement": "지붕 위에 태양광설비를 설치하며 적재하중을 검토하지 않아 지붕이 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:1c44887a08a9",
+                  "@type": "WorkMeasure",
                   "measure": "지붕상부에 새로운 태양광설비를 설치 할 경우에는 적재하중 및 작업하중에 대한 지붕의 구조적 안전성을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 }
               ]
@@ -1561,124 +1791,138 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.5",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "6.5",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 3,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 3,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:163",
+              "basisArticle": "art:기준규칙:163",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:163",
+              "basisArticle": "art:기준규칙:163",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:163",
+              "basisArticle": "art:기준규칙:163",
               "paragraph": 2,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/5.6",
+              "@type": "WorkRisk",
               "statement": "건물 안에 사람이 있는 줄 모르고 개보수를 시작하여 하부에 위험이 미침",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:6afe09d9554b",
+                  "@type": "WorkMeasure",
                   "measure": "해당건물 내에 있는 모든 사람들에게 작업상황을 알리고 접근을 통제시키는 등의 조치를 취하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:7edad1120e46",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 아래에 있는 작업자와 일반인에 가해지는 위험을 통제하는 방법을 마련한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:5887b8230a3d",
+                  "@type": "WorkMeasure",
                   "measure": "작업장의 바닥, 도로 및 통로 등에서 낙하물이 근로자에게 위험을 미칠 우려가 있는 경우 보호망을 설치하는 등 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:3612e1559e11",
+                  "@type": "WorkMeasure",
                   "measure": "물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:0e2d419d8376",
+                  "@type": "WorkMeasure",
                   "measure": "낙하물 방지망 또는 방호선반은 높이 10미터 이내마다 설치하고, 내민 길이는 벽면으로부터 2미터 이상으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 3,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:5e7cf396ab2c",
+                  "@type": "WorkMeasure",
                   "measure": "낙하물 방지망 또는 방호선반의 수평면과의 각도는 20도 이상 30도 이하를 유지한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 3,
                     "item": 2
                   }
@@ -1686,64 +1930,80 @@
               ]
             },
             {
+              "@id": "workrisk:지붕공사/5.7",
+              "@type": "WorkRisk",
               "statement": "지붕 위에서 떨어진 자재·공구·아스팔트 덩어리가 하부 통행자를 타격함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:191c074644ba",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 위에서 낙하하는 지붕 판, 도구, 고정부품, 지붕 타일, 고온의 아스팔트 덩어리 등의 물질은 작업자 뿐만 아니라 일반인들에게도 심각한 위험요소가 되므로 작업전 점검하여 낙하요인을 제거하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.5"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:d892f4508c18",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업 시 상·하부 동시작업은 금지하여야 하며 다른 작업자 및 일반인들이 작업구역 내에 접근할 수 없도록 가설휀스, 출입금지 표지판 등을 설치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:fe77a33a659f",
+                  "@type": "WorkMeasure",
                   "measure": "지붕작업 시 발생한 폐기물은 낙하물이 발생되지 않도록 투하설비를 설치하거나 마대 등에 담아 반출하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d6d471678c87",
+                  "@type": "WorkMeasure",
                   "measure": "소규모 자재 운반기기를 지붕 단부에 설치하는 경우에는 작업발판 및 안전난간, 낙하물방지를 위한 수직보호망 및 발끝막이판을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:cb0fb970d3ab",
+                  "@type": "WorkMeasure",
                   "measure": "화물의 하중을 직접 지지하는 달기와이어로프 또는 달기체인의 안전계수가 5 이상이 아닌 경우에는 이를 사용해서는 아니 된다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:163",
+                    "basisArticle": "art:기준규칙:163",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:3b07526bd4a0",
+                  "@type": "WorkMeasure",
                   "measure": "훅, 샤클, 클램프, 리프팅 빔의 안전계수가 3 이상이 아닌 경우에는 이를 사용해서는 아니 된다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:163",
+                    "basisArticle": "art:기준규칙:163",
                     "paragraph": 1,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:16de6411fa20",
+                  "@type": "WorkMeasure",
                   "measure": "달기구의 경우 최대허용하중 등의 표식이 견고하게 붙어 있는 것을 사용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:163",
+                    "basisArticle": "art:기준규칙:163",
                     "paragraph": 2
                   }
                 }
@@ -1753,211 +2013,243 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.7",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.7",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:319",
+              "basisArticle": "art:기준규칙:319",
               "paragraph": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:319",
+              "basisArticle": "art:기준규칙:319",
               "paragraph": 2,
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:319",
+              "basisArticle": "art:기준규칙:319",
               "paragraph": 2,
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:321",
+              "basisArticle": "art:기준규칙:321",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:321",
+              "basisArticle": "art:기준규칙:321",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:321",
+              "basisArticle": "art:기준규칙:321",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:321",
+              "basisArticle": "art:기준규칙:321",
               "paragraph": 1,
               "item": 7,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:322",
+              "basisArticle": "art:기준규칙:322",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:322",
+              "basisArticle": "art:기준규칙:322",
               "paragraph": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:322",
+              "basisArticle": "art:기준규칙:322",
               "paragraph": 4,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:323",
+              "basisArticle": "art:기준규칙:323",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:323",
+              "basisArticle": "art:기준규칙:323",
               "paragraph": 2,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/5.8",
+              "@type": "WorkRisk",
               "statement": "지붕 위를 가로지르는 가공전선에 금속 지붕판·사다리가 닿아 감전됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:28afada31837",
+                  "@type": "WorkMeasure",
                   "measure": "작업장소 주변에 근접하여 충전전로가 있는 경우 정전작업을 실시하거나 충전전로에 절연용 방호구를 설치하고 지붕작업을 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:5ff34a990173",
+                  "@type": "WorkMeasure",
                   "measure": "유자격자가 아닌 근로자가 충전전로 인근의 높은 곳에서 작업할 때에 근로자의 몸 또는 긴 도전성 물체가 방호되지 않은 충전전로에서 대지전압이 50킬로볼트 이하인 경우에는 300센티미터 이내로, 대지전압이 50킬로볼트를 넘는 경우에는 10킬로볼트당 10센티미터씩 더한 거리 이내로 각각 접근할 수 없도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:321",
+                    "basisArticle": "art:기준규칙:321",
                     "paragraph": 1,
                     "item": 7
                   }
                 },
                 {
+                  "@id": "workmeasure:da61e5b3107b",
+                  "@type": "WorkMeasure",
                   "measure": "전기선의 위치를 확인하여 안전한 곳으로 옮기고 가능하면 배터리를 사용하는 도구를 사용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.7"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:88d4eec5836f",
+                  "@type": "WorkMeasure",
                   "measure": "충전전로를 정전시키는 경우에는 정전전로에서의 전기작업에 따른 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:321",
+                    "basisArticle": "art:기준규칙:321",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:d40ab0419137",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 노출된 충전부 또는 그 부근에서 작업함으로써 감전될 우려가 있는 경우에는 작업에 들어가기 전에 해당 전로를 차단한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:319",
+                    "basisArticle": "art:기준규칙:319",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:e33594634eea",
+                  "@type": "WorkMeasure",
                   "measure": "전원을 차단한 후 각 단로기 등을 개방하고 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:319",
+                    "basisArticle": "art:기준규칙:319",
                     "paragraph": 2,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:1cfa7f299e4c",
+                  "@type": "WorkMeasure",
                   "measure": "차단장치나 단로기 등에 잠금장치 및 꼬리표를 부착한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:319",
+                    "basisArticle": "art:기준규칙:319",
                     "paragraph": 2,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:60ab0b8403c3",
+                  "@type": "WorkMeasure",
                   "measure": "충전전로를 취급하는 근로자에게 그 작업에 적합한 절연용 보호구를 착용시킨다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:321",
+                    "basisArticle": "art:기준규칙:321",
                     "paragraph": 1,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:d0cb534516ea",
+                  "@type": "WorkMeasure",
                   "measure": "충전전로에 근접한 장소에서 전기작업을 하는 경우에는 해당 전압에 적합한 절연용 방호구를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:321",
+                    "basisArticle": "art:기준규칙:321",
                     "paragraph": 1,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:0c0f3529f0ae",
+                  "@type": "WorkMeasure",
                   "measure": "절연용 보호구등에 대하여 각각의 사용목적에 적합한 종별·재질 및 치수의 것을 사용한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:323",
+                    "basisArticle": "art:기준규칙:323",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:8d83e957f060",
+                  "@type": "WorkMeasure",
                   "measure": "절연용 보호구등이 안전한 성능을 유지하고 있는지를 정기적으로 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:323",
+                    "basisArticle": "art:기준규칙:323",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/5.9",
+              "@type": "WorkRisk",
               "statement": "지붕 인근에서 차량·기계장치를 운용하다 충전전로에 접촉함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a03faa909340",
+                  "@type": "WorkMeasure",
                   "measure": "충전전로 인근에서 차량, 기계장치 등의 작업이 있는 경우에는 차량등을 충전전로의 충전부로부터 300센티미터 이상 이격시켜 유지시키되, 대지전압이 50킬로볼트를 넘는 경우 이격시켜 유지하여야 하는 거리는 10킬로볼트 증가할 때마다 10센티미터씩 증가시킨다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:322",
+                    "basisArticle": "art:기준규칙:322",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:b6f058a592a1",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 차량등의 그 어느 부분과도 접촉하지 않도록 울타리를 설치하거나 감시인 배치 등의 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:322",
+                    "basisArticle": "art:기준규칙:322",
                     "paragraph": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:dadac7ea892d",
+                  "@type": "WorkMeasure",
                   "measure": "충전전로 인근에서 접지된 차량등이 충전전로와 접촉할 우려가 있을 경우에는 지상의 근로자가 접지점에 접촉하지 않도록 조치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:322",
+                    "basisArticle": "art:기준규칙:322",
                     "paragraph": 4
                   }
                 }
@@ -1969,200 +2261,232 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:385",
+              "basisArticle": "art:기준규칙:385",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:560",
+              "basisArticle": "art:기준규칙:560",
               "paragraph": 2,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:560",
+              "basisArticle": "art:기준규칙:560",
               "paragraph": 2,
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:560",
+              "basisArticle": "art:기준규칙:560",
               "paragraph": 2,
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:560",
+              "basisArticle": "art:기준규칙:560",
               "paragraph": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:562",
+              "basisArticle": "art:기준규칙:562",
               "paragraph": 2,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:562",
+              "basisArticle": "art:기준규칙:562",
               "paragraph": 2,
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:562",
+              "basisArticle": "art:기준규칙:562",
               "paragraph": 2,
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:562",
+              "basisArticle": "art:기준규칙:562",
               "paragraph": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:663",
+              "basisArticle": "art:기준규칙:663",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:664",
+              "basisArticle": "art:기준규칙:664",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:665",
+              "basisArticle": "art:기준규칙:665",
               "item": 2,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:666",
+              "basisArticle": "art:기준규칙:666",
               "controlLevel": "administrative"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:지붕공사/5.10",
+              "@type": "WorkRisk",
               "statement": "지붕 트러스·판넬을 인력으로 취급하다 손발이 끼거나 다침",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:dcf50bcfb3c8",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 트러스트 등 무겁고 다루기 힘든 자재의 취급 시 손이나 발이 다치지 않도록 주의한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:7caaae2a1a48",
+                  "@type": "WorkMeasure",
                   "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:385"
+                    "basisArticle": "art:기준규칙:385"
                   }
                 },
                 {
+                  "@id": "workmeasure:32e5b6a480c1",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 과도한 무게로 인하여 근로자의 목·허리 등 근골격계에 무리한 부담을 주지 않도록 최대한 노력해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:663"
+                    "basisArticle": "art:기준규칙:663"
                   }
                 },
                 {
+                  "@id": "workmeasure:2273828314af",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 중량물을 인력으로 들어올리거나 운반하는 작업을 하는 경우에 근로자가 취급하는 물품의 중량·취급빈도·운반거리·운반속도 등 인체에 부담을 주는 작업의 조건에 따라 작업시간과 휴식시간 등을 적정하게 배분해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:664"
+                    "basisArticle": "art:기준규칙:664"
                   }
                 },
                 {
+                  "@id": "workmeasure:ddc26699d4c5",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 중량물을 인력으로 들어올리는 작업을 하는 경우에 무게중심을 낮추거나 대상물에 몸을 밀착하도록 하는 등 근로자에게 신체의 부담을 줄일 수 있는 자세에 대하여 알려야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:666"
+                    "basisArticle": "art:기준규칙:666"
                   }
                 },
                 {
+                  "@id": "workmeasure:5d76fe2262a0",
+                  "@type": "WorkMeasure",
                   "measure": "취급하기 곤란한 물품은 손잡이를 붙이거나 갈고리, 진공빨판 등 적절한 보조도구를 활용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:665",
+                    "basisArticle": "art:기준규칙:665",
                     "item": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:지붕공사/5.11",
+              "@type": "WorkRisk",
               "statement": "지붕 복사열로 체감온도가 오른 상태에서 작업을 계속하여 열사병이 발생함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:56d3d105f25c",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 폭염특보의 기준이 되는 체감온도 33도 이상인 작업장소에서 폭염작업을 하는 경우에는 매 2시간 이내에 20분 이상의 휴식을 주어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:560",
+                    "basisArticle": "art:기준규칙:560",
                     "paragraph": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:411b3d2d234f",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 폭염작업을 하는 경우에는 냉방 또는 통풍 등을 위한 적절한 온도·습도 조절장치를 설치·가동한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:560",
+                    "basisArticle": "art:기준규칙:560",
                     "paragraph": 2,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:0621a57967d5",
+                  "@type": "WorkMeasure",
                   "measure": "작업시간대의 조정 등 폭염 노출을 줄일 수 있는 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:560",
+                    "basisArticle": "art:기준규칙:560",
                     "paragraph": 2,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:bbd104969cce",
+                  "@type": "WorkMeasure",
                   "measure": "폭염작업으로 인한 건강장해 예방을 위하여 필요한 적절한 휴식시간을 부여한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:560",
+                    "basisArticle": "art:기준규칙:560",
                     "paragraph": 2,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:9abb2b4b0ddd",
+                  "@type": "WorkMeasure",
                   "measure": "폭염작업이 예상되는 작업장소에 온·습도계 등 온도·습도를 측정하는 기기를 상시 갖추어 둔다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:562",
+                    "basisArticle": "art:기준규칙:562",
                     "paragraph": 2,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:e32ab48bfb3d",
+                  "@type": "WorkMeasure",
                   "measure": "근로자에게 폭염작업에 따른 건강장해의 증상 및 예방조치, 응급조치 요령 등에 관한 사항을 폭염작업 전에 미리 알린다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:562",
+                    "basisArticle": "art:기준규칙:562",
                     "paragraph": 2,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:85f6906e96fb",
+                  "@type": "WorkMeasure",
                   "measure": "폭염작업이 이루어진 작업장소에서 측정한 체감온도와 조치사항을 일자별로 기록하고, 그 내용을 폭염작업이 있었던 해당 연도 12월 31일까지 보관한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:562",
+                    "basisArticle": "art:기준규칙:562",
                     "paragraph": 2,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:7fa6c61a47b2",
+                  "@type": "WorkMeasure",
                   "measure": "근로자의 폭염작업으로 인하여 열사병 등 건강장해가 발생되었거나 발생한 것으로 의심되는 경우에는 지체 없이 사업장 소재지를 관할하는 소방관서에 직접 신고하거나 근로자로 하여금 신고하게 하는 등 필요한 적절한 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:562",
+                    "basisArticle": "art:기준규칙:562",
                     "paragraph": 3
                   }
                 }
@@ -2172,51 +2496,59 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "4.3",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "4.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-59-2022",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-59-2022",
+              "guideSection": "5.4",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:지붕공사/5.12",
+              "@type": "WorkRisk",
               "statement": "지붕 위에서 화기작업 중 불이 났는데 대피 경로가 없어 고립됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ee9a478f12ae",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 위에서 하는 용접 등의 화기작업과 실내 활동에 기인한 화재 발생 시를 대비해 적절한 대피방법을 미리 계획해 놓아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:c4d0ddaed937",
+                  "@type": "WorkMeasure",
                   "measure": "응급 시 사용할 수 있는 장비 혹은 예비 사다리 등을 준비해 놓아야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "4.3"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "4.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2fd4c7ed80f0",
+                  "@type": "WorkMeasure",
                   "measure": "지붕위에서 용접이나 화기작업을 하는 경우에는 화재에 대비하여 불티 비산방지포와 소화기를 비치하고 지붕위에서의 소화방법, 대피방법 등을 사전에 교육하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-59-2022",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-59-2022",
+                    "guideSection": "5.4"
                   }
                 }
               ]

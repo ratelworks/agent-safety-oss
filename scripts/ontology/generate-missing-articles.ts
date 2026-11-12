@@ -173,7 +173,7 @@ const ANNEX_STUBS = [
         a.act === "기준규칙" ? "산업안전보건기준에 관한 규칙" :
         "산업안전보건법 시행규칙",
       legislationDate: "2025-10-01",
-      legislationType: a.act === "산안법" ? "Act" : "Regulation",
+      legislationType: a.act === "산안법" ? "Act" : "Rule",
       legislationLegalForce: "InForce",
       jurisdiction: "KR",
       temporalCoverage: "2025-10-01/.."

@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:이동식_사다리",
   "@type": [
     "ConstructionSubtask"
@@ -76,148 +34,160 @@
   ],
   "steps": [
     {
+      "@id": "workstep:이동식_사다리/1",
+      "@type": "WorkStep",
       "stepName": "설치 및 사용",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 10,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 6,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 7,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 9,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 4,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 4,
               "item": 2,
               "subitem": "나",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 4,
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 4,
               "item": 4,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 4,
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 4,
               "item": 6,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 4,
               "item": 7,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:이동식_사다리/1.1",
+              "@type": "WorkRisk",
               "statement": "사다리가 넘어지거나 미끄러져 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:19943f1adf11",
+                  "@type": "WorkMeasure",
                   "measure": "사다리가 넘어지거나 미끄러지는 것을 방지하기 위한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:0f27e420f68e",
+                  "@type": "WorkMeasure",
                   "measure": "평탄하고 견고하며 미끄럽지 않은 바닥에 이동식 사다리를 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 4,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:d0271225e849",
+                  "@type": "WorkMeasure",
                   "measure": "아웃트리거를 설치하거나 아웃트리거가 붙어있는 이동식 사다리를 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 4,
                     "item": 2,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:27b349119153",
+                  "@type": "WorkMeasure",
                   "measure": "접이식 사다리 기둥은 사용 시 접혀지거나 펼쳐지지 않도록 철물 등을 사용하여 견고하게 조치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 10
                   }
@@ -225,32 +195,40 @@
               ]
             },
             {
+              "@id": "workrisk:이동식_사다리/1.2",
+              "@type": "WorkRisk",
               "statement": "손상·부식된 사다리를 사용하여 파손으로 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ec826cd13114",
+                  "@type": "WorkMeasure",
                   "measure": "사다리식 통로는 견고한 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:644405b048ee",
+                  "@type": "WorkMeasure",
                   "measure": "심한 손상·부식 등이 없는 재료를 사용한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:6931420f086b",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 사다리 사용 전 변형 및 이상 유무 등을 점검하여 이상이 발견되면 즉시 수리하거나 그 밖에 필요한 조치를 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 4,
                     "item": 7
                   }
@@ -258,50 +236,62 @@
               ]
             },
             {
+              "@id": "workrisk:이동식_사다리/1.3",
+              "@type": "WorkRisk",
               "statement": "규격에 맞지 않는 사다리를 설치하여 승강 중 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:01c92be30a11",
+                  "@type": "WorkMeasure",
                   "measure": "발판의 간격은 일정하게 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:5866d4bfed9d",
+                  "@type": "WorkMeasure",
                   "measure": "발판과 벽과의 사이는 15센티미터 이상의 간격을 유지한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:dd776d9f2054",
+                  "@type": "WorkMeasure",
                   "measure": "폭은 30센티미터 이상으로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:471a0fb88fd6",
+                  "@type": "WorkMeasure",
                   "measure": "사다리의 상단은 걸쳐놓은 지점으로부터 60센티미터 이상 올라가도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 7
                   }
                 },
                 {
+                  "@id": "workmeasure:5130996dc0d6",
+                  "@type": "WorkMeasure",
                   "measure": "사다리식 통로의 기울기는 75도 이하로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 9
                   }
@@ -309,32 +299,40 @@
               ]
             },
             {
+              "@id": "workrisk:이동식_사다리/1.4",
+              "@type": "WorkRisk",
               "statement": "최상부 발판에 올라서서 작업하다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:4461f8de8e99",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 사다리의 최상부 발판 및 그 하단 디딤대에 올라서서 작업하지 않는다(높이 1미터 이하의 사다리는 제외)",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 4,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:4cf84f4e729d",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 사다리를 설치한 바닥면에서 높이 3.5미터 이하의 장소에서만 작업한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 4,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:084dd0038ac8",
+                  "@type": "WorkMeasure",
                   "measure": "안전모를 착용하되, 작업 높이가 2미터 이상인 경우에는 안전모와 안전대를 함께 착용한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 4,
                     "item": 6
                   }
@@ -342,14 +340,18 @@
               ]
             },
             {
+              "@id": "workrisk:이동식_사다리/1.5",
+              "@type": "WorkRisk",
               "statement": "최대사용하중을 초과하여 사용해 사다리가 파손됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ac543b691dc4",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 사다리의 제조사가 정하여 표시한 이동식 사다리의 최대사용하중을 초과하지 않는 범위 내에서만 사용한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 4,
                     "item": 3
                   }

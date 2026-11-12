@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:이동식비계",
   "@type": [
     "ConstructionSubtask"
@@ -73,69 +31,83 @@
   ],
   "steps": [
     {
+      "@id": "workstep:이동식비계/1",
+      "@type": "WorkStep",
       "stepName": "조립",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:이동식비계/1.1",
+              "@type": "WorkRisk",
               "statement": "높이 제한을 초과하여 조립해 전도됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:33ee91aac984",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 비계의 높이는 발바퀴 하단부터 작업발판까지의 높이와 발바퀴의 주축 간격으로 산정한 높이 이하로 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:aab1a45c0710",
+                  "@type": "WorkMeasure",
                   "measure": "아웃트리거의 높이가 폭의 3배 이상으로 아웃트리거가 회전하지 않는 경우와 그 외의 경우를 구분하여 발바퀴의 주축간격을 산정한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:이동식비계/1.2",
+              "@type": "WorkRisk",
               "statement": "부재 이음부·교차부가 사용 중 탈락하여 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:09ac08c39a80",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판, 주틀, 발바퀴, 안전난간 등의 부재 이음부, 교차부는 사용 중 쉽게 탈락하지 않도록 결합한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:644c2d634f59",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 비계를 조립하는 경우에는 재사용 가설기자재 성능기준에 관한 지침의 이동식 비계용 부재에서 제시하고 있는 점검기준에 의해 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
@@ -144,38 +116,44 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:68",
+              "basisArticle": "art:기준규칙:68",
               "item": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:이동식비계/1.3",
+              "@type": "WorkRisk",
               "statement": "승강용 사다리·계단을 견고하게 설치하지 않아 승강 중 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e37b46153801",
+                  "@type": "WorkMeasure",
                   "measure": "승강용사다리는 견고하게 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:68",
+                    "basisArticle": "art:기준규칙:68",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:832f9411415f",
+                  "@type": "WorkMeasure",
                   "measure": "주틀에는 발판간격이 동일한 사다리(폭 30cm 이상, 발판간격 40cm 이하)를 설치하거나, 계단(경사 50° 이하, 폭 35cm 이상)을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
@@ -185,90 +163,108 @@
       ]
     },
     {
+      "@id": "workstep:이동식비계/2",
+      "@type": "WorkStep",
       "stepName": "사용·이동",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:68",
+              "basisArticle": "art:기준규칙:68",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:68",
+              "basisArticle": "art:기준규칙:68",
               "item": 5,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:이동식비계/2.1",
+              "@type": "WorkRisk",
               "statement": "바퀴를 고정하지 않아 갑작스럽게 이동하거나 전도됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:bb5348f05fbf",
+                  "@type": "WorkMeasure",
                   "measure": "이동식비계의 바퀴에는 뜻밖의 갑작스러운 이동 또는 전도를 방지하기 위하여 브레이크·쐐기 등으로 바퀴를 고정시킨 다음 비계의 일부를 견고한 시설물에 고정하거나 아웃트리거를 설치하는 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:68",
+                    "basisArticle": "art:기준규칙:68",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:57eaa34f14cc",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 비계는 가능한 작업장소 가까이에 설치한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:이동식비계/2.2",
+              "@type": "WorkRisk",
               "statement": "적재하중을 초과하거나 3인 이상 탑승하여 전도·무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:13d82370e4be",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판의 최대적재하중은 250킬로그램을 초과하지 않도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:68",
+                    "basisArticle": "art:기준규칙:68",
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:08665cf9b053",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판에는 3인 이상이 탑승하여 작업하지 않도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:0f07f3c66416",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 비계 작업발판의 최대적재하중은 바닥면적이 2㎡ 이상일 때 250 kgf 이하로 사용한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:bd15761e30e9",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 비계에는 최대적재하중 등의 안전표지를 잘 보이는 위치에 부착한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
@@ -277,96 +273,114 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:68",
+              "basisArticle": "art:기준규칙:68",
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:68",
+              "basisArticle": "art:기준규칙:68",
               "item": 4,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:이동식비계/2.3",
+              "@type": "WorkRisk",
               "statement": "근로자가 탑승한 상태로 비계를 이동시켜 전도·추락함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:215119087625",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 탑승한 상태에서 이동식 비계를 이동시키지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:4b86506082c5",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 최상부로 이동 시에는 주틀 내부에서 답단을 밟고 올라가야 하고, 개폐형 작업발판의 덮개를 열고 이동하여야 하며, 상시 덮개는 닫힌 상태를 유지한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d8bd53c7ee3e",
+                  "@type": "WorkMeasure",
                   "measure": "주틀 외부에 승강로가 설치된 이동식 비계에서는 전도를 방지하기 위하여 같은 면으로 동시에 2인 이상이 승강하지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:이동식비계/2.4",
+              "@type": "WorkRisk",
               "statement": "최상부 안전난간 없이 작업하다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:dfeb70f8bcce",
+                  "@type": "WorkMeasure",
                   "measure": "비계의 최상부에서 작업을 하는 경우에는 안전난간을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:68",
+                    "basisArticle": "art:기준규칙:68",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:d75c8dbbb871",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간은 상부 난간대, 중간 난간대, 발끝막이판 및 난간기둥으로 구성한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:이동식비계/2.5",
+              "@type": "WorkRisk",
               "statement": "작업발판 위에서 사다리·받침대를 딛고 작업하다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:d0dc0dc9905f",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판은 항상 수평을 유지하고 작업발판 위에서 안전난간을 딛고 작업을 하거나 받침대 또는 사다리를 사용하여 작업하지 않도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:68",
+                    "basisArticle": "art:기준규칙:68",
                     "item": 4
                   }
                 }

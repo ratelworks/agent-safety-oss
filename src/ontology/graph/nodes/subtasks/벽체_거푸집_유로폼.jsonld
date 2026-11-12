@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:벽체_거푸집_유로폼",
   "@type": [
     "ConstructionSubtask"
@@ -73,158 +31,194 @@
   ],
   "steps": [
     {
+      "@id": "workstep:벽체_거푸집_유로폼/1",
+      "@type": "WorkStep",
       "stepName": "벽체 거푸집 자재반입",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "5",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "5.2",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "5.2",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "5",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.5.2",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.5.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.5.2",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.5.2",
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.1",
+              "@type": "WorkRisk",
               "statement": "흠집·옹이 많거나 접착이 떨어진 합판 거푸집 널을 사용하여 구조 약화로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:6ce2abc296d0",
+                  "@type": "WorkMeasure",
                   "measure": "목재 거푸집은 흠집 및 옹이가 많거나 합판의 접착 부분이 떨어져 구조적으로 약 한 것을 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:7076abc5f204",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집 널은 다음 사항에 적합한 것을 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:867e5d2defd9",
+                  "@type": "WorkMeasure",
                   "measure": "흠집 및 옹이가 많은 거푸집 널재나 접착부분이 떨어져 구조적으로 약한 합판을 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.2",
+              "@type": "WorkRisk",
               "statement": "변형·찌그러짐·비틀림 있는 강재 거푸집 널을 사용하여 지지력 부족으로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:e89b2da6039f",
+                  "@type": "WorkMeasure",
                   "measure": "강재 거푸집은 형상이 찌그러지거나, 비틀림 등 변형이 있는 것은 교정한 다음 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:915eb9dcb642",
+                  "@type": "WorkMeasure",
                   "measure": "현저한 손상, 변형, 부식이 있는 것은 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:a6027efac186",
+                  "@type": "WorkMeasure",
                   "measure": "매립형은 콘크리트 표면을 깨뜨리지 않고 제거할 수 있는 선단이나 선단 긴결재를 두어 콘크리트 표면에서 25 mm 이상의 깊이를 갖는 구멍을 남길 수 있는 구조 이도록 한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:664e83685658",
+                  "@type": "WorkMeasure",
                   "measure": "형상이 찌그러지거나 비틀림 등 변형이 있는 것은 교정한 다음 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.3",
+              "@type": "WorkRisk",
               "statement": "허용하중 미표시 폼행거·앵커 사용하다 하중 초과로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:335d90955215",
+                  "@type": "WorkMeasure",
                   "measure": "앵커 및 폼행거는 공인시험기관의 성능시험 등에 의하여 사용길이별 허용하중이 표시된 제품을 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.4",
+              "@type": "WorkRisk",
               "statement": "공인시험 미실시 거푸집 사용하다 품질 미달로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:ec382618476d",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집(재사용하는 거푸집을 포함한다)은 공인시험기관에서 품질시험을 실시한 것을 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.5",
+              "@type": "WorkRisk",
               "statement": "장기 방치로 변형된 거푸집 자재를 조립하여 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:6d7366e291e9",
+                  "@type": "WorkMeasure",
                   "measure": "자재의 반입은 사용 순서 및 시기를 고려하여, 장기간 현장에 방치되지 않도록 그 반입시기를 적절히 조절하고 적치장소를 미리 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.5.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.6",
+              "@type": "WorkRisk",
               "statement": "재사용 가설기자재의 변형·부식·손상 상태를 확인하지 않고 반입하여 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:9be375c5ef13",
+                  "@type": "WorkMeasure",
                   "measure": "가설기자재는 방호장치 안전인증 고시 및 방호장치 자율안전기준 고시에 적합한 제품을 사용하고, 재사용 가설기자재는 변형, 부식 또는 손상상태 등이 재사용 성능기준에 적합한 것을 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.5.2"
                   }
                 }
               ]
@@ -233,42 +227,50 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "5.2",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "5.2",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.7",
+              "@type": "WorkRisk",
               "statement": "띠장이나 거푸집이 부러지거나 균열된 것을 사용하다 거푸집이 터져 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:c52eac5ecfab",
+                  "@type": "WorkMeasure",
                   "measure": "목재 거푸집의 띠장은 부러지거나 균열이 있는 것을 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/1.8",
+              "@type": "WorkRisk",
               "statement": "강재 거푸집 표면의 녹을 제거하지 않아 박리제 도포가 불량해 거푸집이 터져 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:16b8c0c09d2c",
+                  "@type": "WorkMeasure",
                   "measure": "강재 거푸집 표면의 녹은 쇠솔(wire brush) 또는 샌드페이퍼(sandpaper) 등으로 닦아내고 박리제(form oil)를 엷게 칠해 두어야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.2"
                   }
                 }
               ]
@@ -278,175 +280,215 @@
       ]
     },
     {
+      "@id": "workstep:벽체_거푸집_유로폼/2",
+      "@type": "WorkStep",
       "stepName": "벽체 거푸집 조립",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.5.5",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.5.5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "5.4.1",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "5.4.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "5.4.4",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "5.4.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.5.4",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.5.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.5.5",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.5.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.6.1",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.6.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "8.2",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "8.2",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.1",
+              "@type": "WorkRisk",
               "statement": "곡면 거푸집 부상 방지 미비로 떠올라 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:50d35cb12756",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집이 곡면인 경우에는 버팀대의 부착 등 거푸집의 부상(浮上)을 방지하기 위한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.4.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.2",
+              "@type": "WorkRisk",
               "statement": "삽입재·블록아웃 미긴결로 들뜸 및 거푸집 변형·무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:bb8784952bf0",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 내부로 매설되는 삽입재와 블록아웃 및 이음매의 위치를 확인하고, 들뜸 방지를 위하여 견고하게 긴결되었는지 검사한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.6.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.3",
+              "@type": "WorkRisk",
               "statement": "목재 직사광선 노출·습기로 변형된 거푸집 사용 후 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:8ad98365773c",
+                  "@type": "WorkMeasure",
                   "measure": "목재는 제재, 건조 및 쌓기 등에서 가능한 한 직사광선을 피하고, 시트 등을 사용 하여 보호한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.5.5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.5.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.4",
+              "@type": "WorkRisk",
               "statement": "접속부·교차부 볼트·클램프 등 전용철물 미체결로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:e0bf295788d3",
+                  "@type": "WorkMeasure",
                   "measure": "강재와 강재의 접속부 및 교차부는 볼트, 클램프 등의 철물로 견고하게 연결한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "5.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "5.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:bc7f81fe9b75",
+                  "@type": "WorkMeasure",
                   "measure": "강재의 접속부 및 교차부는 볼트ㆍ클램프 등 전용철물을 사용하여 단단히 연결한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "8.2"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "8.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.5",
+              "@type": "WorkRisk",
               "statement": "거푸집이 콘크리트 압력에 부상(浮上)하거나 견고하지 않아 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:5c857c1ac455",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집은 콘크리트의 압력 등에 의해 부상(浮上)하지 않도록 견고하게 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.5.4"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.5.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.6",
+              "@type": "WorkRisk",
               "statement": "합판의 들뜸·파손·오염된 재사용 합판 사용 후 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:6c8d80c228e4",
+                  "@type": "WorkMeasure",
                   "measure": "재사용 합판은 합판의 결과 결사이의 들뜸 여부, 표면 손상 등을 확인하여 볼트용 구멍 또는 파손 부위를 수선하고 콘크리트에 접하는 면을 깨끗이 청소한 뒤 광유 등 박리제를 균일하게 발라 사용한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.7",
+              "@type": "WorkRisk",
               "statement": "경사면 거푸집에 앵커 미설치로 양압력에 들려 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:d6c0a41676ff",
+                  "@type": "WorkMeasure",
                   "measure": "수직거리에 대한 수평거리의 비율이 1.5 미만인 경사면에는 별도의 조치가 없는 한 경사면의 상부에 거푸집을 설치한다. 이때, 경사진 면의 거푸집에는 양압력을 충분히 지지할 수 있도록 앵커를 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.5.5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.5.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.8",
+              "@type": "WorkRisk",
               "statement": "녹슨 금속제 거푸집 패널을 확인 없이 사용하여 파손·무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:029b8900c795",
+                  "@type": "WorkMeasure",
                   "measure": "금속제 거푸집 패널 표면의 녹은 쇠솔(Wire brush) 또는 샌드페이퍼(Sand paper) 등으로 닦아내고 박리제를 도포하여 녹슬지 않게 보호한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.5.5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.5.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.9",
+              "@type": "WorkRisk",
               "statement": "간격재 불량으로 거푸집 변형·철근 위치 이탈로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:3fc750e5479a",
+                  "@type": "WorkMeasure",
                   "measure": "간격재는 콘크리트에 유해한 영향이 없는 것으로, 거푸집 간격유지와 철근의 위치 고정에 적합한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "5"
                   }
                 }
               ]
@@ -455,24 +497,28 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.5.5",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.5.5",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/2.10",
+              "@type": "WorkRisk",
               "statement": "거푸집 표면 돌출물에 조립 중 근로자가 베임",
               "measures": [
                 {
+                  "@id": "workmeasure:0e279eebe446",
+                  "@type": "WorkMeasure",
                   "measure": "표면에 구멍이나 결함 부위는 보수하고 돌출물은 제거하여 깨끗하고 흠이 없게 유지 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.5.5"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.5.5"
                   }
                 }
               ]
@@ -482,54 +528,64 @@
       ]
     },
     {
+      "@id": "workstep:벽체_거푸집_유로폼/3",
+      "@type": "WorkStep",
       "stepName": "벽체 거푸집 해체",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "8",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.7",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.7",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.7",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.7",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/3.1",
+              "@type": "WorkRisk",
               "statement": "해체작업 중 안전대 부착설비 없이 작업하다 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:6951d4d33422",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집 및 동바리의 해체는 순서에 의하여 실시하여야 하며 관리감독자를 배치한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "8"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "8"
                   }
                 },
                 {
+                  "@id": "workmeasure:bc61d5d89c4a",
+                  "@type": "WorkMeasure",
                   "measure": "해체작업 근로자는 안전대의 착용 등 개인보호구를 올바르게 착용하여야 하며, 사업주는 근로자의 떨어짐 등 재해예방 안전조치를 한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.7"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:7094d48e6299",
+                  "@type": "WorkMeasure",
                   "measure": "해체작업은 작업 지휘자를 지정하고 작업 지휘자의 지시에 따라 작업을 실시한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.7"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.7"
                   }
                 }
               ]
@@ -538,37 +594,43 @@
         },
         {
           "hazardLabel": "절단·베임·찔림",
+          "hasHazard": "hazard:crushing",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "8",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "8",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "8",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:crushing",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/3.2",
+              "@type": "WorkRisk",
               "statement": "날카로운 돌출물에 근로자가 베임",
               "measures": [
                 {
+                  "@id": "workmeasure:716c35b11e7e",
+                  "@type": "WorkMeasure",
                   "measure": "해체된 거푸집이나 각목 등에 박혀있는 못 또는 날카로운 돌출물은 즉시 제거한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "8"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "8"
                   }
                 },
                 {
+                  "@id": "workmeasure:85e4ca520a87",
+                  "@type": "WorkMeasure",
                   "measure": "해체된 거푸집이나 각목은 재사용 가능한 것과 보수하여야 할 것을 선별, 분리하여 적치하고 정리정돈을 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "8"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "8"
                   }
                 }
               ]
@@ -577,55 +639,65 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "8",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "8",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "8",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-15-2026",
-              "section": "8",
+              "basisGuide": "doc:kosha_guide/D-C-15-2026",
+              "guideSection": "8",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/3.3",
+              "@type": "WorkRisk",
               "statement": "콘크리트 강도 미확보 상태에서 미리 해체하여 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:4dc96ee4f6f1",
+                  "@type": "WorkMeasure",
                   "measure": "설계도서상의 콘크리트 양생기간을 준수한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "8"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "8"
                   }
                 },
                 {
+                  "@id": "workmeasure:6e86123c814e",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집 및 동바리는 콘크리트가 자중 및 시공 중에 가해지는 하중을 지지할 수 있는 강도를 가질 때까지 해체하지 않는 등 건설기준에 따라야 한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "8"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/3.4",
+              "@type": "WorkRisk",
               "statement": "버팀목 미설치, 인양장비 미사용으로 낙하·무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:bfac2ba66db9",
+                  "@type": "WorkMeasure",
                   "measure": "낙하ㆍ충격에 의한 돌발적 재해를 방지하기 위하여 버팀목을 설치하고 거푸집 및 동바리를 인양 장비에 매단 후에 작업을 하도록 하는 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-15-2026",
-                    "section": "8"
+                    "basisGuide": "doc:kosha_guide/D-C-15-2026",
+                    "guideSection": "8"
                   }
                 }
               ]
@@ -634,42 +706,50 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "7.7",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "7.7",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-9-2026",
-              "section": "9.3",
+              "basisGuide": "doc:kosha_guide/D-C-9-2026",
+              "guideSection": "9.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/3.5",
+              "@type": "WorkRisk",
               "statement": "해체 부재를 규격별로 정리하지 않고 하역하여 낙하함",
               "measures": [
                 {
+                  "@id": "workmeasure:89d00daf1878",
+                  "@type": "WorkMeasure",
                   "measure": "해체 부재는 동일한 규격별로 정리 정돈하여 하역은 인양장비 사용을 원칙으로 하며, 인력 하역은 달줄, 달포대 등을 사용한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "7.7"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "7.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:벽체_거푸집_유로폼/3.6",
+              "@type": "WorkRisk",
               "statement": "해체한 자재를 반출하지 않고 쌓아 두어 무너져 맞음",
               "measures": [
                 {
+                  "@id": "workmeasure:b2dc46f9b65b",
+                  "@type": "WorkMeasure",
                   "measure": "해체한 자재는 신속하게 반출하여 작업공간을 확보하고, 안전한 장소에 적재한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-9-2026",
-                    "section": "9.3"
+                    "basisGuide": "doc:kosha_guide/D-C-9-2026",
+                    "guideSection": "9.3"
                   }
                 }
               ]

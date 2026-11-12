@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:승강기_설치",
   "@type": [
     "ConstructionSubtask"
@@ -68,28 +26,34 @@
   ],
   "steps": [
     {
+      "@id": "workstep:승강기_설치/1",
+      "@type": "WorkStep",
       "stepName": "엘리베이터 자재반입·보관",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/1.1",
+              "@type": "WorkRisk",
               "statement": "자재 적재 높이가 높아 넘어지거나 쓰러져 맞음",
               "measures": [
                 {
+                  "@id": "workmeasure:d173b61a868d",
+                  "@type": "WorkMeasure",
                   "measure": "현장에 반입된 자재가 넘어지거나 쓰러지지 않도록 높게 적재하지 않아야 하고 넘어 지거나 쓰러지는 위험이 있는 경우에는 견고하게 고정하거나 근로자의 출입을 통제 하는 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.1"
                   }
                 }
               ]
@@ -98,24 +62,28 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/1.2",
+              "@type": "WorkRisk",
               "statement": "변형·부식된 승강기 부재를 확인 없이 반입하여 설치 후 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:71039889f4ea",
+                  "@type": "WorkMeasure",
                   "measure": "현장에 조립용으로 입고되는 자재는 변형되거나, 비에 맞아 녹슬지 않도록 평평한 바닥에 침목 등을 깔아 보관한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.1"
                   }
                 }
               ]
@@ -125,109 +93,135 @@
       ]
     },
     {
+      "@id": "workstep:승강기_설치/2",
+      "@type": "WorkStep",
       "stepName": "승강로 가설작업대 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "5.3.5",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "5.3.5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "5.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "5.3.4",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/2.1",
+              "@type": "WorkRisk",
               "statement": "벽체지지대 앵커볼트 고정 미흡으로 승강로 구조물 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:b2ab18a6dcfb",
+                  "@type": "WorkMeasure",
                   "measure": "작업대에 전단볼트가 체결된 후 전체 유동방지를 위해 벽체지지대를 벽면에 밀착 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.5"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:e8cf51ec17cc",
+                  "@type": "WorkMeasure",
                   "measure": "벽체 또는 슬래브에 매립되는 앵커볼트는 콘크리트 타설 및 진동다짐 등에 의해 위치 이동이 발생하지 않도록 지속적으로 모니터링을 실시하여 앵커볼트의 수직 및 수평 상태를 정확히 유지하도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/2.2",
+              "@type": "WorkRisk",
               "statement": "부재 치수·조립 상태를 점검하지 않아 작업대가 변형되어 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:9643a874171c",
+                  "@type": "WorkMeasure",
                   "measure": "부재는 외관상 휨이나 변형 등을 설계도면의 치수와 일치여부를 점검 후 설계도면에 따라 부재별 설치 위치 준수하여 정확히 조립한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5faff566f6fa",
+                  "@type": "WorkMeasure",
                   "measure": "설치 후 작업대의 조립상태, 뒤틀림 및 변형여부, 부속철물의 위치와 간격, 접합 정도와 용접부의 이상 유무를 확인해야 하고, 문제가 발견된 경우 즉시 보수 또는 교체 작업을 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/2.3",
+              "@type": "WorkRisk",
               "statement": "브라켓 돌출 길이 부족·고임 미비로 작업대가 이동·전도되어 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:e303dbd62255",
+                  "@type": "WorkMeasure",
                   "measure": "작업대를 인양하여 다음 층에 설치할 시 브라켓이 슬래브 위에 충분한 길이로 돌출 되어야 하고, 슬래브와의 높이차가 있는 경우 견고한 고임목을 고여야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a0d3dbbba7a6",
+                  "@type": "WorkMeasure",
                   "measure": "브라켓의 재료와 구조, 설치방법은 제조사의 취급설명서 또는 매뉴얼에 따른다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/2.4",
+              "@type": "WorkRisk",
               "statement": "벽면 밀착용 지지대 미설치로 작업대와 외벽 간격이 벌어져 전도되어 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:64dfc404f1ad",
+                  "@type": "WorkMeasure",
                   "measure": "작업대와 구조물 외벽의 간격유지와 밀착을 위해 둥근 톱날형, 사다리꼴 박스형, 각재형 등의 벽면 밀착용 지지대를 제작⸱설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.5"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:8c56ab5a226f",
+                  "@type": "WorkMeasure",
                   "measure": "벽체지지대의 재료와 구조, 설치방법은 제조사의 취급설명서 또는 매뉴얼에 따른다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.5"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.5"
                   }
                 }
               ]
@@ -236,32 +230,38 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.1",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/2.5",
+              "@type": "WorkRisk",
               "statement": "동일 위치 동시작업으로 충돌 또는 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:c376d4cb589b",
+                  "@type": "WorkMeasure",
                   "measure": "산업안전보건법상 동일 위치에서 작업을 금지하고 있으므로 동일 위치에서 동시에 작업을 하지 않도록 관리한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:140ddc43695c",
+                  "@type": "WorkMeasure",
                   "measure": "층의 작업발판이 완성되기 전까지는 상부에서 떨어짐 및 낙하물로 인한 부딪힘 가능성이 있으므로 상하부 동시작업을 금지한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.1"
                   }
                 }
               ]
@@ -270,102 +270,124 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "5.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "5.3.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "5.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "5.3.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.3",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/2.6",
+              "@type": "WorkRisk",
               "statement": "작업대 내부 통로 미설치로 근로자가 불안정하게 이동하다 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:5532024a6311",
+                  "@type": "WorkMeasure",
                   "measure": "작업대 내부에는 근로자가 안전하게 구조물 내부에서 작업발판으로 출입·이동할 수 있도록 계단 등 안전한 통로를 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:4d9a9610192c",
+                  "@type": "WorkMeasure",
                   "measure": "항의 사다리와 작업발판이 연속되는 지점에는 경첩 등을 이용하여 여닫이문을 설치하고, 여닫이문은 근로자 이동하는 경우 외에는 항상 닫혀있도록 관리한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:bbc111480c92",
+                  "@type": "WorkMeasure",
                   "measure": "사다리식 통로 등을 설치하는 경우에는 슬래브 콘크리트 타설된 지점과 작업 발판간 근로자가 이동할 수 있는 수직형 승강사다리를 견고하게 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:7047332a6c7f",
+                  "@type": "WorkMeasure",
                   "measure": "승강사다리의 위치는 동일 작업대 내에서 작업발판의 각 단에서 서로 엇갈리게 하고, 최상부의 여유길이는 60cm 이상 돌출되도록 해야 한다. 이 경우 돌출부위가 근로자 이동에 간섭이 없도록 설치 위치를 적정하게 고려한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/2.7",
+              "@type": "WorkRisk",
               "statement": "과적 또는 최대적재하중 초과로 작업대 파손되어 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:f26eb62faf8a",
+                  "@type": "WorkMeasure",
                   "measure": "EV 고소 가설작업대는 작업 위치에서 최대적재하중을 고려하여 자재를 과적하지 않도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/2.8",
+              "@type": "WorkRisk",
               "statement": "작업발판 위를 뛰거나 슬래브에서 작업대로 뛰어내려 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:b2514de2dd77",
+                  "@type": "WorkMeasure",
                   "measure": "작업대 위의 작업자는 지정된 설비를 갖춘 작업발판 연결통로를 이용하여 작업대 내부로 출입해야 하며, 발판 위에서 뛰거나 슬래브 또는 승강 사다리에서 발판으로 뛰어 내리는 행위를 금지한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/2.9",
+              "@type": "WorkRisk",
               "statement": "작업대 내부 거푸집 등을 밟고 작업하다 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:db022060ea60",
+                  "@type": "WorkMeasure",
                   "measure": "작업대 내부 거푸집 등을 밟고 작업하지 않도록 말비계 등 적정한 작업발판을 설치 하고, 작업자의 신장보다 높은 위치에 안전대 부착설비를 설치하여 안전대 고리를 체결한 후 작업한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.3"
                   }
                 }
               ]
@@ -375,36 +397,44 @@
       ]
     },
     {
+      "@id": "workstep:승강기_설치/3",
+      "@type": "WorkStep",
       "stepName": "기계·가이드레일 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "5.3.1",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "5.3.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/3.1",
+              "@type": "WorkRisk",
               "statement": "인양구 지지점 부족·부재 안전율 미달로 인양 중 작업대가 변형되어 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:196a1f8fc09d",
+                  "@type": "WorkMeasure",
                   "measure": "작업대 전하중을 안전하게 인양할 수 있는 안전율 5 이상의 부재를 사용하여 인양 시 작업대에 변형을 주지 않는 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b815c58bcb77",
+                  "@type": "WorkMeasure",
                   "measure": "인양구는 4점 이상 지지할 수 있도록 수직재에 용접 고정하고, 2구형 이상 작업대는 인양구의 방향이 줄걸이 방향에 오도록 하여 변형을 주지 않아야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.1"
                   }
                 }
               ]
@@ -413,37 +443,43 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/3.2",
+              "@type": "WorkRisk",
               "statement": "부재 인양 중 신호 불일치로 부재가 낙하하여 맞음",
               "measures": [
                 {
+                  "@id": "workmeasure:c848070be318",
+                  "@type": "WorkMeasure",
                   "measure": "부재 인양 시 신호수를 배치하고 신호 규정을 준수한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:be0e2dafded6",
+                  "@type": "WorkMeasure",
                   "measure": "타워크레인(T/C)으로 엘리베이터 작업대를 인양하는 경우 작업대 하중 및 인양장비의 단계별 양중하중에 대한 사전검토를 수행해야 하며 보조 로프를 사용하여 작업대의 출렁임을 최소화한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
@@ -453,28 +489,34 @@
       ]
     },
     {
+      "@id": "workstep:승강기_설치/4",
+      "@type": "WorkStep",
       "stepName": "가설작업대 해체",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/4.1",
+              "@type": "WorkRisk",
               "statement": "작업발판 잔재물 방치하여 미끄러져 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:7fb8fe5d82dc",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판의 잔재물은 발생 즉시 제거한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
@@ -484,120 +526,148 @@
       ]
     },
     {
+      "@id": "workstep:승강기_설치/5",
+      "@type": "WorkStep",
       "stepName": "승강로 내 작업",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "5.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "5.3.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:162",
+              "basisArticle": "art:기준규칙:162",
               "paragraph": 2,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/5.1",
+              "@type": "WorkRisk",
               "statement": "표지판·출입통제로 출입금지 구역을 설정하지 않아 승강로 내 작업자가 해체 중인 작업대로 들어가 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:a54f845949fc",
+                  "@type": "WorkMeasure",
                   "measure": "작업 구간을 명확히 구분하고 관계 근로자 외 사람의 출입을 제한하거나 통제한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:fd004c62a6ce",
+                  "@type": "WorkMeasure",
                   "measure": "해체작업 중인 작업대에는 “해체 중”임을 표시하는 표지판을 게시하고 출입금지 구역을 설정하여 작업자의 접근을 금지토록 감시자를 배치한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.2",
+              "@type": "WorkRisk",
               "statement": "와이어로프, 슬링벨트 등 장비 결함 유무를 점검하지 않아 파단·파손으로 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:baffa1b0b050",
+                  "@type": "WorkMeasure",
                   "measure": "와이어로프, 슬링벨트, 섀클, 전동 공구 등 사용 장비는 작업 전 결함 유무를 면밀 하게 점검 또는 검사하고 이상한 점을 발견시에는 즉시 교체한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.3",
+              "@type": "WorkRisk",
               "statement": "관리감독자 입회 없이 최상부에서 최하부로 출입하여 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:915dfb429acc",
+                  "@type": "WorkMeasure",
                   "measure": "작업대 출입 시 관리감독자 입회 하에 최상부에서 최하부 작업발판으로 이동하도록 하여 근로자의 출입 및 작업 여부를 통제한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.4",
+              "@type": "WorkRisk",
               "statement": "작업대 인양 시 작업자 탑승 허용으로 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:ef83f535b0c7",
+                  "@type": "WorkMeasure",
                   "measure": "작업대 인양 작업은 전단볼트 해체 등 작업 완료 상태와 작업자 철수 여부를 확인 한 후 실시하며, 작업대 인양 시 작업자 탑승을 절대 금지한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.5",
+              "@type": "WorkRisk",
               "statement": "브라켓 구조 안전성을 확인하지 않아 작업대가 낙하하여 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:9200824acfc9",
+                  "@type": "WorkMeasure",
                   "measure": "작업대의 낙하 또는 충격에 대하여 브라켓의 시험성적서 또는 구조검토 등을 통해 구조적 안전성을 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "5.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "5.3.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.6",
+              "@type": "WorkRisk",
               "statement": "결함 있는 재료·기구를 걸러내지 않고 사용하여 파손으로 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:7be52109a52c",
+                  "@type": "WorkMeasure",
                   "measure": "사업주는 제1항제1호의 작업을 지휘하는 사람에게 다음 각 호의 사항을 이행하도록 하여야 한다. 재료의 결함 유무 또는 기구 및 공구의 기능을 점검하고 불량품을 제거하는 일",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:162",
+                    "basisArticle": "art:기준규칙:162",
                     "paragraph": 2
                   }
                 }
@@ -607,73 +677,89 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-14-2026",
-              "section": "7.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-14-2026",
+              "guideSection": "7.2.3",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:승강기_설치/5.7",
+              "@type": "WorkRisk",
               "statement": "작업대 부재 이음부 볼트 체결·이음 상태 점검을 하지 않아 작업대 변형으로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:1cfaf82fa2aa",
+                  "@type": "WorkMeasure",
                   "measure": "인양 작업 중 허용오차 범위 이상의 엘리베이터 작업대 변형이 발생하지 않도록 하며, 각 작업대 부재 이음부의 볼트 체결 및 이음 상태를 수시로 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.8",
+              "@type": "WorkRisk",
               "statement": "유압장치 사전 점검을 하지 않아 유압장치 이상에 의한 작업대 낙하 또는 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:3f169842f1ce",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 유압장치로 엘리베이터 작업대를 인양하는 경우 유압펌프 유량, 유압 호스나 커플러 누유 상태, 전력 케이블 등 유압장치 이상 유무에 대해 사전 점검을 실시한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.9",
+              "@type": "WorkRisk",
               "statement": "앵커볼트·전단볼트 변형, 균열, 부식 상태 점검을 하지 않아 탈락·낙하로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:52e2d4224f7b",
+                  "@type": "WorkMeasure",
                   "measure": "앵커볼트는 조립도에 의한 체결 상태 및 매입길이를 확인해야 하며, 피로 하중으로 인한 엘리베이트 승강로용 작업대의 낙하를 방지하기 위하여 앵커볼트는 주기적으로 점검하여 상태에 따라 교체한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:승강기_설치/5.10",
+              "@type": "WorkRisk",
               "statement": "엘리베이터 작업대 인양 시 충돌 부위 점검·수리 미흡으로 무너짐",
               "measures": [
                 {
+                  "@id": "workmeasure:5b58d722f23a",
+                  "@type": "WorkMeasure",
                   "measure": "엘리베이터 작업대 인양시 충돌한 부분은 반드시 용접 부위 등을 확인․점검하고 수리․보강한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-14-2026",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-14-2026",
+                    "guideSection": "7.2.3"
                   }
                 }
               ]

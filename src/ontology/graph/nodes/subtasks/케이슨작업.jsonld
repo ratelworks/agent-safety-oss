@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:케이슨작업",
   "@type": [
     "ConstructionSubtask"
@@ -93,176 +51,214 @@
   ],
   "steps": [
     {
+      "@id": "workstep:케이슨작업/1",
+      "@type": "WorkStep",
       "stepName": "케이슨 제작",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             },
             {
-              "annex": "annex:기준규칙:별표4-8호",
+              "basisAnnex": "annex:기준규칙:별표4-8호",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "5",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/1.1",
+              "@type": "WorkRisk",
               "statement": "강재 거푸집이 콘크리트 측압을 견디지 못하고 무너져 근로자가 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f959819a094d",
+                  "@type": "WorkMeasure",
                   "measure": "강재 거푸집 사용 시에는 반드시 벽체에 작용하는 콘크리트 측압 등에 대한 구조검토를 실시하여 조립도를 작성하여야 하고, 해당 조립도에 따라 시공되도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:1f4505c7438a",
+                  "@type": "WorkMeasure",
                   "measure": "타설 작업을 시작하기 전에 해당 작업에 관한 거푸집, 동바리 등의 변형·변위 및 지반의 침하 유무 등을 점검하고 이상이 있는 경우 조치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:de96a5bd634a",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 타설 작업 시 거푸집이 무너질 위험이 발생할 우려가 있는 경우 충분한 보강조치를 취하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:fa1f1af1e869",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트를 타설하는 경우에는 편심이 발생하지 않도록 골고루 분산하여 타설하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:f7ef591a4b59",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 타설 시 급격한 침하가 발생되지 않도록 최대한 시간을 두고 여유 있게 타설하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:2d44ce7603fb",
+                  "@type": "WorkMeasure",
                   "measure": "설계도서상의 콘크리트 양생기간을 준수하여 거푸집, 동바리 등을 해체하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:케이슨작업/1.2",
+              "@type": "WorkRisk",
               "statement": "조립 중인 철근망이 무너지거나 노출 철근에 찔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:52a58c0340d5",
+                  "@type": "WorkMeasure",
                   "measure": "철근조립 시 철근 이음위치에 대하여 충분히 검토하고 철근의 무너짐을 방지를 위하여 강관파이프, 와이어로프, 각재 등으로 일정 간격마다 버팀대를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:81e5c164d3b2",
+                  "@type": "WorkMeasure",
                   "measure": "노출된 철근 및 강선에는 보호캡을 씌우고 위험표시를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:0d9e3bc5e08a",
+                  "@type": "WorkMeasure",
                   "measure": "철근 절단 시 철근의 탄력에 의한 재해방지를 위해 절단 부위가 튀지 않도록 주의하여 작업한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:케이슨작업/1.3",
+              "@type": "WorkRisk",
               "statement": "작업계획서·작업지휘자 없이 착수하여 위험이 통제되지 않음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3e14043632d2",
+                  "@type": "WorkMeasure",
                   "measure": "근로자의 위험을 방지하기 위하여 사업주는 사전에 차량계 하역운반기계 작업, 굴착면의 높이가 2미터 이상 지반의 굴착작업, 중량물의 취급작업, 우물통기초의 설치작업에 관련한 작업계획서의 작성 및 작업지휘자를 지정하여야 하며 해당 근로자에게 안전한 작업방법 및 순서를 교육하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:e1ee4aae5ec2",
+                  "@type": "WorkMeasure",
                   "measure": "작업 방법 및 순서, 부재(部材)의 낙하ㆍ전도 또는 붕괴를 방지하기 위한 방법, 작업에 종사하는 근로자의 추락 위험을 방지하기 위한 안전조치 방법, 공사에 사용되는 가설 철구조물 등의 설치ㆍ사용ㆍ해체 시 안전성 검토 방법, 사용하는 기계 등의 종류 및 성능ㆍ작업방법, 작업지휘자 배치계획, 그 밖에 안전ㆍ보건에 관련된 사항을 작업계획서에 포함한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표4-8호"
+                    "basisAnnex": "annex:기준규칙:별표4-8호"
                   }
                 },
                 {
+                  "@id": "workmeasure:8d167a71bcf9",
+                  "@type": "WorkMeasure",
                   "measure": "단위공종별 작업을 시작하기 전에는 위험성평가를 실시하고 세부 단위작업별 허용 가능한 위험범위 이내가 되도록 작업방법을 개선한 후가 아니면 작업하지 않도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:b01850cbdb96",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 우물통기초공법을 시공함에 있어 필요로 한 안전한 작업방법 및 순서에 대하여 교육을 받지 않은 근로자는 작업에 투입시키지 않아야 하며, 작업 중 근로자의 떨어짐 또는 끼임 등의 위험이 있다고 판단되는 때에는 작업을 중지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:a4ef07ab2e7b",
+                  "@type": "WorkMeasure",
                   "measure": "공사 착수 전에 본 공사 시행으로 인한 인접 제반 시설물 및 지장물에 피해가 없도록 안전대책을 수립함은 물론 이에 대한 현황을 면밀히 조사, 기록, 표시하여야 하며, 인접 제반 시설물의 관계기관에게 확인시킨다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:c3de2a9ad8ad",
+                  "@type": "WorkMeasure",
                   "measure": "시공 전 설계도서와 현장조건이 일치하는지의 여부를 확인하고 공사용지 사용 확보, 공사용 자재 운반ㆍ적치, 지질층 시추조사표 검토, 시공기계·기구 선정 등의 사항들을 사전에 검토하여 안전한 시공이 되도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "5"
                   }
                 }
               ]
@@ -271,60 +267,70 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/1.4",
+              "@type": "WorkRisk",
               "statement": "우물통 내·외부 비계에서 근로자가 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:a74e62d27c42",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 내·외부 비계는 견고한 구조의 작업발판, 안전난간, 승강설비 등을 설치하고 비계설치ㆍ해체 작업계획서를 작성하여 근로자의 떨어짐 또는 맞음 재해를 방지하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:c097693ad950",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트를 타설하는 경우에는 근로자가 호스의 요동·선회로 인하여 떨어질 우려가 있는 단부작업에서는 특히 주의하여 작업하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:60accdc60436",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소 또는 기계ㆍ설비ㆍ선박블록 등에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42"
+                    "basisArticle": "art:기준규칙:42"
                   }
                 },
                 {
+                  "@id": "workmeasure:651196a8a970",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하여야 하며, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:42"
+                    "basisArticle": "art:기준규칙:42"
                   }
                 }
               ]
@@ -333,70 +339,82 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:369",
+              "basisArticle": "art:기준규칙:369",
               "item": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/1.5",
+              "@type": "WorkRisk",
               "statement": "거푸집·브라켓 해체 중 부재가 떨어져 하부 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:4dc8539ea70b",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집 및 브라켓 해체 시 낙하물 방지망, 안전방망 등의 떨어짐 방지 시설을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:14701ef3b879",
+                  "@type": "WorkMeasure",
                   "measure": "철근 및 거푸집의 인양 및 운반 시 2줄 걸이 등의 안전한 방법으로 실시하고, 필요시 달포대 또는 인양박스를 사용한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:54ce6f4f7564",
+                  "@type": "WorkMeasure",
                   "measure": "철근 및 거푸집의 인양 및 운반 시 크레인 및 본 구조물과의 부딪힘을 방지할 수 있도록 신호 체계 및 작업 계획을 수립하고 준수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b54f750f0f0e",
+                  "@type": "WorkMeasure",
                   "measure": "재료, 기구 또는 공구 등을 올리거나 내릴 경우에는 근로자로 하여금 달줄, 달포대 등을 사용하도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:369",
+                    "basisArticle": "art:기준규칙:369",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:afb008c5b65d",
+                  "@type": "WorkMeasure",
                   "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:14"
+                    "basisArticle": "art:기준규칙:14"
                   }
                 }
               ]
@@ -405,33 +423,39 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/1.6",
+              "@type": "WorkRisk",
               "statement": "철근 운반 중 주변 전선에 접촉하거나 용접기 누전으로 감전",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:27ee41aeb754",
+                  "@type": "WorkMeasure",
                   "measure": "철근 및 거푸집 운반 시 감전 사고를 예방하기 위하여 주변의 전선은 사용 철근의 최대길이 이상의 높이에 배선되어야 하며 이격 거리는 최소한 2 미터 이상으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:2c4667b63db6",
+                  "@type": "WorkMeasure",
                   "measure": "강재 거푸집의 용접작업 시 감전 사고를 방지하기 위해 교류아크 용접기에 자동전격방지기, 가설전기에 누전차단기 및 접지 등을 설치하며 배선경로 상태 등을 확인하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.1"
                   }
                 }
               ]
@@ -441,146 +465,172 @@
       ]
     },
     {
+      "@id": "workstep:케이슨작업/2",
+      "@type": "WorkStep",
       "stepName": "케이슨운반 및 거치",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.3",
               "controlLevel": "engineering"
             },
             {
-              "annex": "annex:기준규칙:별표4-11호",
+              "basisAnnex": "annex:기준규칙:별표4-11호",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:146",
+              "basisArticle": "art:기준규칙:146",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:146",
+              "basisArticle": "art:기준규칙:146",
               "paragraph": 1,
               "item": 5,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:146",
+              "basisArticle": "art:기준규칙:146",
               "paragraph": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:369",
+              "basisArticle": "art:기준규칙:369",
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/2.1",
+              "@type": "WorkRisk",
               "statement": "인양 중 우물통 본체가 낙하하여 근로자가 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:fabb602dc006",
+                  "@type": "WorkMeasure",
                   "measure": "조금구와 체결된 우물통 본체를 크레인으로 인양할 때 부재에 인양용 고리를 견고하게 설치하고 인양하여야 하며, 중량물이 안전하게 거치되기 전까지는 걸이로프를 해제시키지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:568cdea4de00",
+                  "@type": "WorkMeasure",
                   "measure": "중량물 부재를 크레인 등으로 인양하는 경우에는 부재에 인양용 고리를 견고하게 설치하고, 인양용 로프는 부재에 두 군데 이상 결속하여 인양하여야 하며, 중량물이 안전하게 거치되기 전까지는 걸이로프를 해제시키지 아니한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:369",
+                    "basisArticle": "art:기준규칙:369",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:2b51f43d5242",
+                  "@type": "WorkMeasure",
                   "measure": "제작된 우물통을 운반할 때에는 우물통의 중량 및 크기를 고려하여 충분한 성능을 갖는 크레인을 선정하여야 하며, 고리걸이 계획에 따른 와이어로프, 조금구, 크레인의 정격하중 등의 안전성 검토를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:f9177f5872dc",
+                  "@type": "WorkMeasure",
                   "measure": "우물통의 인양, 운반, 거치공사 시 충분한 인양능력을 가진 크레인을 투입하고 조금구를 사용하여 우물통 들고리에 동일한 하중이 분배되도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:31c1879875cb",
+                  "@type": "WorkMeasure",
                   "measure": "인양 및 운반 과정 중 우물통 본체 및 기타 부재의 넘어짐, 무너짐, 맞음 등에 의하여 근로자에게 위험을 미칠 우려가 있는 경우에는 출입금지구역을 설정하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:623fbe9c4d62",
+                  "@type": "WorkMeasure",
                   "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:146",
+                    "basisArticle": "art:기준규칙:146",
                     "paragraph": 1,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:52d6d2b1fdfc",
+                  "@type": "WorkMeasure",
                   "measure": "인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니한다. 다만 신호하는 사람에 의하여 작업을 하는 경우는 제외한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:146",
+                    "basisArticle": "art:기준규칙:146",
                     "paragraph": 1,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:f5c9efdecfb9",
+                  "@type": "WorkMeasure",
                   "measure": "제작된 우물통을 운반할 때 운반 장비에 의한 잡아매기, 들기, 운반, 설치방법 등에 관한 중량물 취급계획서를 작성하고 이에 따라 안전하게 작업을 수행한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e82882943478",
+                  "@type": "WorkMeasure",
                   "measure": "추락위험을 예방할 수 있는 안전대책, 낙하위험을 예방할 수 있는 안전대책, 전도위험을 예방할 수 있는 안전대책, 협착위험을 예방할 수 있는 안전대책, 붕괴위험을 예방할 수 있는 안전대책을 작업계획서에 포함한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표4-11호"
+                    "basisAnnex": "annex:기준규칙:별표4-11호"
                   }
                 },
                 {
+                  "@id": "workmeasure:26ef068b90fe",
+                  "@type": "WorkMeasure",
                   "measure": "타워크레인을 사용하여 작업을 하는 경우 타워크레인마다 근로자와 조종 작업을 하는 사람 간에 신호업무를 담당하는 사람을 각각 두어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:146",
+                    "basisArticle": "art:기준규칙:146",
                     "paragraph": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:9c85a71ac674",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 본체를 인양 크레인을 이용하여 시공 위치까지 거치시 작업신호를 일원화하여 안전사고에 유의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 }
               ]
@@ -589,169 +639,201 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:163",
+              "basisArticle": "art:기준규칙:163",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:165",
+              "basisArticle": "art:기준규칙:165",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:168",
+              "basisArticle": "art:기준규칙:168",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:168",
+              "basisArticle": "art:기준규칙:168",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:168",
+              "basisArticle": "art:기준규칙:168",
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 9,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "item": 1,
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/2.2",
+              "@type": "WorkRisk",
               "statement": "손상된 와이어로프·달기체인·섬유로프가 인양 중 파단",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0ff4cda688fe",
+                  "@type": "WorkMeasure",
                   "measure": "양중기의 와이어로프로서 이음매가 있는 것, 한 꼬임에서 끊어진 소선(素線)의 수가 10퍼센트 이상인 것, 지름의 감소가 공칭지름의 7퍼센트를 초과하는 것, 꼬인 것, 심하게 변형되거나 부식된 것, 열과 전기충격에 의해 손상된 것을 사용해서는 아니 된다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:2bd9b6ebc3d9",
+                  "@type": "WorkMeasure",
                   "measure": "양중기의 달기 체인으로서 길이가 달기 체인이 제조된 때의 길이의 5퍼센트를 초과한 것, 링의 단면지름이 달기 체인이 제조된 때의 해당 링의 지름의 10퍼센트를 초과하여 감소한 것, 균열이 있거나 심하게 변형된 것을 사용해서는 아니 된다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:6bb8b81c7e04",
+                  "@type": "WorkMeasure",
                   "measure": "양중기의 작업용 섬유로프로서 꼬임이 끊어진 것, 심하게 손상되거나 부식된 것, 2개 이상의 작업용 섬유로프를 연결한 것, 작업높이보다 길이가 짧은 것을 사용하지 않는다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 9
                   }
                 },
                 {
+                  "@id": "workmeasure:93d7f41e45c5",
+                  "@type": "WorkMeasure",
                   "measure": "훅ㆍ샤클ㆍ클램프 및 링 등의 철구로서 변형되어 있는 것 또는 균열이 있는 것을 크레인 또는 이동식 크레인의 고리걸이용구로 사용해서는 아니 된다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:168"
+                    "basisArticle": "art:기준규칙:168"
                   }
                 },
                 {
+                  "@id": "workmeasure:087e53e9b4c6",
+                  "@type": "WorkMeasure",
                   "measure": "중량물을 운반하기 위해 제작하는 지그, 훅의 구조를 운반 중 주변 구조물과의 충돌로 슬링이 이탈되지 않도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:168"
+                    "basisArticle": "art:기준규칙:168"
                   }
                 },
                 {
+                  "@id": "workmeasure:6c961b1d10c5",
+                  "@type": "WorkMeasure",
                   "measure": "안전성 시험을 거쳐 안전율이 3 이상 확보된 중량물 취급용구를 구매하여 사용하거나 자체 제작한 중량물 취급용구에 대하여 비파괴시험을 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:168"
+                    "basisArticle": "art:기준규칙:168"
                   }
                 },
                 {
+                  "@id": "workmeasure:b4327d80911e",
+                  "@type": "WorkMeasure",
                   "measure": "와이어로프를 절단하여 양중작업용구를 제작하는 경우 반드시 기계적인 방법으로 절단하여야 하며, 가스용단 등 열에 의한 방법으로 절단해서는 아니 되고, 아크ㆍ화염ㆍ고온부 접촉 등으로 인하여 열영향을 받은 와이어로프를 사용해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:165"
+                    "basisArticle": "art:기준규칙:165"
                   }
                 },
                 {
+                  "@id": "workmeasure:9efbb662765a",
+                  "@type": "WorkMeasure",
                   "measure": "양중기의 달기구의 경우 최대허용하중 등의 표식이 견고하게 붙어 있는 것을 사용하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:163"
+                    "basisArticle": "art:기준규칙:163"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:케이슨작업/2.3",
+              "@type": "WorkRisk",
               "statement": "바지선 하역·장비 반입 중 인양물에 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:4ddbad9d8ba8",
+                  "@type": "WorkMeasure",
                   "measure": "반입되는 장비 및 자재의 하역작업은 중량 및 적재상태 등을 고려하여 적절한 하역방법을 선정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:ec5400f129f2",
+                  "@type": "WorkMeasure",
                   "measure": "하역작업 시에는 신호수를 배치하여 정해진 신호에 따라야 하며 신호는 장비운전원이 잘 볼 수 있는 곳에서 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:e57c220d5b1f",
+                  "@type": "WorkMeasure",
                   "measure": "바지선에 장비를 싣고 내릴 때는 밀물과 썰물을 고려하여 안전한 작업이 이루어질 수 있도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:0426d0389d64",
+                  "@type": "WorkMeasure",
                   "measure": "수상 장비 조종원은 유자격자가 운행할 수 있도록 안전실명제를 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:b9b439fd971f",
+                  "@type": "WorkMeasure",
                   "measure": "인양 크레인, 크람쉘, 배치플랜트 등의 장비를 바지선에 반입할 경우에는 해당 장비이력카드를 확인하고 관련 법령에 의한 정기검사 등의 이력을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:a6693597d733",
+                  "@type": "WorkMeasure",
                   "measure": "작업 중에는 공사장 내부에 외부인의 출입을 통제하여 안전사고를 미연에 예방하고, 현장상황에 적합한 안전시설을 설치해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 }
               ]
@@ -760,75 +842,87 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.3",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:47",
+              "basisArticle": "art:기준규칙:47",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/2.4",
+              "@type": "WorkRisk",
               "statement": "우물통 상부·바지선에서 작업 중 물에 빠져 익사",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:de688d7483d8",
+                  "@type": "WorkMeasure",
                   "measure": "수상 및 해상에서 들고리 체결을 위해 우물통 위에서 작업을 하는 때에는 반드시 구명조끼를 입고 작업하도록 하여야 하며 육상에서 크레인을 이용하여 우물통 상부로 올라가는 때에는 떨어짐 재해가 발생하지 않도록 관리감독자를 반드시 배치하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:6e69a177d0a4",
+                  "@type": "WorkMeasure",
                   "measure": "수상 또는 선박건조 작업에 종사하는 근로자가 물에 빠지는 등 위험의 우려가 있는 경우 그 작업을 하는 장소에 구명을 위한 배 또는 구명장구(救命裝具)의 비치 등 구명을 위하여 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:47"
+                    "basisArticle": "art:기준규칙:47"
                   }
                 },
                 {
+                  "@id": "workmeasure:bf4575a63a3f",
+                  "@type": "WorkMeasure",
                   "measure": "바지선 상의 작업 중 떨어짐 및 익사 등의 재해를 방지하기 위하여 안전난간의 설치 및 구명조끼를 비치하고 근로자의 투입현황판을 게시하여 두어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:91ce822c396a",
+                  "@type": "WorkMeasure",
                   "measure": "크레인을 이용한 우물통 본체 및 조금구 연결 작업 시 본체 내부로 떨어지는 것을 예방하기 위하여 작업발판과 안전난간, 안전대 부착설비 등 안전시설을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:66d0fd734739",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 정박선이 심하게 움직일 때 선체난간, 연결로프 주위 등에서의 근로자를 관리 통제하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 }
               ]
@@ -837,57 +931,67 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:37",
+              "basisArticle": "art:기준규칙:37",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/2.5",
+              "@type": "WorkRisk",
               "statement": "기상 악화·급조류로 바지선이 전도되거나 우물통이 이동",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:35c8e6901c87",
+                  "@type": "WorkMeasure",
                   "measure": "수시로 일기예보를 확인하여 파고가 높거나 풍속이 클 것으로 예상되는 경우에는 작업을 시작하지 아니 하여야 하며, 작업 중 예상하지 못한 기상악화가 있는 경우에는 작업을 중지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:9dbfab6f69be",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 거치 시 급격한 조류에 의한 이동을 방지하기 위한 우물통 이동방지 앵커블럭에 대해서는 시공 전에 가설지점의 유속 등을 면밀히 측정하고, 소정의 안전율을 확보할 수 있는 앵커블럭의 제원, 중량 및 시공법에 대하여 검토한 후 시공하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:b3b22f3eedd9",
+                  "@type": "WorkMeasure",
                   "measure": "우물통을 거치한 후 터파기 및 발파한 우물통 외부사면을 사석으로 채움으로서 우물통 기초 저면의 세굴을 방지한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2455990afd4f",
+                  "@type": "WorkMeasure",
                   "measure": "비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:37"
+                    "basisArticle": "art:기준규칙:37"
                   }
                 }
               ]
@@ -896,75 +1000,89 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "5",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/2.6",
+              "@type": "WorkRisk",
               "statement": "예인·수상운송 중 선박이 전복되거나 항행 선박과 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:52a1a1ca3809",
+                  "@type": "WorkMeasure",
                   "measure": "예인선의 흘수(수면으로부터 선체의 가장 깊은 곳까지의 연직 거리) 및 경심(기울어져 있는 선박의 회전 중심) 위치를 수시로 점검하여 수상운송 중의 안전에 만전을 기한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:940bd8894385",
+                  "@type": "WorkMeasure",
                   "measure": "수상 주항로 이동 시에는 통선 등으로 선박 통제를 철저히 하고 운항로에는 유도표시를 설치하여 수상에서의 안전사고를 방지하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:2078452aa4eb",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 거치 전에 관계기관과 협조하여 항로에 지장이 없도록 하며, 선박사고에 대비하여 관계기관과 비상연락망을 구축하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb624a042d02",
+                  "@type": "WorkMeasure",
                   "measure": "바지선과 예인선의 부딪힘, 근로자의 끼임 등에 의한 재해를 방지하기 위하여 고무타이어 등의 충격흡수재를 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:9884f4f8b7a6",
+                  "@type": "WorkMeasure",
                   "measure": "비상시에 선박 고정용 로프를 절단할 수 있는 도끼나 적절한 도구를 사용하기 쉬운 장소에 비치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:5f112ec6f686",
+                  "@type": "WorkMeasure",
                   "measure": "장비 간 고정을 위한 로프를 찾기 쉬운 장소에 비치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 }
               ]
@@ -973,112 +1091,134 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.2",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.2",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.2",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/2.7",
+              "@type": "WorkRisk",
               "statement": "기초면 준설·수중 발파 중 재해",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:072b397d50bb",
+                  "@type": "WorkMeasure",
                   "measure": "수중 암의 발파 작업을 수행하는 경우 수중천공, 장약, 발파의 순으로 작업을 진행하며 크레인과 그래브 준설선을 이용하여 파쇄된 암석을 준설하고 토사운반선에 적재하여 투기장까지 운반하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:8751b8a15771",
+                  "@type": "WorkMeasure",
                   "measure": "화약이나 폭약을 장전하는 경우에는 그 부근에서 화기를 사용하거나 흡연을 하지 않도록 유의하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:e8e6a9b92f94",
+                  "@type": "WorkMeasure",
                   "measure": "화약류 관리·보안 책임자는 반드시 현장상황을 고려해서 위험구역을 결정하고 점화 전에 안전한 장소로 대피하여 위험구역에 아무도 없다는 것을 확인한 후 발파작업을 시행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:3af51df04fb3",
+                  "@type": "WorkMeasure",
                   "measure": "강우, 낙뢰 시에는 작업을 중단하고 화약 등을 화약고에 안전하게 입고하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:c4b4af8be1e8",
+                  "@type": "WorkMeasure",
                   "measure": "불발공을 재발파하는 것은 충분한 조사가 끝난 후에 하여야 하며, 불발공에 잔류화약이 있을 때에는 압축공기 또는 물을 사용하여 회수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:9d47494cebf0",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 기초면 고르기를 위한 준설 및 굴착작업 시 장비반입, 굴착토사처리 등의 안전작업계획을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:0a2637dc9a87",
+                  "@type": "WorkMeasure",
                   "measure": "기초굴착을 위한 천공 작업 시 발생하는 소음에 대비하여 근로자에게 귀마개를 착용하도록 지시하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:0ec84629b6ff",
+                  "@type": "WorkMeasure",
                   "measure": "도면에 표시된 심도와 굴착범위 내에서 굴착토를 제거하고 관리감독자가 승인한 준설범위 내에서 작업을 수행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3f0c23af773d",
+                  "@type": "WorkMeasure",
                   "measure": "기준 준설위치에 준설선을 정박하고 준설토사를 채취하여 토사운반선에 적재하며 미리 지정해 놓은 투기장으로 운반하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:a91d8163bca3",
+                  "@type": "WorkMeasure",
                   "measure": "투기장에 투기된 굴착토사는 주변으로 유실되지 않도록 조치하여야 하며 굴착토사로 인한 주변 오염 등의 문제가 없도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.2"
                   }
                 }
               ]
@@ -1088,210 +1228,248 @@
       ]
     },
     {
+      "@id": "workstep:케이슨작업/3",
+      "@type": "WorkStep",
       "stepName": "케이슨 내 속체움",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.3",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.4",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.4",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:376",
+              "basisArticle": "art:기준규칙:376",
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:376",
+              "basisArticle": "art:기준규칙:376",
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:378",
+              "basisArticle": "art:기준규칙:378",
               "item": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:378",
+              "basisArticle": "art:기준규칙:378",
               "item": 2,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/3.1",
+              "@type": "WorkRisk",
               "statement": "우물통 내부로 물이 급격히 유입되어 근로자가 익사하거나 장비가 수몰",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c679591ccf3c",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 내부의 급작스런 침수로 인한 근로자의 익사 등의 재해를 방지하기 위하여 우물통 내부의 누수 여부를 항상 조사하고 누수발생시 즉시 작업을 중단하고 급결 그라우팅 주입 등의 차수조치를 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:6c367d28f3d3",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 하부 굴착 작업 중 지반의 누수로 근로자가 익사하거나 장비가 수몰되는 사고가 발생할 수 있으므로 누수의 배수, 약액주입 등의 공법으로 차수조치를 철저히 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d5f586d34433",
+                  "@type": "WorkMeasure",
                   "measure": "양수설비에 고장이 있는 경우나 우물통 내부에 많은 양의 물이 스며들 우려가 있는 경우에는 굴착작업을 하지 않는다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:1284e16ff427",
+                  "@type": "WorkMeasure",
                   "measure": "잠함등의 내부에 많은 양의 물 등이 스며들 우려가 있는 경우에는 잠함등의 내부에서 굴착작업을 하도록 해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:378",
+                    "basisArticle": "art:기준규칙:378",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:95ac3d05c490",
+                  "@type": "WorkMeasure",
                   "measure": "제377조제1항제2호ㆍ제3호 및 같은 조 제2항에 따른 설비에 고장이 있는 경우에는 잠함등의 내부에서 굴착작업을 하도록 해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:378",
+                    "basisArticle": "art:기준규칙:378",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:18bc5cba2e51",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 내부에는 침투수를 양수할 수 있도록 배수펌프 등의 양수설비를 갖추어두어야 하며, 항상 양호한 상태로 유지관리하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:b79104ae8877",
+                  "@type": "WorkMeasure",
                   "measure": "수위차로 인하여 순간적으로 물이 우물통 내부로 들어와 장비가 수몰되는 경우가 발생할 수 있으므로 양수 후 건조 상태에서 작업 시 예비양수기를 확보하고 작업원이 구명조끼를 필히 착용할 수 있도록 하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:케이슨작업/3.2",
+              "@type": "WorkRisk",
               "statement": "우물통이 급격히 침하하여 내부 근로자가 매몰",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5177890a1990",
+                  "@type": "WorkMeasure",
                   "measure": "잠함 또는 우물통의 내부에서 근로자가 굴착작업을 하는 경우에 잠함 또는 우물통의 급격한 침하에 의한 위험을 방지하기 위하여 침하관계도에 따라 굴착방법 및 재하량(載荷量) 등을 정한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:376",
+                    "basisArticle": "art:기준규칙:376",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:3bc884011d4b",
+                  "@type": "WorkMeasure",
                   "measure": "바닥으로부터 천장 또는 보까지의 높이는 1.8미터 이상으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:376",
+                    "basisArticle": "art:기준규칙:376",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:884b23466c3f",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 작업 시 우물통의 경사, 이동 및 회전에 주의하며 급격하게 침하가 되지 않도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:a6ad9383527d",
+                  "@type": "WorkMeasure",
                   "measure": "지속적인 위치 및 기울기 확인 측량을 하고 변위 발생 시 적절한 대책을 수립한 후 굴착한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:8594bef56a15",
+                  "@type": "WorkMeasure",
                   "measure": "침하 중 극심한 편심 및 경사가 발생한 경우에는 속히 그 원인을 조사하여 발주자 대리인에게 보고하고, 대책을 협의한 후 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:c1f0767e136b",
+                  "@type": "WorkMeasure",
                   "measure": "우물통의 침하 작업 중 필요한 경우에는 잠수부를 동원하여 날끝의 밑깍기를 할 수도 있으나 과도한 밑깍기를 하여서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:84718ce5f538",
+                  "@type": "WorkMeasure",
                   "measure": "크람쉘 굴착의 경우에는 바켓은 우물통 내벽을 따라 강하시켜 날끝 안측을 굴착하여 안전한 시공을 하여야 하며 굴착작업 시 관계자 이외의 출입을 금지하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d11a847e9408",
+                  "@type": "WorkMeasure",
                   "measure": "발파를 통해 경암질에서 구체를 침하시킬 경우에는 관리감독자의 확인을 받아야 하며, 화약의 운반·보관에 관한 안전대책을 충분히 검토하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:055f6cc73649",
+                  "@type": "WorkMeasure",
                   "measure": "우물통기초 공사 중에 이용되는 콘크리트 타설장비, 인양 및 운반장비, 작업대, 양생설비, 동력과 조명 및 배수설비, 굴착 및 침설설비, 환기설비 등의 안전관리 지침을 사전에 숙지하고 공사 중에는 정기적으로 점검과 보수를 실시하여 안전하게 작업이 수행되도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 }
               ]
@@ -1300,252 +1478,298 @@
         },
         {
           "hazardLabel": "질식",
+          "hasHazard": "hazard:asphyxiation",
           "basis": [
             {
-              "article": "art:기준규칙:619",
+              "basisArticle": "art:기준규칙:619",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:619의2",
+              "basisArticle": "art:기준규칙:619의2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:623",
+              "basisArticle": "art:기준규칙:623",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "ppe"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:377",
+              "basisArticle": "art:기준규칙:377",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:377",
+              "basisArticle": "art:기준규칙:377",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:377",
+              "basisArticle": "art:기준규칙:377",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:377",
+              "basisArticle": "art:기준규칙:377",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:619의2",
+              "basisArticle": "art:기준규칙:619의2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:620",
+              "basisArticle": "art:기준규칙:620",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:621",
+              "basisArticle": "art:기준규칙:621",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:622",
+              "basisArticle": "art:기준규칙:622",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:624",
+              "basisArticle": "art:기준규칙:624",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:asphyxiation",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/3.3",
+              "@type": "WorkRisk",
               "statement": "우물통 내부의 산소결핍·유해가스로 근로자가 질식",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0e0f33dbb5aa",
+                  "@type": "WorkMeasure",
                   "measure": "산소 결핍 우려가 있는 경우에는 산소의 농도를 측정하는 사람을 지명하여 측정하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:377",
+                    "basisArticle": "art:기준규칙:377",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:9e0fca5b50d7",
+                  "@type": "WorkMeasure",
                   "measure": "측정 결과 산소 결핍이 인정되거나 굴착 깊이가 20미터를 초과하는 경우에는 송기(送氣)를 위한 설비를 설치하여 필요한 양의 공기를 공급해야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:377",
+                    "basisArticle": "art:기준규칙:377",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:a7e5a233a077",
+                  "@type": "WorkMeasure",
                   "measure": "침하 도중, 유해가스의 발생이나 산소결핍에 의한 재해를 막기 위하여 항상 가스검사를 실시하고 유해가스 발생 및 산소결핍의 우려가 있는 경우에는 환기 등 기타 적절한 조치를 강구하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:436dcb5590cd",
+                  "@type": "WorkMeasure",
                   "measure": "밀폐공간에서 근로자에게 작업을 하도록 하는 경우 작업을 시작하기 전에 밀폐공간의 산소 및 유해가스 농도의 측정 및 평가에 관한 지식과 실무경험이 있는 자를 지정하여 그로 하여금 해당 밀폐공간의 산소 및 유해가스 농도를 측정하여 적정공기가 유지되고 있는지를 평가하도록 해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:619의2"
+                    "basisArticle": "art:기준규칙:619의2"
                   }
                 },
                 {
+                  "@id": "workmeasure:c7b3b9bdeed8",
+                  "@type": "WorkMeasure",
                   "measure": "산소 및 유해가스 농도를 측정한 결과 적정공기가 유지되고 있지 아니하다고 평가된 경우에는 작업장을 환기시키거나, 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 하는 등 근로자의 건강장해 예방을 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:619의2"
+                    "basisArticle": "art:기준규칙:619의2"
                   }
                 },
                 {
+                  "@id": "workmeasure:b0dffe0d0539",
+                  "@type": "WorkMeasure",
                   "measure": "밀폐공간에서 작업을 하는 경우에 작업을 시작하기 전과 작업 중에 해당 작업장을 적정공기 상태가 유지되도록 환기하여야 하며, 폭발이나 산화 등의 위험으로 인하여 환기할 수 없거나 작업의 성질상 환기하기가 매우 곤란한 경우에는 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:620"
+                    "basisArticle": "art:기준규칙:620"
                   }
                 },
                 {
+                  "@id": "workmeasure:cb3eb53aec22",
+                  "@type": "WorkMeasure",
                   "measure": "발파 후 유해가스나 분진이 신속히 우물통 외부로 배출되도록 환기시키고 유해가스 및 분진의 농도는 노출기준 이하로 유지하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:a15e01d40f0c",
+                  "@type": "WorkMeasure",
                   "measure": "소요 환기량에 충분한 용량의 환기설비를 설치하고 송풍에 관한 기준에 의하여 적정한 계획을 수립하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:b5ba652c82c9",
+                  "@type": "WorkMeasure",
                   "measure": "분진 및 유해가스의 농도를 수시로 측정하여 노출기준 이하로 유지되도록 환기 및 살수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:9784362170ee",
+                  "@type": "WorkMeasure",
                   "measure": "분진발생 장소에서 작업하는 근로자는 방진마스크를 착용하도록 관리한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:케이슨작업/3.4",
+              "@type": "WorkRisk",
               "statement": "사고 발생을 외부가 인지하지 못해 구조가 지연됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d391af47e31b",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 안전하게 오르내리기 위한 설비를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:377",
+                    "basisArticle": "art:기준규칙:377",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:fbca6ed864ce",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 깊이가 20미터를 초과하는 경우에는 해당 작업장소와 외부와의 연락을 위한 통신설비 등을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:377",
+                    "basisArticle": "art:기준규칙:377",
                     "paragraph": 1,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:2997ac53f2e3",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 밀폐공간에서 작업을 하는 동안 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:623"
+                    "basisArticle": "art:기준규칙:623"
                   }
                 },
                 {
+                  "@id": "workmeasure:aa0623040ae7",
+                  "@type": "WorkMeasure",
                   "measure": "감시인은 밀폐공간에 종사하는 근로자에게 이상이 있을 경우에 구조요청 등 필요한 조치를 한 후 이를 즉시 관리감독자에게 알려야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:623"
+                    "basisArticle": "art:기준규칙:623"
                   }
                 },
                 {
+                  "@id": "workmeasure:128b4db13447",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 그 장소에 근로자를 입장시킬 때와 퇴장시킬 때마다 인원을 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:621"
+                    "basisArticle": "art:기준규칙:621"
                   }
                 },
                 {
+                  "@id": "workmeasure:3f334cc84a3b",
+                  "@type": "WorkMeasure",
                   "measure": "사업장 내 밀폐공간을 사전에 파악하여 밀폐공간에는 관계 근로자가 아닌 사람의 출입을 금지하고, 출입금지 표지를 밀폐공간 근처의 보기 쉬운 장소에 게시한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:622"
+                    "basisArticle": "art:기준규칙:622"
                   }
                 },
                 {
+                  "@id": "workmeasure:477ba15d0a4b",
+                  "@type": "WorkMeasure",
                   "measure": "밀폐공간에서 작업하는 근로자가 산소결핍이나 유해가스로 인하여 추락할 우려가 있는 경우에는 해당 근로자에게 안전대나 구명밧줄, 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:624"
+                    "basisArticle": "art:기준규칙:624"
                   }
                 },
                 {
+                  "@id": "workmeasure:f1c9047d3ec1",
+                  "@type": "WorkMeasure",
                   "measure": "사업장 내 밀폐공간의 위치 파악 및 관리 방안, 밀폐공간 내 질식ㆍ중독 등을 일으킬 수 있는 유해ㆍ위험 요인의 파악 및 관리 방안, 밀폐공간 작업 시 사전 확인이 필요한 사항에 대한 확인 절차, 안전보건교육 및 훈련, 그 밖에 밀폐공간 작업 근로자의 건강장해 예방에 관한 사항이 포함된 밀폐공간 작업 프로그램을 수립하여 시행한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:619"
+                    "basisArticle": "art:기준규칙:619"
                   }
                 },
                 {
+                  "@id": "workmeasure:ae9d8f3c4d68",
+                  "@type": "WorkMeasure",
                   "measure": "밀폐공간에서 작업을 시작하기 전에 작업 일시ㆍ기간ㆍ장소 및 내용 등 작업 정보, 관리감독자ㆍ근로자ㆍ감시인 등 작업자 정보, 산소 및 유해가스 농도의 측정결과 및 후속조치 사항, 작업 중 불활성가스 또는 유해가스의 누출ㆍ유입ㆍ발생 가능성 검토 및 후속조치 사항, 작업 시 착용하여야 할 보호구의 종류, 비상연락체계를 확인하여 근로자가 안전한 상태에서 작업하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:619"
+                    "basisArticle": "art:기준규칙:619"
                   }
                 },
                 {
+                  "@id": "workmeasure:d9d668d1299f",
+                  "@type": "WorkMeasure",
                   "measure": "밀폐공간에서의 작업이 종료될 때까지 확인 내용을 해당 작업장 출입구에 게시한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:619"
+                    "basisArticle": "art:기준규칙:619"
                   }
                 },
                 {
+                  "@id": "workmeasure:97c310c02ae9",
+                  "@type": "WorkMeasure",
                   "measure": "밀폐공간의 산소 및 유해가스 농도를 측정 및 평가하는 자에 대하여 밀폐공간에서 작업을 시작하기 전에 밀폐공간의 위험성, 측정장비의 이상 유무 확인 및 조작 방법, 밀폐공간 내에서의 산소 및 유해가스 농도 측정방법, 적정공기의 기준과 평가 방법의 숙지여부를 확인하고 필요한 교육을 실시해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:619의2"
+                    "basisArticle": "art:기준규칙:619의2"
                   }
                 }
               ]
@@ -1556,51 +1780,61 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.3",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.4",
               "controlLevel": "administrative"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/3.5",
+              "@type": "WorkRisk",
               "statement": "잠수부가 잠수병에 걸리거나 수중작업 중 조난",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f0375a17ebb7",
+                  "@type": "WorkMeasure",
                   "measure": "잠수부는 잠수병의 위험을 최소화하기 위하여 다이빙 전 충분히 수분을 섭취하고 휴식을 취한 후 서서히 입수하여야 하며, 급격한 압력변화를 막기 위하여 최대한 천천히 수면위로 올라 와야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:45e39588ebf9",
+                  "@type": "WorkMeasure",
                   "measure": "잠수부의 특수건강검진을 실시하고 작업 시 신호수 배치로 안전사고를 예방해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:9830a5abc13b",
+                  "@type": "WorkMeasure",
                   "measure": "수중작업의 특수성으로 천공·장약 등이 잠수부에 의존하여야 하므로 경험이 많은 잠수부가 수행하여야 하며 사전교육과 관리가 요구된다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:9172884339c1",
+                  "@type": "WorkMeasure",
                   "measure": "양수작업은 잠수부 작업의 효율을 증대하고 잠수병(감압증) 예방에 필연이기 때문에 양수작업에 많은 시간을 투자하여야 하며, 양수펌프가 고장이 나지 않도록 유지관리를 철저히 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.4"
                   }
                 }
               ]
@@ -1609,38 +1843,44 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.4",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/3.6",
+              "@type": "WorkRisk",
               "statement": "양수기 누전으로 근로자가 감전",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b63a1c79c157",
+                  "@type": "WorkMeasure",
                   "measure": "양수기의 누전으로 인하여 감전사고가 발생되지 않도록 누전차단기의 설치 등 누전으로 인한 감전재해를 방지할 수 있도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:6f63ba11b513",
+                  "@type": "WorkMeasure",
                   "measure": "양수기 설치 시 양정고, 토출경, 전기, 우물통 내부 침투유량, 내부 침투수 혼탁(모래, 자갈 등의 유입) 상태를 면밀히 검토하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.4"
                   }
                 }
               ]
@@ -1649,62 +1889,74 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "7.4",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "7.4",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/3.7",
+              "@type": "WorkRisk",
               "statement": "속채움 콘크리트 타설 중 펌프카가 전도되거나 근로자가 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c2020439ed1b",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 내·외부의 비계 등에서 작업하는 근로자가 호스의 요동·선회로 인하여 떨어지는 위험을 방지하기 위하여 안전난간 설치 등 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:042ace6f0232",
+                  "@type": "WorkMeasure",
                   "measure": "작업 중에 지반의 침하, 아웃트리거의 손상 등에 의하여 콘크리트 펌프카가 넘어질 우려가 있는 경우에는 이를 방지하기 위한 적절한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:9d8f7a9e2e92",
+                  "@type": "WorkMeasure",
                   "measure": "작업을 시작하기 전에 콘크리트 펌프용 비계를 점검하고 이상을 발견하였으면 즉시 보수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:992dedb6b9df",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 펌프카의 붐을 조정하는 경우에는 주변 시설물 등과의 접촉 등에 의한 위험을 예방하기 위한 적절한 조치를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:bd2a447ab3d3",
+                  "@type": "WorkMeasure",
                   "measure": "수중콘크리트는 재료의 분리를 방지하기 위하여 트레미(Tremie)를 사용해야 하며, 내리거나 올릴 때에는 천천히 작동시켜 주의 깊게 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "7.4"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "7.4"
                   }
                 }
               ]
@@ -1713,37 +1965,43 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "6",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:369",
+              "basisArticle": "art:기준규칙:369",
               "item": 1,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/3.8",
+              "@type": "WorkRisk",
               "statement": "우물통 내부 조도 부족으로 위험을 인지하지 못함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:10274ccd5d48",
+                  "@type": "WorkMeasure",
                   "measure": "우물통 내부의 조명장치 및 설비를 확인해야 하며 75 럭스(Lux) 이상의 조도가 유지되도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:7a6bd11605ae",
+                  "@type": "WorkMeasure",
                   "measure": "작업을 하는 구역에는 관계 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:369",
+                    "basisArticle": "art:기준규칙:369",
                     "item": 1
                   }
                 }
@@ -1753,37 +2011,43 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-93-2013",
-              "section": "8.1",
+              "basisGuide": "doc:kosha_guide/C-93-2013",
+              "guideSection": "8.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:369",
+              "basisArticle": "art:기준규칙:369",
               "item": 4,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:케이슨작업/3.9",
+              "@type": "WorkRisk",
               "statement": "날끝 거푸집 해체 중 부재에 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:83537e3ad3f7",
+                  "@type": "WorkMeasure",
                   "measure": "날끝 거푸집은 제작사양과 조립도의 순서를 준수하고 해체할 때에는 부재를 정리정돈하고 부착된 콘크리트, 유해물질 등을 제거한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-93-2013",
-                    "section": "8.1"
+                    "basisGuide": "doc:kosha_guide/C-93-2013",
+                    "guideSection": "8.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:fff3873a9b2c",
+                  "@type": "WorkMeasure",
                   "measure": "자재나 부재의 낙하ㆍ전도 또는 붕괴 등에 의하여 근로자에게 위험을 미칠 우려가 있을 경우에는 출입금지구역의 설정, 자재 또는 가설시설의 좌굴(挫屈) 또는 변형 방지를 위한 보강재 부착 등의 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:369",
+                    "basisArticle": "art:기준규칙:369",
                     "item": 4
                   }
                 }

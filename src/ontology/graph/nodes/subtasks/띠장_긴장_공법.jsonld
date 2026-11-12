@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:띠장_긴장_공법",
   "@type": [
     "ConstructionSubtask"
@@ -77,55 +35,65 @@
   ],
   "steps": [
     {
+      "@id": "workstep:띠장_긴장_공법/1",
+      "@type": "WorkStep",
       "stepName": "띠장 설치·홈메우기",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/1.1",
+              "@type": "WorkRisk",
               "statement": "띠장 이음·연속성이 부족해 긴장력이 전달되지 않고 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7d8d0e070460",
+                  "@type": "WorkMeasure",
                   "measure": "띠장은 끊어짐이 없이 연속해서 설치하고 띠장의 이음은 원칙적으로 엄지말뚝을 중심으로 전단력과 휨모멘트가 작은 곳에서 실시하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:4c703faddda8",
+                  "@type": "WorkMeasure",
                   "measure": "보걸이는 띠장 1개당 2개 이상으로 설치하고 띠장보다 약 5㎝ 정도의 여유폭이 되도록 하며 4m 이내의 간격으로 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:be342983005f",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공을 설치하였을 때에는 부재의 손상·변형·부식·변위 및 탈락의 유무와 상태를 정기적으로 점검하고 이상을 발견하면 즉시 보수한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 1,
                     "item": 1
                   }
@@ -133,23 +101,29 @@
               ]
             },
             {
+              "@id": "workrisk:띠장_긴장_공법/1.2",
+              "@type": "WorkRisk",
               "statement": "띠장 배면 홈메우기를 하지 않아 긴장 중 띠장에 편심·변형이 발생함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5638715f494a",
+                  "@type": "WorkMeasure",
                   "measure": "다음단계의 PS 강선 긴장작업 시 발생할 수 있는 띠장의 편심, 변형 등을 방지하기 위하여 띠장 배면에 강재, 시멘트 그라우팅 등을 이용한 홈메우기 등을 사전에 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:ab63962c6ac6",
+                  "@type": "WorkMeasure",
                   "measure": "또한 PS 강선 긴장작업 중 띠장의 뒤틀림, 넘어짐 등을 방지하기 위하여 누름 브라켓(Braket) 등의 안전대책을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 }
               ]
@@ -158,51 +132,59 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:44",
+              "basisArticle": "art:기준규칙:44",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/1.3",
+              "@type": "WorkRisk",
               "statement": "띠장 위에서 작업하던 근로자가 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f9969ed00cf2",
+                  "@type": "WorkMeasure",
                   "measure": "띠장 설치 즉시 설치된 띠장을 따라 띠장 위 약 1.5m 높이에 안전대 부착설비를 설치하고 띠장 위에서 작업 시 안전대를 걸도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:c7770181517c",
+                  "@type": "WorkMeasure",
                   "measure": "안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치하고, 그 설비의 이상 유무를 정기적으로 점검한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:44",
+                    "basisArticle": "art:기준규칙:44",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:e9174f6db1d3",
+                  "@type": "WorkMeasure",
                   "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업에는 안전대를 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 2
                   }
@@ -214,90 +196,108 @@
       ]
     },
     {
+      "@id": "workstep:띠장_긴장_공법/2",
+      "@type": "WorkStep",
       "stepName": "버팀보 가압·PS 강선 긴장",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 11,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/2.1",
+              "@type": "WorkRisk",
               "statement": "승인·입회 없이 긴장작업을 수행해 이상 상태를 판단하지 못하고 부재가 파괴됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d2d96343a29d",
+                  "@type": "WorkMeasure",
                   "measure": "버팀보 가압 및 PS 강선 긴장작업은 사전에 관리감독자가 승인한 시공 계획서에 의거하여 수행하여야 하며 가압 및 긴장작업은 책임기술자와 공사 감독자(또는 감리자) 입회하에 실시하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:feb679bdd246",
+                  "@type": "WorkMeasure",
                   "measure": "버팀보 가압 및 PS 강선 긴장작업 시 심각한 구조변형 등의 이상현상 및 위험한 요인을 발견한 때에는 작업을 중지하고 관리감독자에게 즉시 통보하여, 적절한 안전 조치를 취하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:8f948fc39a9f",
+                  "@type": "WorkMeasure",
                   "measure": "PS 강선 긴장 시는 다음 사항을 사전에 설정하여 공사 감독자(또는 감리자)의 승인을 얻은 후 시행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3faec0481d43",
+                  "@type": "WorkMeasure",
                   "measure": "PS 강선 배치 완료 후 다음의 순서로 버팀보 가압 및 PS 강선 긴장을 실시한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_긴장_공법/2.2",
+              "@type": "WorkRisk",
               "statement": "교육받지 않은 근로자가 긴장작업을 하다 재해를 입음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5ea040269a74",
+                  "@type": "WorkMeasure",
                   "measure": "사전에 띠장 긴장 공법에 대한 기술과 안전교육을 받은 자만이 긴장작업을 하여야 하고 작업시에는 안전모, 안전화, 안전장갑 등 작업에 적합한 보호구를 착용하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:f2509e1bdc10",
+                  "@type": "WorkMeasure",
                   "measure": "물체가 떨어지거나 날아올 위험 또는 근로자가 추락할 위험이 있는 작업에는 안전모를 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 1
                   }
@@ -305,68 +305,86 @@
               ]
             },
             {
+              "@id": "workrisk:띠장_긴장_공법/2.3",
+              "@type": "WorkRisk",
               "statement": "강선을 편심 배치하거나 정착 헤드면과 수직이 아니어서 강선이 파단되며 튕김",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c16c4283627d",
+                  "@type": "WorkMeasure",
                   "measure": "PS 강선은 좌우대칭으로 배치하고 긴장은 양쪽에 각각 긴장한다. 긴장작업 순서는 가능한 구조물에 대칭이 되도록 실시하여 구조물에 편심에 의한 프리스트레스가 가해지지 않도록 주의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e1e81eff0b92",
+                  "@type": "WorkMeasure",
                   "measure": "PS 강선 긴장 시, 앵커정착 헤드면과 PS 강선은 수직을 유지하여 편심응력에 의한 강선파단이 없도록 주의해야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:4162cc6c0be9",
+                  "@type": "WorkMeasure",
                   "measure": "가압 및 긴장에 있어서 가능한 부분적 작업은 지양하고 전체적으로 이루어지도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:b1805b0008bf",
+                  "@type": "WorkMeasure",
                   "measure": "현장 여건상 부분 작업이 이루어져야 할 경우에는 긴장부와 정착부에 대하여 홈메우기 용접, 연결부 볼트조립 등을 확인 후 시행한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_긴장_공법/2.4",
+              "@type": "WorkRisk",
               "statement": "긴장 중 강선이 파단되며 인장잭 배면·정착부 뒤편의 근로자를 침",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:226527ea8de2",
+                  "@type": "WorkMeasure",
                   "measure": "긴장작업시 PS 강선의 파단으로 인한 근로자들의 부상방지를 위해 인장잭 배면에 보호강판을 설치하고 정착부 뒤편에는 관계자외의 근로자의 출입을 금지시켜야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:6f0049ab5e67",
+                  "@type": "WorkMeasure",
                   "measure": "PS 강선을 긴장할 경우에는 강선의 신장량, 긴장력, 강선 긴장기의 사양, 특기사항 등이 기록, 보관되어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:df4176a846d3",
+                  "@type": "WorkMeasure",
                   "measure": "토사등이 떨어질 우려가 있는 등 위험한 장소에 관계 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 11
                   }
                 }
@@ -376,81 +394,95 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/2.5",
+              "@type": "WorkRisk",
               "statement": "잭의 가압이 과하거나 단계적이지 않아 잭이 좌굴되고 버팀보가 변형됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:67698a5c321b",
+                  "@type": "WorkMeasure",
                   "measure": "잭(Jack)을 사용하여 버팀보에 선행하중을 재하 시 잭의 좌굴 및 휨변형을 방지하기 위해 일반적인 스트로크 한계의 70%이상 넘지 않도록 권장한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:1ea9d371b65d",
+                  "@type": "WorkMeasure",
                   "measure": "잭의 가압은 소정의 압력으로 단계적으로 시행하되, 가압중에는 부재의 변형유무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:37cf1cb7623d",
+                  "@type": "WorkMeasure",
                   "measure": "버팀보 가압은 설계도서(도면 또는 구조계산서)상 명시된 가압력을 가압하는 것을 원칙으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d839347703ce",
+                  "@type": "WorkMeasure",
                   "measure": "잭(Jack)을 사용하여 버팀보에 선행하중을 재하 시 다음의 사항에 유의한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:08a990290f4f",
+                  "@type": "WorkMeasure",
                   "measure": "온도변화에 따른 신축을 고려한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:9b1346912312",
+                  "@type": "WorkMeasure",
                   "measure": "버팀대의 긴압(緊壓) 정도를 정기적으로 점검하고 이상을 발견하면 즉시 보수한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 1,
                     "item": 2
                   }
@@ -458,30 +490,38 @@
               ]
             },
             {
+              "@id": "workrisk:띠장_긴장_공법/2.6",
+              "@type": "WorkRisk",
               "statement": "중앙·코너 버팀보가 뒤틀리거나 이탈하고 부재가 풀린 채 다음 공정으로 넘어감",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:24bb984ff400",
+                  "@type": "WorkMeasure",
                   "measure": "중앙 및 코너버팀보는 정확한 위치에 설치하여 뒤틀려지거나 이탈되지 않도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:fe2d6bfc9a09",
+                  "@type": "WorkMeasure",
                   "measure": "소정의 부재를 설치한 후에는 다음 공정에서 발생할 수 있는 부재의 풀림 및 변형을 검사하여 그 안전여부를 판단하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d40900683d73",
+                  "@type": "WorkMeasure",
                   "measure": "부재의 접속부·부착부 및 교차부의 상태를 정기적으로 점검하고 이상을 발견하면 즉시 보수한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 1,
                     "item": 3
                   }
@@ -492,33 +532,39 @@
         },
         {
           "hazardLabel": "끼임·감김",
+          "hasHazard": "hazard:machine_entanglement",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/2.7",
+              "@type": "WorkRisk",
               "statement": "협소한 작업 장소에서 떨어짐·끼임·부딪힘이 발생함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:05888cb3f80b",
+                  "@type": "WorkMeasure",
                   "measure": "협소한 장소에서 작업이 수행됨에 따라 떨어짐, 끼임, 부딪힘 등의 재해가 발생할 수 있으므로 작업반경 등을 고려하여 작업구획을 설정하고 관리감독자를 지정하여 작업을 지휘하도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:8e492cbec156",
+                  "@type": "WorkMeasure",
                   "measure": "작업에 필요한 PS 강선, 유압잭 등의 자재들은 작업 장소 인근에 작업 순서별로 정리하고 견고한 방법으로 적재하여야한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 }
               ]
@@ -527,25 +573,29 @@
         },
         {
           "hazardLabel": "절단·베임·찔림",
+          "hasHazard": "hazard:crushing",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:crushing",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/2.8",
+              "@type": "WorkRisk",
               "statement": "돌출된 PS 강선 단부에 근로자가 찔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5b274b33a6bd",
+                  "@type": "WorkMeasure",
                   "measure": "돌출된 PS 강선 단부에는 근로자들이 찔리지 않도록 캡 등을 씌워야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 }
               ]
@@ -555,40 +605,48 @@
       ]
     },
     {
+      "@id": "workstep:띠장_긴장_공법/3",
+      "@type": "WorkStep",
       "stepName": "긴장 후 굴착·버력 반출",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:200",
+              "basisArticle": "art:기준규칙:200",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/3.1",
+              "@type": "WorkRisk",
               "statement": "굴착토사·버력 반출 중 굴삭기 버킷이 PS 강선에 부딪혀 강선이 파단됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:8d09e4f98eea",
+                  "@type": "WorkMeasure",
                   "measure": "특히, 띠장 설치 및 PS 긴장 후 다음 단계 굴착 작업 중 굴착토사·버력을 반출할 때에 버킷, 굴삭기 장비 등과 PS 강선과의 부딪힘을 방지하기 위하여 강선보호장치 등의 안전대책을 수립하고 장비가 강선에 접근하지 않도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3eca1239b80a",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 우려가 있는 장소에 근로자를 출입시키지 않는다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:200"
+                    "basisArticle": "art:기준규칙:200"
                   }
                 }
               ]
@@ -598,49 +656,59 @@
       ]
     },
     {
+      "@id": "workstep:띠장_긴장_공법/4",
+      "@type": "WorkStep",
       "stepName": "PS 강선 긴장력 제거·해체",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.5.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_긴장_공법/4.1",
+              "@type": "WorkRisk",
               "statement": "긴장력을 순서 없이 제거해 띠장 전체에 하중이 몰리고 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ca1dc66f6e19",
+                  "@type": "WorkMeasure",
                   "measure": "띠장이 전체적으로 연결되어 있을 때, 강선의 긴장력 제거는 반드시 책임 기술자의 지휘 아래 순차적으로 진행되어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:31039fb0f846",
+                  "@type": "WorkMeasure",
                   "measure": "해체 및 철거 전후에는 계측을 통하여 변위 발생 상태를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:1770e11021e8",
+                  "@type": "WorkMeasure",
                   "measure": "제1항의 점검 외에 설계도서에 따른 계측을 하고 계측 분석 결과 토압의 증가 등 이상한 점을 발견한 경우에는 즉시 보강조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 2
                   }
                 }

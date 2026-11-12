@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:띠장_버팀대",
   "@type": [
     "ConstructionSubtask"
@@ -78,78 +36,92 @@
   ],
   "steps": [
     {
+      "@id": "workstep:띠장_버팀대/1",
+      "@type": "WorkStep",
       "stepName": "띠장·버팀대 자재 검수·반입",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:345",
+              "basisArticle": "art:기준규칙:345",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:346",
+              "basisArticle": "art:기준규칙:346",
               "paragraph": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:346",
+              "basisArticle": "art:기준규칙:346",
               "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_버팀대/1.1",
+              "@type": "WorkRisk",
               "statement": "단면이 손상되거나 구부러진 부재를 그대로 설치해 지지력을 잃고 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:20e11e83b497",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대 및 기타 부재의 조립에 앞서 재질, 단면 손상여부, 재료의 구부러짐, 단면 치수의 정도 등을 점검하여 계획서에 적합한가를 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:9e0c027c64e5",
+                  "@type": "WorkMeasure",
                   "measure": "볼트 구멍이 발생된 재사용 강재를 버팀대로 사용시 결손구멍을 철판으로 용접하고 안전상태를 확인하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:8d8a6f83002a",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공의 재료로 변형·부식되거나 심하게 손상된 것을 사용해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:345"
+                    "basisArticle": "art:기준규칙:345"
                   }
                 },
                 {
+                  "@id": "workmeasure:31896284e57b",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공을 조립하는 경우 미리 그 구조를 검토한 후 조립도를 작성하여 그 조립도에 따라 조립하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:346",
+                    "basisArticle": "art:기준규칙:346",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:3af033170884",
+                  "@type": "WorkMeasure",
                   "measure": "조립도에는 흙막이판·말뚝·버팀대 및 띠장 등 부재의 배치·치수·재질 및 설치방법과 순서가 명시되어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:346",
+                    "basisArticle": "art:기준규칙:346",
                     "paragraph": 2
                   }
                 }
@@ -160,130 +132,146 @@
       ]
     },
     {
+      "@id": "workstep:띠장_버팀대/2",
+      "@type": "WorkStep",
       "stepName": "띠장·버팀대 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.2",
               "controlLevel": "engineering"
             },
             {
-              "annex": "annex:기준규칙:별표4-6호",
+              "basisAnnex": "annex:기준규칙:별표4-6호",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:38",
+              "basisArticle": "art:기준규칙:38",
               "paragraph": 1,
               "item": 6,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:50",
+              "basisArticle": "art:기준규칙:50",
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_버팀대/2.1",
+              "@type": "WorkRisk",
               "statement": "소정 깊이보다 과굴착하거나 버팀대 설치를 미뤄 흙막이가 토압을 못 버티고 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c18f82ead716",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대는 설계도 및 공종별 시공계획서를 따라 각 단계마다 소정의 깊이까지 굴착 후, 신속히 설치하고 과굴착을 하여서는 안 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:299b5be0037d",
+                  "@type": "WorkMeasure",
                   "measure": "버팀대는 좌우 흙막이의 토압이 균형을 이룬 상태에서 실시하고 정확히 수평이 되도록 정밀하게 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2c665ceda7ca",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대의 설치 간격은 설계도서에 명시한 값 이내로 하며 지장물의 유무, 구조물의 타설 계획, 재료 및 장비 투입 공간 확보 관계를 고려하여 설치간격을 결정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:88ebce5d02c9",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 지보공을 설치하여 위험을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:50",
+                    "basisArticle": "art:기준규칙:50",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:0923f6f859c2",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업의 작업계획서에는 굴착방법 및 순서, 토사등 반출 방법, 필요한 인원 및 장비 사용계획, 매설물 등에 대한 이설·보호대책, 사업장 내 연락방법 및 신호방법, 흙막이 지보공 설치방법 및 계측계획, 작업지휘자의 배치계획을 포함한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표4-6호"
+                    "basisAnnex": "annex:기준규칙:별표4-6호"
                   }
                 },
                 {
+                  "@id": "workmeasure:17ce17179329",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업을 하는 경우 사전조사 결과를 고려하여 별표 4의 구분에 따른 사항을 포함한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:38",
+                    "basisArticle": "art:기준규칙:38",
                     "paragraph": 1,
                     "item": 6
                   }
@@ -291,63 +279,79 @@
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/2.2",
+              "@type": "WorkRisk",
               "statement": "접합부·이음부가 느슨하거나 강도가 부족해 버팀대가 좌굴되며 흙막이 전체가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f7442a1411be",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대는 이동이 없도록 설치하여야 하며, 접합부와 이음부는 느슨하거나 강도 부족이 없도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:a8522da2927a",
+                  "@type": "WorkMeasure",
                   "measure": "구조용 부재 사이의 접합부와 지점의 회전, 좌굴 방지가 필요한 곳에는 보강용 강판재, 앵글 또는 가새를 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:638823fab600",
+                  "@type": "WorkMeasure",
                   "measure": "버팀대를 이음할 경우에는 중간말뚝 부근에 위치하도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:7d8d0e070460",
+                  "@type": "WorkMeasure",
                   "measure": "띠장은 끊어짐이 없이 연속해서 설치하고 띠장의 이음은 원칙적으로 엄지말뚝을 중심으로 전단력과 휨모멘트가 작은 곳에서 실시하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:12cc5aeabe58",
+                  "@type": "WorkMeasure",
                   "measure": "접속부의 볼트 이완 상태를 수시로 점검하여 이상 유무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:be342983005f",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공을 설치하였을 때에는 부재의 손상·변형·부식·변위 및 탈락의 유무와 상태를 정기적으로 점검하고 이상을 발견하면 즉시 보수한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:d40900683d73",
+                  "@type": "WorkMeasure",
                   "measure": "부재의 접속부·부착부 및 교차부의 상태를 정기적으로 점검하고 이상을 발견하면 즉시 보수한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 1,
                     "item": 3
                   }
@@ -355,46 +359,58 @@
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/2.3",
+              "@type": "WorkRisk",
               "statement": "축력이 균일하지 않거나 부재가 떠올라 버팀대가 밀려나며 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:72ec1555b30e",
+                  "@type": "WorkMeasure",
                   "measure": "동일 높이에 있는 버팀대에는 축력이 균일하게 작용되도록 잭킹(Jacking)을 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:0aa40143f87d",
+                  "@type": "WorkMeasure",
                   "measure": "받침, 기둥, 수평 버팀대 등이 떠오르지 않게 하중 또는 인장재를 설치하고, 수평 버팀대는 중앙부가 약간 처지게(경사 1/100 이하로) 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:9d3fa01d2aff",
+                  "@type": "WorkMeasure",
                   "measure": "코너 버팀대와 띠장의 연결부는 밀림을 방지하기 위하여 스토퍼(Stopper)를 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:4c703faddda8",
+                  "@type": "WorkMeasure",
                   "measure": "보걸이는 띠장 1개당 2개 이상으로 설치하고 띠장보다 약 5㎝ 정도의 여유폭이 되도록 하며 4m 이내의 간격으로 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9b1346912312",
+                  "@type": "WorkMeasure",
                   "measure": "버팀대의 긴압(緊壓) 정도를 정기적으로 점검하고 이상을 발견하면 즉시 보수한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 1,
                     "item": 2
                   }
@@ -402,61 +418,77 @@
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/2.4",
+              "@type": "WorkRisk",
               "statement": "버팀대 위에 자재·공구를 쌓아 설계에 없는 하중이 걸리고 부재가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0790febee049",
+                  "@type": "WorkMeasure",
                   "measure": "버팀대 위에는 가설창고 등 가설구조물과 각종 재료, 공구 등을 적재하지 않토록 하여야 하며 부득이 적재할 경우는 별도의 안전성 검토 후 보강 등 필요한 조치를 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d9912a2d2e26",
+                  "@type": "WorkMeasure",
                   "measure": "철근 콘크리트 부재는 타설 후 소요강도가 발휘되기 전에 하중이 가해지지 않도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:9c79464ab921",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대는 굴착된 공간 내에서 콘크리트 타설, 장비의 진·출입, 배수작업 등을 고려하여 설치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/2.5",
+              "@type": "WorkRisk",
               "statement": "장비 통로 확보를 위해 버팀대 간격을 넓히면서 구조 검토를 하지 않아 좌굴됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a510c1aae1f8",
+                  "@type": "WorkMeasure",
                   "measure": "장비 통로, 작업구 설치로 버팀대의 수평 간격을 넓게 할 경우에는 사전에 구조 안전 검토를 하고 동 검토 결과에 따라 사보강재 등을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e997cb04c6b8",
+                  "@type": "WorkMeasure",
                   "measure": "사보강재의 길이가 길 경우에는 중간에 중간말뚝을 설치하여 사보강재의 좌굴을 방지하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:78b65386f925",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대 및 중간말뚝 위치에 발생하는 본 구조물의 슬래브 개구부는 보강하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 }
               ]
@@ -465,64 +497,74 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:44",
+              "basisArticle": "art:기준규칙:44",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:띠장_버팀대/2.6",
+              "@type": "WorkRisk",
               "statement": "띠장·버팀대 위에서 작업하던 근로자가 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f9969ed00cf2",
+                  "@type": "WorkMeasure",
                   "measure": "띠장 설치 즉시 설치된 띠장을 따라 띠장 위 약 1.5m 높이에 안전대 부착설비를 설치하고 띠장 위에서 작업 시 안전대를 걸도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:d79793be630e",
+                  "@type": "WorkMeasure",
                   "measure": "버팀대를 설치한 후 즉시 버팀대 상부 약 1.5m 높이에 안전대 부착설비를 설치하여 작업자가 버팀대 상부에서 작업 및 이동시 안전대를 안전대 부착설비에 걸도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:c7770181517c",
+                  "@type": "WorkMeasure",
                   "measure": "안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치하고, 그 설비의 이상 유무를 정기적으로 점검한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:44",
+                    "basisArticle": "art:기준규칙:44",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:e9174f6db1d3",
+                  "@type": "WorkMeasure",
                   "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업에는 안전대를 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 2
                   }
@@ -534,173 +576,209 @@
       ]
     },
     {
+      "@id": "workstep:띠장_버팀대/3",
+      "@type": "WorkStep",
       "stepName": "중간말뚝·까치발·X-브레이싱 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.6",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.6",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_버팀대/3.1",
+              "@type": "WorkRisk",
               "statement": "중간말뚝의 지지력·배치가 부족해 버팀대가 좌굴되며 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:abef6089683c",
+                  "@type": "WorkMeasure",
                   "measure": "중간말뚝은 자중, 적재하중 및 연직분력 등의 하중에 대하여 충분한 강도와 지지력을 갖도록 계획, 시공하고 중간말뚝에 인발력이 작용하는 경우를 충분히 고려하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:9c6fceb4faf2",
+                  "@type": "WorkMeasure",
                   "measure": "중간말뚝은 버팀대의 교차부마다 설치하는 것을 원칙으로 하며 그렇지 않은 경우는 별도의 안전성 검토 후 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:565e34773bbe",
+                  "@type": "WorkMeasure",
                   "measure": "중간말뚝은 버팀대의 좌굴이 발생 되지 않도록 배치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/3.2",
+              "@type": "WorkRisk",
               "statement": "까치발 각도·대칭이 맞지 않아 편심하중이 걸리고 띠장이 밀려남",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8d15f866299e",
+                  "@type": "WorkMeasure",
                   "measure": "까치발의 각도가 45°를 초과하는 경우는 유효하지 않은 것으로 본다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:606c06be9f26",
+                  "@type": "WorkMeasure",
                   "measure": "까치발을 버팀대에 설치하는 경우는 좌우대칭으로 하여 버팀대의 편심하중에 의한 휨모멘트가 생기지 않도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:bbece7ecc080",
+                  "@type": "WorkMeasure",
                   "measure": "까치발을 설치하는 띠장은 수평분력에 대하여 밀리지 않도록 보강하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:c027a168b596",
+                  "@type": "WorkMeasure",
                   "measure": "까치발은 버팀대의 수평 간격을 넓게 하거나, 모서리 띠장의 버팀 또는 띠장을 보강할 목적으로 쓰인다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/3.3",
+              "@type": "WorkRisk",
               "statement": "X-브레이싱 체결·이음이 부실해 말뚝과 버팀대가 좌굴됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:3860263650f2",
+                  "@type": "WorkMeasure",
                   "measure": "ㄱ형강은 말뚝과 버팀대의 좌굴을 방지할 목적으로 설치하는 것으로 설계도서에 명시된 대로 정확히 시공하여야 하며, 버팀대와 ㄱ형강의 교차 부위는 U-볼트를 체결하여 연결하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:272fbbee12df",
+                  "@type": "WorkMeasure",
                   "measure": "ㄱ형강을 연결하여 사용할 경우 이음 부위를 플레이트로 용접하여 강성을 유지하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:d53df3ac6655",
+                  "@type": "WorkMeasure",
                   "measure": "ㄱ형강을 구강재로 사용 시 볼트구멍 등으로 취약해진 부위는 플레이트로 보강하고 사용하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:3392b02fcb7e",
+                  "@type": "WorkMeasure",
                   "measure": "중간말뚝에 ㄷ형강 설치 시 말뚝 좌, 우측으로 교대로 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.6"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/3.4",
+              "@type": "WorkRisk",
               "statement": "중기 작업·자재 반출 중 브레이싱이 파손된 채 방치되어 좌굴이 시작됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7c39a31b9349",
+                  "@type": "WorkMeasure",
                   "measure": "중기작업 및 자재 반출 시 파손되지 않도록 주의하고, 파손 시 즉시 보강하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:8d7c19ce7476",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 시부터 해체 시까지 부재가 느슨한 상태로 풀어져 있는가를 수시로 점검하여야 하며, 버팀대를 설치한 후에는 매 공정마다 계측관리 및 일상점검을 통하여 안전 여부를 판단한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.1"
                   }
                 }
               ]
@@ -710,103 +788,125 @@
       ]
     },
     {
+      "@id": "workstep:띠장_버팀대/4",
+      "@type": "WorkStep",
       "stepName": "경사 고임대(레이커) 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:53",
+              "basisArticle": "art:기준규칙:53",
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_버팀대/4.1",
+              "@type": "WorkRisk",
               "statement": "경사 고임대 각도가 과하거나 연결버팀대에 무리한 하중이 걸려 부재가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:937bc73a4693",
+                  "@type": "WorkMeasure",
                   "measure": "경사 고임대는 이미 설치되어 있는 연결버팀대에 무리한 하중이 작용하지 않는 방법으로 시공하여야 하며, 수평면에 대해 60° 이내가 되도록 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/4.2",
+              "@type": "WorkRisk",
               "statement": "키커블록·지지말뚝 속채움이 부실해 경사 고임대가 밀려나며 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:401f89548b1f",
+                  "@type": "WorkMeasure",
                   "measure": "경사 고임대의 지지체를 콘크리트 키커블록(kicker block)으로 할 경우에는 터파기한 공간 전체를 콘크리트로 채워야 하며, 콘크리트로 채움하지 않을 경우에는 수동측에는 원지반과 동일한 수준으로 충실히 다짐하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:65a1aeca3edc",
+                  "@type": "WorkMeasure",
                   "measure": "경사 고임대의 지지체를 말뚝으로 할 경우에는 말뚝 천공경 내부를 양질토사, 소일시멘트, 골재, 콘크리트 등으로 충실히 속채움하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:띠장_버팀대/4.3",
+              "@type": "WorkRisk",
               "statement": "경사 고임대의 응력·변위를 측정하지 않아 흙막이 이상을 놓침",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ad9404b1098d",
+                  "@type": "WorkMeasure",
                   "measure": "경사 고임대 지지구조에 있어서 경사 고임대의 축력 및 휨응력, 키커블록(kicker block) 및 지지말뚝의 변위를 측정하여 시공 중 흙막이 구조체의 안정성을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:67051cf6e668",
+                  "@type": "WorkMeasure",
                   "measure": "계측기를 활용하여 경사 고임대, 경사 고임대 지지체 등의 부재에 작용하는 응력과 변위를 구할 수 있다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:1770e11021e8",
+                  "@type": "WorkMeasure",
                   "measure": "제1항의 점검 외에 설계도서에 따른 계측을 하고 계측 분석 결과 토압의 증가 등 이상한 점을 발견한 경우에는 즉시 보강조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:56fb53a7888c",
+                  "@type": "WorkMeasure",
                   "measure": "건설공사에 대한 유해위험방지계획서 심사 시 계측시공을 지시받은 경우에는 그에 필요한 계측장치를 설치하여 계측결과를 확인하고 그 결과를 통하여 안전성을 검토하는 등 위험을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:53",
+                    "basisArticle": "art:기준규칙:53",
                     "item": 1
                   }
                 }
@@ -817,29 +917,35 @@
       ]
     },
     {
+      "@id": "workstep:띠장_버팀대/5",
+      "@type": "WorkStep",
       "stepName": "잭(Jack) 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.2.7",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.2.7",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:띠장_버팀대/5.1",
+              "@type": "WorkRisk",
               "statement": "벽체 변위가 큰 구간에 부적합한 잭을 사용해 축력을 유지하지 못하고 흙막이가 밀려남",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ab733f0d80a7",
+                  "@type": "WorkMeasure",
                   "measure": "특별한 언급이 없는 경우에는 일반 스크류 잭을 사용하고, 벽체 변위가 클 것으로 예상되거나 프리스트레스를 가할 필요가 있을 경우에는 유압식 잭을 사용하는 것이 효과적이다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.2.7"
                   }
                 }
               ]

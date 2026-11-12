@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:추락방지망",
   "@type": [
     "ConstructionSubtask"
@@ -67,56 +25,62 @@
   ],
   "steps": [
     {
+      "@id": "workstep:추락방지망/1",
+      "@type": "WorkStep",
       "stepName": "설치",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 3,
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:추락방지망/1.1",
+              "@type": "WorkRisk",
               "statement": "설치 높이가 과다하여 추락 시 방호망이 제 기능을 못함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ce7c93ee3e26",
+                  "@type": "WorkMeasure",
                   "measure": "추락방호망의 설치위치는 가능하면 작업면으로부터 가까운 지점에 설치하여야 하며, 작업면으로부터 망의 설치지점까지의 수직거리는 10미터를 초과하지 않는다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2,
                     "item": 1
                   }
@@ -124,23 +88,29 @@
               ]
             },
             {
+              "@id": "workrisk:추락방지망/1.2",
+              "@type": "WorkRisk",
               "statement": "처짐·내민 길이가 부족하여 추락자가 망을 벗어나거나 바닥에 닿음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:5af0b4490bdd",
+                  "@type": "WorkMeasure",
                   "measure": "추락방호망은 수평으로 설치하고, 망의 처짐은 짧은 변 길이의 12퍼센트 이상이 되도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:d8e17641676d",
+                  "@type": "WorkMeasure",
                   "measure": "건축물 등의 바깥쪽으로 설치하는 경우 추락방호망의 내민 길이는 벽면으로부터 3미터 이상 되도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2,
                     "item": 3
                   }
@@ -148,36 +118,46 @@
               ]
             },
             {
+              "@id": "workrisk:추락방지망/1.3",
+              "@type": "WorkRisk",
               "statement": "성능기준에 맞지 않는 방호망을 사용하여 파단됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f084122cf74e",
+                  "@type": "WorkMeasure",
                   "measure": "추락방호망을 설치하는 경우에는 한국산업표준에서 정하는 성능기준에 적합한 추락방호망을 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 3
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:추락방지망/1.4",
+              "@type": "WorkRisk",
               "statement": "작업발판·추락방호망을 모두 설치하지 않고 작업하여 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:e1f8bd6ab4de",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:c2ab52e11fe9",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2
                   }
                 }

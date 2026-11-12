@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:비개착",
   "@type": [
     "ConstructionSubtask"
@@ -76,93 +34,111 @@
   ],
   "steps": [
     {
+      "@id": "workstep:비개착/1",
+      "@type": "WorkStep",
       "stepName": "추진·도달기지 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.2",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.2",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:비개착/1.1",
+              "@type": "WorkRisk",
               "statement": "구조적 안전성을 검토하지 않은 설비를 반입해 사용하다 붕괴",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:66ea4616524d",
+                  "@type": "WorkMeasure",
                   "measure": "추진·도달기지인 흙막이 지보공과 추진 받침대, 유압잭과 같은 추진장치, 반력벽, 관내 토사굴착 및 운반기계 등과 같은 주요 설비와 장비에 대해서는 반입하여 사용하기 전에 해당분야 전문가가 구조적 안전성을 검토하고 부재의 결함·손상여부를 확인하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b9eb4667ff75",
+                  "@type": "WorkMeasure",
                   "measure": "작업자는 사전에 유압식 추진공법에 대한 기술과 안전교육을 받은 자만이 작업 할 수 있고 설치 시에는 안전모, 안전화, 안전장갑 등 당해 작업에 적합한 보호구를 착용하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b8fedb28f392",
+                  "@type": "WorkMeasure",
                   "measure": "유해·위험한 작업으로서 그 작업에 필요한 자격, 면허를 가진 근로자 외의 자를 당해 작업에 임하게 하여서는 안된다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/1.2",
+              "@type": "WorkRisk",
               "statement": "단계별 굴착 순서를 지키지 않아 흙막이 지보공이 변위·붕괴",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c7eed0df50b6",
+                  "@type": "WorkMeasure",
                   "measure": "단계별 굴착에 따른 흙막이 지보공의 변위, 전단력, 모멘트, 축력, 지보공의 부재력, 근입장에 대한 안정성 검토를 실시하고 반드시 단계별 굴착 순서를 준수하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.2"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/1.3",
+              "@type": "WorkRisk",
               "statement": "기지 굴착으로 기존 도로·철도·제방 비탈면이 불안정해져 붕괴",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d20c26a332ba",
+                  "@type": "WorkMeasure",
                   "measure": "추진·도달기지 내부 굴착 시 기존 도로, 철도, 제방, 하천 등의 토사 비탈면은 기존 법면의 안정을 유지하여야 하고 필요시 안정을 위한 조치를 취하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.2"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.2"
                   }
                 }
               ]
@@ -171,63 +147,73 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.2",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:비개착/1.4",
+              "@type": "WorkRisk",
               "statement": "굴착토사 인양 버킷에서 토사가 낙하하여 하부 근로자가 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:17566af1507c",
+                  "@type": "WorkMeasure",
                   "measure": "굴착토사 인양 버킷은 낙하재해 예방을 위하여 정량 적재 후 일정한 여유높이를 갖거나 덮개를 반드시 설치하고 당해 작업자는 인양버킷에서 안전거리를 확보하여 이동하거나 작업하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.2"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:bb342311c8d2",
+                  "@type": "WorkMeasure",
                   "measure": "버킷은 훅에 정확히 걸고 상하 작업 시 이탈하지 않도록 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:0e7d2e1e70b4",
+                  "@type": "WorkMeasure",
                   "measure": "버킷에 부착된 토사는 반드시 제거하고 낙하 시 비산방지에 주의하여 상하작업을 실시하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:84e5c74daba3",
+                  "@type": "WorkMeasure",
                   "measure": "버킷을 인양하는 작업구 하부에는 경광등, 안전표지판 등을 설치하고 인양 작업 중에는 근로자의 출입을 통제하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
@@ -236,39 +222,45 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:43",
+              "basisArticle": "art:기준규칙:43",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:비개착/1.5",
+              "@type": "WorkRisk",
               "statement": "작업구 개구부에서 인양물을 확인하다 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e85b0f885bc4",
+                  "@type": "WorkMeasure",
                   "measure": "작업구 등 개구부에서 인양물을 확인할 경우에는 반드시 안전대 등을 착용하여야 한다",
                   "controlLevel": "ppe",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:b2092a51dfeb",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:43",
+                    "basisArticle": "art:기준규칙:43",
                     "paragraph": 1
                   }
                 }
@@ -278,35 +270,41 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.2",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.2",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:비개착/1.6",
+              "@type": "WorkRisk",
               "statement": "굴착기계 운전자와 차량 운전자 간 신호체계가 없어 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c238c31d8c35",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계 운전자와 차량 운전자간의 상호연락을 위하여 신호수를 배치하고 신호체계를 갖추어야 하며 상·하 연락은 유·무선 수신기를 이용하고 인양 작업 시 하부 작업자는 대피 장소에 대피하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.2"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:a6f1478ffe12",
+                  "@type": "WorkMeasure",
                   "measure": "굴착된 토사를 덤프트럭 등을 이용하여 운반할 경우에는 사전에 운행로를 확보하고 유도자와 교통 정리원을 배치하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.2"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.2"
                   }
                 }
               ]
@@ -316,123 +314,147 @@
       ]
     },
     {
+      "@id": "workstep:비개착/2",
+      "@type": "WorkStep",
       "stepName": "추진관 거치 및 추진",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.8",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.8",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:비개착/2.1",
+              "@type": "WorkRisk",
               "statement": "선도관 진입부를 절단하다 원지반이 붕괴하거나 가스가 누출",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:cc1698c25993",
+                  "@type": "WorkMeasure",
                   "measure": "선도관 진입부는 약 3cm 정도의 확인공을 먼저 뚫어서 원지반의 안정여부와 가스 누출 여부를 확인한 다음 시행하여야 하며 누수 등이 있는 경우에는 지수제로 차수 조치하여 안전한 상태에서 절단을 하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:c5caafe8eff2",
+                  "@type": "WorkMeasure",
                   "measure": "선도관 진입부 절단은 숙련된 용접 자격자만이 수행하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:02250bd64d6b",
+                  "@type": "WorkMeasure",
                   "measure": "선도관 진입부 절단작업은 원지반의 붕괴, 노면의 함몰 등과 같은 위험이 많으므로 전면 흙막이 지보공 절단은 부분파쇄를 통해 원지반의 교란을 최소화 하고, 절단은 4등분으로 하부로부터 제거하여 절단한 조각이 갑자기 떨어지지 않도록 주의하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/2.2",
+              "@type": "WorkRisk",
               "statement": "협소한 관내 연결작업 중 용접 화재·질식·감전",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:38bcafcf6591",
+                  "@type": "WorkMeasure",
                   "measure": "추진관 연결 작업은 작업조건이 매우 불량한 협소한 장소에서 작업이 이루어지므로 최소 2인 이상이 상호교대로 작업을 실시하고 작업지휘자를 지정하여 작업을 지휘하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:52325381d302",
+                  "@type": "WorkMeasure",
                   "measure": "가연물 제거와 화재예방 조치를 한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:1fb3e0be68d6",
+                  "@type": "WorkMeasure",
                   "measure": "관내 용접 작업 시 환기설비를 설치하고 충분한 환기 후 작업을 실시한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:0541ffe4101c",
+                  "@type": "WorkMeasure",
                   "measure": "전선 및 호스 정리정돈과 안전한 호스 연결기구를 사용하고, 용접기 감전재해 예방조치를 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:150cfa0799dc",
+                  "@type": "WorkMeasure",
                   "measure": "상하 동시작업 시 사전 동의 후 작업하고, 추진관 상부 용접 작업을 위한 이동 시 추락방지 조치 여부를 확인한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:fde1b79160e5",
+                  "@type": "WorkMeasure",
                   "measure": "감전재해예방을 위하여 전기기계·기구는 방수성이 우수하고 절연도가 높은 제품을 사용한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.1"
                   }
                 }
               ]
@@ -441,166 +463,202 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.8",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:비개착/2.3",
+              "@type": "WorkRisk",
               "statement": "추진력이 갑자기 상승했는데 원인 확인 없이 추진을 계속하여 관이 파손",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e7e155aa4677",
+                  "@type": "WorkMeasure",
                   "measure": "추진은 지반의 토질에 따라 막장, 추진관 등의 안정을 유지하면서 신중히 하여야 하고 추진 중에 추진력이 갑자기 상승하는 경우에는 추진을 중지하고 그 원인을 조사하여 안전을 확인한 뒤에 추진하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:449406925559",
+                  "@type": "WorkMeasure",
                   "measure": "추진력은 추진관의 강도를 고려하여 관의 허용응력 이하로 추진하여야 하고 마찰력을 최소화하기 위하여 필요에 따라 윤활재를 주입하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:c002428f5c4a",
+                  "@type": "WorkMeasure",
                   "measure": "추진 작업 중 실제 발생하는 토압이 설정 토압범위를 벗어나지 않도록 토사 배출량, 추진압력, 추진속도를 조절하면서 추진 작업을 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/2.4",
+              "@type": "WorkRisk",
               "statement": "지반침하를 계측하지 않고 추진하여 도로·철도가 함몰",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:00a9c41c4fd9",
+                  "@type": "WorkMeasure",
                   "measure": "지반침하는 주로 원지반의 조건, 막장의 안정성, 뒤채움 주입상황에 따라 발생하므로 항상 지반침하를 계측하여야 하고 침하 허용치를 초과하는 경우에는 즉시 별도의 보강 방안을 수립하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:1d1987a6c49e",
+                  "@type": "WorkMeasure",
                   "measure": "지반침하를 최소화할 수 있도록 막장의 토압, 배토량, 첨가제 주입의 최적화 관리 방안을 사전에 수립하여 막장 붕괴를 방지하고 추진 시에는 지반교란을 최소화하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:5da2d6d6eb2f",
+                  "@type": "WorkMeasure",
                   "measure": "횡단 대상 구조물에 대한 영향을 판단할 수 있도록 계측기를 설치하여 지속적인 계측관리를 통한 이상 유무를 확인하여 기존 도로, 철도, 제방, 하천 등의 안정성을 확보하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:67d8f9d27e77",
+                  "@type": "WorkMeasure",
                   "measure": "추진 시에는 항상 작업구간 주변의 상황에 주의하고 인근 구조물 등에 영향을 주지 않도록 필요한 조치를 취하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/2.5",
+              "@type": "WorkRisk",
               "statement": "토피고가 부족하거나 출수가 예상되는데 보조공법 없이 추진하여 막장이 붕괴",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c283ed621ad3",
+                  "@type": "WorkMeasure",
                   "measure": "추진 시 충분한 토피고를 확보하지 못한 상태에서 추진관내 막장 붕괴로 인한 기존 도로, 철도, 제방, 하천 등의 함몰로 운행 중인 차량이나 열차 등의 안전에 위험을 초래하므로 토질, 용수 조건 등과 같은 제반 현장 여건을 고려하여 필요시 파이프 루프 공법이나 그라우팅 공법과 같은 보조공법을 적용하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:d28d3fbf31f4",
+                  "@type": "WorkMeasure",
                   "measure": "추진 시 유입 유량이 클 경우에는 그라우팅 공법과 같은 보조공법 적용을 검토하고, 예상하지 못한 출수에 대비하여 여유분의 예비 배수펌프 등을 사전에 준비하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:5f42c1900caa",
+                  "@type": "WorkMeasure",
                   "measure": "추진 시 지층분포, 지하수위 등 지반조건이 설계조건과 상이할 경우 현장여건과 부합되도록 하기 위하여 지질변화가 있을 때마다 시료를 채취하고 지층상태 및 구성 물질에 대한 지층 구조도를 작성하여 안정성을 확인한 후 시공하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/2.6",
+              "@type": "WorkRisk",
               "statement": "추진관 접합·연결 작업 중 관이 이탈하거나 지하수·토사가 유입",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5f2e46c5dbd7",
+                  "@type": "WorkMeasure",
                   "measure": "추진관의 접합부는 추진압력에 견딜 수 있도록 견고해야 하며 지하수나 가늘고 고운 모래 등이 유입되지 않도록 빈틈없이 접합하여야 하고 추진·도달기지에는 배수설비를 마련해서 배수를 완전하게 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:872a84e0e2a7",
+                  "@type": "WorkMeasure",
                   "measure": "추진관 연결 작업 시 배관은 대차 또는 미끄럼틀을 사용하여 실시하고 추진 받침대인 가이드 레일 위에서 접합이 이루어지도록 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:a7e87fb06627",
+                  "@type": "WorkMeasure",
                   "measure": "관의 굴곡수정은 부득이한 경우에 굴곡발생 시점부터 실시하고, 추진관에 과도한 편심압력이 걸리지 않도록 하기 위하여 급격한 방향수정은 피해야 하고 굴곡 수정 중에는 수시로 계측하여 수정효과를 확인하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:11c0ceea3e4b",
+                  "@type": "WorkMeasure",
                   "measure": "추진관을 추진할 때에는 관 1개마다 중심선, 고저 및 좌우방향을 측량하고 추진 정밀도 등을 수시로 확인하고 기록하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 }
               ]
@@ -610,54 +668,66 @@
       ]
     },
     {
+      "@id": "workstep:비개착/3",
+      "@type": "WorkStep",
       "stepName": "추진관 내부 굴착 및 토사반출",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:비개착/3.1",
+              "@type": "WorkRisk",
               "statement": "막장 전면에 근접하여 굴착하다 붕괴",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:47a3707358a1",
+                  "@type": "WorkMeasure",
                   "measure": "지층분포, 지하수위 등 불확실한 지층특성을 감안한 안정성을 확보하기 위하여 관 내부굴착은 막장전면으로부터 선도관까지 충분한 이격거리(해당직경의 0.5배 이상)를 유지하고 근접하여 굴착하지 않도록 주의하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:4239bfc8c3f4",
+                  "@type": "WorkMeasure",
                   "measure": "관 내부 굴착 도중 당초 예상하지 못하였던 외부하중으로 추진관의 변형이 발생될 우려가 있을 경우에는 보조 지보공을 설치하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/3.2",
+              "@type": "WorkRisk",
               "statement": "지하수 유출로 막장이 붕괴하거나 노면이 함몰",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ee7ba2dd4e0c",
+                  "@type": "WorkMeasure",
                   "measure": "횡단 대상 구조물의 지하수 상태를 항상 유의하여야 하며 관내 굴착에 따른 지하수의 유출 등으로 막장에서의 붕괴 및 함몰의 우려가 있을 경우에는 차수 그라우팅을 실시한 후 굴착하여야 하고 토질에 따른 지하수 유출에 대한 안전대책을 강구하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
@@ -666,73 +736,87 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:비개착/3.3",
+              "@type": "WorkRisk",
               "statement": "협소한 관내에서 운반장비와 근로자가 협착",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:b02e0c2ea534",
+                  "@type": "WorkMeasure",
                   "measure": "관내 굴착토사 운반장비는 관의 크기, 작업 싸이클 등을 고려하여 가장 적절한 능력을 가짐과 동시에 안전한 방법을 강구하여 운반장비 종류를 선정하고 협소한 공간에서 근로자와의 협착과 충돌방지를 위한 경광등, 후방접근감지 센서 등 안전장치를 설치하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:51640ab71772",
+                  "@type": "WorkMeasure",
                   "measure": "관내 굴착토사 운반장비의 운행공간과 근로자의 이동통로는 반드시 분리하여 설치하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:5130e4b4472f",
+                  "@type": "WorkMeasure",
                   "measure": "굴착·운반기계의 진입로와 주행로를 확보하고 작업구간과 분리하여 근로자의 안전통로를 확보하여 차량에 의한 재해를 예방하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/3.4",
+              "@type": "WorkRisk",
               "statement": "인력굴착과 기계굴착을 병행하다 작업반경 내 근로자가 협착",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:2631562260b5",
+                  "@type": "WorkMeasure",
                   "measure": "인력굴착과 기계굴착을 병행할 경우 각각의 작업범위와 작업방향을 명확히 하고 기계의 작업반경내에 근로자가 출입하지 않도록 방호설비를 하거나 작업지휘자를 반드시 배치하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:9bbc624427a8",
+                  "@type": "WorkMeasure",
                   "measure": "굴착·운반기계의 운반통로, 회전반경과 교차점, 장비 운행 시 근로자의 대피장소 등을 포함한 토사반출 작업계획을 사전에 수립하여야 하고 이를 준수하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
@@ -741,63 +825,73 @@
         },
         {
           "hazardLabel": "질식",
+          "hasHazard": "hazard:asphyxiation",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:620",
+              "basisArticle": "art:기준규칙:620",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:623",
+              "basisArticle": "art:기준규칙:623",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:asphyxiation",
           "risks": [
             {
+              "@id": "workrisk:비개착/3.5",
+              "@type": "WorkRisk",
               "statement": "관내 환기·조명·배수가 미비하여 질식",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:81e2b271f5e1",
+                  "@type": "WorkMeasure",
                   "measure": "추진관 내 굴착 시 환기, 조명, 배수, 통신계획을 수립한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:a6e5c19b468d",
+                  "@type": "WorkMeasure",
                   "measure": "작업 시작 전과 작업 중에 적정공기 상태가 유지되도록 환기한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:620",
+                    "basisArticle": "art:기준규칙:620",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:ec29ce958969",
+                  "@type": "WorkMeasure",
                   "measure": "작업상황을 감시할 감시인을 밀폐공간 외부에 배치하고, 내부와 상시 연락할 수 있는 설비를 설치한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:623",
+                    "basisArticle": "art:기준규칙:623",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:1cf40acd20e5",
+                  "@type": "WorkMeasure",
                   "measure": "막장 붕괴 등의 사고 발생에 대비하여 비상시 연락체계, 피난계획과 구조계획, 응급조치계획 등을 사전에 수립하고 이를 당해 근로자에게 반드시 교육시켜야 하고 정기적으로 훈련하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.1"
                   }
                 }
               ]
@@ -806,26 +900,30 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:비개착/3.6",
+              "@type": "WorkRisk",
               "statement": "운반장비 점검을 하지 않아 브레이크·경광등 고장 상태로 운행",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b444d75b781d",
+                  "@type": "WorkMeasure",
                   "measure": "굴착토사 운반 장비는 낙석·낙하물 등의 위험이 예상되는 작업 시 견고한 헤드가드 설치상태, 브레이크 및 클러치의 작동상태, 조명 및 경광등 경보장치 작동상태, 타이어 및 차륜의 이상 유무 상태, 부속장치의 상태를 포함하여 1회/일 이상 점검을 통해 정상상태를 유지하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
@@ -835,50 +933,60 @@
       ]
     },
     {
+      "@id": "workstep:비개착/4",
+      "@type": "WorkStep",
       "stepName": "본관 부설 및 원상복구",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.8",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:비개착/4.1",
+              "@type": "WorkRisk",
               "statement": "도달기지에 선도관이 도달할 때 토사가 붕괴",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f4d0022b30a2",
+                  "@type": "WorkMeasure",
                   "measure": "도달기지에 선도관이 도달 시에는 토사붕괴 위험이 있으므로 이를 방지하여야 하고 추진관의 길이는 충분한 여유장을 남겨놓고 절단하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/4.2",
+              "@type": "WorkRisk",
               "statement": "추진관 바깥의 공극에 뒤채움을 하지 않아 지반이 침하",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7783fed902cd",
+                  "@type": "WorkMeasure",
                   "measure": "추진관의 바깥주위에 공극이 생겼을 경우에는 토질상황에 따라 적절한 뒤채움을 실시하여 지반침하를 방지하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "비개착",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.8"
                   }
                 }
               ]
@@ -887,55 +995,65 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.4.9",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.4.9",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:비개착/4.3",
+              "@type": "WorkRisk",
               "statement": "운영 중인 도로·철도를 횡단하면서 교통 통제 없이 시공",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d2c8513cbe9a",
+                  "@type": "WorkMeasure",
                   "measure": "횡단 대상 구조물이 도로나 철도와 같이 운영 중인 교통시설인 경우에는 반드시 관계기관과 협의하여 시공하고 굴착기간 및 강관추진 공사 시에는 운행 중인 차량이나 열차 등이 서행운전 하도록 사전에 조치하고 교통 정리원을 배치하여 교통처리를 철저히 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:비개착/4.4",
+              "@type": "WorkRisk",
               "statement": "굴착토를 방치하거나 노면을 오염시켜 교통 혼잡·2차 사고",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b39d4aa57578",
+                  "@type": "WorkMeasure",
                   "measure": "굴착토의 처리는 즉시 지정된 사토장에 처리하여야 하며 노면을 더럽히지 않고 교통에 혼잡을 주지 않도록 운반되어야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.9"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:1c9562171fff",
+                  "@type": "WorkMeasure",
                   "measure": "근로자를 위한 음료수, 화장실, 구급약의 비치 등 제반 안전보건 위생시설계획을 수립하고 인근주민에게 오염, 악취, 소음, 진동 등의 공해를 주지 않도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.4.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.4.1"
                   }
                 }
               ]

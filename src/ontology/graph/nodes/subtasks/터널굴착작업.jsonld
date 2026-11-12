@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:터널굴착작업",
   "@type": [
     "ConstructionSubtask"
@@ -87,135 +45,161 @@
   ],
   "steps": [
     {
+      "@id": "workstep:터널굴착작업/1",
+      "@type": "WorkStep",
       "stepName": "터널 천공",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "annex": "annex:기준규칙:별표4-7호",
+              "basisAnnex": "annex:기준규칙:별표4-7호",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.10",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.10",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:360",
+              "basisArticle": "art:기준규칙:360",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:360",
+              "basisArticle": "art:기준규칙:360",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/1.1",
+              "@type": "WorkRisk",
               "statement": "지형·지질 조사 없이 굴진하여 예측하지 못한 연약대·채수대를 만나 막장이 붕괴",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d515a9dc0393",
+                  "@type": "WorkMeasure",
                   "measure": "보링(boring) 등 적절한 방법으로 낙반ㆍ출수(出水) 및 가스폭발 등으로 인한 근로자의 위험을 방지하기 위하여 미리 지형ㆍ지질 및 지층상태를 조사한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표4-7호"
+                    "basisAnnex": "annex:기준규칙:별표4-7호"
                   }
                 },
                 {
+                  "@id": "workmeasure:8f8d6b61c23b",
+                  "@type": "WorkMeasure",
                   "measure": "굴착의 방법, 터널지보공 및 복공(覆工)의 시공 방법과 용수(湧水)의 처리방법, 환기 또는 조명시설을 설치할 때에는 그 방법을 작업계획서에 포함한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표4-7호"
+                    "basisAnnex": "annex:기준규칙:별표4-7호"
                   }
                 },
                 {
+                  "@id": "workmeasure:ac48dabe2da5",
+                  "@type": "WorkMeasure",
                   "measure": "천공작업전 부석, 절리, 용출수, 누수 등의 상태를 확인하며 필요시 모암 절리방향의 상세도면을 작성하여 그 기록을 정리 보관한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3a8162d7c26a",
+                  "@type": "WorkMeasure",
                   "measure": "연약암질 및 토사층인 경우에는 발파를 중지하고 발파시방의 변경조치, 암반의 암질판별, 암반지층의 지지력 보강공법, 발파 및 굴착 공법변경, 시험발파실시를 검토한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:97a58735d346",
+                  "@type": "WorkMeasure",
                   "measure": "발파대상 구간의 막장 암반상태를 사전에 면밀히 확인하여 발파시방에 적합한 암질여부를 판단한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d6eb30f8b256",
+                  "@type": "WorkMeasure",
                   "measure": "암질판별 방식은 당해 공사의 설계도서 및 시방서에서 정하는 바에 따른다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:34d923e899fd",
+                  "@type": "WorkMeasure",
                   "measure": "필요시 수평보링, 수직보링을 추가 실시하고 지층단면도를 정확하게 작성하여 굴착계획을 수립한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.10"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.10"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/1.2",
+              "@type": "WorkRisk",
               "statement": "천공 중 이상 용출수가 다량 발생하여 막장이 유실되고 근로자가 매몰",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:cb8b90c4f27f",
+                  "@type": "WorkMeasure",
                   "measure": "천공작업중 이상 용출수의 다량 발생시 작업을 중지하고 긴급 방수대책을 실시하여야 하며 상부 수직시추 및 수평시추를 실시하여 채수대 여부를 확인후 적절한 보강공법 및 공법변경 등의 조치를 취한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:8b6f62c16457",
+                  "@type": "WorkMeasure",
                   "measure": "낙반ㆍ출수(出水) 등에 의하여 산업재해가 발생할 급박한 위험이 있는 경우에는 즉시 작업을 중지하고 근로자를 안전한 장소로 대피시킨다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:360"
+                    "basisArticle": "art:기준규칙:360"
                   }
                 },
                 {
+                  "@id": "workmeasure:0bae4d0e1444",
+                  "@type": "WorkMeasure",
                   "measure": "재해발생위험을 관계 근로자에게 신속히 알리기 위한 비상벨 등 통신설비 등을 설치하고, 그 설치장소를 관계 근로자에게 알려 준다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:360"
+                    "basisArticle": "art:기준규칙:360"
                   }
                 }
               ]
@@ -224,144 +208,172 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:350",
+              "basisArticle": "art:기준규칙:350",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:350",
+              "basisArticle": "art:기준규칙:350",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:342",
+              "basisArticle": "art:기준규칙:342",
               "item": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:355",
+              "basisArticle": "art:기준규칙:355",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/1.3",
+              "@type": "WorkRisk",
               "statement": "굴진면에 인화성 가스가 분출·축적된 상태에서 착암기 불꽃이 점화원이 되어 폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:b70b70667bf2",
+                  "@type": "WorkMeasure",
                   "measure": "인화성 가스가 발생할 위험이 있는 경우에는 폭발이나 화재를 예방하기 위하여 인화성 가스의 농도를 측정할 담당자를 지명하고, 그 작업을 시작하기 전에 가스가 발생할 위험이 있는 장소에 대하여 그 인화성 가스의 농도를 측정한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:350"
+                    "basisArticle": "art:기준규칙:350"
                   }
                 },
                 {
+                  "@id": "workmeasure:08c11a800567",
+                  "@type": "WorkMeasure",
                   "measure": "측정한 결과 인화성 가스가 존재하여 폭발이나 화재가 발생할 위험이 있는 경우에는 인화성 가스 농도의 이상 상승을 조기에 파악하기 위하여 그 장소에 자동경보장치를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:350"
+                    "basisArticle": "art:기준규칙:350"
                   }
                 },
                 {
+                  "@id": "workmeasure:dce8b1c2578c",
+                  "@type": "WorkMeasure",
                   "measure": "인화성 가스가 분출할 위험이 있는 경우에는 보링(boring)에 의한 가스 제거 및 그 밖에 인화성 가스의 분출을 방지하는 등 필요한 조치를 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:355"
+                    "basisArticle": "art:기준규칙:355"
                   }
                 },
                 {
+                  "@id": "workmeasure:d3791616dd23",
+                  "@type": "WorkMeasure",
                   "measure": "자동경보장치에 대하여 당일 작업 시작 전 계기의 이상 유무, 검지부의 이상 유무, 경보장치의 작동상태를 점검하고 이상을 발견하면 즉시 보수한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:350"
+                    "basisArticle": "art:기준규칙:350"
                   }
                 },
                 {
+                  "@id": "workmeasure:2081b247a8bb",
+                  "@type": "WorkMeasure",
                   "measure": "터널내에는 화약이나 유류를 보관하지 않아야 하며 인화물질의 반입을 금지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ea15044b85ed",
+                  "@type": "WorkMeasure",
                   "measure": "터널 입구에는 안전수칙 표지판을 설치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/1.4",
+              "@type": "WorkRisk",
               "statement": "지하철도공사 굴착으로 노출된 도시가스관이 손상되어 가스가 누출·폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0d69d03b7c7d",
+                  "@type": "WorkMeasure",
                   "measure": "지하철도공사를 시행하는 사업주는 터널굴착[개착식(開鑿式)을 포함한다] 등으로 인하여 도시가스관이 노출된 경우에 접속부 등 필요한 장소에 자동경보장치를 설치하고, 「도시가스사업법」에 따른 해당 도시가스사업자와 합동으로 정기적 순회점검을 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:350"
+                    "basisArticle": "art:기준규칙:350"
                   }
                 },
                 {
+                  "@id": "workmeasure:6afdba1339a2",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계등의 사용으로 가스도관, 지중전선로, 그 밖에 지하에 위치한 공작물이 파손되어 그 결과 근로자가 위험해질 우려가 있는 경우에는 그 기계를 사용한 굴착작업을 중지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:342",
+                    "basisArticle": "art:기준규칙:342",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/1.5",
+              "@type": "WorkRisk",
               "statement": "전 발파의 불발 화약류가 남은 발파공을 천공기가 타격하여 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:37f3a2418a4c",
+                  "@type": "WorkMeasure",
                   "measure": "천공시에는 전 발파시 불발화약류의 유무를 확인하고 이상 발견시 즉시 천공작업을 중단하고 이를 제거한 후 작업한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:948d87578e0c",
+                  "@type": "WorkMeasure",
                   "measure": "천공시에는 전번의 발파공을 이용하여서는 안되며 최소 이격거리를 유지하여 평행굴착을 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:fa2eda4b1eb8",
+                  "@type": "WorkMeasure",
                   "measure": "설계, 시방기준에 의한 천공위치, 각도, 깊이 등을 준수하고 장약전에 이를 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 }
               ]
@@ -370,36 +382,42 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/1.6",
+              "@type": "WorkRisk",
               "statement": "천공 작업대·대차의 가시설 구조가 불량하여 작업자가 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:336421fc825f",
+                  "@type": "WorkMeasure",
                   "measure": "작업대 또는 대차는 구조적으로 안전하여야 하며 차륜, 지지구조, 발판, 사다리, 안전난간 등의 가시설 구조에 대하여는 안전성을 확인한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:9138159d38e0",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:42"
+                    "basisArticle": "art:기준규칙:42"
                   }
                 }
               ]
@@ -408,38 +426,44 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/1.7",
+              "@type": "WorkRisk",
               "statement": "착암기 결함·고압 호스 이탈로 부재가 튀어 작업자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0d57c8a079f6",
+                  "@type": "WorkMeasure",
                   "measure": "점보드릴, 레그햄머 등 착암기의 기계적 결함을 사전에 점검하여야 하며 파손, 이완, 성능저하 등의 장비는 교체한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:7ba2664561a3",
+                  "@type": "WorkMeasure",
                   "measure": "천공작업자에게는 안전모, 마스크, 보안경, 안전장갑, 귀마개 등의 개인보호구를 지급하여야 하며 관리감독자는 이의 착용을 확인한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 }
               ]
@@ -450,33 +474,39 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:353",
+              "basisArticle": "art:기준규칙:353",
               "controlLevel": "engineering"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/1.8",
+              "@type": "WorkRisk",
               "statement": "천공 분진과 착암기 소음에 장기간 노출되어 진폐·소음성 난청이 발생",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:1b3c48dd746f",
+                  "@type": "WorkMeasure",
                   "measure": "터널 내부의 시계(視界)가 배기가스나 분진 등에 의하여 현저하게 제한되는 경우에는 환기를 하거나 물을 뿌리는 등 시계를 유지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:353"
+                    "basisArticle": "art:기준규칙:353"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb38a44de151",
+                  "@type": "WorkMeasure",
                   "measure": "천공작업자에게 마스크, 귀마개 등의 개인보호구를 지급하고 관리감독자는 이의 착용을 확인한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 }
               ]
@@ -486,355 +516,427 @@
       ]
     },
     {
+      "@id": "workstep:터널굴착작업/2",
+      "@type": "WorkStep",
       "stepName": "터널 장약",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.4",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "17",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "17",
               "controlLevel": "ppe"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.2",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.4",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.6",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.6",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 2,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 3,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 4,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:349",
+              "basisArticle": "art:기준규칙:349",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:357",
+              "basisArticle": "art:기준규칙:357",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/2.1",
+              "@type": "WorkRisk",
               "statement": "천공과 장약을 동시에 진행하여 천공 충격이 장전된 화약류에 전달되어 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f654a49beeaf",
+                  "@type": "WorkMeasure",
                   "measure": "천공작업이 완료된 후 장약작업을 실시하여야 하며 천공ㆍ장약의 동시작업을 하지 않아야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/2.2",
+              "@type": "WorkRisk",
               "statement": "발파공 청소 불량·과도한 압착으로 약포에 충격이 가해져 장전 중 폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:70ab5dbfd0c7",
+                  "@type": "WorkMeasure",
                   "measure": "폭약을 장진할 때는 발파구멍을 잘 청소하며 이 때 공저까지 완전히 청소하여 작은 돌 등을 남기지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:ebd68ad096f1",
+                  "@type": "WorkMeasure",
                   "measure": "약포는 1개씩 신중히 장약봉으로 집어넣고 사전에 측정한 폭약의 길이와 천공깊이의 차를 점검하면서 약포간의 빈틈이 없도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:7f90d7bf7432",
+                  "@type": "WorkMeasure",
                   "measure": "약포를 발파공 내에서 강하게 압착하지 않아야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:2457ad60c932",
+                  "@type": "WorkMeasure",
                   "measure": "천공의 지름은 폭약효과 및 폭력기준으로 가능한 한 작은 것이 좋으나 폭약을 장진할 때 무리하게 쑤셔 넣으면 위험하므로 폭약 직경보다 크게 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/2.3",
+              "@type": "WorkRisk",
               "statement": "장전구·충진재료의 마찰·정전기가 점화원이 되어 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c347a6e07e0a",
+                  "@type": "WorkMeasure",
                   "measure": "장전구(裝塡具)는 마찰ㆍ충격ㆍ정전기 등에 의한 폭발의 위험이 없는 안전한 것을 사용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:4420e22b0b9d",
+                  "@type": "WorkMeasure",
                   "measure": "발파공의 충진재료는 점토ㆍ모래 등 발화성 또는 인화성의 위험이 없는 재료를 사용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:cc34c3348a7a",
+                  "@type": "WorkMeasure",
                   "measure": "장약봉은 똑바르고 옹이가 없는 목재 등 부도체로 하고 장진구는 마찰, 정전기 등에 의한 폭발의 위험성이 없는 절연성의 것을 사용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:82072567d74f",
+                  "@type": "WorkMeasure",
                   "measure": "장진물에는 종이, 솜 등을 사용하지 않아야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb99d9cf6482",
+                  "@type": "WorkMeasure",
                   "measure": "충진제는 점토, 모래 등을 비벼 사용하고 작은 돌을 사용치 않아야 하며 처음에는 느슨하게 하고 점차 단단하게 하여 구멍 입구부위까지 채워야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/2.4",
+              "@type": "WorkRisk",
               "statement": "장약 부근의 화기·흡연이 점화원이 되어 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a87796ad9c06",
+                  "@type": "WorkMeasure",
                   "measure": "화약이나 폭약을 장전하는 경우에는 그 부근에서 화기를 사용하거나 흡연을 하지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:d3a700a38ae9",
+                  "@type": "WorkMeasure",
                   "measure": "포장이 없는 화약이나 폭약을 장진할 때에는 화기의 사용을 금하고 근접한 곳에서 흡연하는 일이 없도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:d98a0765e8ae",
+                  "@type": "WorkMeasure",
                   "measure": "작업의 성질상 부득이한 경우를 제외하고는 터널 내부에서 근로자가 화기, 성냥, 라이터, 그 밖에 발화위험이 있는 물건을 휴대하는 것을 금지하고, 그 내용을 터널의 출입구 부근의 보기 쉬운 장소에 게시한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:357"
+                    "basisArticle": "art:기준규칙:357"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/2.5",
+              "@type": "WorkRisk",
               "statement": "전기뇌관이 갱내 동력선의 미주전류에 감응하여 조기 기폭",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c44e4b39bdf7",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 장진하기 전에 모든 동력선 및 활선은 장진기기로부터 분리시키고 조명회선을 포함한 모든 동력선은 발원점으로부터 최소한 30m이상 후방으로 옮겨 놓도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb26538610ce",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관을 사용할 때에는 전선, 모터 등에 접근하지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:f1bd84446279",
+                  "@type": "WorkMeasure",
                   "measure": "미주전류의 유무에 대하여 확인하고 미주전류가 0.01A이상일 때에는 전기발파를 하지 않아야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:1f7c96222539",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관을 운반할 때에는 각선이 노출되지 않도록 절연용기에 분리하여 넣고 건전지 및 노출된 전기기구를 휴대하지 않도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5869e53d5437",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 운반, 취급하거나 발파공에 장진하는 근로자는 정전기를 발생시키지 않고 또한 난연성을 가지도록 방염처리가 된 면소재의 작업복을 착용한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "17"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "17"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/2.6",
+              "@type": "WorkRisk",
               "statement": "얼어붙은 다이나마이트를 고열물로 녹이다가 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:688a433ba22f",
+                  "@type": "WorkMeasure",
                   "measure": "얼어붙은 다이나마이트는 화기에 접근시키거나 그 밖의 고열물에 직접 접촉시키는 등 위험한 방법으로 융해되지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:8fbdf9ab1f84",
+                  "@type": "WorkMeasure",
                   "measure": "화약류는 동결되지 않도록 보관하고 동결된 화약류는 상온에서 완전히 해동한 후에 취급, 사용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/2.7",
+              "@type": "WorkRisk",
               "statement": "화약류 운반 중 충격·누전으로 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a66cf79356d1",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 운반할 때에는 화기나 전력선 등에 접근하지 않도록 하여야 하며 넘어지거나 떨어뜨려 충격이 가지 않도록 주의한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:bedb207e169b",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관을 운반할 때에는 전력선 등 누전의 우려가 있는 것에 접근하지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9911851db528",
+                  "@type": "WorkMeasure",
                   "measure": "화약류 임시보관소는 화기 및 누전 등으로부터 안전한 장소에 설치하고 시건 장치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:2c5ffb9c6b32",
+                  "@type": "WorkMeasure",
                   "measure": "화약류는 관계기관에서 일일 수령하여야 하며 사용후 잔량은 반납한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:15e2d906c0e5",
+                  "@type": "WorkMeasure",
                   "measure": "화약류 관리대장을 비치하고 불출 및 반납 상황을 기록 유지한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:950bd3e8efe0",
+                  "@type": "WorkMeasure",
                   "measure": "화약류의 분실 및 손괴에 대한 방호조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/2.8",
+              "@type": "WorkRisk",
               "statement": "낙뢰 우려 상황에서 장전 작업을 계속하여 유도전류로 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:517b47628d94",
+                  "@type": "WorkMeasure",
                   "measure": "벼락이 떨어질 우려가 있는 경우에는 화약 또는 폭약의 장전 작업을 중지하고 근로자들을 안전한 장소로 대피시킨다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:349"
+                    "basisArticle": "art:기준규칙:349"
                   }
                 }
               ]
@@ -844,157 +946,189 @@
       ]
     },
     {
+      "@id": "workstep:터널굴착작업/3",
+      "@type": "WorkStep",
       "stepName": "터널 발파",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.6",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.6",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.6",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:349",
+              "basisArticle": "art:기준규칙:349",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:351",
+              "basisArticle": "art:기준규칙:351",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/3.1",
+              "@type": "WorkRisk",
               "statement": "대피 확인 없이 점화하여 발파 비산석에 근로자가 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:732fec8bcb09",
+                  "@type": "WorkMeasure",
                   "measure": "발파책임자는 모든 근로자의 대피를 확인하고 지보공 및 복공에 대하여 필요한 방호조치를 한 후 발파하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:a7e86d510cf0",
+                  "@type": "WorkMeasure",
                   "measure": "발파작업 시 근로자가 안전한 거리로 피난할 수 없는 경우에는 앞면과 상부를 견고하게 방호한 피난장소를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:349"
+                    "basisArticle": "art:기준규칙:349"
                   }
                 },
                 {
+                  "@id": "workmeasure:1f6377ea8767",
+                  "@type": "WorkMeasure",
                   "measure": "발파시 안전한 거리 및 위치에서의 대피가 어려울 때에는 전면과 상부를 견고하게 방호한 임시대피장소를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:4136ba75e132",
+                  "@type": "WorkMeasure",
                   "measure": "발파는 선임된 발파책임자의 지휘에 따라 시행한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:ad96af344063",
+                  "@type": "WorkMeasure",
                   "measure": "점화는 선임된 발파책임자가 행하고 발파기의 핸들은 점화할 때 이외는 시건장치를 하거나 모선을 분리하여야 하며 발파책임자의 엄중한 관리하에 두어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:7294b7e6b14f",
+                  "@type": "WorkMeasure",
                   "measure": "점화장소는 발파현장에서 충분히 떨어져 있는 장소로 하고 물기나 철관, 궤도 등이 없는 장소를 택한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:2494b3810660",
+                  "@type": "WorkMeasure",
                   "measure": "점화장소는 발파현장이 잘 보이는 곳이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:1956d7b42773",
+                  "@type": "WorkMeasure",
                   "measure": "점화는 충분한 용량을 갖는 발파기를 사용하고 규정된 스위치를 반드시 사용한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:30e44618ac09",
+                  "@type": "WorkMeasure",
                   "measure": "전기발파기는 확실하게 기동이 되는지의 여부를 사전에 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:b9b3f3890cee",
+                  "@type": "WorkMeasure",
                   "measure": "도통시험기는 소정의 저항치에 대해 사전에 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/3.2",
+              "@type": "WorkRisk",
               "statement": "발파 직후 굴착면의 뜬돌·부석이 떨어져 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f347f92f9e0c",
+                  "@type": "WorkMeasure",
                   "measure": "발파책임자는 발파후 분진 및 유해가스 배출 완료 즉시 굴착면을 세밀히 조사하여 붕락 가능성의 뜬돌을 제거하여야 하며 용출수 유무를 동시에 확인한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:3919b74e53d7",
+                  "@type": "WorkMeasure",
                   "measure": "낙반 등에 의하여 근로자가 위험해질 우려가 있는 경우에 터널 지보공 및 록볼트의 설치, 부석(浮石)의 제거 등 위험을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:351"
+                    "basisArticle": "art:기준규칙:351"
                   }
                 },
                 {
+                  "@id": "workmeasure:7c08ada34fb4",
+                  "@type": "WorkMeasure",
                   "measure": "발파단면을 세밀히 조사하여 필요에 따라 지보공, 록볼트, 철망, 뿜어붙이기 콘크리트 등으로 보강한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 }
               ]
@@ -1003,185 +1137,219 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.7",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.7",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.6",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.6",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.6",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.7",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.7",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 5,
               "subitem": "가",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 5,
               "subitem": "나",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 6,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/3.3",
+              "@type": "WorkRisk",
               "statement": "불발공에 규정 대기시간 전에 접근하여 지연 폭발에 피격",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:30a6f40d6d63",
+                  "@type": "WorkMeasure",
                   "measure": "점화 후 장전된 화약류가 폭발하지 아니한 경우 또는 장전된 화약류의 폭발 여부를 확인하기 곤란한 경우 전기뇌관에 의한 경우에는 발파모선을 점화기에서 떼어 그 끝을 단락시켜 놓는 등 재점화되지 않도록 조치하고 그 때부터 5분 이상 경과한 후가 아니면 화약류의 장전장소에 접근시키지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 5,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:c60099ce08c0",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관 외의 것에 의한 경우에는 점화한 때부터 15분 이상 경과한 후가 아니면 화약류의 장전장소에 접근시키지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 5,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:c551f67ad8d6",
+                  "@type": "WorkMeasure",
                   "measure": "발파후 즉시 발파모선을 발파기로부터 분리하고 그 단부를 절연시킨 후 재점화가 되지 않도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:f16f075f6fc6",
+                  "@type": "WorkMeasure",
                   "measure": "발파 후 30분이상 경과한 후 접근하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/3.4",
+              "@type": "WorkRisk",
               "statement": "도통시험을 근접 위치에서 실시하여 시험 전류로 조기 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:373ae1c7de4b",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관에 의한 발파의 경우 점화하기 전에 화약류를 장전한 장소로부터 30미터 이상 떨어진 안전한 장소에서 전선에 대하여 저항측정 및 도통(導通)시험을 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:f3bebd45b5c5",
+                  "@type": "WorkMeasure",
                   "measure": "발파전 도화선 연결상태, 저항치 조사 등의 목적으로 도통시험을 실시하여야 하며 발파기 작동상태를 사전 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:ff291c283d05",
+                  "@type": "WorkMeasure",
                   "measure": "약포에 뇌관을 장치할 때에는 반드시 전기뇌관의 저항을 측정하여 소정의 저항치에 대하여 오차가 ±0.1Ω이내에 있는가를 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:f15486d76159",
+                  "@type": "WorkMeasure",
                   "measure": "발파용 점화회선은 타동력선 및 조명회선으로부터 분리한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/3.5",
+              "@type": "WorkRisk",
               "statement": "도화선 발파에서 도화선이 짧아 대피 전에 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:354c3c63ad94",
+                  "@type": "WorkMeasure",
                   "measure": "도화선의 길이는 천공길이 및 연결 점화개수, 대피장소의 거리, 대피시간 등을 고려하여 충분한 길이로 할 것이며 최소한 50cm이상으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.7"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:2380b427ae3f",
+                  "@type": "WorkMeasure",
                   "measure": "점화는 반드시 발파책임자의 지시 및 신호 하에 수행하여야 하며 점화의 순서, 대피방법 등을 사전에 검토하고 교육을 실시한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.7"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:8bf69a8f8e9b",
+                  "@type": "WorkMeasure",
                   "measure": "발파책임자는 점화신호를 확실히 하고 작업원에 대하여 신호방식의 숙지, 지시에 대한 순응상태 등을 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.7"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:9eefcabbd92b",
+                  "@type": "WorkMeasure",
                   "measure": "뇌관 내부에 도화선을 삽입하고 뇌관을 조여 놓을 때는 반드시 규정된 뇌관 조이개를 사용하고 뇌관의 장약부를 조이지 않도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.7"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:4bc7574c62ba",
+                  "@type": "WorkMeasure",
                   "measure": "뇌관을 약포에 달 때에는 약포내에 충분히 삽입하여 약포지로 도화선 둘레를 싸고 뇌관이 빠지지 않게 끈으로 잘 동여매도록 하며 도화선으로 약포를 묶지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.7"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:5f6ed61925d6",
+                  "@type": "WorkMeasure",
                   "measure": "도화선의 절단은 도화선용 가위를 이용하여 직각으로 절단한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.7"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.7"
                   }
                 }
               ]
@@ -1190,67 +1358,79 @@
         },
         {
           "hazardLabel": "질식",
+          "hasHazard": "hazard:asphyxiation",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "12.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "12.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "12.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "12.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:asphyxiation",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/3.6",
+              "@type": "WorkRisk",
               "statement": "발파 후 갱내에 정체된 분진·유해가스에 근로자가 노출되어 질식",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ae6622c7a7ea",
+                  "@type": "WorkMeasure",
                   "measure": "분진 및 유해가스의 농도를 측정하고 노출기준 이하가 되도록 신속히 환풍기, 송풍기 등을 이용하여 환기시킨다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:25f332db69b5",
+                  "@type": "WorkMeasure",
                   "measure": "발파후 유해가스, 분진 및 내연기관의 배기가스 등을 신속히 터널외부로 배출되도록 환기시켜야 하며 발파후 30분 이내에 분진 및 유해가스의 농도가 노출기준 이하로 배출되도록 배기 및 송기를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:a734e33881da",
+                  "@type": "WorkMeasure",
                   "measure": "터널길이가 200m이상인 경우 천공, 발파, 버력반출, 굴착 및 지보공 설치 등 작업이 진행되는 막장작업구간에서 천공, 발파, 숏크리트 타설시 발생하는 분진 및 유해가스와 각 종 장비의 내연기관 배기가스 등을 터널외부로 신속히 배출하도록 송ㆍ배기시설을 각각 독립적으로 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:b4a74e2d0746",
+                  "@type": "WorkMeasure",
                   "measure": "터널길이가 200m이상인 경우 막장에서 천공, 발파, 숏크리트 타설시 발생하는 분진 및 유해가스와 각 종 장비의 내연기관 배기가스 등이 막장작업구간이외의 터널 구간으로 확산되지 않도록 막장으로부터 50m이내에 차단막을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:65cd45616517",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부에서 근로자가 작업하고 있는 경우에는 분진 및 유해가스의 농도를 수시 및 정기적으로 측정하여 노출기준 이하로 항상 유지되도록 환기 및 살수를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.2"
                   }
                 }
               ]
@@ -1259,94 +1439,112 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.1",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/3.7",
+              "@type": "WorkRisk",
               "statement": "과다발파로 모암이 손상되어 여굴이 발생하고 상부 암반이 붕락",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b0fd19b87147",
+                  "@type": "WorkMeasure",
                   "measure": "설계 및 시방에서 정한 발파기준(발파방식, 천공길이, 천공직경, 천공간격, 천공각도, 화약의 종류, 장약량 등)을 준수하여 과다발파에 의한 모암손실, 과다여굴, 부석에 의한 붕괴ㆍ붕락을 예방한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:6b4cf57087ed",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 경계면에는 모암에 손상을 주지 않도록 시방에 명기된 폭약을 사용한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:9b17a993edf8",
+                  "@type": "WorkMeasure",
                   "measure": "지질, 암의 절리 등에 따라 화약량을 충분히 검토하여야 하며 시방기준과 대비하여 안전조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:a284d074e210",
+                  "@type": "WorkMeasure",
                   "measure": "암질의 변화구간 및 발파시방 변경시에는 발파전 폭력, 폭속, 발파 영향력 등의 조사목적으로 시험발파를 실시하여야 하며 시험발파후 암질판별을 기준으로 하여 발파방식, 시방 등의 계획을 재수립한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/3.8",
+              "@type": "WorkRisk",
               "statement": "기존 구조물 하부 통과구간을 일반 발파로 굴착하여 상부 구조물이 손상·붕괴",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7b265506d75f",
+                  "@type": "WorkMeasure",
                   "measure": "발파의 경우 시험발파에 의한 진동영향력에 대하여 정밀검토를 하여야 하며 상부 구조물의 진동의 영향이 없는 범위내에서 발파를 시행한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:925b4449a091",
+                  "@type": "WorkMeasure",
                   "measure": "풍화암반 등 연약암반 및 토층구간은 발파를 중지하고 수직ㆍ수평보링 등 정밀조사를 실시한 후 암질판별에 의한 굴착시방을 변경하여야 하며 무진동 파쇄공법, 쉴드공법, 언더피닝ㆍ파이프루프 등 보강 및 보조공법, 포아폴링공법, 프리그라우팅공법, 국부미진동 소할발파에 대한 보강공법을 검토한 후 발주처와 협의에 의한 시공계획을 수립한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:fa016575b64c",
+                  "@type": "WorkMeasure",
                   "measure": "발파구간 인접구조물에 대한 피해 및 손상을 예방하기 위한 발파허용 진동치는 당해 공사의 설계도서 및 시방서에서 정하는 바에 따른다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -1356,77 +1554,93 @@
       ]
     },
     {
+      "@id": "workstep:터널굴착작업/4",
+      "@type": "WorkStep",
       "stepName": "터널 버럭처리",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/4.1",
+              "@type": "WorkRisk",
               "statement": "버력 적재장의 뜬돌이 무너져 근로자가 깔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b7d3198ed77a",
+                  "@type": "WorkMeasure",
                   "measure": "버력 적재장에서는 붕락, 붕괴의 위험이 있는 뜬돌 등의 유무를 확인하고 이를 제거한 후 작업하도록 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:d4071f00c7c8",
+                  "@type": "WorkMeasure",
                   "measure": "버력의 적재 및 작업시에는 주변의 지보공 및 가시설물 등이 손상되지 않도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/4.2",
+              "@type": "WorkRisk",
               "statement": "갱내 궤도차량이 탈선하거나 작업 중인 근로자를 치어 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:e80649567b94",
+                  "@type": "WorkMeasure",
                   "measure": "갱내 운반을 궤도에 의하는 경우에는 탈선 등으로 인한 재해를 일으키지 않도록 궤도를 견고하게 부설하고 수시로 점검, 보수한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:b76d412363db",
+                  "@type": "WorkMeasure",
                   "measure": "버력을 반출하는 궤도차량에는 전방에서 작업중인 근로자에게 미리 접근 상황을 알려주는 통신 및 경보시설을 설치ㆍ운용한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:0ae5ff3221dd",
+                  "@type": "WorkMeasure",
                   "measure": "버력 반출용 궤도차량이 근로자가 작업하고 있는 장소를 통행할 경우에는 근로자가 안전하게 대피한 것을 확인한 후 서행한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 }
               ]
@@ -1435,124 +1649,148 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:342",
+              "basisArticle": "art:기준규칙:342",
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:344",
+              "basisArticle": "art:기준규칙:344",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:353",
+              "basisArticle": "art:기준규칙:353",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/4.3",
+              "@type": "WorkRisk",
               "statement": "버력 운반장비가 후진·선회하며 갱내 근로자와 부딪힘",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d446024ae960",
+                  "@type": "WorkMeasure",
                   "measure": "버력의 적재 및 운반기계에는 경광등, 경음기 등 안전장치를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:81ac4edf4b10",
+                  "@type": "WorkMeasure",
                   "measure": "위험요소에는 운전자가 보기 쉽도록 운행속도, 회전주의, 후진금지 등 안전표지판을 부착한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:db5d9fd1fd2a",
+                  "@type": "WorkMeasure",
                   "measure": "작업장에는 관리감독자를 배치하고 작업자 이외에는 출입을 금지하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:6b38b3294e1b",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계등이 근로자의 작업장소로 후진하여 근로자에게 접근하거나 굴러 떨어질 우려가 있는 경우에는 유도자를 배치하고 굴착기계등을 유도한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:344"
+                    "basisArticle": "art:기준규칙:344"
                   }
                 },
                 {
+                  "@id": "workmeasure:2cbdb1b2d80f",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계등의 운행경로 및 토석(土石) 적재장소의 출입방법을 정하여 관계 근로자에게 주지시킨다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:342",
+                    "basisArticle": "art:기준규칙:342",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:d04a3a8315ef",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 운반장비는 작업시작전 제동장치 및 조향장치 기능의 이상유무, 하역장치 및 유압장치 기능의 이상유무, 차륜의 이상유무, 경광ㆍ경음장치의 이상유무를 점검하고 이상이 발견된 때에는 즉시 보수 기타 필요한 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:d23c86bbf866",
+                  "@type": "WorkMeasure",
                   "measure": "버력처리 장비는 굴착단면의 크기 및 단위발파 버력의 물량, 터널의 경사도, 굴착방식, 버력의 성상 및 함수비, 운반 통로의 노면상태를 고려하여 선정하고 사토장거리, 운행속도 등의 작업계획을 수립한 후 작업한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:a1f12eee8322",
+                  "@type": "WorkMeasure",
                   "measure": "계획 및 안전조치를 취한 후 근로자에게 작업안전교육을 실시한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/4.4",
+              "@type": "WorkRisk",
               "statement": "갱내 배기가스·분진으로 시계가 제한되어 장비와 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:1b3c48dd746f",
+                  "@type": "WorkMeasure",
                   "measure": "터널 내부의 시계(視界)가 배기가스나 분진 등에 의하여 현저하게 제한되는 경우에는 환기를 하거나 물을 뿌리는 등 시계를 유지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:353"
+                    "basisArticle": "art:기준규칙:353"
                   }
                 },
                 {
+                  "@id": "workmeasure:77f328c93a4f",
+                  "@type": "WorkMeasure",
                   "measure": "작업에 직접적으로 연관되지 않는 차량 및 기타 장비는 터널 입구로부터 먼 곳에 주차 및 배치시켜 두어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -1561,38 +1799,44 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.5",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/4.5",
+              "@type": "WorkRisk",
               "statement": "버럭에 혼입된 불발 화약류를 인지하지 못하고 처리하다가 폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:821932280fe0",
+                  "@type": "WorkMeasure",
                   "measure": "발파공 및 버력 속에 남아있는 불발화약류의 유무를 세밀히 조사하여야 하며 발견시 안전한 방법으로 잔류화약을 처리한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:678cae7132a4",
+                  "@type": "WorkMeasure",
                   "measure": "버력처리에 있어 불발 화약류가 혼입되어 있을 경우가 있으므로 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 }
               ]
@@ -1601,63 +1845,75 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.8",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.8",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/4.6",
+              "@type": "WorkRisk",
               "statement": "무리한 적재로 운반 중 버력이 떨어져 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:344af95d4585",
+                  "@type": "WorkMeasure",
                   "measure": "버력운반중 버력이 떨어지는 일이 없도록 무리한 적재를 하지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:d51032b1f901",
+                  "@type": "WorkMeasure",
                   "measure": "버력운반로는 항상 양호한 노면을 유지하도록 하여야 하며 배수로를 확보해 두어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:터널굴착작업/4.7",
+              "@type": "WorkRisk",
               "statement": "버력반출용 수직구 아래에서 낙석에 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8c725425732e",
+                  "@type": "WorkMeasure",
                   "measure": "버력반출용 수직구 아래에는 낙석에 의한 근로자에게 재해를 방지하기 위하여 낙석주의, 접근금지 등 안전표지판을 설치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.8"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:afb008c5b65d",
+                  "@type": "WorkMeasure",
                   "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:14"
+                    "basisArticle": "art:기준규칙:14"
                   }
                 }
               ]
@@ -1666,41 +1922,49 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "5.9",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "5.9",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:터널굴착작업/4.8",
+              "@type": "WorkRisk",
               "statement": "굴착기계 사용 중 지반 붕괴·매설물 손괴로 근로자가 위험",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bfb1634bcac9",
+                  "@type": "WorkMeasure",
                   "measure": "로더 헤더(Load Header), 쉬일드 머쉰(Shield Machine), 터널보링머쉰(T.B.M)등 굴착기계는 터널굴착단면의 크기 및 형상, 지질구성 및 암반의 강도, 작업공간, 용수상태 및 막장의 자립도, 굴진방향에 따른 지질단층의 변화정도를 고려하여 선정하고 작업순서 등 작업안전계획을 수립한 후 작업한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.9"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:e64ab368d0e2",
+                  "@type": "WorkMeasure",
                   "measure": "작업안전계획에는 굴착기계 및 운반장비 선정, 굴착단면의 굴착순서 및 방법, 굴진작업 1싸이클의 공정순서 및 굴진단위길이, 버력적재 방법 및 운반경로, 배수 및 환기, 이상 지질 발견시 대처방안, 작업시작전 장비의 점검, 관리감독자 선임이 포함되어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.9"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.9"
                   }
                 },
                 {
+                  "@id": "workmeasure:23b28e881881",
+                  "@type": "WorkMeasure",
                   "measure": "사업주는 수립된 작업안전계획에 준하여 작업을 하여야 하며 이를 작업자에게 교육하고 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "5.9"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "5.9"
                   }
                 }
               ]

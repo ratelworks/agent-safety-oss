@@ -26,6 +26,10 @@ import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { graphRepository } from "../lib/graph-repository.js";
+import { findFieldMeasuresForHazard, CONTROL_LEVEL_ORDER, CONTROL_LEVEL_LABEL, type FieldMeasure } from "../lib/field-measures.js";
+
+/** 위계마다 보여 줄 현장 대책 수 — 넘으면 줄인 건수를 적는다 */
+const MAX_FIELD_MEASURES_PER_LEVEL = 4;
 import { updateComponentsMessage, textComponent, assistPanelComponent, type A2UIMessage } from "../lib/a2ui.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -334,6 +338,29 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     lines.push("");
   }
 
+  // 공종 단계 자료에서 이 유해요인에 붙은 대책 — 일반 통제대책 분류가 아니라 현장 조치 문장
+  const field = hazards.length > 0 ? await findFieldMeasuresForHazard(hazards[0].iri) : undefined;
+  const fieldByLevel: Record<string, FieldMeasure[]> = {};
+  if (field && field.measures.length > 0) {
+    lines.push(`## 공종 단계에서 쓰이는 감소대책 — ${hazards[0].label}`);
+    lines.push("");
+    lines.push(`> 위험요인 ${field.riskCount}건 · 공종 ${field.works.length}개 · 대책 ${field.measures.length}건. 여러 공종에서 함께 쓰이는 것부터 위계마다 ${MAX_FIELD_MEASURES_PER_LEVEL}건씩 보입니다.`);
+    lines.push("");
+    for (const level of CONTROL_LEVEL_ORDER) {
+      const list = field.measures.filter((m) => m.controlLevel === level);
+      if (list.length === 0) continue;
+      fieldByLevel[level] = list;
+      lines.push(`**${CONTROL_LEVEL_LABEL[level]}** (${list.length}건)`);
+      for (const m of list.slice(0, MAX_FIELD_MEASURES_PER_LEVEL)) {
+        lines.push(`- ${m.variant ? `(${m.variant}) ` : ""}${m.measure} · ${m.works.length > 3 ? `${m.works.slice(0, 3).join(", ")} 외 ${m.works.length - 3}개 공종` : m.works.join(", ")}`);
+      }
+      if (list.length > MAX_FIELD_MEASURES_PER_LEVEL) lines.push(`- … 외 ${list.length - MAX_FIELD_MEASURES_PER_LEVEL}건`);
+      lines.push("");
+    }
+    lines.push(`공종별 단계·근거는 \`analyze_construction_work_risks({workType: "<공종 이름>"})\` 로 봅니다.`);
+    lines.push("");
+  }
+
   const hazardLabel = hazards[0]?.label ?? args.hazard;
   const a2uiUpdate = buildA2UIUpdate(args.surfaceId, hazardLabel, selected);
 
@@ -345,6 +372,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       matchedHazards: hazards.map((h) => ({ iri: h.iri, label: h.label, category: h.category })),
       controls: selected,
       totalControlsAvailable: allControls.length,
+      ...(field && field.measures.length > 0
+        ? { fieldMeasures: { hazard: hazards[0].iri, riskCount: field.riskCount, works: field.works, total: field.measures.length, byLevel: fieldByLevel } }
+        : {}),
       a2uiUpdate,
       nextActions: [
         "사용자가 입력 필드에 추천 control 의 label 을 채우도록 안내 (LLM 이 updateDataModel 로 자동 채우기 가능)",

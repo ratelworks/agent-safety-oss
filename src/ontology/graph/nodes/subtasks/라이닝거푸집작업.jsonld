@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:라이닝거푸집작업",
   "@type": [
     "ConstructionSubtask"
@@ -76,80 +34,96 @@
   ],
   "steps": [
     {
+      "@id": "workstep:라이닝거푸집작업/1",
+      "@type": "WorkStep",
       "stepName": "라이닝 거푸집 자재반입",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.4",
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:367",
+              "basisArticle": "art:기준규칙:367",
               "controlLevel": "substitution"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/1.1",
+              "@type": "WorkRisk",
               "statement": "변형·부식된 거푸집·동바리 재료를 반입하여 타설 중 붕괴",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0929ce3dd635",
+                  "@type": "WorkMeasure",
                   "measure": "터널 거푸집 및 동바리의 재료로 변형ㆍ부식되거나 심하게 손상된 것을 사용해서는 안 된다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:367"
+                    "basisArticle": "art:기준규칙:367"
                   }
                 },
                 {
+                  "@id": "workmeasure:2be960edfb29",
+                  "@type": "WorkMeasure",
                   "measure": "라이닝플레이트 등의 절단, 변형, 부재탈락시 용접 접합을 금하며 필요시 동일 재질의 부재로 교체한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:2c0ac8d004dd",
+                  "@type": "WorkMeasure",
                   "measure": "조립과 해체의 반복작업에 의한 볼트, 너트의 손상율을 사전에 검토하고 충분한 여분을 준비한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:라이닝거푸집작업/1.2",
+              "@type": "WorkRisk",
               "statement": "거푸집 규격이 타설 조건에 맞지 않아 시공 중 변형",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ca8d0c285064",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집 조립작업의 시행전 콘크리트의 1회 타설량, 타설길이, 타설속도를 고려하여 타설목적에 적당한 규격 여부를 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:cbb064687337",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 라이닝 공법 선정시 지질ㆍ암질상태, 단면형상, 라이닝의 작업능률, 굴착공법을 검토하여 시공방식을 선정한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 }
               ]
@@ -159,74 +133,88 @@
       ]
     },
     {
+      "@id": "workstep:라이닝거푸집작업/2",
+      "@type": "WorkStep",
       "stepName": "라이닝거푸집 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:368",
+              "basisArticle": "art:기준규칙:368",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/2.1",
+              "@type": "WorkRisk",
               "statement": "거푸집이 타설 압력을 견디지 못하고 붕괴",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:af81936a7f2e",
+                  "@type": "WorkMeasure",
                   "measure": "터널 거푸집 및 동바리에 걸리는 하중 또는 거푸집의 형상 등에 상응하는 견고한 구조의 터널 거푸집 및 동바리를 사용해야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:368"
+                    "basisArticle": "art:기준규칙:368"
                   }
                 },
                 {
+                  "@id": "workmeasure:de87cb322536",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집은 콘크리트의 타설 속도 등을 고려하여 타설된 콘크리트의 압력에 충분히 견디는 구조이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:7064c3730993",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집의 측면판은 콘크리트의 타설측압 및 압축력에 충분히 견디는 구조로 하여야 하며 모르터가 새어나가지 않도록 원지반에 밀착, 고정시켜야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:85eb2e19bb17",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트는 연속해서 타설하여야 하며, 좌우대칭으로 같은 높이로하여 거푸집에 편압이 작용하지 않도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:ca8c7ad300de",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 타설하중 및 타설충격에 의한 거푸집 변위 및 이동방지의 목적으로 가설앵커, 쐐기 등의 설치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.3"
                   }
                 }
               ]
@@ -235,86 +223,102 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.3",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.4",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/2.2",
+              "@type": "WorkRisk",
               "statement": "이동식 거푸집이 궤도에서 침하·전도되어 근로자가 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:991a6ee995b6",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집 이동용 궤도는 침하방지를 위하여 지반의 다짐, 편평도를 사전에 점검하고 침목설치상태, 레일의 간격 등을 사전점검 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:da098981d805",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 거푸집에 있어서는 볼트, 너트 등으로 이완되지 않도록 견고하게 고정하여야 하며 휨, 비틀림, 전단 등의 응력 발생에 대하여 점검한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:70c28e2f5552",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 거푸집의 경우 설치 후 장시간 방치시 사용된 재키류의 나선파손, 유압실린더, 플레이트 등의 파손 및 이완 유무를 재확인하여야 하며 교체, 보완, 보강 등의 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:02aba12cbb16",
+                  "@type": "WorkMeasure",
                   "measure": "이동식 거푸집 제작시에는 근로자의 작업에 지장을 초래하지 않도록 작업공간을 확보할 수 있는 구조이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.3"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:라이닝거푸집작업/2.3",
+              "@type": "WorkRisk",
               "statement": "라이닝 철근망이 자중으로 붕괴하여 근로자가 깔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:06bb9dbc4a8f",
+                  "@type": "WorkMeasure",
                   "measure": "터널 천단부에 라이닝 철근을 조립하는 경우에는 조립된 라이닝 철근망이 자중에 의한 붕괴위험이 있는지를 구조검토하고 필요시 붕괴되지 않도록 철근망에 보강재를 삽입하거나 터널 굴착면에 철근망 고정용 앵커를 설치하여 철근망을 견고하게 고정한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:59452d919563",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집을 조립할 때에는 철근의 앵커구조, 피복규격 등을 확인하고 철근의 변위, 이동방지용 쐐기 설치 상태를 확인한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 }
               ]
@@ -323,36 +327,42 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/2.4",
+              "@type": "WorkRisk",
               "statement": "벽체·천장부 고소작업 중 근로자가 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:01ceb310fb8f",
+                  "@type": "WorkMeasure",
                   "measure": "벽체 및 천장부 작업시 작업대 설치를 요하며 사다리, 안전난간, 안전대 부착설비, 이동용바퀴 및 정지장치 등을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:892b402e66d5",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소 또는 기계ㆍ설비ㆍ선박블록 등에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42"
+                    "basisArticle": "art:기준규칙:42"
                   }
                 }
               ]
@@ -361,25 +371,29 @@
         },
         {
           "hazardLabel": "끼임·감김",
+          "hasHazard": "hazard:machine_entanglement",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.2",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/2.5",
+              "@type": "WorkRisk",
               "statement": "타설슈트·벨트컨베이어에 신체가 휘말림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5bf8bb452a19",
+                  "@type": "WorkMeasure",
                   "measure": "타설슈트, 벨트컨베이어 등을 사용하는 경우에는 충격, 휘말림 등에 대하여 충분한 주의를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 }
               ]
@@ -388,134 +402,162 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "12.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "12.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "12.1",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "12.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.2",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.2",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/2.6",
+              "@type": "WorkRisk",
               "statement": "라이닝 배면 공극·천정부 공극으로 콘크리트가 탈락",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:553491127af1",
+                  "@type": "WorkMeasure",
                   "measure": "라이닝 콘크리트 배면과 뿜어붙인 콘크리트 사이의 공극이 생기지 않도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:6be006e14f25",
+                  "@type": "WorkMeasure",
                   "measure": "굳지않은 콘크리트의 처짐 및 침하로 인하여 터널천정 부분에 공극이 생기는 위험을 방지하기 위해서 콘크리트가 경화된 후 시방에 의한 접착 그라우팅을 천정부에 시행한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:fd161c3bb137",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 재료의 혼합후 타설 완료 때까지의 소요시간은 온난ㆍ건조시 1시간 이내, 저온ㆍ습윤시 2시간 이내를 기준으로 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:50c436bf8859",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 운반중 재료의 분리, 손실, 이물의 혼입이 발생하지 않는 방법으로 운반한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:1c1c5b042f94",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 타설표면은 이물질이 없도록 사전에 제거한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.2"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:라이닝거푸집작업/2.7",
+              "@type": "WorkRisk",
               "statement": "갱내 조명 부족으로 부석·요철을 확인하지 못해 재해",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bab2678e9c17",
+                  "@type": "WorkMeasure",
                   "measure": "막장의 균열 및 지질상태 터널벽면의 요철정도, 부석의 유무, 누수상황 등을 확인할 수 있도록 충분한 조명시설을 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ebc0de4341e5",
+                  "@type": "WorkMeasure",
                   "measure": "근로자의 안전을 위하여 터널 작업면에 대한 조명장치 및 설비를 확인하여야 하며 조도의 기준은 막장구간 60 LUX 이상, 터널중간구간 50 LUX 이상, 터널 입출구ㆍ수직구 구간 30 LUX 이상으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:6a748d3cd05b",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부에 설치된 조명용 전선의 절단, 누전 등으로 전력공급이 차단되는 경우를 대비하여 터널외부에 설치된 주 분전반에서 각각 별도의 분기회로에 접속하는 2계통의 조명용 배선을 설치하되 각 배선별 조명등을 교대로 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b359e9afce48",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부에서 외부전원의 단전으로 조명이 꺼질 때 자동적으로 점등되는 충전식 배터리를 전원으로 하는 비상조명등을 터널길이 100m당 1개소이상 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:982d9ce97b89",
+                  "@type": "WorkMeasure",
                   "measure": "조명설비에 대하여 정기 및 수시 점검계획을 수립하고 단선, 단락, 파손, 누전 등에 대하여는 즉시 조치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:e0e93a0f2bbd",
+                  "@type": "WorkMeasure",
                   "measure": "작업중 분진이나 매연으로 인하여 조도가 떨어지지 않도록 유지ㆍ관리를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:326f6a3067ec",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부의 충전식 배터리를 전원으로 하는 비상조명등은 수시 및 정기적으로 작동상태를 점검하고 항시 정상적으로 작동하도록 관리한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "12.1"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "12.1"
                   }
                 }
               ]
@@ -525,95 +567,113 @@
       ]
     },
     {
+      "@id": "workstep:라이닝거푸집작업/3",
+      "@type": "WorkStep",
       "stepName": "라이닝거푸집 해체",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "16",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "16",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "13",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "13",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "13",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "13",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "16",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "16",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.4",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/3.1",
+              "@type": "WorkRisk",
               "statement": "콘크리트가 필요 강도에 도달하기 전에 거푸집을 제거하여 붕괴",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:d13c602b706a",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집은 타설된 콘크리트가 필요한 강도에 달할 때까지 거푸집을 제거하지 않아야 하며 시방의 양생기준을 준수한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:라이닝거푸집작업/3.2",
+              "@type": "WorkRisk",
               "statement": "갱내 대피 경로·통신이 없어 사고 발생 시 대피가 지연",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:9da23867ab59",
+                  "@type": "WorkMeasure",
                   "measure": "터널길이가 200m이상인 경우 현장여건을 고려하여 적정한 간격으로 차량계건설기계의 회차로겸 근로자 대피소를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "13"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "13"
                   }
                 },
                 {
+                  "@id": "workmeasure:346c4f0dd3b6",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부의 근로자 대피소에는 응급구호비품, 음료수를 비치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "13"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "13"
                   }
                 },
                 {
+                  "@id": "workmeasure:9b1257444398",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부 근로자와 터널외부에 있는 현장사무실의 관리감독자간 재해발생 위험시 연락할 수 있는 인터폰 등 비상용 통신시설을 터널길이 100m당 1개소이상 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "16"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "16"
                   }
                 },
                 {
+                  "@id": "workmeasure:45b23bbbcc7a",
+                  "@type": "WorkMeasure",
                   "measure": "비상용 통신시설은 충전식 배터리를 전원으로 작동하는 것이어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "16"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "16"
                   }
                 },
                 {
+                  "@id": "workmeasure:adc5d0c96449",
+                  "@type": "WorkMeasure",
                   "measure": "비상용 통신시설은 수시 및 정기적으로 작동상태를 점검하고 항상 정상적으로 작동되도록 관리한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "16"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "16"
                   }
                 }
               ]
@@ -622,33 +682,39 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "9.4",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "9.4",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/3.3",
+              "@type": "WorkRisk",
               "statement": "해체 순서를 지키지 않아 부재가 낙하",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:060c53c7550b",
+                  "@type": "WorkMeasure",
                   "measure": "조립식 거푸집은 제작사양 조립도의 조립순서를 준수하여야 하며 해체시의 순서는 조립순서의 역순을 원칙으로 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:f42f05947476",
+                  "@type": "WorkMeasure",
                   "measure": "조립식 거푸집을 해체할 때에는 순서에 의해 부재를 정리 정돈하고 부착 콘크리트, 유해물질 등을 제거하고 힌지, 재키 등의 활절작동 구간은 윤활유 등을 주입한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "9.4"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "9.4"
                   }
                 }
               ]
@@ -657,46 +723,54 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "14",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "14",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-45-2012",
-              "section": "17",
+              "basisGuide": "doc:kosha_guide/C-45-2012",
+              "guideSection": "17",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:라이닝거푸집작업/3.4",
+              "@type": "WorkRisk",
               "statement": "어두운 갱내에서 해체 중인 근로자를 장비가 인지하지 못해 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:4a3f5abdc0c6",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부에서 작업하는 근로자는 어두운 곳에서 발광되는 야광표식이 부착된 안전모, 작업복, 안전조끼 등 보호 복장을 착용한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "17"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "17"
                   }
                 },
                 {
+                  "@id": "workmeasure:11522477cb80",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부에서 근로자가 작업할 경우에는 항상 100m이상의 가시거리를 확보한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "14"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "14"
                   }
                 },
                 {
+                  "@id": "workmeasure:887fac467739",
+                  "@type": "WorkMeasure",
                   "measure": "터널내부에서 분진, 유해가스, 내연기관 배기가스, 수증기 등의 과다로 인하여 가시거리가 100m미만일 경우에는 작업차량에 근로자가 충돌, 협착하는 등의 위험을 방지하기 위하여 신속히 환기 및 살수를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-45-2012",
-                    "section": "14"
+                    "basisGuide": "doc:kosha_guide/C-45-2012",
+                    "guideSection": "14"
                   }
                 }
               ]

@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:갱폼작업",
   "@type": [
     "ConstructionSubtask"
@@ -78,36 +36,44 @@
   ],
   "steps": [
     {
+      "@id": "workstep:갱폼작업/1",
+      "@type": "WorkStep",
       "stepName": "갱폼 자재반입",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.1"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.1"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/1.1",
+              "@type": "WorkRisk",
               "statement": "케이지·발판재가 변형·부식된 상태로 반입되어 조립 후 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:716e69d46e2a",
+                  "@type": "WorkMeasure",
                   "measure": "현장에 조립용으로 입고되는 자재(케이지, 발판재 등)는 변형되거나 비에 맞아 녹슬지 않도록 평평한 바닥에 침목 등을 깔아 보관한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:18849383417e",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼자재가 입고되기 전 야적장, 조립작업장 등을 준비하고 갱폼 조립 안전작업계획을 수립하여 용접·볼팅 등 조립작업과 인양설비 등을 점검한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.1"
                   }
                 }
               ]
@@ -116,32 +82,38 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.1"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.1"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/1.2",
+              "@type": "WorkRisk",
               "statement": "하차 중 자재가 낙하하거나 반입차량과 부딪힘",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:08138f509cfe",
+                  "@type": "WorkMeasure",
                   "measure": "반입차량의 진출입로를 점검한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:67b083ce1ae7",
+                  "@type": "WorkMeasure",
                   "measure": "하차 시 장비, 인양설비 등을 점검하고 안전사고에 주의한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.1"
                   }
                 }
               ]
@@ -151,99 +123,119 @@
       ]
     },
     {
+      "@id": "workstep:갱폼작업/2",
+      "@type": "WorkStep",
       "stepName": "갱폼 조립",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3",
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3"
             },
             {
-              "article": "art:기준규칙:331의2",
+              "basisArticle": "art:기준규칙:331의2",
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/2.1",
+              "@type": "WorkRisk",
               "statement": "폼타이 볼트의 규격·수량을 확인하지 않아 타설 중 거푸집이 벌어져 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:fc8d08eb6b49",
+                  "@type": "WorkMeasure",
                   "measure": "폼타이 볼트는 내부 유로폼과의 간격을 유지할 수 있도록 정확하게 설치한다",
                   "controlLevel": "engineering",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:507ececc4d8e",
+                  "@type": "WorkMeasure",
                   "measure": "폼타이 볼트는 정해진 규격의 것을 사용하고 볼트의 길이가 갱폼 거푸집 밖으로 10cm 이상 튀어나오지 않는 것으로 소요수량 전량을 확인·긴결한다",
                   "controlLevel": "engineering",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:52bdbfdfb58f",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집을 조립하는 경우에는 거푸집이 콘크리트 하중이나 그 밖의 외력에 견딜 수 있거나, 넘어지지 않도록 견고한 구조의 긴결재, 버팀대 또는 지지대를 설치하는 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:331의2",
+                    "basisArticle": "art:기준규칙:331의2",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/2.2",
+              "@type": "WorkRisk",
               "statement": "이음부 볼트 체결이 불량하여 타설 진동·충격에 변형됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c9a57d1c6db8",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집을 도면에 따라 부위별로 정확하게 설치하고, 콘크리트 타설 시의 진동이나 충격으로 변형되거나 움직이지 않도록 견고하게 조립하며, 거푸집 상호 이음부는 볼트를 사용하여 조립부위에 결함이 생기지 않도록 정확하게 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:c57cb9516608",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집의 철판이 도장된 상태에서 외관상 휨이나 변형이 없는지, 설계도면의 치수와 잘 맞는지 점검한 후 정확히 조립한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:849ae97e106f",
+                  "@type": "WorkMeasure",
                   "measure": "설치 후 거푸집 설치상태의 견고성과 뒤틀림 및 변형 여부, 부속철물의 위치와 간격, 접합정도와 용접부의 이상 유무를 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:b9154ea45ac1",
+                  "@type": "WorkMeasure",
                   "measure": "동절기에는 매립볼트와 철선을 동시에 사용하여 볼트의 빠짐에 대비한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.2"
                   }
                 }
               ]
@@ -252,66 +244,80 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "9"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "9"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.2"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/2.3",
+              "@type": "WorkRisk",
               "statement": "케이지 외부 수직보호망 미고정으로 낙하물이 하부에 도달함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8949ed2a67eb",
+                  "@type": "WorkMeasure",
                   "measure": "케이지 외부 수직보호망은 안전성 및 내구성을 갖춘 제품으로서 한국산업표준에서 정하는 성능기준에 적합한 제품을 사용하여 확실히 고정한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5b42776ae37a",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집 상단부 및 외측에는 2단 안전난간대와 수직보호망을 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:68250a203c1d",
+                  "@type": "WorkMeasure",
                   "measure": "상·하층 간 낙하 위험이 있을 경우 낙하물 방지망을 추가 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/2.4",
+              "@type": "WorkRisk",
               "statement": "갱폼 상단 자재보관대에 중량물을 올려 낙하함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:983131f2518e",
+                  "@type": "WorkMeasure",
                   "measure": "현장여건에 따라 콘크리트 타설 전 잔여자재를 올려놓을 수 있는 자재보관대를 갱폼 상단에 설치하여 낙하물 사고를 예방하되, 이때 중량물을 올려놓지 않는다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:928d7dae07b9",
+                  "@type": "WorkMeasure",
                   "measure": "자재 적재 시 발판의 허용하중을 초과하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
@@ -320,104 +326,126 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "9"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "9"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3"
             },
             {
-              "article": "art:기준규칙:331의3",
+              "basisArticle": "art:기준규칙:331의3",
               "paragraph": 2,
               "item": 2
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/2.5",
+              "@type": "WorkRisk",
               "statement": "작업발판 단부·틈새 방호 미흡으로 조립 중 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8c4ec0c0fa7a",
+                  "@type": "WorkMeasure",
                   "measure": "발판 폭은 최소 40cm 이상, 작업 시 2인 교행이 가능하도록 60cm 이상이 되도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:56e18adb5d20",
+                  "@type": "WorkMeasure",
                   "measure": "발판 간 틈새는 3cm 이하, 단차가 없도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:b8d9a454a591",
+                  "@type": "WorkMeasure",
                   "measure": "발판 끝단에는 상부난간대(최소 높이 0.9m), 중간대, 발끝막이판(높이 10cm)을 반드시 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:0acea471408c",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판과 구조물 간의 틈은 300mm 이하로 유지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:f73a171af6e3",
+                  "@type": "WorkMeasure",
                   "measure": "발판재는 미끄럼 방지 패턴이 있어야 하며, 파손·변형·부식된 발판은 사용해서는 안 되고, 발판의 지지부는 전도·이탈 방지핀으로 고정한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/2.6",
+              "@type": "WorkRisk",
               "statement": "갱폼 내부 출입통로 미확보로 승강 중 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0ef6e4b03d08",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 작업자는 지정된 설비를 갖춘 작업발판 연결통로를 이용하여 갱폼 내부로 출입한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:fb30e6c7f20d",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 안전하게 구조물 내부에서 갱 폼의 작업발판으로 출입할 수 있는 이동통로를 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:331의3",
+                    "basisArticle": "art:기준규칙:331의3",
                     "paragraph": 2,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:00c7002e93c7",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판 접근을 위한 전용 계단, 사다리 또는 클라이밍타워 내 통로를 확보한다",
                   "variant": "시스템폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:901e5c3c9f5f",
+                  "@type": "WorkMeasure",
                   "measure": "사다리는 경사 75도 이내로 설치하고, 상단은 고정핀 또는 클립으로 체결한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
@@ -426,24 +454,28 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "9"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "9"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/2.7",
+              "@type": "WorkRisk",
               "statement": "전원공급장치·조명선의 절연 파손으로 감전",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:49e05a1c86b3",
+                  "@type": "WorkMeasure",
                   "measure": "전원공급장치, 조명선 등은 절연피복을 점검하고 누전차단기 설치여부를 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
@@ -453,124 +485,148 @@
       ]
     },
     {
+      "@id": "workstep:갱폼작업/3",
+      "@type": "WorkStep",
       "stepName": "갱폼 인양 설치",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "9"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "9"
             },
             {
-              "article": "art:기준규칙:331의3",
+              "basisArticle": "art:기준규칙:331의3",
               "paragraph": 2,
               "item": 1
             },
             {
-              "article": "art:기준규칙:38",
+              "basisArticle": "art:기준규칙:38",
               "paragraph": 1,
               "item": 11
             },
             {
-              "article": "art:기준규칙:38",
+              "basisArticle": "art:기준규칙:38",
               "paragraph": 2
             },
             {
-              "article": "art:기준규칙:39",
+              "basisArticle": "art:기준규칙:39",
               "paragraph": 1
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/3.1",
+              "@type": "WorkRisk",
               "statement": "중량물 인양계획·지휘 없이 갱폼을 인양하여 낙하함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:be50a7bd7639",
+                  "@type": "WorkMeasure",
                   "measure": "중량물의 취급작업을 하는 경우 별표 4에 따라 해당 작업, 작업장의 지형·지반 및 지층 상태 등에 대한 사전조사를 하고 그 결과를 기록·보존해야 하며, 조사결과를 고려한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:38",
+                    "basisArticle": "art:기준규칙:38",
                     "paragraph": 1,
                     "item": 11
                   }
                 },
                 {
+                  "@id": "workmeasure:8426a8d8108b",
+                  "@type": "WorkMeasure",
                   "measure": "작성한 작업계획서의 내용을 해당 근로자에게 알린다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:38",
+                    "basisArticle": "art:기준규칙:38",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:05da2db5a055",
+                  "@type": "WorkMeasure",
                   "measure": "작업계획서를 작성한 경우 작업지휘자를 지정하여 작업계획서에 따라 작업을 지휘하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:39",
+                    "basisArticle": "art:기준규칙:39",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:91a7b392d57e",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 설치·해체작업은 사전 작업방법, 작업순서, 점검항목, 점검기준 등에 관한 안전작업 계획을 수립하고, 작업 시 관리감독자를 지정하여 전 작업과정을 지휘·감독하도록 한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:ab9a49902cc1",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전 해당 근로자에게 안전작업 계획의 내용을 주지시키고, 특별교육을 실시한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d15b27356cf7",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 작업에는 경험이 많은 숙련공을 고정 투입한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:fe92d5027197",
+                  "@type": "WorkMeasure",
                   "measure": "조립등의 범위 및 작업절차를 미리 그 작업에 종사하는 근로자에게 주지시킨다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:331의3",
+                    "basisArticle": "art:기준규칙:331의3",
                     "paragraph": 2,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:a297a62c0d62",
+                  "@type": "WorkMeasure",
                   "measure": "조립 및 해체 작업계획서에는 순서, 방법, 사용장비, 하중, 통신체계, 신호수 지정 등을 포함한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:6b80a7473eac",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 인양 시 크레인 신호수와 작업자 간 무전기 또는 수신호 체계를 준수한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:25b149e7e685",
+                  "@type": "WorkMeasure",
                   "measure": "인양 중 작업자는 하중 아래 출입 금지, 정지 후 체결 확인 절차를 반드시 준수한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
@@ -579,90 +635,106 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4",
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "9"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "9"
             },
             {
-              "article": "art:기준규칙:331의3",
+              "basisArticle": "art:기준규칙:331의3",
               "paragraph": 2,
               "item": 5,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/3.2",
+              "@type": "WorkRisk",
               "statement": "케이지에 근로자가 탑승한 상태로 갱폼을 인양하여 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c2777c6674a6",
+                  "@type": "WorkMeasure",
                   "measure": "갱 폼 인양 시 작업발판용 케이지에 근로자가 탑승한 상태에서 갱 폼의 인양작업을 하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "갱폼",
                   "basis": {
-                    "article": "art:기준규칙:331의3",
+                    "basisArticle": "art:기준규칙:331의3",
                     "paragraph": 2,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:6dc97e217eb9",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 인양작업은 폼타이 볼트 해체 등 해체작업 완료상태와 해체작업자 철수 여부를 확인한 후 실시한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/3.3",
+              "@type": "WorkRisk",
               "statement": "인양 후 슬래브 단부가 개방된 채 방치되어 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:44b3d9c40c6a",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 인양작업 후 슬래브 단부가 개방된 상태로 방치되지 않도록 사전에 슬래브 단부에 안전난간을 설치한 후 갱폼을 인양한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:6a5b9568e685",
+                  "@type": "WorkMeasure",
                   "measure": "외벽 작업 시에는 개구부용 안전덮개 또는 추락방호망을 병행 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/3.4",
+              "@type": "WorkRisk",
               "statement": "건설용리프트 운행구간 상부 갱폼의 방호 미흡으로 떨어지거나 낙하물이 발생함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7961ae7e79a9",
+                  "@type": "WorkMeasure",
                   "measure": "건설용리프트 운행구간 상부에 설치된 갱폼의 하부케이지가 리프트의 마스트에 접촉되어 접촉구간에 갱폼 하부케이지를 설치하지 않을 경우에는 리프트 설치위치의 좌·우측 작업자 이동통로 단부에 안전난간을 설치하고, 슬래브 거푸집 해체 시 낙하·비래 예방을 위하여 상부케이지 내측 수직부재와 결속하여 수직으로 한국산업표준에서 정하는 성능기준에 적합한 수직보호망을 설치한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 }
               ]
@@ -671,89 +743,103 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "9"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "9"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3",
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3",
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:331의3",
+              "basisArticle": "art:기준규칙:331의3",
               "paragraph": 2,
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:331의3",
+              "basisArticle": "art:기준규칙:331의3",
               "paragraph": 3,
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/3.5",
+              "@type": "WorkRisk",
               "statement": "하부 앵커볼트의 피로 손상을 점검하지 않아 갱폼이 낙하함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:96c8067fa808",
+                  "@type": "WorkMeasure",
                   "measure": "피로 하중으로 인한 갱폼의 낙하를 방지하기 위하여 하부 앵커볼트는 5개층 사용 시마다 점검하여 상태에 따라 교체한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:b33ef22678ec",
+                  "@type": "WorkMeasure",
                   "measure": "갱 폼의 지지 또는 고정철물의 이상 유무를 수시점검하고 이상이 발견된 경우에는 교체하도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:331의3",
+                    "basisArticle": "art:기준규칙:331의3",
                     "paragraph": 2,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:78ca9c5cb135",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 인양 시 충돌한 부분은 반드시 용접부위 등을 확인·점검하고 수리·보강한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/3.6",
+              "@type": "WorkRisk",
               "statement": "갱폼이 미끄러져 이탈·낙하함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:585fc6c902cc",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼이 미끄러질 우려가 있는 경우에는 안쪽 콘크리트 슬래브에 고정용 앵커를 설치하여 와이어로프로 2개소 이상 고정한다",
                   "controlLevel": "engineering",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:c0b70812526e",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집이 콘크리트면에 지지될 때에 콘크리트의 굳기정도와 거푸집의 무게, 풍압 등의 영향으로 거푸집의 갑작스런 이탈 또는 낙하로 인해 근로자가 위험해질 우려가 있는 경우에는 설계도서에서 정한 콘크리트의 양생기간을 준수하거나 콘크리트면에 견고하게 지지하는 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:331의3",
+                    "basisArticle": "art:기준규칙:331의3",
                     "paragraph": 3,
                     "item": 3
                   }
@@ -761,31 +847,39 @@
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/3.7",
+              "@type": "WorkRisk",
               "statement": "일상·정기 점검과 교육을 하지 않아 체결 이완·구조 변형을 놓쳐 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:40e626470610",
+                  "@type": "WorkMeasure",
                   "measure": "매일 작업 전 체결상태, 인양핀, 볼트, 발판, 난간, 추락 및 낙하 방지망, 유압설비 등의 이상 유무를 점검한다",
                   "variant": "시스템폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:94c786c2865a",
+                  "@type": "WorkMeasure",
                   "measure": "주 1회 이상 구조변형, 하중지지 상태, 연결부 이완 등에 대하여 정기점검을 실시한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:aa01cc94bd98",
+                  "@type": "WorkMeasure",
                   "measure": "작업자에게 거푸집 시스템의 구조와 인양 절차, 추락 및 낙하 방지수칙, 비상 시 대피요령 및 통신체계, 안전대 및 개인보호구 착용법을 교육한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 }
               ]
@@ -794,48 +888,56 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.3"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.3"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "9"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "9"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/3.8",
+              "@type": "WorkRisk",
               "statement": "인양 중 갱폼이 출렁여 구조물·근로자와 충돌함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:11f0a2fdcfb1",
+                  "@type": "WorkMeasure",
                   "measure": "타워크레인으로 갱폼을 인양하는 경우 보조 로프를 사용하여 갱폼의 출렁임을 최소화한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:0b1dec17fec8",
+                  "@type": "WorkMeasure",
                   "measure": "거푸집을 인양할 때에는 인양하중 및 중심이 확인된 전용 인양구조물을 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:bc99c5825f31",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 작업자는 갱폼 및 작업발판에 충격을 가하지 않도록 주의하며, 발판 위에서 뛰거나 빨리 걸어서는 안 되고 슬래브 또는 승강 사다리에서 발판으로 뛰어내려서도 안 된다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.3"
                   }
                 }
               ]
@@ -845,60 +947,70 @@
       ]
     },
     {
+      "@id": "workstep:갱폼작업/4",
+      "@type": "WorkStep",
       "stepName": "갱폼 해체 반출",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4",
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:146",
+              "basisArticle": "art:기준규칙:146",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:331의3",
+              "basisArticle": "art:기준규칙:331의3",
               "paragraph": 2,
               "item": 4,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/4.1",
+              "@type": "WorkRisk",
               "statement": "인양장비에 매달기 전에 앵커볼트를 먼저 해체하여 갱폼이 낙하함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:55964a3a6df9",
+                  "@type": "WorkMeasure",
                   "measure": "갱 폼을 조립하거나 해체하는 경우에는 갱 폼을 인양장비에 매단 후에 작업을 실시하도록 하고, 인양장비에 매달기 전에 지지 또는 고정철물을 미리 해체하지 않도록 한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:331의3",
+                    "basisArticle": "art:기준규칙:331의3",
                     "paragraph": 2,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:2abf3c36c5cf",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 해체작업은 갱폼을 인양장비에 매단 상태에서 실시하여야 하고, 하부 앵커볼트 부위에 해체 작업 전 인양장비에 결속확인 등 안전표지판을 부착하여 관리한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:6a5e80fcd4e8",
+                  "@type": "WorkMeasure",
                   "measure": "고정된 물체를 직접 분리·제거하는 작업을 하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:146",
+                    "basisArticle": "art:기준규칙:146",
                     "paragraph": 1,
                     "item": 3
                   }
@@ -906,25 +1018,31 @@
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/4.2",
+              "@type": "WorkRisk",
               "statement": "양생기간이 부족한 상태에서 해체하여 갱폼이 이탈·낙하함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c0956054c00b",
+                  "@type": "WorkMeasure",
                   "measure": "갱폼 해체작업은 콘크리트 타설 후 충분한 양생기간이 지난 후 행한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:ecc98897c19f",
+                  "@type": "WorkMeasure",
                   "measure": "동별, 부위별, 부재별 해체순서를 정하고 해체된 갱폼자재 적치계획을 수립한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 }
               ]
@@ -933,50 +1051,56 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4",
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4",
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.5"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.5"
             },
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4"
             },
             {
-              "article": "art:기준규칙:146",
+              "basisArticle": "art:기준규칙:146",
               "paragraph": 1,
               "item": 4
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/4.3",
+              "@type": "WorkRisk",
               "statement": "해체 구역 하부에 출입통제·감시자 없이 작업하여 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:52b70b980782",
+                  "@type": "WorkMeasure",
                   "measure": "해체작업 중인 갱폼에는 \"해체중\"임을 표시하는 표지판을 게시하고 하부에 출입금지구역을 설정하여 작업자의 접근을 금지하도록 감시자를 배치한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:0967939c0ebd",
+                  "@type": "WorkMeasure",
                   "measure": "미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:146",
+                    "basisArticle": "art:기준규칙:146",
                     "paragraph": 1,
                     "item": 4
                   }
@@ -984,83 +1108,103 @@
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/4.4",
+              "@type": "WorkRisk",
               "statement": "데릭·체인블록 등 인양설비 불량으로 갱폼이 낙하함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c6dc82c59a4a",
+                  "@type": "WorkMeasure",
                   "measure": "데릭으로 갱폼을 인양하는 경우 작업 전 체인블록 훅 해지장치 및 체인 상태를 반드시 점검한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:e736ccc66fd5",
+                  "@type": "WorkMeasure",
                   "measure": "데릭은 정확히 수직상태로 세우고 슬리브 주위를 고임목으로 단단히 고정하며, 안전성이 확인되지 않은 삼발이 등을 갱폼 인양에 사용하지 않는다",
                   "controlLevel": "engineering",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:e4c5a14627e5",
+                  "@type": "WorkMeasure",
                   "measure": "와이어로프 고정용 앵커는 콘크리트 구조물에 매입하여 견고하게 고정시킨다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:c66e6e3eaaf0",
+                  "@type": "WorkMeasure",
                   "measure": "데릭 후면에는 지름 9mm 이상 와이어로프와 턴 버클을 사용하여 로프를 팽팽하게 당긴 상태에서 인양한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:38563f73b50e",
+                  "@type": "WorkMeasure",
                   "measure": "해체·인양장비를 점검하고 작업자를 배치한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:4b09b11034fa",
+                  "@type": "WorkMeasure",
                   "measure": "데릭 2개를 이용하여 인양 시 갱폼 좌·우 수평이 맞도록 출렁임이 최소가 되도록 서서히 인양한다",
                   "controlLevel": "administrative",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:갱폼작업/4.5",
+              "@type": "WorkRisk",
               "statement": "하부 케이지 미장·치장 작업이 상부 거푸집 작업과 겹쳐 낙하물에 노출됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bfebb86149ce",
+                  "@type": "WorkMeasure",
                   "measure": "하부 케이지에서의 미장·치장 등 작업은 상부에서의 거푸집 설치·해체작업 공정에 맞추어 갱폼이 설치되어 있는 기간에 해당부분의 미장·치장 등 작업을 마무리하며, 케이지 내에서의 작업안전 사항은 갱폼 설치·해체작업에 준한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.5"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:8b09e50191a3",
+                  "@type": "WorkMeasure",
                   "measure": "구조물 각층 슬래브 단부에서의 발코니부 안전난간 설치 등 구조물 외벽측 작업을 갱폼이 설치되어 있는 기간에 완료할 수 있도록 작업계획을 조정한다",
                   "variant": "갱폼",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.5"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.5"
                   }
                 }
               ]
@@ -1069,23 +1213,27 @@
         },
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-8-2026",
-              "section": "8.1.4"
+              "basisGuide": "doc:kosha_guide/D-C-8-2026",
+              "guideSection": "8.1.4"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:갱폼작업/4.6",
+              "@type": "WorkRisk",
               "statement": "작업발판의 잔재물에 걸려 넘어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:2f42c3e9d127",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판의 잔재물은 발생 즉시 제거한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-8-2026",
-                    "section": "8.1.4"
+                    "basisGuide": "doc:kosha_guide/D-C-8-2026",
+                    "guideSection": "8.1.4"
                   }
                 }
               ]

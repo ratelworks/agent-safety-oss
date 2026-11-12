@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:작업의자형_달비계",
   "@type": [
     "ConstructionSubtask"
@@ -72,207 +30,247 @@
   ],
   "steps": [
     {
+      "@id": "workstep:작업의자형_달비계/1",
+      "@type": "WorkStep",
       "stepName": "준비·점검",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 9,
               "subitem": "가",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 9,
               "subitem": "나",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 9,
               "subitem": "다",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 9,
               "subitem": "라",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:작업의자형_달비계/1.1",
+              "@type": "WorkRisk",
               "statement": "사전 점검 없이 손상된 철물·카라비너를 사용하여 이탈로 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:aab2e293a592",
+                  "@type": "WorkMeasure",
                   "measure": "고리, 안전대, 카라비너, 샤클 등 철물은 손상되거나 부서지거나 휘어지면 안 되며, 날카로운 모서리, 틈, 닳은 부분, 녹 등이 없어야 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:9702162b9861",
+                  "@type": "WorkMeasure",
                   "measure": "카라비너의 후크는 자유롭게 움직이고 닫힐 때 자동으로 잠겨야 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:63e252275394",
+                  "@type": "WorkMeasure",
                   "measure": "작업자는 작업계획을 충분히 숙지하고 작업용 로프 및 구명줄, 작업대와 샤클 등 달비계 작업에 필요한 설비와 추락방지에 필요한 안전대 등에 대한 사전 점검을 실시한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:808634095164",
+                  "@type": "WorkMeasure",
                   "measure": "검사결과 불안전하거나 결함이 있는 달비계 또는 추락방지 설비는 제거 또는 폐기한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:01b3dc10132b",
+                  "@type": "WorkMeasure",
                   "measure": "검사를 실시한 후 날짜와 결과를 기록하여 보관한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/1.2",
+              "@type": "WorkRisk",
               "statement": "결함이 있는 작업용 섬유로프·섬유벨트를 사용하여 절단으로 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:2ba843e20f48",
+                  "@type": "WorkMeasure",
                   "measure": "꼬임이 끊어진 작업용 섬유로프 또는 안전대의 섬유벨트를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 9,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:71868b49c73e",
+                  "@type": "WorkMeasure",
                   "measure": "심하게 손상되거나 부식된 작업용 섬유로프 또는 안전대의 섬유벨트를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 9,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:d94e55de9deb",
+                  "@type": "WorkMeasure",
                   "measure": "2개 이상의 작업용 섬유로프 또는 섬유벨트를 연결한 것을 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 9,
                     "subitem": "다"
                   }
                 },
                 {
+                  "@id": "workmeasure:fbb6377405a7",
+                  "@type": "WorkMeasure",
                   "measure": "작업높이보다 길이가 짧은 작업용 섬유로프 또는 섬유벨트를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 9,
                     "subitem": "라"
                   }
                 },
                 {
+                  "@id": "workmeasure:3937c5676588",
+                  "@type": "WorkMeasure",
                   "measure": "로프는 헤지거나 소선의 절단, 마모 또는 불타거나 변색된 부분이 없어야 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:dbcd9008e9d0",
+                  "@type": "WorkMeasure",
                   "measure": "그을리거나 변색되거나 물러진 부분 등 화학적 또는 열에 의한 손상 여부와 로프 표면의 변색과 터짐 등 자외선에 의한 손상을 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/1.3",
+              "@type": "WorkRisk",
               "statement": "강도가 부족하거나 균열된 작업대를 사용하여 파손으로 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:430eedd44ac7",
+                  "@type": "WorkMeasure",
                   "measure": "달비계의 작업대는 나무 등 근로자의 하중을 견딜 수 있는 강도의 재료를 사용하여 견고한 구조로 제작한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:1a3ac506f85f",
+                  "@type": "WorkMeasure",
                   "measure": "작업대의 나무판을 검사하여 나무의 균열여부를 확인하고, 거친 모서리나 홈은 갈라짐을 야기할 수 있으므로 주의하여 검사한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:e0e49e493b3c",
+                  "@type": "WorkMeasure",
                   "measure": "작업대의 변형, 손상 등 접합부의 상태에 대한 이상 유무를 검사한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/1.4",
+              "@type": "WorkRisk",
               "statement": "악천후에 작업을 강행하여 로프가 흔들려 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:29b584529418",
+                  "@type": "WorkMeasure",
                   "measure": "비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 달비계의 작업을 중지한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
@@ -282,312 +280,378 @@
       ]
     },
     {
+      "@id": "workstep:작업의자형_달비계/2",
+      "@type": "WorkStep",
       "stepName": "고정점 확보 및 로프 설치",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.4",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 4,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 7,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 8,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:작업의자형_달비계/2.1",
+              "@type": "WorkRisk",
               "statement": "고정점의 강도·수량이 부족하여 뽑히면서 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:4116110a5153",
+                  "@type": "WorkMeasure",
                   "measure": "작업용 섬유로프는 콘크리트에 매립된 고리, 건축물의 콘크리트 또는 철재 구조물 등 2개 이상의 견고한 고정점에 풀리지 않도록 결속한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:399b610fdedb",
+                  "@type": "WorkMeasure",
                   "measure": "작업하는 근로자의 하중을 견딜 수 있을 정도의 강도를 가진 작업용 섬유로프, 구명줄 및 고정점을 사용한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:7f02a3d171a5",
+                  "@type": "WorkMeasure",
                   "measure": "작업용 로프와 구명줄은 각각 별도의 고정점에 묶어야 하며 고정점은 2,340 kgf 이상을 지지할 수 있어야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:70ce806026e8",
+                  "@type": "WorkMeasure",
                   "measure": "로프 고정용 고리는 옥상 구조물 공사 시 매입 설치하고, 매입하는 로프 고정용 고리 설치간격은 3m 내외가 적당하다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:f6f8cd8d8cea",
+                  "@type": "WorkMeasure",
                   "measure": "고리를 매입할 때 고리 앵커를 구조물의 철근에 용접하거나 고리 앵커 홀에 철근을 관통시키는 방법으로 고정하여 로프를 결속하였을 때 고리가 뽑히는 일이 없도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3c74b73f31c2",
+                  "@type": "WorkMeasure",
                   "measure": "철재구조물을 이용할 때에는 철저한 점검을 통하여 부식이 되었거나 연결부위의 처리가 불량한 곳에는 달비계를 고정하지 않도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/2.2",
+              "@type": "WorkRisk",
               "statement": "작업용 로프와 구명줄을 같은 고정점에 묶어 동시에 상실됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ef43596cd143",
+                  "@type": "WorkMeasure",
                   "measure": "작업용 섬유로프와 구명줄은 다른 고정점에 결속되도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:dbebca1d7c8f",
+                  "@type": "WorkMeasure",
                   "measure": "하나의 고정점에 작업용 로프와 구명줄이 동시에 결속되지 않도록 충분한 수량의 고정점을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:687d11f48896",
+                  "@type": "WorkMeasure",
                   "measure": "안전대를 지지하는 구명줄 고정점은 작업용 로프를 지지하는 고정점과 별도로 고정점을 확보하여 안전대를 지지하는 구명줄을 지지하도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/2.3",
+              "@type": "WorkRisk",
               "statement": "고정점이 없는 옥상에서 임시 결속하여 이탈로 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:e8efe031b01b",
+                  "@type": "WorkMeasure",
                   "measure": "로프용 고리 및 구조물이 없는 옥상, 지붕에서는 작업용 로프, 구명줄을 결속할 수 있는 철물 등을 설치하여 고정점을 확보한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:265c69cd806c",
+                  "@type": "WorkMeasure",
                   "measure": "철물 등 고정점은 앵커로 고정하는 등 작업 중 이탈되지 않도록 견고하게 설치하여야 하며, 작업하중을 충분히 지지할 수 있어야 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:6e81aa3b5ae1",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 또는 옥상의 돌출물 등과 같은 콘크리트 구조물을 이용할 경우에는 로프와 모서리의 접촉면을 고무패드 등으로 보호하고 구조물 위로 로프가 벗겨지는 것을 방지하기 위하여 못이나 앵글 등을 이용 로프를 고정시킨다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d68fa29f7962",
+                  "@type": "WorkMeasure",
                   "measure": "지붕 또는 옥상의 철골구조물이나 냉각탑, 계단의 난간이나 철재 파이프 같은 철재 구조물은 구조물의 상황에 따라 안전성이 큰 차이를 보일 수 있으므로 강도가 충분하고 로프가 벗겨지지 않은 구조물을 선택한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/2.4",
+              "@type": "WorkRisk",
               "statement": "매듭이 작거나 단일 결속이어서 작업 중 충격으로 풀림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f565a9b5bac0",
+                  "@type": "WorkMeasure",
                   "measure": "로프를 고정점에 결속하는 방법은 설치, 해체가 용이하고 안전한 8자 매듭 법을 이용하여 결속하도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:da342617eb37",
+                  "@type": "WorkMeasure",
                   "measure": "매듭은 가능한 크게 하는 것이 좋으며 로프의 풀림에 대비하여 반드시 2개의 고정점을 이용하여 2중으로 결속한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:dc76e245954b",
+                  "@type": "WorkMeasure",
                   "measure": "결속점의 로프 2차 풀림방지를 위하여 샤클 또는 철근 등을 체결고리에 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:f0ed7e917ca2",
+                  "@type": "WorkMeasure",
                   "measure": "구명줄 및 작업용 로프의 한쪽 끝을 고정점에 관리감독자 확인 아래 결속한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/2.5",
+              "@type": "WorkRisk",
               "statement": "로프가 구조물 모서리에 마모·절단되어 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:2965ff7b608a",
+                  "@type": "WorkMeasure",
                   "measure": "작업용 섬유로프와 구명줄이 건물이나 구조물의 끝부분, 날카로운 물체 등에 의하여 절단되거나 마모될 우려가 있는 경우에는 로프에 이를 방지할 수 있는 보호 덮개를 씌우는 등의 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 8
                   }
                 },
                 {
+                  "@id": "workmeasure:833d3b514d91",
+                  "@type": "WorkMeasure",
                   "measure": "로프를 사용할 경우 건물이나 구조물의 예리한 모서리에 접촉되면 접촉부분이 급격히 손상되므로 가죽이나 고무패드로 로프를 보호한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:ded5f8574d6b",
+                  "@type": "WorkMeasure",
                   "measure": "로프를 시멘트 바닥이나 표면이 거친 땅바닥에 끌면서 사용하면 로프의 절단 등으로 인한 치명적인 손상을 입게 되므로 취급 시 주의한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:5fa38c5ca380",
+                  "@type": "WorkMeasure",
                   "measure": "합성섬유로프는 특히 열에 취약하므로 열 주위에 가까이 하거나 닿으면 즉시 녹으므로 고온의 물체 주위에서 작업을 할 때에는 특별히 주의해서 사용한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/2.6",
+              "@type": "WorkRisk",
               "statement": "제3자가 고정점의 로프를 풀어 작업자가 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:bfe32e9c170a",
+                  "@type": "WorkMeasure",
                   "measure": "작업용 섬유로프 또는 구명줄이 결속된 고정점의 로프는 다른 사람이 풀지 못하게 하고 작업 중임을 알리는 경고표지를 부착한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 7
                   }
                 },
                 {
+                  "@id": "workmeasure:655e7fca56f4",
+                  "@type": "WorkMeasure",
                   "measure": "제3자에 의한 로프풀림 등의 위험요인이 있으므로 로프 고정점 등에는 \"작업중\"이라는 표지 및 자물쇠 등을 부착하여 제3자가 로프에 손을 대지 않도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/2.7",
+              "@type": "WorkRisk",
               "statement": "경사진 지붕에서 로프 결속·이동 중 미끄러져 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f94183bff4d4",
+                  "@type": "WorkMeasure",
                   "measure": "작업책임자는 작업 전에 현장에 대하여 고정점의 확인, 건물의 높이, 경사진 지붕에서의 추락위험 등을 정확하게 파악을 한 후 작업 계획을 수립한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:22ebaedf98c2",
+                  "@type": "WorkMeasure",
                   "measure": "경사진 지붕에서 준비작업 중 추락위험이 있을 경우 추락위험을 방지하기 위한 조치를 하여야 하며, 이때 안전대 부착설비는 달비계 작업용 로프 및 구명줄 고정점과 혼용하여 사용하지 않는다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
@@ -597,74 +661,80 @@
       ]
     },
     {
+      "@id": "workstep:작업의자형_달비계/3",
+      "@type": "WorkStep",
       "stepName": "하강 작업",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.8",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "ppe"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.8",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.8",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 10,
               "subitem": "가",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 10,
               "subitem": "나",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 2,
               "item": 6,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:작업의자형_달비계/3.1",
+              "@type": "WorkRisk",
               "statement": "작업대 네 모서리의 로프 연결이 불량하여 뒤집힘",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c65c200c01dc",
+                  "@type": "WorkMeasure",
                   "measure": "작업대의 4개 모서리에 로프를 매달아 작업대가 뒤집히거나 떨어지지 않도록 연결한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 2
                   }
@@ -672,14 +742,18 @@
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/3.2",
+              "@type": "WorkRisk",
               "statement": "근로자의 조종 없이 작업대가 하강하여 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:dd27c35ca321",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 작업용 섬유로프에 작업대를 연결하여 하강하는 방법으로 작업을 하는 경우 근로자의 조종 없이는 작업대가 하강하지 않도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 6
                   }
@@ -687,145 +761,183 @@
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/3.3",
+              "@type": "WorkRisk",
               "statement": "구명줄에 안전대를 체결하지 않은 채 하강하여 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:76aefdd0badc",
+                  "@type": "WorkMeasure",
                   "measure": "달비계에 구명줄을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 10,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:ad36dd124f36",
+                  "@type": "WorkMeasure",
                   "measure": "근로자에게 안전대를 착용하도록 하고 근로자가 착용한 안전줄을 달비계의 구명줄에 체결하도록 한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 2,
                     "item": 10,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:262d71678fa3",
+                  "@type": "WorkMeasure",
                   "measure": "구명줄에 안전대를 로프 연결철물 등으로 체결하고 안전대를 착용한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/3.4",
+              "@type": "WorkRisk",
               "statement": "작업용 로프와 구명줄이 엉키거나 길이가 부족하여 하강 중 정지",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:08b5ad05199a",
+                  "@type": "WorkMeasure",
                   "measure": "안전대를 착용한 상태에서 작업용 로프를 내리고 로프가 지상바닥에 충분히 닫도록 길이를 확인한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:6774422a534c",
+                  "@type": "WorkMeasure",
                   "measure": "작업용 로프와 구명줄의 엉킴을 방지하기 위하여 작업용 로프와 구명줄은 약 1m 정도 이격하여 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/3.5",
+              "@type": "WorkRisk",
               "statement": "탑승 전 안전모·안전대를 착용하지 않거나 구명줄에 체결하지 않아 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0a4f69ce15b5",
+                  "@type": "WorkMeasure",
                   "measure": "작업의자형 달비계에 탑승하기 전에 반드시 안전모와 안전대를 착용하고 안전대를 안전대 부착설비(구명줄)에 부착한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:d2defd998797",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 근로자가 작업대에 탑승하기 전 안전모 및 안전대를 착용하고 안전대를 구명줄에 체결했는지 확인한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.8"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.8"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/3.6",
+              "@type": "WorkRisk",
               "statement": "안전난간을 넘어 탑승하다 시설물이 파손·탈락하여 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:7b685b391014",
+                  "@type": "WorkMeasure",
                   "measure": "작업의자형 달비계 탑승을 위해 안전난간 등 시설물을 넘어갈 경우에는 시설물의 파손, 탈락 등에 의한 추락, 전도 등의 재해를 예방하기 위해 사전 점검을 철저히 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/3.7",
+              "@type": "WorkRisk",
               "statement": "작업대에서 몸을 과도하게 내밀어 무게중심이 벗어나 이탈",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:043028726274",
+                  "@type": "WorkMeasure",
                   "measure": "작업의자형 달비계 이용 작업 시 작업대에서 과도하게 몸을 내밀어 작업을 할 경우 작업대에서 이탈하여 추락할 우려가 있으므로 가급적 무게중심이 작업대에서 벗어나지 않도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:작업의자형_달비계/3.8",
+              "@type": "WorkRisk",
               "statement": "관리감독자가 설비 결손·매듭 결속을 확인하지 않아 작업 중 파단",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3734d65067d9",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 작업 실시 전에 작업자에게 작업용 로프의 적합한 설비, 작업용 로프의 기본적인 검사방법, 구명줄과 앵커, 작업의자형 달비계의 안전한 사용법, 추락방지 시스템과 응급대처 방법 등을 포함한 작업계획에 대한 교육을 실시한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.8"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:a0ee4a7e2120",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 작업용 로프 및 구명줄, 작업용 로프 및 구명줄의 고정점, 구명줄의 조정점, 작업대, 고리걸이용 철구 및 안전대 등의 결손 여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.8"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:f4a0a0b10645",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 작업시작 전 또는 휴식 후 작업재개 전에는 작업용 로프 및 구명줄이 고정점에 풀리지 않는 매듭방법으로 결속되었는지 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.8"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:c5a659585733",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 작업방법 및 근로자 배치를 결정하고 로프 고정 장소에서 작업 진행 상태를 감시한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.8"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.8"
                   }
                 }
               ]
@@ -834,25 +946,29 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:작업의자형_달비계/3.9",
+              "@type": "WorkRisk",
               "statement": "하부 출입금지 구역을 설정하지 않아 낙하물에 통행자가 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:22db9ee679bc",
+                  "@type": "WorkMeasure",
                   "measure": "작업의자형 달비계를 이용한 작업구역에는 출입금지 구역을 설정하고 경고 표지를 작업장소 아래에 설치하여 다른 작업자가 쉽게 알 수 있도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]
@@ -862,69 +978,85 @@
       ]
     },
     {
+      "@id": "workstep:작업의자형_달비계/4",
+      "@type": "WorkStep",
       "stepName": "작업 후 보관",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.3.7",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.3.7",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:작업의자형_달비계/4.1",
+              "@type": "WorkRisk",
               "statement": "로프를 꺾인 채 보관하거나 햇빛·화학물질에 노출시켜 강도가 저하됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:fda78776769b",
+                  "@type": "WorkMeasure",
                   "measure": "로프를 풀 때 비틀리면 꺾임이 발생되어 강도가 급격히 저하되므로 꼬임을 잘 풀어 꺾임이 발생되지 않도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:014e27c49eec",
+                  "@type": "WorkMeasure",
                   "measure": "작업 후 달비계를 보관할 때에는 물과 중성세제로 로프를 세척하고 기타 로프 재료의 특성에 적합한 방식으로 깨끗이 세척한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:041a1f2e69fc",
+                  "@type": "WorkMeasure",
                   "measure": "세척 후에는 마르고 깨끗한 천으로 닦고 대기 중에 널어 말리고 건조를 위해 열을 가하지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:2f05d7329551",
+                  "@type": "WorkMeasure",
                   "measure": "합성섬유로프는 햇빛에 약하므로 옥내에 보관하거나, 옥외에 보관할 때는 천막 등을 덮어 햇빛을 차단시킨다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:bdf8de305577",
+                  "@type": "WorkMeasure",
                   "measure": "작업대와 로프는 공기가 잘 통하고 건조하며 직사광선을 피해 깨끗한 장소에 보관한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:cb228e3969f7",
+                  "@type": "WorkMeasure",
                   "measure": "화학물질이 있는 곳은 피하여야 하며 장기간의 저장 후에는 달비계의 구성품을 철저하게 검사한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.3.7"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.3.7"
                   }
                 }
               ]

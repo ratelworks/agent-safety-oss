@@ -304,7 +304,6 @@
     "penaltyType": "safety:penaltyType",
     "amount": "safety:amount",
     "amountUnit": "safety:amountUnit",
-    "condition": "safety:condition",
     "controlLevel": "safety:controlLevel",
     "ericLevel": "safety:ericLevel",
     "category": "schema:category",
@@ -609,6 +608,12 @@
       "@container": "@set"
     },
     "ConstructionSubtask": "safety:ConstructionSubtask",
+    "WorkStep": "safety:WorkStep",
+    "WorkRisk": "safety:WorkRisk",
+    "WorkMeasure": "safety:WorkMeasure",
+    "workstep": "https://safety.ratelworks.org/workstep/",
+    "workrisk": "https://safety.ratelworks.org/workrisk/",
+    "workmeasure": "https://safety.ratelworks.org/workmeasure/",
     "workGroup": "cc:workGroup",
     "steps": {
       "@id": "cc:hasStep",
@@ -627,8 +632,19 @@
     "paragraph": "cc:paragraph",
     "item": "cc:item",
     "subitem": "cc:subitem",
-    "section": "cc:section",
-    "controlLevel": "cc:controlLevel",
+    "guideSection": "cc:guideSection",
+    "basisArticle": {
+      "@id": "cc:basisArticle",
+      "@type": "@id"
+    },
+    "basisAnnex": {
+      "@id": "cc:basisAnnex",
+      "@type": "@id"
+    },
+    "basisGuide": {
+      "@id": "cc:basisGuide",
+      "@type": "@id"
+    },
     "risks": {
       "@id": "cc:risk",
       "@container": "@list"

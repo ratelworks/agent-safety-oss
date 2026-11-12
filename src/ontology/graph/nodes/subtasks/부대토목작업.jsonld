@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:부대토목작업",
   "@type": [
     "ConstructionSubtask"
@@ -76,71 +34,85 @@
   ],
   "steps": [
     {
+      "@id": "workstep:부대토목작업/1",
+      "@type": "WorkStep",
       "stepName": "부대토목 옹벽시공",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.3.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:339",
+              "basisArticle": "art:기준규칙:339",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:340",
+              "basisArticle": "art:기준규칙:340",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:부대토목작업/1.1",
+              "@type": "WorkRisk",
               "statement": "급경사면에 옹벽을 설치하려 굴착하다 비탈면이 붕괴",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:6ca7f08aba01",
+                  "@type": "WorkMeasure",
                   "measure": "불안전한 급경사면에 옹벽설치를 위한 굴착작업 시 비탈면의 지질, 지층 상태가 불량한 경우에는 흙막이지보공을 설치하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.3.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:0aadb89347f4",
+                  "@type": "WorkMeasure",
                   "measure": "지반 등을 굴착하는 경우 굴착면의 기울기를 기준에 맞도록 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:339",
+                    "basisArticle": "art:기준규칙:339",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:e4cd3921fda8",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업 시 토사등의 붕괴 또는 낙하에 의하여 근로자에게 위험을 미칠 우려가 있는 경우에는 미리 흙막이 지보공의 설치, 방호망의 설치 및 근로자의 출입 금지 등 그 위험을 방지하기 위하여 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:340"
+                    "basisArticle": "art:기준규칙:340"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:부대토목작업/1.2",
+              "@type": "WorkRisk",
               "statement": "굴착 후 구조물 축조를 미뤄 변형이 발생하고 배면이 붕괴",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bf13cb93c658",
+                  "@type": "WorkMeasure",
                   "measure": "굴착부분에 대해서는 변형이 발생되기 전에 기초 및 벽체 구조물을 축조하고 배면에는 배수가 잘 되는 재료로 뒷채움을 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.3.3"
                   }
                 }
               ]
@@ -149,26 +121,30 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "7.3.3",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "7.3.3",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:부대토목작업/1.3",
+              "@type": "WorkRisk",
               "statement": "깎기 비탈면에 낙석 우려가 있는데 보호공 없이 장기 방치",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:41feedfd6eb3",
+                  "@type": "WorkMeasure",
                   "measure": "깎기 비탈면에 낙석의 우려가 있거나 장기간 방치할 경우에는 록볼트, 숏크리트, 넷트 등의 비탈면 보호공을 실시하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "7.3.3"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "7.3.3"
                   }
                 }
               ]
@@ -178,155 +154,183 @@
       ]
     },
     {
+      "@id": "workstep:부대토목작업/2",
+      "@type": "WorkStep",
       "stepName": "부대토목 구내포장",
       "stepHazards": [
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.1.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.1.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.1.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.1.8",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.6",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:200",
+              "basisArticle": "art:기준규칙:200",
               "paragraph": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:344",
+              "basisArticle": "art:기준규칙:344",
               "paragraph": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:98",
+              "basisArticle": "art:기준규칙:98",
               "paragraph": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:부대토목작업/2.1",
+              "@type": "WorkRisk",
               "statement": "포장 장비 작업구간에 근로자·일반인이 출입하여 접촉",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ff06ac5fe6af",
+                  "@type": "WorkMeasure",
                   "measure": "건설기계를 사용하는 작업구역에는 근로자 및 일반인이 출입하지 않도록 통제하여야 하고, 유도자를 배치하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.1.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.1.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:e0fa01a255c7",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시키지 않는다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:200",
+                    "basisArticle": "art:기준규칙:200",
                     "paragraph": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:부대토목작업/2.2",
+              "@type": "WorkRisk",
               "statement": "교통처리계획 없이 포장 작업을 하여 일반 차량과 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0c79336c1b05",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전 안내표지판 및 위험경고 시설물 설치, 신호수 배치 등을 포함하는 교통처리계획을 수립한 후, 작업 중 반드시 신호수를 배치하고, 신호방법을 정하여 신호하는 등 교통사고가 발생하지 않도록 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:8b061fdfa4a8",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계, 차량계 건설기계를 사용하여 작업을 하는 경우 미리 작업장소의 지형 및 지반 상태 등에 적합한 제한속도를 정하고, 운전자로 하여금 준수하도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:98",
+                    "basisArticle": "art:기준규칙:98",
                     "paragraph": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:부대토목작업/2.3",
+              "@type": "WorkRisk",
               "statement": "포장 다짐장비가 후진하다 근로자에게 부딪힘",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ba0de5cc9ed6",
+                  "@type": "WorkMeasure",
                   "measure": "다짐기계인 로울러를 운전할 때에는 후진주행 시 후진경보기 및 후사경 등을 설치하여 부딪힘, 끼임 등의 재해를 예방토록 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.1.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.1.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:aac265ebe7ac",
+                  "@type": "WorkMeasure",
                   "measure": "복구작업 시 장비 넘어짐, 부딪힘 등의 재해를 예방하기 위하여 다짐 및 포장장비의 운행경로 등 포장 복구작업에 대한 작업계획과 교통처리 계획을 수립하여 작업을 실시하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.1.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.1.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:aba7195a0536",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업을 할 때에 굴착기계등이 근로자의 작업장소로 후진하여 근로자에게 접근하거나 굴러 떨어질 우려가 있는 경우에는 유도자를 배치하여 굴착기계등을 유도하도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:344",
+                    "basisArticle": "art:기준규칙:344",
                     "paragraph": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:부대토목작업/2.4",
+              "@type": "WorkRisk",
               "statement": "도로측면 작업에 교통안전시설이 없어 일반 차량과 충돌",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:8e1f6a1ea011",
+                  "@type": "WorkMeasure",
                   "measure": "도로측면 작업 시 작업구역 주변에 안전표지판, 경고등, 방호울타리 등 교통안전시설을 설치하고 작업하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ed219d2c4426",
+                  "@type": "WorkMeasure",
                   "measure": "작업 중에는 교통신호 및 통제를 위한 신호수와 절단기, 굴착기, 덤프트럭 등 장비에는 유도자를 배치하고 안전하게 작업을 하여야 하며, 지시·안내표지판을 설치하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 }
               ]
@@ -335,35 +339,41 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.1",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:부대토목작업/2.5",
+              "@type": "WorkRisk",
               "statement": "포장 절단 중 하부 매설물을 손상시켜 가스 누출·감전",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:8fe4f6a15fb1",
+                  "@type": "WorkMeasure",
                   "measure": "작업장소에 상·하수도관, 도시가스관, 전기·정보통신관, 열배관 등 지장물의 위치 및 상태를 확인하고, 포장 절단작업을 할 때에는 포장하부의 매설물이 손상되지 않도록 조치하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:6fe6fcddffe9",
+                  "@type": "WorkMeasure",
                   "measure": "포장 절단작업 전 좌표측량에 의한 관로동선을 관리감독자와 협의하고 결정한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 }
               ]
@@ -372,64 +382,76 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:부대토목작업/2.6",
+              "@type": "WorkRisk",
               "statement": "절단날이 파손되어 파편이 비산해 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:60d0be4d5365",
+                  "@type": "WorkMeasure",
                   "measure": "절단기의 작동상태 및 방호설비 부착여부를 확인하고 안전한 상태에서 사용하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3d6e6009fe9f",
+                  "@type": "WorkMeasure",
                   "measure": "절단 작업 시 절단기의 냉각수의 주입상태, 절단날의 덮개 상태를 확인하고 절단날 파손 시 파편이 비래할 위험이 있는 방향에는 근로자 출입을 통제하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:부대토목작업/2.7",
+              "@type": "WorkRisk",
               "statement": "절단 폐자재를 덮개 없이 운반하여 낙하물이 발생",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7ce360227533",
+                  "@type": "WorkMeasure",
                   "measure": "덤프트럭을 이용하여 절단된 포장재를 반출·운반할 때에는 낙하물이 발생하지 않도록 덮개를 설치하는 등 안전조치를 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:db600206c418",
+                  "@type": "WorkMeasure",
                   "measure": "절단된 포장재 등 폐자재를 반출·운반할 때에는 주변도로 상황 및 시간대별 교통상황을 고려하여 작업계획을 수립하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.1"
                   }
                 }
               ]
@@ -438,26 +460,30 @@
         },
         {
           "hazardLabel": "이상온도·화상",
+          "hasHazard": "hazard:thermal_burn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.1.8",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.1.8",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:thermal_burn",
           "risks": [
             {
+              "@id": "workrisk:부대토목작업/2.8",
+              "@type": "WorkRisk",
               "statement": "고열의 아스팔트를 취급하다 화상",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b64a98b07516",
+                  "@type": "WorkMeasure",
                   "measure": "복구작업 시 고열의 아스팔트 취급 시에는 주의하도록 하여야 하고, 개인보호구 착용상태를 확인하여야 한다",
                   "controlLevel": "ppe",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.1.8"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.1.8"
                   }
                 }
               ]

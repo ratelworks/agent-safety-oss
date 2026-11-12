@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:흙막이_공통_부대",
   "@type": [
     "ConstructionSubtask"
@@ -98,96 +56,108 @@
   ],
   "steps": [
     {
+      "@id": "workstep:흙막이_공통_부대/1",
+      "@type": "WorkStep",
       "stepName": "사전조사 및 설계도서 검토",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.1.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.1.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "annex": "annex:기준규칙:별표4-6호",
+              "basisAnnex": "annex:기준규칙:별표4-6호",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.1.1",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:346",
+              "basisArticle": "art:기준규칙:346",
               "paragraph": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:346",
+              "basisArticle": "art:기준규칙:346",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:38",
+              "basisArticle": "art:기준규칙:38",
               "paragraph": 1,
               "item": 6,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:53",
+              "basisArticle": "art:기준규칙:53",
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/1.1",
+              "@type": "WorkRisk",
               "statement": "지질·매설물·지장물 조사 없이 설계하여 시공 중 지반이 무너지거나 매설물을 파손함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:695ffd8c8d88",
+                  "@type": "WorkMeasure",
                   "measure": "대상 지반에 대한 지질조사, 가스관·통신선로·상수관·하수관·인근 구조물의 기초 등 지하 매설물 조사, 인근 구조물·고압전선로 등 지상 장애물 조사, 장비의 운행경로 등 현황 조사를 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:0b77b6b9c17e",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 설치부의 지반에 대한 토질정수를 결정하기 위한 지질조사·토질시험 등을 실시하고 그 결과를 이용한 설계를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:a7927363be31",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업의 사전조사 내용은 형상·지질 및 지층의 상태, 균열·함수(含水)·용수 및 동결의 유무 또는 상태, 매설물 등의 유무 또는 상태, 지반의 지하수위 상태로 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표4-6호"
+                    "basisAnnex": "annex:기준규칙:별표4-6호"
                   }
                 },
                 {
+                  "@id": "workmeasure:17ce17179329",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업을 하는 경우 사전조사 결과를 고려하여 별표 4의 구분에 따른 사항을 포함한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:38",
+                    "basisArticle": "art:기준규칙:38",
                     "paragraph": 1,
                     "item": 6
                   }
@@ -195,123 +165,155 @@
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/1.2",
+              "@type": "WorkRisk",
               "statement": "설계도서에 재료·배치·시공순서가 명시되지 않아 현장에서 임의 시공하고 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ea6158d04dcf",
+                  "@type": "WorkMeasure",
                   "measure": "구조도면에는 재료의 종류 및 치수, 배치간격, 시공순서, 시공방법 등을 기록하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d604955ba9af",
+                  "@type": "WorkMeasure",
                   "measure": "대상 현장에 대한 현황조사, 구조해석 결과, 구조도면, 특기시방 등의 설계도서를 공사관계자가 판독하기 용이하게 제작하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:9477d33a144e",
+                  "@type": "WorkMeasure",
                   "measure": "시공자가 특별히 주의하여 시공할 필요가 있는 사항에 대해서는 특기시방서를 작성하거나 설계 도면에 별도로 명기하여 시공자가 안전한 시공을 수행할 수 있도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:31896284e57b",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공을 조립하는 경우 미리 그 구조를 검토한 후 조립도를 작성하여 그 조립도에 따라 조립하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:346",
+                    "basisArticle": "art:기준규칙:346",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:3af033170884",
+                  "@type": "WorkMeasure",
                   "measure": "조립도에는 흙막이판·말뚝·버팀대 및 띠장 등 부재의 배치·치수·재질 및 설치방법과 순서가 명시되어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:346",
+                    "basisArticle": "art:기준규칙:346",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/1.3",
+              "@type": "WorkRisk",
               "statement": "계측항목을 설계 단계에서 정하지 않아 지반 변위·이상토압을 감지하지 못하고 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ac17a35c104f",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업 중 지하수위의 변화, 지반의 변위, 이상토압의 증가 등으로 인한 재해를 예방하기 위하여 필요한 계측항목을 정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3b1b17ca4671",
+                  "@type": "WorkMeasure",
                   "measure": "설계도서에서 계측장치를 설치하도록 하고 있는 경우에는 그에 필요한 계측장치를 설치하여 계측결과를 확인하고 그 결과를 통하여 안전성을 검토하는 등 위험을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:53",
+                    "basisArticle": "art:기준규칙:53",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:caca8d171ba0",
+                  "@type": "WorkMeasure",
                   "measure": "계측관리는 공사 중 발생될 수 있는 문제에 포함된 모든 값이 정확하게 측정될 수 있도록 이해하기 쉽고 신중하게 계획되어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "5.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/1.4",
+              "@type": "WorkRisk",
               "statement": "현장조건이 설계와 다른데도 그대로 시공하여 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e8272790f45f",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 설계내용이 현장조건과 부합되는지 여부에 대하여 공사중에 설계자로 하여금 확인토록 하여야 하고 이상이 있을 경우에는 적합한 대책을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:35a3a8f6fc5c",
+                  "@type": "WorkMeasure",
                   "measure": "작업 시작 전 현장조건이 설계도서와 일치하는지의 여부를 확인하고 상이하다고 판단될 때에는 감독 및 감리자에게 이를 보고하고 대처방안을 상호 협의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9f95b0b7ec7a",
+                  "@type": "WorkMeasure",
                   "measure": "감독 및 감리자가 없는 현장인 경우에는 현장조건이 설계도서와 상이한 경우 책임 있는 외부 전문기술자의 의견을 청취한 후 시행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:68a71fc4d76c",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 공사 진행 시 불가피하게 설계도면과 다르게 시공하여야 할 경우에는 공사를 중단하고 대체 방안을 강구한 이후에 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:eabad64d8a71",
+                  "@type": "WorkMeasure",
                   "measure": "굴착시기가 늦어져 주변여건이 변경된 경우는 이를 충분히 반영하여 재설계하여야 하며, 공사감독자의 승인을 받은 후 굴착작업을 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 }
               ]
@@ -321,54 +323,64 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/2",
+      "@type": "WorkStep",
       "stepName": "작업장 주변 조사 및 안전대책",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:341",
+              "basisArticle": "art:기준규칙:341",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:341",
+              "basisArticle": "art:기준규칙:341",
               "paragraph": 3,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/2.1",
+              "@type": "WorkRisk",
               "statement": "흙막이 위치의 가스관·상하수도관을 확인하지 않고 착수해 매설물을 파손함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bf01666871c3",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 설치 위치에 가스관, 상·하수도관 등 장애물의 유무를 유관기관의 설계도서 등으로 조사한 후 인력굴착으로 확인하여야 하며 필요시 이설 등 대책을 수립하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:6ab48489431b",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업에 의하여 노출된 매설물 등이 파손됨으로써 근로자가 위험해질 우려가 있는 경우에는 해당 매설물 등에 대한 방호조치를 하거나 이설하는 등 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:341",
+                    "basisArticle": "art:기준규칙:341",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:03ee3a7d4965",
+                  "@type": "WorkMeasure",
                   "measure": "매설물 등의 방호작업에 대하여 관리감독자에게 해당 작업을 지휘하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:341",
+                    "basisArticle": "art:기준규칙:341",
                     "paragraph": 3
                   }
                 }
@@ -378,25 +390,29 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.2",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/2.2",
+              "@type": "WorkRisk",
               "statement": "크레인 붐대가 고압전주에 근접해 근로자가 감전됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8c0393573258",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 설치 작업장 주변에 고압전주가 위치하여 크레인작업 시 크레인 붐대와 고압전주의 근접에 의한 감전사고 위험이 있을 때에는 방호관, 방책 설치 및 신호수 배치 등 감전사고 발생 방지에 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.2"
                   }
                 }
               ]
@@ -405,70 +421,82 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.2",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:52",
+              "basisArticle": "art:기준규칙:52",
               "item": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/2.3",
+              "@type": "WorkRisk",
               "statement": "흙막이 배면에 차량·토사·재료를 적치해 계획을 넘는 하중이 걸리고 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c818aed4d265",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 배면부의 흙막이 높이에 해당하는 범위 내에서는 각종 차량과 토사 및 재료가 적치되지 않도록 계획을 수립하고 부득이 적재 시는 별도의 하중 검토 등 안전성을 확인하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3c700284251f",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 벽 주변에 계획 이상의 하중이 적재되지 않도록 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:c5243a82a03c",
+                  "@type": "WorkMeasure",
                   "measure": "구축물등의 인근에서 굴착·항타작업 등으로 침하·균열 등이 발생하여 붕괴의 위험이 예상될 경우 구축물등에 대한 안전성 평가를 실시하여 위험성을 미리 제거한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:52",
+                    "basisArticle": "art:기준규칙:52",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/2.4",
+              "@type": "WorkRisk",
               "statement": "인접 굴착·흙막이 현장의 영향을 검토하지 않아 두 현장이 함께 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a3cfb146acfa",
+                  "@type": "WorkMeasure",
                   "measure": "인접하여 지하 굴착 및 흙막이 공사현장이 있을 경우 당해 흙막이 공사에 미칠 영향에 대하여 조사 후 대책을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.2"
                   }
                 }
               ]
@@ -478,88 +506,106 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/3",
+      "@type": "WorkStep",
       "stepName": "시공계획·자재·장비 계획 수립",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:345",
+              "basisArticle": "art:기준규칙:345",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/3.1",
+              "@type": "WorkRisk",
               "statement": "승인받지 않은 시공계획으로 착수하여 단계별 안전조치가 빠짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:4ebb98d45cd9",
+                  "@type": "WorkMeasure",
                   "measure": "시공계획서를 작성하여 감독 및 감리자에게 제출하고 그의 승인을 얻은 후 작업을 시행하여야 하며, 시공계획서에는 다음과 같은 사항을 반드시 포함하여 작성하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:da10634c0bef",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이공의 시공은 설계도에 따르며, 명시된 시공 및 되메우기 순서에 따라 단계적인 설치와 해체가 될 수 있어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/3.2",
+              "@type": "WorkRisk",
               "statement": "규격·재질 미달이거나 부식·변형된 자재를 사용해 부재가 파괴됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:17627fef4ee5",
+                  "@type": "WorkMeasure",
                   "measure": "자재를 반입할 경우에는 사전 설계도서에서 정한 성능 이상의 자재로서 그의 종류, 규격, 수량, 제작사 등을 명기한 자재 승인요청서를 감독 및 감리자에게 제출하여 이를 승인 받은 후 반입하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:1abac555355b",
+                  "@type": "WorkMeasure",
                   "measure": "시공 전에 흙막이의 각 부재가 설계도서에 명시한 규격 및 재질과 부합여부, 단면 손상 여부, 구부러짐 정도 등을 점검하고 이상 유무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:0604cfffb5d8",
+                  "@type": "WorkMeasure",
                   "measure": "자재는 가능한 한 즉시 사용이 가능하도록 필요한 양만큼 순차적으로 반입하되 일정 기간 동안 보관하여야 할 경우에는 양호한 상태로 보관하여야 하며, 부식, 마모, 변형 등이 발생되지 않도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:8d8a6f83002a",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공의 재료로 변형·부식되거나 심하게 손상된 것을 사용해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:345"
+                    "basisArticle": "art:기준규칙:345"
                   }
                 }
               ]
@@ -568,70 +614,82 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:199",
+              "basisArticle": "art:기준규칙:199",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/3.3",
+              "@type": "WorkRisk",
               "statement": "장비 사용계획 없이 투입해 장비가 넘어지거나 근로자와 부딪힘",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0e9925bf78df",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 및 양중 장비 사용 시 장비 특성, 작업내용, 장비 사용방법, 주변환경, 운행경로 등을 고려한 장비사용 계획을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:98526240a355",
+                  "@type": "WorkMeasure",
                   "measure": "이동식크레인, 굴삭기 등 장비반입 시 브레이크, 와이어로프, 버킷 연결부, 후크 등 사전 안전 점검을 실시하고 운전원의 자격 유무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:98fb95c34bed",
+                  "@type": "WorkMeasure",
                   "measure": "장비의 운행 및 작업구간에 지반상태를 확인하고 침하의 우려가 있을 때에는 침하 방지조치를 실시하고 천공장비 작업 시 아우트리거 설치 여부를 확인하는 등 장비의 전도 사고 방지에 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:af50f5f7907d",
+                  "@type": "WorkMeasure",
                   "measure": "장비의 달줄에 사용되는 와이어로프는 수시로 점검하여 손상 및 변형된 것은 즉시 교체하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb102732dd19",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하는 작업을 하는 경우 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:199"
+                    "basisArticle": "art:기준규칙:199"
                   }
                 }
               ]
@@ -640,25 +698,29 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.5",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/3.4",
+              "@type": "WorkRisk",
               "statement": "가설전기 계획 없이 전기 기계·기구를 사용해 근로자가 감전됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:9676a895dd04",
+                  "@type": "WorkMeasure",
                   "measure": "용접기, 절단기, 가설전등, 고압살수기, 양수기 등 전기 기계·기구에 대한 자동전격 방지기, 접지, 누전차단기, 분전반, 전등보호망, 가공배선 등 감전방지조치를 포함한 전기이용계획을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.5"
                   }
                 }
               ]
@@ -667,58 +729,68 @@
         },
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.6",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:37",
+              "basisArticle": "art:기준규칙:37",
               "paragraph": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:39",
+              "basisArticle": "art:기준규칙:39",
               "paragraph": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/3.5",
+              "@type": "WorkRisk",
               "statement": "안전한 작업방법 교육·지휘 없이 작업해 근로자가 재해를 입음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:230d35f382a0",
+                  "@type": "WorkMeasure",
                   "measure": "작업 시작 전 근로자에게 안전한 작업 방법을 교육하고 관리감독자가 작업을 지휘하게 해야 하며, 근로자는 그 지휘에 따라 안전한 작업 방법을 준수한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:cc95d23ed2e6",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자에게 근로자의 안전을 위하여 작업장의 안전시설의 설치, 보호구의 착용 상태 감시, 악천후 시 작업의 중지, 관계근로자 이외의 자의 출입통제 등의 업무를 수행하도록 해야 하며, 근로자는 이에 따라야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:13f2b493301a",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업의 작업지휘자를 지정하여 작업을 지휘하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:39",
+                    "basisArticle": "art:기준규칙:39",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:44020043e7a8",
+                  "@type": "WorkMeasure",
                   "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:37",
+                    "basisArticle": "art:기준규칙:37",
                     "paragraph": 1
                   }
                 }
@@ -728,36 +800,42 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "5.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "5.6",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:21",
+              "basisArticle": "art:기준규칙:21",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/3.6",
+              "@type": "WorkRisk",
               "statement": "지상에서 지하 작업장까지 안전통로가 없어 근로자가 떨어지거나 넘어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:59db60aa6b0a",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전 지상에서 지하 작업장까지 통행할 수 있는 가설계단 등 안전통로 계획을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "5.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "5.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:17a796d081db",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 안전하게 통행할 수 있도록 통로에 75럭스 이상의 채광 또는 조명시설을 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:21"
+                    "basisArticle": "art:기준규칙:21"
                   }
                 }
               ]
@@ -767,74 +845,90 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/4",
+      "@type": "WorkStep",
       "stepName": "가설도로 설치·유지",
       "stepHazards": [
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/4.1",
+              "@type": "WorkRisk",
               "statement": "가설도로의 폭·경사·노면이 부적합해 차량이 전도되거나 근로자와 부딪힘",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:b227c175c731",
+                  "@type": "WorkMeasure",
                   "measure": "도로의 표면은 장비 및 차량이 안전운행 할 수 있도록 유지·보수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:1cf545e45f9c",
+                  "@type": "WorkMeasure",
                   "measure": "운반로는 장비의 안전운행에 적합한 도로의 폭을 유지하여야 하며, 또한 모든 커브는 통상적인 도로폭보다 좀더 넓게 만들고 시계에 장애가 없도록 만들어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:bf24fa744cb5",
+                  "@type": "WorkMeasure",
                   "measure": "최고 허용경사도는 부득이한 경우를 제외하고는 10퍼센트를 넘어서는 안된다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:5ad69e923644",
+                  "@type": "WorkMeasure",
                   "measure": "장비사용을 목적으로 하는 진입로, 경사로 등은 주행하는 차량통행에 지장을 주지 않도록 만들어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3b9774ecd48d",
+                  "@type": "WorkMeasure",
                   "measure": "도로와 작업장높이에 차가 있을 때는 바리케이트 또는 연석 등을 설치하여 차량의 위험 및 사고를 방지하도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:cee04193341f",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이공사 시 가설도로 설치에 대한 안전조치 사항은 다음과 같다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 }
               ]
@@ -844,101 +938,123 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/5",
+      "@type": "WorkStep",
       "stepName": "차수 그라우팅 작업",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.2.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/5.1",
+              "@type": "WorkRisk",
               "statement": "지층 검토·시험시공 없이 주입해 차수가 되지 않고 지하수가 유출되며 지반이 이완됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:33324a91051a",
+                  "@type": "WorkMeasure",
                   "measure": "지층 조건을 검토하고 시공 전에 작업계획을 작성하며 공사감독자의 승인을 받아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d0621a105d56",
+                  "@type": "WorkMeasure",
                   "measure": "이 시공에 앞서 현장의 토질 특성을 조사하고, 공사 착수 전에 작성한 주입계획의 적정성 여부와 당해 공사에 대한 최적의 효과를 기대할 수 있는 주입량을 결정하기 위하여 현장에서 시험 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ed31da566f18",
+                  "@type": "WorkMeasure",
                   "measure": "차수 작업 계획에는 다음 사항을 포함하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:08de92c59c93",
+                  "@type": "WorkMeasure",
                   "measure": "지반의 특성 및 사용 목적에 따라 다음의 주입(Grouting)공법을 선택하여 각각의 주입공법별 시방서에 따라 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5e514d103a79",
+                  "@type": "WorkMeasure",
                   "measure": "지하수 유출, 지반의 이완 및 침하, 각종 부재의 변형 및 좌굴, 긴결부의 풀림 등을 수시로 점검하고, 이상이 있을 경우 즉시 보강하며, 그에 따른 안정성을 추가로 검토하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/5.2",
+              "@type": "WorkRisk",
               "statement": "주입 부위 지반이 변형되어 주변 시설물에 변위가 발생함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e1450fc60f2c",
+                  "@type": "WorkMeasure",
                   "measure": "주입은 해당 지층에 균일하고 치밀하게 주입되어야 하며, 주입 부위의 지반 변형으로 주변 지형이나 시설물에 변위가 없도록 수시로 점검하면서 주입하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:d05387963168",
+                  "@type": "WorkMeasure",
                   "measure": "주입재료는 보관시설을 구비한 곳에서 보관하며, 주입량의 당일 사용량, 잔량을 명확히 기록하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:7aad2c096eb5",
+                  "@type": "WorkMeasure",
                   "measure": "주입작업 시 교반 장소와 주입장소가 상당히 떨어져 있을 경우 비상시 연락을 할 수 있는 통신설비를 갖추어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.2"
                   }
                 }
               ]
@@ -947,46 +1063,54 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.2.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.2.1",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/5.3",
+              "@type": "WorkRisk",
               "statement": "그라우팅 장비·플랜트가 전도되거나 근로자가 주입 호스·동력선에 접근해 재해를 입음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:83d8401f1238",
+                  "@type": "WorkMeasure",
                   "measure": "장비의 설치는 현장 조건 및 작업 여건을 고려하여 전도 또는 전락되지 않도록 지반을 정리하고 안전하게 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ef6a8ba8f6cc",
+                  "@type": "WorkMeasure",
                   "measure": "그라우팅 설비는 주변에 영향을 주지 않는 장소를 선정하고 사용재료와 세정수가 유출되지 않도록 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:fe9d5fc47909",
+                  "@type": "WorkMeasure",
                   "measure": "플랜트 설치 후 주입 호스, 장비 가동용 동력선이 있는 장소에는 관계 근로자외 출입을 금지하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.1"
                   }
                 }
               ]
@@ -995,38 +1119,44 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.2.2",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/5.4",
+              "@type": "WorkRisk",
               "statement": "고압 주입 호스 연결부가 파손되며 주입재가 분출해 근로자를 침",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ec4a1d9de68c",
+                  "@type": "WorkMeasure",
                   "measure": "고압 또는 초고압 호스의 연결부는 파손으로 인명피해를 줄 우려가 있으므로 작업 전 체결상태 등을 점검하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:9b0a5ade301a",
+                  "@type": "WorkMeasure",
                   "measure": "주입 장비는 연속 주입작업을 할 수 있게 점검 정비를 철저히 하며, 주입종료 시에는 깨끗이 청소하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.2"
                   }
                 }
               ]
@@ -1037,22 +1167,26 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.2.2",
               "controlLevel": "administrative"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/5.5",
+              "@type": "WorkRisk",
               "statement": "규산소다 등 약액에 함유된 화학물질에 노출되어 근로자가 건강장해를 입음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b56ebb53b383",
+                  "@type": "WorkMeasure",
                   "measure": "규산소다 등 주입하는 약액에 화학물질이 함유된 경우에는 화학물질의 명칭·성분 및 함유량, 안전·보건상의 취급주의 사항 등이 포함된 물질안전보건자료(MSDS)를 작성하여 취급근로자가 쉽게 볼 수 있는 장소에 게시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.2.2"
                   }
                 }
               ]
@@ -1062,161 +1196,193 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/6",
+      "@type": "WorkStep",
       "stepName": "굴착작업",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.3",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:43",
+              "basisArticle": "art:기준규칙:43",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:46",
+              "basisArticle": "art:기준규칙:46",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/6.1",
+              "@type": "WorkRisk",
               "statement": "흙막이 상단부에 안전난간이 없어 근로자가 굴착부로 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:0c5ec51a623c",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업 전에 각 흙막이 벽체부에 표준 안전난간을 미리 설치하는 등 흙막이 상단부의 추락 방지에 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:a03f951285f6",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:43",
+                    "basisArticle": "art:기준규칙:43",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:523375aa55c4",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간을 설치하는 경우 상부 난간대, 중간 난간대, 발끝막이판 및 난간기둥으로 구성한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/6.2",
+              "@type": "WorkRisk",
               "statement": "지상에서 굴착 저면까지 안전통로가 없거나 사다리가 부실해 근로자가 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:5b2ccfb168c1",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업 전 과정에 걸쳐 근로자가 지상에서 굴착 저면까지 안전하게 통행할 수 있는 가설계단 형식의 안전 통로를 확보하고 가설계단 끝에는 표준 안전난간, 가설계단 하부에는 낙하물방지망을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3d707fb7301b",
+                  "@type": "WorkMeasure",
                   "measure": "사다리 상부와 하부를 견고히 고정할 것",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:cfe4225b9e6b",
+                  "@type": "WorkMeasure",
                   "measure": "사다리 기울기는 80도 이내로 할 것",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:fc820912ce71",
+                  "@type": "WorkMeasure",
                   "measure": "사다리 상단의 내민 길이는 1m이상으로 할 것",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:f3a7ecc73be4",
+                  "@type": "WorkMeasure",
                   "measure": "발판 간격은 동일하게 할 것",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:fa0e81ddabe3",
+                  "@type": "WorkMeasure",
                   "measure": "발판과 벽과의 사이는 15㎝이상을 유지할 것",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:347e31f5e4eb",
+                  "@type": "WorkMeasure",
                   "measure": "사다리에 수직 구명줄을 설치하고 통행 시 안전대를 착용하고 동 수직 구명줄에 걸도록 할 것",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:ebe62265e8ac",
+                  "@type": "WorkMeasure",
                   "measure": "가설계단과 굴착 저면의 사이에 사다리를 설치할 경우 다음 사항을 준수하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e9174f6db1d3",
+                  "@type": "WorkMeasure",
                   "measure": "높이 또는 깊이 2미터 이상의 추락할 위험이 있는 장소에서 하는 작업에는 안전대를 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:674a542c8127",
+                  "@type": "WorkMeasure",
                   "measure": "굴착깊이가 2미터를 초과하는 경우에는 근로자가 안전하게 승강하기 위한 건설작업용 리프트 등의 설비를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:46"
+                    "basisArticle": "art:기준규칙:46"
                   }
                 }
               ]
@@ -1225,150 +1391,180 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:50",
+              "basisArticle": "art:기준규칙:50",
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/6.3",
+              "@type": "WorkRisk",
               "statement": "좌우 굴착 깊이가 달라 버팀대에 편토압이 걸리고 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ef4c5160008f",
+                  "@type": "WorkMeasure",
                   "measure": "굴착은 굴착 순서도에 따라 단계별로 실시하되 중앙부에서 흙막이 벽면 방향으로 실시하고 버팀대의 좌우 흙막이 벽체에 작용하는 토압이 균형을 이루도록 좌우 깊이를 동일하게 유지하면서 굴착하는 것을 원칙으로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:eef2d231dc1e",
+                  "@type": "WorkMeasure",
                   "measure": "굴토 시에는 안전한 단계굴착 높이를 정하여 각 단계별로 굴착 후 즉시 띠장, 버팀대, 지반앵커, 네일링 등으로 흙막이의 안정성을 확보한 후 다음 단계의 굴착을 시행하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:bd8bf4ab2e4b",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 벽면 주위에 소단을 남기고 중앙부를 굴착할 경우에 소단 길이는 굴착고의 3배 이상을 유지하여 흙막이벽의 안정성을 확보하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3bb40585b97b",
+                  "@type": "WorkMeasure",
                   "measure": "지반의 붕괴, 매설물의 손괴 등으로부터 근로자를 보호하기 위하여 지질, 매설물, 지하수위 등의 상태를 조사하고 굴착 시기, 작업순서, 작업 방법 등을 정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:88ebce5d02c9",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 지보공을 설치하여 위험을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:50",
+                    "basisArticle": "art:기준규칙:50",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:63b4910e3537",
+                  "@type": "WorkMeasure",
                   "measure": "작용하는 측압을 무시할 수 있는 암반구간의 경우에도 록볼트와 숏크리트 등으로 변형을 방지하여 안전을 확보하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/6.4",
+              "@type": "WorkRisk",
               "statement": "지표수가 유입되어 이상 수압이 걸리고 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7902d54abf3a",
+                  "@type": "WorkMeasure",
                   "measure": "우수 등 지표수 유입에 의한 이상 수압 등으로 흙막이 붕괴 사고가 발생치 않도록 흙막이 상부 지표면에 콘크리트 타설, 비닐 등의 설치와 배수로를 확보하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:e61230eba6c7",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 공사 완료 이후에는 주변에 배수시설을 갖추어 흙막이 공사장 내로 지표수가 유입되지 않도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:0bfe84ffd2c6",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이공사 완료 후 지하구조물 본체 공사 중 빈번히 발생하는 지하구조물 부상현상에 대해 항시 관심을 두고 가시설 주위의 완벽한 배수시설을 갖춰 지표수가 흙막이 공사장 내로 유입되지 않도록 충분한 조치를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/6.5",
+              "@type": "WorkRisk",
               "statement": "양생이 덜 된 콘크리트 인근에서 말뚝을 박아 구조물이 손상됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:aa96993d071e",
+                  "@type": "WorkMeasure",
                   "measure": "콘크리트 타설 후 7일 이상 양생이 되지 않은 콘크리트로부터 30m 내에서 말뚝을 박지 않아야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ec079c3bab4f",
+                  "@type": "WorkMeasure",
                   "measure": "말뚝을 이어서 사용할 때에는 그 이음의 위치가 동일 높이에서 시공되지 않도록 하여야 하며, 이음은 전단면 맞대기(butt)용접 또는 이음판을 연속 필렛용접으로 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:09bdbb71a643",
+                  "@type": "WorkMeasure",
                   "measure": "소음 및 진동이 허용값 이내이어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 }
               ]
@@ -1377,58 +1573,68 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 11,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/6.6",
+              "@type": "WorkRisk",
               "statement": "버럭·굴착 토사가 굴착 저면으로 떨어져 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e371348699a8",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 최상단에 굴착 토사 및 버럭 반출구를 지정한 후 동 반출구를 제외한 다른 부분에는 수평 방향으로 낙하물방지망을 설치하는 등 낙석 및 낙하 사고 발생 방지에 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:155885536914",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 토사 및 버럭은 버킷(Bucket)의 높이 이하로 담아서 양중·운반하고 버팀대와 띠장 위에 있는 버럭과 작업부산물 등은 수시로 제거하는 등 낙석과 낙하 사고 발생 방지에 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:11fa01d5748d",
+                  "@type": "WorkMeasure",
                   "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:864509e2399b",
+                  "@type": "WorkMeasure",
                   "measure": "토사등의 붕괴 또는 낙하가 발생할 우려가 있는 굴착작업 장소 및 그 아래에 관계 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 11
                   }
                 }
@@ -1438,44 +1644,52 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:200",
+              "basisArticle": "art:기준규칙:200",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/6.7",
+              "@type": "WorkRisk",
               "statement": "굴착 저면에서 장비와 근로자의 동선이 겹쳐 부딪히거나 끼임",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:2fcfdcb15aef",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 저면 및 지상에 장비 및 덤프트럭의 작업 구간과 분리하여 근로자의 안전 통로를 확보하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:49e959a67ec1",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 토사·버럭의 반출과 재료의 반입·반출시 굴착 저면과 지상에 각각의 신호수를 배치하고 양중, 상차, 하차 등의 작업이 신호수의 신호에 의하여 실시되도록 하는 등 충돌, 협착, 낙하 사고 발생 방지에 필요한 조치를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3eca1239b80a",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 우려가 있는 장소에 근로자를 출입시키지 않는다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:200"
+                    "basisArticle": "art:기준규칙:200"
                   }
                 }
               ]
@@ -1485,58 +1699,70 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/7",
+      "@type": "WorkStep",
       "stepName": "복공설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.4",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/7.1",
+              "@type": "WorkRisk",
               "statement": "복공판 하중이 주거더·하부구조로 전달되지 못해 복공이 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:283265c691bf",
+                  "@type": "WorkMeasure",
                   "measure": "복공판에 작용하는 하중은 주거더, 하부구조 및 지지 지반에 명확하게 전달될 수 있도록 노면 복공 구조계를 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:6fd6546dfa96",
+                  "@type": "WorkMeasure",
                   "measure": "기존 도로면에 시공할 경우에는 원칙적으로 작업구를 제외한 전구간을 복공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:59ae4c06efce",
+                  "@type": "WorkMeasure",
                   "measure": "교통량과 중차량 통행이 많은 경우 또는 도심지 시공의 경우에는 유지관리, 통행 차량의 안전성 및 소음, 진동 등 민원을 고려하여 현장여건에 적합한 복공판을 적용하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:3ec90ca07832",
+                  "@type": "WorkMeasure",
                   "measure": "복공판 상부에 자재 적재 하중과 장비 작업 시 허용상재 하중이 표기된 안내판을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 }
               ]
@@ -1545,88 +1771,106 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:43",
+              "basisArticle": "art:기준규칙:43",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/7.2",
+              "@type": "WorkRisk",
               "statement": "복공판이 이탈하거나 단차·엇갈림이 생겨 근로자가 빠지거나 넘어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:01a896af3dec",
+                  "@type": "WorkMeasure",
                   "measure": "복공판은 틈새 및 단차가 없이 평탄하게 설치하여야 하며, 주거더에 2개소 이상 연결하여 이탈하지 않도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a605354e61b1",
+                  "@type": "WorkMeasure",
                   "measure": "교차부의 복공판은 엇갈림이 생기지 않도록 주의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:c0d2992b3e15",
+                  "@type": "WorkMeasure",
                   "measure": "평면곡선부, 가각부 등 특수한 형상의 복공은 승인을 받아 시공하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:02c338009e99",
+                  "@type": "WorkMeasure",
                   "measure": "복공판의 표고는 도로중심이 아닌 도로면을 기준으로 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:40f0cfa99971",
+                  "@type": "WorkMeasure",
                   "measure": "도로의 경사가 심한 구간은 복공판에 미끄럼 방지시설을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/7.3",
+              "@type": "WorkRisk",
               "statement": "복공판을 제거한 개구부로 근로자가 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:028595a0e520",
+                  "@type": "WorkMeasure",
                   "measure": "복공판을 제거하여 굴착 토사 및 자재운반 통로로 사용 시에는 주위에 안전난간대를 설치하고 신호수를 배치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:0ca918f1bfea",
+                  "@type": "WorkMeasure",
                   "measure": "덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:43",
+                    "basisArticle": "art:기준규칙:43",
                     "paragraph": 1
                   }
                 }
@@ -1637,50 +1881,60 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/8",
+      "@type": "WorkStep",
       "stepName": "흙막이 가시설 해체",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.5",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/8.1",
+              "@type": "WorkRisk",
               "statement": "해체계획 없이 또는 조립의 역순이 아닌 방법으로 해체해 흙막이가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f0334a1c06d8",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 해체 전에 장비의 특성, 현장 주변 상황, 작업내용 등을 고려하여 해체 시기, 해체 방법, 각 단계별 해체 순서, 안전 조치사항 등의 내용이 포함된 흙막이 해체 계획을 수립하고 이에 따라 해체하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:be796b34fc21",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 가시설 해체는 조립의 역순으로 하부로부터 순차적으로 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:85459f8d4348",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대 해체 시 주변 지반 및 구조물에 영향이 미치지 않도록 흙막이와 축조물의 사이에 되메우기와 충분한 다짐을 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.5"
                   }
                 }
               ]
@@ -1689,37 +1943,43 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.5",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:44",
+              "basisArticle": "art:기준규칙:44",
               "paragraph": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/8.2",
+              "@type": "WorkRisk",
               "statement": "띠장·버팀대 해체 중 근로자가 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:25be585e8db9",
+                  "@type": "WorkMeasure",
                   "measure": "띠장, 버팀대 등의 해체 작업 시 반드시 안전대를 착용한 후 안전대 부착설비에 거는 등 추락 방지조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:c7770181517c",
+                  "@type": "WorkMeasure",
                   "measure": "안전대를 안전하게 걸어 사용할 수 있는 설비 등을 설치하고, 그 설비의 이상 유무를 정기적으로 점검한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:44",
+                    "basisArticle": "art:기준규칙:44",
                     "paragraph": 1
                   }
                 }
@@ -1729,49 +1989,57 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.5",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.5",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:385",
+              "basisArticle": "art:기준규칙:385",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/8.3",
+              "@type": "WorkRisk",
               "statement": "해체한 부재를 양중하는 중 떨어지거나 인발 부재에 근로자가 부딪힘",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:87a548b4af3c",
+                  "@type": "WorkMeasure",
                   "measure": "해체된 흙막이 재료의 양중은 달줄, 달포대를 이용하여 지상 야적장으로 안전하게 운반하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:1ae826bfd7d9",
+                  "@type": "WorkMeasure",
                   "measure": "가시설 흙막이 말뚝 인발과 버팀보, 띠장 등의 해체 작업 시 근로자의 접근을 통제하는 등 충돌, 협착, 낙하 사고 발생 방지에 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.5"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:f8ab9cbb34cc",
+                  "@type": "WorkMeasure",
                   "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:385"
+                    "basisArticle": "art:기준규칙:385"
                   }
                 }
               ]
@@ -1781,502 +2049,608 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/9",
+      "@type": "WorkStep",
       "stepName": "계측",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "9",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "9",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "7.2",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "7.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "8.1",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "8.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "7.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.6",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "6.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "6.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "7.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "7.1",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "7.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "8.2",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "8.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "8.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-103-2014",
-              "section": "9",
+              "basisGuide": "doc:kosha_guide/C-103-2014",
+              "guideSection": "9",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:347",
+              "basisArticle": "art:기준규칙:347",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:53",
+              "basisArticle": "art:기준규칙:53",
               "item": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/9.1",
+              "@type": "WorkRisk",
               "statement": "계측기를 설치하지 않거나 초기치를 확보하지 못해 변위를 판단할 기준이 없음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:660887bf1bdf",
+                  "@type": "WorkMeasure",
                   "measure": "설계도서 또는 시공계획서에서 정한 각 계측기를 설치하고 초기 측정값을 기록 보존하여야 하며, 계측 센서의 유실을 방지하기 위한 보호조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:fc3803780a4d",
+                  "@type": "WorkMeasure",
                   "measure": "계측기는 하중계, 변형률계, 지중 경사계, 지하 수위계, 지표 침하계등이 있으며 설계도서에 따라 적합하게 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:77580bb41293",
+                  "@type": "WorkMeasure",
                   "measure": "계측기의 초기치 값은 기초 자료로 활용될 수 있도록 반드시 시공 초기에 미리 얻어져야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:76139fe47b9e",
+                  "@type": "WorkMeasure",
                   "measure": "굴착에 따른 흙막이 벽체 또는 각종 지지 구조의 변형을 정량화하기 위해서는 계측기의 설치작업을 굴착공사 전이나 부재의 변형이 발생되기 전에 완료하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:532a327a6458",
+                  "@type": "WorkMeasure",
                   "measure": "토사등이나 구축물등의 붕괴로 근로자가 위험해질 우려가 있는 경우에는 그에 필요한 계측장치를 설치하여 계측결과를 확인하고 그 결과를 통하여 안전성을 검토하는 등 위험을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:53",
+                    "basisArticle": "art:기준규칙:53",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:1770e11021e8",
+                  "@type": "WorkMeasure",
                   "measure": "제1항의 점검 외에 설계도서에 따른 계측을 하고 계측 분석 결과 토압의 증가 등 이상한 점을 발견한 경우에는 즉시 보강조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:347",
+                    "basisArticle": "art:기준규칙:347",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/9.2",
+              "@type": "WorkRisk",
               "statement": "계측기 선정·위치가 부적합해 흙막이 거동을 대표하지 못함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:7e02a41c9fb2",
+                  "@type": "WorkMeasure",
                   "measure": "계측 목적에 적합한 계측기를 선정하여야 하며, 일반적인 계측기 선정 원리는 다음 항목과 같다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:92e60bec6547",
+                  "@type": "WorkMeasure",
                   "measure": "계측기의 정밀도, 계측 범위 및 신뢰도가 계측 목적에 적합할 것",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ea5b2fb48258",
+                  "@type": "WorkMeasure",
                   "measure": "예상 변위나 응력의 크기보다 계측기의 측정 범위가 넓을 것",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:6046950f992b",
+                  "@type": "WorkMeasure",
                   "measure": "계기의 오차가 적고 이상 유무의 발견이 쉬울 것",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d46e6c13773e",
+                  "@type": "WorkMeasure",
                   "measure": "온도와 습도의 영향을 적게 받거나 보정이 간단할 것",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:4b54e72c4727",
+                  "@type": "WorkMeasure",
                   "measure": "구조가 간단하고 설치가 용이할 것",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d76dc1aa9632",
+                  "@type": "WorkMeasure",
                   "measure": "시공 중 안전성을 담보할 수 있도록 가능한 많은 위치를 선정하는 것이 바람직하나, 합리적이고 경제적인 측면에서 흙막이 벽체와 배면지반의 거동을 대표할 수 있는 최소한의 위치를 선정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:711d5feeb686",
+                  "@type": "WorkMeasure",
                   "measure": "공사 전에 계측기 설치자는 현장 계측기 설치 위치에 대해 공사 감독자, 감리자, 시공자, 안전관리자 및 계측관리 담당자와 사전 검토를 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:c072d38abae4",
+                  "@type": "WorkMeasure",
                   "measure": "계측기 설치 및 측정 방법, 측정 시 유의사항은 계측기 제품에 따라 다를 수 있으므로 계측기 설치 회사로부터 관련 내용을 사전에 제공받아야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "6.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:647d53093754",
+                  "@type": "WorkMeasure",
                   "measure": "계측기는 도면에 표시된 바와 동일한 위치에 설치되어야 하며 현장 사정상 설치가 곤란한 경우는 감리자의 지시에 따라 위치를 재선정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/9.3",
+              "@type": "WorkRisk",
               "statement": "계측 빈도가 부족하거나 임의로 중단하여 급격한 변위를 놓침",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a4425ecc6cdf",
+                  "@type": "WorkMeasure",
                   "measure": "계측 빈도는 주변현황, 토질 및 지하수위 등의 조사 결과와 흙막이 구조물의 형식에 따라 공사시방서에서 정하며, 굴착행위 단계별 계측을 수행하는 것이 원칙이어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:324177c19c4a",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기간 동안은 각 항목별로 1주 2회 이상 측정하며, 굴착 완료 후에는 1주 1회 이상 측정하는 것을 원칙으로 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:703a96413a5a",
+                  "@type": "WorkMeasure",
                   "measure": "계측 도중 흙막이 벽이나 주변구조물에 이상이 예상되거나 측정값이 갑작스럽게 변동하면 계측빈도를 증가시켜야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:7d35b8718995",
+                  "@type": "WorkMeasure",
                   "measure": "해체 및 철거 전⋅후에는 계측을 통하여 변위 발생 상태를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:6133de03ce3f",
+                  "@type": "WorkMeasure",
                   "measure": "계측값의 변화가 없다고 임의로 계측을 중단하여서는 안 되고, 굴착공사 중에 지속적으로 계측을 실시하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:5021e4e43ea5",
+                  "@type": "WorkMeasure",
                   "measure": "기 측정일과 다음 측정일 사이의 기간에도 굴착 중 발생되는 대상 구조물의 변화를 주의 깊게 관찰해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/9.4",
+              "@type": "WorkRisk",
               "statement": "계측 결과 보고가 늦어 위험단계의 대응 시기를 놓치고 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e4ae617e2b05",
+                  "@type": "WorkMeasure",
                   "measure": "계측 결과는 계측 즉시 감독 및 감리자에게 구두 또는 간략 보고하여야 하며, 보고서 작성 시간으로 인하여 위험단계의 대응 시기를 놓치지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:2db972792220",
+                  "@type": "WorkMeasure",
                   "measure": "굴착공사 중 흙막이 벽의 이상 변위 발생 시 조기 안정성 확보를 위하여 지중 경사계 측정 결과를 즉시 공사감독자에게 보고하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:27be29a04a52",
+                  "@type": "WorkMeasure",
                   "measure": "계측결과 지반변위속도 및 흙막이 벽 부재 응력이 갑자기 증가하는 경우에는 계측 빈도를 증가시키고, 공사감독자와 협의하여 대책을 수립한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:885582cbdc46",
+                  "@type": "WorkMeasure",
                   "measure": "변위발생이 우려되는 시설물과 흙막이공에 대한 정기적인 계측관리를 시행하고, 그 결과를 공사감독자에게 서면으로 보고한 후 보관하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:ec4904b8d59f",
+                  "@type": "WorkMeasure",
                   "measure": "계측관리 담당자는 계측값을 관리기준과 비교·분석하여 안전회의와 위험성평가 등의 회의에 보고하여야 하며, 공사 책임자, 굴착공사 책임자, 관리감독자는 계측값을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:cd2d37e1c873",
+                  "@type": "WorkMeasure",
                   "measure": "공사 책임자는 시공 담당자 중에서 계측관리 담당자를 사전에 지정하여야 하며, 시공 전에 반드시 계산서 등의 설계 도서를 확인하여 단계별 계측관리기준을 명확히 설정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/9.5",
+              "@type": "WorkRisk",
               "statement": "관리기준·대처방안이 없어 계측값이 위험 수위에 도달해도 조치하지 못함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f4c7beebb46e",
+                  "@type": "WorkMeasure",
                   "measure": "계측항목별 판단기준을 정하고 위험 수위별 대처방안을 수립하여 두어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:1ba2ace1b6bb",
+                  "@type": "WorkMeasure",
                   "measure": "관리치를 설정한 후 계측을 계속하여 계측값이 관리기준치에 접근하면 계측 빈도를 높이는 등의 감시체제를 강화하고, 계측값이 더욱 증가하는 경향을 나타내면 시공을 중단하고 대책을 강구하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:be54bebb84e6",
+                  "@type": "WorkMeasure",
                   "measure": "계측관리 기준은 지질 조건, 단면의 크기 및 형상, 굴착 공법, 주변 구조물 및 환경조건 등에 따라 각각 달라지므로 일정한 기준을 적용하는 것은 곤란하나, 각종 이론과 실험 결과를 참고하여 설정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "8.2"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "8.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:09e304711d78",
+                  "@type": "WorkMeasure",
                   "measure": "굴착 공사현장의 안전관리를 위한 계측관리 방법은 절대치 관리 기법과 예측관리기법으로 나눌 수 있으며, 현장에서는 계측관리 방법을 선택하여 지속적으로 계측관리를 수행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "8.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "8.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:4dfe194181dc",
+                  "@type": "WorkMeasure",
                   "measure": "사고 위험가능성이 높거나 중요한 구조물 등에서는 절대치 관리 기법과 예측관리기법을 병행하여 수행할 수 있다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "8.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "8.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:92987c94bef2",
+                  "@type": "WorkMeasure",
                   "measure": "절대치 관리 기법은 충분한 시간을 가지고 대책공법을 수립할 수 있는 예측관리 기법과는 달리 계측 검토결과 위험한 상태인 경우 즉각적인 대책공법이 실시되어야 하므로 주의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "8.1"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "8.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/9.6",
+              "@type": "WorkRisk",
               "statement": "계측 자료를 분석하지 않아 이상 거동을 발견하지 못함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3c2f5ad3f2c4",
+                  "@type": "WorkMeasure",
                   "measure": "현장에서 얻어진 계측자료를 분석 프로그램을 활용하여 공사현황 및 기상상태 등이 고려된 종합 분석을 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:c4d3a63d0aa1",
+                  "@type": "WorkMeasure",
                   "measure": "자료 수집시 공사내용 및 주변상황, 기상조건 등도 면밀히 기록되어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:e5883e7313a8",
+                  "@type": "WorkMeasure",
                   "measure": "각종 계측결과는 일상의 시공관리의 이용 및 장래공사의 계획에 반영할 수 있도록 충분한 경험과 전문지식을 가진 계측 전문기술자에 의해 종합적으로 분석 평가되어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:cf62bdd08fa6",
+                  "@type": "WorkMeasure",
                   "measure": "관찰된 거동과 예측된 거동 사이에 발생하는 경향을 파악하기 위해 데이터 처리에 의한 결과의 도시와 요약이 필요하다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "7.2"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "7.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:28bbcef547eb",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 벽체의 변위 및 지지구조 축력 분포 등은 시공 조건에 따라 일정한 유형을 나타내므로 갑작스러운 변위 발생시 굴착공사를 중지하고 계측값을 확인하여 흙막이 벽체의 안전성을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:93fdc16b4bef",
+                  "@type": "WorkMeasure",
                   "measure": "굴착공사 주변 지반의 침하영역과 벽체 배면의 최대 침하는 설계에서 제시된 값을 기준으로 계측값을 관리하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/9.7",
+              "@type": "WorkRisk",
               "statement": "어스앵커 천공·굴착 중 계측기가 파손되어 계측이 중단됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:24967b06b4b7",
+                  "@type": "WorkMeasure",
                   "measure": "현장 내에 설치된 계측기는 시공이 진행됨에 따라 다양한 원인으로 파손되는 경우가 많다. 어스앵커 천공에 따른 경사계관의 파손, 백호우에 의한 흙막이 벽체 근접 굴착 등에 유의하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:9578c936a4f8",
+                  "@type": "WorkMeasure",
                   "measure": "기온이 영하로 아주 심하게 내려 갈 경우에는 계측기의 배터리 소모량이 급격히 증가하므로 동절기의 계측관리에는 이를 감안한 대비책을 미리 강구해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:246e8e4edbec",
+                  "@type": "WorkMeasure",
                   "measure": "계측관리를 수행하기 전에 관련된 모든 사항들을 신중하게 계획을 세우고, 특별한 사정이 없는 한 계획안에 맞추어 업무가 진행되도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:a91d09a691e2",
+                  "@type": "WorkMeasure",
                   "measure": "측정 시스템은 기계식, 전자식 등이 있으며, 측정 형식을 동일 시스템으로 통일하는 것이 좋다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 },
                 {
+                  "@id": "workmeasure:8e14a1b36f81",
+                  "@type": "WorkMeasure",
                   "measure": "계측기의 운영방법은 인력에 의한 계측기 운영과 자동화 장비에 의한 자동화 계측으로 구분되며, 계측대상 시설물의 중요도, 피해 발생시 영향, 경제성 및 계측빈도 등을 고려하여 결정한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-103-2014",
-                    "section": "9"
+                    "basisGuide": "doc:kosha_guide/C-103-2014",
+                    "guideSection": "9"
                   }
                 }
               ]
@@ -2286,87 +2660,107 @@
       ]
     },
     {
+      "@id": "workstep:흙막이_공통_부대/10",
+      "@type": "WorkStep",
       "stepName": "작업완료 및 주변 원상복구",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.7",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.7",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:52",
+              "basisArticle": "art:기준규칙:52",
               "item": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/10.1",
+              "@type": "WorkRisk",
               "statement": "보일링·히빙 검토 없이 굴착을 완료해 굴착 저면이 솟아오르며 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a4b9645ecd9f",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이 벽체 시공 완료 전에 보일링(Boiling)과 히빙(Heaving)에 대한 안정성 검토를 실시하여 이로 인해 발생할 수 있는 흙막이 변형, 붕괴, 주변 지반 함몰 등의 대형 안전사고를 예방하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:34f9827e26ca",
+                  "@type": "WorkMeasure",
                   "measure": "규격에 대한 검사는 흙막이 벽체의 위치, 방향, 높이, 기울기 및 법선에 대한 굴곡을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:62aff391f90d",
+                  "@type": "WorkMeasure",
                   "measure": "수급인은 공사감독자(또는 감리자)에 의해 불합격 판정을 받은 부분은 즉시 재시공 또는 보완 조치를 하고 재검사를 요청하여 승인을 받아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:흙막이_공통_부대/10.2",
+              "@type": "WorkRisk",
               "statement": "사전조사 없이 벽체를 인발해 인접 구조물이 손상되거나 지반이 침하됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3c3281e700a7",
+                  "@type": "WorkMeasure",
                   "measure": "가시설 흙막이 벽체의 매립여부를 사전에 결정하고 인발할 경우에는 인접 구조물의 조사, 부지 상황 및 인근 주변 환경의 조사 등 충분한 사전 조사를 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:08d4b7a78043",
+                  "@type": "WorkMeasure",
                   "measure": "가시설 흙막이 벽체의 인발 작업은 편압이 걸리지 않은 상태에서 실시하여야 하며, 인발 장비(바이브로 해머, 유압식 압입 인발기 등)는 타입의 양부, 타입 후의 시간 경과 정도, 클립의 상태 등을 고려하여 선정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:262a0e683019",
+                  "@type": "WorkMeasure",
                   "measure": "인발 작업시 진동이 심하여 인접 구조물에 영향을 끼칠 우려가 있을 경우는 감독관에게 보고하고 감독관의 지시에 따라 작업을 중지하고 적합한 대책을 수립해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:c5243a82a03c",
+                  "@type": "WorkMeasure",
                   "measure": "구축물등의 인근에서 굴착·항타작업 등으로 침하·균열 등이 발생하여 붕괴의 위험이 예상될 경우 구축물등에 대한 안전성 평가를 실시하여 위험성을 미리 제거한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:52",
+                    "basisArticle": "art:기준규칙:52",
                     "item": 1
                   }
                 }
@@ -2376,46 +2770,54 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "6.7",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "6.7",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:흙막이_공통_부대/10.3",
+              "@type": "WorkRisk",
               "statement": "인발 중 벽체 자재가 떨어지거나 소음·진동·분진이 발생해 근로자가 재해를 입음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:081285d8949a",
+                  "@type": "WorkMeasure",
                   "measure": "인발작업시 각 인발장비에 따른 소음, 진동, 분진, 인발재의 떨어짐·맞음 등에 대한 문제점을 최소로 줄일 수 있도록 세심한 계획을 세워야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:f862d8fbf2cb",
+                  "@type": "WorkMeasure",
                   "measure": "인발된 가시설 흙막이 벽체 자재의 적재 위치는 차량 통행에 지장이 없는 장소로 사전에 정하고 적재 방법은 안전한 방법으로 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "6.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "6.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:f2509e1bdc10",
+                  "@type": "WorkMeasure",
                   "measure": "물체가 떨어지거나 날아올 위험 또는 근로자가 추락할 위험이 있는 작업에는 안전모를 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 1
                   }

@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:발파작업",
   "@type": [
     "ConstructionSubtask"
@@ -106,103 +64,125 @@
   ],
   "steps": [
     {
+      "@id": "workstep:발파작업/1",
+      "@type": "WorkStep",
       "stepName": "발파 천공",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:발파작업/1.1",
+              "@type": "WorkRisk",
               "statement": "1차 발파 지역의 불발공을 확인하지 않고 천공기가 잔류 화약을 타격하여 폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:a6790cdbe877",
+                  "@type": "WorkMeasure",
                   "measure": "1차 발파된 지역에서 천공 작업을 하는 경우 전 지역에 폭파되지 않은 화약의 유무를 세밀히 조사하여 확인될 때까지 천공하지 않는다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:e5695b8cad60",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 발견하지 못하였다 하더라도 천공 구멍에 천공기, 곡괭이 또는 금속재 봉 등을 삽입하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:62af4af865dc",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 발파공에서부터 15m 이내에서는 동력 기계를 이용한 천공작업을 금지한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/1.2",
+              "@type": "WorkRisk",
               "statement": "같은 장소에서 천공과 장약이 동시에 진행되어 천공 충격이 장약된 화약류에 전달되어 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5017c956059e",
+                  "@type": "WorkMeasure",
                   "measure": "천공 작업과 장약 작업은 같은 작업 장소에서 병행하지 않고, 작업 장소 간에 충분한 안전거리를 확보한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/1.3",
+              "@type": "WorkRisk",
               "statement": "천공 장소에 전기뇌관·폭약을 근접 보관하여 대전된 정전기가 뇌관에 전달되어 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3262f7c3d5e2",
+                  "@type": "WorkMeasure",
                   "measure": "천공 장소에서 전기뇌관이나 폭약을 충분히 이격시켜 둔다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/1.4",
+              "@type": "WorkRisk",
               "statement": "발파공 직경이 화약류보다 작아 장약 시 무리한 삽입으로 약포에 충격이 가해져 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:98dd528099cc",
+                  "@type": "WorkMeasure",
                   "measure": "발파공의 크기는 사용할 화약류의 직경보다 크게 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 }
               ]
@@ -211,46 +191,54 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 1
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:발파작업/1.5",
+              "@type": "WorkRisk",
               "statement": "고소 천공 위치에서 작업발판 없이 작업하다 떨어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:99084645f83d",
+                  "@type": "WorkMeasure",
                   "measure": "천공 작업 중 근로자가 추락할 우려가 있는 때에는 작업 발판을 설치하고 안전대를 착용하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:cb9643d49a30",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:819ede457d62",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2
                   }
                 }
@@ -260,35 +248,41 @@
         },
         {
           "hazardLabel": "끼임·감김",
+          "hasHazard": "hazard:machine_entanglement",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement",
           "risks": [
             {
+              "@id": "workrisk:발파작업/1.6",
+              "@type": "WorkRisk",
               "statement": "회전 중인 천공기 로드에 신체·의복이 말려 끼임",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:6cd523b88a2e",
+                  "@type": "WorkMeasure",
                   "measure": "천공 작업을 하는 때에는 회전체에 끼이지 않도록 주의한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:f198b1cf239e",
+                  "@type": "WorkMeasure",
                   "measure": "오거 및 천공기가 작동할 때는 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 }
               ]
@@ -297,35 +291,41 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6"
             },
             {
-              "article": "art:기준규칙:322",
+              "basisArticle": "art:기준규칙:322",
               "paragraph": 1
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:발파작업/1.7",
+              "@type": "WorkRisk",
               "statement": "천공기를 이동하던 중 붐·공구류가 송전선에 접촉하여 감전",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d03404308bf5",
+                  "@type": "WorkMeasure",
                   "measure": "천공기를 이동할 때는 드릴 등 작업공구류를 안전한 위치에 두어야 하며, 송전선 아래나 그 주위로 이동할 때는 특히 주의한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:261d312c019b",
+                  "@type": "WorkMeasure",
                   "measure": "충전전로 인근에서 차량·기계장치 작업을 하는 경우 충전부로부터 300cm 이상 이격한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:322",
+                    "basisArticle": "art:기준규칙:322",
                     "paragraph": 1
                   }
                 }
@@ -335,62 +335,72 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 1
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 10,
               "subitem": "가"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 1
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:발파작업/1.8",
+              "@type": "WorkRisk",
               "statement": "천공 중 막장·비탈면의 낙반이 작업자에게 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c26168432997",
+                  "@type": "WorkMeasure",
                   "measure": "천공 작업 중에 발생할 우려가 있는 낙반 및 추락 등에 의한 위험을 방지하기 위한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:321a8189271d",
+                  "@type": "WorkMeasure",
                   "measure": "작업장의 바닥, 도로 및 통로 등에서 낙하물이 근로자에게 위험을 미칠 우려가 있는 경우 보호망을 설치하는 등 필요한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:561c0de2fff6",
+                  "@type": "WorkMeasure",
                   "measure": "부석의 낙하에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 10,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:4ec2bd7ab3b0",
+                  "@type": "WorkMeasure",
                   "measure": "물체가 떨어지거나 날아올 위험 또는 근로자가 추락할 위험이 있는 작업을 하는 근로자에게 안전모를 지급하고 착용하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 1
                   }
@@ -403,30 +413,36 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.6"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.6"
             },
             {
-              "article": "art:기준규칙:4의2"
+              "basisArticle": "art:기준규칙:4의2"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:발파작업/1.9",
+              "@type": "WorkRisk",
               "statement": "건식 천공으로 분진이 흩날려 작업자가 흡입",
               "measures": [
                 {
+                  "@id": "workmeasure:94ffde4493b0",
+                  "@type": "WorkMeasure",
                   "measure": "천공 작업으로 인해 발생하는 먼지는 가능한 한 물을 뿌리는 등 습식으로 제거한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:c5dadfe8ce4c",
+                  "@type": "WorkMeasure",
                   "measure": "분진이 심하게 흩날리는 작업장에 대하여 물을 뿌리는 등 분진이 흩날리는 것을 방지하기 위하여 필요한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:4의2"
+                    "basisArticle": "art:기준규칙:4의2"
                   }
                 }
               ]
@@ -436,535 +452,629 @@
       ]
     },
     {
+      "@id": "workstep:발파작업/2",
+      "@type": "WorkStep",
       "stepName": "발파 장약",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.7"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.7"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.3",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.3",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.7",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.7",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.8"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.8"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.4"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.7",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.7",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.8",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.8",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.3"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.3"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "8.2.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "8.2.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.3"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.3"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.7",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.7",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.7",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.7",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.8",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.8",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.8",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.8",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5",
               "controlLevel": "ppe"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.5"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.5"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:325",
+              "basisArticle": "art:기준규칙:325",
               "paragraph": 2,
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 1
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 2,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 3,
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:349",
+              "basisArticle": "art:기준규칙:349",
               "paragraph": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:37",
+              "basisArticle": "art:기준규칙:37",
               "paragraph": 1,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:발파작업/2.1",
+              "@type": "WorkRisk",
               "statement": "장약 장소 인근의 화기·흡연·전기용접 불티가 화약류에 착화하여 폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:d65ee358b5e4",
+                  "@type": "WorkMeasure",
                   "measure": "장약 작업 장소 인근에서는 화기사용 및 흡연을 하지 않도록 한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:3819507a1b38",
+                  "@type": "WorkMeasure",
                   "measure": "장약 작업 장소 인근에서는 전기용접 작업이나 동력을 사용하는 기계를 사용하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:c728e7bbebb9",
+                  "@type": "WorkMeasure",
                   "measure": "화약이나 폭약을 장전하는 경우에는 그 부근에서 화기를 사용하거나 흡연을 하지 않도록 한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.2",
+              "@type": "WorkRisk",
               "statement": "얼어붙은 다이나마이트를 화기로 녹이다 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bebcdb962024",
+                  "@type": "WorkMeasure",
                   "measure": "얼어붙은 다이나마이트는 화기에 접근시키거나 그 밖의 고열물에 직접 접촉시키는 등 위험한 방법으로 융해되지 않도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.3",
+              "@type": "WorkRisk",
               "statement": "장전구·장약봉의 마찰·충격으로 약포 또는 뇌관이 기폭",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:16db79be509c",
+                  "@type": "WorkMeasure",
                   "measure": "장전구는 마찰·충격·정전기 등에 의한 폭발의 위험이 없는 안전한 것을 사용한다",
                   "controlLevel": "substitution",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:007b091c9a4a",
+                  "@type": "WorkMeasure",
                   "measure": "장약봉은 곧바르고 견고하며, 마찰·충격·정전기 등에 대하여 안전한 부도체(플라스틱, 나무 등)를 사용하여 약포 지름보다 약간 굵고 적당한 길이로 하며, 개수는 충분히 준비한다",
                   "controlLevel": "substitution",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:d41c9a58143d",
+                  "@type": "WorkMeasure",
                   "measure": "약포는 1개씩 손을 사용하여 신중하게 장약봉으로 넣고, 약포 간에 간격이 없도록 그때마다 구멍길이의 차를 측정하면서 장약한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:aef1c383202b",
+                  "@type": "WorkMeasure",
                   "measure": "장약은 뇌관의 관체, 각선, 연결장치 등이 충격 또는 손상되지 않도록 주의하며, 각선의 길이는 결선작업을 고려하여 충분한 길이의 것을 사용한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.4",
+              "@type": "WorkRisk",
               "statement": "취급소에서 미리 뇌관을 삽입한 기폭약포를 현장까지 운반하다 충격으로 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:2c33bac0b61a",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관의 삽입작업은 발파작업 현장에서 하고, 화약류취급소 등에서 미리 수행하지 않는다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:2156bd5b1352",
+                  "@type": "WorkMeasure",
                   "measure": "비전기뇌관의 삽입 작업은 발파작업 현장에서 하고, 화약류취급소 등에서 미리 수행하지 않는다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:f084bfc87d56",
+                  "@type": "WorkMeasure",
                   "measure": "전자뇌관의 삽입작업은 발파작업 현장에서 하고, 화약류취급소 등에서 미리 수행하지 않는다",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.5",
+              "@type": "WorkRisk",
               "statement": "이상이 있는 뇌관을 약포에 삽입하여 불발 또는 오작동",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:2cec1af47dc7",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관은 저항을 측정하고 소정의 저항치(오차 ±0.1옴)를 확인한 후 약포에 삽입하며, 발파모선에 연결하기 전까지 각선의 양단을 단락하여 둔다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:eaa0ce7ab21e",
+                  "@type": "WorkMeasure",
                   "measure": "비전기뇌관은 뇌관의 상태 및 시그널튜브의 손상 여부를 확인한 후 약포에 삽입한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:0a7a4604a86e",
+                  "@type": "WorkMeasure",
                   "measure": "전자뇌관은 각 뇌관의 상태와 통신 여부 등을 확인한 후 약포에 삽입하고, 작업계획에 따른 초시를 정확히 입력하고 확인한다",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.6",
+              "@type": "WorkRisk",
               "statement": "잔류 화약이 남아 있는 기존 발파공에 다시 장약하여 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8d72c265811e",
+                  "@type": "WorkMeasure",
                   "measure": "기존의 발파에 사용된 발파공에는 장약하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:205b5fb21235",
+                  "@type": "WorkMeasure",
                   "measure": "발파공의 위치, 상태 및 깊이를 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:bbed6f787510",
+                  "@type": "WorkMeasure",
                   "measure": "발파공에는 이물질이 들어가지 않게 하고, 이물질이 들어간 발파공은 공저까지 청소한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.7",
+              "@type": "WorkRisk",
               "statement": "누설전류가 전기뇌관 각선에 유입되어 장약 중 기폭",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:78dff5439850",
+                  "@type": "WorkMeasure",
                   "measure": "궤도, 철재류 또는 상설 전기접지계통을 접지극에 뇌관의 각선을 연결하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:250ff1c76f4b",
+                  "@type": "WorkMeasure",
                   "measure": "수공에 장약할 때 부득이하게 비전기뇌관 또는 전자뇌관이 아닌 전기뇌관을 사용하는 경우에는 결선부에 방수제를 도포하거나 내수 테이프를 감는 등 방수 처리하여 누설전류로 인한 위험방지 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:484eeb19b0cc",
+                  "@type": "WorkMeasure",
                   "measure": "레이다, 무선 송수신 시설이 있거나 측정 결과 누설전류의 위험이 있는 경우에는 비전기뇌관을 우선 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:c4a975367e54",
+                  "@type": "WorkMeasure",
                   "measure": "물이 고여 있거나 지하수 용출이 있는 장소 또는 수공에 장약해야 하는 경우에는 비전기뇌관을 우선 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:3bb4f2a817d9",
+                  "@type": "WorkMeasure",
                   "measure": "눈보라, 모래바람 등으로 인한 정전기 발생의 우려가 있는 장소 또는 우천, 낙뢰에 의한 누설전류로 인해 폭발의 위험성이 높은 장소에서 발파작업을 하는 경우에는 전기적 위험성이 낮은 비전기뇌관 또는 전자뇌관을 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.8",
+              "@type": "WorkRisk",
               "statement": "신체·장전기·호스에 축적된 정전기가 방전되어 기폭약포가 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5ada9b0600c6",
+                  "@type": "WorkMeasure",
                   "measure": "도전성의 의류를 착용하고 도전성의 정전기용 안전화를 착용하며, 내정전성 전기뇌관을 사용한다",
                   "controlLevel": "ppe",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:92cba779d41f",
+                  "@type": "WorkMeasure",
                   "measure": "천공 장소, 초유폭약 장약 장소, 고무호스 등의 대전하기 쉬운 장소, 철관이나 레일 등의 전류가 흐르기 쉬운 장소의 인접 거리에서 작업을 하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:91e220198289",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전, 작업 중에는 맨손을 가끔 지면에 대어서 신체의 정전기를 제거한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:47a322454a69",
+                  "@type": "WorkMeasure",
                   "measure": "각선, 보조모선, 발파모선을 설치하거나 간추릴 때 훑지 않도록 하고 맨손으로 한다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:a707445e5786",
+                  "@type": "WorkMeasure",
                   "measure": "각선이나 보조모선 등의 결선장소의 나선 부분은 절연테이프를 사용하고 발파공 속에 삽입한 부분은 특히 주의한다",
                   "controlLevel": "engineering",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:aa5112224c84",
+                  "@type": "WorkMeasure",
                   "measure": "장전기는 사용 전후에 잘 청소하고 접지장치의 접속을 확실히 하며, 장약할 때는 장전기를 충분히 접지한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:9b83cb57b915",
+                  "@type": "WorkMeasure",
                   "measure": "장전기의 접지선은 철관, 레일 등의 누설전류가 유입되기 쉬운 곳에 가까이하지 않는다",
                   "controlLevel": "engineering",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:42958774e123",
+                  "@type": "WorkMeasure",
                   "measure": "장전기 호스는 충분한 도전성을 갖는 것을 사용하고 계속 연결한 호스를 사용하지 않으며, 발파공의 길이보다 60cm 이상 긴 것을 사용한다",
                   "controlLevel": "substitution",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:4cf5cdce19a2",
+                  "@type": "WorkMeasure",
                   "measure": "발파공에 방수 플라스틱 튜브를 사용하는 때에는 장약 후 적어도 5분이 지난 후가 아니면 전기뇌관 및 기폭약포를 가까이하지 않는다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:73e9761bc7e1",
+                  "@type": "WorkMeasure",
                   "measure": "거친 구멍이나 수공 등에서 플라스틱 튜브를 사용하여 장약할 때는 역기폭 또는 중간기폭을 피한다",
                   "controlLevel": "administrative",
                   "variant": "수중",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:a95524244dd9",
+                  "@type": "WorkMeasure",
                   "measure": "장전기 호스는 정전기를 쉽게 제거할 수 있고 누설전류의 유입을 방지할 수 있는 것을 사용한다",
                   "controlLevel": "substitution",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.8"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:2e45f36d0bfa",
+                  "@type": "WorkMeasure",
                   "measure": "장약작업 중에 발생하는 정전기를 제거하기 위해 접지가 가능한 구조의 장전기를 사용한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.8"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:3fc9a7cc4e69",
+                  "@type": "WorkMeasure",
                   "measure": "장전기를 사용하여 화약 또는 폭약을 장약하는 때에는 정전기에 의해 전기뇌관이 기폭되는 것을 방지한다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.8"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:ae146026730a",
+                  "@type": "WorkMeasure",
                   "measure": "장전기를 사용하여 장약할 때에는 정전기가 소산될 수 있도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.8"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:b8b70cc9ca4d",
+                  "@type": "WorkMeasure",
                   "measure": "인체에 대전된 정전기에 의한 화재 또는 폭발 위험이 있는 경우에는 정전기 대전방지용 안전화 착용, 제전복 착용, 정전기 제전용구 사용 등의 조치를 하거나 작업장 바닥 등에 도전성을 갖추도록 하는 등 필요한 조치를 한다",
                   "controlLevel": "ppe",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:325",
+                    "basisArticle": "art:기준규칙:325",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:e0c6a96d53a9",
+                  "@type": "WorkMeasure",
                   "measure": "물체의 낙하·충격, 물체에의 끼임, 감전 또는 정전기의 대전에 의한 위험이 있는 작업을 하는 근로자에게 안전화를 지급하고 착용하도록 한다",
                   "controlLevel": "ppe",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 3
                   }
@@ -972,231 +1082,289 @@
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.9",
+              "@type": "WorkRisk",
               "statement": "초유폭약이 흡습·이물 혼입·부식성 금속과 반응하여 분해되어 불발 또는 이상폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ae5846bacd76",
+                  "@type": "WorkMeasure",
                   "measure": "초유폭약을 장약하는 경우 장약 중에 흡습 또는 이물의 혼입을 방지하기 위한 조치를 강구한다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:6f3f7eab6d3c",
+                  "@type": "WorkMeasure",
                   "measure": "초유폭약을 사용할 때에는 흡습 또는 이물의 혼입을 방지하기 위한 조치를 한다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:823180d39fc6",
+                  "@type": "WorkMeasure",
                   "measure": "폭약을 장약한 후에는 신속하게 기폭한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:34f5acb6f2bd",
+                  "@type": "WorkMeasure",
                   "measure": "초유폭약을 사용하는 경우에는 본체가 스테인리스강 또는 알루미늄으로 만들어진 장전기를 사용하고, 구리, 철 등 부식되기 쉬운 물질이나 주석, 아연 등과 같이 초유폭약의 분해를 조장하는 물질을 이용하지 않는다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.8"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:3bbd92510d11",
+                  "@type": "WorkMeasure",
                   "measure": "내부 청소가 용이한 구조의 장전기를 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.8"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:831e6c1c02c2",
+                  "@type": "WorkMeasure",
                   "measure": "뇌관을 삽입한 기폭약포는 장전기 호스로 장약하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.8"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:76761cc386ca",
+                  "@type": "WorkMeasure",
                   "measure": "갱내에서는 초유폭약의 부유분진이 제거된 후 기폭약포 장약작업을 한다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.10",
+              "@type": "WorkRisk",
               "statement": "고온공에 장약한 화약류가 자연발화하여 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:28761fb0dd80",
+                  "@type": "WorkMeasure",
                   "measure": "온천지역 등의 고온공에서 장약해야 하는 경우 제조사에서 정한 기준에 따라 화약류를 선정한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:16db748e6cb2",
+                  "@type": "WorkMeasure",
                   "measure": "화약제조업자 또는 판매업자 등 전문가의 지도를 받아 고온공에 적합한 화공품을 선정한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:f7ad19184d66",
+                  "@type": "WorkMeasure",
                   "measure": "천공을 충분히 밀폐시키고 천공 내의 온도를 측정한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:e6c866988804",
+                  "@type": "WorkMeasure",
                   "measure": "암반에 물을 뿌리거나, 천공 또는 보조공에 물을 직접 주입하는 등의 방법으로 암반의 온도를 섭씨 40도 이하로 낮춘다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:3877cbde6f37",
+                  "@type": "WorkMeasure",
                   "measure": "장약부터 발파까지의 시간을 가능한 한 짧게 하여, 암반의 온도가 섭씨 60도 이상으로 오르기 전에 발파한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.11",
+              "@type": "WorkRisk",
               "statement": "뇌우·낙뢰·강풍 중 장약을 계속하여 유도전류·정전기로 기폭",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:1034371c00ca",
+                  "@type": "WorkMeasure",
                   "measure": "벼락이 떨어질 우려가 있는 경우에는 화약 또는 폭약의 장전 작업을 중지하고 근로자들을 안전한 장소로 대피시킨다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:349",
+                    "basisArticle": "art:기준규칙:349",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:794a220b7bf0",
+                  "@type": "WorkMeasure",
                   "measure": "화약류 취급 중에 뇌우가 접근하거나 낙뢰가 발생할 위험이 있는 동안 모든 작업을 중단하고 안전한 구역으로 대피한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:26b8d7a3a7c1",
+                  "@type": "WorkMeasure",
                   "measure": "기상 상황을 철저히 파악하고, 낙뢰가 예상되는 경우 작업을 중지하고 신속히 대피한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:a3318fee6d25",
+                  "@type": "WorkMeasure",
                   "measure": "불가피하게 발파를 실시하는 경우 전기적 위험성이 낮은 비전기뇌관 또는 전자뇌관을 사용한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:6d5b16e052bc",
+                  "@type": "WorkMeasure",
                   "measure": "강풍으로 인해 정전기의 발생이 예상되는 경우 전기발파는 하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:145d73f1a3a2",
+                  "@type": "WorkMeasure",
                   "measure": "뇌우나 모래폭풍이 접근하고 있는 경우 화약류 취급이나 사용 등 모든 작업을 중지하고 근로자들을 안전한 장소로 대피하는 방안을 작업계획서에 포함한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:739856002480",
+                  "@type": "WorkMeasure",
                   "measure": "비·눈·바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:37",
+                    "basisArticle": "art:기준규칙:37",
                     "paragraph": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.12",
+              "@type": "WorkRisk",
               "statement": "시그널튜브가 손상·흡습되어 신호가 전달되지 않아 불발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8a7415e54b8a",
+                  "@type": "WorkMeasure",
                   "measure": "장약 또는 결선작업을 할 때는 시그널튜브에 손상이 가지 않도록 취급한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a60d1c9836f7",
+                  "@type": "WorkMeasure",
                   "measure": "흡습에 의한 불발을 방지하기 위해 스타터를 사용할 때를 제외하고는 시그널튜브의 밀봉된 끝 부위를 잘라내지 않도록 한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:24466e240cf3",
+                  "@type": "WorkMeasure",
                   "measure": "시그널튜브는 제조사에서 정하는 온도 이상의 환경에서는 사용하지 않는다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:e69dacbe1ecc",
+                  "@type": "WorkMeasure",
                   "measure": "시그널튜브를 배선할 때는 심하게 잡아당기지 말아야 하고, 꼬임, 매듭 등이 없도록 주의한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:19e60456454b",
+                  "@type": "WorkMeasure",
                   "measure": "시그널튜브를 밟거나 차량 등이 지나지 않도록 한다(손상을 방지하기 위하여 적절한 방호조치를 한 경우는 제외)",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:86534c42746c",
+                  "@type": "WorkMeasure",
                   "measure": "시그널튜브 연결부위의 길이를 충분히 유지한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.5"
                   }
                 }
               ]
@@ -1205,105 +1373,127 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.7"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.7"
             },
             {
-              "article": "art:기준규칙:338",
+              "basisArticle": "art:기준규칙:338",
               "item": 1
             },
             {
-              "article": "art:기준규칙:338",
+              "basisArticle": "art:기준규칙:338",
               "item": 2
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 4
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:발파작업/2.13",
+              "@type": "WorkRisk",
               "statement": "전색 불량으로 공발이 발생하여 전색물·암석이 날아와 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b54b7f039360",
+                  "@type": "WorkMeasure",
                   "measure": "전색물은 적정한 수분을 함유한 모래나 점토 등 불연성 재료를 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:bd300dae2f15",
+                  "@type": "WorkMeasure",
                   "measure": "불완전한 발파 및 발파 후 가스 유출 등을 방지하기 위해 충분한 양의 전색물을 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:9a4df884982b",
+                  "@type": "WorkMeasure",
                   "measure": "공발이 발생하지 않도록 다짐 작업을 충분히 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:61de681cafce",
+                  "@type": "WorkMeasure",
                   "measure": "발파공의 충진재료는 점토·모래 등 발화성 또는 인화성의 위험이 없는 재료를 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 4
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/2.14",
+              "@type": "WorkRisk",
               "statement": "장약 중 상부의 부석이 낙하하여 작업자에게 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f6be27ee0a2e",
+                  "@type": "WorkMeasure",
                   "measure": "낙석 또는 붕락의 위험이 있는 뜬돌 등의 유무를 확인하고, 이를 제거하는 등 안전조치 후 작업한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:e010e3ea2df6",
+                  "@type": "WorkMeasure",
                   "measure": "장약작업 중에는 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:bbe0ab711b54",
+                  "@type": "WorkMeasure",
                   "measure": "장약 작업을 하는 근로자가 안전모 등 적절한 보호구를 착용하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:238e86065604",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업을 할 때에 토사등의 붕괴 또는 낙하에 의한 위험을 미리 방지하기 위하여 작업장소 및 그 주변의 부석·균열의 유무를 점검한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:338",
+                    "basisArticle": "art:기준규칙:338",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:7d36053b8c8c",
+                  "@type": "WorkMeasure",
                   "measure": "함수·용수 및 동결의 유무 또는 상태의 변화를 점검한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:338",
+                    "basisArticle": "art:기준규칙:338",
                     "item": 2
                   }
                 }
@@ -1313,44 +1503,52 @@
         },
         {
           "hazardLabel": "질식",
+          "hasHazard": "hazard:asphyxiation",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.5"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.5"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.7"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.7"
             }
           ],
-          "hazard": "hazard:asphyxiation",
           "risks": [
             {
+              "@id": "workrisk:발파작업/2.15",
+              "@type": "WorkRisk",
               "statement": "갱내 초유폭약 장약 중 환기 불량으로 유해가스·ANFO 분진에 노출되어 질식",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:97a943ee2aa2",
+                  "@type": "WorkMeasure",
                   "measure": "갱내에서는 가스 등의 환기에 유의하고, 통기가 나쁜 장소에서는 사용하지 않는다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.7"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:42a0aeb0ed35",
+                  "@type": "WorkMeasure",
                   "measure": "갱내 등의 장약 장소에서는 통기를 충분히 하여 ANFO 분진을 부유시키지 않도록 한다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb4f1d30c80e",
+                  "@type": "WorkMeasure",
                   "measure": "장약 중에는 발파공에서 ANFO의 분출이 없도록 하고, 컨트롤 밸브는 가능한 한 급격한 개폐를 하지 않는다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.5"
                   }
                 }
               ]
@@ -1360,258 +1558,308 @@
       ]
     },
     {
+      "@id": "workstep:발파작업/3",
+      "@type": "WorkStep",
       "stepName": "발파",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.1.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.1.1"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.1.1"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.3"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.3"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "8.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "8.2.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.1.2"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 2
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 9,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:349",
+              "basisArticle": "art:기준규칙:349",
               "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:발파작업/3.1",
+              "@type": "WorkRisk",
               "statement": "기폭장소가 발파장소에 근접하거나 시야가 막혀 비석·낙석에 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:62ea0c61739a",
+                  "@type": "WorkMeasure",
                   "measure": "기폭장소는 발파장소에서 충분히 떨어져 있고, 발파에 의한 비석 또는 낙석 등의 위험이 없는 장소로 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:f3b77060bc5f",
+                  "@type": "WorkMeasure",
                   "measure": "기폭장소는 발파장소가 잘 보이는 장소로 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:60e6f357e868",
+                  "@type": "WorkMeasure",
                   "measure": "기폭장소는 물기나 철관, 궤도 등이 없는 장소로 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:4809f1d5eace",
+                  "@type": "WorkMeasure",
                   "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.2",
+              "@type": "WorkRisk",
               "statement": "신호·경계 없이 기폭하여 위험구역 안에 남아 있던 근로자가 피폭",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:d3e485e482d8",
+                  "@type": "WorkMeasure",
                   "measure": "발파예고, 기폭, 발파완료 등 주요 상황에 대한 신호를 정하고 해당 근로자에게 주지시킨다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:bc2c73d5e135",
+                  "@type": "WorkMeasure",
                   "measure": "위험구역을 정하여 출입을 금지하고 감시자를 배치한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:2c8b594efd78",
+                  "@type": "WorkMeasure",
                   "measure": "위험구역 내 모든 근로자의 대피상태를 확인한 후 기폭을 실시한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:ef4177719441",
+                  "@type": "WorkMeasure",
                   "measure": "발파작업책임자의 지휘에 따라 기폭을 실시한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:27a35cbcee00",
+                  "@type": "WorkMeasure",
                   "measure": "비상상황에 대비하여 대피경로를 정하고 관계자에게 알린다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:58a392d9460f",
+                  "@type": "WorkMeasure",
                   "measure": "발파작업으로 인해 토사·구축물 등이 붕괴하거나 물체가 떨어지거나 날아올 위험이 있는 장소에는 관계 근로자가 아닌 사람의 출입을 금지하는 등의 조치를 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:468768364866",
+                  "@type": "WorkMeasure",
                   "measure": "화재 또는 폭발의 위험이 있는 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 9
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.3",
+              "@type": "WorkRisk",
               "statement": "사업장 주변 주민·통행인이 통제 밖에서 비산물에 피폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:cd6bc8275d4f",
+                  "@type": "WorkMeasure",
                   "measure": "기폭에 앞서 사업장 및 그 주변에 있는 사람이 들을 수 있도록 사이렌을 울려야 하며, 필요한 경우 주민 대피, 교통통제 등의 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.4",
+              "@type": "WorkRisk",
               "statement": "근로자가 안전거리까지 피난하지 못한 상태에서 기폭되어 피폭",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:a99f503e616f",
+                  "@type": "WorkMeasure",
                   "measure": "발파작업 시 근로자가 안전한 거리로 피난할 수 없는 경우에는 앞면과 상부를 견고하게 방호한 피난장소를 설치한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:349",
+                    "basisArticle": "art:기준규칙:349",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:3c650f3ae843",
+                  "@type": "WorkMeasure",
                   "measure": "발파작업 시 근로자를 안전한 장소로 대피시킨다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:27c1e6b42517",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 안전한 거리로 피난할 수 없는 경우에는 앞면과 상부를 견고하게 방호한 피난장소를 설치한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:3192129afd9a",
+                  "@type": "WorkMeasure",
                   "measure": "발파작업 시 근로자를 안전한 장소로 대피시킨다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.5",
+              "@type": "WorkRisk",
               "statement": "암질 변화구간에서 발파방법을 검토하지 않아 과다 비산·붕락 발생",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0e8250e30011",
+                  "@type": "WorkMeasure",
                   "measure": "발파방법을 변경하는 경우 또는 연약암질, 토사층 및 암질의 변화구간에서 발파하는 경우 사전에 발파에 의한 영향력 등을 조사하기 위한 시험발파를 실시하여 가장 안전한 발파방법을 고려한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:52b0e984b518",
+                  "@type": "WorkMeasure",
                   "measure": "도심지 등 발파에 주의를 요구하는 장소에서는 실제 발파하기 전에 공인기관 또는 이에 상응하는 자의 입회하에 시험발파를 실시하여 안전성을 검토한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:99446288cd79",
+                  "@type": "WorkMeasure",
                   "measure": "관계 전문가에게 자문을 하여 안전성을 확보할 수 있는 화약류 사용 및 발파방법을 적용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.3"
                   }
                 }
               ]
@@ -1620,476 +1868,570 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.6"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.6"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.1.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "8.2.4"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "8.2.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.4"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.4"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "8.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "8.1.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.1.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "8.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "8.2.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.1.2"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 5,
               "subitem": "가",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 5,
               "subitem": "나",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:348",
+              "basisArticle": "art:기준규칙:348",
               "item": 6,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:38",
+              "basisArticle": "art:기준규칙:38",
               "paragraph": 1,
               "item": 6
             },
             {
-              "article": "art:기준규칙:38",
+              "basisArticle": "art:기준규칙:38",
               "paragraph": 1,
               "item": 7
             },
             {
-              "article": "art:기준규칙:38",
+              "basisArticle": "art:기준규칙:38",
               "paragraph": 2
             },
             {
-              "article": "art:기준규칙:39",
+              "basisArticle": "art:기준규칙:39",
               "paragraph": 1
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:발파작업/3.6",
+              "@type": "WorkRisk",
               "statement": "발파기를 권한 없는 사람이 조작하여 예고 없이 기폭",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:b564b82b7c31",
+                  "@type": "WorkMeasure",
                   "measure": "발파기와 발파기의 스위치 또는 비밀번호는 발파작업책임자만 취급할 수 있도록 조치하고, 발파기에 발파모선을 연결할 때는 발파작업책임자의 지휘에 따른다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:dd1054344f03",
+                  "@type": "WorkMeasure",
                   "measure": "전원은 전용 발파기만을 사용하여야 하고, 발파작업책임자 외에는 개폐할 수 없도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:289c0d88808d",
+                  "@type": "WorkMeasure",
                   "measure": "발파기의 스위치는 기폭하는 때를 제외하고는 잠금장치를 하거나, 발파작업책임자가 휴대하게 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:94e514dbb7b8",
+                  "@type": "WorkMeasure",
                   "measure": "기폭하기 직전까지 스타터뇌관을 발파기로부터 분리하여 둔다",
                   "controlLevel": "engineering",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.7",
+              "@type": "WorkRisk",
               "statement": "발파기재의 이상을 확인하지 않고 결선하여 기폭 불능 또는 의도치 않은 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:334ea4b47bb7",
+                  "@type": "WorkMeasure",
                   "measure": "전기발파를 할 때는 전기뇌관, 발파기, 도통시험기, 저항측정기, 발파모선, 보조모선, 누설전류검지기 등 발파기재를 준비하여 건조한 곳에 보관한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3578a8354823",
+                  "@type": "WorkMeasure",
                   "measure": "사용하고자 하는 전기식 발파기의 능력을 측정하고 이상 유무를 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:bdeaa9427fcb",
+                  "@type": "WorkMeasure",
                   "measure": "발파기 및 건전지는 건조한 곳에 보관하고 사용 전에 전압, 전류 등을 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:d579caf0ed12",
+                  "@type": "WorkMeasure",
                   "measure": "비전기발파를 할 때는 비전기뇌관, 스타터뇌관, 발파기, 번치커넥터 등 발파기재를 준비하여 건조한 곳에 보관한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:76587bee380b",
+                  "@type": "WorkMeasure",
                   "measure": "비전기식 발파기의 능력을 측정하고 이상 유무를 확인하며, 육안으로 시그널튜브 손상여부 및 비전기뇌관의 결합상태 등 발파회로의 이상 유무를 점검한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:391d6aff3b67",
+                  "@type": "WorkMeasure",
                   "measure": "발파기와 전자뇌관, 초시입력장치, 회로점검기 등 발파기재 간의 통신상태 및 발파기의 충전상태를 확인한다",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:835d0651467a",
+                  "@type": "WorkMeasure",
                   "measure": "낙뢰경보기, 누설전류측정기 등을 사용하여 뇌전 가능성과 정전기 배출 가능성을 확인한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.8",
+              "@type": "WorkRisk",
               "statement": "발파모선·보조모선의 절연 파손·접지 불량으로 외부 전류가 유입되어 조기 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ac423c5a6d1e",
+                  "@type": "WorkMeasure",
                   "measure": "발파모선은 절연 효력이 있고 기계적으로 안전한 것으로서 그 길이가 30m 이상의 것을 사용하며, 사용 전에는 단선의 유무를 확인한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:e7971fe86ee1",
+                  "@type": "WorkMeasure",
                   "measure": "발파모선은 기폭이 될 때까지 항상 단락하여 둔다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:aaf8a983d260",
+                  "@type": "WorkMeasure",
                   "measure": "보조모선은 피복이 안전하고 절연성능이 높은 것을 사용하고, 여러 개의 선을 이었거나 길이가 지나치게 길어 저항이 크게 된 것은 사용하지 않는다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:6998d556be33",
+                  "@type": "WorkMeasure",
                   "measure": "모든 결선 부위는 전류의 누설이나 전선의 단선을 방지하기 위하여 절연테이프로 감아주거나 나무상자 등 절연물에 고정하여 지면으로부터 이격시킨다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3dca67937986",
+                  "@type": "WorkMeasure",
                   "measure": "발파모선은 절연 효력이 있고 기계적으로 안전한 것으로서 그 길이가 30m 이상의 것을 사용하며, 기폭이 될 때까지 항상 단락하여 둔다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:a14e8a66a7d0",
+                  "@type": "WorkMeasure",
                   "measure": "보조모선은 피복이 안전하고 절연성능이 높은 것을 사용하고, 여러 개의 선을 이었거나 길이가 지나치게 길어 저항이 크게 된 것은 사용하지 않는다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.9",
+              "@type": "WorkRisk",
               "statement": "저항·도통시험을 장약 장소 인근에서 실시하다 기폭에 노출",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:6eb9a03cf2d2",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관에 의한 발파의 경우 점화하기 전에 화약류를 장전한 장소로부터 30미터 이상 떨어진 안전한 장소에서 전선에 대하여 저항측정 및 도통(導通)시험을 한다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:26c16cd2ae3e",
+                  "@type": "WorkMeasure",
                   "measure": "도통시험 및 저항측정은 화약류를 장약하는 장소에서 30m 이상 떨어진 장소에서 실시한다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.10",
+              "@type": "WorkRisk",
               "statement": "회로 단선·저항 이상을 확인하지 않고 기폭하여 일부만 폭발하고 잔류 장약이 발생",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a052b9249618",
+                  "@type": "WorkMeasure",
                   "measure": "저항측정기에 발파모선의 양단을 연결하여 저항을 측정하고 분리하였을 때 무한대 저항이 나타나지 않는 경우에는 발파모선의 손상, 절연 불량, 파손 등 불량원인을 조사하여 보수한 후 사용한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:241710eb856a",
+                  "@type": "WorkMeasure",
                   "measure": "소정의 저항값을 나타내지 않는 경우 다음 작업을 진행하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:988a12bbd6c6",
+                  "@type": "WorkMeasure",
                   "measure": "불량개소가 발견되지 않으면 소정의 도통시험기로 각 전기뇌관에 대한 도통시험을 개별적으로 실시한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:27431a28aa3d",
+                  "@type": "WorkMeasure",
                   "measure": "발파모선의 저항은 기록하여 보관한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:1a11e1c3c66d",
+                  "@type": "WorkMeasure",
                   "measure": "다수의 전기뇌관을 일제히 발파하는 때에는 발파기의 용량, 발파모선, 전기뇌관의 모든 저항을 고려하여 필요한 수준의 전류가 흐르게 한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:91f41bf89dd5",
+                  "@type": "WorkMeasure",
                   "measure": "발파모선을 뇌관에 연결하기 전에 단선 또는 단락 여부를 확인한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:7973e9a10a87",
+                  "@type": "WorkMeasure",
                   "measure": "발파모선의 저항이 크면 뇌관에 전달되는 전류가 작아짐을 고려하여 발파모선의 규격을 신중히 선택하고, 절연저항과 피복의 파손 여부를 확인한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.1.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.11",
+              "@type": "WorkRisk",
               "statement": "전자뇌관의 초시 미입력·통신 불량으로 발파 순서가 어긋나거나 잔류 장약이 발생",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:2baefe659dfb",
+                  "@type": "WorkMeasure",
                   "measure": "뇌관의 연결장치와 연결용 보조모선을 연결하는 결선작업을 할 때는 반드시 병렬 결선회로를 가지도록 정확히 연결한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:36dbd1e1c113",
+                  "@type": "WorkMeasure",
                   "measure": "초시입력 작업은 발파작업책임자의 지휘에 따라 수행하고, 초시입력을 완료한 후에는 초시 입력된 뇌관의 수량과 실제 사용된 뇌관의 총 수량의 일치 여부를 확인한다",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:6ebe4290f48e",
+                  "@type": "WorkMeasure",
                   "measure": "회로점검기를 통해 결선회로의 단선, 단락, 누설 여부 및 불량뇌관, 통신이 되지 않는 뇌관, 초시 미입력 뇌관의 유무를 확인하여 필요한 조치를 한다",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:b7429b8a4fa1",
+                  "@type": "WorkMeasure",
                   "measure": "결선작업 중에는 회로점검기를 연결하여 뇌관의 이상 유무, 연결상태 등을 수시로 확인한다",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:38d9d460bf2d",
+                  "@type": "WorkMeasure",
                   "measure": "원활한 통신상태를 유지하기 위해 제조사에서 정한 보조모선을 사용한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "8.1.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.12",
+              "@type": "WorkRisk",
               "statement": "먼저 기폭된 표면연결뇌관 파편이 인접 시그널튜브를 절단하여 불발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3ea0e2380ae6",
+                  "@type": "WorkMeasure",
                   "measure": "지발식 발파작업을 할 때는 표면연결뇌관 또는 번치커넥터의 비산 파편에 의해서 인접한 시그널튜브가 손상되지 않도록 헝겊이나 비닐 등으로 감싸는 등 필요한 조치를 한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:ec1287095997",
+                  "@type": "WorkMeasure",
                   "measure": "결선 여부를 육안으로 철저히 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:aa2381c7bd4a",
+                  "@type": "WorkMeasure",
                   "measure": "습한 장소에서는 결선 후 장기간 방치하지 말고 신속하게 발파한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:7359f5cd2749",
+                  "@type": "WorkMeasure",
                   "measure": "비전기발파의 경우 표면연결뇌관 및 번치커넥터의 기폭에 의한 소음을 최소화할 수 있는 조치를 한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.13",
+              "@type": "WorkRisk",
               "statement": "발파 준비를 마친 뒤 기폭이 중단된 상태에서 무방비로 접근하여 잔류 회로가 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8e183becdcce",
+                  "@type": "WorkMeasure",
                   "measure": "발파기에 뇌관 및 발파회로를 연결하는 등 발파 준비를 완료한 후 기폭하지 않게 된 경우에는 충분한 시간이 지난 후 안전이 확보된 상태에서 접근하도록 하고, 재기폭을 실시하기 전에 발파기재를 재점검한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.1.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.14",
+              "@type": "WorkRisk",
               "statement": "점화 후 폭발하지 않은 발파공에 조기 접근하여 지연 폭발에 노출",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:29d0e004fe4c",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관에 의한 경우에는 발파모선을 점화기에서 떼어 그 끝을 단락시켜 놓는 등 재점화되지 않도록 조치하고, 그 때부터 5분 이상 경과한 후가 아니면 화약류의 장전장소에 접근시키지 않는다",
                   "controlLevel": "engineering",
                   "variant": "전기",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 5,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:589965c3370f",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관 외의 것에 의한 경우에는 점화한 때부터 15분 이상 경과한 후가 아니면 화약류의 장전장소에 접근시키지 않는다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "article": "art:기준규칙:348",
+                    "basisArticle": "art:기준규칙:348",
                     "item": 5,
                     "subitem": "나"
                   }
@@ -2097,85 +2439,107 @@
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.15",
+              "@type": "WorkRisk",
               "statement": "수중발파에서 각선 길이 부족·수중 결선 과다로 불발",
               "measures": [
                 {
+                  "@id": "workmeasure:98187e90e5c1",
+                  "@type": "WorkMeasure",
                   "measure": "수중발파에 사용하는 뇌관의 각선은 수심을 고려하여 그 길이를 충분히 확보하고, 수중에서 결선하는 각선의 개소는 가능한 한 적게 한다",
                   "variant": "수중",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/3.16",
+              "@type": "WorkRisk",
               "statement": "작업계획서 없이 발파하여 장비 동선과 발파구역이 겹치거나 통제가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ac3fe5c838c6",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 취급·사용하여 발파작업을 하는 경우 발파작업책임자가 관리감독자의 업무를 수행하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:32bfc89b4e81",
+                  "@type": "WorkMeasure",
                   "measure": "발파 작업장소의 지형, 지질 및 지층의 상태와 발파작업 방법 및 순서를 포함한 작업계획서를 작성하여 해당 근로자에게 알리고, 작업계획서에 따라 발파작업책임자가 작업을 지휘하게 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:787183816042",
+                  "@type": "WorkMeasure",
                   "measure": "발파 작업장소에서 건설기계 및 차량계하역기계등의 운행경로 및 작업방법을 작업계획서에 포함한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:26d64111e36b",
+                  "@type": "WorkMeasure",
                   "measure": "노천에서 발파 작업은 가능한 일출과 일몰 사이에 수행한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:2d81c5d63329",
+                  "@type": "WorkMeasure",
                   "measure": "굴착면의 높이가 2미터 이상이 되는 지반의 굴착작업을 하는 경우 별표 4에 따라 작업장의 지형·지반 및 지층 상태 등에 대한 사전조사를 하고 그 결과를 기록·보존하며, 조사결과를 고려한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:38",
+                    "basisArticle": "art:기준규칙:38",
                     "paragraph": 1,
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:30d2dc272a88",
+                  "@type": "WorkMeasure",
                   "measure": "터널굴착작업을 하는 경우 사전조사를 하고 작업계획서를 작성하여 그 계획에 따라 작업을 하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:38",
+                    "basisArticle": "art:기준규칙:38",
                     "paragraph": 1,
                     "item": 7
                   }
                 },
                 {
+                  "@id": "workmeasure:8426a8d8108b",
+                  "@type": "WorkMeasure",
                   "measure": "작성한 작업계획서의 내용을 해당 근로자에게 알린다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:38",
+                    "basisArticle": "art:기준규칙:38",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:05da2db5a055",
+                  "@type": "WorkMeasure",
                   "measure": "작업계획서를 작성한 경우 작업지휘자를 지정하여 작업계획서에 따라 작업을 지휘하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:39",
+                    "basisArticle": "art:기준규칙:39",
                     "paragraph": 1
                   }
                 }
@@ -2185,22 +2549,26 @@
         },
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "6.2.3"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "6.2.3"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:발파작업/3.17",
+              "@type": "WorkRisk",
               "statement": "통로에 배선된 발파모선에 걸려 넘어짐",
               "measures": [
                 {
+                  "@id": "workmeasure:ffba7059c55e",
+                  "@type": "WorkMeasure",
                   "measure": "발파모선을 배선하는 경우 기폭장소에서 발파장소까지의 주 통로에는 철제기재 등 장해물을 두지 않도록 하고, 갱내의 측벽에 달아매는 등 통행에 방해가 되지 않도록 배선한다",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "6.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "6.2.3"
                   }
                 }
               ]
@@ -2209,80 +2577,98 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.2"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:발파작업/3.18",
+              "@type": "WorkRisk",
               "statement": "발파 진동·폭풍압으로 인접 구조물·매설 시설이 손상됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:6027aed46fd1",
+                  "@type": "WorkMeasure",
                   "measure": "건물 등 구조물 및 동력선, 통신망 등 시설 인근에서 발파작업을 할 때는 주변 상태와 발파위력을 고려하여 소음과 진동을 최소화한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:e65e7864220e",
+                  "@type": "WorkMeasure",
                   "measure": "해당 구조물 또는 시설의 소유자, 점유자, 사용자에게 발파계획의 내용과 시기 및 통제 조치를 알리고, 필요한 조치를 할 때까지 발파작업을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:224490556ad2",
+                  "@type": "WorkMeasure",
                   "measure": "건설공사 설계기준 및 표준시방서 등 관계 법령에서 정하는 진동 허용기준을 준수한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:6f218c39b348",
+                  "@type": "WorkMeasure",
                   "measure": "관계 전문가로부터 발파에 따른 진동을 측정하고 분석한 기록지를 받아 확인하고 보관한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9af31b44d9a0",
+                  "@type": "WorkMeasure",
                   "measure": "관계 전문가에게 자문을 하여 소음과 진동의 영향을 최소화할 수 있는 화약류로 결정한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:918b3f21b389",
+                  "@type": "WorkMeasure",
                   "measure": "자유면을 가능한 한 많이 활용하여 적정한 최소저항선과 장약량을 결정한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:6e92bb1fffd8",
+                  "@type": "WorkMeasure",
                   "measure": "폭발음을 경감시키기 위해 토제 등을 쌓거나, 풍향, 풍속을 고려하고 지발 뇌관을 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5647a4924b63",
+                  "@type": "WorkMeasure",
                   "measure": "공발현상을 최소화하기 위해 충분한 전색작업을 하고, 필요한 경우 보호매트 등을 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.2"
                   }
                 }
               ]
@@ -2292,266 +2678,324 @@
       ]
     },
     {
+      "@id": "workstep:발파작업/4",
+      "@type": "WorkStep",
       "stepName": "발파 암처리",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.2.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.2.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.2.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.2.1",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.2.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "9.2.1"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "9.2.1"
             },
             {
-              "guide": "doc:kosha_guide/D-C-4-2025",
-              "section": "7.2.2"
+              "basisGuide": "doc:kosha_guide/D-C-4-2025",
+              "guideSection": "7.2.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:342",
+              "basisArticle": "art:기준규칙:342",
               "item": 1
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:발파작업/4.1",
+              "@type": "WorkRisk",
               "statement": "발파 후 발파모선을 분리·단락하지 않은 채 발파면에 접근하여 재기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3f4982631746",
+                  "@type": "WorkMeasure",
                   "measure": "발파 후에는 즉시 발파모선을 발파기에서 분리하여 단락시키는 등 재기폭되지 않도록 조치한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:35f9c34dcb14",
+                  "@type": "WorkMeasure",
                   "measure": "발파기재는 발파작업책임자의 지휘에 따라 지정된 장소에 보관한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.2",
+              "@type": "WorkRisk",
               "statement": "불발 화약의 존재를 확인하지 않고 발파면에 진입하여 폭발·낙석에 노출",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:5482833e06b3",
+                  "@type": "WorkMeasure",
                   "measure": "폭발하지 않은 뇌관의 수량을 확인하여 불발한 화약을 확인한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:db3490f2ea19",
+                  "@type": "WorkMeasure",
                   "measure": "발파를 하기 전에는 발파에 사용하는 뇌관의 수량을 파악해야 하며, 발파 후에는 폭발한 뇌관의 수량을 확인한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ad6d23bcbb49",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 화약이 폭발하거나 추가적인 낙석 등의 우려가 있는 때에는 사람의 접근을 금지한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:d60feb7f0370",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 화약의 확인이 곤란한 때에는 기폭 후 15분 이상 사람의 접근을 금지한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.3",
+              "@type": "WorkRisk",
               "statement": "불발된 장약을 부적정한 방법으로 처리하다 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:3b0dac9ffc92",
+                  "@type": "WorkMeasure",
                   "measure": "발파 후 불발된 화약이 있는 경우에는 객관적으로 그 원인을 조사하고 대책을 수립한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:206850f08039",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 천공 구멍으로부터 60cm 이상(손으로 뚫은 구멍인 경우에는 30cm 이상)의 간격을 두고 평행으로 천공하여 다시 발파하고 불발한 화약류를 회수한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:497eca9e72aa",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 천공 구멍에 물을 주입하고 그 물의 힘으로 전색물과 화약류를 흘러나오게 하여 불발된 화약류를 회수한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:a66426f80447",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 발파공에 압축공기를 넣어 전색물을 뽑아내거나 뇌관에 영향을 미치지 아니하게 하면서 조금씩 장약하고 다시 기폭한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:639fee5d8d38",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관을 사용한 경우에는 저항측정기를 사용하여 불발공의 회로를 점검하고 이상이 없으면 발파회로에 다시 연결하여 재발파하며, 불발공이 단락되어 있으면 압축공기나 물로 장약된 화약류 및 전색물을 제거한 후 기폭약포를 재장약하여 발파한다",
                   "controlLevel": "administrative",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:528051317b77",
+                  "@type": "WorkMeasure",
                   "measure": "비전기뇌관을 사용한 경우에는 육안으로 불발공의 회로를 점검하고 이상이 없으면 발파회로에 다시 연결하여 재발파하며, 시그널튜브가 손상되어 있으면 압축공기나 물로 장약된 화약류 및 전색물을 제거한 다음 기폭약포를 재장약하여 발파한다",
                   "controlLevel": "administrative",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:577cd3d042ac",
+                  "@type": "WorkMeasure",
                   "measure": "전자뇌관을 사용한 경우에는 회로점검기를 사용하여 불발공의 회로를 점검하고 이상이 없으면 발파회로에 다시 연결하여 재발파하며, 뇌관의 통신이 되지 않으면 압축공기나 물로 장약된 화약류 및 전색물을 제거한 다음 기폭약포를 재장약하여 발파한다",
                   "controlLevel": "administrative",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.4",
+              "@type": "WorkRisk",
               "statement": "회수하지 못한 불발 화약을 표시·통제 없이 방치하여 후속 작업자가 접촉",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:425a8686bb3d",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 화약류를 회수할 수 없는 때에는 그 장소에 표시를 하고, 인근 장소에 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:64a489dbb993",
+                  "@type": "WorkMeasure",
                   "measure": "불발된 장약을 확인할 수 없거나 적절하게 처리되지 않은 경우에는 해당 발파장소에 근로자의 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5781f97b2515",
+                  "@type": "WorkMeasure",
                   "measure": "불발의 원인 및 안전한 후속 조치계획을 수립하기 어려운 경우에는 관계 전문가의 도움을 받아서 처리한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.5",
+              "@type": "WorkRisk",
               "statement": "회수한 불발 화약류를 임의로 매립·폐기하여 이후 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c8374109f08e",
+                  "@type": "WorkMeasure",
                   "measure": "불발공으로부터 회수한 뇌관이나 폭약은 모두 제조사의 시방에 따라 처리하여야 하며, 임의로 매립하거나 폐기하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "9.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "9.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.6",
+              "@type": "WorkRisk",
               "statement": "사용하고 남은 화약류를 현장에 방치하여 도난·무단 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:dea81aaa2cd4",
+                  "@type": "WorkMeasure",
                   "measure": "사용하고 남은 화약류는 신속하게 화약류취급소로 운반하여 보관한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:fe3235c09c17",
+                  "@type": "WorkMeasure",
                   "measure": "화약류 취급 중에는 항시 도난 및 피탈에 주의하고 과부족이 발생하지 않도록 유의한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.7",
+              "@type": "WorkRisk",
               "statement": "굴착기가 지하 매설물을 파손하여 가스 누출·감전",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:cb7cae1064e7",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계등의 사용으로 가스도관, 지중전선로, 그 밖에 지하에 위치한 공작물이 파손되어 그 결과 근로자가 위험해질 우려가 있는 경우에는 그 기계를 사용한 굴착작업을 중지한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:342",
+                    "basisArticle": "art:기준규칙:342",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:3c50bf630a3c",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 작업 중 지하 매설물과 지상 장애물이 발견되면 즉시 장비를 정지하고 관리감독자에게 보고한 다음 작업지시에 따라 작업한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 }
               ]
@@ -2560,114 +3004,136 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2.2"
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2.2"
             },
             {
-              "article": "art:기준규칙:14",
+              "basisArticle": "art:기준규칙:14",
               "paragraph": 1
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 10,
               "subitem": "가"
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 11
             },
             {
-              "article": "art:기준규칙:338",
+              "basisArticle": "art:기준규칙:338",
               "item": 1
             },
             {
-              "article": "art:기준규칙:340"
+              "basisArticle": "art:기준규칙:340"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:발파작업/4.8",
+              "@type": "WorkRisk",
               "statement": "발파면의 부석·낙반이 암처리 작업자에게 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:238e86065604",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업을 할 때에 토사등의 붕괴 또는 낙하에 의한 위험을 미리 방지하기 위하여 작업장소 및 그 주변의 부석·균열의 유무를 점검한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:338",
+                    "basisArticle": "art:기준규칙:338",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:561c0de2fff6",
+                  "@type": "WorkMeasure",
                   "measure": "부석의 낙하에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 10,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:fe8cbde2ac7d",
+                  "@type": "WorkMeasure",
                   "measure": "토사·암석 등의 붕괴 또는 낙하로 인하여 근로자에게 위험을 미칠 우려가 있는 굴착작업을 하는 장소 및 그 아래 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 11
                   }
                 },
                 {
+                  "@id": "workmeasure:7dfef40b4fb8",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업 시 토사등의 붕괴 또는 낙하에 의하여 근로자에게 위험을 미칠 우려가 있는 경우에는 미리 흙막이 지보공의 설치, 방호망의 설치 및 근로자의 출입 금지 등 그 위험을 방지하기 위하여 필요한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:340"
+                    "basisArticle": "art:기준규칙:340"
                   }
                 },
                 {
+                  "@id": "workmeasure:321a8189271d",
+                  "@type": "WorkMeasure",
                   "measure": "작업장의 바닥, 도로 및 통로 등에서 낙하물이 근로자에게 위험을 미칠 우려가 있는 경우 보호망을 설치하는 등 필요한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:14",
+                    "basisArticle": "art:기준규칙:14",
                     "paragraph": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.9",
+              "@type": "WorkRisk",
               "statement": "덤프트럭 상차·운반 중 버럭이 낙하하거나 편하중으로 전도",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e33742d2ce59",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 주행로와 진·출입로의 안전을 확인하고, 화물을 싣거나 내리는 작업 장소에는 운전원이 확인할 수 있는 위치에 유도자 또는 신호수를 배치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:f4158740b9b3",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 화물이나 장비 등의 접촉으로 근로자가 위험할 우려가 있는 장소에는 관계자 외 근로자의 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:f57a001d8572",
+                  "@type": "WorkMeasure",
                   "measure": "화물의 적재작업은 하중이 한쪽으로 치우치지 않도록 균등하게 적재한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:332bc1521b77",
+                  "@type": "WorkMeasure",
                   "measure": "화물은 해당 차량 제조사가 제공하는 제품설명서의 허용 적재하중을 준수하여 적재한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2.2"
                   }
                 }
               ]
@@ -2676,108 +3142,130 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-4-2025",
-              "section": "7.2.2"
+              "basisGuide": "doc:kosha_guide/D-C-4-2025",
+              "guideSection": "7.2.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-4-2025",
-              "section": "7.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-4-2025",
+              "guideSection": "7.2.2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 18,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:발파작업/4.10",
+              "@type": "WorkRisk",
               "statement": "버럭 상차 중 굴착기 선회반경 안에 있던 근로자가 협착",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:4486c68054c5",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기 붐·암·버킷 등의 선회에 의하여 근로자에게 위험을 미칠 우려가 있는 장소에는 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 18
                   }
                 },
                 {
+                  "@id": "workmeasure:77dcad882d7d",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 굴착기 작업 중 굴착기 작업반경 내에 근로자의 유무를 확인하며 작업하여야 하고, 관리감독자는 굴착기 붐·암·버킷 등의 선회로 위험을 미칠 우려가 있는 장소에 관계 근로자 외 출입 금지 조치를 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:de67b37ae2e3",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 조종 및 제어장치의 기능을 확인하고, 급작스런 작동은 금지한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:6f8b50ba2b82",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 엔진을 가동한 상태에서 운전석 이탈을 금지한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/4.11",
+              "@type": "WorkRisk",
               "statement": "경사진 발파면에서 굴착기가 전도·전락",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ac99dc20b19c",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 장비의 운행경로, 지형, 지반 상태, 경사도 등을 확인한 다음 안전 운행을 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:03e936a07c2a",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 경사진 길에서의 굴착기 이동은 저속으로 운행한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:d68f19bc59f0",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 경사진 장소에서 작업하는 동안에는 굴착기의 미끄럼 방지를 위하여 블레이드를 비탈길 하부 방향에 위치시킨다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:42fd7ef28dbb",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 경사진 장소에서 굴착기의 전도와 전락을 예방하기 위하여 붐의 급격한 선회를 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:1c0eea53eb1e",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 좌석 안전띠를 착용하고 작업을 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 }
               ]
@@ -2786,67 +3274,77 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-4-2025",
-              "section": "7.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-4-2025",
+              "guideSection": "7.2.2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:342",
+              "basisArticle": "art:기준규칙:342",
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:344",
+              "basisArticle": "art:기준규칙:344",
               "paragraph": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:344",
+              "basisArticle": "art:기준규칙:344",
               "paragraph": 2,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:발파작업/4.12",
+              "@type": "WorkRisk",
               "statement": "굴착기가 작업 위치로 후진하다 근로자에게 접근하여 부딪힘",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:aba7195a0536",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업을 할 때에 굴착기계등이 근로자의 작업장소로 후진하여 근로자에게 접근하거나 굴러 떨어질 우려가 있는 경우에는 유도자를 배치하여 굴착기계등을 유도하도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:344",
+                    "basisArticle": "art:기준규칙:344",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:9a7b0517ade6",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계등의 운전자는 유도자의 유도에 따라야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:344",
+                    "basisArticle": "art:기준규칙:344",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:ad2c91c38ded",
+                  "@type": "WorkMeasure",
                   "measure": "운전자가 작업 중 시야 확보에 문제가 발생하는 경우에는 유도자의 신호에 따라 작업을 진행한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-4-2025",
-                    "section": "7.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-4-2025",
+                    "guideSection": "7.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:de32da566cae",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계등의 운행경로 및 토석 적재장소의 출입방법을 정하여 관계 근로자에게 주지시킨다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:342",
+                    "basisArticle": "art:기준규칙:342",
                     "item": 2
                   }
                 }
@@ -2857,535 +3355,653 @@
       ]
     },
     {
+      "@id": "workstep:발파작업/5",
+      "@type": "WorkStep",
       "stepName": "발파 화약고 관리",
       "stepHazards": [
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.2"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.2"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.5"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.5"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.3"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.3"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.1.1"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.1.1"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.1"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.1"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.2",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.3",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.3",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.3",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "5.2.4",
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "5.2.4",
               "controlLevel": "substitution"
             },
             {
-              "guide": "doc:kosha_guide/D-C-6-2025",
-              "section": "7.2.5"
+              "basisGuide": "doc:kosha_guide/D-C-6-2025",
+              "guideSection": "7.2.5"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:발파작업/5.1",
+              "@type": "WorkRisk",
               "statement": "취급소를 기준에 맞지 않게 설치하거나 취급소 외 장소에 화약류를 방치하여 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:77f8eb0ce693",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 사용할 때는 화약류의 사용장소 부근에 화약류의 관리 및 발파의 준비에 전용되는 건물을 「총포화약법 시행령」에서 정하는 기준에 맞게 설치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:129e6a619b73",
+                  "@type": "WorkMeasure",
                   "measure": "화약류취급소 이외의 장소에는 화약류를 방치 또는 보관하지 않도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:83fc61bba148",
+                  "@type": "WorkMeasure",
                   "measure": "화약류취급소 및 인근에서는 약포에 뇌관류를 삽입하거나, 삽입된 약포를 취급하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:df690399d7b4",
+                  "@type": "WorkMeasure",
                   "measure": "화약류저장소로부터 매일 발파에 필요한 최소량을 화약류취급소로 운반하도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:9350cb693a23",
+                  "@type": "WorkMeasure",
                   "measure": "발파작업 현장에는 여분의 화약류를 들고 들어가지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:521483862700",
+                  "@type": "WorkMeasure",
                   "measure": "화약류, 발파기재 등을 사용 및 관리, 취급, 폐기하거나 사업장에 반입할 때에는 「총포화약법」 및 제조사의 사용지침에서 정하는 바에 따라 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.2",
+              "@type": "WorkRisk",
               "statement": "취급소 인근의 화기·흡연으로 화재가 발생하여 보관 화약류가 폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:7af8d4bd5b37",
+                  "@type": "WorkMeasure",
                   "measure": "화약류취급소 인근에서는 흡연, 화기사용 등 화재의 위험을 초래하는 행위를 금지하고, 방화수, 방화사 및 소화기 등을 비치한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5e4ca21d252f",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 사용, 취급 및 관리하는 장소 인근에서는 화기사용, 흡연 등의 행위를 금지한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.1.1"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.1.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:af26cd9be256",
+                  "@type": "WorkMeasure",
                   "measure": "화기의 사용 또는 불꽃을 발생시키는 작업을 하는 장소의 부근이나 누전의 위험이 있는 장소에서는 화약류를 취급하지 않는다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:174b37d54193",
+                  "@type": "WorkMeasure",
                   "measure": "화재가 발생하여 화약류와 접촉할 위험이 있는 곳에서는 화재를 진압하지 않고 주변의 모든 인원을 안전한 구역으로 대피하도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.3",
+              "@type": "WorkRisk",
               "statement": "출입·수량 관리가 되지 않아 화약류가 피탈·도난되어 무단 사용",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:234529f607ca",
+                  "@type": "WorkMeasure",
                   "measure": "화약류취급소에는 관계 근로자가 아닌 사람의 출입을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:18f53b26708f",
+                  "@type": "WorkMeasure",
                   "measure": "화약류취급소에 보관한 화약류의 피탈, 도난 방지 등을 방지하기 위한 조치를 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:5e2e8f7303ba",
+                  "@type": "WorkMeasure",
                   "measure": "화약류취급소에는 화약류 취급 대장을 비치하여 발파작업책임자가 화약류의 보관, 사용 및 잔류수량 등을 기록하게 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:46e591673cd4",
+                  "@type": "WorkMeasure",
                   "measure": "「총포화약법」 제5조, 제13조제1항제2호부터 제7호까지, 제19조에 해당하는 자의 화약류의 취급을 금지한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.4",
+              "@type": "WorkRisk",
               "statement": "취급 근로자가 안전수칙을 모른 채 화약류를 다루어 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:359c67e61eca",
+                  "@type": "WorkMeasure",
                   "measure": "화약류취급소에는 화약류 취급상 필요한 안전수칙을 근로자가 보기 쉬운 곳에 게시한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:4f414a69a3a3",
+                  "@type": "WorkMeasure",
                   "measure": "화약류는 두드리거나, 던지거나, 떨어뜨리는 등 충격을 주지 않도록 항상 주의한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.5",
+              "@type": "WorkRisk",
               "statement": "폭약과 뇌관을 함께 운반하거나 충격을 주어 운반 중 폭발",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:52f955e3ae1b",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 갱내 또는 발파장소로 운반할 때에는 정해진 포장 및 상자 등을 사용한다",
                   "controlLevel": "engineering",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:4b4e9e2393f3",
+                  "@type": "WorkMeasure",
                   "measure": "폭약과 뇌관은 1인이 동시에 운반하지 않도록 하고, 부득이하게 1인이 운반하는 경우 별개의 용기에 넣어 운반한다",
                   "controlLevel": "elimination",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2123d0fcf22c",
+                  "@type": "WorkMeasure",
                   "measure": "화약류는 운반하는 자의 체력에 적당하도록 소량을 운반하도록 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:d00276bc0c15",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 운반할 때에는 화기나 전선의 부근을 피하고, 던지거나, 넘어지거나, 떨어뜨리거나, 부딪히는 등 충격을 주지 않도록 주의한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:2f1aa57f710e",
+                  "@type": "WorkMeasure",
                   "measure": "폭약과 뇌관은 각각 다른 용기에 수납한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:d6f4222a990c",
+                  "@type": "WorkMeasure",
                   "measure": "화약류가 들어있는 상자를 열 때는 철제기구 등으로 두드리거나 충격을 주어 억지로 열지 않는다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:3ed03c112422",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 수납하는 용기는 나무 등 부도체로 만든 견고한 구조로 하고 내부에는 철재류가 드러나지 않도록 한다",
                   "controlLevel": "substitution",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.6",
+              "@type": "WorkRisk",
               "statement": "갱내 운반 중 화약류가 철재류에 접촉하거나 낙하하여 폭발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0ef3f01c4ca0",
+                  "@type": "WorkMeasure",
                   "measure": "권양기 또는 크레인으로 운송할 경우에 권양기 또는 크레인 운전자에게 화약류가 운송되기 전에 미리 알린다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:d12ef6e2fee8",
+                  "@type": "WorkMeasure",
                   "measure": "지하에서 화약류 운송에 사용되는 트럭은 매주 전기 시스템을 점검하여 전기 위험을 구성할 수 있는 고장을 점검한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:1fbf5fbf175b",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 지하로 올리거나 내릴 때에는 화약운반차를 장비운송용 리프터를 이용하는 것을 원칙으로 하고, 리프터가 없어 불가한 경우에는 별도의 견고한 적재용기에 담아 권양기 또는 크레인으로 운반한다",
                   "variant": "갱내",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9ad094f9aae1",
+                  "@type": "WorkMeasure",
                   "measure": "화약류를 적재한 운반차나 적재용기에는 화약류 이외의 기계, 공구, 유류 등을 같이 적재하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:c84508515ab3",
+                  "@type": "WorkMeasure",
                   "measure": "발파책임자, 운전자, 경비원을 제외한 누구도 화약류를 운반하는 운반차에 탑승하지 않도록 한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3dad8026bde4",
+                  "@type": "WorkMeasure",
                   "measure": "뇌관과 화약류를 같은 차량이나 운송 수단으로 운송하기 위한 구획은 물리적으로 분리되어야 하고, 화약류가 적재용기, 와이어 등 철재류와 직접 접촉하지 않도록 조치한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.2"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.7",
+              "@type": "WorkRisk",
               "statement": "전기뇌관이 누전 우려 물체에 접촉하여 보관·운반 중 기폭",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0dd085a77f8a",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관을 운반할 때에는 각선의 피복 등이 벗겨지거나 손상되지 않도록 용기에 넣는다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:519e280934d3",
+                  "@type": "WorkMeasure",
                   "measure": "건전지 또는 전선의 피복이 벗겨진 전기기구를 휴대하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:853d98369174",
+                  "@type": "WorkMeasure",
                   "measure": "전등선, 동력선 기타 누전의 우려가 있는 것에 접근시키지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:9d417a4bdc2e",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관은 전지, 전선, 기타 전기설비, 레일, 철재류, 전등선, 동력선 또는 휴대전화 등 누전의 우려가 있는 물체에 닿지 않도록 한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.8",
+              "@type": "WorkRisk",
               "statement": "흡습·경화된 불량 화약류를 그대로 사용하여 불발·잔류 발생",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:324c63bba4a5",
+                  "@type": "WorkMeasure",
                   "measure": "굳어지면 불발과 잔류를 발생하거나 폭력이 약해질 우려가 있는 질산암모늄을 많이 포함한 폭약 중 딱딱해진 것은 부드럽게 풀어 관리한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:bc46f1152902",
+                  "@type": "WorkMeasure",
                   "measure": "흡습 또는 이상 경화로 인해 성능의 변화가 우려되는 화약류는 사용하지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:53d5693d82e6",
+                  "@type": "WorkMeasure",
                   "measure": "폭약의 양 끝이 유연하게 되어 있는지, 액체가 흘러내리지 않았는지 등을 확인하여 흡습으로 인한 불량 화약류 여부를 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:e55ab8529511",
+                  "@type": "WorkMeasure",
                   "measure": "불량 화약류는 쉽게 알아볼 수 있도록 표시하고, 제조사에서 정한 안전한 방법으로 처리한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:3ccd4b3c869a",
+                  "@type": "WorkMeasure",
                   "measure": "굳어진 폭약은 부드럽게 하여 사용한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:849cb66e55fd",
+                  "@type": "WorkMeasure",
                   "measure": "방수 처리를 하지 않은 화약류는 습기가 있는 곳에 두지 않는다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.9",
+              "@type": "WorkRisk",
               "statement": "뇌관·도폭선의 이상을 검사하지 않고 반출하여 불발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a18fbfc61f88",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관을 사용하는 경우에는 각선의 상처, 도통의 유무 또는 전기저항을 확인한다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:6efabeab5882",
+                  "@type": "WorkMeasure",
                   "measure": "전기뇌관을 사용하는 경우 0.01A 이하의 전류를 가진 도통시험기로 도통 유무를 측정하고, 검사를 마친 전기뇌관의 양단은 반드시 단락하여 둔다",
                   "variant": "전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:10c797f821b2",
+                  "@type": "WorkMeasure",
                   "measure": "비전기뇌관을 사용하는 경우에는 시그널튜브의 상처, 뇌관 관체의 손상 등의 이상 여부를 육안으로 확인한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:0cf03ba986ac",
+                  "@type": "WorkMeasure",
                   "measure": "도폭선을 사용하는 경우에는 흡습, 피복의 상처, 헐거움 등의 이상 여부를 확인한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 },
                 {
+                  "@id": "workmeasure:b1ec7cde4372",
+                  "@type": "WorkMeasure",
                   "measure": "전자뇌관을 사용하는 경우에는 회로점검기로 뇌관 ID 및 통신 상태를 점검하여 이상 여부를 확인한다",
                   "variant": "전자",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.10",
+              "@type": "WorkRisk",
               "statement": "비전기 발파기재를 햇볕에 노출된 채 보관하여 시그널튜브가 변형되어 불발",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5fe0116a9e85",
+                  "@type": "WorkMeasure",
                   "measure": "비전기뇌관을 취급하는 경우 시그널튜브가 장기간 햇볕에 노출되어 변형이 일어나지 않도록 화약류취급소에 보관하거나 열을 차단할 수 있는 재료로 덮는 등의 조치를 한다",
                   "variant": "비전기",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.4"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:b9cef2079f26",
+                  "@type": "WorkMeasure",
                   "measure": "비전기발파 기재의 보관 불량으로 인한 불발을 방지하기 위해 장시간 햇볕에 노출되지 않도록 하고, 불가피한 경우 열을 차단할 수 있는 것을 덮어둔다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "7.2.5"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "7.2.5"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파작업/5.11",
+              "@type": "WorkRisk",
               "statement": "빈 화약류 용기·포장재료를 임의 처분하여 잔류 화약이 폭발",
               "measures": [
                 {
+                  "@id": "workmeasure:12b93df43600",
+                  "@type": "WorkMeasure",
                   "measure": "빈 화약류 용기 및 포장재료는 제조사에서 정한 기준에 따라 처분한다",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-6-2025",
-                    "section": "5.2.3"
+                    "basisGuide": "doc:kosha_guide/D-C-6-2025",
+                    "guideSection": "5.2.3"
                   }
                 }
               ]

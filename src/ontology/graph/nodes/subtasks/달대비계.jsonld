@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:달대비계",
   "@type": [
     "ConstructionSubtask"
@@ -75,50 +33,60 @@
   ],
   "steps": [
     {
+      "@id": "workstep:달대비계/1",
+      "@type": "WorkStep",
       "stepName": "설치 및 사용",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "article": "art:기준규칙:54",
+              "basisArticle": "art:기준규칙:54",
               "paragraph": 1,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:55",
+              "basisArticle": "art:기준규칙:55",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:65",
+              "basisArticle": "art:기준규칙:65",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:달대비계/1.1",
+              "@type": "WorkRisk",
               "statement": "하중을 견디지 못하고 달대비계가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:fb7a8aa9dc86",
+                  "@type": "WorkMeasure",
                   "measure": "달대비계를 조립하여 사용하는 경우 하중에 충분히 견딜 수 있도록 조치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:65"
+                    "basisArticle": "art:기준규칙:65"
                   }
                 },
                 {
+                  "@id": "workmeasure:52ee4ed5a1d0",
+                  "@type": "WorkMeasure",
                   "measure": "비계의 구조 및 재료에 따라 작업발판의 최대적재하중을 정하고, 이를 초과하여 실지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:55"
+                    "basisArticle": "art:기준규칙:55"
                   }
                 },
                 {
+                  "@id": "workmeasure:8b2909905030",
+                  "@type": "WorkMeasure",
                   "measure": "비계의 재료로 변형·부식 또는 심하게 손상된 것을 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:54",
+                    "basisArticle": "art:기준규칙:54",
                     "paragraph": 1
                   }
                 }
@@ -128,95 +96,111 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:13",
+              "basisArticle": "art:기준규칙:13",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:42",
+              "basisArticle": "art:기준규칙:42",
               "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 3,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:달대비계/1.2",
+              "@type": "WorkRisk",
               "statement": "안전난간·안전대 없이 작업하다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:e1f8bd6ab4de",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 추락하거나 넘어질 위험이 있는 장소에서 작업을 할 때에 근로자가 위험해질 우려가 있는 경우 비계를 조립하는 등의 방법으로 작업발판을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:c2ab52e11fe9",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판을 설치하기 곤란한 경우 추락방호망을 설치하고, 추락방호망을 설치하기 곤란한 경우에는 근로자에게 안전대를 착용하도록 하는 등 추락위험을 방지하기 위하여 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:42",
+                    "basisArticle": "art:기준규칙:42",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:d75c8dbbb871",
+                  "@type": "WorkMeasure",
                   "measure": "안전난간은 상부 난간대, 중간 난간대, 발끝막이판 및 난간기둥으로 구성한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:13",
+                    "basisArticle": "art:기준규칙:13",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:달대비계/1.3",
+              "@type": "WorkRisk",
               "statement": "점검 없이 사용하여 연결부 풀림·발판 손상을 놓침",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b5a9761e74a3",
+                  "@type": "WorkMeasure",
                   "measure": "비계의 연결부 또는 접속부의 풀림 상태를 점검하고 이상을 발견하면 즉시 보수한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:30067b0a5ee3",
+                  "@type": "WorkMeasure",
                   "measure": "발판 재료의 손상 여부 및 부착 또는 걸림 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:33ef5820d77d",
+                  "@type": "WorkMeasure",
                   "measure": "연결 재료 및 연결 철물의 손상 또는 부식 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 3
                   }
                 }

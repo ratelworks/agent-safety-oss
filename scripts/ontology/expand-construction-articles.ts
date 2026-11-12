@@ -221,7 +221,7 @@ const ARTICLES_LIST: ArticleStub[] = [
       description: a.description,
       legislationIdentifier: "산업안전보건기준에 관한 규칙",
       legislationDate: "2025-10-01",
-      legislationType: "Regulation",
+      legislationType: "Rule",
       legislationLegalForce: "InForce",
       jurisdiction: "KR",
       temporalCoverage: "2025-10-01/.."

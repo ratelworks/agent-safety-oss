@@ -203,7 +203,7 @@ const REMAINING_ART_STUBS: Array<{ act: string; num: string; title: string; lega
         a.act === "산안법시행령" ? "산업안전보건법 시행령" :
         "산업안전보건법 시행규칙",
       legislationDate: "2025-10-01",
-      legislationType: a.act === "산안법" ? "Act" : "Regulation",
+      legislationType: a.act === "산안법" ? "Act" : a.act === "산안법시행령" ? "Decree" : "Rule",
       legislationLegalForce: "InForce",
       jurisdiction: "KR",
       temporalCoverage: "2025-10-01/.."

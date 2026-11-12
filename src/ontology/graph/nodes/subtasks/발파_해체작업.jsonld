@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:발파_해체작업",
   "@type": [
     "ConstructionSubtask"
@@ -54,6 +12,7 @@
     "note": "공종의 작업 단계와 단계별 재해유형·위험요인·대책·근거. 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 연결했다. 현장 검토 전.",
     "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업) 자료를 바탕으로 구성 — 위험요인·대책 문장과 중요도 표시는 그 자료의 것"
   },
+  "broader": "activity:demolition",
   "hasHazard": [
     "hazard:cave_in",
     "hazard:struck_by_overturn",
@@ -72,77 +31,93 @@
   ],
   "steps": [
     {
+      "@id": "workstep:발파_해체작업/1",
+      "@type": "WorkStep",
       "stepName": "발파해체 설계 및 사전 취약화",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:384",
+              "basisArticle": "art:기준규칙:384",
               "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:발파_해체작업/1.1",
+              "@type": "WorkRisk",
               "statement": "구조도면 검토 없이 발파해체를 설계하여 철근배근 상태와 다른 장약으로 구조물이 계획과 다르게 붕괴",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:7e2245f6e753",
+                  "@type": "WorkMeasure",
                   "measure": "해체대상 구조물의 구조도면을 입수하여 검토하여야 하며, 도면이 없는 경우에는 철근배근상태 등에 대한 도면을 재작성하여 검토한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:607ab466b24a",
+                  "@type": "WorkMeasure",
                   "measure": "구조도면 분석 및 기술적 검토를 거쳐 구조물의 천공위치 및 방법, 사전 취약화 작업 위치, 위험구역·경계구역의 설정이 포함된 설계도면 및 작업계획을 작성한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:117ea34511a7",
+                  "@type": "WorkMeasure",
                   "measure": "건축물 해체공법 및 해체공사 구조 안전성을 검토한 결과 해체계획서대로 해체되지 못하고 건축물이 붕괴할 우려가 있는 경우에는 구조보강계획을 작성한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:384",
+                    "basisArticle": "art:기준규칙:384",
                     "paragraph": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파_해체작업/1.2",
+              "@type": "WorkRisk",
               "statement": "시험발파 없이 본발파를 실시하여 예상을 초과한 진동·파쇄력으로 인접 구조물이 손상",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c5d3f125b57a",
+                  "@type": "WorkMeasure",
                   "measure": "화약류에 의한 발파 해체시에는 사전에 시험발파에 의한 폭력, 폭속, 진동치 속도 등의 파쇄능력과 진동, 소음의 영향력을 검토한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:3a1ee008e765",
+                  "@type": "WorkMeasure",
                   "measure": "폭파 시 인접구조물 및 주변의 영향을 최소화하기 위하여 적정량의 폭약과 정확한 시간차를 계산한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 }
               ]
@@ -151,33 +126,39 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:발파_해체작업/1.3",
+              "@type": "WorkRisk",
               "statement": "사전 취약화 작업 중 이미 약해진 구조물이 발파 전에 무너져 작업자가 깔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:532d144698e3",
+                  "@type": "WorkMeasure",
                   "measure": "구조물을 부분 해체하거나 주변 구조물 또는 시설물에 근접하여 해체할 때에는 구조물의 남은 부분 또는 인접 구조물 등이 해체공사 진동, 충격 등에 안전하도록 사전에 구조보강, 보호시설 설치 등의 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:e02e9ae17278",
+                  "@type": "WorkMeasure",
                   "measure": "해체 구조물 구조규격, 노후정도 등의 조사결과를 반영하여 사전에 구조적 안전성을 확인하고 임시 버팀 설치 등 보강조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -187,55 +168,65 @@
       ]
     },
     {
+      "@id": "workstep:발파_해체작업/2",
+      "@type": "WorkStep",
       "stepName": "방호막 설치 및 장약",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:발파_해체작업/2.1",
+              "@type": "WorkRisk",
               "statement": "장약부위와 개구부에 방호막을 설치하지 않아 발파 시 해체물이 비산하고 폭풍압이 외부로 분출",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:30ad694ce62f",
+                  "@type": "WorkMeasure",
                   "measure": "폭파해체 작업 시에는 해체물의 비산과 폭풍압 방지를 위하여 장약부위 및 외부로 통하는 개구부에는 철망이나 부직포 등을 이용하여 방호막을 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:19316b7ef7fd",
+                  "@type": "WorkMeasure",
                   "measure": "소음, 분진, 진동으로 인한 공해대책, 파편에 대한 예방대책을 수립한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:05818cda4b5b",
+                  "@type": "WorkMeasure",
                   "measure": "해체구조물 외곽에 방호용 울타리를 설치하고 해체물의 넘어짐, 떨어짐 등에 대비하여 안전거리를 유지한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -246,35 +237,41 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "elimination"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:발파_해체작업/2.2",
+              "@type": "WorkRisk",
               "statement": "배관보온재 등 유해물질을 제거하지 않고 폭파하여 분진에 유해물질이 섞여 확산",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:1f150b405846",
+                  "@type": "WorkMeasure",
                   "measure": "폭파해체 시 발생되는 분진에 유해물질이 함유되지 않도록 배관보온재 등 유해물질을 미리 제거한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:a8aed5919dbe",
+                  "@type": "WorkMeasure",
                   "measure": "해체 구조물 내·외부의 화재, 폭발, 중독 등의 유해·위험물질은 관계 법령에 따른 기준을 준수하여 사전에 제거하거나 격리하는 조치를 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -284,54 +281,64 @@
       ]
     },
     {
+      "@id": "workstep:발파_해체작업/3",
+      "@type": "WorkStep",
       "stepName": "발파 및 붕괴 유도",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:20",
+              "basisArticle": "art:기준규칙:20",
               "item": 13,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:384",
+              "basisArticle": "art:기준규칙:384",
               "paragraph": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:발파_해체작업/3.1",
+              "@type": "WorkRisk",
               "statement": "위험구역 내 주민·차량의 대피를 확인하지 않고 점화하여 붕괴물·비산물에 사람이 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:d1a1dd438ec3",
+                  "@type": "WorkMeasure",
                   "measure": "폭파작업 시에는 위험구역을 설정하여 주민과 차량통행을 통제하고 대피를 확인한 후 점화한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:89bda16fd9e5",
+                  "@type": "WorkMeasure",
                   "measure": "구축물등을 무너뜨리는 작업을 하기 전에 구축물등이 넘어지는 위치, 파편의 비산거리 등을 고려하여 해당 작업 반경 내에 사람이 없는지 미리 확인한 후 작업을 실시하고, 무너뜨리는 작업 중에는 해당 작업 반경 내에 관계 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:384",
+                    "basisArticle": "art:기준규칙:384",
                     "paragraph": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:716891c397ed",
+                  "@type": "WorkMeasure",
                   "measure": "해체작업을 하는 장소에 울타리를 설치하는 등 관계 근로자가 아닌 사람의 출입을 금지한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:20",
+                    "basisArticle": "art:기준규칙:20",
                     "item": 13
                   }
                 }
@@ -341,57 +348,67 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "5.2.14",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "5.2.14",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-47-2023",
-              "section": "6.3",
+              "basisGuide": "doc:kosha_guide/C-47-2023",
+              "guideSection": "6.3",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:발파_해체작업/3.2",
+              "@type": "WorkRisk",
               "statement": "뇌관 시간차 배열이 설계와 달라 붕괴 순서가 어긋나며 구조물이 예정 방향 밖으로 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c01d9c19e4ac",
+                  "@type": "WorkMeasure",
                   "measure": "뇌관의 시간차 배열 및 지발당 최대 허용장약량이 포함된 설계도면 및 작업계획을 작성한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 },
                 {
+                  "@id": "workmeasure:3a1ee008e765",
+                  "@type": "WorkMeasure",
                   "measure": "폭파 시 인접구조물 및 주변의 영향을 최소화하기 위하여 적정량의 폭약과 정확한 시간차를 계산한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "5.2.14"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "5.2.14"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:발파_해체작업/3.3",
+              "@type": "WorkRisk",
               "statement": "발파 후 지하실 하부 지반이 침하하며 잔존 구조물·중기가 기울어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:57a285137a76",
+                  "@type": "WorkMeasure",
                   "measure": "지하실 등을 해체할 경우에는 해체작업 전에 대상건물의 깊이, 토질, 주변상황 등과 사용하는 중기 및 운행 시 수반되는 진동 등을 고려하여 지반침하에 대비한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-47-2023",
-                    "section": "6.3"
+                    "basisGuide": "doc:kosha_guide/C-47-2023",
+                    "guideSection": "6.3"
                   }
                 }
               ]

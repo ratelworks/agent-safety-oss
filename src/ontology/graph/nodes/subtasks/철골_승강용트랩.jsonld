@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:철골_승강용트랩",
   "@type": [
     "ConstructionSubtask"
@@ -67,79 +25,89 @@
   ],
   "steps": [
     {
+      "@id": "workstep:철골_승강용트랩/1",
+      "@type": "WorkStep",
       "stepName": "설치 및 사용",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 8,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 9,
               "subitem": "가",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:24",
+              "basisArticle": "art:기준규칙:24",
               "paragraph": 1,
               "item": 9,
               "subitem": "나",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:철골_승강용트랩/1.1",
+              "@type": "WorkRisk",
               "statement": "승강용트랩이 견고하지 않거나 부식되어 파손으로 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ec826cd13114",
+                  "@type": "WorkMeasure",
                   "measure": "사다리식 통로는 견고한 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:644405b048ee",
+                  "@type": "WorkMeasure",
                   "measure": "심한 손상·부식 등이 없는 재료를 사용한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:01c92be30a11",
+                  "@type": "WorkMeasure",
                   "measure": "발판의 간격은 일정하게 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 3
                   }
@@ -147,34 +115,42 @@
               ]
             },
             {
+              "@id": "workrisk:철골_승강용트랩/1.2",
+              "@type": "WorkRisk",
               "statement": "고정식 승강용트랩의 높이가 커 등받이울·추락방지시스템 없이 승강하다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:3adc9314dae2",
+                  "@type": "WorkMeasure",
                   "measure": "고정식 사다리식 통로의 기울기는 90도 이하로 하고, 그 높이가 7미터 이상인 경우에는 등받이울이 있어도 근로자 이동에 지장이 없는 경우 바닥으로부터 높이가 2.5미터 되는 지점부터 등받이울을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 9,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:b4a7a1b94e3a",
+                  "@type": "WorkMeasure",
                   "measure": "등받이울이 있으면 근로자가 이동이 곤란한 경우에는 한국산업표준에서 정하는 기준에 적합한 개인용 추락 방지 시스템을 설치하고 근로자로 하여금 한국산업표준에서 정하는 기준에 적합한 전신안전대를 사용하도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 9,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:c16e81ca58d2",
+                  "@type": "WorkMeasure",
                   "measure": "사다리식 통로의 길이가 10미터 이상인 경우에는 5미터 이내마다 계단참을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:24",
+                    "basisArticle": "art:기준규칙:24",
                     "paragraph": 1,
                     "item": 8
                   }

@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:시스템비계",
   "@type": [
     "ConstructionSubtask"
@@ -78,29 +36,35 @@
   ],
   "steps": [
     {
+      "@id": "workstep:시스템비계/1",
+      "@type": "WorkStep",
       "stepName": "자재하역·운반",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.4.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.4.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/1.1",
+              "@type": "WorkRisk",
               "statement": "부재를 던져 올리거나 내려 하부 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:5e7ce5ddb605",
+                  "@type": "WorkMeasure",
                   "measure": "시스템비계 부재에 의한 맞음 사고를 방지하기 위하여 재료·기구 또는 공구 등을 올리거나 내리는 경우에는 근로자가 달줄 또는 달포대를 사용하게 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.3"
                   }
                 }
               ]
@@ -109,36 +73,42 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.4.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.4.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:385",
+              "basisArticle": "art:기준규칙:385",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/1.2",
+              "@type": "WorkRisk",
               "statement": "중량·무게중심을 모른 채 인력으로 들어 올려 깔림·무리한 동작",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:45bf94de687f",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 5kg 이상의 중량물을 인력으로 들어 올리는 작업을 하는 경우에 취급하는 물품에 대하여 근로자가 쉽게 알 수 있도록 물품의 중량과 무게중심에 대하여 작업장 주변에 안내표시를 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:863ad2cb836d",
+                  "@type": "WorkMeasure",
                   "measure": "중량물을 운반하거나 취급하는 경우에 하역운반기계·운반용구를 사용한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:385"
+                    "basisArticle": "art:기준규칙:385"
                   }
                 }
               ]
@@ -148,176 +118,212 @@
       ]
     },
     {
+      "@id": "workstep:시스템비계/2",
+      "@type": "WorkStep",
       "stepName": "조립",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.4.4",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.4.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:69",
+              "basisArticle": "art:기준규칙:69",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:69",
+              "basisArticle": "art:기준규칙:69",
               "item": 2,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:69",
+              "basisArticle": "art:기준규칙:69",
               "item": 3,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:69",
+              "basisArticle": "art:기준규칙:69",
               "item": 4,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:69",
+              "basisArticle": "art:기준규칙:69",
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:70",
+              "basisArticle": "art:기준규칙:70",
               "item": 1,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:70",
+              "basisArticle": "art:기준규칙:70",
               "item": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/2.1",
+              "@type": "WorkRisk",
               "statement": "지반이 침하하여 시스템비계가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:5c2180f11708",
+                  "@type": "WorkMeasure",
                   "measure": "비계 기둥의 밑둥에는 밑받침 철물을 사용하여야 하며, 밑받침에 고저차가 있는 경우에는 조절형 밑받침 철물을 사용하여 시스템 비계가 항상 수평 및 수직을 유지하도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:70",
+                    "basisArticle": "art:기준규칙:70",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:eef4ddae8c8a",
+                  "@type": "WorkMeasure",
                   "measure": "지반의 침하방지를 위하여 지내력을 확인하여 연약지반인 경우 깔판·받침목을 설치하거나 콘크리트를 타설하는 등 침하방지 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:시스템비계/2.2",
+              "@type": "WorkRisk",
               "statement": "경사진 바닥에서 받침철물 수평을 확보하지 않아 전도됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:af153d1d9b8a",
+                  "@type": "WorkMeasure",
                   "measure": "경사진 바닥에 설치하는 경우에는 피벗형 받침 철물 또는 쐐기 등을 사용하여 밑받침 철물의 바닥면이 수평을 유지하도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:70",
+                    "basisArticle": "art:기준규칙:70",
                     "item": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:시스템비계/2.3",
+              "@type": "WorkRisk",
               "statement": "수직재와 받침철물의 겹침길이가 부족하여 이탈함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:9e5993a39d05",
+                  "@type": "WorkMeasure",
                   "measure": "비계 밑단의 수직재와 받침철물은 밀착되도록 설치하고, 수직재와 받침철물의 연결부의 겹침길이는 받침철물 전체길이의 3분의 1 이상이 되도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:69",
+                    "basisArticle": "art:기준규칙:69",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:be74de388981",
+                  "@type": "WorkMeasure",
                   "measure": "조절형 받침철물을 설치한 다음 수직재를 설치하면 넘어짐의 위험이 있으므로 수평재를 이용하여 연결핀을 견고하게 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:시스템비계/2.4",
+              "@type": "WorkRisk",
               "statement": "수평재·연결철물 체결이 불량하여 부재가 이탈해 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:5a3829613c52",
+                  "@type": "WorkMeasure",
                   "measure": "수직재·수평재·가새재를 견고하게 연결하는 구조가 되도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:69",
+                    "basisArticle": "art:기준규칙:69",
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:531a9f6248d2",
+                  "@type": "WorkMeasure",
                   "measure": "수평재는 수직재와 직각으로 설치하여야 하며, 체결 후 흔들림이 없도록 견고하게 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:69",
+                    "basisArticle": "art:기준규칙:69",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:681142e2c790",
+                  "@type": "WorkMeasure",
                   "measure": "수평재는 체결 후 흔들림이 없도록 체결한 다음 망치로 2~3회 타격하여 확인하는 등 견고하게 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:deb7880f1488",
+                  "@type": "WorkMeasure",
                   "measure": "수직재와 수직재의 연결철물은 이탈되지 않도록 견고한 구조로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:69",
+                    "basisArticle": "art:기준규칙:69",
                     "item": 4
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:시스템비계/2.5",
+              "@type": "WorkRisk",
               "statement": "벽 연결재 간격을 지키지 않아 비계가 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:1e5bc2e190a4",
+                  "@type": "WorkMeasure",
                   "measure": "벽 연결재의 설치간격은 제조사가 정한 기준에 따라 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:69",
+                    "basisArticle": "art:기준규칙:69",
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:d5415e2c08af",
+                  "@type": "WorkMeasure",
                   "measure": "벽 연결재는 수직재와 수평재의 교차부에서 비계 면에 대하여 직각이 되도록 영구구조물에 연결한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:d4bd7df33e71",
+                  "@type": "WorkMeasure",
                   "measure": "가새재는 제조사의 매뉴얼과 조립도에 따라 설치하고, 전문가의 구조검토가 있는 경우 그 의견에 따라 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 }
               ]
@@ -326,61 +332,71 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.4.4",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.4.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.3",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 5,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/2.6",
+              "@type": "WorkRisk",
               "statement": "조립 중 안전대 부착설비 없이 작업하다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:45fc74443d6c",
+                  "@type": "WorkMeasure",
                   "measure": "비계 작업 근로자는 떨어질 위험이 있으므로 안전대 부착용 로프를 먼저 설치하고 안전대를 걸고 작업을 하도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:d78945f1f854",
+                  "@type": "WorkMeasure",
                   "measure": "구조물과 시스템비계 사이에는 추락방호망을 높이 10m 이내마다 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:dfe8c7e0a159",
+                  "@type": "WorkMeasure",
                   "measure": "비계재료의 연결·해체작업을 하는 경우에는 폭 20센티미터 이상의 발판을 설치하고 근로자로 하여금 안전대를 사용하도록 하는 등 추락을 방지하기 위한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:131cb767736a",
+                  "@type": "WorkMeasure",
                   "measure": "근로자는 전신형 안전대 착용 후 안전대 부착설비에 안전대 고리를 직접 체결하여야 하며, 안전대 부착설비는 비계와 별도의 구조물에 고정한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.3"
                   }
                 }
               ]
@@ -389,24 +405,28 @@
         },
         {
           "hazardLabel": "감전",
+          "hasHazard": "hazard:electric_shock",
           "basis": [
             {
-              "article": "art:기준규칙:70",
+              "basisArticle": "art:기준규칙:70",
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:electric_shock",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/2.7",
+              "@type": "WorkRisk",
               "statement": "가공전로에 근접하여 조립하다 접촉하여 감전",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:4ba29d27085d",
+                  "@type": "WorkMeasure",
                   "measure": "가공전로에 근접하여 비계를 설치하는 경우에는 가공전로를 이설하거나 가공전로에 절연용 방호구를 설치하는 등 가공전로와의 접촉을 방지하기 위하여 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:70",
+                    "basisArticle": "art:기준규칙:70",
                     "item": 3
                   }
                 }
@@ -417,151 +437,181 @@
       ]
     },
     {
+      "@id": "workstep:시스템비계/3",
+      "@type": "WorkStep",
       "stepName": "사용(존치)",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.4",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.4",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.1",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.1",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 5,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:70",
+              "basisArticle": "art:기준규칙:70",
               "item": 6,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/3.1",
+              "@type": "WorkRisk",
               "statement": "최대적재하중을 초과하여 적재해 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b207d6ba52b3",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판에는 제조사가 정한 최대적재하중을 초과하여 적재해서는 아니 되며, 최대적재하중이 표기된 표지판을 부착하고 근로자에게 주지시키도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:70",
+                    "basisArticle": "art:기준규칙:70",
                     "item": 6
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:시스템비계/3.2",
+              "@type": "WorkRisk",
               "statement": "점검 없이 사용하여 연결부 풀림·침하를 놓쳐 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:b5a9761e74a3",
+                  "@type": "WorkMeasure",
                   "measure": "비계의 연결부 또는 접속부의 풀림 상태를 점검하고 이상을 발견하면 즉시 보수한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:d8d77dc76afc",
+                  "@type": "WorkMeasure",
                   "measure": "기둥의 침하, 변형, 변위 또는 흔들림 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 5
                   }
                 },
                 {
+                  "@id": "workmeasure:33ef5820d77d",
+                  "@type": "WorkMeasure",
                   "measure": "연결 재료 및 연결 철물의 손상 또는 부식 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 3
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:시스템비계/3.3",
+              "@type": "WorkRisk",
               "statement": "강풍 전후에 벽이음·보호망을 조치하지 않아 비계가 도괴됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:039db5f0c6c4",
+                  "@type": "WorkMeasure",
                   "measure": "강풍 주의보가 나온 경우는 즉시 벽 이음재나 버팀목 등의 상황을 점검하고, 필요에 따라 비계의 경사, 무너짐이나 재료의 흩어짐을 방지하는 조치를 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:e031d2962079",
+                  "@type": "WorkMeasure",
                   "measure": "비계에 설치된 추락 방호망, 수직 보호망 및 작업발판 등은 해체하거나, 풍하중에 대하여 안전하도록 보강한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:cd55ae804243",
+                  "@type": "WorkMeasure",
                   "measure": "벽 이음재나 비계의 구성부재가 소정의 위치에 확실하게 설치되어 있는지를 확인하고, 필요에 따라 버팀목 등으로 보강한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:20dac90568af",
+                  "@type": "WorkMeasure",
                   "measure": "강풍 후에는 반드시 비계 변형·전도 여부를 점검한 후 재개한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:32ff0586c794",
+                  "@type": "WorkMeasure",
                   "measure": "벽 이음재나 클램프 등이 이완되거나 어긋남이 없는지를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:50ce1e9b13d2",
+                  "@type": "WorkMeasure",
                   "measure": "비계기둥이 놓여진 밑면에 미끄러짐이나, 미끄러짐의 우려가 있는지를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:886c9a9d7e3b",
+                  "@type": "WorkMeasure",
                   "measure": "비계 위에 떨어져 있는 자재나 공구 등의 유무를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.4"
                   }
                 }
               ]
@@ -570,38 +620,44 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "7.4.4",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "7.4.4",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:70",
+              "basisArticle": "art:기준규칙:70",
               "item": 4,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/3.4",
+              "@type": "WorkRisk",
               "statement": "지정 통로가 아닌 곳으로 오르내리다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:889acefef62c",
+                  "@type": "WorkMeasure",
                   "measure": "비계 내에서 근로자가 상하 또는 좌우로 이동하는 경우에는 반드시 지정된 통로를 이용하도록 주지시킨다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:70",
+                    "basisArticle": "art:기준규칙:70",
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:23a9cb5782d4",
+                  "@type": "WorkMeasure",
                   "measure": "비계 내부에서 근로자가 상·하로 이동하는 경우에는 반드시 가설계단을 사용하도록 주지시킨다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "7.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "7.4.4"
                   }
                 }
               ]
@@ -610,24 +666,28 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "article": "art:기준규칙:70",
+              "basisArticle": "art:기준규칙:70",
               "item": 5,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/3.5",
+              "@type": "WorkRisk",
               "statement": "같은 수직면에서 위아래 동시작업을 하여 낙하물에 맞음",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:e1bb117bb915",
+                  "@type": "WorkMeasure",
                   "measure": "비계 작업 근로자는 같은 수직면상의 위와 아래 동시 작업을 금지한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:70",
+                    "basisArticle": "art:기준규칙:70",
                     "item": 5
                   }
                 }
@@ -638,102 +698,118 @@
       ]
     },
     {
+      "@id": "workstep:시스템비계/4",
+      "@type": "WorkStep",
       "stepName": "해체",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.1",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.1",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:시스템비계/4.1",
+              "@type": "WorkRisk",
               "statement": "해체 순서와 출입통제 없이 해체하여 무너지거나 부재가 낙하함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:a04d8845490a",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 관리감독자의 지휘에 따라 작업하도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:51c097ea0003",
+                  "@type": "WorkMeasure",
                   "measure": "조립·해체 또는 변경의 시기·범위 및 절차를 그 작업에 종사하는 근로자에게 주지시킨다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:920dcb720618",
+                  "@type": "WorkMeasure",
                   "measure": "조립·해체 또는 변경 작업구역에는 해당 작업에 종사하는 근로자가 아닌 사람의 출입을 금지하고 그 내용을 보기 쉬운 장소에 게시한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:f00315f1da59",
+                  "@type": "WorkMeasure",
                   "measure": "해체 전 비계 설치상태를 점검하고, 안전 상 문제가 없을 경우 해체작업을 실시하며, 해체는 상부에서 하부 순서로 실시하고 동시에 여러 구간을 해체하지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:c1279f34cae1",
+                  "@type": "WorkMeasure",
                   "measure": "비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킨다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:0850584b5a48",
+                  "@type": "WorkMeasure",
                   "measure": "풍속 10m/s 이상, 우천, 결빙, 시야불량 시 작업을 중지한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.1"
                   }
                 }
               ]

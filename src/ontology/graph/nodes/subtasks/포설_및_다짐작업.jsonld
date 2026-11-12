@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:포설_및_다짐작업",
   "@type": [
     "ConstructionSubtask"
@@ -80,155 +38,185 @@
   ],
   "steps": [
     {
+      "@id": "workstep:포설_및_다짐작업/1",
+      "@type": "WorkStep",
       "stepName": "포설 및 다짐",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.3",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.3",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:199",
+              "basisArticle": "art:기준규칙:199",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:200",
+              "basisArticle": "art:기준규칙:200",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:203",
+              "basisArticle": "art:기준규칙:203",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:포설_및_다짐작업/1.1",
+              "@type": "WorkRisk",
               "statement": "로울러 전압 부근에 근로자가 있어 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:02485ecd66ca",
+                  "@type": "WorkMeasure",
                   "measure": "포장공사시 타이어로울러·머캐덤로울러·탠덤로울러의 전압 부근에 근로자가 있는 경우에는 유도자를 배치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:2631888b86c2",
+                  "@type": "WorkMeasure",
                   "measure": "기계 주행작업중에는 그 작업 범위내에 근로자를 출입시키지 않도록 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.3"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:ff8b65357bfa",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시켜서는 아니 되며, 다만 유도자를 배치하고 해당 차량계 건설기계를 유도하는 경우에는 그러하지 아니하다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:200"
+                    "basisArticle": "art:기준규칙:200"
                   }
                 },
                 {
+                  "@id": "workmeasure:ec4cd3950a77",
+                  "@type": "WorkMeasure",
                   "measure": "급하게 전․후진 및 급선회를 하지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3a74bfceb6ec",
+                  "@type": "WorkMeasure",
                   "measure": "건설기계의 진행방향 5m, 좌우 양측 2m이내에 근로자가 있는 경우에는 반드시 경적을 울리는 등의 조치를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포설_및_다짐작업/1.2",
+              "@type": "WorkRisk",
               "statement": "피니셔와 로울러 사이에서 마무리 작업 중 협착",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:cba46762e330",
+                  "@type": "WorkMeasure",
                   "measure": "아스팔트 포설후 머캐덤 로울러등의 다짐기계가 피니셔의 뒤에서 바로 전압작업을 실시하므로, 포설과 전압을 실시함에 있어서 마무리공 및 다른 근로자가 피니셔와 로울러 사이에서 작업하는 경우에는 준수사항을 지켜야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:8ff0222ecfa9",
+                  "@type": "WorkMeasure",
                   "measure": "로울러와 피니셔와의 근접거리는 최소 1m이상으로 한다. 또 마무리공은 로울러와의 거리를 2～3m이상 유지해야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:68b2294c10ad",
+                  "@type": "WorkMeasure",
                   "measure": "로울러 운전자는 마무리 작업시 근접작업 근로자에 대한 주의를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포설_및_다짐작업/1.3",
+              "@type": "WorkRisk",
               "statement": "다짐장비가 노반 가장자리에서 전도되어 근로자가 깔림",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:fd0693ae1d76",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자가 위험해질 우려가 있는 경우에는 그 기계를 유도하는 사람을 배치하고 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:199"
+                    "basisArticle": "art:기준규칙:199"
                   }
                 },
                 {
+                  "@id": "workmeasure:ceb3a8bccd62",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우 그 차량계 건설기계가 넘어지거나 붕괴될 위험 또는 붐ㆍ암 등 작업장치가 파괴될 위험을 방지하기 위하여 그 기계의 구조 및 사용상 안전도 및 최대사용하중을 준수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:203"
+                    "basisArticle": "art:기준규칙:203"
                   }
                 },
                 {
+                  "@id": "workmeasure:b3174951ad2f",
+                  "@type": "WorkMeasure",
                   "measure": "기계를 주차할 때에는 비탈길 등의 경사지나 붕괴되기 쉬운 지반 등을 피하며, 반드시 제동 확인후 받침목을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 }
               ]
@@ -237,214 +225,256 @@
         },
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.1",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:172",
+              "basisArticle": "art:기준규칙:172",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:197",
+              "basisArticle": "art:기준규칙:197",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:202",
+              "basisArticle": "art:기준규칙:202",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:37",
+              "basisArticle": "art:기준규칙:37",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:99",
+              "basisArticle": "art:기준규칙:99",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:99",
+              "basisArticle": "art:기준규칙:99",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:포설_및_다짐작업/1.4",
+              "@type": "WorkRisk",
               "statement": "아스팔트피니셔 호퍼에 덤프트럭이 후진 투입하다 근로자를 침범",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:1d3081c80ea6",
+                  "@type": "WorkMeasure",
                   "measure": "아스팔트피니셔로 아스팔트 혼합재를 깔 때 덤프트럭이 후진하면서 호퍼에 혼합재를 투입 공급하는 경우에는 유도자를 배치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:43d9999d2bf5",
+                  "@type": "WorkMeasure",
                   "measure": "덤프트럭이 운반 후 후진하는 경우에는 유도자를 배치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:e6613b62b7d7",
+                  "@type": "WorkMeasure",
                   "measure": "기계의 후진시에는 경고음이나 경광등이 작동될 수 있도록 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:aa2d52d296ad",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 후진하는 경우 운전석에서 차량의 후방을 확인 할 수 있는 장치가 있는 경우를 제외하고 유도자의 신호에 따라 후진하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:8bab8c8dd84f",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등을 사용하여 작업을 하는 경우에 하역 또는 운반 중인 화물이나 그 차량계 하역운반기계등에 접촉되어 근로자가 위험해질 우려가 있는 장소에는 근로자를 출입시켜서는 아니 되며, 다만 제39조에 따른 작업지휘자 또는 유도자를 배치하고 그 차량계 하역운반기계등을 유도하는 경우에는 그러하지 아니하다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:172"
+                    "basisArticle": "art:기준규칙:172"
                   }
                 },
                 {
+                  "@id": "workmeasure:17f0bf20c6fd",
+                  "@type": "WorkMeasure",
                   "measure": "아스팔트 포장재료를 포설할 경우에 덤프트럭은 후진하며 적재되어 있는 혼합재를 피니셔의 호퍼에 공급하게 되고, 피니셔는 전진하면서 포설작업을 하므로 근로자의 재해예방을 위하여 기계작업 근접작업시 준수사항을 지켜야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:81ef1b59bb9a",
+                  "@type": "WorkMeasure",
                   "measure": "유도자는 덤프트럭의 운전자와 같은 방향에서 피니셔 호퍼 부근 혹은 그 전방 5～10m 사이에서 안전한 작업을 위하여 유도신호를 하도록 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:397ac9a94cee",
+                  "@type": "WorkMeasure",
                   "measure": "피니셔의 운전자와 유도자는 덤프트럭이 후진하면서 혼합재를 피니셔의 호퍼에 공급하는 현장상태를 수시로 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:32ca04ea9ff8",
+                  "@type": "WorkMeasure",
                   "measure": "유도자는 덤프트럭의 운전자로부터 잘 보이는 장소에서 신호하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:cc9a9aebdd1d",
+                  "@type": "WorkMeasure",
                   "measure": "신호는 호각 및 수신호를 병용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포설_및_다짐작업/1.5",
+              "@type": "WorkRisk",
               "statement": "동절기 포장에서 로울러 살수 수증기로 시야가 가려 사고",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f68e9a2d8d10",
+                  "@type": "WorkMeasure",
                   "measure": "로울러 운전자는 동절기 한냉 포장작업시 로울러에서 살수되는 물이 아스팔트의 고열에 의해 수증기가 발생할 경우, 근로자의 시야를 가릴수 있으므로 주의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포설_및_다짐작업/1.6",
+              "@type": "WorkRisk",
               "statement": "운전자가 이탈하며 장비가 갑자기 주행",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:02cd241ebf63",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계의 운전자가 운전위치를 이탈하는 경우 해당 운전자에게 포크, 버킷, 디퍼 등의 장치를 가장 낮은 위치 또는 지면에 내려 두도록 하고, 원동기를 정지시키고 브레이크를 확실히 거는 등 갑작스러운 주행이나 이탈을 방지하기 위한 조치를 하도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:99"
+                    "basisArticle": "art:기준규칙:99"
                   }
                 },
                 {
+                  "@id": "workmeasure:15a554956add",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 운전위치를 이탈하는 경우 조치를 준수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:99"
+                    "basisArticle": "art:기준규칙:99"
                   }
                 },
                 {
+                  "@id": "workmeasure:b23f7a87d60c",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계의 승차석이 아닌 위치에 근로자를 탑승시켜서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:202"
+                    "basisArticle": "art:기준규칙:202"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포설_및_다짐작업/1.7",
+              "@type": "WorkRisk",
               "statement": "악천후·야간에 다짐작업을 강행하여 시야 부족으로 사고",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:2455990afd4f",
+                  "@type": "WorkMeasure",
                   "measure": "비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:37"
+                    "basisArticle": "art:기준규칙:37"
                   }
                 },
                 {
+                  "@id": "workmeasure:967eeac54ef8",
+                  "@type": "WorkMeasure",
                   "measure": "야간작업시 유도자는 신호수용 반사조끼를 착용하고 전자신호봉 또는 깃발을 손에 들고 유도하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:e8ae59cc37e9",
+                  "@type": "WorkMeasure",
                   "measure": "어두운 장소에서 사용하는 차량계 건설기계에는 전조등을 갖추어야 하며, 다만 작업을 안전하게 수행하기 위하여 필요한 조명이 있는 장소에서 사용하는 경우에는 그러하지 아니하다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:197"
+                    "basisArticle": "art:기준규칙:197"
                   }
                 }
               ]
@@ -453,38 +483,44 @@
         },
         {
           "hazardLabel": "이상온도·화상",
+          "hasHazard": "hazard:thermal_burn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:thermal_burn",
           "risks": [
             {
+              "@id": "workrisk:포설_및_다짐작업/1.8",
+              "@type": "WorkRisk",
               "statement": "디스트리뷰터 살포 부근 근로자가 고열 아스팔트에 화상",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:96c59a7ab8ea",
+                  "@type": "WorkMeasure",
                   "measure": "포장공사시 디스트리뷰터의 살포 부근에 근로자가 있는 경우에는 유도자를 배치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:12715789db43",
+                  "@type": "WorkMeasure",
                   "measure": "아스팔트 콘크리트의 고열에 화상을 입지 않도록 주의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.2"
                   }
                 }
               ]
@@ -493,45 +529,53 @@
         },
         {
           "hazardLabel": "끼임·감김",
+          "hasHazard": "hazard:machine_entanglement",
           "basis": [
             {
-              "article": "art:기준규칙:176",
+              "basisArticle": "art:기준규칙:176",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:205",
+              "basisArticle": "art:기준규칙:205",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:206",
+              "basisArticle": "art:기준규칙:206",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:machine_entanglement",
           "risks": [
             {
+              "@id": "workrisk:포설_및_다짐작업/1.9",
+              "@type": "WorkRisk",
               "statement": "다짐장비 수리·부속장치 교체 중 협착",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:26a871f8be3f",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계의 붐ㆍ암 등을 올리고 그 밑에서 수리ㆍ점검작업 등을 하는 경우 붐ㆍ암 등이 갑자기 내려옴으로써 발생하는 위험을 방지하기 위하여 해당 작업에 종사하는 근로자에게 안전지지대 또는 안전블록 등을 사용하도록 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:205"
+                    "basisArticle": "art:기준규칙:205"
                   }
                 },
                 {
+                  "@id": "workmeasure:0781d63fd1e0",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계의 수리나 부속장치의 장착 및 해체작업을 하는 경우 그 작업을 지휘하는 사람을 지정하여 작업순서를 결정하고 작업을 지휘하는 일, 안전지지대 또는 안전블록 등의 사용 상황 등을 점검하는 일을 수행하게 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:206"
+                    "basisArticle": "art:기준규칙:206"
                   }
                 },
                 {
+                  "@id": "workmeasure:3fda38b90db7",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등의 수리 또는 부속장치의 장착 및 해체작업을 하는 경우 해당 작업의 지휘자를 지정하여 작업순서를 결정하고 작업을 지휘할 것, 안전지지대 또는 안전블록 등의 사용 상황 등을 점검할 것의 사항을 준수하도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:176"
+                    "basisArticle": "art:기준규칙:176"
                   }
                 }
               ]

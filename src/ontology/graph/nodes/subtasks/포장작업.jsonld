@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:포장작업",
   "@type": [
     "ConstructionSubtask"
@@ -85,216 +43,262 @@
   ],
   "steps": [
     {
+      "@id": "workstep:포장작업/1",
+      "@type": "WorkStep",
       "stepName": "포장 장비 반입",
       "stepHazards": [
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "5",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:172",
+              "basisArticle": "art:기준규칙:172",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:172",
+              "basisArticle": "art:기준규칙:172",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:포장작업/1.1",
+              "@type": "WorkRisk",
               "statement": "덤프트럭이 후진하다가 근로자와 충돌",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:aa2d52d296ad",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 후진하는 경우 운전석에서 차량의 후방을 확인 할 수 있는 장치가 있는 경우를 제외하고 유도자의 신호에 따라 후진하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:77d6b7e51c56",
+                  "@type": "WorkMeasure",
                   "measure": "후진경보장치 작동상태를 확인하고 유도자를 배치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:c4353f3d4ddb",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 후사경의 부착 및 후진 경보장치의 작동상태 등 이상 유․무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:8820490c78d7",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 후방 감시 카메라의 전원 켜짐과 모니터 작동 상태 등 이상 유․무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:e6613b62b7d7",
+                  "@type": "WorkMeasure",
                   "measure": "기계의 후진시에는 경고음이나 경광등이 작동될 수 있도록 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:8bab8c8dd84f",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등을 사용하여 작업을 하는 경우에 하역 또는 운반 중인 화물이나 그 차량계 하역운반기계등에 접촉되어 근로자가 위험해질 우려가 있는 장소에는 근로자를 출입시켜서는 아니 되며, 다만 제39조에 따른 작업지휘자 또는 유도자를 배치하고 그 차량계 하역운반기계등을 유도하는 경우에는 그러하지 아니하다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:172"
+                    "basisArticle": "art:기준규칙:172"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포장작업/1.2",
+              "@type": "WorkRisk",
               "statement": "적재함을 올린 상태로 주행하여 교량·지하차도 구조물과 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b7c215bd6bf3",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 적재물을 하역한 다음 적재함을 올린 상태 및 적재함 문짝을 개방한 상태에서의 운행을 금지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:4c399e7a744a",
+                  "@type": "WorkMeasure",
                   "measure": "덤프트럭 적재함의 하강상태 및 교량이나 지하차도 등의 하부 통과시 통과높이 제한 표시와 도로면의 구배를 확인 후 통과하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:ea3a4faf41d5",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 적재물을 하역하는 경우 싣거나 내리는 동시 작업을 금지하고, 적재함의 상승과 하역 작업 이전에 적재함 덮개 개방을 금지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포장작업/1.3",
+              "@type": "WorkRisk",
               "statement": "장비 상태를 점검하지 않고 투입하여 제동·조향 불량",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f11ea3e0914e",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 작업 전 제동 및 조종 장치와 하역 및 유압 장치 기능 및 바퀴의 이상 유·무 등을 점검하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:ba148641a29f",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 점검 결과 이상이 발견되면 즉시 수리하거나 그 밖에 필요한 조치를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:b84c232dd682",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 조종장치, 클러치, 브레이크의 작동상태 및 운전석 안전벨트의 부착 여부를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9652354cb9b2",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 전조등, 후미등, 안개등, 차폭 등의 이상 유․무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:49496ba85316",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 차륜(타이어)의 공기압, 균열, 변형, 파손 등 주행 장치의 이상 유․무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:aa0001d12e63",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 유압모터, 실린더, 배관 등에 누유, 손상, 마모 상태 등을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:2f7f6fe5d3b5",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 적재함 덮개, 발판, 운전석 방호설비 등의 이상 유․무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:2d9da76e7b12",
+                  "@type": "WorkMeasure",
                   "measure": "기계는 작업전에 모두 정비하고 운전시 안전수칙을 준수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:afcb10c2ec8c",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 일일점검을 통해 차량의 이상유․무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:cd46cf792c98",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등의 운전자는 작업지휘자 또는 유도자가 유도하는 대로 따라야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:172"
+                    "basisArticle": "art:기준규칙:172"
                   }
                 }
               ]
@@ -303,91 +307,107 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "5",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:171",
+              "basisArticle": "art:기준규칙:171",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:포장작업/1.4",
+              "@type": "WorkRisk",
               "statement": "운전자가 운전석을 이탈한 사이 차량이 미끄러져 전도·전락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:47432f7415c5",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 주차시에는 바퀴구름 방지조치(고임목 등)를 하여야 하며, 경사지에 정차하는 경우 운전석을 이탈하여서는 아니 된다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:575aeaeab13f",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 주차한 다음 차량의 엔진의 시동을 정지하고 운전석 이탈시 주차 브레이크를 확인하고 키를 가지고 운전석에서 하차하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:9ea23705bfde",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 경사면을 주차를 피하고, 부득이 경사면에 주차하는 경우 밀림방지 조치(고임목 등)를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:76af0f7228c3",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 운전석 이탈시 주차 브레이크 체결 상태를 확인하고 전 바퀴 구름방지 조치(고임목 등)를 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:b3174951ad2f",
+                  "@type": "WorkMeasure",
                   "measure": "기계를 주차할 때에는 비탈길 등의 경사지나 붕괴되기 쉬운 지반 등을 피하며, 반드시 제동 확인후 받침목을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:f85cbcfefc7e",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등을 사용하는 작업을 하는 경우 그 기계가 넘어지거나 굴러떨어짐으로써 근로자에게 위험을 미칠 우려가 있는 경우에는 그 기계를 유도하는 사람을 배치하고 지반의 부동침하와 갓길 붕괴를 방지하기 위한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:171"
+                    "basisArticle": "art:기준규칙:171"
                   }
                 },
                 {
+                  "@id": "workmeasure:6defb1635e52",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 토사 등을 싣거나 내리는 작업하는 경우 변속레버를 정지위치에 놓고 주차 브레이크의 작동상태를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 }
               ]
@@ -396,167 +416,199 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:173",
+              "basisArticle": "art:기준규칙:173",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:173",
+              "basisArticle": "art:기준규칙:173",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:175",
+              "basisArticle": "art:기준규칙:175",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:177",
+              "basisArticle": "art:기준규칙:177",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:178",
+              "basisArticle": "art:기준규칙:178",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:188",
+              "basisArticle": "art:기준규칙:188",
               "controlLevel": "substitution"
             },
             {
-              "article": "art:기준규칙:189",
+              "basisArticle": "art:기준규칙:189",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:190",
+              "basisArticle": "art:기준규칙:190",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:포장작업/1.5",
+              "@type": "WorkRisk",
               "statement": "편중 적재·과적으로 화물이 떨어지거나 차량이 전도",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:58189f457d7e",
+                  "@type": "WorkMeasure",
                   "measure": "하중이 한쪽으로 치우치지 않도록 균등하게 적재하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:a288cbe1a627",
+                  "@type": "WorkMeasure",
                   "measure": "구내운반 또는 화물자동차의 경우 화물의 붕괴 또는 낙하에 의한 위험을 방지하기 위하여 화물에 로프를 거는 등 필요한 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:cd1b6f36db62",
+                  "@type": "WorkMeasure",
                   "measure": "화물은 해당 차량 제조사가 제공하는 제품설명서의 허용 적재하중을 준수하여 적재하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:212d538b06ad",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계에 화물을 적재하는 경우에 하중이 한쪽으로 치우치지 않도록 적재할 것, 구내운반차 또는 화물자동차의 경우 화물의 붕괴 또는 낙하에 의한 위험을 방지하기 위하여 화물에 로프를 거는 등 필요한 조치를 할 것을 준수하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:173"
+                    "basisArticle": "art:기준규칙:173"
                   }
                 },
                 {
+                  "@id": "workmeasure:c6e120d789c2",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등에 최대적재량을 초과하는 화물을 싣는 것을 금지하고, 운전자의 시야를 가리지 않도록 화물을 적재하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:173"
+                    "basisArticle": "art:기준규칙:173"
                   }
                 },
                 {
+                  "@id": "workmeasure:086fb4c03b19",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등의 최대적재량을 초과하여 사용해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:178"
+                    "basisArticle": "art:기준규칙:178"
                   }
                 },
                 {
+                  "@id": "workmeasure:83c0b04c5069",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 하역운반기계등을 화물의 적재ㆍ하역 등 주된 용도에만 사용하여야 하며, 다만 근로자가 위험해질 우려가 없는 경우에는 그러하지 아니하다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:175"
+                    "basisArticle": "art:기준규칙:175"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포장작업/1.6",
+              "@type": "WorkRisk",
               "statement": "싣거나 내리는 작업 중 화물이 낙하하여 근로자가 맞음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:494ed7a68c10",
+                  "@type": "WorkMeasure",
                   "measure": "싣거나 내리는 작업을 하는 경우 작업순서 및 그 순서마다 작업방법을 정하고 작업을 지휘할 것, 기구와 공구를 점검하고 불량품을 제거할 것, 작업 반경 내에 관계 근로자가 아닌 사람의 출입을 금지할 것, 로프 풀기 또는 덮개 벗기기 작업은 적재함의 화물이 떨어질 위험이 없음을 확인한 다음 작업할 것을 준수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:177"
+                    "basisArticle": "art:기준규칙:177"
                   }
                 },
                 {
+                  "@id": "workmeasure:7529a8045894",
+                  "@type": "WorkMeasure",
                   "measure": "로프의 체결과 풀기 및 덮개 작업은 추락방지 대책 및 로프의 훼손 손상상태를 점검․확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:1ca1dbee28d0",
+                  "@type": "WorkMeasure",
                   "measure": "화물을 내리는 작업을 하는 경우 그 작업을 하는 근로자에게 쌓여있는 화물의 중간에서 화물을 빼내도록 해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:190"
+                    "basisArticle": "art:기준규칙:190"
                   }
                 },
                 {
+                  "@id": "workmeasure:332683b4b77e",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 화물취급 작업에서 작업방법 및 순서 결정 및 작업의 지휘, 기구 및 공구의 점검 및 불량품 제거, 관계 근로자 이외의 사람 출입 금지, 로프 등의 해체작업을 할 때 화물의 낙하위험 유·무 확인의 업무를 수행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포장작업/1.7",
+              "@type": "WorkRisk",
               "statement": "손상된 섬유로프로 짐을 걸어 로프가 파단",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bdd06f067bc3",
+                  "@type": "WorkMeasure",
                   "measure": "화물자동차의 짐걸이로 꼬임이 끊어진 것, 심하게 손상되거나 부식된 섬유로프 등을 사용해서는 아니 된다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "article": "art:기준규칙:188"
+                    "basisArticle": "art:기준규칙:188"
                   }
                 },
                 {
+                  "@id": "workmeasure:1832b2867f2b",
+                  "@type": "WorkMeasure",
                   "measure": "섬유로프 등을 짐걸이로 사용하는 경우 작업순서와 순서별 작업방법을 결정하고 작업을 직접 지휘할 것, 기구와 공구를 점검하고 불량품을 제거할 것, 해당 작업 장소에 관계 근로자가 아닌 사람의 출입을 금지시킬 것, 로프 풀기 작업 및 덮개 벗기기 작업을 하는 경우에는 적재함의 화물에 낙하 위험이 없음을 확인한 후에 해당 작업의 착수를 지시할 것, 섬유로프 등에 대하여 이상 유무를 점검하고 이상이 발견된 섬유로프 등은 즉시 교체할 것의 조치를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:189"
+                    "basisArticle": "art:기준규칙:189"
                   }
                 }
               ]
@@ -565,44 +617,52 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:187",
+              "basisArticle": "art:기준규칙:187",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:포장작업/1.8",
+              "@type": "WorkRisk",
               "statement": "높은 적재함을 오르내리다 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:cb610d484847",
+                  "@type": "WorkMeasure",
                   "measure": "바닥으로부터 짐 윗면까지의 높이가 2미터 이상인 화물자동차에 짐을 싣는 작업 또는 내리는 작업을 하는 경우에는 근로자의 추가 위험을 방지하기 위하여 해당 작업에 종사하는 근로자가 바닥과 적재함의 짐 윗면 간을 안전하게 오르내리기 위한 설비를 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:187"
+                    "basisArticle": "art:기준규칙:187"
                   }
                 },
                 {
+                  "@id": "workmeasure:d13ef744baa7",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 싣거나 내리는 작업에서 추락의 우려가 있는 경우 안전난간의 설치 등 추락방지 조치를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:da08b7b87ef4",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 싣거나 내리는 작업장에 관계자 외의 출입을 금지하고, 근로자가 안전하게 이동할 수 있는 안전통로의 확보 및 화물의 전도 및 작업자가 넘어지지 않도록 정리정돈 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 }
               ]
@@ -611,118 +671,142 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.1",
               "controlLevel": "substitution"
             },
             {
-              "annex": "annex:기준규칙:별표4-2호",
+              "basisAnnex": "annex:기준규칙:별표4-2호",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.1",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.1",
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:포장작업/1.9",
+              "@type": "WorkRisk",
               "statement": "작업계획서 없이 착수하여 위험이 통제되지 않음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:a6fd066d3a6a",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자는 덤프와 화물자동차를 사용한 작업을 하는 경우 근로자의 위험 방지를 위하여 작업장의 지형·지반 및 지층 상태 등을 사전조사하고 해당 기계의 굴러 떨어짐ㆍ지반의 붕괴 위험 방지를 위한 해당 작업장소의 지형 및 지반상태에 대한 사전조사, 사용 장비의 종류와 성능ㆍ운행경로 및 작업방법 등, 해당 작업에 따른 추락·낙하·전도·협착 및 붕괴 등의 위험 예방 등, 작업지휘자와 유도자의 지정 및 적정위치 여부 등의 내용의 작업계획서를 작성하여 그 결과를 기록·보존하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:f053adcc7df4",
+                  "@type": "WorkMeasure",
                   "measure": "해당 작업에 따른 추락ㆍ낙하ㆍ전도ㆍ협착 및 붕괴 등의 위험 예방대책, 차량계 하역운반기계등의 운행경로 및 작업방법을 작업계획서에 포함한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "annex": "annex:기준규칙:별표4-2호"
+                    "basisAnnex": "annex:기준규칙:별표4-2호"
                   }
                 },
                 {
+                  "@id": "workmeasure:559820e75354",
+                  "@type": "WorkMeasure",
                   "measure": "덤프 및 화물자동차 작업은 위험성평가를 실시하여 유해․위해 요인을 찾아내어 근로자의 부상 및 질병의 발생 가능성(빈도)과 중대성(강도)을 추정․결정하여 감소대책을 수립하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:faf7b3f10a2b",
+                  "@type": "WorkMeasure",
                   "measure": "덤프트럭 및 화물자동차 선정시 작업여건, 작업물량, 적재물의 부피와 중량, 싣거나 내리는 장비의 조합 등을 고려하여 선정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:2c0ca1cae7b3",
+                  "@type": "WorkMeasure",
                   "measure": "기동력과 제동장치 등의 성능이 우수한 장비를 선정하여야 한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:9241dbf3d0ce",
+                  "@type": "WorkMeasure",
                   "measure": "덤프트럭은 안전지주(안전블럭)가 장착된 장비를 선정하여야 한다.",
                   "controlLevel": "substitution",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:97dfc255a179",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 건설현장 내에서는 안전모, 안전화 등 보호구를 올바르게 착용하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:df97c88430e6",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 관리감독자 및 작업지휘자 또는 유도자의 유도에 따라 운행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:59c28827f9d2",
+                  "@type": "WorkMeasure",
                   "measure": "덤프 운전원 자격은 1종 대형면허, 화물자동차 운전원 자격은 12톤 미만 차량은 1종 보통면허와 화물운송자격증, 12톤 이상 차량은 1종 대형면허와 화물운송자격증, 트레일러 운전원은 1종 특수면허ㆍ트레일러면허와 화물운송자격증을 소지하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:f79186b4e411",
+                  "@type": "WorkMeasure",
                   "measure": "운반물량, 운반거리, 장비 Cycle Time 등을 고려하여 선정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:f86827683bd3",
+                  "@type": "WorkMeasure",
                   "measure": "가동률, 경제성, 안정성 등을 고려하여 선정하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.1"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.1"
                   }
                 }
               ]
@@ -732,279 +816,335 @@
       ]
     },
     {
+      "@id": "workstep:포장작업/2",
+      "@type": "WorkStep",
       "stepName": "포장시공",
       "stepHazards": [
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "5",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "5",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "ppe"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.2",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.3",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.3",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.3",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.1",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:197",
+              "basisArticle": "art:기준규칙:197",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:200",
+              "basisArticle": "art:기준규칙:200",
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:포장작업/2.1",
+              "@type": "WorkRisk",
               "statement": "포장 장비 작업범위에 근로자가 들어가 협착",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:2631888b86c2",
+                  "@type": "WorkMeasure",
                   "measure": "기계 주행작업중에는 그 작업 범위내에 근로자를 출입시키지 않도록 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.3"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb4cdddf8824",
+                  "@type": "WorkMeasure",
                   "measure": "기계의 주행작업중에는 기계의 작업범위내에 들어가지 않도록 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3a74bfceb6ec",
+                  "@type": "WorkMeasure",
                   "measure": "건설기계의 진행방향 5m, 좌우 양측 2m이내에 근로자가 있는 경우에는 반드시 경적을 울리는 등의 조치를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:31873fbc7964",
+                  "@type": "WorkMeasure",
                   "measure": "부득이하게 근접작업이 필요한 때에는, 근로자에게 근접작업시 필요한 주의와 작업방법을 사전에 주지시켜야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.3"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:5a3c1aee54f3",
+                  "@type": "WorkMeasure",
                   "measure": "작업의 성질상 근접작업을 해야 할 경우에는 사전에 관리감독자에게 보고하여 작업방법의 지시를 받아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:ec4cd3950a77",
+                  "@type": "WorkMeasure",
                   "measure": "급하게 전․후진 및 급선회를 하지 않아야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:7d38659e1692",
+                  "@type": "WorkMeasure",
                   "measure": "현장의 상황, 통행차량현황, 부근작업 현황을 확인함과 동시에 위험개소의 유무와 위급사항을 파악해 두어야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ff8b65357bfa",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시켜서는 아니 되며, 다만 유도자를 배치하고 해당 차량계 건설기계를 유도하는 경우에는 그러하지 아니하다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:200"
+                    "basisArticle": "art:기준규칙:200"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포장작업/2.2",
+              "@type": "WorkRisk",
               "statement": "야간 포장작업 중 유도자가 인지되지 않아 차량과 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:967eeac54ef8",
+                  "@type": "WorkMeasure",
                   "measure": "야간작업시 유도자는 신호수용 반사조끼를 착용하고 전자신호봉 또는 깃발을 손에 들고 유도하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:2fd3436f7f4e",
+                  "@type": "WorkMeasure",
                   "measure": "야간에는 가능한 한 차량통행이 빈번한 도로상에 주차시키지 않도록 하되, 부득이하게 주차를 하는 경우에는 주변에 휀스 또는 차량유도등으로 표시하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:e8ae59cc37e9",
+                  "@type": "WorkMeasure",
                   "measure": "어두운 장소에서 사용하는 차량계 건설기계에는 전조등을 갖추어야 하며, 다만 작업을 안전하게 수행하기 위하여 필요한 조명이 있는 장소에서 사용하는 경우에는 그러하지 아니하다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:197"
+                    "basisArticle": "art:기준규칙:197"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포장작업/2.3",
+              "@type": "WorkRisk",
               "statement": "운전 중 휴대폰 사용·안전벨트 미착용으로 사고",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:b2be7d5e8003",
+                  "@type": "WorkMeasure",
                   "measure": "운행중 휴대폰 사용 및 DMB 시청을 금지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "5"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "5"
                   }
                 },
                 {
+                  "@id": "workmeasure:d63db81e22ec",
+                  "@type": "WorkMeasure",
                   "measure": "안전벨트는 반드시 착용하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:368c9e6375c2",
+                  "@type": "WorkMeasure",
                   "measure": "앞차와 안전거리를 유지하며 방어운전을 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:31c05bc7784c",
+                  "@type": "WorkMeasure",
                   "measure": "차선변경, 좌․우회전시 사전에 방향지시등을 작동하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:1ab8f93ccca8",
+                  "@type": "WorkMeasure",
                   "measure": "승차석이 아닌 위치에 근로자 탑승을 금지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:6d4b86688f60",
+                  "@type": "WorkMeasure",
                   "measure": "음주상태에서 운전을 금지하여야 하며, 과로, 질병 또는 약물의 영향이나 그 밖의 사유로 정상적으로 운전에 우려가 있는 상태에서의 운전을 금지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:538e16e0aee1",
+                  "@type": "WorkMeasure",
                   "measure": "신호등 및 경찰 공무원의 수신호를 준수하여 운행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:8546dc50b1c6",
+                  "@type": "WorkMeasure",
                   "measure": "차량은 항상 정비하여 운행 중 지장이 발생하지 않도록 관리하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:e2f6b4304f01",
+                  "@type": "WorkMeasure",
                   "measure": "차량 운행 중 따라오는 차량보다 속도가 저속일 경우 우측 차선으로의 차선 변경 운행 및 긴급자동차의 원활한 운행이 가능하도록 진로를 변경하여 운행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:0a42430d1cc8",
+                  "@type": "WorkMeasure",
                   "measure": "경음기, 와이퍼, 전조등, 후미등, 차폭등 등의 작동상태를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:49135553f060",
+                  "@type": "WorkMeasure",
                   "measure": "브레이크 및 조향장치의 이상 유․무, 타이어 마모와 공기압 상태 등을 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:포장작업/2.4",
+              "@type": "WorkRisk",
               "statement": "주차 차량이 통행에 지장을 주어 2차 사고",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:24bae8fac081",
+                  "@type": "WorkMeasure",
                   "measure": "운전자는 차량을 주차 시 주변작업자 및 차량의 통행에 불편을 주어 주차 차량이 불필요한 위험요소가 되어서는 아니 된다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 }
               ]
@@ -1013,125 +1153,149 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "5.1",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/C-114-2020",
-              "section": "6.2",
+              "basisGuide": "doc:kosha_guide/C-114-2020",
+              "guideSection": "6.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.3",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:포장작업/2.5",
+              "@type": "WorkRisk",
               "statement": "유도자 배치·신호 불일치로 장비가 근로자를 치어 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:9bc79b732245",
+                  "@type": "WorkMeasure",
                   "measure": "유도자를 배치하여 호각 또는 수신호등의 정해진 신호방법에 의해 근로자의 대피 및 기계 후진작업 등을 실시하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.3"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:820d5f2f75d6",
+                  "@type": "WorkMeasure",
                   "measure": "포장공사시 아스팔트피니셔·타이어로울러·머캐덤로울러·탠덤로울러·디스트리뷰터·덤프트럭 등의 건설기계를 사용하여 작업을 할 때에는 그 작업내용에 따라 적절히 유도자를 배치하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:b303c25f7e73",
+                  "@type": "WorkMeasure",
                   "measure": "유도자는 정해진 신호방법에 의해 기계 및 차량을 유도하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:e08c6cd5442b",
+                  "@type": "WorkMeasure",
                   "measure": "유도자는 유도되는 기계 및 차량의 적절한 주행속도를 파악함과 동시에 운행경로를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:39c64871eaff",
+                  "@type": "WorkMeasure",
                   "measure": "유도신호는 호각과 수신호를 병용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:281c14486589",
+                  "@type": "WorkMeasure",
                   "measure": "유도자는 운전자와 연락신호가 잘 되는 곳, 근로자ㆍ기타사람이 접근하는 것을 용이하게 식별할 수 있는 장소, 기계ㆍ차량의 진행선으로부터 떨어진 장소, 유도되는 기계ㆍ차량의 운전자가 잘 보이는 장소에 위치하여 해당장비에 유도신호를 하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:a34054f32ed9",
+                  "@type": "WorkMeasure",
                   "measure": "기계, 차량을 후진 유도하는 경우에는 기계ㆍ차량으로부터 5～10m의 거리를 유지하여 해당 차량을 유도하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:3f25d13ac79f",
+                  "@type": "WorkMeasure",
                   "measure": "유도자는 안전한 위치에서 기계․차량의 후진경로에 장애물의 유무를 확인하고 유도하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:792ee97b20f1",
+                  "@type": "WorkMeasure",
                   "measure": "신호는 표준유도 신호방법에 따라 절도있게 큰동작, 큰소리로 분명히 해야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "5.1"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "5.1"
                   }
                 },
                 {
+                  "@id": "workmeasure:ca0a105983e1",
+                  "@type": "WorkMeasure",
                   "measure": "관리감독자 또는 유도자의 신호에 따라야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:d210600182f6",
+                  "@type": "WorkMeasure",
                   "measure": "운전자와 유도자는 고용노동부 고시 크레인작업 표준신호지침의 신호방법을 숙지하여 신호하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-114-2020",
-                    "section": "6.2"
+                    "basisGuide": "doc:kosha_guide/C-114-2020",
+                    "guideSection": "6.2"
                   }
                 }
               ]
@@ -1140,25 +1304,29 @@
         },
         {
           "hazardLabel": "이상온도·화상",
+          "hasHazard": "hazard:thermal_burn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.2",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.2",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:thermal_burn",
           "risks": [
             {
+              "@id": "workrisk:포장작업/2.6",
+              "@type": "WorkRisk",
               "statement": "아스팔트 혼합재의 고열에 접촉하여 화상",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:12715789db43",
+                  "@type": "WorkMeasure",
                   "measure": "아스팔트 콘크리트의 고열에 화상을 입지 않도록 주의하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.2"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.2"
                   }
                 }
               ]
@@ -1167,25 +1335,29 @@
         },
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "guide": "doc:kosha_guide/C-50-2012",
-              "section": "4.3",
+              "basisGuide": "doc:kosha_guide/C-50-2012",
+              "guideSection": "4.3",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:포장작업/2.7",
+              "@type": "WorkRisk",
               "statement": "주행로 정리 불량으로 장비가 장애물에 걸려 전도",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:4ec28c0f1b82",
+                  "@type": "WorkMeasure",
                   "measure": "현장내에서 기계의 운전작업 또는 주행에 지장이 없도록 주행로를 정리정돈 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/C-50-2012",
-                    "section": "4.3"
+                    "basisGuide": "doc:kosha_guide/C-50-2012",
+                    "guideSection": "4.3"
                   }
                 }
               ]

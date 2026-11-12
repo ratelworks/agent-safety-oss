@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:되메움작업",
   "@type": [
     "ConstructionSubtask"
@@ -76,93 +34,111 @@
   ],
   "steps": [
     {
+      "@id": "workstep:되메움작업/1",
+      "@type": "WorkStep",
       "stepName": "토사반입 및 되메움 실시",
       "stepHazards": [
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.6",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:200",
+              "basisArticle": "art:기준규칙:200",
               "paragraph": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:342",
+              "basisArticle": "art:기준규칙:342",
               "item": 2,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:되메움작업/1.1",
+              "@type": "WorkRisk",
               "statement": "작업계획 없이 장비를 운행하여 넘어짐·끼임·부딪힘",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:415b509f4c78",
+                  "@type": "WorkMeasure",
                   "measure": "되메우기 및 다짐작업 시 장비의 넘어짐, 끼임, 부딪힘 등의 재해를 예방하기 위하여 되메우기 및 다짐용 장비의 운행경로 등 작업계획을 수립하여 작업토록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:de32da566cae",
+                  "@type": "WorkMeasure",
                   "measure": "굴착기계등의 운행경로 및 토석 적재장소의 출입방법을 정하여 관계 근로자에게 주지시킨다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:342",
+                    "basisArticle": "art:기준규칙:342",
                     "item": 2
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:되메움작업/1.2",
+              "@type": "WorkRisk",
               "statement": "작업구간에 근로자·일반인이 출입하여 장비에 접촉",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ec3eb4870680",
+                  "@type": "WorkMeasure",
                   "measure": "건설기계를 사용하는 작업구간에는 근로자 및 일반인이 출입하지 않도록 통제하여야 하고, 유도자를 배치하도록 하여야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:e0fa01a255c7",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시키지 않는다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:200",
+                    "basisArticle": "art:기준규칙:200",
                     "paragraph": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:되메움작업/1.3",
+              "@type": "WorkRisk",
               "statement": "교통처리계획 없이 작업하여 일반 차량과 충돌",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:0c79336c1b05",
+                  "@type": "WorkMeasure",
                   "measure": "작업 전 안내표지판 및 위험경고 시설물 설치, 신호수 배치 등을 포함하는 교통처리계획을 수립한 후, 작업 중 반드시 신호수를 배치하고, 신호방법을 정하여 신호하는 등 교통사고가 발생하지 않도록 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.6"
                   }
                 }
               ]
@@ -171,54 +147,62 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/G-29-2011",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/G-29-2011",
+              "guideSection": "6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/G-29-2011",
-              "section": "6",
+              "basisGuide": "doc:kosha_guide/G-29-2011",
+              "guideSection": "6",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:341",
+              "basisArticle": "art:기준규칙:341",
               "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:되메움작업/1.4",
+              "@type": "WorkRisk",
               "statement": "매설관 위를 되메우면서 관을 파손하여 가스 누출",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:a022200deb67",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업에 의하여 노출된 매설물 등이 파손됨으로써 근로자가 위험해질 우려가 있는 경우에는 해당 매설물 등에 대한 방호조치를 하거나 이설하는 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:341",
+                    "basisArticle": "art:기준규칙:341",
                     "paragraph": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:abc272a33453",
+                  "@type": "WorkMeasure",
                   "measure": "작업 완료 후 재 매설 시에는 가스배관에 충격 혹은 압력이 가해지지 않도록 주의해야 한다",
                   "controlLevel": "administrative",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/G-29-2011",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/G-29-2011",
+                    "guideSection": "6"
                   }
                 },
                 {
+                  "@id": "workmeasure:92c38ab7de78",
+                  "@type": "WorkMeasure",
                   "measure": "노출된 상하수도관은 적절히 지지되도록 하고, 필요시 덮개를 장착하며 재 매립 시에는 파이프에 압박이 가해지지 않도록 해야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/G-29-2011",
-                    "section": "6"
+                    "basisGuide": "doc:kosha_guide/G-29-2011",
+                    "guideSection": "6"
                   }
                 }
               ]
@@ -228,42 +212,50 @@
       ]
     },
     {
+      "@id": "workstep:되메움작업/2",
+      "@type": "WorkStep",
       "stepName": "되메움 토사 다짐",
       "stepHazards": [
         {
           "hazardLabel": "부딪힘",
+          "hasHazard": "hazard:struck_by",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-11-2026",
-              "section": "8.2.6",
+              "basisGuide": "doc:kosha_guide/D-C-11-2026",
+              "guideSection": "8.2.6",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:197",
+              "basisArticle": "art:기준규칙:197",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by",
           "risks": [
             {
+              "@id": "workrisk:되메움작업/2.1",
+              "@type": "WorkRisk",
               "statement": "다짐용 건설기계가 후진하다 근로자에게 부딪히거나 끼임",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:2d089e8d06bf",
+                  "@type": "WorkMeasure",
                   "measure": "다짐용 건설기계(타이어롤러, 머캐덤롤러, 탠덤롤러 등)를 사용할 때에는 후진주행 시 후진경보기, 후사경, 후방카메라를 설치하여 부딪힘, 끼임 등의 재해를 예방하도록 하여야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-11-2026",
-                    "section": "8.2.6"
+                    "basisGuide": "doc:kosha_guide/D-C-11-2026",
+                    "guideSection": "8.2.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:890a01ae1b5c",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계에는 전조등을 갖추어야 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:197"
+                    "basisArticle": "art:기준규칙:197"
                   }
                 }
               ]
@@ -272,24 +264,28 @@
         },
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "article": "art:기준규칙:199",
+              "basisArticle": "art:기준규칙:199",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:되메움작업/2.2",
+              "@type": "WorkRisk",
               "statement": "다짐 장비가 되메움부 가장자리에서 전도",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:d7fd37332ed5",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하는 작업할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자가 위험해질 우려가 있는 경우에는 유도하는 사람을 배치하고 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "variant": "기본",
                   "basis": {
-                    "article": "art:기준규칙:199"
+                    "basisArticle": "art:기준규칙:199"
                   }
                 }
               ]

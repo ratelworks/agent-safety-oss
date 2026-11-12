@@ -8,6 +8,7 @@ import {
 } from "../lib/safety-laws-loader.js";
 import { legalRefToIri } from "../lib/article-iri-map.js";
 import { getNode } from "../lib/graph-nodes-loader.js";
+import { findMeasuresCiting, CONTROL_LEVEL_LABEL, type FieldMeasure } from "../lib/field-measures.js";
 
 // 파일 최상단 상수 — 특정 조문 원문 조회
 /** 법률인 법령 키 — 시행령·시행규칙·규칙(regulation)과 구분한다. 조문 노드의 법령 종류 표기는 일부가 섞여 있어 키로 가른다 */
@@ -17,6 +18,33 @@ const NOTICE_LEGISLATION_TYPES: ReadonlySet<string> = new Set(["Notification", "
 /** "굴착공사 표준안전 작업지침 제5조" · "… §5의2" → 법령명과 조 번호 */
 const NOTICE_REF_PATTERN = /^(.*?)\s*(?:§\s*|제\s*)(\d+)\s*조?(?:\s*의\s*(\d+))?/;
 
+
+/** 조문 응답에 보여 줄 현장 대책 수 — 넘으면 줄인 건수를 적는다 (전체는 structuredContent 에) */
+const MAX_FIELD_MEASURES_SHOWN = 12;
+
+/** 이 조문을 근거로 한 공종 단계의 감소대책 — 조문이 현장에서 어떤 조치로 쓰이는지 */
+async function fieldMeasureSection(iri: string | null): Promise<{ md: string; data?: { total: number; works: string[]; measures: FieldMeasure[] } }> {
+  if (!iri) return { md: "" };
+  const measures = await findMeasuresCiting(iri);
+  if (measures.length === 0) return { md: "" };
+  const works = [...new Set(measures.flatMap((m) => m.works))].sort((a, b) => a.localeCompare(b, "ko"));
+  const lines = [
+    "",
+    `## 이 조문을 근거로 한 현장 감소대책 — ${measures.length}건, 공종 ${works.length}개`,
+    "",
+    `> 공종 단계 자료에서 이 조문을 근거로 든 대책입니다. 조문의 문장이 아니라 현장 조치를 적은 문장입니다.`,
+    "",
+  ];
+  for (const m of measures.slice(0, MAX_FIELD_MEASURES_SHOWN)) {
+    const level = m.controlLevel ? ` [${CONTROL_LEVEL_LABEL[m.controlLevel] ?? m.controlLevel}]` : "";
+    lines.push(`- ${m.scope ? `**${m.scope}** — ` : ""}${m.variant ? `(${m.variant}) ` : ""}${m.measure}${level} · ${m.works.join(", ")}`);
+  }
+  if (measures.length > MAX_FIELD_MEASURES_SHOWN) {
+    lines.push(`- … 외 ${measures.length - MAX_FIELD_MEASURES_SHOWN}건 (전체는 structuredContent.fieldMeasures.measures)`);
+  }
+  lines.push("", `공종: ${works.join(", ")}`);
+  return { md: lines.join("\n"), data: { total: measures.length, works, measures } };
+}
 
 const inputSchema = z.object({
   ref: z
@@ -75,11 +103,13 @@ async function findNoticeArticle(ref: string): Promise<McpToolResult | null> {
       ? "**인용 시 근거 등급**: `basisType: notice` / `legalWeight: recommended` — 사업주에게 지도·권고하는 기술상 지침입니다. 법적 의무는 상위 법령(산업안전보건법·안전보건규칙) 조문으로 확인하세요."
       : "**인용 시 근거 등급**: `basisType: law | regulation` / `legalWeight: mandatory`",
   ].join("\n");
+  const field = await fieldMeasureSection(iri);
   return {
-    content: [{ type: "text", text: md }],
+    content: [{ type: "text", text: md + field.md }],
     structuredContent: {
       query: { ref },
       found: true,
+      ...(field.data ? { fieldMeasures: field.data } : {}),
       iri,
       law: lawName,
       article: num,
@@ -181,11 +211,16 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     .filter((x) => x !== "")
     .join("\n");
 
+  const articleIri = legalRefToIri(article.lawShortName, article.ref).iri;
+  const field = await fieldMeasureSection(articleIri);
+
   return {
-    content: [{ type: "text", text: md }],
+    content: [{ type: "text", text: md + field.md }],
     structuredContent: {
       query: input,
       found: true,
+      ...(articleIri ? { iri: articleIri } : {}),
+      ...(field.data ? { fieldMeasures: field.data } : {}),
       article: {
         lawCode: article.lawCode,
         lawShortName: article.lawShortName,

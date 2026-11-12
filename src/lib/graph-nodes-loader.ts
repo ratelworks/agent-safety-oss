@@ -134,6 +134,86 @@ export function hasType(node: { "@type"?: unknown }, typeName: string): boolean 
 let nodeIndex: Map<string, AnyNode> | null = null;
 // graphology DirectedGraph 인스턴스 (BFS·DFS·multi-hop 쿼리)
 let graphInstance: Graph | null = null;
+// 공종 노드 안에 들어 있는 단계·위험요인·대책 노드의 연결 [출발, 라벨, 도착]
+let embeddedEdges: Array<[string, string, string]> = [];
+
+/** 공종 노드 안의 근거 참조 (조문·별표·가이드 중 하나) */
+interface EmbeddedBasis {
+  basisArticle?: string;
+  basisAnnex?: string;
+  basisGuide?: string;
+}
+interface EmbeddedMeasure {
+  "@id"?: string;
+  "@type"?: string;
+  basis?: EmbeddedBasis;
+}
+interface EmbeddedRisk {
+  "@id"?: string;
+  "@type"?: string;
+  statement?: string;
+  priority?: string;
+  measures?: EmbeddedMeasure[];
+}
+interface EmbeddedStep {
+  "@id"?: string;
+  "@type"?: string;
+  stepName?: string;
+  stepHazards?: Array<{ hazardLabel?: string; hasHazard?: string; risks?: EmbeddedRisk[] }>;
+}
+
+/**
+ * 공종(ConstructionSubtask) 노드 안에 주소(@id)를 달고 들어 있는 단계·위험요인·대책을
+ * 색인과 연결 목록에 올린다. 파일은 공종 하나지만 그래프에서는 각각이 노드다.
+ *   공종 --hasStep--> 단계 --hasRisk--> 위험요인 --hasHazard--> 유해요인
+ *                                        위험요인 --mitigatedBy--> 대책 --basis--> 조문·별표·가이드
+ * 같은 주소의 대책은 한 노드로 합쳐지므로, 한 대책이 여러 공종에서 쓰이는지 따라갈 수 있다.
+ */
+function indexEmbeddedNodes(index: Map<string, AnyNode>): Array<[string, string, string]> {
+  const edges: Array<[string, string, string]> = [];
+  const put = (id: string, node: Record<string, unknown>): void => {
+    if (!index.has(id)) index.set(id, node as unknown as AnyNode);
+  };
+  for (const node of [...index.values()]) {
+    if (!hasType(node, "ConstructionSubtask")) continue;
+    const subtaskId = node["@id"];
+    const steps = ((node as unknown as { steps?: EmbeddedStep[] }).steps ?? []) as EmbeddedStep[];
+    for (const step of steps) {
+      const stepId = step["@id"];
+      if (!stepId) continue;
+      put(stepId, { "@id": stepId, "@type": step["@type"] ?? "WorkStep", stepName: step.stepName, partOf: subtaskId });
+      edges.push([subtaskId, "hasStep", stepId]);
+      for (const slot of step.stepHazards ?? []) {
+        for (const risk of slot.risks ?? []) {
+          const riskId = risk["@id"];
+          if (!riskId) continue;
+          const measureIds = (risk.measures ?? []).map((m) => m["@id"]).filter((x): x is string => Boolean(x));
+          put(riskId, {
+            "@id": riskId,
+            "@type": risk["@type"] ?? "WorkRisk",
+            statement: risk.statement,
+            ...(risk.priority ? { priority: risk.priority } : {}),
+            hazardLabel: slot.hazardLabel,
+            ...(slot.hasHazard ? { hasHazard: slot.hasHazard } : {}),
+            partOf: stepId,
+            mitigatedBy: measureIds,
+          });
+          edges.push([stepId, "hasRisk", riskId]);
+          if (slot.hasHazard) edges.push([riskId, "hasHazard", slot.hasHazard]);
+          for (const measure of risk.measures ?? []) {
+            const measureId = measure["@id"];
+            if (!measureId) continue;
+            put(measureId, measure as unknown as Record<string, unknown>);
+            edges.push([riskId, "mitigatedBy", measureId]);
+            const target = measure.basis?.basisArticle ?? measure.basis?.basisAnnex ?? measure.basis?.basisGuide;
+            if (target) edges.push([measureId, "basis", target]);
+          }
+        }
+      }
+    }
+  }
+  return edges;
+}
 
 // 노드 → 엣지 추출 규칙 (필드명 → 엣지 라벨)
 // 등록 기준: IRI 또는 IRI 배열 형태의 필드만. literal/object 필드(retention=string,
@@ -244,6 +324,7 @@ async function buildIndex(): Promise<Map<string, AnyNode>> {
     }
     seen.set(node["@id"], node);
   }
+  embeddedEdges = indexEmbeddedNodes(seen);
   nodeIndex = seen;
   return nodeIndex;
 }
@@ -275,6 +356,13 @@ export async function buildGraph(): Promise<Graph> {
         }
       }
     }
+  }
+
+  // 공종 노드 안의 단계·위험요인·대책 연결
+  for (const [src, label, dst] of embeddedEdges) {
+    if (!g.hasNode(src) || !g.hasNode(dst)) continue;
+    const key = `${src}--${label}-->${dst}`;
+    if (!g.hasEdge(key)) g.addEdgeWithKey(key, src, dst, { label });
   }
 
   graphInstance = g;
@@ -334,6 +422,7 @@ export async function neighborsByEdge(
 export function invalidateGraphCache(): void {
   nodeIndex = null;
   graphInstance = null;
+  embeddedEdges = [];
 }
 
 // reverse lookup — Document.legalBasis 또는 Article.legalBasisOf, Annex.specifies 양방향 대응

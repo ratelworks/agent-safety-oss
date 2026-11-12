@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:달비계",
   "@type": [
     "ConstructionSubtask"
@@ -77,160 +35,176 @@
   ],
   "steps": [
     {
+      "@id": "workstep:달비계/1",
+      "@type": "WorkStep",
       "stepName": "설치",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 1,
               "subitem": "가",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 1,
               "subitem": "나",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 1,
               "subitem": "다",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 1,
               "subitem": "라",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 1,
               "subitem": "마",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 1,
               "subitem": "바",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 2,
               "subitem": "가",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 2,
               "subitem": "나",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 2,
               "subitem": "다",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 5,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 6,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 7,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:달비계/1.1",
+              "@type": "WorkRisk",
               "statement": "결함이 있는 와이어로프를 달비계에 사용하여 파단으로 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:3c787e7febc4",
+                  "@type": "WorkMeasure",
                   "measure": "이음매가 있는 와이어로프를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 1,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:deb938476c25",
+                  "@type": "WorkMeasure",
                   "measure": "와이어로프의 한 꼬임에서 끊어진 소선의 수가 10퍼센트 이상인 것을 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 1,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:fb25bfb892e0",
+                  "@type": "WorkMeasure",
                   "measure": "지름의 감소가 공칭지름의 7퍼센트를 초과하는 와이어로프를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 1,
                     "subitem": "다"
                   }
                 },
                 {
+                  "@id": "workmeasure:9acbcf241c2a",
+                  "@type": "WorkMeasure",
                   "measure": "꼬인 와이어로프를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 1,
                     "subitem": "라"
                   }
                 },
                 {
+                  "@id": "workmeasure:cf0d3164b005",
+                  "@type": "WorkMeasure",
                   "measure": "심하게 변형되거나 부식된 와이어로프를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 1,
                     "subitem": "마"
                   }
                 },
                 {
+                  "@id": "workmeasure:1b6907711af9",
+                  "@type": "WorkMeasure",
                   "measure": "열과 전기충격에 의해 손상된 와이어로프를 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 1,
                     "subitem": "바"
@@ -239,34 +213,42 @@
               ]
             },
             {
+              "@id": "workrisk:달비계/1.2",
+              "@type": "WorkRisk",
               "statement": "결함이 있는 달기 체인을 사용하여 파단으로 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f9de4de7e11e",
+                  "@type": "WorkMeasure",
                   "measure": "달기 체인의 길이가 달기 체인이 제조된 때의 길이의 5퍼센트를 초과한 것을 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 2,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:67390e53d811",
+                  "@type": "WorkMeasure",
                   "measure": "링의 단면지름이 달기 체인이 제조된 때의 해당 링의 지름의 10퍼센트를 초과하여 감소한 것을 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 2,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:9a83fc7e0dae",
+                  "@type": "WorkMeasure",
                   "measure": "균열이 있거나 심하게 변형된 달기 체인을 달비계에 사용하지 않는다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 2,
                     "subitem": "다"
@@ -275,14 +257,18 @@
               ]
             },
             {
+              "@id": "workrisk:달비계/1.3",
+              "@type": "WorkRisk",
               "statement": "손상·변형·부식된 달기 강선·강대를 사용하여 파단으로 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:15bde2593e11",
+                  "@type": "WorkMeasure",
                   "measure": "달기 강선 및 달기 강대는 심하게 손상·변형 또는 부식된 것을 사용하지 않도록 한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 4
                   }
@@ -290,14 +276,18 @@
               ]
             },
             {
+              "@id": "workrisk:달비계/1.4",
+              "@type": "WorkRisk",
               "statement": "달기재의 양쪽 끝 결속이 풀려 달비계가 낙하",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:927d54d6079f",
+                  "@type": "WorkMeasure",
                   "measure": "달기 와이어로프, 달기 체인, 달기 강선, 달기 강대는 한쪽 끝을 비계의 보 등에, 다른 쪽 끝을 내민 보, 앵커볼트 또는 건축물의 보 등에 각각 풀리지 않도록 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 5
                   }
@@ -305,23 +295,29 @@
               ]
             },
             {
+              "@id": "workrisk:달비계/1.5",
+              "@type": "WorkRisk",
               "statement": "작업발판의 폭이 좁거나 틈새·고정 불량으로 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c21a9ccc6799",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판은 폭을 40센티미터 이상으로 하고 틈새가 없도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:124c773b68f3",
+                  "@type": "WorkMeasure",
                   "measure": "작업발판의 재료는 뒤집히거나 떨어지지 않도록 비계의 보 등에 연결하거나 고정시킨다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 7
                   }
@@ -332,25 +328,29 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 9,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:달비계/1.6",
+              "@type": "WorkRisk",
               "statement": "선반 비계의 보 접속부·교차부 연결이 불량하여 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:e750e39aa2d6",
+                  "@type": "WorkMeasure",
                   "measure": "선반 비계에서는 보의 접속부 및 교차부를 철선·이음철물 등을 사용하여 확실하게 접속시키거나 단단하게 연결시킨다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 9
                   }
@@ -362,93 +362,103 @@
       ]
     },
     {
+      "@id": "workstep:달비계/2",
+      "@type": "WorkStep",
       "stepName": "사용",
       "stepHazards": [
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:55",
+              "basisArticle": "art:기준규칙:55",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:58",
+              "basisArticle": "art:기준규칙:58",
               "item": 6,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 10,
               "subitem": "가",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 10,
               "subitem": "나",
               "controlLevel": "ppe"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 10,
               "subitem": "다",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:63",
+              "basisArticle": "art:기준규칙:63",
               "paragraph": 1,
               "item": 8,
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:64",
+              "basisArticle": "art:기준규칙:64",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:달비계/2.1",
+              "@type": "WorkRisk",
               "statement": "구명줄·안전대 없이 작업하다 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:e37613b13958",
+                  "@type": "WorkMeasure",
                   "measure": "달비계에 구명줄을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 10,
                     "subitem": "가"
                   }
                 },
                 {
+                  "@id": "workmeasure:fde91d354fb6",
+                  "@type": "WorkMeasure",
                   "measure": "근로자에게 안전대를 착용하도록 하고 근로자가 착용한 안전줄을 달비계의 구명줄에 체결하도록 한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 10,
                     "subitem": "나"
                   }
                 },
                 {
+                  "@id": "workmeasure:6cb25ac3e5be",
+                  "@type": "WorkMeasure",
                   "measure": "달비계에 안전난간을 설치할 수 있는 구조인 경우에는 달비계에 안전난간을 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 10,
                     "subitem": "다"
@@ -457,14 +467,18 @@
               ]
             },
             {
+              "@id": "workrisk:달비계/2.2",
+              "@type": "WorkRisk",
               "statement": "달비계가 흔들리거나 뒤집혀 떨어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:1053a285c3fd",
+                  "@type": "WorkMeasure",
                   "measure": "비계가 흔들리거나 뒤집히는 것을 방지하기 위하여 비계의 보·작업발판 등에 버팀을 설치하는 등 필요한 조치를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:63",
+                    "basisArticle": "art:기준규칙:63",
                     "paragraph": 1,
                     "item": 8
                   }
@@ -472,51 +486,65 @@
               ]
             },
             {
+              "@id": "workrisk:달비계/2.3",
+              "@type": "WorkRisk",
               "statement": "작업 전 점검을 하지 않아 로프 부착 상태·매단 장치 이상을 놓쳐 추락",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:5b6eefc2889c",
+                  "@type": "WorkMeasure",
                   "measure": "달비계에서 근로자에게 작업을 시키는 경우에 작업을 시작하기 전에 그 달비계에 대하여 점검하고 이상을 발견하면 즉시 보수한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:64"
+                    "basisArticle": "art:기준규칙:64"
                   }
                 },
                 {
+                  "@id": "workmeasure:752498083dcf",
+                  "@type": "WorkMeasure",
                   "measure": "로프의 부착 상태 및 매단 장치의 흔들림 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 6
                   }
                 },
                 {
+                  "@id": "workmeasure:33ef5820d77d",
+                  "@type": "WorkMeasure",
                   "measure": "연결 재료 및 연결 철물의 손상 또는 부식 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:30067b0a5ee3",
+                  "@type": "WorkMeasure",
                   "measure": "발판 재료의 손상 여부 및 부착 또는 걸림 상태를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:58",
+                    "basisArticle": "art:기준규칙:58",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:달비계/2.4",
+              "@type": "WorkRisk",
               "statement": "최대적재하중을 초과하여 적재해 달기재가 파단",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:52ee4ed5a1d0",
+                  "@type": "WorkMeasure",
                   "measure": "비계의 구조 및 재료에 따라 작업발판의 최대적재하중을 정하고, 이를 초과하여 실지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:55"
+                    "basisArticle": "art:기준규칙:55"
                   }
                 }
               ]
@@ -526,87 +554,101 @@
       ]
     },
     {
+      "@id": "workstep:달비계/3",
+      "@type": "WorkStep",
       "stepName": "해체",
       "stepHazards": [
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.3",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.3",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 1,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 2,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 3,
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 6,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:달비계/3.1",
+              "@type": "WorkRisk",
               "statement": "지휘·주지·출입통제 없이 해체하여 부재가 낙하",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:a04d8845490a",
+                  "@type": "WorkMeasure",
                   "measure": "근로자가 관리감독자의 지휘에 따라 작업하도록 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 1
                   }
                 },
                 {
+                  "@id": "workmeasure:51c097ea0003",
+                  "@type": "WorkMeasure",
                   "measure": "조립·해체 또는 변경의 시기·범위 및 절차를 그 작업에 종사하는 근로자에게 주지시킨다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 2
                   }
                 },
                 {
+                  "@id": "workmeasure:920dcb720618",
+                  "@type": "WorkMeasure",
                   "measure": "조립·해체 또는 변경 작업구역에는 해당 작업에 종사하는 근로자가 아닌 사람의 출입을 금지하고 그 내용을 보기 쉬운 장소에 게시한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 3
                   }
                 },
                 {
+                  "@id": "workmeasure:f00315f1da59",
+                  "@type": "WorkMeasure",
                   "measure": "해체 전 비계 설치상태를 점검하고, 안전 상 문제가 없을 경우 해체작업을 실시하며, 해체는 상부에서 하부 순서로 실시하고 동시에 여러 구간을 해체하지 않는다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.3"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:44de37521da9",
+                  "@type": "WorkMeasure",
                   "measure": "재료·기구 또는 공구 등을 올리거나 내리는 경우에는 근로자가 달줄 또는 달포대 등을 사용하게 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 6
                   }
@@ -617,40 +659,46 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-7-2026",
-              "section": "8.1",
+              "basisGuide": "doc:kosha_guide/D-C-7-2026",
+              "guideSection": "8.1",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:57",
+              "basisArticle": "art:기준규칙:57",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "elimination"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:달비계/3.2",
+              "@type": "WorkRisk",
               "statement": "악천후에 해체를 강행하여 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:c1279f34cae1",
+                  "@type": "WorkMeasure",
                   "measure": "비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킨다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:57",
+                    "basisArticle": "art:기준규칙:57",
                     "paragraph": 1,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:0850584b5a48",
+                  "@type": "WorkMeasure",
                   "measure": "풍속 10m/s 이상, 우천, 결빙, 시야불량 시 작업을 중지한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-7-2026",
-                    "section": "8.1"
+                    "basisGuide": "doc:kosha_guide/D-C-7-2026",
+                    "guideSection": "8.1"
                   }
                 }
               ]

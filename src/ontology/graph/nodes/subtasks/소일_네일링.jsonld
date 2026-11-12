@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:소일_네일링",
   "@type": [
     "ConstructionSubtask"
@@ -79,61 +37,73 @@
   ],
   "steps": [
     {
+      "@id": "workstep:소일_네일링/1",
+      "@type": "WorkStep",
       "stepName": "네일 천공작업",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:199",
+              "basisArticle": "art:기준규칙:199",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/1.1",
+              "@type": "WorkRisk",
               "statement": "천공 장비를 이동하는 중 통로가 불안정해 장비가 넘어지거나 이동 경로의 근로자가 부딪히고 끼임",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:c6c4adcdcf92",
+                  "@type": "WorkMeasure",
                   "measure": "천공 장비를 이동할 경우에는 장비의 전도·전락을 방지하기 위하여 이동통로의 안전성을 확보하여야 하며, 근로자의 협착 및 충돌 재해를 방지하기 위하여 이동 경로에는 출입 통제를 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:3c23f35ce681",
+                  "@type": "WorkMeasure",
                   "measure": "천공 장비는 천공 작업 중 흔들림, 이동 등이 없도록 설치 지반을 정지하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb102732dd19",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하는 작업을 하는 경우 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:199"
+                    "basisArticle": "art:기준규칙:199"
                   }
                 },
                 {
+                  "@id": "workmeasure:91429c8becac",
+                  "@type": "WorkMeasure",
                   "measure": "천공 장비의 조정원은 건설기계관리법에 규정된 공기압축기 면허를 갖춘 자로 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 }
               ]
@@ -142,37 +112,43 @@
         },
         {
           "hazardLabel": "화재·폭발",
+          "hasHazard": "hazard:fire_explosion",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.2",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:341",
+              "basisArticle": "art:기준규칙:341",
               "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fire_explosion",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/1.2",
+              "@type": "WorkRisk",
               "statement": "천공 중 가스관·상하수도관 등 매설물을 파손해 폭발하거나 감전됨",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:95629f7829dc",
+                  "@type": "WorkMeasure",
                   "measure": "천공의 지점은 설계도서에 준하여 미리 측량하여 표식하여 두어야 한다. 이때 수직 높이의 오차가 최소가 되도록 주의하여야 하며, 천공작업 전에는 가스관, 상하수도관, 인근 구조물 등 지장물의 유무를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:6ab48489431b",
+                  "@type": "WorkMeasure",
                   "measure": "굴착작업에 의하여 노출된 매설물 등이 파손됨으로써 근로자가 위험해질 우려가 있는 경우에는 해당 매설물 등에 대한 방호조치를 하거나 이설하는 등 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:341",
+                    "basisArticle": "art:기준규칙:341",
                     "paragraph": 2
                   }
                 }
@@ -182,97 +158,117 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.2",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.2",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:50",
+              "basisArticle": "art:기준규칙:50",
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/1.3",
+              "@type": "WorkRisk",
               "statement": "천공 후 케이싱 없이 방치해 공벽이 무너지고 흙막이에 과대응력이 발생함",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:37b00c65bddb",
+                  "@type": "WorkMeasure",
                   "measure": "천공 중에는 공벽의 붕괴를 방지하기 위하여 케이싱을 설치한다. 공벽 붕괴의 우려가 없는 경우에는 예외로 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:4fbe438763e5",
+                  "@type": "WorkMeasure",
                   "measure": "수직으로 굴착하여 천공지점이 노출된 후 장기간 방치하여 흙막이구조에 과대응력이 발생되지 않도록 후속 공정을 조속히 진행하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:510de2eaf3c8",
+                  "@type": "WorkMeasure",
                   "measure": "천공 홀 바닥의 굴착 토사를 완전히 제거하여야 하며 설계 심도까지의 천공 여부를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:df59277f894c",
+                  "@type": "WorkMeasure",
                   "measure": "토사등이 붕괴되거나 낙하할 우려가 있는 장소에 흙막이 지보공을 설치하여 위험을 방지하기 위한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:50",
+                    "basisArticle": "art:기준규칙:50",
                     "item": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:소일_네일링/1.4",
+              "@type": "WorkRisk",
               "statement": "천공 각도·직경·위치가 설계와 달라 네일이 지지력을 내지 못하고 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:623edc378b8d",
+                  "@type": "WorkMeasure",
                   "measure": "설계된 천공 각도 및 천공 깊이를 확인하고 장비를 설치하여야 하며, 천공 도중에는 설계 각도를 유지하고 이를 확인할 수 있도록 하여야 하고, 천공이 완료된 때에는 천공 깊이를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:a499b8b377fc",
+                  "@type": "WorkMeasure",
                   "measure": "주입재와 주변 지반과의 마찰력이 충분히 발현될 수 있도록 천공의 직경은 설계에서 정한 치수 이상을 확보하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:252b1d09208f",
+                  "@type": "WorkMeasure",
                   "measure": "천공 지점은 수평열이 일직선이 되도록 천공 지점 높이의 오차를 최소화 하여야 한다. 이는 띠장의 위치에서 강선이 절곡될 우려가 있기 때문이며 그러할 경우에는 긴장력의 손실이 발생된다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 },
                 {
+                  "@id": "workmeasure:279d790ddfcf",
+                  "@type": "WorkMeasure",
                   "measure": "동절기에 천공하는 경우에는 이수의 동결을 방지하기 위하여 온수를 사용하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 }
               ]
@@ -283,22 +279,26 @@
           "hazardLabel": "건강장해",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.2",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.2",
               "controlLevel": "ppe"
             }
           ],
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/1.5",
+              "@type": "WorkRisk",
               "statement": "천공 중 비산먼지·소음에 노출되어 근로자가 건강장해를 입음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:ac1c8ce41278",
+                  "@type": "WorkMeasure",
                   "measure": "천공 중에는 비산먼지 및 소음이 심하므로 근로자에게는 방진 마스크 및 귀마개를 착용하도록 하고, 천공 입구에는 비산먼지를 최소화할 수 있도록 집진장치 또는 분진 방지책을 설치하여야 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.2"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.2"
                   }
                 }
               ]
@@ -308,107 +308,129 @@
       ]
     },
     {
+      "@id": "workstep:소일_네일링/2",
+      "@type": "WorkStep",
       "stepName": "네일체 제작·삽입",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.4",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.4",
               "controlLevel": "elimination"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.4",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.4",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:345",
+              "basisArticle": "art:기준규칙:345",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:346",
+              "basisArticle": "art:기준규칙:346",
               "paragraph": 1,
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/2.1",
+              "@type": "WorkRisk",
               "statement": "네일을 산소절단 등으로 절단해 재료 성질이 변하고 인장 저항력을 잃음",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bf3b8caa0abd",
+                  "@type": "WorkMeasure",
                   "measure": "네일의 절단은 기계적 방식에 의하여 절단하며 절단으로 인한 재료의 국부적 성질의 변화가 없도록 하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:8864f74aaa6d",
+                  "@type": "WorkMeasure",
                   "measure": "제작된 네일체를 검수할 때에는 다음과 같은 항목을 중점적으로 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:8d8a6f83002a",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공의 재료로 변형·부식되거나 심하게 손상된 것을 사용해서는 아니 된다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:345"
+                    "basisArticle": "art:기준규칙:345"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:소일_네일링/2.2",
+              "@type": "WorkRisk",
               "statement": "네일 길이·여유길이가 설계와 달라 지압판을 체결하지 못하고 면판이 탈락함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:8ec285c915d8",
+                  "@type": "WorkMeasure",
                   "measure": "설계도서에서 정한 네일의 길이가 확보되도록 제작되어야 하며, 지압판 및 너트를 체결할 수 있는 여유길이를 두어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:31896284e57b",
+                  "@type": "WorkMeasure",
                   "measure": "흙막이지보공을 조립하는 경우 미리 그 구조를 검토한 후 조립도를 작성하여 그 조립도에 따라 조립하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:346",
+                    "basisArticle": "art:기준규칙:346",
                     "paragraph": 1
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:소일_네일링/2.3",
+              "@type": "WorkRisk",
               "statement": "네일을 급하게 삽입해 공벽이 무너지거나 네일체가 손상됨",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:ff6d92ce1342",
+                  "@type": "WorkMeasure",
                   "measure": "네일을 삽입할 때에는 공벽이 붕괴되거나 네일체가 손상되지 않도록 서서히 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.4"
                   }
                 },
                 {
+                  "@id": "workmeasure:614d71b44cad",
+                  "@type": "WorkMeasure",
                   "measure": "네일을 삽입하기 전에는 네일에 부착된 먼지, 기름 등 이물질을 제거하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.4"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.4"
                   }
                 }
               ]
@@ -418,72 +440,88 @@
       ]
     },
     {
+      "@id": "workstep:소일_네일링/3",
+      "@type": "WorkStep",
       "stepName": "네일 주입재 배합·주입",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.3",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.1.3",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.1.3",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/3.1",
+              "@type": "WorkRisk",
               "statement": "천공 후 오래 방치하거나 주입이 늦어져 공벽이 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:3b9655cf3633",
+                  "@type": "WorkMeasure",
                   "measure": "공벽의 붕괴 등을 방지하기 위하여 천공 후 장기간 방치하지 않으며, 보강재 삽입 후 즉시 주입하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:055aff89ab37",
+                  "@type": "WorkMeasure",
                   "measure": "주입재의 주입은 천공 홀 선단부에 슬라임이 완전 배출될 때 까지 1차 주입하고 케이싱을 제거한 후 공벽을 완전히 채우도록 2차 주입을 수행한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.3"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:소일_네일링/3.2",
+              "@type": "WorkRisk",
               "statement": "주입재 배합강도가 부족하거나 공극이 남아 네일이 인발되며 흙막이가 무너짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:724c5598fb34",
+                  "@type": "WorkMeasure",
                   "measure": "배합강도는 주변토질과 인장재가 부착하여 소요강도를 발현할 수 있도록 배합되어야 하며, 주입 후 공시체를 제작하여 현장 및 실내 양생하여 인발 전 발현 강도를 확인하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:8a44de071537",
+                  "@type": "WorkMeasure",
                   "measure": "주입은 천공 홀 바닥에서 공내부의 물과 공기를 밀어내면서 주입되도록 하고 주입재 내부에 공극이 발생되지 않도록 하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.3"
                   }
                 },
                 {
+                  "@id": "workmeasure:eecfb7b4b27b",
+                  "@type": "WorkMeasure",
                   "measure": "시멘트는 보통포틀랜드시멘트 또는 조강포틀랜드시멘트를 사용한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.1.3"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.1.3"
                   }
                 }
               ]
@@ -493,50 +531,60 @@
       ]
     },
     {
+      "@id": "workstep:소일_네일링/4",
+      "@type": "WorkStep",
       "stepName": "연결철근·지압판 설치",
       "stepHazards": [
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.6",
               "controlLevel": "administrative"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.6",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/4.1",
+              "@type": "WorkRisk",
               "statement": "연결철근 규격·이음이 부족해 횡방향 하중이 분배되지 않고 면판이 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:5c38ddd36c70",
+                  "@type": "WorkMeasure",
                   "measure": "연결철근은 네일끼리 횡방향으로 하중을 분배하기 위한 철근으로서 그 성능을 충분히 발현할 수 있도록 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:1f9affa61d72",
+                  "@type": "WorkMeasure",
                   "measure": "연결철근은 D16 이상의 철근을 사용하되 설계에서 정한 규격을 준수하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.6"
                   }
                 },
                 {
+                  "@id": "workmeasure:7a8e6fbb127a",
+                  "@type": "WorkMeasure",
                   "measure": "연결철근을 이을 때에는 인장철근의 이음길이를 확보하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.6"
                   }
                 }
               ]
@@ -545,60 +593,72 @@
         },
         {
           "hazardLabel": "물체에 맞음",
+          "hasHazard": "hazard:fall_object",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.7",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.7",
               "controlLevel": "engineering"
             },
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.6",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.6",
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_object",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/4.2",
+              "@type": "WorkRisk",
               "statement": "연결철근이 지압판 밖으로 이탈해 토압을 못 받고 면판이 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:f52f6703ebc7",
+                  "@type": "WorkMeasure",
                   "measure": "연결철근은 지압판 내면에 네일을 기준으로 상하부에 2열로 설치하고 토압으로 인하여 지압판 밖으로 이탈되지 않도록 철선으로 서로 견고히 묶어두어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.6"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.6"
                   }
                 }
               ]
             },
             {
+              "@id": "workrisk:소일_네일링/4.3",
+              "@type": "WorkRisk",
               "statement": "지압판 체결이 느슨해 토압이 네일로 전달되지 않고 면판이 탈락함",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:9234f979f464",
+                  "@type": "WorkMeasure",
                   "measure": "지압판은 뿜어붙이기 콘크리트 면에 작용하는 토압을 네일로 전달하는 역할을 담당하는 부재로서 그 성능을 충분히 발현할 수 있도록 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:12593b648afa",
+                  "@type": "WorkMeasure",
                   "measure": "지압판은 너트와 와셔에 의하여 네일의 두부에 부착하며 너트는 렌치(wrench)를 이용하여 견고하게 조여주어야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.7"
                   }
                 },
                 {
+                  "@id": "workmeasure:427b72bf63e5",
+                  "@type": "WorkMeasure",
                   "measure": "제거식 네일인 경우에는 뿜어붙이기 콘크리트를 타설한 후 지압판을 설치하고 영구식 네일인 경우에는 지압판을 설치한 후 뿜어붙이기 콘크리트를 타설한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.7"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.7"
                   }
                 }
               ]
@@ -608,48 +668,58 @@
       ]
     },
     {
+      "@id": "workstep:소일_네일링/5",
+      "@type": "WorkStep",
       "stepName": "뿜어붙이기 콘크리트 타설",
       "stepHazards": [
         {
           "hazardLabel": "깔림",
+          "hasHazard": "hazard:struck_by_overturn",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.8",
               "controlLevel": "engineering"
             },
             {
-              "article": "art:기준규칙:199",
+              "basisArticle": "art:기준규칙:199",
               "controlLevel": "administrative"
             }
           ],
-          "hazard": "hazard:struck_by_overturn",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/5.1",
+              "@type": "WorkRisk",
               "statement": "타설장비·레미콘 트럭이 지반 침하로 넘어져 근로자가 깔림",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:391f5a805f64",
+                  "@type": "WorkMeasure",
                   "measure": "타설장비는 뿜어붙이기 콘크리트를 타설하는 때에는 지반의 침하로 인한 전도, 전락을 방지하기 위하여 아웃리거를 설치하고 그 아래에 깔판 또는 깔목을 설치하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:b63491770b85",
+                  "@type": "WorkMeasure",
                   "measure": "타설장비 및 레미콘 트럭의 전도, 전락 등의 사고가 발생되지 않도록 안전한 이동 경로를 확보하여야 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:eb102732dd19",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하는 작업을 하는 경우 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "article": "art:기준규칙:199"
+                    "basisArticle": "art:기준규칙:199"
                   }
                 }
               ]
@@ -658,51 +728,59 @@
         },
         {
           "hazardLabel": "끼임·감김",
+          "hasHazard": "hazard:machine_entanglement",
           "basis": [
             {
-              "guide": "doc:kosha_guide/D-C-1-2025",
-              "section": "8.4.8",
+              "basisGuide": "doc:kosha_guide/D-C-1-2025",
+              "guideSection": "8.4.8",
               "controlLevel": "administrative"
             },
             {
-              "article": "art:기준규칙:200",
+              "basisArticle": "art:기준규칙:200",
               "controlLevel": "elimination"
             },
             {
-              "article": "art:기준규칙:32",
+              "basisArticle": "art:기준규칙:32",
               "paragraph": 1,
               "item": 4,
               "controlLevel": "ppe"
             }
           ],
-          "hazard": "hazard:machine_entanglement",
           "risks": [
             {
+              "@id": "workrisk:소일_네일링/5.2",
+              "@type": "WorkRisk",
               "statement": "뿜어붙이기 콘크리트가 비산하거나 장비 이동 경로에서 근로자가 끼임",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:30467fffa841",
+                  "@type": "WorkMeasure",
                   "measure": "장비가 이동하는 경로에서 근로자의 협착 또는 뿜어붙이기 콘크리트의 비산 등으로 인하여 재해가 발생되지 않도록 신호수를 배치하고 관계근로자 이외의 자의 출입을 통제하여야 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "guide": "doc:kosha_guide/D-C-1-2025",
-                    "section": "8.4.8"
+                    "basisGuide": "doc:kosha_guide/D-C-1-2025",
+                    "guideSection": "8.4.8"
                   }
                 },
                 {
+                  "@id": "workmeasure:5b6db0404b54",
+                  "@type": "WorkMeasure",
                   "measure": "물체가 흩날릴 위험이 있는 작업에는 보안경을 지급하고 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "article": "art:기준규칙:32",
+                    "basisArticle": "art:기준규칙:32",
                     "paragraph": 1,
                     "item": 4
                   }
                 },
                 {
+                  "@id": "workmeasure:3eca1239b80a",
+                  "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 우려가 있는 장소에 근로자를 출입시키지 않는다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "article": "art:기준규칙:200"
+                    "basisArticle": "art:기준규칙:200"
                   }
                 }
               ]

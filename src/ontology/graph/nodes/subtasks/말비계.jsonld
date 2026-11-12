@@ -1,47 +1,5 @@
 {
-  "@context": [
-    "../../context.jsonld",
-    {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
-      "ConstructionSubtask": "safety:ConstructionSubtask",
-      "workGroup": "cc:workGroup",
-      "steps": {
-        "@id": "cc:hasStep",
-        "@container": "@list"
-      },
-      "stepName": "schema:name",
-      "stepHazards": {
-        "@id": "cc:stepHazard",
-        "@container": "@set"
-      },
-      "hazard": {
-        "@id": "safety:hasHazard",
-        "@type": "@id"
-      },
-      "hazardLabel": "cc:hazardLabel",
-      "basis": {
-        "@id": "cc:basis",
-        "@container": "@set"
-      },
-      "article": {
-        "@id": "cc:basisArticle",
-        "@type": "@id"
-      },
-      "annex": {
-        "@id": "cc:basisAnnex",
-        "@type": "@id"
-      },
-      "guide": {
-        "@id": "cc:basisGuide",
-        "@type": "@id"
-      },
-      "paragraph": "cc:paragraph",
-      "item": "cc:item",
-      "subitem": "cc:subitem",
-      "section": "cc:section",
-      "controlLevel": "cc:controlLevel"
-    }
-  ],
+  "@context": "../../context.jsonld",
   "@id": "subtask:말비계",
   "@type": [
     "ConstructionSubtask"
@@ -71,28 +29,34 @@
   ],
   "steps": [
     {
+      "@id": "workstep:말비계/1",
+      "@type": "WorkStep",
       "stepName": "설치 및 사용",
       "stepHazards": [
         {
           "hazardLabel": "넘어짐",
+          "hasHazard": "hazard:trip_slip",
           "basis": [
             {
-              "article": "art:기준규칙:67",
+              "basisArticle": "art:기준규칙:67",
               "item": 1,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:trip_slip",
           "risks": [
             {
+              "@id": "workrisk:말비계/1.1",
+              "@type": "WorkRisk",
               "statement": "지주부재가 미끄러지거나 양측 끝에 올라서서 작업하다 넘어짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:f41ba911a47f",
+                  "@type": "WorkMeasure",
                   "measure": "지주부재의 하단에는 미끄럼 방지장치를 하고, 근로자가 양측 끝부분에 올라서서 작업하지 않도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:67",
+                    "basisArticle": "art:기준규칙:67",
                     "item": 1
                   }
                 }
@@ -102,24 +66,28 @@
         },
         {
           "hazardLabel": "무너짐",
+          "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "article": "art:기준규칙:67",
+              "basisArticle": "art:기준규칙:67",
               "item": 2,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:cave_in",
           "risks": [
             {
+              "@id": "workrisk:말비계/1.2",
+              "@type": "WorkRisk",
               "statement": "지주부재 기울기가 과다하거나 보조부재를 설치하지 않아 벌어져 무너짐",
               "priority": "★★",
               "measures": [
                 {
+                  "@id": "workmeasure:025b561c6c2a",
+                  "@type": "WorkMeasure",
                   "measure": "지주부재와 수평면의 기울기를 75도 이하로 하고, 지주부재와 지주부재 사이를 고정시키는 보조부재를 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:67",
+                    "basisArticle": "art:기준규칙:67",
                     "item": 2
                   }
                 }
@@ -129,24 +97,28 @@
         },
         {
           "hazardLabel": "떨어짐",
+          "hasHazard": "hazard:fall_from_height",
           "basis": [
             {
-              "article": "art:기준규칙:67",
+              "basisArticle": "art:기준규칙:67",
               "item": 3,
               "controlLevel": "engineering"
             }
           ],
-          "hazard": "hazard:fall_from_height",
           "risks": [
             {
+              "@id": "workrisk:말비계/1.3",
+              "@type": "WorkRisk",
               "statement": "높이 2미터를 초과하는 말비계의 발판 폭이 좁아 떨어짐",
               "priority": "★",
               "measures": [
                 {
+                  "@id": "workmeasure:bd77b8db0464",
+                  "@type": "WorkMeasure",
                   "measure": "말비계의 높이가 2미터를 초과하는 경우에는 작업발판의 폭을 40센티미터 이상으로 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "article": "art:기준규칙:67",
+                    "basisArticle": "art:기준규칙:67",
                     "item": 3
                   }
                 }

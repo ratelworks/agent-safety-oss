@@ -5,7 +5,7 @@
  * 읽을 내용은 여기서 조문 노드와 가이드 본문에서 꺼내 붙인다.
  */
 
-import { getNode, listDocuments, listNodesByType } from "./graph-nodes-loader.js";
+import { getNode, listDocuments, listNodesByType, neighborsByEdge } from "./graph-nodes-loader.js";
 import { getKoshaGuideMd } from "./kosha-guides-loader.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
@@ -70,7 +70,53 @@ interface SubtaskNode {
   workGroup: string;
   broader?: string;
   references?: string[];
-  steps: { stepName: string; stepHazards: StepHazard[] }[];
+  steps: { stepName: string; stepHazards: RawStepHazard[] }[];
+}
+/** 공종 노드에 적힌 그대로의 근거 참조 — 필드 이름이 문맥의 주소 접두어와 겹치지 않게 돼 있다 */
+interface RawBasisRef {
+  basisArticle?: string;
+  basisAnnex?: string;
+  basisGuide?: string;
+  guideSection?: string;
+  paragraph?: number;
+  item?: number;
+  subitem?: string;
+  controlLevel?: string;
+}
+interface RawStepHazard {
+  hazardLabel: string;
+  hasHazard?: string;
+  basis?: RawBasisRef[];
+  risks?: { statement: string; priority?: string; measures?: { measure: string; controlLevel?: string; variant?: string; basis?: RawBasisRef }[] }[];
+}
+
+function toBasisRef(b: RawBasisRef): BasisRef {
+  const { basisArticle, basisAnnex, basisGuide, guideSection, ...rest } = b;
+  return {
+    ...rest,
+    ...(basisArticle ? { article: basisArticle } : {}),
+    ...(basisAnnex ? { annex: basisAnnex } : {}),
+    ...(basisGuide ? { guide: basisGuide } : {}),
+    ...(guideSection ? { section: guideSection } : {}),
+  };
+}
+
+function toStepHazard(h: RawStepHazard): StepHazard {
+  return {
+    hazardLabel: h.hazardLabel,
+    ...(h.hasHazard ? { hazard: h.hasHazard } : {}),
+    basis: (h.basis ?? []).map(toBasisRef),
+    risks: (h.risks ?? []).map((r) => ({
+      statement: r.statement,
+      ...(r.priority ? { priority: r.priority } : {}),
+      measures: (r.measures ?? []).map((m) => ({
+        measure: m.measure,
+        ...(m.controlLevel ? { controlLevel: m.controlLevel } : {}),
+        ...(m.variant ? { variant: m.variant } : {}),
+        ...(m.basis ? { basis: toBasisRef(m.basis) } : {}),
+      })),
+    })),
+  };
 }
 
 export interface ResolvedBasis {
@@ -137,7 +183,7 @@ async function loadWorks(): Promise<Work[]> {
       group: n.workGroup,
       ...(n.broader ? { activity: n.broader } : {}),
       references: n.references ?? [],
-      steps: (n.steps ?? []).map((st) => ({ name: st.stepName, hazards: st.stepHazards ?? [] })),
+      steps: (n.steps ?? []).map((st) => ({ name: st.stepName, hazards: (st.stepHazards ?? []).map(toStepHazard) })),
     }))
     .sort((a, b) => a.iri.localeCompare(b.iri));
   return worksCache;
@@ -271,27 +317,46 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
   return null;
 }
 
-/** 공종 노드의 references(관련 고시 법령 노드와 그 조문)를 고시별로 묶는다 */
+/**
+ * 공종과 관련된 고시(표준안전 작업지침)와 그 조문을 고시별로 묶는다.
+ *   - 공종 노드의 references (고시 법령 노드, 제목이 공종 이름과 맞는 조문)
+ *   - 이 공종을 다룬다고 연결된 고시의 장·절(appliesTo) 에 속한 조문
+ */
 async function findRelatedNotices(work: Work): Promise<RelatedNotice[]> {
   const byAct = new Map<string, RelatedNotice>();
+  const seen = new Set<string>();
+  const articleIris: string[] = work.references.filter((iri) => iri.startsWith("art:"));
   for (const iri of work.references) {
     if (!iri.startsWith("act:")) continue;
     const act = (await getNode(iri)) as { legislationIdentifier?: string } | undefined;
     if (act) byAct.set(iri, { law: act.legislationIdentifier ?? iri, articles: [], legalWeight: "recommended" });
   }
-  for (const iri of work.references) {
-    if (!iri.startsWith("art:")) continue;
+  for (const chapterIri of await neighborsByEdge(work.iri, "appliesTo", "in")) {
+    if (!chapterIri.startsWith("chapter:")) continue;
+    const chapter = (await getNode(chapterIri)) as unknown as { hasArticle?: string[] } | undefined;
+    articleIris.push(...(chapter?.hasArticle ?? []));
+  }
+  for (const iri of articleIris) {
+    if (seen.has(iri)) continue;
+    seen.add(iri);
     const node = (await getNode(iri)) as
       | { title?: string; partOf?: string; legislationIdentifier?: string; articleNumber?: string }
       | undefined;
-    const notice = node?.partOf ? byAct.get(node.partOf) : undefined;
-    if (!node || !notice) continue;
+    if (!node?.partOf) continue;
+    let notice = byAct.get(node.partOf);
+    if (!notice) {
+      notice = { law: node.legislationIdentifier ?? node.partOf, articles: [], legalWeight: "recommended" };
+      byAct.set(node.partOf, notice);
+    }
     const num = node.articleNumber ?? "";
     notice.articles.push({
       ref: `${node.legislationIdentifier ?? notice.law} 제${num.replace("의", "조의")}${num.includes("의") ? "" : "조"}`,
       title: node.title ?? "",
     });
   }
+  // 조문 번호 순
+  const articleNo = (ref: string): number => Number(ref.match(/제(\d+)조/)?.[1] ?? 0);
+  for (const n of byAct.values()) n.articles.sort((a, b) => articleNo(a.ref) - articleNo(b.ref));
   return [...byAct.values()];
 }
 
