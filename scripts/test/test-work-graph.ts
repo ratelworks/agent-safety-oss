@@ -262,6 +262,8 @@ async function main(): Promise<void> {
     if (hit) sameWord.push(`${q} → ${hit.work.name} ← ${hit.matchedBy?.join(", ")}`);
   }
   check("같은 낱말의 되풀이·조사 변형을 두 낱말로 세지 않는다", sameWord.length === 0, sameWord.join(" / "));
+  const withNoise = await findWork("항타기로 파일을 박는다 항타기에서요");
+  check("자료에 없는 낱말이 섞여도 쓸 수 있는 근거는 남는다", withNoise?.work.name === "기초파일작업", `${withNoise?.work.name ?? "없음"} ← ${withNoise?.matchedBy?.join(", ") ?? ""}`);
   const unrelated: string[] = [];
   for (const q of ["점심 메뉴를 추천해 달라", "오늘 날씨가 좋아서 기분이 좋다", "회의실 예약을 도와 달라"]) {
     const hit = await findWork(q);

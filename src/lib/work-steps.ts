@@ -260,8 +260,9 @@ function stem(token: string): string {
  * 질문을 근거로 셀 낱말 묶음으로 바꾼다.
  * 근거의 단위는 글자열이 아니라 원형이다 — 같은 낱말의 조사 변형·되풀이, 다른 낱말에 통째로 들어 있는 낱말은 하나로 친다.
  */
-function evidenceWords(tokens: string[]): string[] {
-  const words = [...new Set(tokens.map(stem))];
+function evidenceWords(tokens: string[], appears: (word: string) => boolean): string[] {
+  // 자료에 나오는 낱말끼리만 견준다 — 자료에 없는 긴 낱말이 쓸 수 있는 근거를 지우지 않게
+  const words = [...new Set(tokens.map(stem))].filter(appears);
   return words.filter((w) => !words.some((other) => other !== w && other.includes(w)));
 }
 
@@ -293,7 +294,8 @@ async function findWorkByContent(tokens: string[]): Promise<{ work: Work; others
   const works = await loadWorks();
   const contents = await loadWorkContents();
   const score = new Map<string, { score: number; words: string[] }>();
-  for (const word of evidenceWords(tokens)) {
+  const texts = [...contents.values()];
+  for (const word of evidenceWords(tokens, (w) => texts.some((t) => t.includes(w)))) {
     const hit = works.filter((w) => (contents.get(w.iri) ?? "").includes(word));
     // 너무 많은 공종에 나오는 낱말은 공종을 가리지 못한다
     if (hit.length === 0 || hit.length > CONTENT_TOKEN_MAX_WORKS) continue;
