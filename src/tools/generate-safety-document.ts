@@ -37,8 +37,12 @@ import { validateDocumentInput, type ValidationReport } from "../lib/input-valid
 import { COMMON_RESPONSE_META } from "../config/constants.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
 import { kstToday } from "../lib/datetime-kst.js";
+import { getWorkSteps } from "../lib/work-steps.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
 import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput } from "../lib/doclang-serializer.js";
+
+/** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
+const WORK_STEP_BASIS_PER_ROW = 3;
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -774,6 +778,39 @@ async function renderGeneric(
     for (const h of hazards) lines.push(`| ${h.label} | ${h.category} |`);
   }
   lines.push("");
+
+  // 작업 단계별 위험요인·근거 — 초안에 작업명이 있고 작업을 다루는 문서일 때만 붙인다.
+  // 위의 위험 요소 표는 문서 종류에 묶인 것이라 작업이 무엇이든 같다. 이 구획이 그 작업의 단계별 내용을 채운다.
+  const draftWorkName = [d.workName, d.workType, d["작업명"], d.work, metadata.workName].find(
+    (v): v is string => typeof v === "string" && v.trim().length > 0,
+  );
+  if (draftWorkName && !hazardFallbackSuppressed) {
+    const workSteps = await getWorkSteps(draftWorkName);
+    if (workSteps) {
+      const ws = workSteps.result;
+      lines.push(`## 작업 단계별 위험요인·근거 — ${ws.work}`);
+      lines.push("");
+      lines.push(`| 단계 | 재해유형 | 근거 (대책 위계) |`);
+      lines.push(`|---|---|---|`);
+      for (const step of ws.steps) {
+        for (const h of step.hazards) {
+          const basis = h.basis
+            .slice(0, WORK_STEP_BASIS_PER_ROW)
+            .map((x) => {
+              const title = x.kind === "kosha_guide" && x.text ? x.text.replace(/^[\d.]+\s+/, "") : x.title;
+              return `${x.ref} ${title}${x.controlLevel ? ` (${x.controlLevel})` : ""}`.trim();
+            })
+            .join("<br>");
+          lines.push(`| ${step.name} | ${h.hazardLabel} | ${basis} |`);
+        }
+      }
+      lines.push("");
+      lines.push(
+        `> 공종의 작업 단계마다 살필 재해유형과 근거를 연결한 참고 자료입니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다.`,
+      );
+      lines.push("");
+    }
+  }
 
   // 권장 안전대책 (ERIC-PP) — 위험요소와 직접 연관된 control만 우선 표시
   lines.push(`## 권장 안전대책 (ERIC-PP 위계 — 그래프 추론)`);
