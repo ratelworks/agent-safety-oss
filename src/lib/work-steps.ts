@@ -11,10 +11,8 @@ import { getKoshaGuideMd } from "./kosha-guides-loader.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮";
-/** 항 본문을 잘라 보여 줄 최대 길이 */
+/** 호가 지정되지 않은 근거에서 항·조문 본문을 앞부분만 보여 줄 때의 최대 길이 (호·목 발췌는 자르지 않는다) */
 const PARAGRAPH_MAX_CHARS = 220;
-/** 목 앞에 붙이는 호 머리 문장의 최대 길이 */
-const LEAD_MAX_CHARS = 90;
 /** 한 단계·재해유형에 보여 줄 근거 수 상한 (자주 쓰이는 순으로 정렬돼 있다) */
 const MAX_BASIS_PER_HAZARD = 6;
 /** 공종 이름 매칭 점수 */
@@ -169,10 +167,8 @@ function extractItem(scope: string, item: number, subitem?: string): string | un
       // 머리 문장 = 첫 목이 시작하기 전까지 (앞선 다른 목은 넣지 않는다)
       const firstSub = text.search(/^\s*[가-하]\.\s/m);
       const lead = text.slice(0, firstSub >= 0 ? firstSub : subStart).trim();
-      // 머리 문장이 길면 줄인다 — 줄이지 않으면 뒤에서 길이를 자를 때 정작 목 본문이 잘려 나간다
-      const flatLead = lead.replace(/\s+/g, " ");
-      const shortLead = flatLead.length > LEAD_MAX_CHARS ? `${flatLead.slice(0, LEAD_MAX_CHARS)}…` : flatLead;
-      text = shortLead ? `${shortLead} — ${sub.trim()}` : sub;
+      // 머리 문장은 줄이지 않는다 — 단서("다만, …")와 예외가 머리 문장에 들어 있다
+      text = lead ? `${lead} — ${sub.trim()}` : sub;
     }
   }
   return text;
@@ -220,7 +216,9 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
       kind: "law",
       ref: `산업안전보건기준에 관한 규칙 ${articleLabel}${detail}`,
       title: node.title ?? "",
-      text: clip(itemText ?? scope),
+      // 호·목으로 좁힌 발췌는 자르지 않는다 (법령 문장을 길이로 자르면 조건·예외가 빠진다).
+      // 호가 지정되지 않아 항·조문 전체를 보여 줄 때만 앞부분으로 줄이고, 줄였다는 표시(…)를 남긴다.
+      text: itemText ? itemText.replace(/\s+/g, " ").trim() : clip(scope),
       controlLevel,
       legalWeight: "mandatory",
     };
