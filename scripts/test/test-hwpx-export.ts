@@ -140,6 +140,10 @@ const saved = readFileSync(generatedPath);
 check("저장 파일이 HWPX 패키지", readZip(saved)[0].data.toString("utf8") === HWPX_MIME_TYPE && sectionOf(saved).includes("굴착"));
 check("저장 파일은 소유자만 읽고 씀", (statSync(generatedPath).mode & 0o777) === OWNER_ONLY_MODE);
 check("파일 크기 보고 일치", generated.structured.hwpxBytes === saved.length);
+// 같은 초에 연달아 내보내도 앞 파일을 덮어쓰지 않는다
+const burst = await Promise.all([1, 2, 3].map((n) => callTool("export_drafted_document", { docId: "msds_register", format: "hwpx", draft: { memo: `내보내기 ${n}` } })));
+const burstPaths = burst.map((r) => String(r.structured.hwpxPath));
+check("연속 내보내기가 서로 다른 파일로 저장됨", new Set(burstPaths).size === 3 && burstPaths.every((p, i) => sectionOf(readFileSync(p)).includes(`내보내기 ${i + 1}`)), burstPaths.map((p) => p.split("/").pop()).join(","));
 const exported = await callTool("export_drafted_document", { docId: "daily_tbm", format: "hwpx", draft: { todayWork: "양중 작업" } });
 check("내보내기(hwpx)가 파일을 저장", !exported.isError && sectionOf(readFileSync(String(exported.structured.hwpxPath))).includes("양중 작업"));
 const md = await callTool("generate_safety_document", { docId: "daily_tbm", useProfile: false });

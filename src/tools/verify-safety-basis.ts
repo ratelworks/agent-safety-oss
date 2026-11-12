@@ -273,7 +273,13 @@ async function checkRefExistence(ev: EvidenceItemT): Promise<RefCheck> {
   try {
     const resolved = await resolveReference(reference);
     if (resolved.outcome === "confirmed") {
-      return { reference, outcome: "confirmed", exists: true, matched: `${resolved.iri} ${resolved.title ?? ""}`.trim() };
+      return {
+        reference,
+        outcome: "confirmed",
+        exists: true,
+        matched: `${resolved.iri} ${resolved.title ?? ""}`.trim(),
+        ...(resolved.detailNote ? { reason: resolved.detailNote } : {}),
+      };
     }
     return { reference, outcome: resolved.outcome, exists: false, reason: resolved.reason };
   } catch (err) {

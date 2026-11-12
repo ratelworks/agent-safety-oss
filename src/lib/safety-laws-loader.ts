@@ -260,7 +260,8 @@ export async function getArticle(ref: string, lawHint?: LawCode): Promise<LawArt
 // ───── ref 파싱 ─────
 
 function normalizeRef(raw: string): { lawPart: string; refShort: string } {
-  const trimmed = raw.trim();
+  // "제36조", "제37조의2" 표기는 "§36", "§37의2" 로 바꿔 읽는다
+  const trimmed = raw.trim().replace(/제\s*(\d+)\s*조(?:\s*의\s*(\d+))?/, (_m, n: string, sub?: string) => (sub ? `§${n}의${sub}` : `§${n}`));
   // "§N" 부분 추출
   const m = trimmed.match(/(§[\d가-힣·\-]+)/);
   const refShort = m ? m[1] : trimmed;

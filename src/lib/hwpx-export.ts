@@ -14,6 +14,7 @@ import { markdownToHwpx } from "./hwpx-writer.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const SAFE_DOC_ID = /^[a-z][a-z0-9_]*$/;
+const MAX_NAME_ATTEMPTS = 100;
 
 export interface HwpxExportResult {
   /** 저장한 파일의 절대 경로 */
@@ -32,8 +33,16 @@ export async function saveHwpx(docId: string, markdown: string, title: string): 
   const dir = join(getDocumentsDir(), docId);
   await ensureSecureDir(dir);
   const stamp = kstIsoNow().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
-  const path = join(dir, `${docId}-${stamp}.hwpx`);
   const data = buildHwpx(markdown, title);
-  await writeFile(path, data, { mode: SAFE_FILE_MODE });
-  return { path, bytes: data.length };
+  // 같은 초에 다시 내보내도 앞 파일을 덮어쓰지 않는다 — 이미 있으면 번호를 붙인다
+  for (let attempt = 0; attempt < MAX_NAME_ATTEMPTS; attempt += 1) {
+    const path = join(dir, `${docId}-${stamp}${attempt === 0 ? "" : `-${attempt + 1}`}.hwpx`);
+    try {
+      await writeFile(path, data, { mode: SAFE_FILE_MODE, flag: "wx" });
+      return { path, bytes: data.length };
+    } catch (err) {
+      if ((err as NodeJS.ErrnoException).code !== "EEXIST") throw err;
+    }
+  }
+  throw new Error("HWPX 저장 불가 — 같은 시각의 파일이 너무 많습니다");
 }

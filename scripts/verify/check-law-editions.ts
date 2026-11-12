@@ -209,6 +209,11 @@ async function main(): Promise<void> {
     `\n요약: 현행 ${results.length - stale.length - failed.length} · 낡음 ${stale.length} · 조회 실패/표지 없음 ${failed.length} · 시행예정 ${results.reduce((s, r) => s + r.pending.length, 0)}건`,
   );
   if (stale.length > 0) process.exit(1);
+  // 정기 점검에서는 조회 실패·표지 없음도 "확인하지 못함"으로 실패시킨다
+  if (failed.length > 0 && process.argv.includes("--require-key")) {
+    console.error(`❌ ${failed.length}개 법령의 판본을 확인하지 못했습니다 (조회 실패 또는 표지 없음)`);
+    process.exit(3);
+  }
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

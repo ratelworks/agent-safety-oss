@@ -25,6 +25,8 @@ export interface CitationResolution {
   title?: string;
   /** 판정 사유 (confirmed 가 아닐 때) */
   reason?: string;
+  /** 대조하지 않은 부분 — 범위의 중간 조문, 항·호 */
+  detailNote?: string;
 }
 
 let fullCoverage: Set<string> | null = null;
@@ -70,14 +72,44 @@ export async function resolveCitation(law: string, article: string): Promise<Cit
   return { outcome: "unverifiable", reason: `${mapped.canonical} 은(는) 일부만 수록돼 있어 '${article}' 의 실존 여부를 확인할 수 없음 (법제처 원문 확인 필요)` };
 }
 
-/** "산안법 제36조" 같은 한 줄 표기를 읽어 판정한다 */
+/** 표기에서 조문 번호를 모두 뽑는다 — "제36조", "제37조의2", "§38" */
+const ARTICLE_TOKEN = /제\s*(\d+)\s*조(?:\s*의\s*(\d+))?|§\s*(\d+)(?:\s*의\s*(\d+))?/g;
+/** 항·호·목 표기 — 수록 자료가 조문 단위라 대조하지 않는다 */
+const SUB_ITEM = /제?\s*\d+\s*(항|호)|[①-⑳]|[가-하]목/;
+/** 범위 표기 — "부터 …까지", "내지", "~" */
+const RANGE_MARK = /부터|내지|~|∼|-\s*(?:제|§)/;
+const OUTCOME_RANK: Record<CitationOutcome, number> = { confirmed: 0, unverifiable: 1, not_found: 2 };
+
+/**
+ * "산안법 제36조" 같은 한 줄 표기를 읽어 판정한다.
+ * 표기에 조문이 여러 개(나열·범위의 양 끝)면 모두 확인해 가장 나쁜 결과를 돌려준다.
+ * 범위의 중간 조문과 항·호는 대조하지 않으며, 그 사실을 detailNote 로 알린다.
+ */
 export async function resolveReference(reference: string): Promise<CitationResolution> {
-  const m = REFERENCE_PATTERN.exec(reference.trim());
+  const text = reference.trim();
+  const m = REFERENCE_PATTERN.exec(text);
   if (!m) return { outcome: "unverifiable", reason: `'${reference}' 에서 법령명과 조문 번호를 읽지 못함` };
   const law = m[1].trim();
-  const number = m[2] ?? m[4];
-  const sub = m[3] ?? m[5];
-  const article = number ? (sub ? `§${number}의${sub}` : `§${number}`) : m[6];
   if (!law) return { outcome: "unverifiable", reason: `'${reference}' 에 법령명이 없음` };
-  return resolveCitation(law, article);
+  if (m[6]) return resolveCitation(law, m[6]);
+
+  const rest = text.slice(m[1].length);
+  const articles = [...rest.matchAll(ARTICLE_TOKEN)].map((t) => {
+    const number = t[1] ?? t[3];
+    const sub = t[2] ?? t[4];
+    return sub ? `§${number}의${sub}` : `§${number}`;
+  });
+  let worst: CitationResolution | null = null;
+  let first: CitationResolution | null = null;
+  for (const article of [...new Set(articles)]) {
+    const resolved = await resolveCitation(law, article);
+    first ??= resolved;
+    if (!worst || OUTCOME_RANK[resolved.outcome] > OUTCOME_RANK[worst.outcome]) worst = resolved;
+  }
+  if (!worst || !first) return { outcome: "unverifiable", reason: `'${reference}' 에서 조문 번호를 읽지 못함` };
+  const notes: string[] = [];
+  if (RANGE_MARK.test(rest) && articles.length > 1) notes.push("범위의 양 끝 조문만 대조함(중간 조문은 대조하지 않음)");
+  if (SUB_ITEM.test(rest.replace(ARTICLE_TOKEN, ""))) notes.push("항·호는 대조하지 않음(조문 단위로만 확인)");
+  const result = worst.outcome === "confirmed" ? first : worst;
+  return notes.length > 0 ? { ...result, detailNote: notes.join(" · ") } : result;
 }

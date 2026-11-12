@@ -71,6 +71,13 @@ for (const [label, reference] of [
 }
 const unrelated = await verdict("모든 근로자는 매일 체조를 해야 한다", "산안법 제36조");
 check("확인 범위를 응답에 밝힘(내용 일치는 보지 않음)", typeof unrelated.structured.scope?.notChecked === "string" && unrelated.structured.scope.notChecked.includes("사람이 판단"));
+check("범위의 끝이 없는 조문이면 거절", (await resolveReference("산안법 제36조부터 제999조까지")).outcome === "not_found");
+check("나열한 조문 중 하나가 없으면 거절", (await resolveReference("산안법 제36조, 제999조")).outcome === "not_found");
+const range = await resolveReference("기준규칙 §338~§347");
+check("범위는 양 끝만 대조했음을 알림", range.outcome === "confirmed" && (range.detailNote ?? "").includes("양 끝"));
+const subItem = await resolveReference("산안법 제36조 제999항");
+check("항·호는 대조하지 않았음을 알림", subItem.outcome === "confirmed" && (subItem.detailNote ?? "").includes("항·호"));
+check("대조군: 조문만 적으면 알림 없음", (await resolveReference("산안법 제36조")).detailNote === undefined);
 check("읽지 못한 표기는 확인 불가", (await resolveReference("어떤 근거")).outcome === "unverifiable");
 
 // 2. 검토 전 연결
