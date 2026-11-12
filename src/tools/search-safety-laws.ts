@@ -5,11 +5,15 @@ import {
   searchArticles,
   type LawCode,
 } from "../lib/safety-laws-loader.js";
+import { getNode, listArticleIds } from "../lib/graph-nodes-loader.js";
 
 // 파일 최상단 상수 — 로컬 번들 법령 검색 Tool
 // 저작권법 §7 비보호 저작물이므로 재배포·인용 자유
 const MAX_LIMIT = 30;
 const DEFAULT_LIMIT = 10;
+/** 본문 파일로도 수록한 고시 — 조문 노드 검색에서 빼 중복을 막는다 */
+const NOTICE_KEYS_IN_MD_BUNDLE: ReadonlySet<string> = new Set(["위험성평가-고시"]);
+const PREVIEW_CHARS = 300;
 
 const inputSchema = z.object({
   keyword: z
@@ -43,15 +47,18 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     limit: input.limit,
   });
 
+  // 조문 노드로만 수록한 고시·지침(표준안전 작업지침 등)도 찾는다 — 특정 법령을 지정하지 않았을 때만
+  const noticeHits = input.lawCode ? [] : await searchNoticeArticles(input.keyword, input.limit - results.length);
+
   // MD 응답 조립
   const lines: string[] = [];
   lines.push(`# 법령 조문 검색: "${input.keyword}"`);
   lines.push("");
-  lines.push(`> 결과 ${results.length}건 · 저작권법 §7 비보호 저작물 (자유 인용)`);
+  lines.push(`> 결과 ${results.length + noticeHits.length}건 · 저작권법 §7 비보호 저작물 (자유 인용)`);
   lines.push(`> 전체 목록: list_core_safety_laws · 조문 본문: get_safety_law_article`);
   lines.push("");
 
-  if (results.length === 0) {
+  if (results.length === 0 && noticeHits.length === 0) {
     lines.push("**매칭된 조문이 없습니다.**");
     lines.push("");
     lines.push("다음을 시도하세요:");
@@ -79,16 +86,62 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     }
   }
 
+  for (const n of noticeHits) {
+    lines.push(`## [${n.law}] §${n.article} ${n.title}`);
+    lines.push("");
+    lines.push(n.preview);
+    lines.push("");
+    lines.push(`> 전문 조회: \`get_safety_law_article(ref="${n.law} 제${n.article.replace("의", "조의")}${n.article.includes("의") ? "" : "조"}")\` · 고시·지침은 권고 기준입니다`);
+    lines.push("");
+    lines.push("---");
+    lines.push("");
+  }
+
   const md = lines.join("\n");
 
   return {
     content: [{ type: "text", text: md }],
     structuredContent: {
       query: input,
-      total: results.length,
+      total: results.length + noticeHits.length,
+      noticeArticles: noticeHits.map((n) => ({ iri: n.iri, law: n.law, article: n.article, title: n.title })),
       laws: listLaws(),
     },
   };
+}
+
+interface NoticeHit {
+  iri: string;
+  law: string;
+  article: string;
+  title: string;
+  preview: string;
+}
+
+/** 조문 노드로만 수록한 고시·지침에서 키워드가 든 조문을 찾는다 */
+async function searchNoticeArticles(keyword: string, limit: number): Promise<NoticeHit[]> {
+  const q = keyword.trim().toLowerCase();
+  if (!q || limit <= 0) return [];
+  const hits: NoticeHit[] = [];
+  for (const iri of await listArticleIds()) {
+    const key = iri.split(":")[1] ?? "";
+    if (NOTICE_KEYS_IN_MD_BUNDLE.has(key)) continue;
+    const node = (await getNode(iri)) as
+      | { title?: string; description?: string; legislationType?: string; legislationIdentifier?: string; articleNumber?: string }
+      | undefined;
+    if (!node || node.legislationType !== "Notification" || !node.description) continue;
+    if (!`${node.title ?? ""} ${node.description}`.toLowerCase().includes(q)) continue;
+    const body = node.description.replace(/\n+/g, " ").trim();
+    hits.push({
+      iri,
+      law: node.legislationIdentifier ?? key,
+      article: node.articleNumber ?? iri.split(":").pop() ?? "",
+      title: node.title ?? "",
+      preview: body.slice(0, PREVIEW_CHARS) + (body.length > PREVIEW_CHARS ? " ..." : ""),
+    });
+    if (hits.length >= limit) break;
+  }
+  return hits;
 }
 
 export const searchSafetyLawsTool: ToolDefinition = {
