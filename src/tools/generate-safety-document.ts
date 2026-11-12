@@ -17,6 +17,7 @@
 //   - LLM 추론이 아닌 그래프 탐색 결과
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { getNodeSync } from "../lib/graph-nodes-loader.js";
 import { saveHwpx, type HwpxExportResult } from "../lib/hwpx-export.js";
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
@@ -865,6 +866,12 @@ async function renderGeneric(
       }
       lines.push("");
     }
+    // 수록 판본 — 인용한 조문이 어느 시행일 기준인지 밝힌다. 생성 시점의 현행 여부는 확인하지 않는다
+    const editions = legalEditionsOf(doc.legalBasis);
+    if (editions.length > 0) {
+      lines.push(`_수록 판본: ${editions.join(" · ")}. 이 문서를 만들 때 법령의 현행 여부는 확인하지 않습니다 — 법제처 국가법령정보센터에서 개정 여부를 확인하세요._`);
+      lines.push("");
+    }
     if (doc.penaltyOnMissing) {
       const penalties = Array.isArray(doc.penaltyOnMissing) ? doc.penaltyOnMissing : [doc.penaltyOnMissing];
       lines.push(`### 위반 시 처벌`);
@@ -921,6 +928,19 @@ function usabilityStatusText(missingRequiredCount: number, otherErrorCount: numb
     return `결재 사용 불가 — 필수 항목은 모두 작성됐으나 자동 검사 오류 ${otherErrorCount}건. 결재 전 반드시 수정.`;
   }
   return "필수 항목 모두 작성됨 · 자동 검사 통과 — 담당자 검토와 결재선 서명·날짜 확인이 남아 있습니다.";
+}
+
+/** 인용 조문·별표의 법령별 수록 판본 — "산업안전보건법 (시행 2026-08-01)" */
+function legalEditionsOf(legalBasis: string[]): string[] {
+  const datesByLaw = new Map<string, Set<string>>();
+  for (const iri of legalBasis) {
+    const node = getNodeSync(iri) as { legislationIdentifier?: string; legislationDate?: string } | undefined;
+    if (!node?.legislationIdentifier) continue;
+    const dates = datesByLaw.get(node.legislationIdentifier) ?? new Set<string>();
+    if (node.legislationDate) dates.add(node.legislationDate);
+    datesByLaw.set(node.legislationIdentifier, dates);
+  }
+  return [...datesByLaw].map(([law, dates]) => (dates.size > 0 ? `${law} (시행 ${[...dates].sort().join(", ")})` : `${law} (시행일 표지 없음)`));
 }
 
 function renderUsabilityHeader(missingRequiredCount: number, otherErrorCount: number): string {

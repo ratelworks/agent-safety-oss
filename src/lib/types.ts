@@ -22,6 +22,11 @@ export interface ToolDefinition {
   title?: string;
   description: string;
   inputSchema: z.ZodTypeAny;
+  /**
+   * MCP 도구 주의 표시 — AI 비서 프로그램이 실행 전에 사용자 승인을 받을지 판단하는 데 쓴다.
+   * destructiveHint=자료를 지우거나 되돌릴 수 없게 바꿈 / openWorldHint=이 컴퓨터 밖으로 자료를 보냄
+   */
+  annotations?: { readOnlyHint?: boolean; destructiveHint?: boolean; idempotentHint?: boolean; openWorldHint?: boolean };
   handler: (input: unknown) => Promise<McpToolResult> | McpToolResult;
 }
 

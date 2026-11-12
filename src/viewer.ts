@@ -24,6 +24,7 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { spawnSync, spawn } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
+import { createRequire } from "node:module";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { buildHwpx } from "./lib/hwpx-export.js";
@@ -58,6 +59,14 @@ const FORMS_DIR_AUTO = firstExisting(
   resolve(ROOT, "src", "ontology", "forms", "auto"),
 );
 const PORT = Number(process.env.PORT ?? 5174);
+/** 미리보기용 Markdown 변환기(marked) — 설치된 패키지의 브라우저용 파일. 찾지 못하면 미리보기는 글자 그대로 표시된다 */
+const MARKED_SCRIPT = ((): string | null => {
+  try {
+    return readFileSync(createRequire(import.meta.url).resolve("marked/marked.min.js"), "utf8");
+  } catch {
+    return null;
+  }
+})();
 /** 이 컴퓨터 안에서만 접속을 받는다 — 같은 네트워크의 다른 기기에 열지 않는다 */
 const HOST = "127.0.0.1";
 /** 요청 본문 상한 (1 MiB) */
@@ -119,6 +128,67 @@ function freqEmoji(f: string): string {
   return "⚪";
 }
 
+/** 도구의 글자 응답만 받는다 — 검토 결과처럼 "오류 표시"가 붙은 응답도 내용을 그대로 돌려준다 */
+function callMcpText(tool: string, input: Record<string, unknown>): string | null {
+  const res = spawnSync("node", [CLI, "call", tool, "--inputJson", JSON.stringify(input)], {
+    encoding: "utf8",
+    cwd: ROOT,
+    maxBuffer: 32 * 1024 * 1024,
+  });
+  try {
+    const parsed = JSON.parse(res.stdout) as { content?: Array<{ text?: string }> };
+    const text = parsed.content?.[0]?.text;
+    return typeof text === "string" ? text : null;
+  } catch {
+    return null;
+  }
+}
+
+/** 값이 채워진 첫 입력을 고른다 — 키 이름이 주어진 낱말을 포함하는 것 */
+function firstFilled(formValues: Record<string, unknown>, keywords: string[]): string {
+  for (const [key, value] of Object.entries(formValues)) {
+    const text = typeof value === "string" ? value.trim() : "";
+    if (text !== "" && keywords.some((kw) => key.toLowerCase().includes(kw))) return text;
+  }
+  return "";
+}
+
+/**
+ * 폼의 보조 버튼(작업 분석·통제대책·필드 도움말·부분 검토)을 도구 호출로 바꾼다.
+ * 필요한 입력이 비어 있으면 무엇을 먼저 적어야 하는지 사유를 돌려준다.
+ */
+export function buildAssistCall(
+  action: string,
+  docId: string,
+  formValues: Record<string, unknown>,
+  fieldKey: string,
+): { tool: string; input: Record<string, unknown>; title: string } | { reason: string } {
+  if (!/^[a-z][a-z0-9_]*$/.test(docId)) return { reason: "문서를 먼저 선택하세요" };
+  if (action === "analyze_work_context") {
+    const workName = firstFilled(formValues, ["work", "task", "작업"]);
+    if (!workName) return { reason: "작업명 또는 작업 내용을 먼저 입력하세요" };
+    return { tool: action, input: { docId, workName }, title: "작업 분석 — " + workName };
+  }
+  if (action === "suggest_controls_for_hazard") {
+    const hazard = firstFilled(formValues, ["hazard", "risk", "위험"]);
+    if (!hazard) return { reason: "위험요인을 먼저 입력하세요" };
+    return { tool: action, input: { docId, hazard }, title: "통제대책 추천 — " + hazard };
+  }
+  if (action === "request_field_help") {
+    if (!fieldKey) return { reason: "도움말이 필요한 입력 칸을 먼저 선택하세요" };
+    const current = formValues[fieldKey];
+    return {
+      tool: action,
+      input: { docId, fieldKey, ...(typeof current === "string" && current.trim() !== "" ? { currentValue: current } : {}) },
+      title: "작성 도움말",
+    };
+  }
+  if (action === "preview_review") {
+    return { tool: action, input: { docId, draft: formValues, scope: "all" }, title: "부분 검토" };
+  }
+  return { reason: "지원하지 않는 동작" };
+}
+
 function callMcp(tool: string, input: Record<string, unknown> = {}): { ok: boolean; data?: any; text?: string; reason?: string } {
   const res = spawnSync("node", [CLI, "call", tool, "--inputJson", JSON.stringify(input)], {
     encoding: "utf8",
@@ -142,7 +212,7 @@ const HTML = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/Igent_Safety_OSS</title>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Display:wght@700;900&family=Roboto+Mono:wght@400;500&family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script src="/vendor/marked.min.js"></script>
 <style>
   /* === Design System v2 — Token Contract (핵심만 inline) === */
   :root {
@@ -580,6 +650,8 @@ async function maybeLoadDraft(opts) {
             const m = v.match(/-?[0-9]+(?:\\.[0-9]+)?/);
             v = m ? m[0] : '';
           }
+          // 저장된 값이 비어 있으면 화면의 자동 채움 값을 그대로 둔다
+          if (v === '' && String(el.value || '') !== '') break;
           el.value = v;
           if (v) restored++;
           break;
@@ -1812,9 +1884,41 @@ async function handleAction(action) {
     const data = await r.json();
     if (data.ok) { setStatus('ok', '초기화 완료'); loadForm('profile'); }
     else setStatus('err', '초기화 실패');
+  } else if (ASSIST_ACTIONS.indexOf(action.name) >= 0) {
+    const docId = (action.payload && action.payload.docId) || currentTarget.replace('doc:', '');
+    setStatus('info', '확인 중...');
+    try {
+      const r = await fetch('/api/assist', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ action: action.name, docId: docId, formValues: collectFormValues(), fieldKey: lastFocusedFieldKey }),
+      });
+      const data = await r.json();
+      if (!data.ok) { setStatus('err', data.reason || '확인하지 못했습니다'); return; }
+      renderPreview(data.title, renderAssistMarkdown(data.markdown), 'context');
+      setStatus('ok', data.title + ' — 오른쪽에 표시했습니다 (갱신을 누르면 양식으로 돌아갑니다)');
+    } catch (e) {
+      setStatus('err', '확인하지 못했습니다');
+    }
   } else {
-    setStatus('info', 'action: ' + action.name + ' (서버 미구현)');
+    setStatus('err', '지원하지 않는 동작입니다: ' + action.name);
   }
+}
+
+// 보조 버튼(작업 분석·통제대책·필드 도움말·부분 검토) — 서버가 도구를 불러 결과를 돌려준다
+const ASSIST_ACTIONS = ['analyze_work_context', 'suggest_controls_for_hazard', 'request_field_help', 'preview_review'];
+// 마지막으로 선택한 입력 칸 — 필드 도움말이 어느 칸에 대한 것인지 알기 위함
+let lastFocusedFieldKey = '';
+document.addEventListener('focusin', (e) => {
+  const el = e.target;
+  if (el && el.dataset && (el.dataset.fieldKey || el.dataset.fieldId)) lastFocusedFieldKey = el.dataset.fieldKey || el.dataset.fieldId;
+});
+// 보조 결과는 본문 정리(결재용 양식 정리)를 거치지 않고 그대로 보여 준다
+function renderAssistMarkdown(md) {
+  if (typeof marked !== 'undefined' && marked && typeof marked.parse === 'function') {
+    try { return '<div class="markdown">' + sanitizeHtml(marked.parse(String(md || ''))) + '</div>'; } catch (e) { /* 아래 글자 표시로 */ }
+  }
+  return '<pre class="markdown" style="white-space:pre-wrap;font-size:12px">' + escapeHtml(md) + '</pre>';
 }
 
 let allDocs = [];
@@ -1913,6 +2017,12 @@ async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise
   const rejection = requestRejection(req.headers, PORT);
   if (rejection) return send(res, 403, "application/json", JSON.stringify({ ok: false, reason: rejection }));
   const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
+
+  if (url.pathname === "/vendor/marked.min.js" && req.method === "GET") {
+    // 미리보기용 Markdown 변환기 — 외부 주소가 아니라 설치된 패키지에서 제공한다
+    if (!MARKED_SCRIPT) return send(res, 404, "text/plain", "Not Found");
+    return send(res, 200, "text/javascript", MARKED_SCRIPT);
+  }
 
   if (url.pathname === "/" || url.pathname === "/index.html") {
     return send(res, 200, "text/html", HTML);
@@ -2085,6 +2195,26 @@ async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise
       data, // structured 전체 — 클라이언트가 한국어 라벨로 렌더
       summary: { totalReferences: meta.totalReferences ?? 0, resolvedReferences: meta.resolvedReferences ?? 0, unresolvedRefs: (meta.unresolvedRefs ?? []).length },
     }));
+  }
+
+  if (url.pathname === "/api/assist" && req.method === "POST") {
+    const body = await readBody(req);
+    let parsed: { action?: unknown; docId?: unknown; formValues?: unknown; fieldKey?: unknown };
+    try {
+      parsed = JSON.parse(body) as typeof parsed;
+    } catch {
+      return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "요청 형식 오류" }));
+    }
+    const request = buildAssistCall(
+      String(parsed.action ?? ""),
+      String(parsed.docId ?? ""),
+      parsed.formValues && typeof parsed.formValues === "object" ? (parsed.formValues as Record<string, unknown>) : {},
+      typeof parsed.fieldKey === "string" ? parsed.fieldKey : "",
+    );
+    if ("reason" in request) return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: request.reason }));
+    const text = callMcpText(request.tool, request.input);
+    if (text === null) return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: "도구를 실행하지 못했습니다" }));
+    return send(res, 200, "application/json", JSON.stringify({ ok: true, title: request.title, markdown: text }));
   }
 
   if (url.pathname === "/api/export-hwpx" && req.method === "POST") {

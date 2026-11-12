@@ -372,6 +372,12 @@ export async function findArticlesAndAnnexesForDocument(
   return out;
 }
 
+/** 조문 노드의 주소 목록 (art:법령:번호) */
+export async function listArticleIds(): Promise<string[]> {
+  const idx = await buildIndex();
+  return [...idx.keys()].filter((id) => id.startsWith("art:"));
+}
+
 export async function getNode(id: string): Promise<AnyNode | undefined> {
   const idx = await buildIndex();
   return idx.get(id);

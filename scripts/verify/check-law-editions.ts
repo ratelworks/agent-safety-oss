@@ -154,6 +154,11 @@ async function main(): Promise<void> {
   await loadEnv();
   const oc = process.env.LAW_OC;
   if (!oc) {
+    // --require-key: 정기 점검에서는 인증키가 없으면 "점검하지 못함"을 실패로 알린다 (건너뛴 것을 통과로 보이지 않게)
+    if (process.argv.includes("--require-key")) {
+      console.error("❌ LAW_OC 가 없어 법령 판본을 점검하지 못했습니다 — 저장소 비밀값 LAW_OC 에 법제처 OpenAPI 인증키를 넣으세요.");
+      process.exit(2);
+    }
     console.log(
       "[skip] LAW_OC 환경 변수가 없어 법령 판본 점검을 건너뜁니다 — 법제처 OpenAPI 인증키(open.law.go.kr)를 LAW_OC 로 설정하면 번들 판본을 현행·시행예정 판과 비교합니다.",
     );

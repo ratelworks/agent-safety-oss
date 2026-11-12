@@ -32,6 +32,7 @@ const LinkInput = z.object({
 
 const linkCompanyKey: McpToolDefinition = {
   name: "link_company_key",
+  annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: true },
   description:
     "라텔웍스 발행 API 키 등록 → 기업 프로파일을 자동 fetch 해서 로컬 SSoT (Site) 에 입력. 가입: https://ratelworks.co.kr/agenthq/api-key",
   inputSchema: LinkInput,
@@ -115,6 +116,7 @@ const UnlinkInput = z.object({
 
 const unlinkCompanyKey: McpToolDefinition = {
   name: "unlink_company_key",
+  annotations: { readOnlyHint: false, destructiveHint: true, openWorldHint: false },
   description: "라텔웍스 키 연동 해제. 로컬 SSoT 는 유지됨. 클라우드 동기화는 중단됨.",
   inputSchema: UnlinkInput,
   handler: async () => {
@@ -216,8 +218,9 @@ const SYNC_CATEGORIES: Record<"sites" | "projects" | "persons" | "equipments" | 
 
 const syncToCloudTool: McpToolDefinition = {
   name: "sync_to_cloud",
+  annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: true },
   description:
-    "로컬 SSoT (사업장·현장·직원·장비·수급업체) 를 라텔웍스 운영 클라우드에 전송 (PUT /api/v1/company/profile). PII 포함 가능. 기본은 preview — 실제 전송하려면 confirm: true 필수. 다른 디바이스에서 link_company_key 시 자동 복원.",
+    "로컬 SSoT (사업장·현장·직원·장비·수급업체) 를 라텔웍스 운영 클라우드에 전송 (PUT /api/v1/company/profile). PII 포함 가능. 기본은 preview — 실제 전송하려면 confirm: true 필수. confirm 은 사람의 동의를 대신하지 않는다 — AI 비서는 preview 결과(무엇이 어디로 가는지)를 사용자에게 보여 주고 명시적 동의를 받은 뒤에만 confirm: true 로 호출할 것. 다른 디바이스에서 link_company_key 시 자동 복원.",
   inputSchema: SyncInput,
   handler: async (raw) => {
     const { confirm } = SyncInput.parse(raw ?? {});

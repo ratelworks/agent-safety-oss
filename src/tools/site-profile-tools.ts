@@ -299,6 +299,7 @@ const ClearProfileInput = z.object({
 
 const clearSiteProfile: McpToolDefinition = {
   name: "clear_site_profile",
+  annotations: { readOnlyHint: false, destructiveHint: true, openWorldHint: false },
   description: "⚠️ 모든 SSoT 프로파일 삭제. 복구 불가.",
   inputSchema: ClearProfileInput,
   handler: async () => {

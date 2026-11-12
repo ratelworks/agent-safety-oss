@@ -104,3 +104,7 @@ credit the project correctly have the canonical citation:
 ## HWPX 패키지 구성 참고
 
 한글(HWPX) 파일의 패키지 구성과 요소 배열은 kordoc(https://github.com/chrisryugj/kordoc, MIT License)이 만드는 HWPX 를 참고해 독자적으로 구현했습니다. kordoc 의 코드는 포함하지 않습니다.
+
+## 미리보기용 Markdown 변환기
+
+브라우저 입력 폼의 미리보기는 marked(https://github.com/markedjs/marked, MIT License)를 의존성으로 설치해 씁니다.

@@ -3,14 +3,15 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "schema": "https://schema.org/",
-    "dcterms": "http://purl.org/dc/terms/"
+    "dcterms": "http://purl.org/dc/terms/",
+    "safety": "https://safety.ratelworks.org/ontology/v1/"
   },
   "@graph": [
     {
       "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary",
       "@type": "owl:Ontology",
       "rdfs:label": "건설안전 그래프 어휘 색인",
-      "rdfs:comment": "그래프 노드가 쓰는 자체 어휘 가운데 손으로 쓴 어휘 정의(skeleton, 운영 프로파일, ISO 45001 매핑, 동작 정의)에 선언이 없는 클래스와 속성의 선언 색인. 내보낸 RDF 에서 관찰한 쓰임(속성 종류, 주어 클래스, 대상 클래스, 역관계)만 담으며 자동 생성된다. 뜻 설명은 담지 않는다.",
+      "rdfs:comment": "그래프 노드가 쓰는 자체 어휘 가운데 손으로 쓴 어휘 정의(skeleton, 운영 프로파일, ISO 45001 매핑, 동작 정의)에 선언이 없는 클래스와 속성, 그리고 도구가 가리키는 동작·입력 형식·산출물 종류의 선언 색인. 내보낸 RDF 에서 관찰한 쓰임(속성 종류, 주어 클래스, 대상 클래스, 역관계, 도구 이름)만 담으며 자동 생성된다. 뜻 설명은 담지 않는다. 도구 입력 형식의 내용은 MCP 도구 목록의 inputSchema 가 정본이다.",
       "dcterms:license": {
         "@id": "https://opensource.org/licenses/MIT"
       }
@@ -2212,6 +2213,1944 @@
           "@id": "https://safety.ratelworks.org/ontology/v1/WorkActivity"
         }
       ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/A2UIForm",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "A2UIForm"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/AccidentAttachment",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "AccidentAttachment"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/AccidentCase",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "AccidentCase"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ArchiveIndex",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ArchiveIndex"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ArchivedDocument",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ArchivedDocument"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/CloudSyncResult",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "CloudSyncResult"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/CompanyKeyLink",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "CompanyKeyLink"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/CompanyProfile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "CompanyProfile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionStageDuty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ConstructionStageDuty"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ConstructionSubtask"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ContractorProfile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ContractorProfile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ControlRecommendation",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ControlRecommendation"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DelegationChain",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DelegationChain"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DocumentArtifact",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DocumentArtifact"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DocumentContext",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DocumentContext"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DocumentForm",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DocumentForm"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DocumentGuide",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DocumentGuide"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DocumentReview",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DocumentReview"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DocumentSchema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DocumentSchema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DraftIndex",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DraftIndex"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DraftRecord",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DraftRecord"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/DutySchedule",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "DutySchedule"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/EquipmentProfile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "EquipmentProfile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/FatalAccidentCase",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "FatalAccidentCase"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/FieldHelp",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "FieldHelp"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/GuideLinkBundle",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "GuideLinkBundle"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/HazardAnalysis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "HazardAnalysis"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/IncidentResponseWorkflow",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "IncidentResponseWorkflow"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/KoshaArchiveFacet",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "KoshaArchiveFacet"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/KoshaArchiveFile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "KoshaArchiveFile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/KoshaArchiveMaterial",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "KoshaArchiveMaterial"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/LegalBasis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "LegalBasis"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/MSDS",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "MSDS"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/MethodRecommendation",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "MethodRecommendation"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ObligationAssessment",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ObligationAssessment"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/PPECertification",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "PPECertification"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/PersonProfile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "PersonProfile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ProfileMutation",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ProfileMutation"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ProjectInfo",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ProjectInfo"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ProjectProfile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ProjectProfile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ReferenceBundle",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ReferenceBundle"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/RetentionStatus",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "RetentionStatus"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ReviewPreview",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "ReviewPreview"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/SafetyBriefing",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "SafetyBriefing"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/SafetyMaterial",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "SafetyMaterial"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/SifPattern",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "SifPattern"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/SiteProfile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "SiteProfile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/StorageStats",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "StorageStats"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/SubmissionInfo",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "SubmissionInfo"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/VerificationResult",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "VerificationResult"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/WorkContext",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:Class",
+      "rdfs:label": "WorkContext"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/analyze_construction_work_risks",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "analyze_construction_work_risks 동작",
+      "safety:implementedByTool": "analyze_construction_work_risks"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/analyze_work_context",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "analyze_work_context 동작",
+      "safety:implementedByTool": "analyze_work_context"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/archive_safety_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "archive_safety_document 동작",
+      "safety:implementedByTool": "archive_safety_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/choose_assessment_method",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "choose_assessment_method 동작",
+      "safety:implementedByTool": "choose_assessment_method"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/clear_site_profile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "clear_site_profile 동작",
+      "safety:implementedByTool": "clear_site_profile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/compile_safety_references",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "compile_safety_references 동작",
+      "safety:implementedByTool": "compile_safety_references"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/export_drafted_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "export_drafted_document 동작",
+      "safety:implementedByTool": "export_drafted_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/generate_safety_report",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "generate_safety_report 동작",
+      "safety:implementedByTool": "generate_safety_report"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/generate_tbm_topics",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "generate_tbm_topics 동작",
+      "safety:implementedByTool": "generate_tbm_topics"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_accident_case_attachments",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_accident_case_attachments 동작",
+      "safety:implementedByTool": "get_accident_case_attachments"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_company_info",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_company_info 동작",
+      "safety:implementedByTool": "get_company_info"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_construction_stage_duties",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_construction_stage_duties 동작",
+      "safety:implementedByTool": "get_construction_stage_duties"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_corrective_action",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_corrective_action 동작",
+      "safety:implementedByTool": "get_corrective_action"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_foreign_worker_resource_links",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_foreign_worker_resource_links 동작",
+      "safety:implementedByTool": "get_foreign_worker_resource_links"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_incident_response_workflow",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_incident_response_workflow 동작",
+      "safety:implementedByTool": "get_incident_response_workflow"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_kosha_archive_files",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_kosha_archive_files 동작",
+      "safety:implementedByTool": "get_kosha_archive_files"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_kosha_guide_md",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_kosha_guide_md 동작",
+      "safety:implementedByTool": "get_kosha_guide_md"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_kras_method",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_kras_method 동작",
+      "safety:implementedByTool": "get_kras_method"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_official_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_official_form 동작",
+      "safety:implementedByTool": "get_official_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_ops_schema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_ops_schema 동작",
+      "safety:implementedByTool": "get_ops_schema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_photo_evidence",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_photo_evidence 동작",
+      "safety:implementedByTool": "get_photo_evidence"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_ppe_by_task",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_ppe_by_task 동작",
+      "safety:implementedByTool": "get_ppe_by_task"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_project_info",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_project_info 동작",
+      "safety:implementedByTool": "get_project_info"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_retention_status",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_retention_status 동작",
+      "safety:implementedByTool": "get_retention_status"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_risk_assessment_schema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_risk_assessment_schema 동작",
+      "safety:implementedByTool": "get_risk_assessment_schema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_safety_document_guide",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_safety_document_guide 동작",
+      "safety:implementedByTool": "get_safety_document_guide"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_safety_issue",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_safety_issue 동작",
+      "safety:implementedByTool": "get_safety_issue"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_safety_law_article",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_safety_law_article 동작",
+      "safety:implementedByTool": "get_safety_law_article"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_site_profile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_site_profile 동작",
+      "safety:implementedByTool": "get_site_profile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_storage_stats",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_storage_stats 동작",
+      "safety:implementedByTool": "get_storage_stats"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/get_submission_info",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_submission_info 동작",
+      "safety:implementedByTool": "get_submission_info"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/link_company_key",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "link_company_key 동작",
+      "safety:implementedByTool": "link_company_key"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_archived_documents",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_archived_documents 동작",
+      "safety:implementedByTool": "list_archived_documents"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_construction_subtasks",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_construction_subtasks 동작",
+      "safety:implementedByTool": "list_construction_subtasks"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_core_safety_laws",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_core_safety_laws 동작",
+      "safety:implementedByTool": "list_core_safety_laws"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_downloadable_forms",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_downloadable_forms 동작",
+      "safety:implementedByTool": "list_downloadable_forms"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_form_drafts",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_form_drafts 동작",
+      "safety:implementedByTool": "list_form_drafts"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_kosha_archive_facets",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_kosha_archive_facets 동작",
+      "safety:implementedByTool": "list_kosha_archive_facets"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_kras_methods",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_kras_methods 동작",
+      "safety:implementedByTool": "list_kras_methods"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_open_issues",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_open_issues 동작",
+      "safety:implementedByTool": "list_open_issues"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_pending_actions",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_pending_actions 동작",
+      "safety:implementedByTool": "list_pending_actions"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_photos_by_site",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_photos_by_site 동작",
+      "safety:implementedByTool": "list_photos_by_site"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_photos_by_task",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_photos_by_task 동작",
+      "safety:implementedByTool": "list_photos_by_task"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_safety_documents_by_cycle",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_safety_documents_by_cycle 동작",
+      "safety:implementedByTool": "list_safety_documents_by_cycle"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_safety_reports",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_safety_reports 동작",
+      "safety:implementedByTool": "list_safety_reports"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/list_upcoming_duties",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_upcoming_duties 동작",
+      "safety:implementedByTool": "list_upcoming_duties"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/load_form_draft",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "load_form_draft 동작",
+      "safety:implementedByTool": "load_form_draft"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/preview_review",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "preview_review 동작",
+      "safety:implementedByTool": "preview_review"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/query_applicability",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_applicability 동작",
+      "safety:implementedByTool": "query_applicability"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/query_delegation_chain",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_delegation_chain 동작",
+      "safety:implementedByTool": "query_delegation_chain"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/query_guide_links",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_guide_links 동작",
+      "safety:implementedByTool": "query_guide_links"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/query_legal_basis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_legal_basis 동작",
+      "safety:implementedByTool": "query_legal_basis"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/query_penalty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_penalty 동작",
+      "safety:implementedByTool": "query_penalty"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/register_contractor",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_contractor 동작",
+      "safety:implementedByTool": "register_contractor"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/register_equipment",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_equipment 동작",
+      "safety:implementedByTool": "register_equipment"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/register_person",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_person 동작",
+      "safety:implementedByTool": "register_person"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/register_project",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_project 동작",
+      "safety:implementedByTool": "register_project"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/register_site",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_site 동작",
+      "safety:implementedByTool": "register_site"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/render_a2ui_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "render_a2ui_form 동작",
+      "safety:implementedByTool": "render_a2ui_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/render_profile_input_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "render_profile_input_form 동작",
+      "safety:implementedByTool": "render_profile_input_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/request_field_help",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "request_field_help 동작",
+      "safety:implementedByTool": "request_field_help"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/save_form_draft",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "save_form_draft 동작",
+      "safety:implementedByTool": "save_form_draft"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/save_profile_from_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "save_profile_from_form 동작",
+      "safety:implementedByTool": "save_profile_from_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_accident_cases",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_accident_cases 동작",
+      "safety:implementedByTool": "search_accident_cases"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_all_fatal_accidents",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_all_fatal_accidents 동작",
+      "safety:implementedByTool": "search_all_fatal_accidents"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_construction_fatal_accidents",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_construction_fatal_accidents 동작",
+      "safety:implementedByTool": "search_construction_fatal_accidents"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_kosha_archive",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_kosha_archive 동작",
+      "safety:implementedByTool": "search_kosha_archive"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_msds",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_msds 동작",
+      "safety:implementedByTool": "search_msds"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_ppe_certification",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_ppe_certification 동작",
+      "safety:implementedByTool": "search_ppe_certification"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_safety_law_smart",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_safety_law_smart 동작",
+      "safety:implementedByTool": "search_safety_law_smart"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_safety_laws",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_safety_laws 동작",
+      "safety:implementedByTool": "search_safety_laws"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_safety_materials",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_safety_materials 동작",
+      "safety:implementedByTool": "search_safety_materials"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/search_sif_archive",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_sif_archive 동작",
+      "safety:implementedByTool": "search_sif_archive"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/submit_safety_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "submit_safety_document 동작",
+      "safety:implementedByTool": "submit_safety_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/suggest_controls_for_hazard",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "suggest_controls_for_hazard 동작",
+      "safety:implementedByTool": "suggest_controls_for_hazard"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/sync_to_cloud",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "sync_to_cloud 동작",
+      "safety:implementedByTool": "sync_to_cloud"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/unlink_company_key",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "unlink_company_key 동작",
+      "safety:implementedByTool": "unlink_company_key"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/action/update_issue_status",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "update_issue_status 동작",
+      "safety:implementedByTool": "update_issue_status"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/analyze_construction_work_risks",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "analyze_construction_work_risks 입력 형식",
+      "safety:describesInputOfTool": "analyze_construction_work_risks"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/analyze_work_context",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "analyze_work_context 입력 형식",
+      "safety:describesInputOfTool": "analyze_work_context"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/archive_safety_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "archive_safety_document 입력 형식",
+      "safety:describesInputOfTool": "archive_safety_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/assemble_doc_context",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "assemble_doc_context 입력 형식",
+      "safety:describesInputOfTool": "assemble_doc_context"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/assess_my_obligations",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "assess_my_obligations 입력 형식",
+      "safety:describesInputOfTool": "assess_my_obligations"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/choose_assessment_method",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "choose_assessment_method 입력 형식",
+      "safety:describesInputOfTool": "choose_assessment_method"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/clear_site_profile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "clear_site_profile 입력 형식",
+      "safety:describesInputOfTool": "clear_site_profile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/compile_safety_references",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "compile_safety_references 입력 형식",
+      "safety:describesInputOfTool": "compile_safety_references"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/complete_action",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "complete_action 입력 형식",
+      "safety:describesInputOfTool": "complete_action"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/export_drafted_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "export_drafted_document 입력 형식",
+      "safety:describesInputOfTool": "export_drafted_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/field_safety_briefing",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "field_safety_briefing 입력 형식",
+      "safety:describesInputOfTool": "field_safety_briefing"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/generate_safety_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "generate_safety_document 입력 형식",
+      "safety:describesInputOfTool": "generate_safety_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/generate_safety_report",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "generate_safety_report 입력 형식",
+      "safety:describesInputOfTool": "generate_safety_report"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/generate_tbm_topics",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "generate_tbm_topics 입력 형식",
+      "safety:describesInputOfTool": "generate_tbm_topics"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_accident_case_attachments",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_accident_case_attachments 입력 형식",
+      "safety:describesInputOfTool": "get_accident_case_attachments"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_company_info",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_company_info 입력 형식",
+      "safety:describesInputOfTool": "get_company_info"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_construction_stage_duties",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_construction_stage_duties 입력 형식",
+      "safety:describesInputOfTool": "get_construction_stage_duties"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_corrective_action",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_corrective_action 입력 형식",
+      "safety:describesInputOfTool": "get_corrective_action"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_foreign_worker_resource_links",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_foreign_worker_resource_links 입력 형식",
+      "safety:describesInputOfTool": "get_foreign_worker_resource_links"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_incident_response_workflow",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_incident_response_workflow 입력 형식",
+      "safety:describesInputOfTool": "get_incident_response_workflow"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_kosha_archive_files",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_kosha_archive_files 입력 형식",
+      "safety:describesInputOfTool": "get_kosha_archive_files"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_kosha_guide_md",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_kosha_guide_md 입력 형식",
+      "safety:describesInputOfTool": "get_kosha_guide_md"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_kras_method",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_kras_method 입력 형식",
+      "safety:describesInputOfTool": "get_kras_method"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_measures_by_risk",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_measures_by_risk 입력 형식",
+      "safety:describesInputOfTool": "get_measures_by_risk"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_official_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_official_form 입력 형식",
+      "safety:describesInputOfTool": "get_official_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_ops_schema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_ops_schema 입력 형식",
+      "safety:describesInputOfTool": "get_ops_schema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_photo_evidence",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_photo_evidence 입력 형식",
+      "safety:describesInputOfTool": "get_photo_evidence"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_ppe_by_task",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_ppe_by_task 입력 형식",
+      "safety:describesInputOfTool": "get_ppe_by_task"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_project_info",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_project_info 입력 형식",
+      "safety:describesInputOfTool": "get_project_info"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_retention_status",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_retention_status 입력 형식",
+      "safety:describesInputOfTool": "get_retention_status"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_risk_assessment_schema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_risk_assessment_schema 입력 형식",
+      "safety:describesInputOfTool": "get_risk_assessment_schema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_safety_document_guide",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_safety_document_guide 입력 형식",
+      "safety:describesInputOfTool": "get_safety_document_guide"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_safety_issue",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_safety_issue 입력 형식",
+      "safety:describesInputOfTool": "get_safety_issue"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_safety_law_article",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_safety_law_article 입력 형식",
+      "safety:describesInputOfTool": "get_safety_law_article"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_site_profile",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_site_profile 입력 형식",
+      "safety:describesInputOfTool": "get_site_profile"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_storage_stats",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_storage_stats 입력 형식",
+      "safety:describesInputOfTool": "get_storage_stats"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_submission_info",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_submission_info 입력 형식",
+      "safety:describesInputOfTool": "get_submission_info"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_tbm_schema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_tbm_schema 입력 형식",
+      "safety:describesInputOfTool": "get_tbm_schema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_work_permit_schema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_work_permit_schema 입력 형식",
+      "safety:describesInputOfTool": "get_work_permit_schema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/get_work_plan_schema",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "get_work_plan_schema 입력 형식",
+      "safety:describesInputOfTool": "get_work_plan_schema"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/link_company_key",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "link_company_key 입력 형식",
+      "safety:describesInputOfTool": "link_company_key"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_archived_documents",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_archived_documents 입력 형식",
+      "safety:describesInputOfTool": "list_archived_documents"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_construction_subtasks",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_construction_subtasks 입력 형식",
+      "safety:describesInputOfTool": "list_construction_subtasks"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_core_safety_laws",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_core_safety_laws 입력 형식",
+      "safety:describesInputOfTool": "list_core_safety_laws"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_downloadable_forms",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_downloadable_forms 입력 형식",
+      "safety:describesInputOfTool": "list_downloadable_forms"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_form_drafts",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_form_drafts 입력 형식",
+      "safety:describesInputOfTool": "list_form_drafts"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_kosha_archive_facets",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_kosha_archive_facets 입력 형식",
+      "safety:describesInputOfTool": "list_kosha_archive_facets"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_kras_methods",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_kras_methods 입력 형식",
+      "safety:describesInputOfTool": "list_kras_methods"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_open_issues",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_open_issues 입력 형식",
+      "safety:describesInputOfTool": "list_open_issues"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_pending_actions",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_pending_actions 입력 형식",
+      "safety:describesInputOfTool": "list_pending_actions"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_photos_by_site",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_photos_by_site 입력 형식",
+      "safety:describesInputOfTool": "list_photos_by_site"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_photos_by_task",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_photos_by_task 입력 형식",
+      "safety:describesInputOfTool": "list_photos_by_task"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_safety_documents_by_cycle",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_safety_documents_by_cycle 입력 형식",
+      "safety:describesInputOfTool": "list_safety_documents_by_cycle"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_safety_reports",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_safety_reports 입력 형식",
+      "safety:describesInputOfTool": "list_safety_reports"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/list_upcoming_duties",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "list_upcoming_duties 입력 형식",
+      "safety:describesInputOfTool": "list_upcoming_duties"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/load_form_draft",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "load_form_draft 입력 형식",
+      "safety:describesInputOfTool": "load_form_draft"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/preview_review",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "preview_review 입력 형식",
+      "safety:describesInputOfTool": "preview_review"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/query_applicability",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_applicability 입력 형식",
+      "safety:describesInputOfTool": "query_applicability"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/query_delegation_chain",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_delegation_chain 입력 형식",
+      "safety:describesInputOfTool": "query_delegation_chain"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/query_guide_links",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_guide_links 입력 형식",
+      "safety:describesInputOfTool": "query_guide_links"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/query_legal_basis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_legal_basis 입력 형식",
+      "safety:describesInputOfTool": "query_legal_basis"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/query_penalty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "query_penalty 입력 형식",
+      "safety:describesInputOfTool": "query_penalty"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/record_corrective_action",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "record_corrective_action 입력 형식",
+      "safety:describesInputOfTool": "record_corrective_action"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/register_contractor",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_contractor 입력 형식",
+      "safety:describesInputOfTool": "register_contractor"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/register_equipment",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_equipment 입력 형식",
+      "safety:describesInputOfTool": "register_equipment"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/register_person",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_person 입력 형식",
+      "safety:describesInputOfTool": "register_person"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/register_project",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_project 입력 형식",
+      "safety:describesInputOfTool": "register_project"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/register_safety_issue",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_safety_issue 입력 형식",
+      "safety:describesInputOfTool": "register_safety_issue"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/register_site",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "register_site 입력 형식",
+      "safety:describesInputOfTool": "register_site"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/render_a2ui_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "render_a2ui_form 입력 형식",
+      "safety:describesInputOfTool": "render_a2ui_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/render_profile_input_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "render_profile_input_form 입력 형식",
+      "safety:describesInputOfTool": "render_profile_input_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/request_field_help",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "request_field_help 입력 형식",
+      "safety:describesInputOfTool": "request_field_help"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/review_safety_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "review_safety_document 입력 형식",
+      "safety:describesInputOfTool": "review_safety_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/save_form_draft",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "save_form_draft 입력 형식",
+      "safety:describesInputOfTool": "save_form_draft"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/save_profile_from_form",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "save_profile_from_form 입력 형식",
+      "safety:describesInputOfTool": "save_profile_from_form"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_accident_cases",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_accident_cases 입력 형식",
+      "safety:describesInputOfTool": "search_accident_cases"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_all_fatal_accidents",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_all_fatal_accidents 입력 형식",
+      "safety:describesInputOfTool": "search_all_fatal_accidents"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_construction_fatal_accidents",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_construction_fatal_accidents 입력 형식",
+      "safety:describesInputOfTool": "search_construction_fatal_accidents"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_kosha_archive",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_kosha_archive 입력 형식",
+      "safety:describesInputOfTool": "search_kosha_archive"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_msds",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_msds 입력 형식",
+      "safety:describesInputOfTool": "search_msds"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_ppe_certification",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_ppe_certification 입력 형식",
+      "safety:describesInputOfTool": "search_ppe_certification"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_safety_law_smart",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_safety_law_smart 입력 형식",
+      "safety:describesInputOfTool": "search_safety_law_smart"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_safety_laws",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_safety_laws 입력 형식",
+      "safety:describesInputOfTool": "search_safety_laws"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_safety_materials",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_safety_materials 입력 형식",
+      "safety:describesInputOfTool": "search_safety_materials"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/search_sif_archive",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "search_sif_archive 입력 형식",
+      "safety:describesInputOfTool": "search_sif_archive"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/submit_safety_document",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "submit_safety_document 입력 형식",
+      "safety:describesInputOfTool": "submit_safety_document"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/suggest_controls_for_hazard",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "suggest_controls_for_hazard 입력 형식",
+      "safety:describesInputOfTool": "suggest_controls_for_hazard"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/sync_to_cloud",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "sync_to_cloud 입력 형식",
+      "safety:describesInputOfTool": "sync_to_cloud"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/unlink_company_key",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "unlink_company_key 입력 형식",
+      "safety:describesInputOfTool": "unlink_company_key"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/update_issue_status",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "update_issue_status 입력 형식",
+      "safety:describesInputOfTool": "update_issue_status"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/upload_photo_evidence",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "upload_photo_evidence 입력 형식",
+      "safety:describesInputOfTool": "upload_photo_evidence"
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/schema/input/verify_safety_basis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "@type": "owl:NamedIndividual",
+      "rdfs:label": "verify_safety_basis 입력 형식",
+      "safety:describesInputOfTool": "verify_safety_basis"
     }
   ]
 }

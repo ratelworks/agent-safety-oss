@@ -1,0 +1,26 @@
+name: Law editions
+
+# 수록한 법령 판본이 현행과 같은지 매주 확인한다.
+# 저장소 비밀값 LAW_OC(법제처 OpenAPI 인증키)가 필요하다 — 없으면 "점검하지 못함"으로 실패한다.
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+          cache: npm
+      - run: npm ci
+      - name: 수록 판본과 현행 판본 비교
+        env:
+          LAW_OC: ${{ secrets.LAW_OC }}
+        run: npm run check:law-editions -- --require-key

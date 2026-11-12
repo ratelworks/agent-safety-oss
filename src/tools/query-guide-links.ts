@@ -1,3 +1,4 @@
+import { isUnreviewedRegulation, UNREVIEWED_NOTE } from "../lib/unreviewed-links.js";
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { getDocument, listDocuments, neighborsByEdge, getNode } from "../lib/graph-nodes-loader.js";
@@ -114,6 +115,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const guidedBy = await neighborsByEdge(activityIri, "guidedBy");
   const regulatedByArticles = await neighborsByEdge(activityIri, "regulates", "in"); // reverse
   const evaluatedBy = await neighborsByEdge(activityIri, "evaluatedBy");
+  // 한쪽 자료에만 적혀 있던 규율 연결은 검토 전으로 따로 알린다
+  const unreviewedRegulatedByArticles = regulatedByArticles.filter((articleIri) => isUnreviewedRegulation(articleIri, activityIri));
+  const reviewNote = unreviewedRegulatedByArticles.length > 0 ? { unreviewedRegulatedByArticles, unreviewedNote: UNREVIEWED_NOTE } : {};
 
   return {
     content: [
@@ -124,6 +128,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
             activitySlug: input.activitySlug,
             activityTitle: (activity as { title?: string }).title,
             links: { guidedBy, regulatedByArticles, evaluatedBy },
+            ...reviewNote,
             sparseLinks: guidedBy.length === 0,
             graphologyHops: { guidedBy: 1, regulatedByArticles: 1, evaluatedBy: 1 },
             _meta: COMMON_RESPONSE_META,
@@ -137,6 +142,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       activitySlug: input.activitySlug,
       activityTitle: (activity as { title?: string }).title,
       links: { guidedBy, regulatedByArticles, evaluatedBy },
+      ...reviewNote,
       sparseLinks: guidedBy.length === 0,
       _meta: COMMON_RESPONSE_META,
     },

@@ -62,6 +62,9 @@ function idList(values: Set<string>): Array<{ "@id": string }> {
   return [...values].sort().map((v) => ({ "@id": v }));
 }
 
+/** 손으로 쓴 어휘 정의 파일에서 종류(rdf:type)가 적힌 모든 주소 — 개체(동작 등) 선언 여부 판정용 */
+const authoredSubjects = new Set<string>();
+
 /** 손으로 쓴 어휘 정의 파일에 선언된 클래스·속성 주소 */
 async function authoredDeclarations(): Promise<Set<string>> {
   const context = JSON.parse(readFileSync(CONTEXT_PATH, "utf8")) as object;
@@ -71,6 +74,7 @@ async function authoredDeclarations(): Promise<Set<string>> {
     const doc = JSON.parse(readFileSync(file, "utf8")) as object;
     const nquads = (await jsonld.toRDF(doc, { format: "application/n-quads", documentLoader } as never)) as unknown as string;
     for (const q of new Parser({ format: "application/n-quads" }).parse(nquads)) {
+      if (q.predicate.value === RDF_TYPE) authoredSubjects.add(q.subject.value);
       if (q.predicate.value === RDF_TYPE && DECLARATION_TYPES.test(q.object.value)) declared.add(q.subject.value);
     }
   }
@@ -139,12 +143,39 @@ async function build(): Promise<string> {
     graph.push(declaration);
   }
 
+  // 도구(capability)가 가리키는 대상 — 동작·입력 형식은 개체로, 산출물 종류는 클래스로 선언한다.
+  // 손으로 쓴 정의가 있는 것은 다시 적지 않는다. 도구 이름에서 기계적으로 만든 선언이라 뜻 설명은 없다.
+  const literalOf = (subject: string, predicate: string): string | undefined =>
+    quads.find((q) => q.subject.value === subject && q.predicate.value === predicate && q.object.termType === "Literal")?.object.value;
+  const targets: Array<Record<string, unknown>> = [];
+  const seenTargets = new Set<string>(graph.map((d) => d["@id"]));
+  const capabilityEdges = quads
+    .filter((q) => q.subject.value.startsWith(`${SAFETY_NS}capability/`) && q.object.termType === "NamedNode")
+    .sort((a, b) => (a.object.value < b.object.value ? -1 : a.object.value > b.object.value ? 1 : 0));
+  for (const q of capabilityEdges) {
+    const target = q.object.value;
+    const kind = q.predicate.value.slice(SAFETY_NS.length);
+    if (!["mapsToAction", "inputSchema", "producesEntity"].includes(kind)) continue;
+    if (seenTargets.has(target) || authoredSubjects.has(target) || authored.has(target) || typesOf.has(target)) continue;
+    seenTargets.add(target);
+    const tool = literalOf(q.subject.value, `${SAFETY_NS}toolName`) ?? localName(q.subject.value);
+    const base = { "@id": target, "rdfs:isDefinedBy": { "@id": VOCABULARY_IRI } };
+    if (kind === "producesEntity") {
+      targets.push({ ...base, "@type": "owl:Class", "rdfs:label": localName(target) });
+    } else if (kind === "mapsToAction") {
+      targets.push({ ...base, "@type": "owl:NamedIndividual", "rdfs:label": `${tool} 동작`, "safety:implementedByTool": tool });
+    } else {
+      targets.push({ ...base, "@type": "owl:NamedIndividual", "rdfs:label": `${tool} 입력 형식`, "safety:describesInputOfTool": tool });
+    }
+  }
+
   const doc = {
     "@context": {
       owl: "http://www.w3.org/2002/07/owl#",
       rdfs: "http://www.w3.org/2000/01/rdf-schema#",
       schema: "https://schema.org/",
       dcterms: "http://purl.org/dc/terms/",
+      safety: SAFETY_NS,
     },
     "@graph": [
       {
@@ -152,10 +183,11 @@ async function build(): Promise<string> {
         "@type": "owl:Ontology",
         "rdfs:label": "건설안전 그래프 어휘 색인",
         "rdfs:comment":
-          "그래프 노드가 쓰는 자체 어휘 가운데 손으로 쓴 어휘 정의(skeleton, 운영 프로파일, ISO 45001 매핑, 동작 정의)에 선언이 없는 클래스와 속성의 선언 색인. 내보낸 RDF 에서 관찰한 쓰임(속성 종류, 주어 클래스, 대상 클래스, 역관계)만 담으며 자동 생성된다. 뜻 설명은 담지 않는다.",
+          "그래프 노드가 쓰는 자체 어휘 가운데 손으로 쓴 어휘 정의(skeleton, 운영 프로파일, ISO 45001 매핑, 동작 정의)에 선언이 없는 클래스와 속성, 그리고 도구가 가리키는 동작·입력 형식·산출물 종류의 선언 색인. 내보낸 RDF 에서 관찰한 쓰임(속성 종류, 주어 클래스, 대상 클래스, 역관계, 도구 이름)만 담으며 자동 생성된다. 뜻 설명은 담지 않는다. 도구 입력 형식의 내용은 MCP 도구 목록의 inputSchema 가 정본이다.",
         "dcterms:license": { "@id": "https://opensource.org/licenses/MIT" },
       },
       ...graph,
+      ...targets,
     ],
   };
   return `${JSON.stringify(doc, null, 2)}\n`;
@@ -167,17 +199,18 @@ async function main(): Promise<void> {
   const parsed = JSON.parse(content) as { "@graph": Declaration[] };
   const classes = parsed["@graph"].filter((d) => d["@type"] === "owl:Class").length;
   const properties = parsed["@graph"].filter((d) => /Property$/.test(d["@type"] ?? "")).length;
+  const individuals = parsed["@graph"].filter((d) => d["@type"] === "owl:NamedIndividual").length;
   if (check) {
     const current = existsSync(OUTPUT_PATH) ? readFileSync(OUTPUT_PATH, "utf8") : "";
     if (current !== content) {
       console.error("❌ 어휘 색인이 현재 그래프와 다름 — npm run vocabulary:generate 로 다시 만들 것");
       process.exit(1);
     }
-    console.log(`✅ 어휘 색인이 그래프와 같음 — 클래스 ${classes} · 속성 ${properties}`);
+    console.log(`✅ 어휘 색인이 그래프와 같음 — 클래스 ${classes} · 속성 ${properties} · 개체 ${individuals}`);
     return;
   }
   writeFileSync(OUTPUT_PATH, content);
-  console.log(`어휘 색인 생성 — 클래스 ${classes} · 속성 ${properties} → ${OUTPUT_PATH}`);
+  console.log(`어휘 색인 생성 — 클래스 ${classes} · 속성 ${properties} · 개체 ${individuals} → ${OUTPUT_PATH}`);
 }
 
 main().catch((e) => {

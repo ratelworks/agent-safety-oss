@@ -1,3 +1,4 @@
+import { isUnreviewedRegulation, UNREVIEWED_NOTE } from "../lib/unreviewed-links.js";
 import { z } from "zod";
 import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
@@ -211,27 +212,35 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const linkedHazardIris = new Set<string>();
   const linkedControlIris = new Set<string>();
   const linkedArticleIris = new Set<string>();
+  // 검토를 거친 경로로 들어온 조문 — 여기에 없는 조문은 "검토 전 연결"로만 들어온 것이다
+  const reviewedArticleIris = new Set<string>();
+  const addRegulated = (activityIri: string, articleIris: string[]): void => {
+    for (const r of articleIris) {
+      linkedArticleIris.add(r);
+      if (!isUnreviewedRegulation(r, activityIri)) reviewedArticleIris.add(r);
+    }
+  };
   const linkedGuideIris = new Set<string>();
   for (const m of matchedActivities) {
     for (const h of (m.node.hasHazard as string[] | undefined) ?? []) linkedHazardIris.add(h);
-    for (const r of (m.node.regulatedBy as string[] | undefined) ?? []) linkedArticleIris.add(r);
+    addRegulated(m.node["@id"] as string, (m.node.regulatedBy as string[] | undefined) ?? []);
     for (const g of (m.node.guidedBy as string[] | undefined) ?? []) linkedGuideIris.add(g);
   }
   // 의무문서에서도 법령 derive
   for (const m of matchedDocs) {
-    for (const a of (m.node.legalBasis as string[] | undefined) ?? []) linkedArticleIris.add(a);
+    for (const a of (m.node.legalBasis as string[] | undefined) ?? []) { linkedArticleIris.add(a); reviewedArticleIris.add(a); }
     for (const g of (m.node.guidedBy as string[] | undefined) ?? []) linkedGuideIris.add(g);
   }
   // 동의어 확장 IRI 직접 추가
   for (const iri of expandedIris) {
-    if (iri.startsWith("art:")) linkedArticleIris.add(iri);
+    if (iri.startsWith("art:")) { linkedArticleIris.add(iri); reviewedArticleIris.add(iri); }
     else if (iri.startsWith("hazard:")) linkedHazardIris.add(iri);
     else if (iri.startsWith("activity:")) {
       // 활동 → hazard·통제 derive
       const act = activities.find(a => a["@id"] === iri);
       if (act) {
         for (const h of (act.hasHazard as string[] | undefined) ?? []) linkedHazardIris.add(h);
-        for (const r of (act.regulatedBy as string[] | undefined) ?? []) linkedArticleIris.add(r);
+        addRegulated(iri, (act.regulatedBy as string[] | undefined) ?? []);
         for (const g of (act.guidedBy as string[] | undefined) ?? []) linkedGuideIris.add(g);
       }
     }
@@ -256,15 +265,21 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     .filter(x => x.score > 30 && x.node.userVisible !== false && !x.node.isAppendix)
     .sort((a, b) => b.score - a.score);
 
-  for (const m of matchedArticles.slice(0, MAX_ARTICLES)) linkedArticleIris.add(m.node["@id"] as string);
+  for (const m of matchedArticles.slice(0, MAX_ARTICLES)) { linkedArticleIris.add(m.node["@id"] as string); reviewedArticleIris.add(m.node["@id"] as string); }
 
   // ─── 5. 매칭된 article 의 penalizedBy 자동 추가 ───
   const penaltyArticles = new Set<string>();
   for (const aIri of linkedArticleIris) {
     const a = articles.find(x => x["@id"] === aIri);
     if (!a) continue;
-    for (const p of (a.penalizedBy as string[] | undefined) ?? []) penaltyArticles.add(p);
+    for (const p of (a.penalizedBy as string[] | undefined) ?? []) {
+      penaltyArticles.add(p);
+      // 벌칙은 그 벌칙을 끌어온 조문의 검토 상태를 따른다
+      if (reviewedArticleIris.has(aIri)) reviewedArticleIris.add(p);
+    }
   }
+  const reviewMark = (iri: string): string => (linkedArticleIris.has(iri) && !reviewedArticleIris.has(iri) ? " _(검토 전 연결)_" : "");
+  let unreviewedShown = 0;
   // 벌칙도 표시할 article 목록에 추가 (단 별도 섹션)
   for (const pIri of penaltyArticles) linkedArticleIris.add(pIri);
 
@@ -384,7 +399,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     for (const a of obligationArticles) {
       const desc = String(a!.description ?? "");
       const summary = desc.split("\n").find(l => l.trim().length > 20)?.trim().slice(0, 120) ?? "";
-      out += `- **${a!["@id"]}** ${a!.title} — ${summary}\n`;
+      const mark = reviewMark(a!["@id"] as string);
+      if (mark) unreviewedShown += 1;
+      out += `- **${a!["@id"]}** ${a!.title}${mark} — ${summary}\n`;
     }
     out += `\n`;
   }
@@ -404,10 +421,13 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       if (!p) continue;
       const desc = String(p.description ?? "");
       const summary = desc.split("\n").find(l => l.trim().length > 20)?.trim().slice(0, 130) ?? p.title;
-      out += `- **${p["@id"]}** ${p.title} — ${summary}\n`;
+      const mark = reviewMark(p["@id"] as string);
+      if (mark) unreviewedShown += 1;
+      out += `- **${p["@id"]}** ${p.title}${mark} — ${summary}\n`;
     }
     out += `\n`;
   }
+  if (unreviewedShown > 0) out += `> ${UNREVIEWED_NOTE} (${unreviewedShown}건)\n\n`;
 
   // KOSHA Guide
   if (linkedGuideIris.size > 0) {

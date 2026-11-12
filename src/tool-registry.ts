@@ -211,6 +211,7 @@ export function registerAllTools(server: McpServer): void {
         description: tool.description,
         // 객체 스키마로 감싸 넘긴다 (raw shape 직접 전달은 SDK 2 에서 폐기 예정)
         inputSchema: z.object(extractRawShape(tool.inputSchema)),
+        ...(tool.annotations ? { annotations: tool.annotations } : {}),
       },
       wrappedHandler,
     );
