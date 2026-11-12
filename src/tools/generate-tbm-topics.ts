@@ -185,7 +185,9 @@ interface StepTopics {
     hazards: Array<{
       hazardLabel: string;
       /** 위험요인과 대책 (중요도 높은 것부터) */
-      risks: Array<{ statement: string; priority?: string; measures: string[] }>;
+      risks: Array<{ statement: string; priority?: string; measures: string[]; omittedMeasures?: number }>;
+      /** 여기 싣지 않은 위험요인 수 (TBM 은 중요도 높은 것만 추린다) */
+      omittedRisks?: number;
       basis: Array<{ ref: string; title: string; controlLevel?: string }>;
     }>;
   }>;
@@ -197,6 +199,32 @@ interface StepTopics {
 }
 
 /** 단계 자료를 TBM 에 쓸 분량으로 줄인다. 작업명이 단계를 가리키면 그 단계만 근거와 함께 남긴다. */
+/**
+ * TBM 에 실을 위험요인을 추린다 — 중요도 높은 것부터.
+ * 단계를 짚었으면 대책은 모두 싣고(공법·조건별 대책이 뒤쪽에 있다), 공종 전체를 볼 때만 줄인다.
+ * 줄인 만큼은 건수로 남겨 조용히 빠지지 않게 한다.
+ */
+function pickRisks(
+  all: ResolvedWorkSteps["steps"][number]["hazards"][number]["risks"],
+  focusedStep: boolean,
+): Pick<StepTopics["steps"][number]["hazards"][number], "risks" | "omittedRisks"> {
+  const sorted = [...all].sort((x, y) => (y.priority?.length ?? 0) - (x.priority?.length ?? 0));
+  const shown = sorted.slice(0, focusedStep ? MAX_STEP_RISKS_FOCUSED : MAX_STEP_RISKS_OVERVIEW);
+  return {
+    risks: shown.map((r) => {
+      const measures = focusedStep ? r.measures : r.measures.slice(0, MAX_MEASURES_PER_RISK);
+      return {
+        statement: r.statement,
+        ...(r.priority ? { priority: r.priority } : {}),
+        // 특정 공법·조건에만 해당하는 대책은 그 구분을 앞에 적는다
+        measures: measures.map((m) => `${m.variant ? `(${m.variant}) ` : ""}${m.measure}`),
+        ...(r.measures.length > measures.length ? { omittedMeasures: r.measures.length - measures.length } : {}),
+      };
+    }),
+    ...(all.length > shown.length ? { omittedRisks: all.length - shown.length } : {}),
+  };
+}
+
 function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
   const labelTokens = label.split(/[\s.,()·]+/).filter((t) => t.length >= 2);
   const workName = ws.work.replace(/\s/g, "");
@@ -213,15 +241,7 @@ function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
       name: step.name,
       hazards: step.hazards.map((h) => ({
         hazardLabel: h.hazardLabel,
-        risks: [...h.risks]
-          .sort((x, y) => (y.priority?.length ?? 0) - (x.priority?.length ?? 0))
-          .slice(0, focused.length > 0 ? MAX_STEP_RISKS_FOCUSED : MAX_STEP_RISKS_OVERVIEW)
-          .map((r) => ({
-            statement: r.statement,
-            ...(r.priority ? { priority: r.priority } : {}),
-            // 특정 공법·조건에만 해당하는 대책은 그 구분을 앞에 적는다
-            measures: r.measures.slice(0, MAX_MEASURES_PER_RISK).map((m) => `${m.variant ? `(${m.variant}) ` : ""}${m.measure}`),
-          })),
+        ...pickRisks(h.risks, focused.length > 0),
         basis: h.basis.slice(0, maxBasis).map((b) => ({
           ref: b.ref,
           // 가이드는 조항 제목(번호는 ref 에 이미 있다), 조문은 조문 제목
@@ -443,8 +463,11 @@ function renderTbmMarkdown(payload: {
         const basis = h.basis.map((b) => `${b.ref} ${b.title}`.trim()).join(" / ");
         lines.push(`  - ${h.hazardLabel}${basis ? ` — ${basis}` : ""}`);
         for (const r of h.risks) {
-          lines.push(`    - ${r.priority ? `${r.priority} ` : ""}${r.statement}${r.measures.length > 0 ? ` → ${r.measures.join(" / ")}` : ""}`);
+          lines.push(
+            `    - ${r.priority ? `${r.priority} ` : ""}${r.statement}${r.measures.length > 0 ? ` → ${r.measures.join(" / ")}` : ""}${r.omittedMeasures ? ` (대책 ${r.omittedMeasures}건 더 있음)` : ""}`,
+          );
         }
+        if (h.omittedRisks) lines.push(`    - 이 재해유형의 위험요인 ${h.omittedRisks}건 더 있음`);
       }
     }
     if (ws.relatedNotices && ws.relatedNotices.length > 0) {
@@ -460,7 +483,7 @@ function renderTbmMarkdown(payload: {
         lines.push(`- ${doc.title} (\`${doc.docId}\`)${doc.when ? ` — 작성 시점: ${doc.when}` : ""}`);
       }
     }
-    lines.push("", `> ${ws.notice}`);
+    lines.push("", `> ${ws.notice}`, `> 전체 위험요인·대책: \`analyze_construction_work_risks({workType: "${ws.work}"})\``);
   }
 
   return lines.join("\n");

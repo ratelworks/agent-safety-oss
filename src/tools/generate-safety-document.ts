@@ -43,8 +43,6 @@ import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDo
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 const WORK_STEP_BASIS_PER_ROW = 3;
-/** 위험요인 한 줄에 적는 감소대책 수 */
-const WORK_STEP_MEASURES_PER_ROW = 6;
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -956,8 +954,8 @@ async function buildWorkStepTable(
     for (const h of step.hazards) {
       // 위험요인마다 한 줄 — 유해·위험요인과 감소대책(근거)
       for (const r of h.risks) {
+        // 감소대책은 줄이지 않는다 — 공법·조건별 대책이 뒤쪽에 있어 앞에서 자르면 조용히 빠진다
         const measures = r.measures
-          .slice(0, WORK_STEP_MEASURES_PER_ROW)
           .map((m) => `${m.variant ? `(${m.variant}) ` : ""}${m.measure}${m.controlLevel ? ` [${m.controlLevel}]` : ""}${m.basisRef ? ` (${m.basisRef.replace("산업안전보건기준에 관한 규칙", "안전보건규칙")})` : ""}`);
         rows.push([step.name, `${h.hazardLabel} — ${r.statement}`, measures]);
       }
