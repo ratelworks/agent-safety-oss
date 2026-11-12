@@ -13,6 +13,8 @@ import { getKoshaGuideMd } from "./kosha-guides-loader.js";
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮";
 /** 항 본문을 잘라 보여 줄 최대 길이 */
 const PARAGRAPH_MAX_CHARS = 220;
+/** 목 앞에 붙이는 호 머리 문장의 최대 길이 */
+const LEAD_MAX_CHARS = 90;
 /** 한 단계·재해유형에 보여 줄 근거 수 상한 (자주 쓰이는 순으로 정렬돼 있다) */
 const MAX_BASIS_PER_HAZARD = 6;
 /** 공종 이름 매칭 점수 */
@@ -163,7 +165,14 @@ function extractItem(scope: string, item: number, subitem?: string): string | un
       let sub = text.slice(subStart).trimStart();
       const subNext = sub.slice(1).search(/^\s*[가-하]\.\s/m);
       if (subNext >= 0) sub = sub.slice(0, subNext + 1);
-      text = sub;
+      // 목만 떼면 무엇에 대한 항목인지 알 수 없다 — 호의 머리 문장("다음 각 목의 … 사용해서는 아니 된다")을 앞에 붙인다
+      // 머리 문장 = 첫 목이 시작하기 전까지 (앞선 다른 목은 넣지 않는다)
+      const firstSub = text.search(/^\s*[가-하]\.\s/m);
+      const lead = text.slice(0, firstSub >= 0 ? firstSub : subStart).trim();
+      // 머리 문장이 길면 줄인다 — 줄이지 않으면 뒤에서 길이를 자를 때 정작 목 본문이 잘려 나간다
+      const flatLead = lead.replace(/\s+/g, " ");
+      const shortLead = flatLead.length > LEAD_MAX_CHARS ? `${flatLead.slice(0, LEAD_MAX_CHARS)}…` : flatLead;
+      text = shortLead ? `${shortLead} — ${sub.trim()}` : sub;
     }
   }
   return text;
