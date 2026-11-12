@@ -131,7 +131,9 @@ verdict("search_sif_archive", call("search_sif_archive", { workType: "건설" })
 });
 
 verdict("list_construction_subtasks", call("list_construction_subtasks"), (r) => {
-  const sc = r.parsed?.structuredContent as { bundleStatus?: string; totalCategories?: number };
+  const sc = r.parsed?.structuredContent as { bundleStatus?: string; totalCategories?: number; totalWorks?: number; totalGroups?: number };
+  // 공식 분류표를 싣지 않았을 때는 그래프의 공종 노드로 답한다
+  if (sc?.totalWorks) return { verdict: "PASS", note: `공종 ${sc.totalWorks}개 · 대공종 ${sc.totalGroups}개 (그래프 공종 노드)` };
   if (sc?.bundleStatus === "empty")
     return { verdict: "PASS", note: "bundleStatus=empty 확인 (공식 XLSX 미포함 정상 placeholder)" };
   if (!sc?.totalCategories) return { verdict: "EMPTY", note: "categories 0" };

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import subtaskData from "../ontology/construction-subtasks.json" with { type: "json" };
+import { listWorks } from "../lib/work-steps.js";
 
 // 파일 최상단 상수 — 15087828 건설업 공종별 세부공정 목록
 // 위험성평가 체크리스트 표준 공종 분류
@@ -37,7 +38,38 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const input: Input = inputSchema.parse(rawInput ?? {});
   const categories = (subtaskData.mainCategories ?? []) as MainCategory[];
 
-  // 빈 번들 처리
+  // 공식 분류표(15087828)를 싣지 않았으면 프로젝트가 정리한 공종 노드(그래프)로 답한다
+  if (categories.length === 0) {
+    const mainKwLocal = input.mainCategory?.trim();
+    const kwLocal = input.keyword?.trim();
+    const groups = (await listWorks())
+      .filter((g) => !mainKwLocal || g.group.includes(mainKwLocal) || mainKwLocal.includes(g.group))
+      .map((g) => ({
+        group: g.group,
+        works: g.works.filter((w) => !kwLocal || w.name.includes(kwLocal) || w.steps.some((st) => st.includes(kwLocal))),
+      }))
+      .filter((g) => g.works.length > 0);
+    if (groups.length > 0) {
+      const graphPayload = {
+        query: input,
+        source: "프로젝트 자체 정리 공종 (그래프의 공종 노드) — 공단의 공식 공종 분류(15087828)가 아니다",
+        totalGroups: groups.length,
+        totalWorks: groups.reduce((n, g) => n + g.works.length, 0),
+        groups,
+        nextSteps: [
+          "analyze_construction_work_risks({workType: '<공종 이름>'}) — 단계별 재해유형·근거(조문의 호·목, KOSHA Guide 조항)·관련 지침·관련 문서",
+          "generate_tbm_topics({activityLabel: '<공종 이름> <단계>'}) — 그 단계의 TBM 주제",
+        ],
+        ...(input.hazardCode ? { note: "hazardCode 필터는 공식 분류표 전용이라 적용하지 않았다." } : {}),
+      };
+      return {
+        content: [{ type: "text", text: JSON.stringify(graphPayload, null, 2) }],
+        structuredContent: graphPayload,
+      };
+    }
+  }
+
+  // 빈 번들 처리 (공종 노드에서도 찾지 못한 경우)
   if (categories.length === 0) {
     const payload = {
       query: input,
@@ -109,9 +141,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
 export const listConstructionSubtasksTool: ToolDefinition = {
   name: "list_construction_subtasks",
-  title: "건설업 공종별 세부공정 (15087828)",
+  title: "건설업 공종·작업 단계 목록",
   description:
-    "KOSHA 건설업 공종별 세부공정 목록(15087828) — 위험성평가(RA) 체크리스트 표준 공종 분류. 주공종(토공사/철근콘크리트/철골/가설/해체/양중/마감/MEP/기타) × 세부공정 × 주요 위험요인 계층. RA 문서의 공종 구조를 짤 때 SSoT 로 사용.",
+    "건설 공종과 작업 단계 목록 — 대공종(가설·비계, 흙막이, 철골, 터널 등) × 공종(강관비계, 지하연속벽 등) × 단계(자재반입·조립·사용·해체 등). 프로젝트가 정리한 공종 노드로 답하며 공단의 공식 분류(15087828)가 아니다. mainCategory 로 대공종, keyword 로 공종·단계 이름을 거른다. 공종을 고른 뒤 analyze_construction_work_risks 로 단계별 재해유형과 근거를 조회한다.",
   inputSchema,
   handler,
 };

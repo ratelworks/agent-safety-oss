@@ -4,6 +4,7 @@ import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
+import { getWorkSteps } from "../lib/work-steps.js";
 
 // 파일 최상단 상수 — 현장 사용자(현장소장·안전관리자) 친화 통합 brief
 // 작업명 입력 → 5초 안에 위험·통제·법령·의무문서·KOSHA 한 화면 요약
@@ -337,6 +338,21 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       out += `\n`;
     }
     out += `\n`;
+  }
+
+  // 공종 노드 — 작업명이 공종(강관비계·지하연속벽 등)을 가리키면 단계와 관련 지침을 잇는다
+  const subtask = await getWorkSteps(q);
+  if (subtask) {
+    const st = subtask.result;
+    out += `## 🧱 공종·작업 단계 — ${st.work} (\`${st.iri}\`)\n`;
+    for (const step of st.steps) {
+      out += `- **${step.name}** — ${step.hazards.map((h) => h.hazardLabel).join(", ")}\n`;
+    }
+    for (const n of st.relatedNotices ?? []) {
+      const arts = n.articles.map((x) => `${x.ref.split(" ").pop()} ${x.title}`).join(", ");
+      out += `- 함께 볼 지침(권고 기준): ${n.law}${arts ? ` — ${arts}` : ""}\n`;
+    }
+    out += `- 단계별 근거(조문의 호·목, KOSHA Guide 조항): \`analyze_construction_work_risks({workType: "${st.work}"})\`\n\n`;
   }
 
   // 위험요인

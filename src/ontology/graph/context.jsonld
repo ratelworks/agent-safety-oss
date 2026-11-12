@@ -607,6 +607,27 @@
     "_legacyRelatedLaw": {
       "@id": "safety:_legacyRelatedLaw",
       "@container": "@set"
-    }
+    },
+    "ConstructionSubtask": "safety:ConstructionSubtask",
+    "workGroup": "cc:workGroup",
+    "steps": {
+      "@id": "cc:hasStep",
+      "@container": "@list"
+    },
+    "stepName": "schema:name",
+    "stepHazards": {
+      "@id": "cc:stepHazard",
+      "@container": "@set"
+    },
+    "hazardLabel": "cc:hazardLabel",
+    "basis": {
+      "@id": "cc:basis",
+      "@container": "@set"
+    },
+    "paragraph": "cc:paragraph",
+    "item": "cc:item",
+    "subitem": "cc:subitem",
+    "section": "cc:section",
+    "controlLevel": "cc:controlLevel"
   }
 }

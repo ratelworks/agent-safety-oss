@@ -1,0 +1,275 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:벽체_거푸집_유로폼",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "벽체 거푸집(유로폼)",
+  "workGroup": "거푸집·동바리공사",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "broader": "activity:formwork_shoring",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:crushing"
+  ],
+  "regulatedBy": [],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-9-2026",
+    "doc:kosha_guide/D-C-15-2026"
+  ],
+  "references": [
+    "act:콘크리트공사표준안전작업지침",
+    "art:콘크리트공사-지침:6",
+    "art:콘크리트공사-지침:7"
+  ],
+  "steps": [
+    {
+      "stepName": "벽체 거푸집 자재반입",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "5",
+              "controlLevel": "substitution"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "5.2",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "5.2",
+              "controlLevel": "substitution"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "5",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.5.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.5.2",
+              "controlLevel": "substitution"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "5.2",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "5.2",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        }
+      ]
+    },
+    {
+      "stepName": "벽체 거푸집 조립",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "5",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.5.5",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "5.4.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "5.4.4",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.5.4",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.5.5",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.6.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "8.2",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.5.5",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        }
+      ]
+    },
+    {
+      "stepName": "벽체 거푸집 해체",
+      "stepHazards": [
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "8",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.7",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.7",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        },
+        {
+          "hazardLabel": "절단·베임·찔림",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "8",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "8",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:crushing"
+        },
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "8",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "8",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-15-2026",
+              "section": "8",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "7.7",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.3",
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        }
+      ]
+    }
+  ]
+}

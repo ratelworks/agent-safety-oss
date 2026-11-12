@@ -200,7 +200,7 @@ async function main() {
   // ENTRY = 도구 진입점 / STANDALONE = 의도된 독립 vocabulary
   const ENTRY_LABELS = new Set([
     "documents", "acts", "activities", "applicabilities",
-    "capabilities", "patterns", "methods", "work_types",
+    "capabilities", "patterns", "methods", "work_types", "subtasks",
   ]);
   const STANDALONE_LABELS = new Set([
     "cycles", "manuals", "sources", "entities",

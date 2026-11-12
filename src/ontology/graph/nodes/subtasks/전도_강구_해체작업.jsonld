@@ -1,0 +1,311 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:전도_강구_해체작업",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "전도·강구 해체작업",
+  "workGroup": "해체·철거",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "broader": "activity:demolition",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:fire_explosion",
+    "hazard:struck_by_overturn",
+    "hazard:fall_object"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:241",
+    "art:기준규칙:241의2",
+    "art:기준규칙:163",
+    "art:기준규칙:384",
+    "art:기준규칙:40",
+    "art:기준규칙:63",
+    "art:기준규칙:4의2",
+    "annex:기준규칙:별표2"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-47-2023",
+    "doc:kosha_guide/C-56-2017"
+  ],
+  "references": [
+    "act:해체공사표준안전작업지침",
+    "art:해체공사-지침:19",
+    "art:해체공사-지침:20"
+  ],
+  "steps": [
+    {
+      "stepName": "사전 취약화 및 철근 절단",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.12",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.12",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.12",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "화재·폭발",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-56-2017",
+              "section": "6",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:241",
+              "paragraph": 2,
+              "item": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:241",
+              "paragraph": 2,
+              "item": 5,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:241",
+              "paragraph": 2,
+              "item": 6,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:241",
+              "paragraph": 4,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:241의2",
+              "paragraph": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:241의2",
+              "paragraph": 3,
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fire_explosion"
+        },
+        {
+          "hazardLabel": "깔림",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.12",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-56-2017",
+              "section": "5.1",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:struck_by_overturn"
+        }
+      ]
+    },
+    {
+      "stepName": "전도·강구 타격 해체",
+      "stepHazards": [
+        {
+          "hazardLabel": "깔림",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.13",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.1",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.3",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:163",
+              "paragraph": 1,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:384",
+              "paragraph": 1,
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:struck_by_overturn"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.13",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "annex": "annex:기준규칙:별표2",
+              "item": 8,
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.12",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.12",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.3",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-56-2017",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:40",
+              "paragraph": 1,
+              "item": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:63",
+              "paragraph": 1,
+              "item": 1,
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.13",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "6.1",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "건강장해",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.12",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-47-2023",
+              "section": "5.2.13",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:4의2",
+              "controlLevel": "engineering"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

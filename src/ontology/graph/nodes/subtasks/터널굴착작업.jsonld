@@ -1,0 +1,572 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:터널굴착작업",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "터널굴착작업",
+  "workGroup": "터널공사",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "broader": "activity:tunnel_excavation",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:asphyxiation",
+    "hazard:struck_by_overturn",
+    "hazard:struck_by"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:360",
+    "art:기준규칙:350",
+    "art:기준규칙:342",
+    "art:기준규칙:355",
+    "art:기준규칙:42",
+    "art:기준규칙:353",
+    "art:기준규칙:348",
+    "art:기준규칙:349",
+    "art:기준규칙:357",
+    "art:기준규칙:351",
+    "art:기준규칙:344",
+    "art:기준규칙:14",
+    "annex:기준규칙:별표4-7호"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-45-2012"
+  ],
+  "references": [
+    "act:터널공사표준안전작업지침NATM공법"
+  ],
+  "steps": [
+    {
+      "stepName": "터널 천공",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "annex": "annex:기준규칙:별표4-7호",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.10",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:360",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:360",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "화재·폭발",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:350",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:350",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:342",
+              "item": 1,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:355",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:fire_explosion"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "건강장해",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "ppe"
+            },
+            {
+              "article": "art:기준규칙:353",
+              "controlLevel": "engineering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stepName": "터널 장약",
+      "stepHazards": [
+        {
+          "hazardLabel": "화재·폭발",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.4",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.4",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.2",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "17",
+              "controlLevel": "ppe"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.2",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.3",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.4",
+              "controlLevel": "substitution"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.6",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:348",
+              "item": 1,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:348",
+              "item": 2,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:348",
+              "item": 3,
+              "controlLevel": "substitution"
+            },
+            {
+              "article": "art:기준규칙:348",
+              "item": 4,
+              "controlLevel": "substitution"
+            },
+            {
+              "article": "art:기준규칙:349",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:357",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:fire_explosion"
+        }
+      ]
+    },
+    {
+      "stepName": "터널 발파",
+      "stepHazards": [
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.6",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.6",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:349",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:351",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "화재·폭발",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.7",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.6",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.6",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.7",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:348",
+              "item": 5,
+              "subitem": "가",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:348",
+              "item": 5,
+              "subitem": "나",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:348",
+              "item": 6,
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:fire_explosion"
+        },
+        {
+          "hazardLabel": "질식",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "12.2",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "12.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:asphyxiation"
+        },
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "substitution"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "substitution"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        }
+      ]
+    },
+    {
+      "stepName": "터널 버럭처리",
+      "stepHazards": [
+        {
+          "hazardLabel": "깔림",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:struck_by_overturn"
+        },
+        {
+          "hazardLabel": "부딪힘",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:342",
+              "item": 2,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:344",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:353",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:struck_by"
+        },
+        {
+          "hazardLabel": "화재·폭발",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.5",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:fire_explosion"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.8",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:14",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.9",
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        }
+      ]
+    }
+  ]
+}

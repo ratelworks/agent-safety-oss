@@ -1,0 +1,188 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:이동식_사다리",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "이동식 사다리",
+  "workGroup": "가설·비계공사",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "hasHazard": [
+    "hazard:fall_from_height"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:24",
+    "art:기준규칙:42"
+  ],
+  "guidedBy": [],
+  "references": [
+    "act:가설공사표준안전작업지침",
+    "art:가설공사-지침:16",
+    "art:가설공사-지침:17",
+    "art:가설공사-지침:18",
+    "art:가설공사-지침:19",
+    "art:가설공사-지침:20",
+    "art:가설공사-지침:22",
+    "art:가설공사-지침:23",
+    "art:가설공사-지침:24",
+    "act:추락재해방지표준안전작업지침"
+  ],
+  "steps": [
+    {
+      "stepName": "설치 및 사용",
+      "stepHazards": [
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 1,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 10,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 2,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 3,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 4,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 5,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 6,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 7,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:24",
+              "paragraph": 1,
+              "item": 9,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 4,
+              "item": 1,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 4,
+              "item": 2,
+              "subitem": "나",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 4,
+              "item": 3,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 4,
+              "item": 4,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 4,
+              "item": 5,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 4,
+              "item": 6,
+              "controlLevel": "ppe"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 4,
+              "item": 7,
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        }
+      ]
+    }
+  ]
+}

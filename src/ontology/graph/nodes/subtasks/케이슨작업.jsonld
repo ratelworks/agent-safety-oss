@@ -1,0 +1,625 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:케이슨작업",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "케이슨작업",
+  "workGroup": "교량·항만공사",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:electric_shock",
+    "hazard:struck_by_overturn",
+    "hazard:struck_by",
+    "hazard:fire_explosion",
+    "hazard:asphyxiation"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:42",
+    "art:기준규칙:14",
+    "art:기준규칙:369",
+    "art:기준규칙:146",
+    "art:기준규칙:163",
+    "art:기준규칙:165",
+    "art:기준규칙:168",
+    "art:기준규칙:63",
+    "art:기준규칙:47",
+    "art:기준규칙:37",
+    "art:기준규칙:376",
+    "art:기준규칙:378",
+    "art:기준규칙:619",
+    "art:기준규칙:619의2",
+    "art:기준규칙:623",
+    "art:기준규칙:377",
+    "art:기준규칙:620",
+    "art:기준규칙:621",
+    "art:기준규칙:622",
+    "art:기준규칙:624",
+    "annex:기준규칙:별표4-8호",
+    "annex:기준규칙:별표4-11호"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-93-2013"
+  ],
+  "steps": [
+    {
+      "stepName": "케이슨 제작",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "5",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "annex": "annex:기준규칙:별표4-8호",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "5",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:14",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:369",
+              "item": 2,
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "감전",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.1",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:electric_shock"
+        }
+      ]
+    },
+    {
+      "stepName": "케이슨운반 및 거치",
+      "stepHazards": [
+        {
+          "hazardLabel": "깔림",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.3",
+              "controlLevel": "engineering"
+            },
+            {
+              "annex": "annex:기준규칙:별표4-11호",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.3",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 4,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 5,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:146",
+              "paragraph": 3,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:369",
+              "item": 3,
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:struck_by_overturn"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:163",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:165",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:168",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:168",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:168",
+              "controlLevel": "substitution"
+            },
+            {
+              "article": "art:기준규칙:63",
+              "paragraph": 1,
+              "item": 2,
+              "controlLevel": "substitution"
+            },
+            {
+              "article": "art:기준규칙:63",
+              "paragraph": 2,
+              "item": 9,
+              "controlLevel": "substitution"
+            },
+            {
+              "article": "art:기준규칙:63",
+              "item": 1,
+              "controlLevel": "substitution"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.3",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.3",
+              "controlLevel": "ppe"
+            },
+            {
+              "article": "art:기준규칙:47",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        },
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.3",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:37",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "부딪힘",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "5",
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:struck_by"
+        },
+        {
+          "hazardLabel": "화재·폭발",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.2",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fire_explosion"
+        }
+      ]
+    },
+    {
+      "stepName": "케이슨 내 속체움",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.3",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.4",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.4",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.4",
+              "controlLevel": "ppe"
+            },
+            {
+              "article": "art:기준규칙:376",
+              "item": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:376",
+              "item": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:378",
+              "item": 1,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:378",
+              "item": 2,
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "질식",
+          "basis": [
+            {
+              "article": "art:기준규칙:619",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:619의2",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:623",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "ppe"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.4",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:377",
+              "paragraph": 1,
+              "item": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:377",
+              "paragraph": 1,
+              "item": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:377",
+              "paragraph": 1,
+              "item": 3,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:377",
+              "paragraph": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:619의2",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:620",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:621",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:622",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:624",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:asphyxiation"
+        },
+        {
+          "hazardLabel": "건강장해",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.4",
+              "controlLevel": "administrative"
+            }
+          ]
+        },
+        {
+          "hazardLabel": "감전",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.4",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.4",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:electric_shock"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.4",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "7.4",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        },
+        {
+          "hazardLabel": "부딪힘",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "6",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:369",
+              "item": 1,
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:struck_by"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-93-2013",
+              "section": "8.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:369",
+              "item": 4,
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        }
+      ]
+    }
+  ]
+}

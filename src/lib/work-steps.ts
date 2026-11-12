@@ -1,12 +1,11 @@
 /**
- * work-steps.ts — 공종별 작업 단계와 단계별 근거(조문의 항, KOSHA Guide 조항) 조회
+ * work-steps.ts — 공종(ConstructionSubtask 노드)의 작업 단계와 단계별 근거 조회
  *
- * 자료(construction-work-steps.json)는 참조만 담는다. 읽을 내용은 여기서 번들 조문 노드와
- * 가이드 본문에서 꺼내 붙인다 — 조문은 해당 항 본문, 가이드는 해당 조항 제목.
+ * 공종 노드는 참조만 담는다(조문의 항·호·목, 별표, KOSHA Guide 조항, 관련 고시).
+ * 읽을 내용은 여기서 조문 노드와 가이드 본문에서 꺼내 붙인다.
  */
 
-import stepData from "../ontology/construction-work-steps.json" with { type: "json" };
-import { getNode, listArticleIds, listDocuments } from "./graph-nodes-loader.js";
+import { getNode, listDocuments, listNodesByType } from "./graph-nodes-loader.js";
 import { getKoshaGuideMd } from "./kosha-guides-loader.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
@@ -21,26 +20,8 @@ const SCORE_CONTAINS = 60;
 const SCORE_TOKEN = 20;
 /** 매칭에 쓰지 않는 흔한 낱말 */
 const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "설치", "해체", "조립"]);
-/** 대공종 → 그 공사를 다루는 고용노동부 고시(표준안전 작업지침)의 법령 키 */
-const NOTICES_BY_GROUP: Record<string, string[]> = {
-  "가설·비계공사": ["가설공사-지침", "추락재해방지-지침"],
-  "거푸집·동바리공사": ["콘크리트공사-지침"],
-  "철근공사": ["콘크리트공사-지침"],
-  "콘크리트타설공사": ["콘크리트공사-지침"],
-  "토공·굴착공사": ["굴착공사-지침"],
-  "흙막이공사": ["굴착공사-지침"],
-  "발파공사": ["발파-지침"],
-  "해체·철거": ["해체공사-지침"],
-  "철골공사": ["철골공사-지침", "추락재해방지-지침"],
-  "터널공사": ["터널공사NATM-지침"],
-};
-/** 공종 하나에 보여 줄 고시 조문·법정문서 수 상한 */
-const MAX_NOTICE_ARTICLES = 6;
+/** 공종 하나에 보여 줄 관련 문서 수 상한 */
 const MAX_RELATED_DOCUMENTS = 8;
-/** 고시 조문 제목과 공종·단계 이름을 맞출 때 쓰지 않는 낱말 (어느 조문에나 나온다) */
-const NOTICE_MATCH_STOPWORDS: ReadonlySet<string> = new Set([
-  "작업", "공사", "시공", "설치", "해체", "조립", "준비", "사용", "관리", "안전", "일반", "기타", "공통", "부대", "자재반입", "반입", "이동식", "가설", "구조물", "벽체", "통로", "또는",
-]);
 
 const CONTROL_LEVEL_KO: Record<string, string> = {
   elimination: "제거",
@@ -72,13 +53,22 @@ interface WorkStep {
   hazards: StepHazard[];
 }
 interface Work {
+  /** 공종 노드 IRI */
+  iri: string;
   name: string;
+  group: string;
   activity?: string;
+  /** 관련 고시(법령 노드)와 그 조문 */
+  references: string[];
   steps: WorkStep[];
 }
-interface WorkGroup {
-  name: string;
-  works: Work[];
+interface SubtaskNode {
+  "@id": string;
+  title: string;
+  workGroup: string;
+  broader?: string;
+  references?: string[];
+  steps: { stepName: string; stepHazards: StepHazard[] }[];
 }
 
 export interface ResolvedBasis {
@@ -105,6 +95,8 @@ export interface RelatedDocument {
   when?: string;
 }
 export interface ResolvedWorkSteps {
+  /** 공종 노드 IRI */
+  iri: string;
   group: string;
   work: string;
   activity?: string;
@@ -118,35 +110,48 @@ export interface ResolvedWorkSteps {
   }[];
 }
 
-const groups = stepData.groups as WorkGroup[];
+let worksCache: Work[] | null = null;
+
+/** 그래프의 공종 노드를 읽는다 (한 번 읽고 재사용) */
+async function loadWorks(): Promise<Work[]> {
+  if (worksCache) return worksCache;
+  const nodes = (await listNodesByType("ConstructionSubtask")) as unknown as SubtaskNode[];
+  worksCache = nodes
+    .map((n) => ({
+      iri: n["@id"],
+      name: n.title,
+      group: n.workGroup,
+      ...(n.broader ? { activity: n.broader } : {}),
+      references: n.references ?? [],
+      steps: (n.steps ?? []).map((st) => ({ name: st.stepName, hazards: st.stepHazards ?? [] })),
+    }))
+    .sort((a, b) => a.iri.localeCompare(b.iri));
+  return worksCache;
+}
 
 function normalize(s: string): string {
   return s.replace(/[\s·()\-+/]/g, "").toLowerCase();
 }
 
 /** 작업명으로 공종을 찾는다. 가장 잘 맞는 하나와, 같은 점수대의 다른 후보 이름을 돌려준다. */
-export function findWork(query: string): { group: string; work: Work; others: string[] } | null {
+export async function findWork(query: string): Promise<{ work: Work; others: string[] } | null> {
   const q = normalize(query);
   if (!q) return null;
   const tokens = query.split(/[\s.,()·]+/).filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t));
-  const scored: { group: string; work: Work; score: number }[] = [];
-  for (const g of groups) {
-    for (const w of g.works) {
-      const name = normalize(w.name);
-      const bare = normalize(w.name.replace(/작업$|공사$/, ""));
-      let score = 0;
-      if (name === q || bare === q) score = SCORE_EXACT;
-      else if (bare.length >= 2 && q.includes(bare)) score = SCORE_CONTAINS + bare.length;
-      else if (q.length >= 2 && name.includes(q)) score = SCORE_CONTAINS;
-      else score = tokens.filter((t) => name.includes(normalize(t))).length * SCORE_TOKEN;
-      if (score >= SCORE_TOKEN) scored.push({ group: g.name, work: w, score });
-    }
+  const scored: { work: Work; score: number }[] = [];
+  for (const w of await loadWorks()) {
+    const name = normalize(w.name);
+    const bare = normalize(w.name.replace(/작업$|공사$/, ""));
+    let score = 0;
+    if (name === q || bare === q) score = SCORE_EXACT;
+    else if (bare.length >= 2 && q.includes(bare)) score = SCORE_CONTAINS + bare.length;
+    else if (q.length >= 2 && name.includes(q)) score = SCORE_CONTAINS;
+    else score = tokens.filter((t) => name.includes(normalize(t))).length * SCORE_TOKEN;
+    if (score >= SCORE_TOKEN) scored.push({ work: w, score });
   }
   if (scored.length === 0) return null;
   scored.sort((a, b) => b.score - a.score);
-  const best = scored[0];
-  const others = scored.slice(1, 6).map((s) => s.work.name);
-  return { group: best.group, work: best.work, others };
+  return { work: scored[0].work, others: scored.slice(1, 6).map((x) => x.work.name) };
 }
 
 /** 본문 구간에서 "N. …" 호(그리고 "가. …" 목)만 꺼낸다. 찾지 못하면 undefined. */
@@ -252,40 +257,28 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
   return null;
 }
 
-/** 이름에서 고시 조문 제목과 맞춰 볼 낱말을 뽑는다 */
-function matchTokens(names: string[]): string[] {
-  const tokens = names
-    .join(" ")
-    .split(/[\s·()\-+/,]+/)
-    .map((t) => t.replace(/(작업|공사)$/, ""))
-    .filter((t) => t.length >= 2 && !NOTICE_MATCH_STOPWORDS.has(t));
-  return [...new Set(tokens)];
-}
-
-/** 대공종에 해당하는 고시와, 그 안에서 공종·단계 이름과 제목이 맞는 조문을 찾는다 */
-async function findRelatedNotices(group: string, work: Work): Promise<RelatedNotice[]> {
-  const keys = NOTICES_BY_GROUP[group] ?? [];
-  if (keys.length === 0) return [];
-  // 공종 이름의 낱말만 쓴다 — 단계 이름("점검"·"보관"·"조립")까지 쓰면 다른 대상의 조문이 붙는다
-  const workTokens = matchTokens([work.name]);
-  const ids = await listArticleIds();
-  const out: RelatedNotice[] = [];
-  for (const key of keys) {
-    let lawName = "";
-    const articles: RelatedNotice["articles"] = [];
-    for (const iri of ids) {
-      if (iri.split(":")[1] !== key) continue;
-      const node = (await getNode(iri)) as { title?: string; legislationIdentifier?: string; articleNumber?: string } | undefined;
-      if (!node) continue;
-      lawName ||= node.legislationIdentifier ?? key;
-      const title = node.title ?? "";
-      if (articles.length < MAX_NOTICE_ARTICLES && workTokens.some((t) => title.includes(t))) {
-        articles.push({ ref: `${node.legislationIdentifier ?? key} 제${(node.articleNumber ?? "").replace("의", "조의")}${(node.articleNumber ?? "").includes("의") ? "" : "조"}`, title });
-      }
-    }
-    if (lawName) out.push({ law: lawName, articles, legalWeight: "recommended" });
+/** 공종 노드의 references(관련 고시 법령 노드와 그 조문)를 고시별로 묶는다 */
+async function findRelatedNotices(work: Work): Promise<RelatedNotice[]> {
+  const byAct = new Map<string, RelatedNotice>();
+  for (const iri of work.references) {
+    if (!iri.startsWith("act:")) continue;
+    const act = (await getNode(iri)) as { legislationIdentifier?: string } | undefined;
+    if (act) byAct.set(iri, { law: act.legislationIdentifier ?? iri, articles: [], legalWeight: "recommended" });
   }
-  return out;
+  for (const iri of work.references) {
+    if (!iri.startsWith("art:")) continue;
+    const node = (await getNode(iri)) as
+      | { title?: string; partOf?: string; legislationIdentifier?: string; articleNumber?: string }
+      | undefined;
+    const notice = node?.partOf ? byAct.get(node.partOf) : undefined;
+    if (!node || !notice) continue;
+    const num = node.articleNumber ?? "";
+    notice.articles.push({
+      ref: `${node.legislationIdentifier ?? notice.law} 제${num.replace("의", "조의")}${num.includes("의") ? "" : "조"}`,
+      title: node.title ?? "",
+    });
+  }
+  return [...byAct.values()];
 }
 
 /** 연결된 작업과 관련된 문서(가이드 제외). 작성 조건을 함께 돌려준다 — 조건 확인 없이 의무로 단정하지 않는다 */
@@ -312,7 +305,7 @@ async function findRelatedDocuments(activity: string | undefined): Promise<Relat
 export async function getWorkSteps(
   query: string,
 ): Promise<{ result: ResolvedWorkSteps; otherCandidates: string[] } | null> {
-  const found = findWork(query);
+  const found = await findWork(query);
   if (!found) return null;
   const steps: ResolvedWorkSteps["steps"] = [];
   for (const s of found.work.steps) {
@@ -333,11 +326,12 @@ export async function getWorkSteps(
     }
     steps.push({ name: s.name, hazards });
   }
-  const relatedNotices = await findRelatedNotices(found.group, found.work);
+  const relatedNotices = await findRelatedNotices(found.work);
   const relatedDocuments = await findRelatedDocuments(found.work.activity);
   return {
     result: {
-      group: found.group,
+      iri: found.work.iri,
+      group: found.work.group,
       work: found.work.name,
       activity: found.work.activity,
       ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
@@ -348,7 +342,13 @@ export async function getWorkSteps(
   };
 }
 
-/** 자료에 있는 공종 이름 전체 (대공종별) */
-export function listWorkNames(): { group: string; works: string[] }[] {
-  return groups.map((g) => ({ group: g.name, works: g.works.map((w) => w.name) }));
+/** 공종 전체 (대공종별) */
+export async function listWorks(): Promise<{ group: string; works: { iri: string; name: string; activity?: string; steps: string[] }[] }[]> {
+  const byGroup = new Map<string, { iri: string; name: string; activity?: string; steps: string[] }[]>();
+  for (const w of await loadWorks()) {
+    const list = byGroup.get(w.group) ?? [];
+    list.push({ iri: w.iri, name: w.name, ...(w.activity ? { activity: w.activity } : {}), steps: w.steps.map((st) => st.name) });
+    byGroup.set(w.group, list);
+  }
+  return [...byGroup.entries()].map(([group, works]) => ({ group, works }));
 }

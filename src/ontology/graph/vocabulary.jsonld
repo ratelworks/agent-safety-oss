@@ -57,6 +57,14 @@
       }
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask",
+      "@type": "owl:Class",
+      "rdfs:label": "ConstructionSubtask",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/ContentForm",
       "@type": "owl:Class",
       "rdfs:label": "ContentForm",
@@ -177,6 +185,51 @@
       }
     },
     {
+      "@id": "https://construction.ratelworks.org/ontology/v1/basis",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "basis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/controlLevel",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "controlLevel",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/hasStep",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "hasStep",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
+        }
+      ]
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/hazardLabel",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "hazardLabel",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/item",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "item",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://construction.ratelworks.org/ontology/v1/legalBasisLabel",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "legalBasisLabel",
@@ -186,6 +239,51 @@
       "schema:domainIncludes": [
         {
           "@id": "https://construction.ratelworks.org/ontology/v1/WorkType"
+        }
+      ]
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/paragraph",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "paragraph",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/section",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "section",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/stepHazard",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "stepHazard",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/subitem",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "subitem",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://construction.ratelworks.org/ontology/v1/workGroup",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "workGroup",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
         }
       ]
     },
@@ -1260,6 +1358,9 @@
           "@id": "https://construction.ratelworks.org/ontology/v1/WorkType"
         },
         {
+          "@id": "https://safety.ratelworks.org/ontology/v1/Act"
+        },
+        {
           "@id": "https://safety.ratelworks.org/ontology/v1/Applicability"
         },
         {
@@ -1373,6 +1474,9 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Chapter"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/ContentForm"
@@ -1621,6 +1725,9 @@
           "@id": "https://safety.ratelworks.org/ontology/v1/Article"
         },
         {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
+        },
+        {
           "@id": "https://safety.ratelworks.org/ontology/v1/Document"
         },
         {
@@ -1634,6 +1741,9 @@
         }
       ],
       "schema:rangeIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/Act"
+        },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Annex"
         },
@@ -1658,6 +1768,9 @@
       "schema:domainIncludes": [
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Annex"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Equipment"
@@ -1699,6 +1812,9 @@
       "schema:rangeIncludes": [
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Annex"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Equipment"
@@ -2285,14 +2401,6 @@
       },
       "@type": "owl:Class",
       "rdfs:label": "ConstructionStageDuty"
-    },
-    {
-      "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "@type": "owl:Class",
-      "rdfs:label": "ConstructionSubtask"
     },
     {
       "@id": "https://safety.ratelworks.org/ontology/v1/ContractorProfile",

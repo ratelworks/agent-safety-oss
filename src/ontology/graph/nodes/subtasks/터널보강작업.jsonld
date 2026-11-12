@@ -1,0 +1,437 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:터널보강작업",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "터널보강작업",
+  "workGroup": "터널공사",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "broader": "activity:tunnel_excavation",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:machine_entanglement",
+    "hazard:fire_explosion",
+    "hazard:fall_object",
+    "hazard:struck_by_overturn"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:363",
+    "art:기준규칙:361",
+    "art:기준규칙:362",
+    "art:기준규칙:364",
+    "art:기준규칙:365",
+    "art:기준규칙:366",
+    "art:기준규칙:356",
+    "art:기준규칙:358",
+    "art:기준규칙:359",
+    "art:기준규칙:353",
+    "art:기준규칙:351"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-45-2012"
+  ],
+  "references": [
+    "act:터널공사표준안전작업지침NATM공법"
+  ],
+  "steps": [
+    {
+      "stepName": "터널 강지보",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "7.2",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "7.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:363",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "7.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "7.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "7.2",
+              "controlLevel": "elimination"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "7.2",
+              "controlLevel": "substitution"
+            },
+            {
+              "article": "art:기준규칙:361",
+              "controlLevel": "substitution"
+            },
+            {
+              "article": "art:기준규칙:362",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 1,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 3,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 4,
+              "subitem": "가",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 4,
+              "subitem": "나",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 4,
+              "subitem": "다",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 4,
+              "subitem": "라",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 5,
+              "subitem": "가",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 5,
+              "subitem": "나",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 5,
+              "subitem": "다",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 5,
+              "subitem": "라",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 6,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:365",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:366",
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "끼임·감김",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "7.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:364",
+              "item": 4,
+              "subitem": "마",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:machine_entanglement"
+        },
+        {
+          "hazardLabel": "화재·폭발",
+          "basis": [
+            {
+              "article": "art:기준규칙:356",
+              "item": 1,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:356",
+              "item": 2,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:356",
+              "item": 3,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:358",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:359",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fire_explosion"
+        }
+      ]
+    },
+    {
+      "stepName": "터널 숏크리트",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "6.2",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "6.2",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "6.2",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "6.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "6.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "6.2",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "건강장해",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "6.2",
+              "controlLevel": "ppe"
+            },
+            {
+              "article": "art:기준규칙:353",
+              "controlLevel": "engineering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stepName": "터널 락볼트",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.2",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.1",
+              "controlLevel": "substitution"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:351",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "끼임·감김",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.2",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "8.2",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:machine_entanglement"
+        }
+      ]
+    },
+    {
+      "stepName": "터널 특수보강",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.10",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "engineering"
+            },
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.10",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "깔림",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "5.1",
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:struck_by_overturn"
+        }
+      ]
+    }
+  ]
+}

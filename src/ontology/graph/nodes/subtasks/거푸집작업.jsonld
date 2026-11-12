@@ -1,0 +1,493 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:거푸집작업",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "거푸집작업",
+  "workGroup": "거푸집·동바리공사",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "broader": "activity:formwork_shoring",
+  "hasHazard": [
+    "hazard:cave_in",
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:fall_from_height"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:330",
+    "art:기준규칙:385",
+    "art:기준규칙:386",
+    "art:기준규칙:14",
+    "art:기준규칙:32",
+    "art:기준규칙:331",
+    "art:기준규칙:331의2",
+    "art:기준규칙:332",
+    "art:기준규칙:332의2",
+    "art:기준규칙:333",
+    "art:기준규칙:334",
+    "art:기준규칙:335",
+    "art:기준규칙:42",
+    "art:기준규칙:146"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-9-2026"
+  ],
+  "references": [
+    "act:콘크리트공사표준안전작업지침",
+    "art:콘크리트공사-지침:6",
+    "art:콘크리트공사-지침:7"
+  ],
+  "steps": [
+    {
+      "stepName": "거푸집 자재반입",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "10"
+            },
+            {
+              "article": "art:기준규칙:330"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "깔림",
+          "basis": [
+            {
+              "article": "art:기준규칙:385"
+            },
+            {
+              "article": "art:기준규칙:386",
+              "item": 1
+            },
+            {
+              "article": "art:기준규칙:386",
+              "item": 2
+            }
+          ],
+          "hazard": "hazard:struck_by_overturn"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "article": "art:기준규칙:14",
+              "paragraph": 1
+            },
+            {
+              "article": "art:기준규칙:32",
+              "paragraph": 1,
+              "item": 1
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        }
+      ]
+    },
+    {
+      "stepName": "거푸집 동바리 조립",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.2",
+              "controlLevel": "administrative"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "8.1"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.2"
+            },
+            {
+              "article": "art:기준규칙:330"
+            },
+            {
+              "article": "art:기준규칙:331",
+              "paragraph": 1
+            },
+            {
+              "article": "art:기준규칙:331",
+              "paragraph": 2
+            },
+            {
+              "article": "art:기준규칙:331의2",
+              "item": 1
+            },
+            {
+              "article": "art:기준규칙:331의2",
+              "item": 2
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 1,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 3,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 4
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 8,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 9,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 1,
+              "subitem": "가",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 1,
+              "subitem": "나",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 1,
+              "subitem": "다",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 2,
+              "subitem": "가"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 2,
+              "subitem": "나"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 2,
+              "subitem": "다"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 3
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 4,
+              "subitem": "가",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 4,
+              "subitem": "나",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 4,
+              "subitem": "다",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 4,
+              "subitem": "라",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 5,
+              "subitem": "가"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 5,
+              "subitem": "나"
+            },
+            {
+              "article": "art:기준규칙:332의2",
+              "item": 5,
+              "subitem": "다"
+            },
+            {
+              "article": "art:기준규칙:333",
+              "paragraph": 1,
+              "item": 2
+            },
+            {
+              "article": "art:기준규칙:334",
+              "item": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:334",
+              "item": 2,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:334",
+              "item": 3,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:334",
+              "item": 5
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "article": "art:기준규칙:14",
+              "paragraph": 2
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 5
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 6
+            },
+            {
+              "article": "art:기준규칙:332",
+              "item": 7
+            },
+            {
+              "article": "art:기준규칙:333",
+              "paragraph": 1,
+              "item": 1
+            },
+            {
+              "article": "art:기준규칙:333",
+              "paragraph": 1,
+              "item": 3
+            },
+            {
+              "article": "art:기준규칙:333",
+              "paragraph": 2,
+              "item": 1
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.2"
+            },
+            {
+              "article": "art:기준규칙:32",
+              "paragraph": 1,
+              "item": 2
+            },
+            {
+              "article": "art:기준규칙:333",
+              "paragraph": 2,
+              "item": 2
+            },
+            {
+              "article": "art:기준규칙:335",
+              "item": 1
+            },
+            {
+              "article": "art:기준규칙:335",
+              "item": 2
+            },
+            {
+              "article": "art:기준규칙:335",
+              "item": 3
+            },
+            {
+              "article": "art:기준규칙:335",
+              "item": 4
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 1
+            },
+            {
+              "article": "art:기준규칙:42",
+              "paragraph": 2
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        }
+      ]
+    },
+    {
+      "stepName": "거푸집 동바리 해체",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.4"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.3"
+            },
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.3",
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:334",
+              "item": 4,
+              "controlLevel": "administrative"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.3"
+            },
+            {
+              "article": "art:기준규칙:333",
+              "paragraph": 1,
+              "item": 4
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/D-C-9-2026",
+              "section": "9.3"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        }
+      ]
+    },
+    {
+      "stepName": "거푸집 동바리 인양",
+      "stepHazards": [
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "article": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 4
+            },
+            {
+              "article": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 5
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "article": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 1,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 3,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:333",
+              "paragraph": 1,
+              "item": 4,
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        }
+      ]
+    }
+  ]
+}

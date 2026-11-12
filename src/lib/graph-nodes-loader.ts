@@ -433,6 +433,16 @@ export function getDocumentSync(docId: string): DocumentNode | undefined {
   return undefined;
 }
 
+/** 지정한 종류(@type)의 노드를 모두 돌려준다 */
+export async function listNodesByType(typeName: string): Promise<AnyNode[]> {
+  const idx = await buildIndex();
+  const out: AnyNode[] = [];
+  for (const node of idx.values()) {
+    if (hasType(node, typeName)) out.push(node);
+  }
+  return out;
+}
+
 export async function listDocuments(): Promise<DocumentNode[]> {
   const idx = await buildIndex();
   const docs: DocumentNode[] = [];

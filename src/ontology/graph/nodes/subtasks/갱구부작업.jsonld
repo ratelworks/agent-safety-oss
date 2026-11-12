@@ -1,0 +1,187 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "ConstructionSubtask": "safety:ConstructionSubtask",
+      "workGroup": "cc:workGroup",
+      "steps": {
+        "@id": "cc:hasStep",
+        "@container": "@list"
+      },
+      "stepName": "schema:name",
+      "stepHazards": {
+        "@id": "cc:stepHazard",
+        "@container": "@set"
+      },
+      "hazard": {
+        "@id": "safety:hasHazard",
+        "@type": "@id"
+      },
+      "hazardLabel": "cc:hazardLabel",
+      "basis": {
+        "@id": "cc:basis",
+        "@container": "@set"
+      },
+      "article": {
+        "@id": "cc:basisArticle",
+        "@type": "@id"
+      },
+      "annex": {
+        "@id": "cc:basisAnnex",
+        "@type": "@id"
+      },
+      "guide": {
+        "@id": "cc:basisGuide",
+        "@type": "@id"
+      },
+      "paragraph": "cc:paragraph",
+      "item": "cc:item",
+      "subitem": "cc:subitem",
+      "section": "cc:section",
+      "controlLevel": "cc:controlLevel"
+    }
+  ],
+  "@id": "subtask:갱구부작업",
+  "@type": [
+    "ConstructionSubtask"
+  ],
+  "title": "갱구부작업",
+  "workGroup": "터널공사",
+  "jurisdiction": "KR",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "note": "공종의 작업 단계와 단계별 재해유형·근거 연결. 프로젝트 자체 정리이며 공식 공종 분류가 아니다. 근거는 번들 조문·별표·가이드 본문과 대조해 실재하는 것만 담았다. 현장 검토 전.",
+    "sourceNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 근거 연결을 참고해 구성",
+    "licenseHint": "project-internal (MIT) — 참조만 담고 외부 문장은 싣지 않는다"
+  },
+  "broader": "activity:tunnel_excavation",
+  "hasHazard": [
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:cave_in",
+    "hazard:fall_from_height"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:405",
+    "art:기준규칙:37",
+    "art:기준규칙:351",
+    "art:기준규칙:352",
+    "art:기준규칙:14",
+    "art:기준규칙:42"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-45-2012"
+  ],
+  "references": [
+    "act:터널공사표준안전작업지침NATM공법"
+  ],
+  "steps": [
+    {
+      "stepName": "갱구부 벌목 및 표토제거",
+      "stepHazards": [
+        {
+          "hazardLabel": "깔림",
+          "basis": [
+            {
+              "article": "art:기준규칙:405",
+              "item": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "article": "art:기준규칙:405",
+              "item": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:405",
+              "item": 3,
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:405",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:struck_by_overturn"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "article": "art:기준규칙:405",
+              "item": 4,
+              "subitem": "가",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:405",
+              "item": 4,
+              "subitem": "나",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "article": "art:기준규칙:37",
+              "controlLevel": "elimination"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        }
+      ]
+    },
+    {
+      "stepName": "갱구부 보강",
+      "stepHazards": [
+        {
+          "hazardLabel": "무너짐",
+          "basis": [
+            {
+              "guide": "doc:kosha_guide/C-45-2012",
+              "section": "4",
+              "controlLevel": "elimination"
+            },
+            {
+              "article": "art:기준규칙:351",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:352",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:cave_in"
+        },
+        {
+          "hazardLabel": "물체에 맞음",
+          "basis": [
+            {
+              "article": "art:기준규칙:14",
+              "controlLevel": "engineering"
+            }
+          ],
+          "hazard": "hazard:fall_object"
+        },
+        {
+          "hazardLabel": "떨어짐",
+          "basis": [
+            {
+              "article": "art:기준규칙:42",
+              "controlLevel": "engineering"
+            },
+            {
+              "article": "art:기준규칙:42",
+              "controlLevel": "ppe"
+            }
+          ],
+          "hazard": "hazard:fall_from_height"
+        }
+      ]
+    }
+  ]
+}
