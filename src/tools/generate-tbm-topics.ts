@@ -182,8 +182,8 @@ interface StepTopics {
   }>;
   /** 이 공사를 다루는 표준안전 작업지침 (권고 기준) */
   relatedNotices?: ResolvedWorkSteps["relatedNotices"];
-  /** 연결된 작업에 걸린 법정문서 */
-  requiredDocuments?: ResolvedWorkSteps["requiredDocuments"];
+  /** 연결된 작업과 관련된 문서 (작성 조건에 해당할 때만 필요) */
+  relatedDocuments?: ResolvedWorkSteps["relatedDocuments"];
   notice: string;
 }
 
@@ -213,7 +213,7 @@ function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
       })),
     })),
     ...(ws.relatedNotices ? { relatedNotices: ws.relatedNotices } : {}),
-    ...(ws.requiredDocuments ? { requiredDocuments: ws.requiredDocuments } : {}),
+    ...(ws.relatedDocuments ? { relatedDocuments: ws.relatedDocuments } : {}),
     notice:
       "공종의 작업 단계마다 살필 재해유형과 근거를 연결한 참고 자료입니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다.",
   };
@@ -433,9 +433,11 @@ function renderTbmMarkdown(payload: {
         lines.push(`- ${n.law}${arts ? ` — ${arts}` : ""}`);
       }
     }
-    if (ws.requiredDocuments && ws.requiredDocuments.length > 0) {
-      lines.push("", "### 이 작업에 걸린 법정문서");
-      for (const doc of ws.requiredDocuments) lines.push(`- ${doc.title} (\`${doc.docId}\`)`);
+    if (ws.relatedDocuments && ws.relatedDocuments.length > 0) {
+      lines.push("", "### 관련 문서 (작성 조건에 해당하는지 확인)");
+      for (const doc of ws.relatedDocuments) {
+        lines.push(`- ${doc.title} (\`${doc.docId}\`)${doc.when ? ` — 작성 시점: ${doc.when}` : ""}`);
+      }
     }
     lines.push("", `> ${ws.notice}`);
   }

@@ -36,7 +36,7 @@ const NOTICES_BY_GROUP: Record<string, string[]> = {
 };
 /** 공종 하나에 보여 줄 고시 조문·법정문서 수 상한 */
 const MAX_NOTICE_ARTICLES = 6;
-const MAX_REQUIRED_DOCUMENTS = 8;
+const MAX_RELATED_DOCUMENTS = 8;
 /** 고시 조문 제목과 공종·단계 이름을 맞출 때 쓰지 않는 낱말 (어느 조문에나 나온다) */
 const NOTICE_MATCH_STOPWORDS: ReadonlySet<string> = new Set([
   "작업", "공사", "시공", "설치", "해체", "조립", "준비", "사용", "관리", "안전", "일반", "기타", "공통", "부대", "자재반입", "반입", "이동식", "가설", "구조물", "벽체", "통로", "또는",
@@ -97,10 +97,12 @@ export interface RelatedNotice {
   articles: { ref: string; title: string }[];
   legalWeight: "recommended";
 }
-export interface RequiredDocument {
+export interface RelatedDocument {
   docId: string;
   title: string;
   cycle?: string;
+  /** 이 문서를 작성하는 때 (문서 노드에 적힌 조건) — 해당하는지는 현장에서 확인한다 */
+  when?: string;
 }
 export interface ResolvedWorkSteps {
   group: string;
@@ -108,8 +110,8 @@ export interface ResolvedWorkSteps {
   activity?: string;
   /** 이 공사를 다루는 표준안전 작업지침(권고 기준) */
   relatedNotices?: RelatedNotice[];
-  /** 연결된 작업에 걸린 법정문서 */
-  requiredDocuments?: RequiredDocument[];
+  /** 연결된 작업과 관련된 문서 — 작성 조건(when)에 해당할 때만 필요하다 */
+  relatedDocuments?: RelatedDocument[];
   steps: {
     name: string;
     hazards: { hazardLabel: string; hazard?: string; basis: ResolvedBasis[]; omittedBasis?: number }[];
@@ -279,17 +281,22 @@ async function findRelatedNotices(group: string, work: Work): Promise<RelatedNot
   return out;
 }
 
-/** 연결된 작업에 걸린 법정문서(가이드 제외) */
-async function findRequiredDocuments(activity: string | undefined): Promise<RequiredDocument[]> {
+/** 연결된 작업과 관련된 문서(가이드 제외). 작성 조건을 함께 돌려준다 — 조건 확인 없이 의무로 단정하지 않는다 */
+async function findRelatedDocuments(activity: string | undefined): Promise<RelatedDocument[]> {
   if (!activity) return [];
   const docs = await listDocuments();
-  const out: RequiredDocument[] = [];
+  const out: RelatedDocument[] = [];
   for (const d of docs) {
-    const node = d as unknown as { "@id": string; docId?: string; title?: string; cycle?: string; appliesToActivities?: string[] };
+    const node = d as unknown as { "@id": string; docId?: string; title?: string; cycle?: string; trigger?: string; appliesToActivities?: string[] };
     if (node["@id"].startsWith("doc:kosha_guide")) continue;
     if (!(node.appliesToActivities ?? []).includes(activity)) continue;
-    out.push({ docId: node.docId ?? node["@id"], title: node.title ?? "", ...(node.cycle ? { cycle: node.cycle } : {}) });
-    if (out.length >= MAX_REQUIRED_DOCUMENTS) break;
+    out.push({
+      docId: node.docId ?? node["@id"],
+      title: node.title ?? "",
+      ...(node.cycle ? { cycle: node.cycle } : {}),
+      ...(node.trigger ? { when: node.trigger } : {}),
+    });
+    if (out.length >= MAX_RELATED_DOCUMENTS) break;
   }
   return out;
 }
@@ -320,14 +327,14 @@ export async function getWorkSteps(
     steps.push({ name: s.name, hazards });
   }
   const relatedNotices = await findRelatedNotices(found.group, found.work);
-  const requiredDocuments = await findRequiredDocuments(found.work.activity);
+  const relatedDocuments = await findRelatedDocuments(found.work.activity);
   return {
     result: {
       group: found.group,
       work: found.work.name,
       activity: found.work.activity,
       ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
-      ...(requiredDocuments.length > 0 ? { requiredDocuments } : {}),
+      ...(relatedDocuments.length > 0 ? { relatedDocuments } : {}),
       steps,
     },
     otherCandidates: found.others,
