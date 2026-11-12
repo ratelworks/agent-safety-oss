@@ -6,7 +6,7 @@
  */
 
 import stepData from "../ontology/construction-work-steps.json" with { type: "json" };
-import { getNode } from "./graph-nodes-loader.js";
+import { getNode, listArticleIds, listDocuments } from "./graph-nodes-loader.js";
 import { getKoshaGuideMd } from "./kosha-guides-loader.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
@@ -21,6 +21,27 @@ const SCORE_CONTAINS = 60;
 const SCORE_TOKEN = 20;
 /** 매칭에 쓰지 않는 흔한 낱말 */
 const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "설치", "해체", "조립"]);
+/** 대공종 → 그 공사를 다루는 고용노동부 고시(표준안전 작업지침)의 법령 키 */
+const NOTICES_BY_GROUP: Record<string, string[]> = {
+  "가설·비계공사": ["가설공사-지침", "추락재해방지-지침"],
+  "거푸집·동바리공사": ["콘크리트공사-지침"],
+  "철근공사": ["콘크리트공사-지침"],
+  "콘크리트타설공사": ["콘크리트공사-지침"],
+  "토공·굴착공사": ["굴착공사-지침"],
+  "흙막이공사": ["굴착공사-지침"],
+  "발파공사": ["발파-지침"],
+  "해체·철거": ["해체공사-지침"],
+  "철골공사": ["철골공사-지침", "추락재해방지-지침"],
+  "터널공사": ["터널공사NATM-지침"],
+};
+/** 공종 하나에 보여 줄 고시 조문·법정문서 수 상한 */
+const MAX_NOTICE_ARTICLES = 6;
+const MAX_REQUIRED_DOCUMENTS = 8;
+/** 고시 조문 제목과 공종·단계 이름을 맞출 때 쓰지 않는 낱말 (어느 조문에나 나온다) */
+const NOTICE_MATCH_STOPWORDS: ReadonlySet<string> = new Set([
+  "작업", "공사", "시공", "설치", "해체", "조립", "준비", "사용", "관리", "안전", "일반", "기타", "공통", "부대", "자재반입", "반입", "이동식", "가설", "구조물", "벽체", "통로", "또는",
+]);
+
 const CONTROL_LEVEL_KO: Record<string, string> = {
   elimination: "제거",
   substitution: "대체",
@@ -32,6 +53,11 @@ const CONTROL_LEVEL_KO: Record<string, string> = {
 interface BasisRef {
   article?: string;
   paragraph?: number;
+  /** 호 번호 (조문·별표 공통) */
+  item?: number;
+  /** 목 (가·나·다…) */
+  subitem?: string;
+  annex?: string;
   guide?: string;
   section?: string;
   controlLevel?: string;
@@ -64,10 +90,26 @@ export interface ResolvedBasis {
   controlLevel?: string;
   legalWeight: "mandatory" | "recommended";
 }
+export interface RelatedNotice {
+  /** 고시 이름 */
+  law: string;
+  /** 공종·단계 이름과 제목이 맞는 조문. 맞는 조문이 없으면 빈 배열(고시 전체를 살핀다) */
+  articles: { ref: string; title: string }[];
+  legalWeight: "recommended";
+}
+export interface RequiredDocument {
+  docId: string;
+  title: string;
+  cycle?: string;
+}
 export interface ResolvedWorkSteps {
   group: string;
   work: string;
   activity?: string;
+  /** 이 공사를 다루는 표준안전 작업지침(권고 기준) */
+  relatedNotices?: RelatedNotice[];
+  /** 연결된 작업에 걸린 법정문서 */
+  requiredDocuments?: RequiredDocument[];
   steps: {
     name: string;
     hazards: { hazardLabel: string; hazard?: string; basis: ResolvedBasis[]; omittedBasis?: number }[];
@@ -105,20 +147,43 @@ export function findWork(query: string): { group: string; work: Work; others: st
   return { group: best.group, work: best.work, others };
 }
 
-/** 조문 본문에서 n번째 항을 꺼낸다. 항 구분이 없으면 본문 앞부분을 돌려준다. */
-function extractParagraph(description: string, paragraph?: number): string {
+/** 본문 구간에서 "N. …" 호(그리고 "가. …" 목)만 꺼낸다. 찾지 못하면 undefined. */
+function extractItem(scope: string, item: number, subitem?: string): string | undefined {
+  const start = scope.search(new RegExp(`^\\s*${item}\\.\\s`, "m"));
+  if (start < 0) return undefined;
+  // 앞 공백을 걷어 낸 뒤 다음 호를 찾는다 — 걷지 않으면 들여쓴 현재 호가 "다음 호"로 잡힌다
+  let text = scope.slice(start).trimStart();
+  const next = text.slice(1).search(new RegExp(`^\\s*${item + 1}\\.\\s`, "m"));
+  if (next >= 0) text = text.slice(0, next + 1);
+  if (subitem) {
+    const subStart = text.search(new RegExp(`^\\s*${subitem}\\.\\s`, "m"));
+    if (subStart >= 0) {
+      let sub = text.slice(subStart).trimStart();
+      const subNext = sub.slice(1).search(/^\s*[가-하]\.\s/m);
+      if (subNext >= 0) sub = sub.slice(0, subNext + 1);
+      text = sub;
+    }
+  }
+  return text;
+}
+
+/** 조문 본문에서 n번째 항 구간(자르지 않은 원문)을 돌려준다. */
+function paragraphScope(description: string, paragraph?: number): string {
   const body = description.replace(/\*\*[^*]*\*\*/g, "").trim();
-  let text = body;
   if (paragraph && paragraph <= CIRCLED.length) {
     const start = body.indexOf(CIRCLED[paragraph - 1]);
     if (start >= 0) {
       const rest = body.slice(start);
       const nextIdx = paragraph < CIRCLED.length ? rest.indexOf(CIRCLED[paragraph], 1) : -1;
-      text = nextIdx > 0 ? rest.slice(0, nextIdx) : rest;
+      return nextIdx > 0 ? rest.slice(0, nextIdx) : rest;
     }
   }
-  text = text.replace(/\s+/g, " ").trim();
-  return text.length > PARAGRAPH_MAX_CHARS ? `${text.slice(0, PARAGRAPH_MAX_CHARS)}…` : text;
+  return body;
+}
+
+function clip(text: string): string {
+  const flat = text.replace(/\s+/g, " ").trim();
+  return flat.length > PARAGRAPH_MAX_CHARS ? `${flat.slice(0, PARAGRAPH_MAX_CHARS)}…` : flat;
 }
 
 /** 가이드 본문에서 조항 번호로 시작하는 제목 줄을 찾는다. */
@@ -131,16 +196,33 @@ function findSectionTitle(body: string, section: string): string | undefined {
 async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
   const controlLevel = b.controlLevel ? CONTROL_LEVEL_KO[b.controlLevel] : undefined;
   if (b.article) {
-    const node = (await getNode(b.article)) as { title?: string; description?: string } | undefined;
+    const node = (await getNode(b.article)) as { title?: string; description?: string; penalizedBy?: string | string[] } | undefined;
     if (!node) return null;
     const num = b.article.split(":").pop() ?? "";
     const m = num.match(/^(\d+)(?:의(\d+))?$/);
     const articleLabel = m ? `제${m[1]}조${m[2] ? `의${m[2]}` : ""}` : num;
+    const scope = paragraphScope(node.description ?? "", b.paragraph);
+    // 호·목이 지정돼 있으면 그 부분만, 아니면 항(또는 조문 앞부분)을 보여 준다
+    const itemText = b.item ? extractItem(scope, b.item, b.subitem) : undefined;
+    const detail = `${b.paragraph ? ` 제${b.paragraph}항` : ""}${b.item ? ` 제${b.item}호` : ""}${b.subitem ? ` ${b.subitem}목` : ""}`;
     return {
       kind: "law",
-      ref: `산업안전보건기준에 관한 규칙 ${articleLabel}${b.paragraph ? ` 제${b.paragraph}항` : ""}`,
+      ref: `산업안전보건기준에 관한 규칙 ${articleLabel}${detail}`,
       title: node.title ?? "",
-      text: extractParagraph(node.description ?? "", b.paragraph),
+      text: clip(itemText ?? scope),
+      controlLevel,
+      legalWeight: "mandatory",
+    };
+  }
+  if (b.annex) {
+    const node = (await getNode(b.annex)) as { title?: string } | undefined;
+    if (!node) return null;
+    const label = b.annex.split(":").pop() ?? "";
+    return {
+      kind: "law",
+      ref: `산업안전보건기준에 관한 규칙 ${label.replace(/^별표(\d+)/, "별표 $1").replace(/-(\d+)호$/, " 제$1호")}${b.item ? ` 제${b.item}호` : ""}`,
+      // 별표 노드 제목이 "별표 4 제10호 — 건물 등의 해체작업" 꼴이면 번호 부분은 ref 에 이미 있다
+      title: (node.title ?? "").replace(/^별표\s*\d+(?:\s*제\d+호)?\s*[—-]\s*/, ""),
       controlLevel,
       legalWeight: "mandatory",
     };
@@ -159,6 +241,57 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
     };
   }
   return null;
+}
+
+/** 이름에서 고시 조문 제목과 맞춰 볼 낱말을 뽑는다 */
+function matchTokens(names: string[]): string[] {
+  const tokens = names
+    .join(" ")
+    .split(/[\s·()\-+/,]+/)
+    .map((t) => t.replace(/(작업|공사)$/, ""))
+    .filter((t) => t.length >= 2 && !NOTICE_MATCH_STOPWORDS.has(t));
+  return [...new Set(tokens)];
+}
+
+/** 대공종에 해당하는 고시와, 그 안에서 공종·단계 이름과 제목이 맞는 조문을 찾는다 */
+async function findRelatedNotices(group: string, work: Work): Promise<RelatedNotice[]> {
+  const keys = NOTICES_BY_GROUP[group] ?? [];
+  if (keys.length === 0) return [];
+  // 공종 이름의 낱말만 쓴다 — 단계 이름("점검"·"보관"·"조립")까지 쓰면 다른 대상의 조문이 붙는다
+  const workTokens = matchTokens([work.name]);
+  const ids = await listArticleIds();
+  const out: RelatedNotice[] = [];
+  for (const key of keys) {
+    let lawName = "";
+    const articles: RelatedNotice["articles"] = [];
+    for (const iri of ids) {
+      if (iri.split(":")[1] !== key) continue;
+      const node = (await getNode(iri)) as { title?: string; legislationIdentifier?: string; articleNumber?: string } | undefined;
+      if (!node) continue;
+      lawName ||= node.legislationIdentifier ?? key;
+      const title = node.title ?? "";
+      if (articles.length < MAX_NOTICE_ARTICLES && workTokens.some((t) => title.includes(t))) {
+        articles.push({ ref: `${node.legislationIdentifier ?? key} 제${(node.articleNumber ?? "").replace("의", "조의")}${(node.articleNumber ?? "").includes("의") ? "" : "조"}`, title });
+      }
+    }
+    if (lawName) out.push({ law: lawName, articles, legalWeight: "recommended" });
+  }
+  return out;
+}
+
+/** 연결된 작업에 걸린 법정문서(가이드 제외) */
+async function findRequiredDocuments(activity: string | undefined): Promise<RequiredDocument[]> {
+  if (!activity) return [];
+  const docs = await listDocuments();
+  const out: RequiredDocument[] = [];
+  for (const d of docs) {
+    const node = d as unknown as { "@id": string; docId?: string; title?: string; cycle?: string; appliesToActivities?: string[] };
+    if (node["@id"].startsWith("doc:kosha_guide")) continue;
+    if (!(node.appliesToActivities ?? []).includes(activity)) continue;
+    out.push({ docId: node.docId ?? node["@id"], title: node.title ?? "", ...(node.cycle ? { cycle: node.cycle } : {}) });
+    if (out.length >= MAX_REQUIRED_DOCUMENTS) break;
+  }
+  return out;
 }
 
 /** 작업명에 맞는 공종의 단계별 재해유형과 근거를 읽을 수 있는 형태로 돌려준다. */
@@ -186,8 +319,17 @@ export async function getWorkSteps(
     }
     steps.push({ name: s.name, hazards });
   }
+  const relatedNotices = await findRelatedNotices(found.group, found.work);
+  const requiredDocuments = await findRequiredDocuments(found.work.activity);
   return {
-    result: { group: found.group, work: found.work.name, activity: found.work.activity, steps },
+    result: {
+      group: found.group,
+      work: found.work.name,
+      activity: found.work.activity,
+      ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
+      ...(requiredDocuments.length > 0 ? { requiredDocuments } : {}),
+      steps,
+    },
     otherCandidates: found.others,
   };
 }

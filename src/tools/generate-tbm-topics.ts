@@ -180,6 +180,10 @@ interface StepTopics {
     name: string;
     hazards: Array<{ hazardLabel: string; basis: Array<{ ref: string; title: string; controlLevel?: string }> }>;
   }>;
+  /** 이 공사를 다루는 표준안전 작업지침 (권고 기준) */
+  relatedNotices?: ResolvedWorkSteps["relatedNotices"];
+  /** 연결된 작업에 걸린 법정문서 */
+  requiredDocuments?: ResolvedWorkSteps["requiredDocuments"];
   notice: string;
 }
 
@@ -208,6 +212,8 @@ function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
         })),
       })),
     })),
+    ...(ws.relatedNotices ? { relatedNotices: ws.relatedNotices } : {}),
+    ...(ws.requiredDocuments ? { requiredDocuments: ws.requiredDocuments } : {}),
     notice:
       "공종의 작업 단계마다 살필 재해유형과 근거를 연결한 참고 자료입니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다.",
   };
@@ -419,6 +425,17 @@ function renderTbmMarkdown(payload: {
         const basis = h.basis.map((b) => `${b.ref} ${b.title}`.trim()).join(" / ");
         lines.push(`  - ${h.hazardLabel}${basis ? ` — ${basis}` : ""}`);
       }
+    }
+    if (ws.relatedNotices && ws.relatedNotices.length > 0) {
+      lines.push("", "### 함께 볼 표준안전 작업지침 (권고 기준)");
+      for (const n of ws.relatedNotices) {
+        const arts = n.articles.map((x) => `${x.ref.split(" ").pop()} ${x.title}`).join(", ");
+        lines.push(`- ${n.law}${arts ? ` — ${arts}` : ""}`);
+      }
+    }
+    if (ws.requiredDocuments && ws.requiredDocuments.length > 0) {
+      lines.push("", "### 이 작업에 걸린 법정문서");
+      for (const doc of ws.requiredDocuments) lines.push(`- ${doc.title} (\`${doc.docId}\`)`);
     }
     lines.push("", `> ${ws.notice}`);
   }
