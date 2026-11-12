@@ -45,7 +45,9 @@
     "guidedByAutoMatchedAt": "2026-04-28",
     "guidedByMatchScript": "title-keyword-matching",
     "graphConsistencyAugmentedAt": "2026-05-03",
-    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기."
+    "graphConsistencyNote": "P0 activity 사슬 정합 보강: 기존 엣지는 보존하고 KOSHA Guide, 규제 조문, 위험요인 scope를 추가 표기.",
+    "legalLinkAugmentedAt": "2026-11-12",
+    "legalLinkAugmentNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종별 대책 근거와 대조해 빠진 조문·가이드 연결을 보강. 조문은 해당 작업의 가이드 본문 인용 또는 작업 특정성(소수 공종에만 쓰임)으로 재확인한 것만 넣음."
   },
   "description": "아스팔트·콘크리트 포장 작업. 고온 자재 + 차량 통행 + 화학물질 노출.",
   "hasHazard": [
@@ -63,12 +65,14 @@
   ],
   "regulatedBy": [
     "art:산안법:38",
-    "art:기준규칙:38"
+    "art:기준규칙:38",
+    "art:기준규칙:172"
   ],
   "guidedBy": [
     "doc:kosha_guide/C-50-2012",
     "doc:kosha_guide/G-40-2012",
-    "doc:kosha_guide/H-172-2015"
+    "doc:kosha_guide/H-172-2015",
+    "doc:kosha_guide/C-114-2020"
   ],
   "koshaArchiveFacets": [
     "facet:ctgr03/19"

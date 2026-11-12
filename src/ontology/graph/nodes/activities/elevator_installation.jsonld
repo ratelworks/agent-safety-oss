@@ -1,0 +1,75 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:elevator_installation",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "승강기 설치 작업",
+  "category": "machinery",
+  "jurisdiction": "KR",
+  "description": "승강로 가설작업대 설치·해체, 기계·가이드레일 설치, 승강로 내 작업.\n\n**관련 키워드**: 승강기, 엘리베이터, 승강로, 가이드레일, 승강로 작업대, 피트.",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "legalLinkAugmentedAt": "2026-11-12",
+    "legalLinkAugmentNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종 분류에 있으나 작업 노드가 없던 공종을 신설. 위험요인·조문·가이드 연결은 해당 공종의 재해유형 분포와 대책 근거에서 반복 확인된 것만 넣음. 현장 검토 전."
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:cave_in",
+    "hazard:fall_object"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:162"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/D-C-14-2026"
+  ],
+  "searchKeywords": [
+    "승강기",
+    "엘리베이터",
+    "승강로",
+    "가이드레일",
+    "승강로 작업대"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:cave_in",
+      "hazard:fall_object"
+    ],
+    "general": []
+  },
+  "hasWorkType": "cc:worktype/general",
+  "workTypeLabel": {
+    "ko": "일반 안전관리 작업",
+    "en": "General safety management work"
+  }
+}

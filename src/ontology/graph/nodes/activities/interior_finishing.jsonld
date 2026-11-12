@@ -1,0 +1,89 @@
+{
+  "@context": [
+    "../../context.jsonld",
+    {
+      "cc": "https://construction.ratelworks.org/ontology/v1/",
+      "hasWorkType": {
+        "@id": "cc:hasWorkType",
+        "@type": "@id"
+      },
+      "hasTask": {
+        "@id": "cc:hasTask",
+        "@type": "@id",
+        "@container": "@set"
+      },
+      "slug": "cc:slug",
+      "label": {
+        "@id": "schema:name",
+        "@container": "@language"
+      },
+      "workTypeLabel": {
+        "@id": "cc:workTypeLabel",
+        "@container": "@language"
+      },
+      "legalBasisLabel": {
+        "@id": "cc:legalBasisLabel",
+        "@container": "@language"
+      }
+    }
+  ],
+  "@id": "activity:interior_finishing",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "수장·내부마감 작업",
+  "category": "finishing",
+  "jurisdiction": "KR",
+  "description": "천장·벽체 수장, 경량철골 천장틀, 내장재 설치.\n\n**관련 키워드**: 수장, 내장공사, 내부마감, 경량철골 천장, 천장틀, 석고보드, 말비계, 이동식비계.",
+  "_meta": {
+    "createdAt": "2026-11-12",
+    "legalLinkAugmentedAt": "2026-11-12",
+    "legalLinkAugmentNote": "안전보건공단 산업안전 AI 어시스턴트(건설업)의 공종 분류에 있으나 작업 노드가 없던 공종을 신설. 위험요인·조문·가이드 연결은 해당 공종의 재해유형 분포와 대책 근거에서 반복 확인된 것만 넣음. 현장 검토 전."
+  },
+  "hasHazard": [
+    "hazard:fall_from_height",
+    "hazard:fall_object",
+    "hazard:crushing",
+    "hazard:trip_slip",
+    "hazard:fire",
+    "hazard:electric_shock"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:67",
+    "art:기준규칙:68",
+    "art:기준규칙:56",
+    "art:기준규칙:241",
+    "art:기준규칙:241의2",
+    "art:기준규칙:122",
+    "art:기준규칙:303"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-66-2016",
+    "doc:kosha_guide/C-17-2011"
+  ],
+  "searchKeywords": [
+    "수장",
+    "내장공사",
+    "내부마감",
+    "경량철골 천장",
+    "천장틀",
+    "석고보드"
+  ],
+  "hazardScope": {
+    "specific": [
+      "hazard:fall_from_height",
+      "hazard:fall_object",
+      "hazard:crushing",
+      "hazard:trip_slip",
+      "hazard:fire",
+      "hazard:electric_shock"
+    ],
+    "general": []
+  },
+  "hasWorkType": "cc:worktype/finishing",
+  "workTypeLabel": {
+    "ko": "마감 작업",
+    "en": "Finishing work"
+  }
+}

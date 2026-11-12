@@ -47,7 +47,7 @@ Human Layer     검토, 수정, 승인, 제출, 책임 판단
 | Contractor | 수급업체 | local profile + 도급 문서 |
 | WorkerRole / Person | 안전관리자, 현장소장, 관리감독자, 근로자대표 | local profile + 결재선 자동 채움 |
 | Equipment | 장비와 기계 | local profile + 작업계획서/점검표 연결 |
-| WorkActivity | 실제 작업 | <!-- INV:GRAPH_ACTIVITIES -->41<!-- /INV:GRAPH_ACTIVITIES -->개 activity node |
+| WorkActivity | 실제 작업 | <!-- INV:GRAPH_ACTIVITIES -->45<!-- /INV:GRAPH_ACTIVITIES -->개 activity node |
 | Hazard | 위험요인 | <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS -->개 hazard node |
 | Control | 통제대책과 보호구 | <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS -->개 control node, ERIC-PP 위계 |
 | LegalArticle | 법령 조문 | 1,306개 article node (산안법 영역 거의 전수 + 건진법 §62 안전관리 영역 4건) |
@@ -91,7 +91,7 @@ SafetyReport -> includes -> SafetyIssue
 
 - <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 MCP 도구가 검색, 조회, 문서, 검수, 현장 사이클, 로컬 저장을 포괄한다.
 - <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId 법정의무 마스터와 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId 양식 인덱스가 정합된다.
-- 운영 그래프는 <!-- INV:GRAPH_TOTAL -->3,375<!-- /INV:GRAPH_TOTAL --> 노드 (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) 와 약 <!-- INV:GRAPH_EDGES -->33,382<!-- /INV:GRAPH_EDGES --> 엣지로 중소 건설사 사용 범위에는 충분하다.
+- 운영 그래프는 <!-- INV:GRAPH_TOTAL -->3,379<!-- /INV:GRAPH_TOTAL --> 노드 (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) 와 약 <!-- INV:GRAPH_EDGES -->33,644<!-- /INV:GRAPH_EDGES --> 엣지로 중소 건설사 사용 범위에는 충분하다.
 - `ontology:operational`, `mcp:test:graph`, `audit:strict`가 통과한다.
 - 4개 필드 시나리오에서 29/29 단계가 통과한다.
 
