@@ -139,6 +139,12 @@ jobs:
           done
           echo "get_safety_law_article §38 원문 drift 없음 ✅"
 
+      - name: Graph reasoning · field question tests
+        run: |
+          # 그래프 추론·정합·공종 연결 시험과, 현장 말투 질문에 정답 조문이 나오는지 재는 시험
+          npm run mcp:test:graph
+          npm run mcp:test:questions
+
       - name: Smoke — analyze_construction_work_risks
         run: |
           out=$(node build/cli.js call analyze_construction_work_risks --inputJson '{"workType":"거푸집 해체"}' 2>/dev/null)

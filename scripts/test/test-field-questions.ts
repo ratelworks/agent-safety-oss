@@ -35,7 +35,7 @@ const TOOLS: { name: string; flag: string; label: string }[] = [
 /** 안전보건규칙을 가리키는 이름 — 번호만 같은 다른 법의 조문은 세지 않는다 */
 const RULE_NAME = "(?:산업안전보건기준에\\s*관한\\s*규칙|안전보건규칙|산안기준규칙|기준규칙)";
 /** 현장 브리핑에서 요약이 붙는 조문 구획의 제목과, 제목만 나오는 줄의 머리 */
-const TOP_SECTION_HEAD = "## 📖 법령 근거";
+const TOP_SECTION_HEADS = ["## 📖 법령 근거", "## 🔎 문장이 비슷한 조문"];
 const REST_LINE_HEAD = "- 그 밖의 관련 조문";
 /** 통과 기준(--min)을 재는 도구 — TOOLS 의 첫째(현장 브리핑) */
 const GATE_TOOL_INDEX = 0;
@@ -66,9 +66,9 @@ function hasArticle(text: string, ref: string): boolean {
 
 /** 현장 브리핑 글에서 요약이 붙는 조문 구획만 잘라낸다 (제목만 나오는 줄은 뺀다) */
 function topSection(text: string): string {
-  const start = text.indexOf(TOP_SECTION_HEAD);
-  if (start < 0) return "";
-  const rest = text.slice(start + TOP_SECTION_HEAD.length);
+  const head = TOP_SECTION_HEADS.find((h) => text.includes(h));
+  if (!head) return "";
+  const rest = text.slice(text.indexOf(head) + head.length);
   const end = rest.search(/\n## /);
   return (end < 0 ? rest : rest.slice(0, end))
     .split("\n")

@@ -321,24 +321,32 @@ async function main(): Promise<void> {
   }
   check("문장 검색 결과에 고시·지침 조문이 없다", notificationHits.length === 0, notificationHits.slice(0, 3).join(", "));
   const obligationText = (await fieldSafetyBriefingTool.handler({ workOrTopic: NOTIFICATION_QUERY })).content[0]?.text ?? "";
-  const obligationStart = obligationText.indexOf("## 📖 법령 근거");
-  const obligationSection = obligationStart < 0 ? "" : obligationText.slice(obligationStart).split("\n## ")[0];
+  // 조문 구획 — 이름으로 찾은 것이 있으면 "법령 근거", 없으면 "문장이 비슷한 조문"
+  const sectionOf = (text: string): string => {
+    const head = ["## 📖 법령 근거", "## 🔎 문장이 비슷한 조문"].find((h) => text.includes(h));
+    return head ? text.slice(text.indexOf(head)).split("\n## ")[0] : "";
+  };
+  const obligationSection = sectionOf(obligationText);
   const leaked: string[] = [];
   for (const iri of new Set(obligationSection.match(/art:[^\s:`*]+:[0-9의]+/g) ?? [])) {
     const node = await getNode(iri);
     if ((node as { legislationType?: string } | undefined)?.legislationType === "Notification") leaked.push(iri);
   }
   // 문장 검색이 아닌 길(낱말 겹침·그래프)로 지침이 들어오던 질문도 함께 본다
-  const sectionOf = (text: string): string => {
-    const at = text.indexOf("## 📖 법령 근거");
-    return at < 0 ? "" : text.slice(at).split("\n## ")[0];
-  };
   const otherSection = sectionOf((await fieldSafetyBriefingTool.handler({ workOrTopic: NOTIFICATION_QUERY_BY_NAME })).content[0]?.text ?? "");
   for (const iri of new Set(otherSection.match(/art:[^\s:`*]+:[0-9의]+/g) ?? [])) {
     const node = await getNode(iri);
     if ((node as { legislationType?: string } | undefined)?.legislationType === "Notification") leaked.push(iri);
   }
   check("현장 브리핑의 의무 조문 구획에 고시·지침이 없다", obligationSection.length > 0 && otherSection.length > 0 && leaked.length === 0, `구획 ${obligationSection.length}자·${otherSection.length}자, 섞인 것 ${leaked.join(", ") || 0}`);
+
+  // 작업·문서·공종·용어 사전 어디에도 안 걸린 질문은 "의무 조문"이라 하지 않고 비슷한 조문으로만 보여 준다 (벌칙도 붙이지 않는다)
+  const offTopic: string[] = [];
+  for (const q of ["점심 메뉴를 추천해 달라", "회의실 예약을 도와 달라", "오늘 날씨가 좋아서 기분이 좋다"]) {
+    const text = (await fieldSafetyBriefingTool.handler({ workOrTopic: q })).content[0]?.text ?? "";
+    if (text.includes("## 📖 법령 근거") || text.includes("## ⚖️") || !text.includes("관련 여부 확인 필요")) offTopic.push(q);
+  }
+  check("공사와 무관한 말에는 의무 조문·벌칙을 내지 않는다", offTopic.length === 0, offTopic.join(" / "));
 
   const subtaskCount = (await listNodesByType("ConstructionSubtask")).length;
   console.log(`\n공종 ${subtaskCount} · 단계 ${stepIds.length} · 위험요인 ${riskIds.length} · 대책 노드 ${measureBody.size} · 고시 장·절 ${chapters.length}`);

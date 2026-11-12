@@ -25,6 +25,10 @@ const FUSION_WEIGHT_GRAPH = 1;
 const FUSION_WEIGHT_SEARCH = 2;
 /** 고시·지침의 법령 종류 값 */
 const NOTIFICATION_TYPE = "Notification";
+const SIMILAR_SECTION_HEAD = "## 🔎 문장이 비슷한 조문 (관련 여부 확인 필요)";
+const SIMILAR_SECTION_NOTE = "작업·위험·문서 이름으로는 찾지 못해, 질문 문장과 글이 비슷한 조문만 보여 줍니다. 건설 안전과 관계없는 질문이면 맞지 않습니다.";
+const SIMILAR_MARK = " _(비슷한 문장)_";
+const SIMILAR_NOTE = "비슷한 문장 — 질문과 글이 비슷해서 찾은 조문입니다. 상황에 맞는지 확인하세요";
 const MAX_GUIDES = 5;
 const MAX_DOCS = 10;
 const ACTIVITY_THRESHOLD = 50;  // 활동 매칭 score 하한 (false positive 방지)
@@ -331,19 +335,31 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     .filter(x => x.score > 30 && x.node.userVisible !== false && !x.node.isAppendix)
     .sort((a, b) => b.score - a.score);
 
+  /** 작업·문서·공종·용어 사전·유해요인으로 이어져 들어온 조문 (글 겹침으로 들어온 것은 빼고) */
+  const anchoredIris = new Set(linkedArticleIris);
   for (const m of matchedArticles.slice(0, MAX_ARTICLES)) { linkedArticleIris.add(m.node["@id"] as string); reviewedArticleIris.add(m.node["@id"] as string); }
 
+  const searchOnlyIris = new Set<string>();
+  const searchSoleIris = new Set<string>();
   // 문장 검색 — 현장 말로 쓴 문장을 조문 제목·본문과 공종 자료의 현장 문장에 견준다
   const searchRank = new Map<string, number>();
   (await searchArticles(all, q, SEARCH_LIMIT)).forEach((hit, i) => {
     searchRank.set(hit.iri, i + 1);
+    // 다른 길(작업·문서·공종·용어 사전)로는 안 들어온 조문 — 글이 비슷할 뿐이라 따로 표시한다
+    if (!anchoredIris.has(hit.iri)) searchOnlyIris.add(hit.iri);
+    // 낱말 겹침으로도 안 들어온, 문장 검색 하나로만 들어온 조문 — 벌칙을 끌어오지 않는다
+    if (!linkedArticleIris.has(hit.iri)) searchSoleIris.add(hit.iri);
     linkedArticleIris.add(hit.iri);
     reviewedArticleIris.add(hit.iri);
   });
+  /** 질문이 작업·문서·공종·용어 사전 어디에도 걸리지 않았다 — 조문과 글이 겹친 것(낱말 겹침·문장 검색)만 있다 */
+  const unanchored = matchedActivities.length === 0 && matchedDocs.length === 0 && expandedIris.size === 0 && !subtask;
 
   // ─── 5. 매칭된 article 의 penalizedBy 자동 추가 ───
   const penaltyArticles = new Set<string>();
   for (const aIri of linkedArticleIris) {
+    // 문장 검색 하나로만 찾은 조문, 그리고 아무 이름에도 안 걸린 질문에서는 벌칙을 끌어오지 않는다
+    if (unanchored || searchSoleIris.has(aIri)) continue;
     const a = articles.find(x => x["@id"] === aIri);
     if (!a) continue;
     for (const p of (a.penalizedBy as string[] | undefined) ?? []) {
@@ -501,15 +517,21 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     if (obligationArticles.length < MAX_ARTICLES) obligationArticles.push(a!);
     else restArticles.push(a!);
   }
+  let similarShown = 0;
   if (obligationArticles.length > 0) {
-    out += `## 📖 법령 근거 (의무 조문)\n`;
+    out += unanchored ? `${SIMILAR_SECTION_HEAD}\n> ${SIMILAR_SECTION_NOTE}\n` : `## 📖 법령 근거 (의무 조문)\n`;
     for (const a of obligationArticles) {
       const desc = String(a!.description ?? "");
       const summary = desc.split("\n").find(l => l.trim().length > 20)?.trim().slice(0, 120) ?? "";
-      const mark = reviewMark(a!["@id"] as string);
+      let mark = reviewMark(a!["@id"] as string);
       if (mark) unreviewedShown += 1;
+      if (!unanchored && searchOnlyIris.has(a!["@id"] as string)) {
+        mark += SIMILAR_MARK;
+        similarShown += 1;
+      }
       out += `- **${a!["@id"]}** ${a!.title}${mark} — ${summary}\n`;
     }
+    if (similarShown > 0) out += `> ${SIMILAR_NOTE} (${similarShown}건)\n`;
     if (restArticles.length > 0) {
       const restText = restArticles.map((a) => {
         const mark = reviewMark(a["@id"] as string);
@@ -557,7 +579,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   }
 
   // 매칭 0건 처리
-  if (matchedActivities.length === 0 && matchedDocs.length === 0 && matchedArticles.length === 0 && expandedIris.size === 0) {
+  if (unanchored && obligationArticles.length === 0) {
     out += `매칭된 결과 없음. 다른 키워드로 시도해 보세요.\n`;
     out += `\n**제안 키워드**: "거푸집 해체", "비계 설치", "MSDS 등록", "추락방지", "재해 보고", "분기 정기교육", "위험성평가", "안전관리자 선임"\n`;
   } else {
@@ -569,7 +591,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
 export const fieldSafetyBriefingTool: ToolDefinition = {
   name: "field_safety_briefing",
-  description: "🏗️ 현장 안전 통합 brief — 작업명·위험·의무 토픽 한 줄 입력 → 위험요인·필수통제·법령근거·의무문서·KOSHA 가이드·**위반 시 처벌**까지 한 화면 요약. 현장소장(즉시 이해)·안전관리자(법령 인용) 페르소나별 정렬. **동의어 사전 28그룹** 자동 확장 ('분기'≈'정기'·'도료'≈'MSDS'·'사망'≈'중대재해'). 산안법·시행령·시행규칙·기준규칙·중처법·위험성평가-고시(번들 6 본문 + 중처법시행령 그래프 노드)·KOSHA Guide 본문 1,039건 (offline 번들)을 cover. 부칙·법무 전문 조항은 default 제외 (userVisible=false 필터).",
+  description: "🏗️ 현장 안전 통합 brief — 작업명·위험·의무 토픽 한 줄 입력 → 위험요인·필수통제·법령근거·의무문서·KOSHA 가이드·**위반 시 처벌**까지 한 화면 요약. 현장소장(즉시 이해)·안전관리자(법령 인용) 페르소나별 정렬. **현장 용어 사전** 자동 확장 ('분기'≈'정기'·'도료'≈'MSDS'·'사망'≈'중대재해') + 현장 말로 쓴 문장과 글이 비슷한 조문 검색. 산안법·시행령·시행규칙·기준규칙·중처법·위험성평가-고시(번들 6 본문 + 중처법시행령 그래프 노드)·KOSHA Guide 본문 1,039건 (offline 번들)을 cover. 부칙·법무 전문 조항은 default 제외 (userVisible=false 필터).",
   inputSchema,
   handler,
 };
