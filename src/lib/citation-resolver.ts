@@ -84,7 +84,8 @@ const OUTCOME_RANK: Record<CitationOutcome, number> = { confirmed: 0, unverifiab
 /** 인용 사이 글자에서 부연·항호·연결어를 걷어 내고 남는 것(법령명 후보) */
 function residue(text: string): { rest: string; hadSubItem: boolean; hadRange: boolean } {
   const withoutParens = text.replace(PARENTHETICAL, " ");
-  const hadSubItem = new RegExp(SUB_ITEM.source).test(withoutParens);
+  // 항·호는 괄호 안에 적혀 있어도 "대조하지 않음" 안내 대상이다
+  const hadSubItem = new RegExp(SUB_ITEM.source).test(text);
   const hadRange = RANGE_MARK.test(withoutParens);
   return { rest: withoutParens.replace(SUB_ITEM, " ").replace(CONNECTORS, " ").trim().replace(/\s+/g, " "), hadSubItem, hadRange };
 }
