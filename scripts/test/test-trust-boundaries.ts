@@ -78,6 +78,13 @@ const lawLookup = async (ref: string): Promise<boolean> => (await call("get_safe
 check("조문 조회: 제○조 표기를 읽음", await lawLookup("산안법 제38조"));
 check("조문 조회: 수록하지 않은 법령을 다른 법령으로 대신하지 않음", !(await lawLookup("건설산업기본법 제36조")) && !(await lawLookup("건설산업기본법 §36")));
 check("조문 조회: 이름이 비슷한 법령을 혼동하지 않음", !(await lawLookup("근로기준법 §38")));
+check("별표 뒤에 없는 조문이 오면 거절", (await resolveReference("산안기준규칙 별표 4, 산안법 제999조")).outcome === "not_found");
+check("조문 뒤에 확인 못 하는 별표가 오면 확인됨이 아님", (await resolveReference("산안법 제36조, 기준규칙 별표 999")).outcome !== "confirmed");
+check("조문과 별표를 함께 적어도 둘 다 확인", (await resolveReference("산안법 제36조, 산안기준규칙 별표 4")).outcome === "confirmed");
+check("읽지 못한 글자가 남으면 확인됨이 아님", (await resolveReference("산안법 제36조 그리고 어떤 고시")).outcome === "unverifiable");
+check("괄호 부연은 읽지 못한 글자로 치지 않음", (await resolveReference("산안법 제36조 (위험성평가의 실시)")).outcome === "confirmed");
+check("조문 제목을 덧붙인 표기는 확인됨", (await resolveReference("산안법 제36조 위험성평가의 실시")).outcome === "confirmed");
+check("법령명 없는 인용은 확인 불가", (await resolveReference("제36조")).outcome === "unverifiable");
 check("범위의 끝이 없는 조문이면 거절", (await resolveReference("산안법 제36조부터 제999조까지")).outcome === "not_found");
 check("나열한 조문 중 하나가 없으면 거절", (await resolveReference("산안법 제36조, 제999조")).outcome === "not_found");
 const range = await resolveReference("기준규칙 §338~§347");

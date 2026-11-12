@@ -12,8 +12,6 @@ import { ensureGraphBuilt, getNodeSync, listArticleIds } from "./graph-nodes-loa
 import { legalRefToIri } from "./article-iri-map.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
-/** "산안법 제36조의2", "기준규칙 §38", "산안기준규칙 별표 4" */
-const REFERENCE_PATTERN = /^(.*?)\s*(?:제\s*(\d+)\s*조(?:\s*의\s*(\d+))?|§\s*(\d+)(?:\s*의\s*(\d+))?|(별표\s*\d+(?:\s*\d+호)?))/;
 
 export type CitationOutcome = "confirmed" | "not_found" | "unverifiable";
 
@@ -72,58 +70,78 @@ export async function resolveCitation(law: string, article: string): Promise<Cit
   return { outcome: "unverifiable", reason: `${mapped.canonical} 은(는) 일부만 수록돼 있어 '${article}' 의 실존 여부를 확인할 수 없음 (법제처 원문 확인 필요)` };
 }
 
-/** 표기에서 조문 번호를 모두 뽑는다 — "제36조", "제37조의2", "§38" */
-const ARTICLE_TOKEN = /제\s*(\d+)\s*조(?:\s*의\s*(\d+))?|§\s*(\d+)(?:\s*의\s*(\d+))?/g;
+/** 인용 한 건 — 조문("제36조", "제37조의2", "§38") 또는 별표("별표 4", "별표 4 6호") */
+const CITATION_TOKEN = /제\s*(\d+)\s*조(?:\s*의\s*(\d+))?|§\s*(\d+)(?:\s*의\s*(\d+))?|(별표\s*\d+(?:\s*\d+호)?)/g;
 /** 항·호·목 표기 — 수록 자료가 조문 단위라 대조하지 않는다 */
-const SUB_ITEM = /제?\s*\d+\s*(항|호)|[①-⑳]|[가-하]목/;
-/** 범위 표기 — "부터 …까지", "내지", "~" */
-const RANGE_MARK = /부터|내지|~|∼|-\s*(?:제|§)/;
-const SUB_ITEM_GLOBAL = /제?\s*\d+\s*(항|호)|[①-⑳]|[가-하]목/g;
-/** 조문 사이를 잇는 말 — 법령명이 아니다 */
-const CONNECTORS = /부터|까지|내지|및|또는|와|과|[,·ㆍ~∼\-()\s]/g;
+const SUB_ITEM = /제?\s*\d+\s*(?:항|호)|[①-⑳]|[가-하]목/g;
+/** 괄호 안 부연(조문 제목 등) */
+const PARENTHETICAL = /\([^()]*\)/g;
+/** 인용 사이를 잇는 말과 부호 — 법령명이 아니다 */
+const CONNECTORS = /부터|까지|내지|및|또는|[,·ㆍ~∼\s]/g;
+const RANGE_MARK = /부터|내지|[~∼]/;
 const OUTCOME_RANK: Record<CitationOutcome, number> = { confirmed: 0, unverifiable: 1, not_found: 2 };
+
+/** 인용 사이 글자에서 부연·항호·연결어를 걷어 내고 남는 것(법령명 후보) */
+function residue(text: string): { rest: string; hadSubItem: boolean; hadRange: boolean } {
+  const withoutParens = text.replace(PARENTHETICAL, " ");
+  const hadSubItem = new RegExp(SUB_ITEM.source).test(withoutParens);
+  const hadRange = RANGE_MARK.test(withoutParens);
+  return { rest: withoutParens.replace(SUB_ITEM, " ").replace(CONNECTORS, " ").trim().replace(/\s+/g, " "), hadSubItem, hadRange };
+}
 
 /**
  * "산안법 제36조" 같은 한 줄 표기를 읽어 판정한다.
- * 표기에 조문이 여러 개(나열·범위의 양 끝)면 모두 확인해 가장 나쁜 결과를 돌려준다.
- * 범위의 중간 조문과 항·호는 대조하지 않으며, 그 사실을 detailNote 로 알린다.
+ *
+ * 원칙: 표기 전체를 법령명·조문·별표로 빠짐없이 읽었을 때만 confirmed 를 낸다.
+ *   - 인용(조문·별표)마다 바로 앞에 적힌 법령명을 따른다. 법령명 없이 이어 적은 인용만 앞 법령을 물려받는다.
+ *   - 인용이 여러 개면 모두 확인해 가장 나쁜 결과를 돌려준다.
+ *   - 읽지 못한 글자가 남으면 unverifiable (일부만 확인하고 전체를 확인됨으로 하지 않는다).
+ *   - 범위의 중간 조문과 항·호는 대조하지 않으며 detailNote 로 알린다.
  */
 export async function resolveReference(reference: string): Promise<CitationResolution> {
   const text = reference.trim();
-  const m = REFERENCE_PATTERN.exec(text);
-  if (!m) return { outcome: "unverifiable", reason: `'${reference}' 에서 법령명과 조문 번호를 읽지 못함` };
-  const law = m[1].trim();
-  if (!law) return { outcome: "unverifiable", reason: `'${reference}' 에 법령명이 없음` };
-  if (m[6]) return resolveCitation(law, m[6]);
-
-  // 조문마다 바로 앞에 적힌 법령명을 따른다 — "산안법 제36조, 기준규칙 제38조".
-  // 법령명 없이 이어 적은 조문("제36조, 제38조")만 앞 법령을 물려받는다.
-  const rest = text;
-  const articles: string[] = [];
   let worst: CitationResolution | null = null;
   let first: CitationResolution | null = null;
   let currentLaw = "";
   let cursor = 0;
-  const seen = new Set<string>();
-  for (const t of text.matchAll(ARTICLE_TOKEN)) {
-    const between = text.slice(cursor, t.index).replace(SUB_ITEM_GLOBAL, " ").replace(CONNECTORS, " ").trim();
-    cursor = (t.index ?? 0) + t[0].length;
-    if (between !== "") currentLaw = between;
-    const number = t[1] ?? t[3];
-    const sub = t[2] ?? t[4];
-    const article = sub ? `§${number}의${sub}` : `§${number}`;
-    articles.push(article);
-    const key = `${currentLaw}|${article}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    const resolved: CitationResolution = currentLaw === "" ? { outcome: "unverifiable", reason: `'${reference}' 에 법령명이 없음` } : await resolveCitation(currentLaw, article);
+  let count = 0;
+  let hadSubItem = false;
+  let hadRange = false;
+  let lastTitle = "";
+  const consider = (resolved: CitationResolution): void => {
     first ??= resolved;
     if (!worst || OUTCOME_RANK[resolved.outcome] > OUTCOME_RANK[worst.outcome]) worst = resolved;
+  };
+
+  for (const t of text.matchAll(CITATION_TOKEN)) {
+    const between = residue(text.slice(cursor, t.index));
+    cursor = (t.index ?? 0) + t[0].length;
+    hadSubItem ||= between.hadSubItem;
+    hadRange ||= between.hadRange;
+    if (between.rest !== "") currentLaw = between.rest;
+    count += 1;
+    const number = t[1] ?? t[3];
+    const sub = t[2] ?? t[4];
+    const article = number ? (sub ? `§${number}의${sub}` : `§${number}`) : t[5];
+    const resolved: CitationResolution = currentLaw === "" ? { outcome: "unverifiable", reason: `'${reference}' 에 법령명이 없음` } : await resolveCitation(currentLaw, article);
+    lastTitle = resolved.title ?? "";
+    consider(resolved);
   }
-  if (!worst || !first) return { outcome: "unverifiable", reason: `'${reference}' 에서 조문 번호를 읽지 못함` };
+  if (count === 0) return { outcome: "unverifiable", reason: `'${reference}' 에서 법령명과 조문 번호를 읽지 못함` };
+
+  const tail = residue(text.slice(cursor));
+  hadSubItem ||= tail.hadSubItem;
+  // 마지막 인용 뒤에 그 조문의 제목을 적은 것은 읽은 것으로 본다 ("산안법 제36조 위험성평가의 실시")
+  const compact = (v: string): string => v.replace(/\s+/g, "");
+  const isTitle = lastTitle !== "" && compact(lastTitle).includes(compact(tail.rest));
+  if (tail.rest !== "" && !isTitle) consider({ outcome: "unverifiable", reason: `'${reference}' 의 '${tail.rest}' 부분을 읽지 못함` });
+
+  const settled = worst as CitationResolution | null;
+  const head = first as CitationResolution | null;
+  if (!settled || !head) return { outcome: "unverifiable", reason: `'${reference}' 에서 조문 번호를 읽지 못함` };
   const notes: string[] = [];
-  if (RANGE_MARK.test(rest) && articles.length > 1) notes.push("범위의 양 끝 조문만 대조함(중간 조문은 대조하지 않음)");
-  if (SUB_ITEM.test(rest.replace(ARTICLE_TOKEN, ""))) notes.push("항·호는 대조하지 않음(조문 단위로만 확인)");
-  const result = worst.outcome === "confirmed" ? first : worst;
+  if (hadRange && count > 1) notes.push("범위의 양 끝 조문만 대조함(중간 조문은 대조하지 않음)");
+  if (hadSubItem) notes.push("항·호는 대조하지 않음(조문 단위로만 확인)");
+  const result = settled.outcome === "confirmed" ? head : settled;
   return notes.length > 0 ? { ...result, detailNote: notes.join(" · ") } : result;
 }
