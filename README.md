@@ -85,7 +85,7 @@ Node.js 22.12 이상이 필요합니다 ([nodejs.org](https://nodejs.org)). 환�
 
 ### A. AI 비서에 연결 — Claude Desktop / OpenAI Codex CLI
 
-> **"AI 비서 도구 연결 표준" (MCP) 을 지원하는 앱**의 설정 파일에 아래 한 블록을 추가하면 끝납니다. <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 도구가 모두 동작합니다 (<!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개는 인터넷 없이 동작, <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개만 공공 OpenAPI 키 필요).
+> **"AI 비서 도구 연결 표준" (MCP) 을 지원하는 앱**의 설정 파일에 아래 한 블록을 추가하면 끝납니다. <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 도구가 모두 동작합니다 (<!-- INV:TOOLS_KEYLESS -->85<!-- /INV:TOOLS_KEYLESS -->개는 API 키 없이 동작, <!-- INV:TOOLS_KEYREQ -->7<!-- /INV:TOOLS_KEYREQ -->개만 공공 OpenAPI 키 필요).
 
 **Claude Desktop (JSON 설정)** — 설정 파일에 다음을 추가:
 
