@@ -174,7 +174,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 interface StepTopics {
   group: string;
   work: string;
-  /** 작업명에 단계 이름이 들어 있으면 그 단계 (예: "강관비계 조립" → 조립) */
+  /** 작업명에 단계 이름이 들어 있으면 그 단계들 (예: "강관비계 조립 및 해체" → 조립·해체) */
   focusStep?: string;
   steps: Array<{
     name: string;
@@ -187,15 +187,15 @@ interface StepTopics {
 function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
   const labelTokens = label.split(/[\s.,()·]+/).filter((t) => t.length >= 2);
   const workName = ws.work.replace(/\s/g, "");
-  const focus = ws.steps.find((step) =>
+  const focused = ws.steps.filter((step) =>
     labelTokens.some((t) => !workName.includes(t) && step.name.includes(t)),
   );
-  const chosen = focus ? [focus] : ws.steps;
-  const maxBasis = focus ? MAX_STEP_BASIS_FOCUSED : MAX_STEP_BASIS_OVERVIEW;
+  const chosen = focused.length > 0 ? focused : ws.steps;
+  const maxBasis = focused.length > 0 ? MAX_STEP_BASIS_FOCUSED : MAX_STEP_BASIS_OVERVIEW;
   return {
     group: ws.group,
     work: ws.work,
-    ...(focus ? { focusStep: focus.name } : {}),
+    ...(focused.length > 0 ? { focusStep: focused.map((step) => step.name).join("·") } : {}),
     steps: chosen.map((step) => ({
       name: step.name,
       hazards: step.hazards.map((h) => ({

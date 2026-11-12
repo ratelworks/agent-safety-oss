@@ -39,7 +39,7 @@ import { COMMON_RESPONSE_META } from "../config/constants.js";
 import { kstToday } from "../lib/datetime-kst.js";
 import { getWorkSteps } from "../lib/work-steps.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
-import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput } from "../lib/doclang-serializer.js";
+import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput, type WorkStepTable } from "../lib/doclang-serializer.js";
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 const WORK_STEP_BASIS_PER_ROW = 3;
@@ -588,6 +588,7 @@ async function renderGeneric(
   legalBodyByIri: Map<string, string | undefined>,
   // decision 006 — 행정성 문서로 위험 폴백이 차단됐는지 (hazards 비었을 때 메시지 결정용)
   hazardFallbackSuppressed: boolean = false,
+  workStepTable?: WorkStepTable,
 ): Promise<string> {
   const d = (input.draft ?? {}) as Record<string, any>;
   const metadata = (d.metadata ?? {}) as Record<string, any>;
@@ -779,37 +780,17 @@ async function renderGeneric(
   }
   lines.push("");
 
-  // 작업 단계별 위험요인·근거 — 초안에 작업명이 있고 작업을 다루는 문서일 때만 붙인다.
-  // 위의 위험 요소 표는 문서 종류에 묶인 것이라 작업이 무엇이든 같다. 이 구획이 그 작업의 단계별 내용을 채운다.
-  const draftWorkName = [d.workName, d.workType, d["작업명"], d.work, metadata.workName].find(
-    (v): v is string => typeof v === "string" && v.trim().length > 0,
-  );
-  if (draftWorkName && !hazardFallbackSuppressed) {
-    const workSteps = await getWorkSteps(draftWorkName);
-    if (workSteps) {
-      const ws = workSteps.result;
-      lines.push(`## 작업 단계별 위험요인·근거 — ${ws.work}`);
-      lines.push("");
-      lines.push(`| 단계 | 재해유형 | 근거 (대책 위계) |`);
-      lines.push(`|---|---|---|`);
-      for (const step of ws.steps) {
-        for (const h of step.hazards) {
-          const basis = h.basis
-            .slice(0, WORK_STEP_BASIS_PER_ROW)
-            .map((x) => {
-              const title = x.kind === "kosha_guide" && x.text ? x.text.replace(/^[\d.]+\s+/, "") : x.title;
-              return `${x.ref} ${title}${x.controlLevel ? ` (${x.controlLevel})` : ""}`.trim();
-            })
-            .join("<br>");
-          lines.push(`| ${step.name} | ${h.hazardLabel} | ${basis} |`);
-        }
-      }
-      lines.push("");
-      lines.push(
-        `> 공종의 작업 단계마다 살필 재해유형과 근거를 연결한 참고 자료입니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다.`,
-      );
-      lines.push("");
-    }
+  // 작업 단계별 위험요인·근거 — 위의 위험 요소 표는 문서 종류에 묶인 것이라 작업이 무엇이든 같다.
+  // 이 구획이 그 작업의 단계별 내용을 채운다 (초안에 작업명이 있고 작업을 다루는 문서일 때만).
+  if (workStepTable) {
+    lines.push(`## ${workStepTable.title}`);
+    lines.push("");
+    lines.push(`| ${workStepTable.headers.join(" | ")} |`);
+    lines.push(`|---|---|---|`);
+    for (const row of workStepTable.rows) lines.push(`| ${row[0]} | ${row[1]} | ${row[2].join("<br>")} |`);
+    lines.push("");
+    lines.push(`> ${workStepTable.notice}`);
+    lines.push("");
   }
 
   // 권장 안전대책 (ERIC-PP) — 위험요소와 직접 연관된 control만 우선 표시
@@ -951,6 +932,40 @@ interface DocumentRenderContext {
   missingRequiredCount: number;
   /** 필수 항목 미작성 외의 자동 검사 오류 수 (날짜·결재선·화학물질 코드 등) */
   otherErrorCount: number;
+  /** 초안의 작업명에 맞는 공종의 단계별 재해유형·근거 표 (없으면 구획을 넣지 않는다) */
+  workStepTable?: WorkStepTable;
+}
+
+/** 초안의 작업명으로 공종을 찾아 단계별 표를 만든다. 행정 문서이거나 작업명·공종이 없으면 undefined. */
+async function buildWorkStepTable(
+  draft: Record<string, unknown>,
+  hazardFallbackSuppressed: boolean,
+): Promise<WorkStepTable | undefined> {
+  if (hazardFallbackSuppressed) return undefined;
+  const metadata = (draft.metadata ?? {}) as Record<string, unknown>;
+  const workName = [draft.workName, draft.workType, draft["작업명"], draft.work, metadata.workName].find(
+    (v): v is string => typeof v === "string" && v.trim().length > 0,
+  );
+  if (!workName) return undefined;
+  const found = await getWorkSteps(workName);
+  if (!found) return undefined;
+  const rows: WorkStepTable["rows"] = [];
+  for (const step of found.result.steps) {
+    for (const h of step.hazards) {
+      const basis = h.basis.slice(0, WORK_STEP_BASIS_PER_ROW).map((x) => {
+        const title = x.kind === "kosha_guide" && x.text ? x.text.replace(/^[\d.]+\s+/, "") : x.title;
+        return `${x.ref} ${title}${x.controlLevel ? ` (${x.controlLevel})` : ""}`.trim();
+      });
+      rows.push([step.name, h.hazardLabel, basis]);
+    }
+  }
+  return {
+    title: `작업 단계별 위험요인·근거 — ${found.result.work}`,
+    headers: ["단계", "재해유형", "근거 (대책 위계)"],
+    rows,
+    notice:
+      "공종의 작업 단계마다 살필 재해유형과 근거를 연결한 참고 자료입니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다.",
+  };
 }
 
 const SAFETY_DISCLAIMER = `본 문서는 agent-safety-oss 가 생성한 초안입니다. 결재·제출 전에 안전관리자 본인이 본문·법령 인용·필수 항목을 직접 검토하고, review_safety_document 도구로 환각·누락 확인, 중대재해·산업재해 관련 사항은 법무·노무 협의가 필요합니다. 작성 주체는 안전관리자이며 본 OSS 는 작성 보조만 수행합니다.`;
@@ -998,6 +1013,7 @@ async function renderMarkdownOutput(context: DocumentRenderContext): Promise<str
     context.directControlIris,
     context.legalBodyByIri,
     context.hazardFallbackSuppressed,
+    context.workStepTable,
   );
   return (
     renderUsabilityHeader(context.missingRequiredCount, context.otherErrorCount) +
@@ -1021,6 +1037,7 @@ function renderDoclangOutput(context: DocumentRenderContext): string {
     legalBodyByIri: context.legalBodyByIri,
     hazardFallbackSuppressed: context.hazardFallbackSuppressed,
     documentCategory: context.documentCategory,
+    workStepTable: context.workStepTable,
     missingRequiredCount: context.missingRequiredCount,
     statusText,
     safetyDisclaimer: SAFETY_DISCLAIMER,
@@ -1181,6 +1198,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     documentCategory,
     missingRequiredCount,
     otherErrorCount,
+    workStepTable: await buildWorkStepTable((input.draft ?? {}) as Record<string, unknown>, hazardFallbackSuppressed),
   };
   const markdownBody = await DOCUMENT_RENDERERS.md(renderContext);
   let hwpxFile: HwpxExportResult | undefined;

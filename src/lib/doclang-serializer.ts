@@ -152,6 +152,14 @@ export interface DoclangControlInfo {
   ericLevel: number;
 }
 
+/** 작업 단계별 재해유형·근거 표 — 행은 [단계, 재해유형, 근거 목록] */
+export interface WorkStepTable {
+  title: string;
+  headers: [string, string, string];
+  rows: Array<[string, string, string[]]>;
+  notice: string;
+}
+
 export interface SafetyDocumentDoclangInput {
   document: DocumentNode;
   draft: Record<string, unknown>;
@@ -164,6 +172,7 @@ export interface SafetyDocumentDoclangInput {
   hazardFallbackSuppressed: boolean;
   documentCategory: string;
   missingRequiredCount: number;
+  workStepTable?: WorkStepTable;
   statusText?: string;
   safetyDisclaimer?: string;
 }
@@ -581,6 +590,16 @@ function renderHazards(input: SafetyDocumentDoclangInput): string {
   ].join("\n");
 }
 
+function renderWorkSteps(input: SafetyDocumentDoclangInput): string {
+  const t = input.workStepTable;
+  if (!t) return "";
+  return [
+    heading(2, t.title),
+    simpleTable(t.title, t.headers, t.rows.map((row) => [row[0], row[1], row[2].join(" / ")])),
+    textElement(t.notice),
+  ].join("\n");
+}
+
 function renderControls(input: SafetyDocumentDoclangInput): string {
   const headingXml = heading(2, "권장 안전대책 (ERIC-PP 위계 — 그래프 추론)");
   if (input.controls.length === 0) return [headingXml, textElement("(그래프 매핑된 Control 없음)")].join("\n");
@@ -686,6 +705,7 @@ export function serializeSafetyDocumentToDoclang(input: SafetyDocumentDoclangInp
     renderWorkConditions(draft),
     ...genericSections.map((section, index) => renderSection(index + 1, section, draft)),
     renderHazards(input),
+    renderWorkSteps(input),
     renderControls(input),
     renderKosha(input),
     renderLegalBasis(input),
