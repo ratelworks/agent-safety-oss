@@ -222,7 +222,7 @@ function main(): void {
     console.log(`        ${q.description}`);
     console.log(`        actual size=${r.actual.length}`);
     console.log(`        recall (mustInclude 포함률):   ${(r.recall * 100).toFixed(0)}% (${q.mustInclude.length - r.missing.length}/${q.mustInclude.length})`);
-    console.log(`        precision (mustExclude 회피): ${(r.precisionDomain * 100).toFixed(0)}% (${(q.mustExclude?.length ?? 0) - r.violations.length}/${q.mustExclude?.length ?? 0})`);
+    console.log(`        금지 항목 회피율 (mustExclude — 결과 전체의 정밀도 아님): ${(r.precisionDomain * 100).toFixed(0)}% (${(q.mustExclude?.length ?? 0) - r.violations.length}/${q.mustExclude?.length ?? 0})`);
     if (r.missing.length > 0) console.log(`        ❌ missing: ${r.missing.join(", ")}`);
     if (r.violations.length > 0) console.log(`        ⚠️  도메인 위반: ${r.violations.join(", ")}`);
     console.log("");

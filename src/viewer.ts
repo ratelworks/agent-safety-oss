@@ -56,6 +56,30 @@ const FORMS_DIR_AUTO = firstExisting(
   resolve(ROOT, "src", "ontology", "forms", "auto"),
 );
 const PORT = Number(process.env.PORT ?? 5174);
+/** 이 컴퓨터 안에서만 접속을 받는다 — 같은 네트워크의 다른 기기에 열지 않는다 */
+const HOST = "127.0.0.1";
+/** 요청 본문 상한 (1 MiB) */
+const MAX_BODY_BYTES = 1024 * 1024;
+const LOOPBACK_HOSTNAMES = ["localhost", "127.0.0.1", "[::1]"];
+
+class BodyTooLargeError extends Error {}
+
+/**
+ * 요청을 거절할 사유를 돌려준다(받아들이면 null).
+ *   - Host 가 이 컴퓨터 주소가 아니면 거절 — 다른 이름으로 이 서버를 가리키게 하는 접근(DNS 리바인딩) 차단
+ *   - Origin 이 있는데 이 화면의 주소가 아니면 거절 — 다른 웹 페이지가 저장·초기화를 요청하는 것 차단
+ *   - 브라우저가 교차 사이트 요청이라고 알린 경우 거절
+ */
+export function requestRejection(
+  headers: { host?: string; origin?: string; "sec-fetch-site"?: string | string[] },
+  port: number,
+): string | null {
+  const allowedHosts = LOOPBACK_HOSTNAMES.map((h) => `${h}:${port}`);
+  if (!headers.host || !allowedHosts.includes(headers.host.toLowerCase())) return "허용되지 않은 Host";
+  if (headers.origin !== undefined && !allowedHosts.some((h) => headers.origin === `http://${h}`)) return "허용되지 않은 Origin";
+  if (headers["sec-fetch-site"] === "cross-site") return "교차 사이트 요청";
+  return null;
+}
 
 interface MasterDoc {
   docId: string;
@@ -1291,6 +1315,7 @@ function stripGeneratedNoise(text) {
 
     // 개발자용 결재 경고
     if (line.includes('🚫') && line.includes('결재 사용 불가')) continue;
+    if (line.includes('✅') && line.includes('자동 검사 통과')) continue;
     // LLM 용 빈칸 작성 가이드 진입
     // 작성 가이드 인용 블록 — 입력 영역에 위치할 가이드 메타 (출력에서 제거)
     if (line.includes('📝') && line.includes('작성 가이드')) { skipBlock = true; continue; }
@@ -1324,6 +1349,36 @@ function stripGeneratedNoise(text) {
   return out.join('\\n').replace(new RegExp('\\\\n{3,}', 'g'), '\\n\\n').trim();
 }
 
+// 미리보기에 넣기 전 HTML 정화 — 허용한 태그·속성만 남긴다. 그 밖의 태그는 글자로 보여 주고,
+// 이벤트 속성(on...)과 http(s)·mailto 가 아닌 링크는 지운다. template 안에서 다루므로 스크립트가 실행되지 않는다.
+const SAFE_TAGS = new Set(['A','B','BLOCKQUOTE','BR','CODE','DEL','DIV','EM','H1','H2','H3','H4','H5','H6','HR','I','INPUT','LI','OL','P','PRE','S','SPAN','STRONG','TABLE','TBODY','TD','TH','THEAD','TR','UL']);
+const SAFE_ATTRS = new Set(['align','checked','class','colspan','disabled','href','rowspan','start','title','type']);
+function isSafeUrl(value) {
+  const v = String(value).trim().toLowerCase();
+  return v.startsWith('http://') || v.startsWith('https://') || v.startsWith('mailto:') || v.startsWith('#');
+}
+function sanitizeHtml(html) {
+  const tpl = document.createElement('template');
+  tpl.innerHTML = String(html == null ? '' : html);
+  const walk = (parent) => {
+    for (const el of Array.from(parent.children)) {
+      const isCheckbox = el.tagName === 'INPUT' && String(el.getAttribute('type')).toLowerCase() === 'checkbox';
+      if (!SAFE_TAGS.has(el.tagName) || (el.tagName === 'INPUT' && !isCheckbox)) {
+        el.replaceWith(document.createTextNode(el.outerHTML));
+        continue;
+      }
+      for (const attr of Array.from(el.attributes)) {
+        const name = attr.name.toLowerCase();
+        if (!SAFE_ATTRS.has(name) || (name === 'href' && !isSafeUrl(attr.value))) el.removeAttribute(attr.name);
+      }
+      if (el.tagName === 'A') { el.setAttribute('rel', 'noopener noreferrer'); el.setAttribute('target', '_blank'); }
+      walk(el);
+    }
+  };
+  walk(tpl.content);
+  return tpl.innerHTML;
+}
+
 // 마크다운 본문을 HTML 양식으로 렌더 — marked CDN 사용, 미로드 시 raw 폴백
 function renderMarkdownPreview(rawMd) {
   // 1) 법령 기호 한국어화  2) 개발자/도구 메타 제거 (결재용 양식 가독성)
@@ -1331,7 +1386,7 @@ function renderMarkdownPreview(rawMd) {
   if (typeof marked !== 'undefined' && marked && typeof marked.parse === 'function') {
     try {
       marked.setOptions({ gfm: true, breaks: false });
-      return '<div class="markdown">' + marked.parse(ko) + '</div>';
+      return '<div class="markdown">' + sanitizeHtml(marked.parse(ko)) + '</div>';
     } catch (e) {
       // 파싱 실패 시 raw 폴백
     }
@@ -1798,14 +1853,36 @@ function send(res: ServerResponse, status: number, contentType: string, body: st
 }
 
 function readBody(req: IncomingMessage): Promise<string> {
-  return new Promise((resolve) => {
-    let data = "";
-    req.on("data", (c) => (data += c));
-    req.on("end", () => resolve(data));
+  return new Promise((resolve, reject) => {
+    const chunks: Buffer[] = [];
+    let size = 0;
+    let tooLarge = false;
+    req.on("data", (c: Buffer) => {
+      if (tooLarge) return; // 상한을 넘은 뒤의 본문은 버린다
+      size += c.length;
+      if (size > MAX_BODY_BYTES) {
+        tooLarge = true;
+        chunks.length = 0;
+        return;
+      }
+      chunks.push(c);
+    });
+    req.on("end", () => (tooLarge ? reject(new BodyTooLargeError()) : resolve(Buffer.concat(chunks).toString("utf8"))));
+    req.on("error", reject);
   });
 }
 
-const server = createServer(async (req, res) => {
+const server = createServer((req, res) => {
+  handleRequest(req, res).catch((err: unknown) => {
+    if (res.headersSent) return res.end();
+    if (err instanceof BodyTooLargeError) return send(res, 413, "application/json", JSON.stringify({ ok: false, reason: "요청 본문이 너무 큽니다" }));
+    send(res, 500, "application/json", JSON.stringify({ ok: false, reason: "요청을 처리하지 못했습니다" }));
+  });
+});
+
+async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  const rejection = requestRejection(req.headers, PORT);
+  if (rejection) return send(res, 403, "application/json", JSON.stringify({ ok: false, reason: rejection }));
   const url = new URL(req.url ?? "/", `http://localhost:${PORT}`);
 
   if (url.pathname === "/" || url.pathname === "/index.html") {
@@ -1982,7 +2059,7 @@ const server = createServer(async (req, res) => {
   }
 
   send(res, 404, "text/plain", "Not Found");
-});
+}
 
 // 자동 브라우저 오픈 — macOS / Windows / Linux 크로스플랫폼.
 // AGENT_SAFETY_NO_OPEN=1 이면 건너뜀 (CI·헤드리스·원격 서버 환경 배려).
@@ -2016,7 +2093,7 @@ export function startViewer(): void {
     }
     throw err;
   });
-  server.listen(PORT, () => {
+  server.listen(PORT, HOST, () => {
     const url = `http://localhost:${PORT}`;
     console.log(`\n🛡  Agent Safety OSS — A2UI 폼 Viewer`);
     console.log(`    ${url}`);

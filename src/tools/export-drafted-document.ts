@@ -160,7 +160,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       title: findDoc(args.docId)?.title ?? args.docId,
       nextActions: [
         "HTML 결과를 브라우저로 열어 인쇄 → PDF 변환 가능",
-        "HWPX 변환은 별도 dev/oss/Agent_HWPX 또는 한글 직접 사용",
+        "HWPX(한글) 파일은 이 도구가 만들지 않습니다 — HTML 을 한글에서 열어 저장하거나 별도 HWPX 변환 도구를 쓰세요",
         `\`get_retention_status({docId: \"${args.docId}\", compileDate: \"YYYY-MM-DD\"})\` 로 보관·갱신 추적`,
       ],
     },
@@ -171,7 +171,7 @@ export const exportDraftedDocumentTool: ToolDefinition = {
   name: "export_drafted_document",
   title: "작성문서 출력 (HTML / Markdown)",
   description:
-    "draft 를 표현 포맷(html/markdown)으로 결정론적 변환. 결재선·메타·법령근거 자동 포함. 의존성 0 (Node 표준만). PDF 는 HTML → 브라우저 인쇄. HWPX 는 Agent_HWPX 별도.",
+    "draft 를 표현 포맷(html/markdown)으로 결정론적 변환. 결재선·메타·법령근거 자동 포함. 의존성 0 (Node 표준만). PDF 는 HTML → 브라우저 인쇄. HWPX(한글) 파일은 만들지 않음.",
   inputSchema,
   handler,
 };

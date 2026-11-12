@@ -162,6 +162,11 @@ export function validateApprovalChain(
     issues.push({ field, severity: "error", message: "결재선 미작성" });
     return issues;
   }
+  // 목록이 아닌 값(문자열 등)이 들어오면 형식 오류로 알린다 — 처리 중 실패하지 않도록
+  if (!Array.isArray(chain) || chain.some((c) => !c || typeof c !== "object" || typeof c.role !== "string")) {
+    issues.push({ field, severity: "error", message: "결재선 형식 오류 — {role, name} 항목의 목록이어야 함" });
+    return issues;
+  }
   // 최소 사업주 + 관리감독자
   const roles = chain.map((c) => c.role);
   if (!roles.some((r) => r.includes("사업주") || r.includes("대표"))) {

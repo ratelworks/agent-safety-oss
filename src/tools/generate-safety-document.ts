@@ -900,15 +900,30 @@ interface DocumentRenderContext {
   hazardFallbackSuppressed: boolean;
   documentCategory: string;
   missingRequiredCount: number;
+  /** 필수 항목 미작성 외의 자동 검사 오류 수 (날짜·결재선·화학물질 코드 등) */
+  otherErrorCount: number;
 }
 
 const SAFETY_DISCLAIMER = `본 문서는 agent-safety-oss 가 생성한 초안입니다. 결재·제출 전에 안전관리자 본인이 본문·법령 인용·필수 항목을 직접 검토하고, review_safety_document 도구로 환각·누락 확인, 중대재해·산업재해 관련 사항은 법무·노무 협의가 필요합니다. 작성 주체는 안전관리자이며 본 OSS 는 작성 보조만 수행합니다.`;
 const MARKDOWN_SAFETY_DISCLAIMER = `\n\n---\n\n> ℹ️ **본 문서는 agent-safety-oss 가 생성한 초안입니다.** 결재·제출 전에 (1) 안전관리자 본인이 본문·법령 인용·필수 항목을 직접 검토하고, (2) \`review_safety_document\` 도구로 환각·누락 확인, (3) 중대재해·산업재해 관련 사항은 법무·노무 협의가 필요합니다. **작성 주체는 안전관리자이며 본 OSS 는 작성 보조만 수행합니다.**\n`;
 
-function renderUsabilityHeader(missingRequiredCount: number): string {
-  return missingRequiredCount > 0
-    ? `> 🚫 **결재 사용 불가** — 필수 항목 ${missingRequiredCount}건 미작성. 미작성 항목은 \`structuredContent.validation.issues\` 참조. 결재 전 반드시 보강.\n\n`
-    : `> ✅ **필수 항목 모두 작성됨** — 결재 가능 (단 결재선 서명·날짜 별도 확인).\n\n`;
+/** 자동 검사 상태 문구 — 통과해도 "결재 가능"이라고 하지 않는다(담당자 검토·서명은 자동 검사 범위 밖) */
+function usabilityStatusText(missingRequiredCount: number, otherErrorCount: number): string {
+  if (missingRequiredCount > 0) {
+    return `결재 사용 불가 — 필수 항목 ${missingRequiredCount}건 미작성${otherErrorCount > 0 ? `, 그 밖의 자동 검사 오류 ${otherErrorCount}건` : ""}. 결재 전 반드시 보강.`;
+  }
+  if (otherErrorCount > 0) {
+    return `결재 사용 불가 — 필수 항목은 모두 작성됐으나 자동 검사 오류 ${otherErrorCount}건. 결재 전 반드시 수정.`;
+  }
+  return "필수 항목 모두 작성됨 · 자동 검사 통과 — 담당자 검토와 결재선 서명·날짜 확인이 남아 있습니다.";
+}
+
+function renderUsabilityHeader(missingRequiredCount: number, otherErrorCount: number): string {
+  const blocked = missingRequiredCount > 0 || otherErrorCount > 0;
+  const text = usabilityStatusText(missingRequiredCount, otherErrorCount);
+  return blocked
+    ? `> 🚫 **${text.replace(" — ", "** — ")} 항목은 \`structuredContent.validation.issues\` 참조.\n\n`
+    : `> ✅ **${text.replace(" — ", "** — ")}\n\n`;
 }
 
 async function renderMarkdownOutput(context: DocumentRenderContext): Promise<string> {
@@ -923,7 +938,7 @@ async function renderMarkdownOutput(context: DocumentRenderContext): Promise<str
     context.hazardFallbackSuppressed,
   );
   return (
-    renderUsabilityHeader(context.missingRequiredCount) +
+    renderUsabilityHeader(context.missingRequiredCount, context.otherErrorCount) +
     body +
     (context.doc.retention ? `\n---\n*보존: ${context.doc.retention}*` : "") +
     MARKDOWN_SAFETY_DISCLAIMER
@@ -932,9 +947,7 @@ async function renderMarkdownOutput(context: DocumentRenderContext): Promise<str
 
 function renderDoclangOutput(context: DocumentRenderContext): string {
   const draft = (context.input.draft ?? {}) as Record<string, unknown>;
-  const statusText = context.missingRequiredCount > 0
-    ? `결재 사용 불가 — 필수 항목 ${context.missingRequiredCount}건 미작성. 결재 전 반드시 보강.`
-    : "필수 항목 모두 작성됨 — 결재 가능 (단 결재선 서명·날짜 별도 확인).";
+  const statusText = usabilityStatusText(context.missingRequiredCount, context.otherErrorCount);
   const serializerInput: SafetyDocumentDoclangInput = {
     document: context.doc,
     draft,
@@ -1091,6 +1104,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const missingRequiredCount = validation.errors.filter(
     (i) => i.field.startsWith("sections."),
   ).length;
+  const otherErrorCount = validation.errors.length - missingRequiredCount;
   const sections = doc.sections && doc.sections.length > 0 ? doc.sections : buildSectionsFromRequiredFields(doc);
   const renderContext: DocumentRenderContext = {
     doc,
@@ -1104,6 +1118,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     hazardFallbackSuppressed,
     documentCategory,
     missingRequiredCount,
+    otherErrorCount,
   };
   const markdownBody = await DOCUMENT_RENDERERS.md(renderContext);
   const fullBody = input.format === "md" ? markdownBody : await DOCUMENT_RENDERERS[input.format](renderContext);

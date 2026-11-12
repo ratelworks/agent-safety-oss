@@ -62,6 +62,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   // ── Reverse lookup (교차 검증 P0 권고): Article/Annex 정·역방향 모두 추적 ──
   const linkedNodes = await findArticlesAndAnnexesForDocument(doc.docId);
+  const documentBasis = new Set<string>(doc.legalBasis ?? []);
   const iriArticles: Array<{
     "@id": string;
     "@type": string;
@@ -71,7 +72,10 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     partOf: string;
     verificationStatus?: string;
     description?: string;
+    /** document = 문서가 법령 근거로 든 조문 / article-side = 조문 자료에만 적힌 연결(검토 전) */
+    linkSource: "document" | "article-side";
   }> = linkedNodes.map((n) => {
+    const linkSource = documentBasis.has(n["@id"]) ? ("document" as const) : ("article-side" as const);
     const types = Array.isArray(n["@type"]) ? n["@type"] : [n["@type"]];
     if (types.includes("Article")) {
       const a = n as ArticleNode;
@@ -83,6 +87,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
         partOf: a.partOf,
         verificationStatus: a.verificationStatus,
         description: a.description,
+        linkSource,
       };
     }
     const ax = n as AnnexNode;
@@ -94,6 +99,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       partOf: ax.partOf,
       verificationStatus: ax.verificationStatus,
       description: ax.description,
+      linkSource,
     };
   });
 
@@ -139,8 +145,8 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       iriMapped: 1,
       relatedPenalties: 2, // Document → Article → Penalty
     },
-    requiredFieldCount: doc.requiredFields.length,
-    reviewRuleCount: doc.reviewRules.length,
+    requiredFieldCount: (doc.requiredFields ?? []).length,
+    reviewRuleCount: (doc.reviewRules ?? []).length,
     standardForm: doc.standardForm,
     _meta: {
       verificationStatus: meta["verificationStatus"] ?? "verified",
@@ -158,7 +164,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     ...(iriArticles.length > 0
       ? iriArticles.map(
           (a, i) =>
-            `${i + 1}. [${a["@type"]}] ${a.partOf} ${a.articleNumber ?? a.annexNumber ?? ""} — ${a.title} (${a.verificationStatus ?? "?"})`,
+            `${i + 1}. [${a["@type"]}] ${a.partOf} ${a.articleNumber ?? a.annexNumber ?? ""} — ${a.title} (${a.verificationStatus ?? "?"})${a.linkSource === "article-side" ? " ⚠ 조문 자료에만 있는 연결 — 검토 전, 문서의 법령 근거로 쓰기 전에 확인" : ""}`,
         )
       : ["  (아직 IRI 매핑 없음 — sparseGraph)"]),
     "",
