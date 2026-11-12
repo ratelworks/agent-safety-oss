@@ -294,6 +294,8 @@ async function findWorkByContent(tokens: string[]): Promise<{ work: Work; others
       if (hit.length <= CONTENT_TOKEN_MAX_WORKS) {
         for (const w of hit) {
           const cur = score.get(w.iri) ?? { score: 0, words: [] };
+          // 같은 낱말이 질문에 여러 번 나와도 한 번만 센다
+          if (cur.words.includes(word)) continue;
           cur.score += 1 / hit.length;
           cur.words.push(word);
           score.set(w.iri, cur);
@@ -511,8 +513,11 @@ function collectGaps(work: Work, steps: ResolvedWorkSteps["steps"], notices: Rel
   }
   if (notices.length === 0) {
     gaps.push("이 공종과 이어진 표준안전 작업지침(고시)이 없다.");
-  } else if (notices.every((n) => n.articles.length === 0)) {
-    gaps.push(`${notices.map((n) => n.law).join(", ")}: 고시는 이어졌으나 이 공종을 다루는 조문은 짚지 못했다 — 고시 전체를 살펴야 한다.`);
+  } else {
+    const empty = notices.filter((n) => n.articles.length === 0);
+    if (empty.length > 0) {
+      gaps.push(`${empty.map((n) => n.law).join(", ")}: 고시는 이어졌으나 이 공종을 다루는 조문은 짚지 못했다 — 고시 전체를 살펴야 한다.`);
+    }
   }
   return gaps;
 }

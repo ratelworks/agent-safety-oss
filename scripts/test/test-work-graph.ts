@@ -238,17 +238,25 @@ async function main(): Promise<void> {
   check("상위 작업이 없는 공종은 응답에 그 사실이 나온다", gapMismatch === 0, `빈 곳을 알린 공종 ${withGaps}개, 어긋남 ${gapMismatch}`);
 
   // 고시는 이어졌는데 조문을 짚지 못한 공종도 그 사실이 나와야 한다
-  const noArticle = await getWorkSteps("지하연속벽");
-  const noticeArticles = (noArticle?.result.relatedNotices ?? []).reduce((n, x) => n + x.articles.length, 0);
-  check(
-    "고시 조문을 짚지 못한 공종은 응답에 그 사실이 나온다",
-    noticeArticles > 0 || (noArticle?.result.gaps ?? []).some((g) => g.includes("고시")),
-    `지하연속벽: 고시 조문 ${noticeArticles}개`,
-  );
+  // 조문이 없는 고시는 다른 고시에 조문이 있어도 하나하나 알려야 한다
+  let silentEmptyNotice = 0;
+  let emptyNotices = 0;
+  for (const s of subtasks) {
+    const res = await getWorkSteps(String(s.title));
+    if (!res || res.result.iri !== s["@id"]) continue;
+    for (const n of res.result.relatedNotices ?? []) {
+      if (n.articles.length > 0) continue;
+      emptyNotices += 1;
+      if (!(res.result.gaps ?? []).some((g) => g.includes(n.law) && g.includes("짚지 못했다"))) silentEmptyNotice += 1;
+    }
+  }
+  check("조문을 짚지 못한 고시는 응답에 그 사실이 나온다", silentEmptyNotice === 0, `조문 없는 고시 연결 ${emptyNotices}건, 알리지 않은 것 ${silentEmptyNotice}`);
 
   // 8. 공종 이름이 없는 질문은 자료 안의 낱말로 찾고, 무관한 말은 찾지 않는다
   const byContent = await findWork("항타기로 파일을 박는데 지반이 무르다");
   check("공종 이름이 없는 질문을 자료의 낱말로 찾는다", byContent?.work.name === "기초파일작업" && (byContent.matchedBy?.length ?? 0) >= 2, `${byContent?.work.name ?? "없음"} ← ${byContent?.matchedBy?.join(", ") ?? ""}`);
+  const repeated = await findWork("항타기 항타기로");
+  check("같은 낱말을 되풀이해도 두 낱말로 세지 않는다", repeated === null, repeated ? `${repeated.work.name} ← ${repeated.matchedBy?.join(", ")}` : "");
   const unrelated: string[] = [];
   for (const q of ["점심 메뉴를 추천해 달라", "오늘 날씨가 좋아서 기분이 좋다", "회의실 예약을 도와 달라"]) {
     const hit = await findWork(q);
