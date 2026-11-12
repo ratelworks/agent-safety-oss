@@ -255,8 +255,13 @@ async function main(): Promise<void> {
   // 8. 공종 이름이 없는 질문은 자료 안의 낱말로 찾고, 무관한 말은 찾지 않는다
   const byContent = await findWork("항타기로 파일을 박는데 지반이 무르다");
   check("공종 이름이 없는 질문을 자료의 낱말로 찾는다", byContent?.work.name === "기초파일작업" && (byContent.matchedBy?.length ?? 0) >= 2, `${byContent?.work.name ?? "없음"} ← ${byContent?.matchedBy?.join(", ") ?? ""}`);
-  const repeated = await findWork("항타기 항타기로");
-  check("같은 낱말을 되풀이해도 두 낱말로 세지 않는다", repeated === null, repeated ? `${repeated.work.name} ← ${repeated.matchedBy?.join(", ")}` : "");
+  // 근거의 단위는 원형이다 — 되풀이·조사 변형·다른 낱말에 들어 있는 낱말은 하나로 친다
+  const sameWord: string[] = [];
+  for (const q of ["항타기 항타기로", "항타기로 항타기를", "항타 항타기", "압쇄기 압쇄기는 압쇄기의"]) {
+    const hit = await findWork(q);
+    if (hit) sameWord.push(`${q} → ${hit.work.name} ← ${hit.matchedBy?.join(", ")}`);
+  }
+  check("같은 낱말의 되풀이·조사 변형을 두 낱말로 세지 않는다", sameWord.length === 0, sameWord.join(" / "));
   const unrelated: string[] = [];
   for (const q of ["점심 메뉴를 추천해 달라", "오늘 날씨가 좋아서 기분이 좋다", "회의실 예약을 도와 달라"]) {
     const hit = await findWork(q);

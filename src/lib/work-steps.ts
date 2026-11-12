@@ -21,7 +21,7 @@ const SCORE_TOKEN = 20;
 /** 매칭에 쓰지 않는 흔한 낱말 */
 const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "설치", "해체", "조립"]);
 /** 내용으로 찾을 때 낱말 끝에서 떼어 보는 조사·어미 (긴 것부터) */
-const PARTICLES = ["으로", "에서", "하는데", "한다", "하고", "를", "을", "로", "에", "이", "가", "은", "는", "의", "와", "과", "도"];
+const PARTICLES = ["하는데", "으로", "에서", "한다", "하고", "를", "을", "로", "에", "이", "가", "은", "는", "의", "와", "과", "도"];
 /** 내용으로 찾을 때 쓰는 낱말 — 이보다 많은 공종에 나오는 낱말은 공종을 가리지 못하므로 쓰지 않는다 */
 const CONTENT_TOKEN_MAX_WORKS = 8;
 /** 내용으로 찾았다고 보려면 맞은 낱말이 이만큼은 있어야 한다 — 낱말 하나로는 우연히 맞는 일이 많다 */
@@ -248,13 +248,21 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
   return { work: scored[0].work, others: scored.slice(1, 6).map((x) => x.work.name) };
 }
 
-/** 낱말에서 조사·어미를 떼어 본 후보 (원형 포함, 2글자 이상) */
-function stems(token: string): string[] {
-  const out = new Set([token]);
+/** 낱말에서 조사·어미를 뗀 원형 — 질문의 "항타기로"·"항타기를"은 모두 "항타기"다 (2글자 미만이 되면 떼지 않는다) */
+function stem(token: string): string {
   for (const p of PARTICLES) {
-    if (token.length - p.length >= 2 && token.endsWith(p)) out.add(token.slice(0, -p.length));
+    if (token.length - p.length >= 2 && token.endsWith(p)) return token.slice(0, -p.length);
   }
-  return [...out];
+  return token;
+}
+
+/**
+ * 질문을 근거로 셀 낱말 묶음으로 바꾼다.
+ * 근거의 단위는 글자열이 아니라 원형이다 — 같은 낱말의 조사 변형·되풀이, 다른 낱말에 통째로 들어 있는 낱말은 하나로 친다.
+ */
+function evidenceWords(tokens: string[]): string[] {
+  const words = [...new Set(tokens.map(stem))];
+  return words.filter((w) => !words.some((other) => other !== w && other.includes(w)));
 }
 
 let contentCache: Map<string, string> | null = null;
@@ -285,23 +293,15 @@ async function findWorkByContent(tokens: string[]): Promise<{ work: Work; others
   const works = await loadWorks();
   const contents = await loadWorkContents();
   const score = new Map<string, { score: number; words: string[] }>();
-  for (const token of tokens) {
-    // 조사를 뗀 후보 중 실제로 자료에 나오는 가장 긴 것 하나만 쓴다
-    const candidates = stems(token).sort((a, b) => b.length - a.length);
-    for (const word of candidates) {
-      const hit = works.filter((w) => (contents.get(w.iri) ?? "").includes(word));
-      if (hit.length === 0) continue;
-      if (hit.length <= CONTENT_TOKEN_MAX_WORKS) {
-        for (const w of hit) {
-          const cur = score.get(w.iri) ?? { score: 0, words: [] };
-          // 같은 낱말이 질문에 여러 번 나와도 한 번만 센다
-          if (cur.words.includes(word)) continue;
-          cur.score += 1 / hit.length;
-          cur.words.push(word);
-          score.set(w.iri, cur);
-        }
-      }
-      break;
+  for (const word of evidenceWords(tokens)) {
+    const hit = works.filter((w) => (contents.get(w.iri) ?? "").includes(word));
+    // 너무 많은 공종에 나오는 낱말은 공종을 가리지 못한다
+    if (hit.length === 0 || hit.length > CONTENT_TOKEN_MAX_WORKS) continue;
+    for (const w of hit) {
+      const cur = score.get(w.iri) ?? { score: 0, words: [] };
+      cur.score += 1 / hit.length;
+      cur.words.push(word);
+      score.set(w.iri, cur);
     }
   }
   const ranked = works
