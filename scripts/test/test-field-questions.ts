@@ -34,6 +34,9 @@ const TOOLS: { name: string; flag: string; label: string }[] = [
 ];
 /** 안전보건규칙을 가리키는 이름 — 번호만 같은 다른 법의 조문은 세지 않는다 */
 const RULE_NAME = "(?:산업안전보건기준에\\s*관한\\s*규칙|안전보건규칙|산안기준규칙|기준규칙)";
+/** 현장 브리핑에서 요약이 붙는 조문 구획의 제목과, 제목만 나오는 줄의 머리 */
+const TOP_SECTION_HEAD = "## 📖 법령 근거";
+const REST_LINE_HEAD = "- 그 밖의 관련 조문";
 const CONCURRENCY = 6;
 const MAX_BUFFER = 64 * 1024 * 1024;
 
@@ -57,6 +60,18 @@ function hasArticle(text: string, ref: string): boolean {
   const named = new RegExp(`${RULE_NAME}\\s*(?:제\\s*${num}\\s*조|§\\s*${num})${tail}`);
   const iri = new RegExp(`art:기준규칙:${num}${sub ? `의${sub}(?!\\d)` : "(?![\\d의])"}`);
   return named.test(text) || iri.test(text);
+}
+
+/** 현장 브리핑 글에서 요약이 붙는 조문 구획만 잘라낸다 (제목만 나오는 줄은 뺀다) */
+function topSection(text: string): string {
+  const start = text.indexOf(TOP_SECTION_HEAD);
+  if (start < 0) return "";
+  const rest = text.slice(start + TOP_SECTION_HEAD.length);
+  const end = rest.search(/\n## /);
+  return (end < 0 ? rest : rest.slice(0, end))
+    .split("\n")
+    .filter((line) => !line.startsWith(REST_LINE_HEAD))
+    .join("\n");
 }
 
 async function callTool(root: string, tool: string, flag: string, value: string): Promise<string> {
@@ -106,11 +121,19 @@ async function main(): Promise<void> {
   const questionHits = columns.map(() => 0);
   const bytes = TOOLS.map(() => 0);
   const missed: string[] = [];
+  /** 현장 브리핑에서 요약까지 붙어 나오는 앞자리 조문 안에 든 정답 수 */
+  let topHits = 0;
+  const outsideTop: string[] = [];
 
   questions.forEach((q, qi) => {
     const texts = [...answers[qi], answers[qi].join("\n")];
     const single = answers[qi].some((text) => q.expect.every((ref) => hasArticle(text, ref)));
     if (single) singleToolHits += 1;
+    const top = topSection(answers[qi][0]);
+    for (const ref of q.expect) {
+      if (hasArticle(top, ref)) topHits += 1;
+      else outsideTop.push(`${q.id} 제${ref}조`);
+    }
     texts.forEach((text, ci) => {
       const found = q.expect.filter((ref) => hasArticle(text, ref));
       articleHits[ci] += found.length;
@@ -130,6 +153,9 @@ async function main(): Promise<void> {
       `${label}: 정답 조문 ${articleHits[ci]}/${totalArticles} · 정답이 다 나온 질문 ${questionHits[ci]}/${questions.length}${size}`,
     );
   });
+
+  console.log(`현장 브리핑 앞자리(요약이 붙는 조문) 안의 정답 조문: ${topHits}/${totalArticles}`);
+  if (verbose && outsideTop.length) console.log(`  앞자리 밖: ${outsideTop.join(", ")}`);
 
   if (verbose || min !== undefined) {
     console.log(`\n한 도구의 답에 정답이 다 나오지 않은 질문 ${missed.length}개`);

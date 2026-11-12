@@ -5,6 +5,7 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { getWorkSteps } from "../lib/work-steps.js";
+import { searchArticles } from "../lib/article-search.js";
 
 // 파일 최상단 상수 — 현장 사용자(현장소장·안전관리자) 친화 통합 brief
 // 작업명 입력 → 5초 안에 위험·통제·법령·의무문서·KOSHA 한 화면 요약
@@ -14,6 +15,14 @@ const WEIGHT_SUBTASK = 2000;
 const WEIGHT_ACTIVITY = 1000;
 const WEIGHT_HAZARD = 500;
 const MAX_ARTICLES = 15;  // expansion IRI 모두 포함 가능 수준
+/** 문장 검색으로 후보에 넣는 조문 수 */
+const SEARCH_LIMIT = 30;
+/** 순위 합치기 상수 — 클수록 두 순위표의 앞자리 차이가 덜 벌어진다 */
+const RANK_FUSION_K = 10;
+/** 순위를 합칠 때 길마다 주는 무게 — 용어 사전, 그래프 연결, 문장 검색 */
+const FUSION_WEIGHT_DICTIONARY = 1;
+const FUSION_WEIGHT_GRAPH = 1;
+const FUSION_WEIGHT_SEARCH = 2;
 const MAX_GUIDES = 5;
 const MAX_DOCS = 10;
 const ACTIVITY_THRESHOLD = 50;  // 활동 매칭 score 하한 (false positive 방지)
@@ -322,6 +331,14 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   for (const m of matchedArticles.slice(0, MAX_ARTICLES)) { linkedArticleIris.add(m.node["@id"] as string); reviewedArticleIris.add(m.node["@id"] as string); }
 
+  // 문장 검색 — 현장 말로 쓴 문장을 조문 제목·본문과 공종 자료의 현장 문장에 견준다
+  const searchRank = new Map<string, number>();
+  (await searchArticles(all, q, SEARCH_LIMIT)).forEach((hit, i) => {
+    searchRank.set(hit.iri, i + 1);
+    linkedArticleIris.add(hit.iri);
+    reviewedArticleIris.add(hit.iri);
+  });
+
   // ─── 5. 매칭된 article 의 penalizedBy 자동 추가 ───
   const penaltyArticles = new Set<string>();
   for (const aIri of linkedArticleIris) {
@@ -443,8 +460,12 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     .filter(isVisibleArticle)
     .filter(a => !penaltyArticles.has(a!["@id"] as string));
 
-  const otherArts = [...linkedArticleIris]
-    .filter(iri => !expandedIris.has(iri))
+  const expansionRank = new Map<string, number>();
+  expansionArts.forEach((a, i) => expansionRank.set(a!["@id"] as string, i + 1));
+
+  // 조문이 답에 들어온 세 길 — 용어 사전이 짚은 조문, 그래프로 이어진 조문(공종 > 작업 > 유해요인), 문장 검색 —
+  // 의 순위를 합친다. 여러 길에서 앞선 조문이 맨 앞에 오고, 한 길이 앞자리를 다 차지하지 않는다.
+  const rankedArts = [...new Set([...expandedIris, ...linkedArticleIris])]
     .map(iri => articles.find(a => a["@id"] === iri))
     .filter(isVisibleArticle)
     .filter(a => !penaltyArticles.has(a!["@id"] as string))
@@ -452,15 +473,24 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       const text = `${a!.title}\n${a!.description}`;
       return { node: a!, score: scoreMatch(text, strongTerms, weakTerms), weight: graphWeight.get(a!["@id"] as string) ?? 0 };
     })
-    // 그래프로 이어진 조문 먼저(공종 > 작업 > 유해요인), 같으면 질문 낱말과 많이 겹치는 조문 먼저
     .sort((a, b) => b.weight - a.weight || b.score - a.score)
+    .map((x, i) => {
+      const id = x.node["@id"] as string;
+      const part = (rank: number | undefined, weight: number): number => (rank ? weight / (RANK_FUSION_K + rank) : 0);
+      const fused =
+        part(expansionRank.get(id), FUSION_WEIGHT_DICTIONARY) +
+        part(x.weight > 0 ? i + 1 : undefined, FUSION_WEIGHT_GRAPH) +
+        part(searchRank.get(id), FUSION_WEIGHT_SEARCH);
+      return { node: x.node, fused, order: i };
+    })
+    .sort((a, b) => b.fused - a.fused || a.order - b.order)
     .map(x => x.node);
 
   const seen = new Set<string>();
   const obligationArticles: Record<string, unknown>[] = [];
   /** 상한을 넘은 조문 — 버리지 않고 제목만 적는다 */
   const restArticles: Record<string, unknown>[] = [];
-  for (const a of [...expansionArts, ...otherArts]) {
+  for (const a of rankedArts) {
     const id = a!["@id"] as string;
     if (seen.has(id)) continue;
     seen.add(id);

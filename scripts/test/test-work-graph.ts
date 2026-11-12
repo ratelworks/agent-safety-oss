@@ -21,6 +21,7 @@ import { getNode, neighborsByEdge, listNodesByType } from "../../src/lib/graph-n
 import { findMeasuresCiting, findFieldMeasuresForHazard } from "../../src/lib/field-measures.js";
 import { findWork, getWorkSteps, LINK_BASIS_LABEL } from "../../src/lib/work-steps.js";
 import { fieldSafetyBriefingTool } from "../../src/tools/field-safety-briefing.js";
+import { searchArticles } from "../../src/lib/article-search.js";
 import { generateTbmTopicsTool } from "../../src/tools/generate-tbm-topics.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
@@ -45,6 +46,13 @@ const LAW_TYPE: Record<string, string> = {
 const SAMPLE_ARTICLE = "art:기준규칙:341";
 const SAMPLE_HAZARD = "hazard:fall_from_height";
 /** 정한 방식을 적어야 하는 연결 — 공종 노드 / 고시 장·절 노드 */
+/** 조문 낱말("투하")이 없는 현장 문장과, 그 문장으로 찾아야 하는 조문 */
+const FIELD_QUERY = "쓰레기 자루를 위층에서 밑으로 내던진다";
+const FIELD_QUERY_ARTICLE = "art:기준규칙:15";
+const SEARCH_TOP = 15;
+const SEARCH_WIDE = 200;
+/** 지침 조문과 낱말이 많이 겹치는 문장 — 의무 조문 구획에 지침이 섞이는지 본다 */
+const NOTIFICATION_QUERY = "트럭 짐 위에 올라가 작업";
 const SUBTASK_LINK_KEYS = ["regulatedBy", "guidedBy", "steps", "hasHazard", "broader", "references"];
 const CHAPTER_LINK_KEYS = ["partOf", "hasArticle", "appliesTo", "appliesToActivity"];
 
@@ -294,6 +302,31 @@ async function main(): Promise<void> {
     }
   }
   check("유해요인의 끌어낸 조문 연결이 표기와 함께 있다", derivedCount > 0 && derivedBad.length === 0, `끌어낸 연결 ${derivedCount}개, 어긋남 ${derivedBad.length}`);
+
+  // 10. 현장 말 문장 검색: 조문 낱말이 없는 문장으로도 조문을 찾고, 고시·지침은 의무 조문 구획에 섞이지 않는다
+  const phrases = (JSON.parse(await readFile(resolve(GRAPH, "..", "field-phrases.json"), "utf-8")) as { phrases: Record<string, string[]> }).phrases;
+  const missingPhraseTargets: string[] = [];
+  for (const iri of Object.keys(phrases)) if (!(await getNode(iri))) missingPhraseTargets.push(iri);
+  check("현장 말 문장이 가리키는 조문이 모두 있는 노드다", Object.keys(phrases).length > 0 && missingPhraseTargets.length === 0, `조문 ${Object.keys(phrases).length}개, 없는 것 ${missingPhraseTargets.join(", ") || 0}`);
+  const allNodes = await readDir("articles");
+  const thrown = await searchArticles(allNodes, FIELD_QUERY, SEARCH_TOP);
+  const thrownRank = thrown.findIndex((h) => h.iri === FIELD_QUERY_ARTICLE) + 1;
+  check("조문 낱말이 없는 현장 문장으로 조문을 찾는다", thrownRank > 0, `"${FIELD_QUERY}" → ${FIELD_QUERY_ARTICLE} ${thrownRank || "없음"}위 (앞 ${SEARCH_TOP}개 안)`);
+  const notificationHits: string[] = [];
+  for (const h of await searchArticles(allNodes, NOTIFICATION_QUERY, SEARCH_WIDE)) {
+    const node = await getNode(h.iri);
+    if ((node as { legislationType?: string } | undefined)?.legislationType === "Notification") notificationHits.push(h.iri);
+  }
+  check("문장 검색 결과에 고시·지침 조문이 없다", notificationHits.length === 0, notificationHits.slice(0, 3).join(", "));
+  const obligationText = (await fieldSafetyBriefingTool.handler({ workOrTopic: NOTIFICATION_QUERY })).content[0]?.text ?? "";
+  const obligationStart = obligationText.indexOf("## 📖 법령 근거");
+  const obligationSection = obligationStart < 0 ? "" : obligationText.slice(obligationStart).split("\n## ")[0];
+  const leaked: string[] = [];
+  for (const iri of new Set(obligationSection.match(/art:[^\s:`*]+:[0-9의]+/g) ?? [])) {
+    const node = await getNode(iri);
+    if ((node as { legislationType?: string } | undefined)?.legislationType === "Notification") leaked.push(iri);
+  }
+  check("현장 브리핑의 의무 조문 구획에 고시·지침이 없다", obligationSection.length > 0 && leaked.length === 0, `구획 ${obligationSection.length}자, 섞인 것 ${leaked.join(", ") || 0}`);
 
   const subtaskCount = (await listNodesByType("ConstructionSubtask")).length;
   console.log(`\n공종 ${subtaskCount} · 단계 ${stepIds.length} · 위험요인 ${riskIds.length} · 대책 노드 ${measureBody.size} · 고시 장·절 ${chapters.length}`);
