@@ -12,6 +12,12 @@ const MAX_ARTICLES = 15;  // expansion IRI 모두 포함 가능 수준
 const MAX_GUIDES = 5;
 const MAX_DOCS = 10;
 const ACTIVITY_THRESHOLD = 50;  // 활동 매칭 score 하한 (false positive 방지)
+/** 작업 이름 가산점 — 질의의 고유 낱말이 작업 이름·검색어에 있으면 더한다 ("수장 작업" → 수장·내부마감 작업) */
+const ACTIVITY_NAME_BONUS = 30;
+/** 어느 작업·조문에나 나오는 낱말 — 다른 낱말이 함께 있으면 매칭 근거로 쓰지 않는다 ("수장 작업"의 "작업"이 잠수작업 조문을 끌어오지 않게) */
+const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "업무"]);
+/** 여러 작업 이름에 두루 나오는 행위 낱말 — 매칭에는 쓰되 작업 이름 가산점은 주지 않는다 ("석면 해체"의 "해체"가 교량 해체를 끌어오지 않게) */
+const ACTION_TOKENS: ReadonlySet<string> = new Set(["설치", "해체", "조립", "점검", "정비", "보수", "취급", "사용", "변경"]);
 const DOC_THRESHOLD = 60;  // 의무문서 매칭 score 하한
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -111,9 +117,10 @@ function expandQueryToIris(query: string, groups: SynonymGroup[]): {
   const weak = new Set<string>();
   const notes: string[] = [];
   strong.add(query);
-  for (const tok of query.split(/[\s.,()·]+/)) {
-    if (tok.length >= 2) strong.add(tok);
-  }
+  const queryTokens = query.split(/[\s.,()·]+/).filter(t => t.length >= 2);
+  const specificTokens = queryTokens.filter(t => !GENERIC_TOKENS.has(t));
+  // 고유 낱말이 하나라도 있으면 흔한 낱말은 뺀다. 흔한 낱말뿐인 질의는 그대로 쓴다.
+  for (const tok of specificTokens.length > 0 ? specificTokens : queryTokens) strong.add(tok);
   for (const g of groups) {
     let matched = false;
     if (query.includes(g.primary)) matched = true;
@@ -186,8 +193,14 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   // ─── 1. 활동 매칭 (description + searchKeywords + 동의어 확장) ───
   const matchedActivities = activities
     .map(a => {
-      const text = `${a.title}\n${a.description}\n${(a.searchKeywords as string[] ?? []).join(" ")}`;
+      // 이름은 title 또는 label 에 있다 (초기 노드는 label 만 가진다)
+      const name = `${(a.title as string | undefined) ?? ""} ${typeof a.label === "string" ? a.label : ""}`;
+      const keywords = (a.searchKeywords as string[] ?? []).join(" ");
+      const text = `${name}\n${a.description ?? ""}\n${keywords}`;
       let score = scoreMatch(text, strongTerms, weakTerms);
+      for (const t of strongTerms) {
+        if (t.length >= 2 && !GENERIC_TOKENS.has(t) && !ACTION_TOKENS.has(t) && !t.includes(" ") && name.includes(t)) score += ACTIVITY_NAME_BONUS;
+      }
       // 동의어 확장 IRI에 포함된 활동은 보너스
       if (expandedIris.has(a["@id"] as string)) score += 100;
       return { node: a, score };
@@ -318,7 +331,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       const desc = String(m.node.description ?? "");
       const summary = desc.split("\n").find(l => l.trim().length > 20)?.trim().slice(0, 100) ?? "";
       const keywords = (m.node.searchKeywords as string[] | undefined)?.slice(0, 6).join(", ") ?? "";
-      out += `- **${m.node.title}** (\`${m.node["@id"]}\`)`;
+      out += `- **${m.node.title ?? (typeof m.node.label === "string" ? m.node.label : "")}** (\`${m.node["@id"]}\`)`;
       if (summary) out += ` — ${summary}`;
       if (keywords) out += ` [키워드: ${keywords}]`;
       out += `\n`;
