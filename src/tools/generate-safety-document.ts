@@ -538,10 +538,12 @@ function getFieldValue(input: Input, fieldKey: string, fieldLabel?: string): str
 
 function renderApprovalChain(chain: any): string {
   if (!chain || !Array.isArray(chain) || chain.length === 0) return "(미작성 — 사업주·관리감독자·근로자대표 서명 필수)";
+  // 형식이 잘못된 항목(null 등)은 건너뛴다 — 형식 오류는 입력 검증이 따로 알린다
   return chain
+    .filter((a: any) => a && typeof a === "object")
     .map(
       (a: any) =>
-        `| ${a.role} | ${a.name} | ${a.signed ? "✓" : "(미서명)"} | ${a.date ?? "(미기재)"} |`,
+        `| ${a.role ?? ""} | ${a.name ?? ""} | ${a.signed ? "✓" : "(미서명)"} | ${a.date ?? "(미기재)"} |`,
     )
     .join("\n");
 }

@@ -495,7 +495,7 @@ function buildMetaRows(document: DocumentNode, draft: Record<string, unknown>): 
 }
 
 function renderApprovalChain(draft: Record<string, unknown>): string {
-  const chain = Array.isArray(draft.approvalChain) ? draft.approvalChain : [];
+  const chain = Array.isArray(draft.approvalChain) ? draft.approvalChain.filter((item) => item && typeof item === "object") : [];
   const rows = chain.length > 0
     ? chain.map((item) => {
         const row = item as Record<string, unknown>;
