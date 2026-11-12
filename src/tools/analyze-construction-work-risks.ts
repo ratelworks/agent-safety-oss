@@ -7,6 +7,7 @@ import sifData from "../ontology/sif-archive.json" with { type: "json" };
 import worktypeFallback from "../ontology/construction-worktype.json" with { type: "json" };
 import { KOSHA_GUIDE_DISCLAIMER } from "../config/constants.js";
 import { stringBool } from "../lib/zod-helpers.js";
+import { getWorkSteps } from "../lib/work-steps.js";
 
 // 파일 최상단 상수 — 공종 매칭 모드 및 스코어
 const MATCH = { CODE: "code", KEYWORD: "keyword", TOKEN: "token" } as const;
@@ -33,6 +34,10 @@ const SCORE = {
   ACTION_MATCH: 40,
   PARTIAL_NAME: 20,
 };
+
+// 단계별 근거 블록에 붙이는 안내 — 참조 연결이며 현장 확인이 필요함을 알린다
+const WORK_STEPS_NOTICE =
+  "공종의 작업 단계마다 살필 재해유형과 근거(안전보건규칙 조문의 항, KOSHA Guide 조항)를 연결한 참고 자료입니다. 프로젝트 자체 정리이며 공식 공종 분류가 아닙니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다.";
 
 // 두 점수 이상 차이 안 나면 모호 매치로 간주
 const AMBIGUITY_THRESHOLD = 10;
@@ -101,13 +106,23 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const sifPatterns = (sifData.patterns ?? []) as SifPattern[];
 
   const matchResult = matchSubtask(categories, input.workType);
+  const workSteps = await getWorkSteps(input.workType);
   if (!matchResult) {
     const payload = {
       query: input,
       matched: null,
+      ...(workSteps
+        ? {
+            workSteps: workSteps.result,
+            workStepsOtherCandidates: workSteps.otherCandidates,
+            workStepsNotice: WORK_STEPS_NOTICE,
+          }
+        : {}),
       available: flattenSubtasks(categories).map((s) => ({ code: s.code, ko: s.ko })),
       message:
-        "workType 에 해당하는 공종/세부공정을 찾지 못했다. list_construction_subtasks 로 전체 목록 확인.",
+        workSteps
+          ? "간이 공종표에는 없는 공종이라 재해유형 가중치는 없다. 단계별 재해유형과 근거는 workSteps 에 있다."
+          : "workType 에 해당하는 공종/세부공정을 찾지 못했다. list_construction_subtasks 로 전체 목록 확인.",
     };
     return {
       content: [{ type: "text", text: JSON.stringify(payload, null, 2) }],
@@ -188,6 +203,13 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       basisType: "kosha_guide" as const,
     })),
     checklistHints: buildChecklistHints(matched.subtask, weighted, cond, sifMatches),
+    ...(workSteps
+      ? {
+          workSteps: workSteps.result,
+          workStepsOtherCandidates: workSteps.otherCandidates,
+          workStepsNotice: WORK_STEPS_NOTICE,
+        }
+      : {}),
     disclaimer: KOSHA_GUIDE_DISCLAIMER,
     degradedMode: usingFallbackTaxonomy
       ? {
