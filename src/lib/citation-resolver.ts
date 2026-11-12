@@ -78,6 +78,9 @@ const ARTICLE_TOKEN = /제\s*(\d+)\s*조(?:\s*의\s*(\d+))?|§\s*(\d+)(?:\s*의\
 const SUB_ITEM = /제?\s*\d+\s*(항|호)|[①-⑳]|[가-하]목/;
 /** 범위 표기 — "부터 …까지", "내지", "~" */
 const RANGE_MARK = /부터|내지|~|∼|-\s*(?:제|§)/;
+const SUB_ITEM_GLOBAL = /제?\s*\d+\s*(항|호)|[①-⑳]|[가-하]목/g;
+/** 조문 사이를 잇는 말 — 법령명이 아니다 */
+const CONNECTORS = /부터|까지|내지|및|또는|와|과|[,·ㆍ~∼\-()\s]/g;
 const OUTCOME_RANK: Record<CitationOutcome, number> = { confirmed: 0, unverifiable: 1, not_found: 2 };
 
 /**
@@ -93,16 +96,27 @@ export async function resolveReference(reference: string): Promise<CitationResol
   if (!law) return { outcome: "unverifiable", reason: `'${reference}' 에 법령명이 없음` };
   if (m[6]) return resolveCitation(law, m[6]);
 
-  const rest = text.slice(m[1].length);
-  const articles = [...rest.matchAll(ARTICLE_TOKEN)].map((t) => {
-    const number = t[1] ?? t[3];
-    const sub = t[2] ?? t[4];
-    return sub ? `§${number}의${sub}` : `§${number}`;
-  });
+  // 조문마다 바로 앞에 적힌 법령명을 따른다 — "산안법 제36조, 기준규칙 제38조".
+  // 법령명 없이 이어 적은 조문("제36조, 제38조")만 앞 법령을 물려받는다.
+  const rest = text;
+  const articles: string[] = [];
   let worst: CitationResolution | null = null;
   let first: CitationResolution | null = null;
-  for (const article of [...new Set(articles)]) {
-    const resolved = await resolveCitation(law, article);
+  let currentLaw = "";
+  let cursor = 0;
+  const seen = new Set<string>();
+  for (const t of text.matchAll(ARTICLE_TOKEN)) {
+    const between = text.slice(cursor, t.index).replace(SUB_ITEM_GLOBAL, " ").replace(CONNECTORS, " ").trim();
+    cursor = (t.index ?? 0) + t[0].length;
+    if (between !== "") currentLaw = between;
+    const number = t[1] ?? t[3];
+    const sub = t[2] ?? t[4];
+    const article = sub ? `§${number}의${sub}` : `§${number}`;
+    articles.push(article);
+    const key = `${currentLaw}|${article}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const resolved: CitationResolution = currentLaw === "" ? { outcome: "unverifiable", reason: `'${reference}' 에 법령명이 없음` } : await resolveCitation(currentLaw, article);
     first ??= resolved;
     if (!worst || OUTCOME_RANK[resolved.outcome] > OUTCOME_RANK[worst.outcome]) worst = resolved;
   }

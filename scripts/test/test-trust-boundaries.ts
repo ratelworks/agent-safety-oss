@@ -71,6 +71,13 @@ for (const [label, reference] of [
 }
 const unrelated = await verdict("모든 근로자는 매일 체조를 해야 한다", "산안법 제36조");
 check("확인 범위를 응답에 밝힘(내용 일치는 보지 않음)", typeof unrelated.structured.scope?.notChecked === "string" && unrelated.structured.scope.notChecked.includes("사람이 판단"));
+check("법령이 다른 조문을 나열하면 각자의 법령으로 확인", (await resolveReference("산안법 제36조, 기준규칙 제669조")).outcome === "confirmed");
+check("나열한 법령 중 수록하지 않은 것이 있으면 확인 불가", (await resolveReference("산안법 제36조, 건설산업기본법 제22조")).outcome === "unverifiable");
+check("대조군: 기준규칙 제669조는 실존", (await resolveReference("기준규칙 제669조")).outcome === "confirmed");
+const lawLookup = async (ref: string): Promise<boolean> => (await call("get_safety_law_article", { ref })).structuredContent.found !== false;
+check("조문 조회: 제○조 표기를 읽음", await lawLookup("산안법 제38조"));
+check("조문 조회: 수록하지 않은 법령을 다른 법령으로 대신하지 않음", !(await lawLookup("건설산업기본법 제36조")) && !(await lawLookup("건설산업기본법 §36")));
+check("조문 조회: 이름이 비슷한 법령을 혼동하지 않음", !(await lawLookup("근로기준법 §38")));
 check("범위의 끝이 없는 조문이면 거절", (await resolveReference("산안법 제36조부터 제999조까지")).outcome === "not_found");
 check("나열한 조문 중 하나가 없으면 거절", (await resolveReference("산안법 제36조, 제999조")).outcome === "not_found");
 const range = await resolveReference("기준규칙 §338~§347");

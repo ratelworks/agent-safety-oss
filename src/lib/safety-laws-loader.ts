@@ -1,3 +1,4 @@
+import { legalRefToIri } from "./article-iri-map.js";
 import { readFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -243,7 +244,10 @@ export async function searchArticles(
 export async function getArticle(ref: string, lawHint?: LawCode): Promise<LawArticle | null> {
   const refNormalized = normalizeRef(ref);
   const refSuffix = refNormalized.refShort; // "§36"
-  const codeHint = lawHint ?? guessLawCodeFromRef(refNormalized.lawPart);
+  // 법령명이 적혀 있으면 정확히 식별된 법령에서만 찾는다 — 식별하지 못한 법령명(수록하지 않은 법령 등)을
+  // 비슷한 이름의 다른 법령이나 전체 법령 검색으로 대신하지 않는다
+  const codeHint = lawHint ?? exactLawCode(refNormalized.lawPart);
+  if (!codeHint && refNormalized.lawPart !== "") return null;
 
   const candidateCodes: LawCode[] = codeHint
     ? [codeHint]
@@ -255,6 +259,30 @@ export async function getArticle(ref: string, lawHint?: LawCode): Promise<LawArt
     if (hit) return hit;
   }
   return null;
+}
+
+/** 정식 법령명·약칭·법령 코드가 정확히 일치할 때만 법령을 식별한다 */
+const CODE_BY_CANONICAL: Record<string, LawCode> = {
+  "산안법": "osha",
+  "산안법시행령": "osha-decree",
+  "산안법시행규칙": "osha-rule",
+  "기준규칙": "osha-standard",
+  "중처법": "severe-accident",
+  "중처법시행령": "severe-accident-decree",
+  "위험성평가-고시": "risk-assessment-notice",
+  "건진법": "ctpa",
+  "건진법시행령": "ctpa-decree",
+  "건진법시행규칙": "ctpa-rule",
+};
+
+function exactLawCode(lawPart: string): LawCode | undefined {
+  const name = lawPart.trim();
+  if (name === "") return undefined;
+  if (name in LAW_FILES) return name as LawCode;
+  const canonical = legalRefToIri(name, "§1").canonical;
+  if (canonical && CODE_BY_CANONICAL[canonical]) return CODE_BY_CANONICAL[canonical];
+  const compact = name.replace(/\s+/g, "");
+  return listLaws().find((l) => l.shortName.replace(/\s+/g, "") === compact)?.code;
 }
 
 // ───── ref 파싱 ─────
