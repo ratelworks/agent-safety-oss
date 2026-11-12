@@ -23,6 +23,8 @@ const RANK_FUSION_K = 10;
 const FUSION_WEIGHT_DICTIONARY = 1;
 const FUSION_WEIGHT_GRAPH = 1;
 const FUSION_WEIGHT_SEARCH = 2;
+/** 고시·지침의 법령 종류 값 */
+const NOTIFICATION_TYPE = "Notification";
 const MAX_GUIDES = 5;
 const MAX_DOCS = 10;
 const ACTIVITY_THRESHOLD = 50;  // 활동 매칭 score 하한 (false positive 방지)
@@ -452,7 +454,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   // 법령 근거 (의무 조문) — expandsTo IRI 무조건 모두 포함 + 나머지는 점수 정렬
   const isVisibleArticle = (a: Record<string, unknown> | undefined) =>
-    a && a.userVisible !== false && !a.isAppendix && a.constructionRelevance !== "none" && !excluded.has(a["@id"] as string);
+    a && a.userVisible !== false && !a.isAppendix && a.constructionRelevance !== "none" && !excluded.has(a["@id"] as string) &&
+    // 고시·지침은 권고 기준이다 — 어느 길로 들어왔든 의무 조문 구획에는 싣지 않는다 (공종 구획의 "함께 볼 지침"으로 나온다)
+    a.legislationType !== NOTIFICATION_TYPE;
 
   const expansionArts = [...expandedIris]
     .filter(iri => iri.startsWith("art:"))

@@ -6,7 +6,7 @@
  *   fixtures/field-questions.json 의 질문을 도구에 그대로 넣고, 돌아온 글에
  *   그 상황에서 반드시 나와야 하는 안전보건규칙 조문이 들어 있는지 센다.
  *   응답이 길어졌는지가 아니라, 맞는 조문이 빠지지 않는지를 본다.
- *   통과 기준(--min)은 "한 도구의 답 하나에 정답이 다 나온 질문" 비율이다 — 여러 도구에 나뉘어 나온 것은 세지 않는다.
+ *   통과 기준(--min)은 현장 브리핑 한 번의 답에 정답이 다 나온 질문 비율이다 — 다른 도구가 맞힌 것은 세지 않는다.
  *
  * 사용
  *   tsx scripts/test/test-field-questions.ts                 현재 빌드
@@ -37,6 +37,8 @@ const RULE_NAME = "(?:산업안전보건기준에\\s*관한\\s*규칙|안전보�
 /** 현장 브리핑에서 요약이 붙는 조문 구획의 제목과, 제목만 나오는 줄의 머리 */
 const TOP_SECTION_HEAD = "## 📖 법령 근거";
 const REST_LINE_HEAD = "- 그 밖의 관련 조문";
+/** 통과 기준(--min)을 재는 도구 — TOOLS 의 첫째(현장 브리핑) */
+const GATE_TOOL_INDEX = 0;
 const CONCURRENCY = 6;
 const MAX_BUFFER = 64 * 1024 * 1024;
 
@@ -163,9 +165,10 @@ async function main(): Promise<void> {
   }
 
   console.log(`\n한 도구의 답 하나에 정답이 다 나온 질문: ${singleToolHits}/${questions.length}`);
-  const rate = (singleToolHits / questions.length) * 100;
+  // 통과 기준은 현장 브리핑 하나로 잰다 — 다른 도구가 맞혀도 브리핑이 빠뜨리면 통과가 아니다
+  const rate = (questionHits[GATE_TOOL_INDEX] / questions.length) * 100;
   if (min !== undefined && rate < min) {
-    console.error(`\n❌ 질문 적중률 ${rate.toFixed(1)}% < 기준 ${min}%`);
+    console.error(`\n❌ ${TOOLS[GATE_TOOL_INDEX].label} 질문 적중률 ${rate.toFixed(1)}% < 기준 ${min}%`);
     process.exit(1);
   }
 }

@@ -53,6 +53,8 @@ const SEARCH_TOP = 15;
 const SEARCH_WIDE = 200;
 /** 지침 조문과 낱말이 많이 겹치는 문장 — 의무 조문 구획에 지침이 섞이는지 본다 */
 const NOTIFICATION_QUERY = "트럭 짐 위에 올라가 작업";
+/** 지침 이름이 그대로 든 질문 — 문장 검색 밖의 길로 지침이 들어오는지 본다 */
+const NOTIFICATION_QUERY_BY_NAME = "가설공사 안전 작업";
 const SUBTASK_LINK_KEYS = ["regulatedBy", "guidedBy", "steps", "hasHazard", "broader", "references"];
 const CHAPTER_LINK_KEYS = ["partOf", "hasArticle", "appliesTo", "appliesToActivity"];
 
@@ -326,7 +328,17 @@ async function main(): Promise<void> {
     const node = await getNode(iri);
     if ((node as { legislationType?: string } | undefined)?.legislationType === "Notification") leaked.push(iri);
   }
-  check("현장 브리핑의 의무 조문 구획에 고시·지침이 없다", obligationSection.length > 0 && leaked.length === 0, `구획 ${obligationSection.length}자, 섞인 것 ${leaked.join(", ") || 0}`);
+  // 문장 검색이 아닌 길(낱말 겹침·그래프)로 지침이 들어오던 질문도 함께 본다
+  const sectionOf = (text: string): string => {
+    const at = text.indexOf("## 📖 법령 근거");
+    return at < 0 ? "" : text.slice(at).split("\n## ")[0];
+  };
+  const otherSection = sectionOf((await fieldSafetyBriefingTool.handler({ workOrTopic: NOTIFICATION_QUERY_BY_NAME })).content[0]?.text ?? "");
+  for (const iri of new Set(otherSection.match(/art:[^\s:`*]+:[0-9의]+/g) ?? [])) {
+    const node = await getNode(iri);
+    if ((node as { legislationType?: string } | undefined)?.legislationType === "Notification") leaked.push(iri);
+  }
+  check("현장 브리핑의 의무 조문 구획에 고시·지침이 없다", obligationSection.length > 0 && otherSection.length > 0 && leaked.length === 0, `구획 ${obligationSection.length}자·${otherSection.length}자, 섞인 것 ${leaked.join(", ") || 0}`);
 
   const subtaskCount = (await listNodesByType("ConstructionSubtask")).length;
   console.log(`\n공종 ${subtaskCount} · 단계 ${stepIds.length} · 위험요인 ${riskIds.length} · 대책 노드 ${measureBody.size} · 고시 장·절 ${chapters.length}`);
