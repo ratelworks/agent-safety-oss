@@ -340,19 +340,18 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const anchoredIris = new Set(linkedArticleIris);
   for (const m of matchedArticles.slice(0, MAX_ARTICLES)) { linkedArticleIris.add(m.node["@id"] as string); reviewedArticleIris.add(m.node["@id"] as string); }
 
-  const searchOnlyIris = new Set<string>();
   const searchSoleIris = new Set<string>();
   // 문장 검색 — 현장 말로 쓴 문장을 조문 제목·본문과 공종 자료의 현장 문장에 견준다
   const searchRank = new Map<string, number>();
   (await searchArticles(all, q, SEARCH_LIMIT)).forEach((hit, i) => {
     searchRank.set(hit.iri, i + 1);
-    // 다른 길(작업·문서·공종·용어 사전)로는 안 들어온 조문 — 글이 비슷할 뿐이라 따로 표시한다
-    if (!anchoredIris.has(hit.iri)) searchOnlyIris.add(hit.iri);
     // 낱말 겹침으로도 안 들어온, 문장 검색 하나로만 들어온 조문 — 벌칙을 끌어오지 않는다
     if (!linkedArticleIris.has(hit.iri)) searchSoleIris.add(hit.iri);
     linkedArticleIris.add(hit.iri);
     reviewedArticleIris.add(hit.iri);
   });
+  /** 작업·문서·공종·용어 사전·유해요인으로 이어지지 않고 글 겹침(낱말 겹침·문장 검색)으로만 들어온 조문인가 — 표시의 기준은 이것 하나다 */
+  const isTextOnly = (iri: string): boolean => !anchoredIris.has(iri);
   /** 질문이 작업·문서·공종·용어 사전 어디에도 걸리지 않았다 — 조문과 글이 겹친 것(낱말 겹침·문장 검색)만 있다 */
   const unanchored = matchedActivities.length === 0 && matchedDocs.length === 0 && expandedIris.size === 0 && !subtask;
 
@@ -526,7 +525,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       const summary = desc.split("\n").find(l => l.trim().length > 20)?.trim().slice(0, 120) ?? "";
       let mark = reviewMark(a!["@id"] as string);
       if (mark) unreviewedShown += 1;
-      if (!unanchored && searchOnlyIris.has(a!["@id"] as string)) {
+      if (!unanchored && isTextOnly(a!["@id"] as string)) {
         mark += SIMILAR_MARK;
         similarShown += 1;
       }
@@ -540,7 +539,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
         return `\`${a["@id"]}\` ${a.title}${mark}`;
       };
       // 이름으로 이어진 조문과 글이 비슷해서 찾은 조문을 한 줄에 섞지 않는다
-      const similarRest = unanchored ? [] : restArticles.filter((a) => searchOnlyIris.has(a["@id"] as string));
+      const similarRest = unanchored ? [] : restArticles.filter((a) => isTextOnly(a["@id"] as string));
       const linkedRest = restArticles.filter((a) => !similarRest.includes(a));
       if (linkedRest.length > 0) out += `- 그 밖의 관련 조문 ${linkedRest.length}개 (제목만): ${linkedRest.map(titleOf).join(" · ")}\n`;
       if (similarRest.length > 0) out += `${SIMILAR_REST_HEAD} ${similarRest.length}개 (제목만 · 상황에 맞는지 확인): ${similarRest.map(titleOf).join(" · ")}\n`;
