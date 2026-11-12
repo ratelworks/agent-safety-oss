@@ -359,6 +359,10 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     }
     lines.push(`공종별 단계·근거는 \`analyze_construction_work_risks({workType: "<공종 이름>"})\` 로 봅니다.`);
     lines.push("");
+  } else if (field) {
+    // 빈 곳을 조용히 넘기면 "현장 대책 없음"으로 읽힌다 — 연결이 없다는 사실을 알린다
+    lines.push(`> 공종 단계 자료에는 "${hazards[0].label}"(으)로 분류된 위험요인이 없어 현장 감소대책을 붙이지 못했습니다. 공종 이름으로 \`analyze_construction_work_risks\` 를 조회하면 그 공종의 대책을 볼 수 있습니다.`);
+    lines.push("");
   }
 
   const hazardLabel = hazards[0]?.label ?? args.hazard;

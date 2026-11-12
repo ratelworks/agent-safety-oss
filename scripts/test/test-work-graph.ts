@@ -9,6 +9,7 @@
  *   4. 조문·대책에서 거꾸로 찾을 수 있다 (조문 → 대책 → 공종)
  *   5. 조문의 법령 종류가 소속 법령과 같다
  *   6. 고시의 장·절이 조문을 빠짐없이 담고, 연결한 공종·작업이 실제 노드다
+ *   7. 연결마다 정한 방식(원천·이름 대응·내용 판단)이 적혀 있고, 응답에 그 표기와 빈 곳이 나온다
  */
 import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
@@ -16,6 +17,7 @@ import { fileURLToPath } from "node:url";
 import jsonld from "jsonld";
 import { getNode, neighborsByEdge, listNodesByType } from "../../src/lib/graph-nodes-loader.js";
 import { findMeasuresCiting, findFieldMeasuresForHazard } from "../../src/lib/field-measures.js";
+import { getWorkSteps, LINK_BASIS_LABEL } from "../../src/lib/work-steps.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -38,6 +40,9 @@ const LAW_TYPE: Record<string, string> = {
 /** 역방향 조회를 확인할 조문 — 굴착 인접 매설물 방호 (여러 흙막이 공종의 대책 근거) */
 const SAMPLE_ARTICLE = "art:기준규칙:341";
 const SAMPLE_HAZARD = "hazard:fall_from_height";
+/** 정한 방식을 적어야 하는 연결 — 공종 노드 / 고시 장·절 노드 */
+const SUBTASK_LINK_KEYS = ["regulatedBy", "guidedBy", "steps", "hasHazard", "broader", "references"];
+const CHAPTER_LINK_KEYS = ["partOf", "hasArticle", "appliesTo", "appliesToActivity"];
 
 let failed = 0;
 function check(name: string, ok: boolean, detail = ""): void {
@@ -205,6 +210,32 @@ async function main(): Promise<void> {
     return chapterActKeys.has(key) && !inChapter.has(String(a["@id"]));
   });
   check("장이 있는 고시의 조문은 모두 장에 속한다", loose.length === 0, `장에 없는 조문 ${loose.length}개 ${loose.slice(0, 3).map((a) => String(a["@id"])).join(", ")}`);
+
+  // 7. 연결을 정한 방식과 빈 곳
+  const missingBasis: string[] = [];
+  const checkBasis = (node: Record<string, unknown>, keys: string[]): void => {
+    const basis = ((node._meta ?? {}) as { linkBasis?: Record<string, string> }).linkBasis ?? {};
+    for (const k of keys) {
+      const v = node[k];
+      const present = Array.isArray(v) ? v.length > 0 : Boolean(v);
+      if (present && !LINK_BASIS_LABEL[basis[k] ?? ""]) missingBasis.push(`${String(node["@id"])}.${k}`);
+    }
+  };
+  for (const s of subtasks) checkBasis(s, SUBTASK_LINK_KEYS);
+  for (const c of chapters) checkBasis(c, CHAPTER_LINK_KEYS);
+  check("연결마다 정한 방식이 적혀 있다", missingBasis.length === 0, `빠진 곳 ${missingBasis.length} ${missingBasis.slice(0, 3).join(", ")}`);
+
+  let withGaps = 0;
+  let gapMismatch = 0;
+  for (const s of subtasks) {
+    const res = await getWorkSteps(String(s.title));
+    if (!res || res.result.iri !== s["@id"]) continue;
+    if (res.result.gaps?.length) withGaps += 1;
+    // 상위 작업이 없는 공종은 그 사실이 응답에 나와야 한다
+    const saysNoParent = (res.result.gaps ?? []).some((g) => g.startsWith("상위 작업"));
+    if (Boolean(s.broader) === saysNoParent) gapMismatch += 1;
+  }
+  check("상위 작업이 없는 공종은 응답에 그 사실이 나온다", gapMismatch === 0, `빈 곳을 알린 공종 ${withGaps}개, 어긋남 ${gapMismatch}`);
 
   const subtaskCount = (await listNodesByType("ConstructionSubtask")).length;
   console.log(`\n공종 ${subtaskCount} · 단계 ${stepIds.length} · 위험요인 ${riskIds.length} · 대책 노드 ${measureBody.size} · 고시 장·절 ${chapters.length}`);

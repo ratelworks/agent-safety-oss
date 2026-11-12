@@ -317,6 +317,12 @@ async function main(): Promise<void> {
           admRulId: rule.id,
           licenseHint: LICENSE_HINT,
           ...(scope ? { scopeNote: SCOPE_NOTE } : {}),
+          linkBasis: {
+            partOf: "source",
+            hasArticle: "source",
+            ...(scope?.works?.length ? { appliesTo: "editorial" } : {}),
+            ...(scope?.activities?.length ? { appliesToActivity: "editorial" } : {}),
+          },
         },
         description: `${name} ${label} ${ch.title}`,
         legislationIdentifier: name,

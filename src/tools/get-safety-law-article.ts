@@ -19,12 +19,19 @@ const NOTICE_LEGISLATION_TYPES: ReadonlySet<string> = new Set(["Notification", "
 const NOTICE_REF_PATTERN = /^(.*?)\s*(?:§\s*|제\s*)(\d+)\s*조?(?:\s*의\s*(\d+))?/;
 
 
+/** 현장 감소대책 표시 선택지 — 조문만 필요한 호출은 'none' */
+const FIELD_MEASURE_MODES = ["show", "none"] as const;
+type FieldMeasureMode = (typeof FIELD_MEASURE_MODES)[number];
+
 /** 조문 응답에 보여 줄 현장 대책 수 — 넘으면 줄인 건수를 적는다 (전체는 structuredContent 에) */
 const MAX_FIELD_MEASURES_SHOWN = 12;
 
 /** 이 조문을 근거로 한 공종 단계의 감소대책 — 조문이 현장에서 어떤 조치로 쓰이는지 */
-async function fieldMeasureSection(iri: string | null): Promise<{ md: string; data?: { total: number; works: string[]; measures: FieldMeasure[] } }> {
-  if (!iri) return { md: "" };
+async function fieldMeasureSection(
+  iri: string | null,
+  mode: FieldMeasureMode,
+): Promise<{ md: string; data?: { total: number; works: string[]; measures: FieldMeasure[] } }> {
+  if (!iri || mode === "none") return { md: "" };
   const measures = await findMeasuresCiting(iri);
   if (measures.length === 0) return { md: "" };
   const works = [...new Set(measures.flatMap((m) => m.works))].sort((a, b) => a.localeCompare(b, "ko"));
@@ -63,12 +70,16 @@ const inputSchema = z.object({
     ])
     .optional()
     .describe("명시적 법령 코드 지정 (ref 에 법령명 없을 때)"),
+  fieldMeasures: z
+    .enum(FIELD_MEASURE_MODES)
+    .default("show")
+    .describe("이 조문을 근거로 한 현장 감소대책을 함께 볼지 — 'show'(기본) / 'none'(조문만)"),
 });
 
 type Input = z.infer<typeof inputSchema>;
 
 /** 조문 노드로만 수록한 고시·지침의 조문을 찾아 응답을 만든다. 법령명을 식별하지 못하면 null. */
-async function findNoticeArticle(ref: string): Promise<McpToolResult | null> {
+async function findNoticeArticle(ref: string, mode: FieldMeasureMode): Promise<McpToolResult | null> {
   const m = ref.trim().match(NOTICE_REF_PATTERN);
   if (!m || !m[1].trim()) return null;
   const { canonical } = legalRefToIri(m[1].trim(), `§${m[2]}`);
@@ -103,7 +114,7 @@ async function findNoticeArticle(ref: string): Promise<McpToolResult | null> {
       ? "**인용 시 근거 등급**: `basisType: notice` / `legalWeight: recommended` — 사업주에게 지도·권고하는 기술상 지침입니다. 법적 의무는 상위 법령(산업안전보건법·안전보건규칙) 조문으로 확인하세요."
       : "**인용 시 근거 등급**: `basisType: law | regulation` / `legalWeight: mandatory`",
   ].join("\n");
-  const field = await fieldMeasureSection(iri);
+  const field = await fieldMeasureSection(iri, mode);
   return {
     content: [{ type: "text", text: md + field.md }],
     structuredContent: {
@@ -128,7 +139,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   // 본문 파일로 수록하지 않고 조문 노드로만 가진 고시·지침은 노드에서 찾는다
   if (!article) {
-    const fromGraph = await findNoticeArticle(input.ref);
+    const fromGraph = await findNoticeArticle(input.ref, input.fieldMeasures);
     if (fromGraph) return fromGraph;
   }
 
@@ -212,7 +223,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     .join("\n");
 
   const articleIri = legalRefToIri(article.lawShortName, article.ref).iri;
-  const field = await fieldMeasureSection(articleIri);
+  const field = await fieldMeasureSection(articleIri, input.fieldMeasures);
 
   return {
     content: [{ type: "text", text: md + field.md }],

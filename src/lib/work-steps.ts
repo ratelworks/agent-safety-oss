@@ -62,6 +62,8 @@ interface Work {
   activity?: string;
   /** 관련 고시(법령 노드)와 그 조문 */
   references: string[];
+  /** 연결 종류별로 그 연결을 정한 방식 (노드 _meta.linkBasis) */
+  linkBasis: Record<string, string>;
   steps: WorkStep[];
 }
 interface SubtaskNode {
@@ -70,6 +72,7 @@ interface SubtaskNode {
   workGroup: string;
   broader?: string;
   references?: string[];
+  _meta?: { linkBasis?: Record<string, string> };
   steps: { stepName: string; stepHazards: RawStepHazard[] }[];
 }
 /** 공종 노드에 적힌 그대로의 근거 참조 — 필드 이름이 문맥의 주소 접두어와 겹치지 않게 돼 있다 */
@@ -128,9 +131,23 @@ export interface ResolvedBasis {
   controlLevel?: string;
   legalWeight: "mandatory" | "recommended";
 }
+/**
+ * 연결을 정한 방식 (노드 _meta.linkBasis)
+ *   source    원천 자료에 그대로 있는 연결
+ *   mapped    이름 대응표로 이은 연결
+ *   editorial 내용을 읽고 정한 연결 — 현장 검토 전
+ */
+export const LINK_BASIS_LABEL: Record<string, string> = {
+  source: "원천 자료에 있는 연결",
+  mapped: "이름 대응표로 이은 연결",
+  editorial: "내용을 읽고 정한 연결 (현장 검토 전)",
+};
+
 export interface RelatedNotice {
   /** 고시 이름 */
   law: string;
+  /** 이 공종과 고시를 이은 방식 — LINK_BASIS_LABEL 참조 */
+  linkBasis?: string;
   /** 공종·단계 이름과 제목이 맞는 조문. 맞는 조문이 없으면 빈 배열(고시 전체를 살핀다) */
   articles: { ref: string; title: string }[];
   legalWeight: "recommended";
@@ -152,6 +169,11 @@ export interface ResolvedWorkSteps {
   relatedNotices?: RelatedNotice[];
   /** 연결된 작업과 관련된 문서 — 작성 조건(when)에 해당할 때만 필요하다 */
   relatedDocuments?: RelatedDocument[];
+  /** 연결 종류별로 그 연결을 정한 방식 (예: 상위 작업 = 내용을 읽고 정함) — 값의 뜻은 linkBasisLegend */
+  linkBasis?: Record<string, string>;
+  linkBasisLegend?: Record<string, string>;
+  /** 이 공종 자료에서 이어지지 않은 것 — 없다고 확인된 것이 아니라 연결이 없는 것이다 */
+  gaps?: string[];
   steps: {
     name: string;
     hazards: {
@@ -170,6 +192,9 @@ export interface ResolvedRisk {
   measures: { measure: string; controlLevel?: string; variant?: string; basisRef?: string }[];
 }
 
+/** 공종 ↔ 고시(장·절·조문) 연결은 모두 내용을 읽고 정한 것이다 */
+const NOTICE_LINK_BASIS = "editorial";
+
 let worksCache: Work[] | null = null;
 
 /** 그래프의 공종 노드를 읽는다 (한 번 읽고 재사용) */
@@ -183,6 +208,7 @@ async function loadWorks(): Promise<Work[]> {
       group: n.workGroup,
       ...(n.broader ? { activity: n.broader } : {}),
       references: n.references ?? [],
+      linkBasis: n._meta?.linkBasis ?? {},
       steps: (n.steps ?? []).map((st) => ({ name: st.stepName, hazards: (st.stepHazards ?? []).map(toStepHazard) })),
     }))
     .sort((a, b) => a.iri.localeCompare(b.iri));
@@ -329,7 +355,7 @@ async function findRelatedNotices(work: Work): Promise<RelatedNotice[]> {
   for (const iri of work.references) {
     if (!iri.startsWith("act:")) continue;
     const act = (await getNode(iri)) as { legislationIdentifier?: string } | undefined;
-    if (act) byAct.set(iri, { law: act.legislationIdentifier ?? iri, articles: [], legalWeight: "recommended" });
+    if (act) byAct.set(iri, { law: act.legislationIdentifier ?? iri, articles: [], legalWeight: "recommended", linkBasis: NOTICE_LINK_BASIS });
   }
   for (const chapterIri of await neighborsByEdge(work.iri, "appliesTo", "in")) {
     if (!chapterIri.startsWith("chapter:")) continue;
@@ -345,7 +371,7 @@ async function findRelatedNotices(work: Work): Promise<RelatedNotice[]> {
     if (!node?.partOf) continue;
     let notice = byAct.get(node.partOf);
     if (!notice) {
-      notice = { law: node.legislationIdentifier ?? node.partOf, articles: [], legalWeight: "recommended" };
+      notice = { law: node.legislationIdentifier ?? node.partOf, articles: [], legalWeight: "recommended", linkBasis: NOTICE_LINK_BASIS };
       byAct.set(node.partOf, notice);
     }
     const num = node.articleNumber ?? "";
@@ -378,6 +404,42 @@ async function findRelatedDocuments(activity: string | undefined): Promise<Relat
     if (out.length >= MAX_RELATED_DOCUMENTS) break;
   }
   return out;
+}
+
+/**
+ * 이 공종 자료에서 이어지지 않은 것을 글로 적는다.
+ * 빈 곳을 조용히 넘기면 "해당 없음"으로 읽히므로, 연결이 없다는 사실을 그대로 알린다.
+ */
+function collectGaps(work: Work, steps: ResolvedWorkSteps["steps"], noticeCount: number): string[] {
+  const gaps: string[] = [];
+  if (!work.activity) {
+    gaps.push("상위 작업과 이어지지 않았다 — 작업별 문서·유해요인 자료는 이 공종에 붙지 않는다.");
+  }
+  const unlinked = new Map<string, number>();
+  let measures = 0;
+  let noBasis = 0;
+  for (const st of steps) {
+    for (const h of st.hazards) {
+      if (!h.hazard) unlinked.set(h.hazardLabel, (unlinked.get(h.hazardLabel) ?? 0) + h.risks.length);
+      for (const r of h.risks) {
+        for (const m of r.measures) {
+          measures += 1;
+          if (!m.basisRef) noBasis += 1;
+        }
+      }
+    }
+  }
+  if (unlinked.size > 0) {
+    const labels = [...unlinked.entries()].map(([label, n]) => `${label}(위험요인 ${n}건)`).join(", ");
+    gaps.push(`유해요인 분류와 이어지지 않은 재해유형: ${labels} — 유해요인으로 대책을 찾을 때 이 부분은 나오지 않는다.`);
+  }
+  if (noBasis > 0) {
+    gaps.push(`감소대책 ${measures}건 중 ${noBasis}건은 근거 조문·지침이 붙어 있지 않다.`);
+  }
+  if (noticeCount === 0) {
+    gaps.push("이 공종과 이어진 표준안전 작업지침(고시) 조문이 없다.");
+  }
+  return gaps;
 }
 
 /** 작업명에 맞는 공종의 단계별 재해유형과 근거를 읽을 수 있는 형태로 돌려준다. */
@@ -422,6 +484,7 @@ export async function getWorkSteps(
   }
   const relatedNotices = await findRelatedNotices(found.work);
   const relatedDocuments = await findRelatedDocuments(found.work.activity);
+  const gaps = collectGaps(found.work, steps, relatedNotices.length);
   return {
     result: {
       iri: found.work.iri,
@@ -430,6 +493,8 @@ export async function getWorkSteps(
       activity: found.work.activity,
       ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
       ...(relatedDocuments.length > 0 ? { relatedDocuments } : {}),
+      ...(Object.keys(found.work.linkBasis).length > 0 ? { linkBasis: found.work.linkBasis, linkBasisLegend: LINK_BASIS_LABEL } : {}),
+      ...(gaps.length > 0 ? { gaps } : {}),
       steps,
     },
     otherCandidates: found.others,
