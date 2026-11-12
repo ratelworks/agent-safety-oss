@@ -10,6 +10,8 @@ import { legalRefToIri } from "../lib/article-iri-map.js";
 import { getNode } from "../lib/graph-nodes-loader.js";
 
 // 파일 최상단 상수 — 특정 조문 원문 조회
+/** 조문 노드의 법령 종류 가운데 권고 기준인 것 (고시·지침) */
+const NOTICE_LEGISLATION_TYPES: ReadonlySet<string> = new Set(["Notification", "Notice"]);
 /** "굴착공사 표준안전 작업지침 제5조" · "… §5의2" → 법령명과 조 번호 */
 const NOTICE_REF_PATTERN = /^(.*?)\s*(?:§\s*|제\s*)(\d+)\s*조?(?:\s*의\s*(\d+))?/;
 
@@ -44,11 +46,13 @@ async function findNoticeArticle(ref: string): Promise<McpToolResult | null> {
   const num = m[3] ? `${m[2]}의${m[3]}` : m[2];
   const iri = `art:${canonical}:${num}`;
   const node = (await getNode(iri)) as
-    | { title?: string; description?: string; legislationIdentifier?: string; legislationDate?: string; _meta?: Record<string, unknown> }
+    | { title?: string; description?: string; legislationIdentifier?: string; legislationDate?: string; legislationType?: string; _meta?: Record<string, unknown> }
     | undefined;
   if (!node?.description) return null;
   const lawName = node.legislationIdentifier ?? canonical;
   const meta = node._meta ?? {};
+  // 근거 등급은 찾은 경로가 아니라 조문 노드에 적힌 법령 종류로 정한다 — 법·시행령·규칙은 의무, 고시·지침은 권고
+  const isNotice = NOTICE_LEGISLATION_TYPES.has(node.legislationType ?? "");
   const md = [
     `# ${lawName} §${num} ${node.title ?? ""}`,
     "",
@@ -65,11 +69,23 @@ async function findNoticeArticle(ref: string): Promise<McpToolResult | null> {
     "",
     "---",
     "",
-    "**인용 시 근거 등급**: `basisType: notice` / `legalWeight: recommended` — 사업주에게 지도·권고하는 기술상 지침입니다. 법적 의무는 상위 법령(산업안전보건법·안전보건규칙) 조문으로 확인하세요.",
+    isNotice
+      ? "**인용 시 근거 등급**: `basisType: notice` / `legalWeight: recommended` — 사업주에게 지도·권고하는 기술상 지침입니다. 법적 의무는 상위 법령(산업안전보건법·안전보건규칙) 조문으로 확인하세요."
+      : "**인용 시 근거 등급**: `basisType: law | regulation` / `legalWeight: mandatory`",
   ].join("\n");
   return {
     content: [{ type: "text", text: md }],
-    structuredContent: { query: { ref }, found: true, iri, law: lawName, article: num, title: node.title ?? "", source: "graph_node" },
+    structuredContent: {
+      query: { ref },
+      found: true,
+      iri,
+      law: lawName,
+      article: num,
+      title: node.title ?? "",
+      source: "graph_node",
+      basisType: isNotice ? "notice" : "regulation",
+      legalWeight: isNotice ? "recommended" : "mandatory",
+    },
   };
 }
 
