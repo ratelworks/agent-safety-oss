@@ -476,7 +476,12 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       out += `- **${a!["@id"]}** ${a!.title}${mark} — ${summary}\n`;
     }
     if (restArticles.length > 0) {
-      out += `- 그 밖의 관련 조문 ${restArticles.length}개 (제목만): ${restArticles.map((a) => `\`${a["@id"]}\` ${a.title}`).join(" · ")}\n`;
+      const restText = restArticles.map((a) => {
+        const mark = reviewMark(a["@id"] as string);
+        if (mark) unreviewedShown += 1;
+        return `\`${a["@id"]}\` ${a.title}${mark}`;
+      });
+      out += `- 그 밖의 관련 조문 ${restArticles.length}개 (제목만): ${restText.join(" · ")}\n`;
     }
     out += `\n`;
   }

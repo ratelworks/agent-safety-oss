@@ -91,7 +91,7 @@ SafetyReport -> includes -> SafetyIssue
 
 - <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 MCP 도구가 검색, 조회, 문서, 검수, 현장 사이클, 로컬 저장을 포괄한다.
 - <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId 법정의무 마스터와 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId 양식 인덱스가 정합된다.
-- 운영 그래프는 <!-- INV:GRAPH_TOTAL -->3,909<!-- /INV:GRAPH_TOTAL --> 노드 (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) 와 약 <!-- INV:GRAPH_EDGES -->38,300<!-- /INV:GRAPH_EDGES --> 엣지로 중소 건설사 사용 범위에는 충분하다.
+- 운영 그래프는 <!-- INV:GRAPH_TOTAL -->3,909<!-- /INV:GRAPH_TOTAL --> 노드 (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) 와 약 <!-- INV:GRAPH_EDGES -->38,294<!-- /INV:GRAPH_EDGES --> 엣지로 중소 건설사 사용 범위에는 충분하다.
 - `ontology:operational`, `mcp:test:graph`, `audit:strict`가 통과한다.
 - 4개 필드 시나리오에서 29/29 단계가 통과한다.
 

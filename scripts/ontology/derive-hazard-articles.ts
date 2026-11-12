@@ -71,7 +71,7 @@ async function main(): Promise<void> {
     const raw = await readFile(path, "utf-8");
     const node = JSON.parse(raw) as HazardNode;
     const works = worksOf.get(node["@id"])?.size ?? 0;
-    const need = Math.max(MIN_WORKS, Math.round(works * MIN_SHARE));
+    const need = Math.max(MIN_WORKS, Math.ceil(works * MIN_SHARE));
     const derived = [...(cited.get(node["@id"])?.entries() ?? [])]
       .filter(([, w]) => w.size >= need)
       .map(([art]) => art)
