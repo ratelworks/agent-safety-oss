@@ -163,7 +163,7 @@ export function validateApprovalChain(
     return issues;
   }
   // 목록이 아닌 값(문자열 등)이 들어오면 형식 오류로 알린다 — 처리 중 실패하지 않도록
-  if (!Array.isArray(chain) || chain.some((c) => !c || typeof c !== "object" || typeof c.role !== "string")) {
+  if (!Array.isArray(chain) || chain.some((c) => !c || typeof c !== "object" || typeof c.role !== "string" || (c.name !== undefined && c.name !== null && typeof c.name !== "string"))) {
     issues.push({ field, severity: "error", message: "결재선 형식 오류 — {role, name} 항목의 목록이어야 함" });
     return issues;
   }
