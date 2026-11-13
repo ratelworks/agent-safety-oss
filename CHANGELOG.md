@@ -5,7 +5,7 @@ All notable changes to `agent-safety-oss` are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.4.0] — 2026-11-12
+## [2.4.0] — 2026-11-13
 
 한글(HWPX) 파일로 바로 내보낼 수 있고, 확인한 것과 확인하지 못한 것을 구분해 알려 줍니다.
 

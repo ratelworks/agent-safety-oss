@@ -26,6 +26,11 @@ const LOADER_PATH = resolve(ROOT, "src", "lib", "graph-nodes-loader.ts");
 
 // 의도된 비-runtime predicate (PROV-O / taxonomy / structural)
 const INTENTIONAL_EXCLUSIONS = new Set([
+  // 공종 노드의 단계·대책 안에 들어 있는 근거 표기 — 노드 최상위 필드가 아니라 BFS 가 읽지 않는다.
+  // 같은 연결은 공종 노드 최상위의 regulatedBy·guidedBy 로 올라가 있어 그래프 탐색에는 그쪽이 쓰인다.
+  "basisArticle",
+  "basisAnnex",
+  "basisGuide",
   // PROV-O
   "wasGeneratedBy",
   "wasDerivedFrom",
