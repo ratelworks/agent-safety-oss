@@ -48,6 +48,8 @@ const KNOWN_PREFIXES = new Set([
   "act", "art", "annex", "doc", "penalty", "activity", "hazard", "event",
   "control", "method", "cycle", "cyc", "applic", "interp", "manual", "stat", "src",
   "equipment", "chapter", "section", "part",
+  // 공종 노드 (context.jsonld 의 subtask 접두어)
+  "subtask",
   "facet", "entity", "iso45001", "kosha", "cc", "safety",
 ]);
 
