@@ -22,52 +22,71 @@
   ],
   "requiredFields": [
     {
-      "key": "f_0_보링_등_적절한_방법으",
-      "label": "보링 등 적절한 방법으로 낙반·출수 및 가스폭발 위험 방지",
-      "source": "산안기준규칙 제38조 + 별표 4 7호",
-      "inputGuide": "터널 굴착 전 사전조사 (보링·물리탐사).",
+      "key": "boringSurvey",
+      "label": "사전조사 — 보링(boring) 등 적절한 방법으로 낙반ㆍ출수(出水) 및 가스폭발 등으로 인한 근로자의 위험을 방지하기 위하여 미리 지형ㆍ지질 및 지층상태를 조사",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 사전조사 내용",
+      "inputGuide": "터널 굴착 전 사전조사 (보링·물리탐사). (별표 4 원문 항목: 보링(boring) 등 적절한 방법으로 낙반ㆍ출수(出水) 및 가스폭발 등으로 인한 근로자의 위험을 방지하기 위하여 미리 지형ㆍ지질 및 지층상태를 조사)",
       "examples": [
         "보링 5공 + 전기탐사 / 낙반 가능 구간 록볼트 / 출수 2개소 차수 / 가스 농도 측정 일 4회"
       ]
     },
     {
-      "key": "method",
-      "label": "굴착 방법",
-      "source": "산안기준규칙 제38조 + 별표 4 7호",
-      "inputGuide": "굴착 공법 (NATM·TBM·발파·기계).",
+      "key": "excavationMethod",
+      "label": "가. 굴착의 방법",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 작업계획서 내용 가목",
+      "inputGuide": "굴착 공법 (NATM·TBM·발파·기계). (별표 4 원문 항목: 굴착의 방법)",
       "examples": [
-        "NATM 발파 + 록볼트 + 숏크리트 (쉘 두께 250mm)"
+        "NATM 발파 + 록볼트 + 숏크리트 (쉘 두께 250mm)",
+        "NATM 공법, 발파 + 숏크리트"
       ]
     },
     {
-      "key": "f_2_터널지보공_및_복공의_",
-      "label": "터널지보공 및 복공의 시공방법과 용수의 처리방법",
-      "source": "산안기준규칙 제38조 + 별표 4 7호",
-      "inputGuide": "지보공·복공 시공 + 용수 처리.",
+      "key": "supportAndWater",
+      "label": "나. 터널지보공 및 복공(覆工)의 시공방법과 용수(湧水)의 처리방법",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 작업계획서 내용 나목",
+      "inputGuide": "강지보·록볼트·배수. (별표 4 원문 항목: 터널지보공 및 복공(覆工)의 시공방법과 용수(湧水)의 처리방법)",
       "examples": [
-        "1차 지보 (강아치 + 록볼트 + 숏크리트) / 2차 복공 (콘크리트 라이닝) / 용수 → 측구 + 펌프 배수"
+        "강지보 + 록볼트 6m × 4본/m + 배수공"
       ]
     },
     {
       "key": "ventilation",
-      "label": "환기 또는 조명시설을 설치할 때에는 그 방법",
-      "source": "산안기준규칙 제38조 + 별표 4 7호",
-      "inputGuide": "환기·조명 시설 + 작동 방법.",
+      "label": "다. 환기 또는 조명시설을 설치할 때에는 그 방법",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 작업계획서 내용 다목",
+      "inputGuide": "송기·배기 + CO·NO₂ 측정. (별표 4 원문 항목: 환기 또는 조명시설을 설치할 때에는 그 방법)",
       "examples": [
-        "환기 (송풍기 22kW + 환기덕트 Φ800) / 조명 (LED 50W × 50m 간격)"
+        "송풍기 1500CMH + 배기, 가스측정기 상시"
+      ]
+    },
+    {
+      "key": "notifiedToWorkers",
+      "label": "작업계획서 내용을 해당 근로자에게 알림 (안전보건규칙 제38조제2항)",
+      "source": "산업안전보건기준에 관한 규칙 제38조제2항",
+      "inputGuide": "작성한 작업계획서의 내용을 해당 근로자에게 알렸는지와 그 방법·일시를 적는다.",
+      "examples": [
+        "작업 전 TBM 에서 작업계획서 내용 설명 (2026-03-02 07:30, 참석 12명 서명)"
       ]
     }
   ],
   "reviewRules": [
     {
-      "rule": "사전조사·작업계획 작성",
-      "severity": "manual_review",
-      "legalBasis": "annex:기준규칙:별표4-7호"
+      "rule": "별표 4 제7호의 사전조사 내용과 작업계획서 내용(가~다목)을 모두 적었다",
+      "severity": "blocker",
+      "legalBasis": "annex:기준규칙:별표4-7호",
+      "checkFields": [
+        "boringSurvey",
+        "excavationMethod",
+        "supportAndWater",
+        "ventilation"
+      ]
     },
     {
-      "rule": "근로자 통지 (제38조 ②)",
-      "severity": "manual_review",
-      "legalBasis": "art:기준규칙:38"
+      "rule": "작업계획서 내용을 해당 근로자에게 알렸다 (제38조제2항)",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:38",
+      "checkFields": [
+        "notifiedToWorkers"
+      ]
     }
   ],
   "sections": [
@@ -118,34 +137,38 @@
       ]
     },
     {
-      "title": "2. 터널 작업계획서 (별표 4 7호)",
-      "legalSource": "산안기준규칙 제38조 + 별표 4 7호",
+      "title": "2. 터널굴착작업 작업계획서 (별표 4 제7호)",
+      "legalSource": "산업안전보건기준에 관한 규칙 제38조 + 별표 4 제7호",
       "fields": [
         {
-          "key": "tunnelInfo",
-          "label": "터널 제원",
+          "key": "boringSurvey",
+          "label": "사전조사 — 보링(boring) 등 적절한 방법으로 낙반ㆍ출수(出水) 및 가스폭발 등으로 인한 근로자의 위험을 방지하기 위하여 미리 지형ㆍ지질 및 지층상태를 조사",
           "required": true,
-          "inputGuide": "위치·길이·단면·지반.",
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 사전조사 내용",
+          "inputGuide": "터널 굴착 전 사전조사 (보링·물리탐사). (별표 4 원문 항목: 보링(boring) 등 적절한 방법으로 낙반ㆍ출수(出水) 및 가스폭발 등으로 인한 근로자의 위험을 방지하기 위하여 미리 지형ㆍ지질 및 지층상태를 조사)",
           "examples": [
-            "A터널 길이 250m, 단면 10m × 8m, 화강암"
+            "보링 5공 + 전기탐사 / 낙반 가능 구간 록볼트 / 출수 2개소 차수 / 가스 농도 측정 일 4회"
           ],
           "checkPoints": []
         },
         {
           "key": "excavationMethod",
-          "label": "굴착 공법",
+          "label": "가. 굴착의 방법",
           "required": true,
-          "inputGuide": "발파·기계·NATM 등.",
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 작업계획서 내용 가목",
+          "inputGuide": "굴착 공법 (NATM·TBM·발파·기계). (별표 4 원문 항목: 굴착의 방법)",
           "examples": [
+            "NATM 발파 + 록볼트 + 숏크리트 (쉘 두께 250mm)",
             "NATM 공법, 발파 + 숏크리트"
           ],
           "checkPoints": []
         },
         {
           "key": "supportAndWater",
-          "label": "지보공·용수 처리",
+          "label": "나. 터널지보공 및 복공(覆工)의 시공방법과 용수(湧水)의 처리방법",
           "required": true,
-          "inputGuide": "강지보·록볼트·배수.",
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 작업계획서 내용 나목",
+          "inputGuide": "강지보·록볼트·배수. (별표 4 원문 항목: 터널지보공 및 복공(覆工)의 시공방법과 용수(湧水)의 처리방법)",
           "examples": [
             "강지보 + 록볼트 6m × 4본/m + 배수공"
           ],
@@ -153,18 +176,46 @@
         },
         {
           "key": "ventilation",
-          "label": "환기 계획",
+          "label": "다. 환기 또는 조명시설을 설치할 때에는 그 방법",
           "required": true,
-          "inputGuide": "송기·배기 + CO·NO₂ 측정.",
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제7호 작업계획서 내용 다목",
+          "inputGuide": "송기·배기 + CO·NO₂ 측정. (별표 4 원문 항목: 환기 또는 조명시설을 설치할 때에는 그 방법)",
           "examples": [
             "송풍기 1500CMH + 배기, 가스측정기 상시"
           ],
           "checkPoints": []
         },
         {
+          "key": "notifiedToWorkers",
+          "label": "작업계획서 내용을 해당 근로자에게 알림 (안전보건규칙 제38조제2항)",
+          "required": true,
+          "source": "산업안전보건기준에 관한 규칙 제38조제2항",
+          "inputGuide": "작성한 작업계획서의 내용을 해당 근로자에게 알렸는지와 그 방법·일시를 적는다.",
+          "examples": [
+            "작업 전 TBM 에서 작업계획서 내용 설명 (2026-03-02 07:30, 참석 12명 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 현장 추가 항목 (별표 4 기재 항목 외 — 선택)",
+      "legalSource": "",
+      "fields": [
+        {
+          "key": "tunnelInfo",
+          "label": "터널 제원",
+          "required": false,
+          "inputGuide": "위치·길이·단면·지반.",
+          "examples": [
+            "A터널 길이 250m, 단면 10m × 8m, 화강암"
+          ],
+          "checkPoints": []
+        },
+        {
           "key": "emergency",
           "label": "비상대응",
-          "required": true,
+          "required": false,
           "inputGuide": "붕괴·가스·화재 대응.",
           "examples": [
             "대피 갱구 + 비상조명 + 119 직통"

@@ -42,6 +42,8 @@ import { applyInputMigrations, readInputMigrations } from "../lib/input-migratio
 import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput, type WorkStepTable } from "../lib/doclang-serializer.js";
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
+/** 서류에 싣는 별표 본문 상한 — 작업계획서의 별표 4 처럼 그 서류가 갖출 항목 목록이면 잘리지 않게 */
+const ANNEX_BODY_MAX_CHARS = 2000;
 const WORK_STEP_BASIS_PER_ROW = 3;
 
 const inputSchema = z.object({
@@ -1178,7 +1180,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   await Promise.all((doc.legalBasis ?? []).map(async (l) => {
     let body: string | undefined;
     if (l.startsWith("art:")) body = await extractArticleBody(l, 400);
-    else if (l.startsWith("annex:")) body = await extractAnnexBody(l, 400);
+    else if (l.startsWith("annex:")) body = await extractAnnexBody(l, ANNEX_BODY_MAX_CHARS);
     legalBodyByIri.set(l, body);
   }));
 

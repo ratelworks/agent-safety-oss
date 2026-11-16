@@ -20,61 +20,85 @@
   ],
   "requiredFields": [
     {
-      "key": "f_0_추락위험_예방_안전대책",
-      "label": "추락위험 예방 안전대책",
-      "source": "산안기준규칙 제38조 + 별표 4 11호",
-      "inputGuide": "중량물 작업 시 추락 예방 대책.",
+      "key": "fallPrevention",
+      "label": "가. 추락위험을 예방할 수 있는 안전대책",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 가목",
+      "inputGuide": "중량물 작업 시 추락 예방 대책. (별표 4 원문 항목: 추락위험을 예방할 수 있는 안전대책)",
       "examples": [
         "고소작업대 작업 시 안전대 100% 체결 + 안전난간"
       ]
     },
     {
-      "key": "f_1_낙하위험_예방_안전대책",
-      "label": "낙하위험 예방 안전대책",
-      "source": "산안기준규칙 제38조 + 별표 4 11호",
-      "inputGuide": "중량물 낙하 예방 대책 (양중 시).",
+      "key": "dropPrevention",
+      "label": "나. 낙하위험을 예방할 수 있는 안전대책",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 나목",
+      "inputGuide": "중량물 낙하 예방 대책 (양중 시). (별표 4 원문 항목: 낙하위험을 예방할 수 있는 안전대책)",
       "examples": [
         "두 줄 걸이 + 와이어로프 안전계수 5 이상 + 신호수 + 하부 통제선 (반경 1.5배)"
       ]
     },
     {
-      "key": "f_2_전도위험_예방_안전대책",
-      "label": "전도위험 예방 안전대책",
-      "source": "산안기준규칙 제38조 + 별표 4 11호",
-      "inputGuide": "중장비 전도 예방 대책.",
+      "key": "overturnPrevention",
+      "label": "다. 전도위험을 예방할 수 있는 안전대책",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 다목",
+      "inputGuide": "중장비 전도 예방 대책. (별표 4 원문 항목: 전도위험을 예방할 수 있는 안전대책)",
       "examples": [
         "아우트리거 4개소 완전 펴기 + 강판 받침대 + 지반 평탄도 확인"
       ]
     },
     {
-      "key": "f_3_협착위험_예방_안전대책",
-      "label": "협착위험 예방 안전대책",
-      "source": "산안기준규칙 제38조 + 별표 4 11호",
-      "inputGuide": "양중 하부 협착 예방 대책.",
+      "key": "crushPrevention",
+      "label": "라. 협착위험을 예방할 수 있는 안전대책",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 라목",
+      "inputGuide": "양중 하부 협착 예방 대책. (별표 4 원문 항목: 협착위험을 예방할 수 있는 안전대책)",
       "examples": [
         "양중 하부 작업자 진입 금지 + 신호수 + 무전기 통신"
       ]
     },
     {
-      "key": "f_4_붕괴위험_예방_안전대책",
-      "label": "붕괴위험 예방 안전대책",
-      "source": "산안기준규칙 제38조 + 별표 4 11호",
-      "inputGuide": "지반·구조물 붕괴 예방 대책.",
+      "key": "collapsePrevention",
+      "label": "마. 붕괴위험을 예방할 수 있는 안전대책",
+      "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 마목",
+      "inputGuide": "지반·구조물 붕괴 예방 대책. (별표 4 원문 항목: 붕괴위험을 예방할 수 있는 안전대책)",
       "examples": [
         "지반 다짐도 확인 + 작업 중량 < 지반 지지력 / 인접 구조물 균열 점검"
+      ]
+    },
+    {
+      "key": "notifiedToWorkers",
+      "label": "작업계획서 내용을 해당 근로자에게 알림 (안전보건규칙 제38조제2항)",
+      "source": "산업안전보건기준에 관한 규칙 제38조제2항",
+      "inputGuide": "작성한 작업계획서의 내용을 해당 근로자에게 알렸는지와 그 방법·일시를 적는다.",
+      "examples": [
+        "작업 전 TBM 에서 작업계획서 내용 설명 (2026-03-02 07:30, 참석 12명 서명)"
       ]
     }
   ],
   "reviewRules": [
     {
+      "rule": "별표 4 제11호의 작업계획서 내용(가~마목)을 모두 적었다",
+      "severity": "blocker",
+      "legalBasis": "annex:기준규칙:별표4-11호",
+      "checkFields": [
+        "fallPrevention",
+        "dropPrevention",
+        "overturnPrevention",
+        "crushPrevention",
+        "collapsePrevention"
+      ]
+    },
+    {
+      "rule": "작업계획서 내용을 해당 근로자에게 알렸다 (제38조제2항)",
+      "severity": "blocker",
+      "legalBasis": "art:기준규칙:38",
+      "checkFields": [
+        "notifiedToWorkers"
+      ]
+    },
+    {
       "rule": "5대 위험 모두 안전대책 작성",
       "severity": "manual_review",
       "legalBasis": "annex:기준규칙:별표4-11호"
-    },
-    {
-      "rule": "근로자 통지 (제38조 ②)",
-      "severity": "manual_review",
-      "legalBasis": "art:기준규칙:38"
     }
   ],
   "sections": [
@@ -125,13 +149,85 @@
       ]
     },
     {
-      "title": "2. 중량물 작업계획서 (별표 4 5호)",
-      "legalSource": "산안기준규칙 제38조 + 별표 4 5호",
+      "title": "2. 중량물의 취급 작업 작업계획서 (별표 4 제11호)",
+      "legalSource": "산업안전보건기준에 관한 규칙 제38조 + 별표 4 제11호",
+      "fields": [
+        {
+          "key": "fallPrevention",
+          "label": "가. 추락위험을 예방할 수 있는 안전대책",
+          "required": true,
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 가목",
+          "inputGuide": "중량물 작업 시 추락 예방 대책. (별표 4 원문 항목: 추락위험을 예방할 수 있는 안전대책)",
+          "examples": [
+            "고소작업대 작업 시 안전대 100% 체결 + 안전난간"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "dropPrevention",
+          "label": "나. 낙하위험을 예방할 수 있는 안전대책",
+          "required": true,
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 나목",
+          "inputGuide": "중량물 낙하 예방 대책 (양중 시). (별표 4 원문 항목: 낙하위험을 예방할 수 있는 안전대책)",
+          "examples": [
+            "두 줄 걸이 + 와이어로프 안전계수 5 이상 + 신호수 + 하부 통제선 (반경 1.5배)"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "overturnPrevention",
+          "label": "다. 전도위험을 예방할 수 있는 안전대책",
+          "required": true,
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 다목",
+          "inputGuide": "중장비 전도 예방 대책. (별표 4 원문 항목: 전도위험을 예방할 수 있는 안전대책)",
+          "examples": [
+            "아우트리거 4개소 완전 펴기 + 강판 받침대 + 지반 평탄도 확인"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "crushPrevention",
+          "label": "라. 협착위험을 예방할 수 있는 안전대책",
+          "required": true,
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 라목",
+          "inputGuide": "양중 하부 협착 예방 대책. (별표 4 원문 항목: 협착위험을 예방할 수 있는 안전대책)",
+          "examples": [
+            "양중 하부 작업자 진입 금지 + 신호수 + 무전기 통신"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "collapsePrevention",
+          "label": "마. 붕괴위험을 예방할 수 있는 안전대책",
+          "required": true,
+          "source": "산업안전보건기준에 관한 규칙 별표 4 제11호 작업계획서 내용 마목",
+          "inputGuide": "지반·구조물 붕괴 예방 대책. (별표 4 원문 항목: 붕괴위험을 예방할 수 있는 안전대책)",
+          "examples": [
+            "지반 다짐도 확인 + 작업 중량 < 지반 지지력 / 인접 구조물 균열 점검"
+          ],
+          "checkPoints": []
+        },
+        {
+          "key": "notifiedToWorkers",
+          "label": "작업계획서 내용을 해당 근로자에게 알림 (안전보건규칙 제38조제2항)",
+          "required": true,
+          "source": "산업안전보건기준에 관한 규칙 제38조제2항",
+          "inputGuide": "작성한 작업계획서의 내용을 해당 근로자에게 알렸는지와 그 방법·일시를 적는다.",
+          "examples": [
+            "작업 전 TBM 에서 작업계획서 내용 설명 (2026-03-02 07:30, 참석 12명 서명)"
+          ],
+          "checkPoints": []
+        }
+      ]
+    },
+    {
+      "title": "3. 현장 추가 항목 (별표 4 기재 항목 외 — 선택)",
+      "legalSource": "",
       "fields": [
         {
           "key": "loadInfo",
           "label": "중량물 정보 (중량·치수·중심)",
-          "required": true,
+          "required": false,
           "inputGuide": "단위 중량 × 개수 + 치수 + 중심위치.",
           "examples": [
             "철골 보 5톤 × 12개, 길이 12m, 중심 6m"
@@ -141,7 +237,7 @@
         {
           "key": "liftingMethod",
           "label": "양중 방법·장비",
-          "required": true,
+          "required": false,
           "inputGuide": "이동식크레인·타워크레인·체인블록.",
           "examples": [
             "이동식크레인 50톤 × 1대, 50m 반경 8톤"
@@ -151,7 +247,7 @@
         {
           "key": "riggingPlan",
           "label": "줄걸이 계획",
-          "required": true,
+          "required": false,
           "inputGuide": "슬링벨트·체인·정격하중·각도.",
           "examples": [
             "슬링벨트 5톤 × 4본, 60° 각도"
@@ -161,7 +257,7 @@
         {
           "key": "liftingSequence",
           "label": "양중 순서",
-          "required": true,
+          "required": false,
           "inputGuide": "단계별 양중 + 정착.",
           "examples": [
             "1) 지상 인양 → 2) 5층 위치 이동 → 3) 정착 → 4) 슬링 해제"
@@ -171,7 +267,7 @@
         {
           "key": "lossPath",
           "label": "낙하·전도 방지",
-          "required": true,
+          "required": false,
           "inputGuide": "안전대 + 가이드·태그라인.",
           "examples": [
             "태그라인 2조, 가이드라인 + 안전대 100% Tie-off"
