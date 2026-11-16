@@ -39,7 +39,23 @@
     "relatedLawSource": "guide_body_citation_v1",
     "relatedLawUpdatedAt": "2026-05-18",
     "legalBasisExtractedFrom": "guide_body_citation_auto_extract",
-    "legalBasisExtractedAt": "2026-05-24"
+    "legalBasisExtractedAt": "2026-05-24",
+    "legalBasisFromText": [
+      "art:산안법시행규칙:141"
+    ],
+    "legalBasisRemovedByText": [
+      {
+        "iri": "art:산안법:39",
+        "citedAs": "제39조(유해인자의 관리 등)",
+        "resolvedTo": null
+      },
+      {
+        "iri": "art:산안법시행규칙:81",
+        "citedAs": "제81조(유해인자의 분류·관리)",
+        "resolvedTo": "art:산안법시행규칙:141"
+      }
+    ],
+    "legalBasisTextCheck": "2026-11-16 가이드 본문의 법령 인용을 현행 조문으로 풀어 대조했다. legalBasisFromText = 본문 인용으로 더한 조문, legalBasisRemovedByText = 본문은 옛 조문 번호·제목으로 인용했는데 같은 번호의 현행 조문으로 잘못 이어져 있던 연결(resolvedTo 가 그 인용의 현행 조문)."
   },
   "causedBy": [
     "hazard:chemical_exposure"
@@ -135,7 +151,6 @@
     }
   ],
   "legalBasis": [
-    "art:산안법:39",
-    "art:산안법시행규칙:81"
+    "art:산안법시행규칙:141"
   ]
 }

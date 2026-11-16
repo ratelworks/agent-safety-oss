@@ -39,7 +39,31 @@
     "relatedLawSource": "guide_body_citation_v1",
     "relatedLawUpdatedAt": "2026-05-18",
     "legalBasisExtractedFrom": "guide_body_citation_auto_extract",
-    "legalBasisExtractedAt": "2026-05-24"
+    "legalBasisExtractedAt": "2026-05-24",
+    "legalBasisFromText": [
+      "art:산안법:84",
+      "art:산안법:89",
+      "art:산안법:86",
+      "art:산안법:91"
+    ],
+    "legalBasisRemovedByText": [
+      {
+        "iri": "art:산안법:34",
+        "citedAs": "제34조(안전인증)",
+        "resolvedTo": "art:산안법:84"
+      },
+      {
+        "iri": "art:산안법시행규칙:47",
+        "citedAs": "제47조(성능유지)",
+        "resolvedTo": null
+      },
+      {
+        "iri": "art:산안법시행령:27",
+        "citedAs": "제27조(방호조치를 하여야 할 유해하거나 위험한 기계․기구 등)",
+        "resolvedTo": null
+      }
+    ],
+    "legalBasisTextCheck": "2026-11-16 가이드 본문의 법령 인용을 현행 조문으로 풀어 대조했다. legalBasisFromText = 본문 인용으로 더한 조문, legalBasisRemovedByText = 본문은 옛 조문 번호·제목으로 인용했는데 같은 번호의 현행 조문으로 잘못 이어져 있던 연결(resolvedTo 가 그 인용의 현행 조문)."
   },
   "causedBy": [
     "hazard:fall_from_height",
@@ -171,8 +195,9 @@
     }
   ],
   "legalBasis": [
-    "art:산안법:34",
-    "art:산안법시행규칙:47",
-    "art:산안법시행령:27"
+    "art:산안법:84",
+    "art:산안법:89",
+    "art:산안법:86",
+    "art:산안법:91"
   ]
 }

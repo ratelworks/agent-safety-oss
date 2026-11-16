@@ -37,7 +37,15 @@
     "smartSearchKeyword": "석면해체",
     "previousMatchTypeNote": "data.go.kr 15123696 smart search 매칭 1건 (법령 0 / KOSHA Guide 1). title 로 검색. 2026-05-12.",
     "relatedLawSource": "guide_body_citation_v1",
-    "relatedLawUpdatedAt": "2026-05-18"
+    "relatedLawUpdatedAt": "2026-05-18",
+    "legalBasisFromText": [
+      "art:산안법:123",
+      "art:기준규칙:489",
+      "art:기준규칙:490",
+      "art:기준규칙:494",
+      "art:기준규칙:495"
+    ],
+    "legalBasisTextCheck": "2026-11-16 가이드 본문의 법령 인용을 현행 조문으로 풀어 대조했다. legalBasisFromText = 본문 인용으로 더한 조문, legalBasisRemovedByText = 본문은 옛 조문 번호·제목으로 인용했는데 같은 번호의 현행 조문으로 잘못 이어져 있던 연결(resolvedTo 가 그 인용의 현행 조문)."
   },
   "causedBy": [
     "hazard:chemical_exposure",
@@ -138,5 +146,12 @@
       "citedAsOf": "2018",
       "temporalNote": "KOSHA Guide H-199-2018 본문 직접 인용 (2018년 발행 시점). article 노드는 현재 법령이므로 그 사이 개정이 있다면 본문 의미와 article 노드 내용이 다를 수 있음. 정확한 발행 시점 법령은 가이드 원문 (sourceUrl) 참조."
     }
+  ],
+  "legalBasis": [
+    "art:산안법:123",
+    "art:기준규칙:489",
+    "art:기준규칙:490",
+    "art:기준규칙:494",
+    "art:기준규칙:495"
   ]
 }
