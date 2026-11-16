@@ -202,6 +202,8 @@ export interface ResolvedWorkSteps {
   gaps?: string[];
   steps: {
     name: string;
+    /** 이 단계를 부르는 다른 말(부재·장비 부품·작업) — 원문 근거가 있는 것 */
+    altLabels?: string[];
     hazards: {
       hazardLabel: string;
       hazard?: string;
@@ -632,7 +634,7 @@ export async function getWorkSteps(
         ...(omitted > 0 ? { omittedBasis: omitted } : {}),
       });
     }
-    steps.push({ name: s.name, hazards });
+    steps.push({ name: s.name, ...(s.altLabels.length > 0 ? { altLabels: s.altLabels } : {}), hazards });
   }
   const relatedNotices = await findRelatedNotices(found.work);
   const relatedDocuments = await findRelatedDocuments(found.work.activity);
@@ -653,6 +655,28 @@ export async function getWorkSteps(
     },
     otherCandidates: found.others,
   };
+}
+
+/**
+ * 질문이 가리키는 단계 이름들. 단계 대체 이름으로 공종을 찾았으면 그 단계, 아니면 질문에 단계 대체 이름이 들어 있거나
+ * 공종 이름이 아닌 질문 낱말이 단계 이름에 들어 있는 단계("타워크레인 지브 조립" → 지브·카운터웨이트 조립).
+ * 짚을 단계가 없으면 빈 배열 — 공종 전체를 본다.
+ */
+export function pickFocusSteps(query: string, ws: Pick<ResolvedWorkSteps, "work" | "matchedStep" | "steps">): string[] {
+  const q = normalize(query);
+  const workName = normalize(ws.work);
+  const tokens = query
+    .split(/[\s.,()·]+/)
+    .map(normalize)
+    .filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t) && !workName.includes(t));
+  return ws.steps
+    .filter(
+      (s) =>
+        s.name === ws.matchedStep ||
+        (s.altLabels ?? []).some((a) => normalize(a).length >= 2 && q.includes(normalize(a))) ||
+        tokens.some((t) => normalize(s.name).includes(t)),
+    )
+    .map((s) => s.name);
 }
 
 /** 공종 전체 (대공종별) */

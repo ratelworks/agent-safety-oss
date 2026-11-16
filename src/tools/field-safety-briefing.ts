@@ -4,7 +4,8 @@ import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
-import { getWorkSteps } from "../lib/work-steps.js";
+import { getWorkSteps, pickFocusSteps } from "../lib/work-steps.js";
+import { resolveWorkConditions, RULE_SCOPE, WORK_CONDITIONS_NOTICE, type ResolvedCondition } from "../lib/work-conditions.js";
 import { searchArticles } from "../lib/article-search.js";
 
 // 파일 최상단 상수 — 현장 사용자(현장소장·안전관리자) 친화 통합 brief
@@ -14,6 +15,13 @@ import { searchArticles } from "../lib/article-search.js";
 const WEIGHT_SUBTASK = 2000;
 const WEIGHT_ACTIVITY = 1000;
 const WEIGHT_HAZARD = 500;
+/** 질문에 든 작업 조건(강풍·야간 등)의 조치 중 이 작업에 해당하는 조문의 무게 — 공종이 근거로 든 조문 바로 아래 */
+const WEIGHT_CONDITION = 1500;
+/** 질문이 가리키는 단계를 펼칠 때 재해유형마다 보여 줄 위험요인 수·위험요인마다 보여 줄 대책 수 */
+const MAX_FOCUS_RISKS = 3;
+const MAX_FOCUS_MEASURES = 2;
+/** 작업 조건마다 보여 줄 '작업 종류와 무관한' 조치 수 (이 작업에 해당하는 조치는 모두 보여 준다) */
+const MAX_GENERAL_CONDITION_RULES = 3;
 const MAX_ARTICLES = 15;  // expansion IRI 모두 포함 가능 수준
 /** 문장 검색으로 후보에 넣는 조문 수 */
 const SEARCH_LIMIT = 30;
@@ -318,6 +326,20 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       bump(iri, WEIGHT_SUBTASK + (cites.get(iri) ?? 0));
     }
   }
+  // 작업 조건 — 질문에 든 조건 이름(강풍·야간·폭염 등)을 조건 노드에 맞추고, 이 작업에 해당하는 조치의 조문을 잇는다
+  const conditionWork = subtask
+    ? { iri: subtask.result.iri, activity: subtask.result.activity }
+    : matchedActivities[0]
+      ? { activity: matchedActivities[0].node["@id"] as string }
+      : undefined;
+  const conditions: ResolvedCondition[] = (await resolveWorkConditions([q], conditionWork)).conditions;
+  for (const c of conditions) {
+    for (const r of c.rules) {
+      if (r.scope !== RULE_SCOPE.thisWork || !r.basisIri.startsWith("art:")) continue;
+      linkedArticleIris.add(r.basisIri);
+      bump(r.basisIri, WEIGHT_CONDITION);
+    }
+  }
   // 위험요인 → 통제·조문 derive
   for (const hIri of linkedHazardIris) {
     const haz = hazards.find(h => h["@id"] === hIri);
@@ -428,15 +450,43 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     out += `## 🧱 공종·작업 단계 — ${st.work} (\`${st.iri}\`)\n`;
     if (st.matchedStep) out += `> 「${st.matchedStep}」 단계를 부르는 말(${(st.matchedBySynonym ?? []).join(", ")})로 찾은 공종입니다 — 그 단계부터 확인하세요.\n`;
     else if (st.matchedBySynonym?.length) out += `> 공종 이름이 아니라 현장 용어 사전의 낱말로 찾은 공종입니다 (찾은 낱말: ${st.matchedBySynonym.join(", ")}) — 맞는 공종인지 확인하세요.\n`;
+    // 질문이 단계를 가리키면(👉) 그 단계의 위험요인·대책·근거를 펼친다
+    const focus = pickFocusSteps(q, st);
     for (const step of st.steps) {
-      out += `- **${step.name}** — ${step.hazards.map((h) => h.hazardLabel).join(", ")}\n`;
+      const isFocus = focus.includes(step.name);
+      out += `- ${isFocus ? "👉 " : ""}**${step.name}** — ${step.hazards.map((h) => h.hazardLabel).join(", ")}\n`;
+      if (!isFocus) continue;
+      for (const h of step.hazards) {
+        const risks = [...h.risks].sort((a, b) => (b.priority ?? "").length - (a.priority ?? "").length).slice(0, MAX_FOCUS_RISKS);
+        for (const r of risks) {
+          out += `  - [${h.hazardLabel}] ${r.priority ? `${r.priority} ` : ""}${r.statement}\n`;
+          for (const m of r.measures.slice(0, MAX_FOCUS_MEASURES)) out += `    - ${m.measure}${m.basisRef ? ` (${m.basisRef})` : ""}\n`;
+        }
+      }
     }
+    if (focus.length > 0) out += `> 👉 는 질문이 가리키는 단계입니다 — 그 단계의 위험요인(중요도 표시 순)과 대책을 펼쳤습니다.\n`;
     for (const n of st.relatedNotices ?? []) {
       const arts = n.articles.map((x) => `${x.ref.split(" ").pop()} ${x.title}`).join(", ");
       out += `- 함께 볼 지침(권고 기준): ${n.law}${arts ? ` — ${arts}` : ""}\n`;
     }
     out += `- 단계별 근거(조문의 호·목, KOSHA Guide 조항): \`analyze_construction_work_risks({workType: "${st.work}"})\`\n\n`;
   }
+
+  // 작업 조건 — 질문에 든 조건의 조치 (이 작업에 해당하는 것부터, 다른 작업의 조치는 건수만)
+  for (const c of conditions) {
+    out += `## 🌦️ 작업 조건 — ${c.title} (질문의 "${c.matchedBy}")\n`;
+    const mine = c.rules.filter((r) => r.scope === RULE_SCOPE.thisWork);
+    const general = c.rules.filter((r) => r.scope === RULE_SCOPE.anyWork);
+    const others = c.rules.filter((r) => r.scope === RULE_SCOPE.otherWork);
+    for (const r of [...mine, ...general.slice(0, MAX_GENERAL_CONDITION_RULES)]) {
+      const tag = r.scope === RULE_SCOPE.thisWork ? "**[이 작업]** " : "";
+      out += `- ${tag}${r.requirement}${r.threshold ? ` _(기준: ${r.threshold})_` : ""} — ${r.basis}${r.legalWeight === "mandatory" ? "" : " (권고)"}\n`;
+    }
+    if (general.length > MAX_GENERAL_CONDITION_RULES) out += `- 작업 종류와 무관한 조치 ${general.length - MAX_GENERAL_CONDITION_RULES}건 더\n`;
+    if (others.length > 0) out += `- 다른 작업(${[...new Set(others.flatMap((r) => r.appliesTo ?? []))].slice(0, 4).join(", ")} 등)에 해당하는 조치 ${others.length}건\n`;
+    out += `- 전체: \`analyze_construction_work_risks({workType: "${subtask?.result.work ?? q}", workConditions: ["${c.title}"]})\`\n`;
+  }
+  if (conditions.length > 0) out += `> ${WORK_CONDITIONS_NOTICE}\n\n`;
 
   // 위험요인
   if (linkedHazardIris.size > 0) {

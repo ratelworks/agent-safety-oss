@@ -350,6 +350,10 @@ async function main(): Promise<void> {
     }
   }
   check("단계 대체 이름마다 그 말이 든 원문 근거 문장이 있다", stepAliasCount > 0 && stepAliasNoEvidence.length === 0, `대체 이름 ${stepAliasCount}개, 근거 없는 것 ${stepAliasNoEvidence.join(", ") || 0}`);
+  // 현장 맥락 한 문장 — 공종·단계·작업 조건을 함께 읽어 그 단계의 대책과 그 작업에 해당하는 조건 조치를 붙인다
+  const ctxText = (await fieldSafetyBriefingTool.handler({ workOrTopic: "내일 타워크레인 지브 조립하는데 강풍 예보가 있다" })).content[0]?.text ?? "";
+  const ctxNeeds = ["👉 **지브·카운터웨이트 조립**", "## 🌦️ 작업 조건 — 강풍", "**[이 작업]** ② 사업주는 순간풍속이 초당 10미터를 초과하는 경우 타워크레인의 설치"];
+  check("현장 브리핑이 문장의 단계와 작업 조건을 읽어 그 단계 대책과 이 작업의 조건 조치를 붙인다", ctxNeeds.every((n) => ctxText.includes(n)), ctxNeeds.filter((n) => !ctxText.includes(n)).join(" / ") || "단계·조건 모두");
   const hoist = await findWork("호이스트");
   check("KOSHA Guide 가 크레인으로 정의한 호이스트를 건설용 리프트로 잇지 않는다", hoist?.work.name !== "건설용 리프트", hoist?.work.name ?? "없음");
 
