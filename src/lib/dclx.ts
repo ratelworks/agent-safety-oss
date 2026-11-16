@@ -106,6 +106,26 @@ export function parseDoclang(xml: string): XmlNode {
   return root;
 }
 
+/** 글자 꾸밈 태그 — 낱말 가운데에 올 수 있어 걷어 낼 때 띄우지 않는다 */
+const INLINE_TAG = /<\/?(?:bold|italic|underline|strikethrough|subscript|superscript|code|location)\b[^>]*>/g;
+
+/**
+ * document.xml → 검색용 글 (나무를 만들지 않고 태그만 걷는다 — 1,040건 첫 검색이 무거워지지 않게).
+ * 표 안의 줄바꿈(<nl/>·칸 글 속 줄바꿈 문자)은 지워 낱말을 잇고("이동식\n크레인" → "이동식크레인" — 칸 경계는 태그 자리 공백으로 남는다),
+ * 표 밖 <nl/> 은 줄바꿈으로 둔다.
+ * 쪽 번호 같은 기계용 표지(<custom>)와 머리 정보(<head>)는 글이 아니다.
+ */
+export function doclangPlainText(xml: string): string {
+  const text = xml
+    .replace(/<head>[\s\S]*?<\/head>/g, " ")
+    .replace(/<custom>[\s\S]*?<\/custom>/g, " ")
+    .replace(/<table>[\s\S]*?<\/table>/g, (t) => t.replace(/<nl\s*\/>|\r?\n/g, ""))
+    .replace(/<nl\s*\/>/g, "\n")
+    .replace(INLINE_TAG, "")
+    .replace(/<[^>]*>/g, " ");
+  return decodeEntities(text).replace(/[ \t]+/g, " ");
+}
+
 function baseName(node: XmlNode): string {
   return node.name.split(":")[0];
 }

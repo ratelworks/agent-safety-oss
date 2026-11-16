@@ -13,7 +13,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { doclangBlocks, doclangToMarkdown, readDclxDocument, type DclxBlock } from "./dclx.js";
+import { doclangBlocks, doclangPlainText, doclangToMarkdown, readDclxDocument, type DclxBlock } from "./dclx.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -170,19 +170,25 @@ export async function getKoshaGuideBlocks(guideNo: string): Promise<DclxBlock[] 
   }
 }
 
-/** 가이드별 검색용 글 캐시 — 원문과 소문자본 */
-const searchCache = new Map<string, { text: string; lower: string }>();
+/** 가이드별 검색용 글 캐시 — 제목과 검색용 글 한 벌만 둔다 (본문 캐시·소문자본을 따로 두면 1,040건 본문이 세 벌 남는다) */
+const searchCache = new Map<string, { title: string; text: string }>();
 
 /**
- * 검색용 글 — 제목 + 본문. 표 칸 안에서 줄이 바뀐 낱말("이동식<br>크레인")도 찾도록 칸 줄바꿈(<br>)은 지워 잇고,
- * 나머지 표 태그는 칸 경계로 공백 하나. 가이드마다 한 번만 만든다.
+ * 검색용 글 — 제목 + 원본 글(태그를 걷은 것, 표 칸 안 줄바꿈은 이어 붙임 — doclangPlainText). 가이드마다 한 번만 만든다.
+ * 본문 Markdown 을 그리지 않고 본문 캐시도 채우지 않는다 (검색은 본문 전체를 돌려주지 않는다).
  */
-function searchableText(guide: KoshaGuideBody): { text: string; lower: string } {
-  const cached = searchCache.get(guide.guideNo);
+async function searchableText(meta: KoshaGuideMeta): Promise<{ title: string; text: string } | null> {
+  const cached = searchCache.get(meta.guideNo);
   if (cached) return cached;
-  const text = `${guide.title}\n${guide.body}`.replace(/<br\s*\/?>/gi, "").replace(/<\/?(?:table|caption|tr|td|th)\b[^>]*>/gi, " ");
-  const entry = { text, lower: text.toLowerCase() };
-  searchCache.set(guide.guideNo, entry);
+  let body: string;
+  try {
+    body = doclangPlainText(readDclxDocument(await readFile(resolve(GUIDES_DIR, meta.fileName))));
+  } catch {
+    return null;
+  }
+  const title = (await loadSources())[meta.guideNo]?.title ?? meta.guideNo;
+  const entry = { title, text: `${title}\n${body}` };
+  searchCache.set(meta.guideNo, entry);
   return entry;
 }
 
@@ -192,18 +198,19 @@ export async function searchKoshaGuidesMd(
 ): Promise<Array<{ guideNo: string; title: string; matchedSnippet: string }>> {
   const { limit = 20 } = options;
   await ensureIndex();
-  const q = keyword.trim().toLowerCase();
+  const q = keyword.trim();
   if (!q) return [];
+  // 대소문자를 가리지 않고 찾는다 — 소문자본을 따로 두지 않으려고 정규식으로
+  const pattern = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
 
   const results: Array<{ guideNo: string; title: string; matchedSnippet: string }> = [];
   for (const meta of indexCache.values()) {
     if (results.length >= limit) break;
-    const body = await getKoshaGuideMd(meta.guideNo);
-    if (!body) continue;
-    const { text, lower } = searchableText(body);
-    const idx = lower.indexOf(q);
+    const entry = await searchableText(meta);
+    if (!entry) continue;
+    const idx = entry.text.search(pattern);
     if (idx < 0) continue;
-    results.push({ guideNo: body.guideNo, title: body.title, matchedSnippet: text.slice(Math.max(0, idx - 60), idx + q.length + 60) });
+    results.push({ guideNo: meta.guideNo, title: entry.title, matchedSnippet: entry.text.slice(Math.max(0, idx - 60), idx + q.length + 60) });
   }
   return results;
 }
