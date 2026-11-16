@@ -1,0 +1,37 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "activity:protective_net_installation",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "추락방호망·낙하물 방지망·방호선반 설치",
+  "category": "height",
+  "jurisdiction": "KR",
+  "description": "추락방호망·낙하물 방지망·방호선반 설치. 소속 공종: 낙하물 방지망, 방호선반, 추락방지망.\n\n**관련 키워드**: 추락방호망, 추락방지망, 낙하물 방지망, 방호선반, 안전방망.",
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "groupingBasis": "산업안전보건기준에 관한 규칙 제14조(낙하물에 의한 위험의 방지 — 낙하물 방지망·방호선반)와 제42조(추락의 방지 — 추락방호망)",
+    "note": "상위 작업이 없던 공종을 법령 원문의 장·절 기준으로 묶어 만든 작업 노드. 근거 조문·유해요인·가이드는 소속 공종의 대책이 원문에서 인용한 것을 모았다(많이 인용된 순). 현장 검토 전."
+  },
+  "hasHazard": [
+    "hazard:fall_object",
+    "hazard:fire_explosion",
+    "hazard:fall_from_height"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:42",
+    "art:기준규칙:14"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-26-2017",
+    "doc:kosha_guide/C-27-2011"
+  ],
+  "searchKeywords": [
+    "추락방호망",
+    "추락방지망",
+    "낙하물 방지망",
+    "방호선반",
+    "안전방망"
+  ]
+}

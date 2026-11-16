@@ -1,0 +1,49 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "activity:temporary_road",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "가설도로 시공",
+  "category": "road",
+  "jurisdiction": "KR",
+  "description": "가설도로 시공. 소속 공종: 가설도로작업.\n\n**관련 키워드**: 가설도로, 공사용 가설도로, 표토제거.",
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "groupingBasis": "산업안전보건기준에 관한 규칙 제379조(가설도로)",
+    "note": "상위 작업이 없던 공종을 법령 원문의 조문 기준으로 묶어 만든 작업 노드. 근거 조문·유해요인·가이드는 소속 공종의 대책이 원문에서 인용한 것을 모았다(많이 인용된 순). 현장 검토 전."
+  },
+  "hasHazard": [
+    "hazard:struck_by_overturn",
+    "hazard:fall_object",
+    "hazard:struck_by",
+    "hazard:cave_in",
+    "hazard:machine_entanglement"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:405",
+    "art:기준규칙:379",
+    "art:기준규칙:201",
+    "art:기준규칙:200",
+    "art:기준규칙:199",
+    "art:기준규칙:198",
+    "art:기준규칙:197",
+    "art:기준규칙:202",
+    "art:기준규칙:203",
+    "art:기준규칙:99",
+    "art:기준규칙:37",
+    "art:기준규칙:14",
+    "art:기준규칙:205",
+    "art:기준규칙:206",
+    "art:기준규칙:204"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-114-2020"
+  ],
+  "searchKeywords": [
+    "가설도로",
+    "공사용 가설도로",
+    "표토제거"
+  ]
+}

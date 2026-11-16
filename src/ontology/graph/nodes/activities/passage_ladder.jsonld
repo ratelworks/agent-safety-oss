@@ -1,0 +1,48 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "activity:passage_ladder",
+  "@type": [
+    "Activity",
+    "Action"
+  ],
+  "title": "가설통로·계단·사다리 설치·사용",
+  "category": "height",
+  "jurisdiction": "KR",
+  "description": "가설통로·계단·사다리 설치·사용. 소속 공종: 가설 경사로, 가설통로 또는 가설계단, 이동식 사다리, 철골 승강용트랩.\n\n**관련 키워드**: 가설통로, 가설계단, 가설 경사로, 경사로, 사다리, 사다리식 통로, 이동식 사다리, 승강용트랩, 계단참.",
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "groupingBasis": "산업안전보건기준에 관한 규칙 제1편 제2장 제3절 '통로'(제21조~제30조 — 가설통로의 구조, 사다리식 통로, 계단)",
+    "note": "상위 작업이 없던 공종을 법령 원문의 장·절 기준으로 묶어 만든 작업 노드. 근거 조문·유해요인·가이드는 소속 공종의 대책이 원문에서 인용한 것을 모았다(많이 인용된 순). 현장 검토 전."
+  },
+  "hasHazard": [
+    "hazard:trip_slip",
+    "hazard:fall_from_height",
+    "hazard:cave_in",
+    "hazard:struck_by",
+    "hazard:fall_object"
+  ],
+  "regulatedBy": [
+    "art:기준규칙:24",
+    "art:기준규칙:23",
+    "art:기준규칙:42",
+    "art:기준규칙:13",
+    "art:기준규칙:26",
+    "art:기준규칙:27",
+    "art:기준규칙:28",
+    "art:기준규칙:30"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-11-2012"
+  ],
+  "searchKeywords": [
+    "가설통로",
+    "가설계단",
+    "가설 경사로",
+    "경사로",
+    "사다리",
+    "사다리식 통로",
+    "이동식 사다리",
+    "승강용트랩",
+    "계단참"
+  ]
+}
