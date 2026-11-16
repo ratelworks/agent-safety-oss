@@ -44,9 +44,9 @@ const SSoT = {
     const m = pkg.description.match(/(\d+)\s+MCP\s+tools/);
     return m ? parseInt(m[1]) : null;
   })(),
-  // KOSHA Guide 번들 — src/ontology/kosha-guides/*.md 카운트
+  // KOSHA Guide 번들 — src/ontology/kosha-guides/*.dclx 카운트
   koshaGuideBundleCount: readdirSync(resolve(ROOT, "src/ontology/kosha-guides"))
-    .filter((f) => f.endsWith(".md")).length,
+    .filter((f) => f.endsWith(".dclx")).length,
 };
 
 // ============================================================

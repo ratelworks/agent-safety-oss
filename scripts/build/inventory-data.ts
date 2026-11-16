@@ -189,14 +189,17 @@ export interface KoshaStat {
   missingBodies: string[];
   failures: KoshaFailure[];
   failureDriftOk: boolean;
-  verified: number;
-  partial: number;
-  raw: number;
+  /** _SOURCES.json 에 공단 포털 원본 주소·SHA-256 이 기록된 가이드 수 */
+  sourced: number;
+  /** 공단 포털 상태가 제정·개정인 가이드 수 */
+  current: number;
+  /** 공단 포털 상태가 폐지인 가이드 번호 */
+  repealed: string[];
 }
 
 export function countKoshaGuides(): KoshaStat {
   const dir = resolve(ROOT, "src/ontology/kosha-guides");
-  const all = readdirSync(dir).filter((f) => f.endsWith(".md"));
+  const all = readdirSync(dir).filter((f) => f.endsWith(".dclx"));
 
   const metaDir = resolve(ROOT, "src/ontology/graph/nodes/documents/guides");
   let metaCount = 0;
@@ -204,7 +207,7 @@ export function countKoshaGuides(): KoshaStat {
   if (existsSync(metaDir)) {
     const metaFiles = readdirSync(metaDir).filter((f) => f.endsWith(".jsonld"));
     metaCount = metaFiles.length;
-    const bodyIds = new Set(all.map((f) => f.replace(/\.md$/, "").toLowerCase()));
+    const bodyIds = new Set(all.map((f) => f.replace(/\.dclx$/, "").toLowerCase()));
     missingBodies = metaFiles
       .map((f) => f.replace(/\.jsonld$/, ""))
       .filter((id) => !bodyIds.has(id.toLowerCase()))
@@ -222,25 +225,24 @@ export function countKoshaGuides(): KoshaStat {
     missingBodies.every((id) => failureIds.includes(id)) &&
     failureIds.every((id) => missingBodies.includes(id));
 
-  let verified = 0;
-  let partial = 0;
-  let raw = 0;
-  for (const f of all) {
-    const content = readFileSync(join(dir, f), "utf8");
-    const emptyTables = (content.match(/^<table>$/gm) ?? []).length;
-    if (emptyTables === 0) verified++;
-    else if (emptyTables <= 10) partial++;
-    else raw++;
-  }
+  // 원본 정보 — 공단 포털 원본 주소·해시·상태 (_SOURCES.json)
+  let sources: Record<string, { status?: string; sha256?: string; sourceUrl?: string }> = {};
+  try {
+    sources = (JSON.parse(readFileSync(join(dir, "_SOURCES.json"), "utf8")) as { guides?: typeof sources }).guides ?? {};
+  } catch {}
+  const ids = all.map((f) => f.replace(/\.dclx$/, ""));
+  const sourced = ids.filter((id) => sources[id]?.sha256 && sources[id]?.sourceUrl).length;
+  const repealed = ids.filter((id) => sources[id]?.status === "폐지");
+  const current = ids.filter((id) => sources[id]?.status === "제정" || sources[id]?.status === "개정").length;
   return {
     bodyCount: all.length,
     metaCount,
     missingBodies,
     failures,
     failureDriftOk,
-    verified,
-    partial,
-    raw,
+    sourced,
+    current,
+    repealed,
   };
 }
 

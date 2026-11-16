@@ -117,16 +117,16 @@ function checkGraphNodes(): InspectSection {
 function checkKoshaGuides(): InspectSection {
   const dir = resolve(ROOT, "src/ontology/kosha-guides");
   if (!existsSync(dir)) return { name: "KOSHA Guide 본문", status: "warn", detail: "디렉토리 미발견" };
-  const all = readdirSync(dir).filter((f) => f.endsWith(".md"));
+  const all = readdirSync(dir).filter((f) => f.endsWith(".dclx"));
 
-  // 그래프 노드 메타 (src/ontology/graph/nodes/documents/guides/) vs 본문 .md 차이 자동 검증
+  // 그래프 노드 메타 (src/ontology/graph/nodes/documents/guides/) vs 원본 .dclx 차이 자동 검증
   const guideMetaDir = resolve(ROOT, "src/ontology/graph/nodes/documents/guides");
   let metaCount = 0;
   let missingBodyList: string[] = [];
   if (existsSync(guideMetaDir)) {
     const metaFiles = readdirSync(guideMetaDir).filter((f) => f.endsWith(".jsonld"));
     metaCount = metaFiles.length;
-    const bodyIds = new Set(all.map((f) => f.replace(/\.md$/, "").toLowerCase()));
+    const bodyIds = new Set(all.map((f) => f.replace(/\.dclx$/, "").toLowerCase()));
     missingBodyList = metaFiles
       .map((f) => f.replace(/\.jsonld$/, ""))
       .filter((id) => !bodyIds.has(id.toLowerCase()))
@@ -144,16 +144,14 @@ function checkKoshaGuides(): InspectSection {
     }));
   } catch {}
 
-  let verified = 0;
-  let partial = 0;
-  let raw = 0;
-  for (const f of all) {
-    const empty = (readFileSync(join(dir, f), "utf8").match(/^<table>$/gm) ?? []).length;
-    if (empty === 0) verified++;
-    else if (empty <= 10) partial++;
-    else raw++;
-  }
-  const pct = (n: number) => Math.round((n / all.length) * 100);
+  // 원본 정보 — 공단 포털 원본 주소·해시·상태 (_SOURCES.json)
+  let sources: Record<string, { status?: string; sha256?: string }> = {};
+  try {
+    sources = (JSON.parse(readFileSync(join(dir, "_SOURCES.json"), "utf8")) as { guides?: typeof sources }).guides ?? {};
+  } catch {}
+  const ids = all.map((f) => f.replace(/\.dclx$/, ""));
+  const sourced = ids.filter((id) => sources[id]?.sha256).length;
+  const repealed = ids.filter((id) => sources[id]?.status === "폐지");
 
   // 누락 ↔ _FAILURES.json drift 검증
   const failureIds = failuresRecorded.map((f) => f.guideNo);
@@ -178,7 +176,7 @@ function checkKoshaGuides(): InspectSection {
   return {
     name: "KOSHA Guide 본문",
     status,
-    detail: `본문 ${all.length}${extra} — verified ${verified} (${pct(verified)}%) · partial ${partial} (${pct(partial)}%) · raw ${raw} (${pct(raw)}%)`,
+    detail: `원본 ${all.length}${extra} — 원본 주소·해시 기록 ${sourced} · 공단 포털 폐지 ${repealed.length}${repealed.length ? ` (${repealed.join(", ")})` : ""}`,
     data: {
       bodies: all.length,
       meta: metaCount,
@@ -186,9 +184,8 @@ function checkKoshaGuides(): InspectSection {
       failuresRecorded: failuresRecorded.length,
       missingNotRecorded,
       recordedNotMissing,
-      verified,
-      partial,
-      raw,
+      sourced,
+      repealed,
     },
   };
 }

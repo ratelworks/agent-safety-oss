@@ -44,6 +44,16 @@ KOGL type. The types relevant to this project are:
 The bundled seed datasets in `src/ontology/*.json` include a
 `license` field that reflects the upstream type.
 
+**KOSHA Guide bundle.** The KOSHA technical guidelines (안전보건기술지침) are
+bundled as the official PDFs from the KOSHA portal converted, format only,
+into DocLang archives (`.dclx`, an LF AI & Data document standard) — the
+text and tables are carried over as published, without editing. Figures are
+not copied; only their position, caption and original page number remain.
+`src/ontology/kosha-guides/_SOURCES.json` records, for every guide, the
+original download URL, its SHA-256, and the KOSHA portal status (including
+guides the portal has since repealed). Treat these guides as KOGL
+Attribution + No-derivative works.
+
 ---
 
 ## 3. Required Attribution When Redistributing Data

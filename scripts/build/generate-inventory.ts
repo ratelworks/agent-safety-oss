@@ -95,7 +95,10 @@ function renderInventoryMarkdown(data: InventoryData): string {
   lines.push("| 항목 | 수 | 비고 |");
   lines.push("|---|---:|---|");
   lines.push(`| 그래프 메타 (.jsonld) | **${kosha.metaCount}** | KOSHA OneAPI 15144147 가 인지한 가이드 메타 |`);
-  lines.push(`| 본문 (.md) | **${kosha.bodyCount}** | PDF → kordoc 변환 성공한 본문 |`);
+  lines.push(`| 원본 (.dclx) | **${kosha.bodyCount}** | 공단 포털 원본 PDF 를 DocLang 0.8 아카이브로 변환 (공식 validator 통과본) |`);
+  lines.push(`| 원본 주소·SHA-256 기록 | ${kosha.sourced} | \`_SOURCES.json\` — 공단 포털 원본 PDF 주소와 해시 |`);
+  lines.push(`| 공단 포털 현행 (제정·개정) | ${kosha.current} | |`);
+  lines.push(`| 공단 포털 폐지 | ${kosha.repealed.length} | ${kosha.repealed.join(", ") || "—"} |`);
   lines.push(
     `| 본문 미수집 | ${kosha.missingBodies.length} | ${kosha.missingBodies.length > 0 ? "메타는 있으나 KOSHA 측 PDF 0 bytes" : "(없음 — 본문 = 메타)"} |`,
   );
@@ -119,17 +122,8 @@ function renderInventoryMarkdown(data: InventoryData): string {
       lines.push("");
     }
   }
-  lines.push("**추출 품질 등급** (`.md` 의 빈 `<table>` 잔재 기준 자동 분류):");
-  lines.push("");
-  lines.push("| 등급 | 기준 | 수 | 비율 |");
-  lines.push("|---|---|---:|---:|");
-  const pct = (n: number) => ((n / kosha.bodyCount) * 100).toFixed(1) + "%";
-  lines.push(`| **verified** | 빈 \`<table>\` 0건 — 본문 정상 | ${kosha.verified} | ${pct(kosha.verified)} |`);
-  lines.push(`| **partial** | 빈 \`<table>\` 1~10건 — 표 일부 손실, 본문 텍스트 정상 | ${kosha.partial} | ${pct(kosha.partial)} |`);
-  lines.push(`| **raw** | 빈 \`<table>\` 11+건 — kordoc 변환 잔재 다수, 본문은 텍스트로 가독 가능 | ${kosha.raw} | ${pct(kosha.raw)} |`);
-  lines.push("");
   lines.push(
-    "> ⚠️ KOSHA Guide 는 PDF → kordoc 변환 결과로, 일부 시각적 서식 손실 가능. LLM 인용 시 본문 텍스트만 사용 권장. 정확한 원본은 각 파일의 `원본 URL` 참조.",
+    "> ⚠️ KOSHA Guide 원본(.dclx)에는 그림 파일을 싣지 않고 그림 자리·캡션·원본 쪽 번호만 남긴다. 표는 병합 셀까지 보존한다. 정확한 원본은 `_SOURCES.json` 의 `sourceUrl`.",
   );
   lines.push("");
 

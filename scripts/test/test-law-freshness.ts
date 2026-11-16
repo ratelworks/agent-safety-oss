@@ -175,8 +175,8 @@ const readJson = (p: string) => JSON.parse(readFileSync(p, "utf8"));
   const fm = JSON.parse(formsMap);
   const f30 = fm.forms.find((f: { formId: string }) => f.formId === "annex30_industrial_accident_report");
   check("산업재해조사표 원본 현행판", String(f30?.officialName).includes("<개정 2025. 10. 1.>"));
-  const guide = readFileSync(resolve(ROOT, "src/ontology/kosha-guides/D-1-2021.md"), "utf8").split("\n")[0];
-  check("D-1-2021 현행 제목", guide === "# 미압 배관에서의 폭연 방산구 설치에 관한 기술지침", guide);
+  const guide = (JSON.parse(readFileSync(resolve(ROOT, "src/ontology/kosha-guides/_SOURCES.json"), "utf8")) as { guides: Record<string, { title: string }> }).guides["D-1-2021"]?.title ?? "";
+  check("D-1-2021 현행 제목", guide === "미압 배관에서의 폭연 방산구 설치에 관한 기술지침", guide);
 }
 
 console.log(`\n[law-freshness] ${pass} 통과 / ${fail} 실패`);

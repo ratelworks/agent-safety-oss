@@ -7,7 +7,7 @@
 1. 안전관리자와 현장소장이 제출하거나 보관할 문서에는 법령 근거와 기술 권고를 구분한다.
 2. 법령 본문은 번들 자료를 우선 사용한다.
 3. KOSHA Guide, 재해사례, MSDS, 안전보건자료, 보호구 인증은 출처와 등급을 표시한다.
-4. KOSHA 원문 자료는 임의 재가공·대량 재배포하지 않는다. **KOSHA Guide 본문은 <!-- INV:KOSHA_BODY -->1,040<!-- /INV:KOSHA_BODY -->건 번들** (kordoc 추출 MD, 공공누리 출처표시·변경금지 명시. `get_kosha_guide_md` 도구로 offline·keyless 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선).
+4. KOSHA 원문 자료는 임의 재가공·대량 재배포하지 않는다. **KOSHA Guide 본문은 <!-- INV:KOSHA_BODY -->1,040<!-- /INV:KOSHA_BODY -->건 번들** (공단 포털 원본 PDF 를 DocLang 문서 표준 아카이브(.dclx)로 변환해 보관 — 표는 병합 셀까지 보존, 그림은 자리·캡션·원본 쪽 번호만. 원본 주소·SHA-256·공단 상태는 `_SOURCES.json`. 공공누리 출처표시·변경금지 명시. `get_kosha_guide_md` 도구로 offline·keyless 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선).
 5. LLM이 법령 근거를 생성하지 않도록 graph IRI와 evidence metadata를 함께 반환한다.
 
 ## 주요 출처

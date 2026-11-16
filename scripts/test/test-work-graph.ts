@@ -26,6 +26,16 @@ import { generateTbmTopicsTool } from "../../src/tools/generate-tbm-topics.js";
 import { suggestControlsForHazardTool } from "../../src/tools/suggest-controls-for-hazard.js";
 import { analyzeConstructionWorkRisksTool } from "../../src/tools/analyze-construction-work-risks.js";
 import { resolveWorkConditions, RULE_SCOPE } from "../../src/lib/work-conditions.js";
+import { doclangToMarkdown, readDclxDocument } from "../../src/lib/dclx.js";
+
+/** KOSHA Guide 본문 — 원본 .dclx 를 그린 Markdown (없으면 빈 글) */
+async function guideBody(guideNo: string): Promise<string> {
+  try {
+    return doclangToMarkdown(readDclxDocument(await readFile(resolve(__dirname, "..", "..", "src", "ontology", "kosha-guides", `${guideNo}.dclx`))));
+  } catch {
+    return "";
+  }
+}
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -382,7 +392,7 @@ async function main(): Promise<void> {
     for (const alt of alts) {
       altCount += 1;
       const ev = evidence.find((e) => e.label === alt);
-      const body = ev ? await readFile(resolve(GRAPH, "..", "kosha-guides", `${ev.guide}.md`), "utf-8").catch(() => "") : "";
+      const body = ev ? await guideBody(ev.guide) : "";
       const flat = body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
       if (!ev || !flat.includes(ev.text.slice(0, 30))) altNoEvidence.push(`${n.title}:${alt}`);
       const hit = await findWork(alt);
@@ -407,7 +417,7 @@ async function main(): Promise<void> {
       ruleCount += 1;
       let source = "";
       if (r.basisArticle) source = String(((await getNode(r.basisArticle)) as { description?: string } | undefined)?.description ?? "");
-      else if (r.basisGuide) source = await readFile(resolve(GRAPH, "..", "kosha-guides", `${r.basisGuide.split("/").pop()}.md`), "utf-8").catch(() => "");
+      else if (r.basisGuide) source = await guideBody(r.basisGuide.split("/").pop() ?? "");
       const body = squash(source);
       // 머리 문장과 호를 " … " 로 이은 조치는 조각마다 원문에 있어야 한다
       const parts = r.requirement.split(" … ").map(squash);
