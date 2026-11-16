@@ -7,7 +7,8 @@
 
 import { getNode, listDocuments, listNodesByType, neighborsByEdge } from "./graph-nodes-loader.js";
 import { loadSynonymGroups, matchedTerm } from "./synonyms.js";
-import { getKoshaGuideMd } from "./kosha-guides-loader.js";
+import { getKoshaGuideBlocks, getKoshaGuideMd } from "./kosha-guides-loader.js";
+import type { DclxBlock } from "./dclx.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮";
@@ -145,6 +146,8 @@ export interface ResolvedBasis {
   legalWeight: "mandatory" | "recommended";
   /** "text-match" — 원천에 위치가 없거나 조항 표기로 찾지 못해, 대책 문장을 법령·가이드 원문에서 찾아 위치를 정했다 */
   locatedBy?: string;
+  /** 가이드 근거면 그 조항·부록이 시작하는 원본 PDF 쪽 (공단 포털 원본 기준) */
+  page?: number;
 }
 /**
  * 연결을 정한 방식 (노드 _meta.linkBasis)
@@ -208,7 +211,7 @@ export interface ResolvedWorkSteps {
 export interface ResolvedRisk {
   statement: string;
   priority?: string;
-  measures: { measure: string; controlLevel?: string; variant?: string; basisRef?: string; basisLocatedBy?: string }[];
+  measures: { measure: string; controlLevel?: string; variant?: string; basisRef?: string; basisLocatedBy?: string; basisPage?: number }[];
 }
 
 /** 공종 ↔ 고시(장·절·조문) 연결은 모두 내용을 읽고 정한 것이다 */
@@ -357,24 +360,40 @@ function clip(text: string): string {
   return flat.length > PARAGRAPH_MAX_CHARS ? `${flat.slice(0, PARAGRAPH_MAX_CHARS)}…` : flat;
 }
 
-/** 가이드 본문에서 조항 번호로 시작하는 제목 줄을 찾는다. */
-function findSectionTitle(body: string, section: string): string | undefined {
-  // 부록: "<부록 3>" 줄(또는 "본 서식은 … <부록 3>") 다음의 첫 글줄이 제목
+/** 부록 표기 줄 — "<부록 3>"·"〈부록 3〉"(또는 "※ 본 서식은 … <부록 3>") */
+function appendixMarker(n: string): RegExp {
+  return new RegExp(`^(?:[-\\s※]*본 서식은.*)?\\s*[<〈]부록\\s*${n}[>〉]\\s*$`);
+}
+
+/** 조항 번호로 시작하는 제목 — "5. 1 일반사항"·"5.5선단슈"처럼 번호 사이 공백·제목과의 붙음을 허용 */
+function sectionPattern(section: string): RegExp {
+  const pattern = section.split(".").map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\.\\s*");
+  return new RegExp(`^\\s*(?:#+\\s*)?${pattern}\\.?(?!\\s*\\.?\\s*\\d)\\s*([^\\s\\d][^\\n]{0,60})`);
+}
+
+/** 목차 줄("5.1 조립 강주 작업순서 ·····") */
+const TOC_LINE = /···|‥|…|\.{4,}/;
+
+/**
+ * 가이드 원본(.dclx)의 제목·문단 요소에서 조항·부록이 시작하는 자리를 찾는다 — 제목 글과 원본 쪽 번호.
+ * 표 안 글(목차 표 등)은 요소에 들지 않는다.
+ */
+function locateSection(blocks: DclxBlock[], section: string): { text: string; page?: number } | undefined {
   const app = section.match(/^부록\s*(\d+)$/);
   if (app) {
-    const lines = body.split("\n");
-    const at = lines.findIndex((l) => new RegExp(`^(?:[-\\s※]*본 서식은.*)?\\s*[<〈]부록\\s*${app[1]}[>〉]\\s*$`).test(l.trim()));
-    const title = at >= 0 ? lines.slice(at + 1).find((l) => l.trim() && !l.trim().startsWith("<")) : undefined;
-    return title ? `${section} ${title.trim().slice(0, 60)}` : undefined;
+    const marker = appendixMarker(app[1]);
+    const at = blocks.findIndex((b) => b.text.split("\n").some((l) => marker.test(l.trim())));
+    if (at < 0) return undefined;
+    const title = blocks.slice(at + 1).map((b) => b.text.split("\n")[0].trim()).find((l) => l && !l.startsWith("<"));
+    return title ? { text: `${section} ${title.slice(0, 60)}`, page: blocks[at].page } : undefined;
   }
-  // 원본 PDF 추출본은 "5. 1 일반사항"·"5.5선단슈"처럼 번호 사이 공백이나 제목과의 붙음이 섞여 있다
-  const pattern = section.split(".").map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\.\\s*");
-  const rx = new RegExp(`^\\s*(?:#+\\s*)?${pattern}\\.?(?!\\s*\\.?\\s*\\d)\\s*([^\\s\\d][^\\n]{0,60})`);
-  // 목차 줄("5.1 조립 강주 작업순서 ·····")은 건너뛴다
-  for (const line of body.split("\n")) {
-    if (/···|‥|…|\.{4,}/.test(line)) continue;
-    const m = line.match(rx);
-    if (m) return `${section} ${m[1].trim()}`;
+  const rx = sectionPattern(section);
+  for (const b of blocks) {
+    for (const line of b.text.split("\n")) {
+      if (TOC_LINE.test(line)) continue;
+      const m = line.match(rx);
+      if (m) return { text: `${section} ${m[1].trim()}`, page: b.page };
+    }
   }
   return undefined;
 }
@@ -427,11 +446,15 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
     const guideNo = b.guide.split("/").pop() ?? "";
     const md = await getKoshaGuideMd(guideNo);
     if (!md) return null;
+    // 조항·부록 위치는 원본(.dclx)의 제목·문단 요소에서 찾는다 — 제목 글과 원본 쪽 번호
+    const blocks = b.section ? await getKoshaGuideBlocks(guideNo) : null;
+    const located = b.section && blocks ? locateSection(blocks, b.section) : undefined;
     return {
       kind: "kosha_guide",
       ref: `KOSHA Guide ${guideNo}${b.section ? ` ${b.section}` : ""}${b.clause ? ` ${clauseLabel(b.clause)}` : ""}`,
       title: md.title,
-      text: b.section ? findSectionTitle(md.body, b.section) : undefined,
+      text: located?.text,
+      ...(located?.page ? { page: located.page } : {}),
       ...(b.locatedBy ? { locatedBy: b.locatedBy } : {}),
       controlLevel,
       legalWeight: "recommended",
@@ -571,6 +594,7 @@ export async function getWorkSteps(
             ...(m.variant ? { variant: m.variant } : {}),
             ...(rb ? { basisRef: rb.ref } : {}),
             ...(rb?.locatedBy ? { basisLocatedBy: rb.locatedBy } : {}),
+            ...(rb?.page ? { basisPage: rb.page } : {}),
           });
         }
         risks.push({ statement: r.statement, ...(r.priority ? { priority: r.priority } : {}), measures });

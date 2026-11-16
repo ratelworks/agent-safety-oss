@@ -13,7 +13,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { doclangToMarkdown, readDclxDocument } from "./dclx.js";
+import { doclangBlocks, doclangToMarkdown, readDclxDocument, type DclxBlock } from "./dclx.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -140,6 +140,26 @@ export async function getKoshaGuideMd(guideNo: string): Promise<KoshaGuideBody |
     };
     bodyCache.set(upper, result);
     return result;
+  } catch {
+    return null;
+  }
+}
+
+/** 가이드별 본문 요소 캐시 (조항·부록 위치 찾기용) */
+const blocksCache = new Map<string, DclxBlock[]>();
+
+/** 원본(.dclx)의 본문 요소 — 제목·문단·목록과 원본 쪽 번호. 없으면 null */
+export async function getKoshaGuideBlocks(guideNo: string): Promise<DclxBlock[] | null> {
+  const upper = canonicalGuideNo(guideNo);
+  const cached = blocksCache.get(upper);
+  if (cached) return cached;
+  await ensureIndex();
+  const meta = indexCache.get(upper);
+  if (!meta) return null;
+  try {
+    const blocks = doclangBlocks(readDclxDocument(await readFile(resolve(GUIDES_DIR, meta.fileName))));
+    blocksCache.set(upper, blocks);
+    return blocks;
   } catch {
     return null;
   }

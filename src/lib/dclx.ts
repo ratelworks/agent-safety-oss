@@ -197,6 +197,39 @@ function listToMarkdown(node: XmlNode, depth = 0): string {
   return [text ? `${indent}${text}` : "", ...nested].filter(Boolean).join("\n");
 }
 
+/** 본문 요소 하나 — 글과 원본 쪽 번호 */
+export interface DclxBlock {
+  /** heading · text · list · footnote */
+  type: string;
+  text: string;
+  /** 원본 PDF 쪽 번호 (요소에 없으면 앞 요소의 쪽을 잇는다) */
+  page?: number;
+  /** 제목이면 단계 */
+  level?: number;
+}
+
+/**
+ * document.xml → 본문 요소 목록 (제목·문단·목록·각주). 표·그림 안의 글은 넣지 않는다 — 목차 표가 조항 찾기를 흐리지 않게.
+ * 조항·부록 위치를 원본 요소와 쪽 번호로 가리킬 때 쓴다.
+ */
+export function doclangBlocks(xml: string): DclxBlock[] {
+  const root = parseDoclang(xml);
+  const doc = root.children.find((c): c is XmlNode => typeof c !== "string" && baseName(c) === "doclang");
+  if (!doc) throw new Error("DocLang 루트(<doclang>)가 없습니다");
+  const out: DclxBlock[] = [];
+  let page: number | undefined;
+  for (const child of doc.children) {
+    if (typeof child === "string") continue;
+    const own = Number(pageOf(child));
+    if (Number.isInteger(own) && own > 0) page = own;
+    const name = baseName(child);
+    const text = name === "list" ? listToMarkdown(child) : name === "heading" || name === "text" || name === "footnote" ? inlineText(child).trim() : "";
+    if (!text) continue;
+    out.push({ type: name, text, ...(page ? { page } : {}), ...(name === "heading" ? { level: Number(child.name.split(":")[1] ?? 1) } : {}) });
+  }
+  return out;
+}
+
 /** document.xml → Markdown 본문 */
 export function doclangToMarkdown(xml: string): string {
   const root = parseDoclang(xml);

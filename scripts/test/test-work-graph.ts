@@ -57,6 +57,15 @@ const LAW_TYPE: Record<string, string> = {
 };
 /** 역방향 조회를 확인할 조문 — 굴착 인접 매설물 방호 (여러 흙막이 공종의 대책 근거) */
 const SAMPLE_ARTICLE = "art:기준규칙:341";
+/**
+ * 가이드 근거 위치 정답 — 공단 포털 원본 PDF 에서 확인한 조항 제목과 쪽 (2026-11-16).
+ * 본문 글자 맞춤은 C-47-2023 에서 목차 줄("… ⇥10")을, D-C-13-2026 에서 본문에 인용된 법령 항목("6. 안전모를 착용하되 …")을 잡았다.
+ */
+const KNOWN_GUIDE_LOCATIONS: Record<string, { text: string; page: number }> = {
+  "KOSHA Guide C-47-2023 5.2.5": { text: "5.2.5 팽창제에 의한 해체작업", page: 13 },
+  "KOSHA Guide D-C-13-2026 6": { text: "6 작업계획서 작성시기 및 승인", page: 16 },
+  "KOSHA Guide D-C-7-2026 부록 2": { text: "부록 2 강관비계 및 시스템비계 안전점검표(예)", page: 66 },
+};
 const SAMPLE_HAZARD = "hazard:fall_from_height";
 /** 정한 방식을 적어야 하는 연결 — 공종 노드 / 고시 장·절 노드 */
 /** 조문 낱말("투하")이 없는 현장 문장과, 그 문장으로 찾아야 하는 조문 */
@@ -336,6 +345,8 @@ async function main(): Promise<void> {
   // 8-4. 대책 근거의 위치는 원문에서 풀린다 — 가이드 조항·부록은 본문 제목으로, 호를 든 조문은 그 호 본문으로.
   //      문장 대조로 정한 위치는 그 사실이 응답에 따라 나온다
   const unresolvedGuide: string[] = [];
+  const guideNoPage: string[] = [];
+  const guideLocations = new Map<string, { text: string; page?: number }>();
   const unresolvedItem: string[] = [];
   let locatedByText = 0;
   let locatedByTextShown = 0;
@@ -348,6 +359,8 @@ async function main(): Promise<void> {
       for (const h of s.hazards) {
         for (const b of h.basis) {
           if (b.kind === "kosha_guide" && /^KOSHA Guide \S+ \S/.test(b.ref) && !b.text) unresolvedGuide.push(b.ref);
+          if (b.kind === "kosha_guide" && /^KOSHA Guide \S+ \S/.test(b.ref) && !b.page) guideNoPage.push(b.ref);
+          if (b.kind === "kosha_guide" && b.text) guideLocations.set(b.ref, { text: b.text, page: b.page });
           if (b.kind === "law" && /제\d+조.*제\d+호/.test(b.ref) && !b.text) unresolvedItem.push(b.ref);
         }
         for (const r of h.risks) for (const m of r.measures) if (m.basisLocatedBy) locatedByTextShown += 1;
@@ -355,6 +368,14 @@ async function main(): Promise<void> {
     }
   }
   check("가이드 근거의 조항·부록 번호가 모두 본문 제목으로 풀린다", unresolvedGuide.length === 0, unresolvedGuide.slice(0, 5).join(", "));
+  check("가이드 근거의 조항·부록마다 원본 쪽 번호가 있다", guideNoPage.length === 0, guideNoPage.slice(0, 5).join(", "));
+  // 원본(.dclx) 요소로 찾은 위치 — 목차 줄·본문에 인용된 법령 항목을 조항 제목으로 잡지 않는다 (원본 PDF 쪽 대조)
+  const wrongLocations: string[] = [];
+  for (const [ref, want] of Object.entries(KNOWN_GUIDE_LOCATIONS)) {
+    const got = guideLocations.get(ref);
+    if (!got || got.text !== want.text || got.page !== want.page) wrongLocations.push(`${ref} → ${got ? `${got.text} (${got.page}쪽)` : "없음"}`);
+  }
+  check("가이드 근거 위치가 원본 제목·쪽과 같다 (목차 줄·인용 법령 항목 아님)", wrongLocations.length === 0, wrongLocations.join(", "));
   check("호를 든 조문 근거가 모두 그 호 본문으로 풀린다", unresolvedItem.length === 0, unresolvedItem.slice(0, 5).join(", "));
   check("문장 대조로 정한 근거 위치는 응답에 그 표시가 붙는다", locatedByText > 0 && locatedByTextShown === locatedByText, `노드 ${locatedByText}건, 응답 ${locatedByTextShown}건`);
 
