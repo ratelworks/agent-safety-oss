@@ -61,21 +61,25 @@
           "basis": [
             {
               "basisArticle": "art:기준규칙:405",
+              "paragraph": 1,
               "item": 1,
               "controlLevel": "administrative"
             },
             {
               "basisArticle": "art:기준규칙:405",
+              "paragraph": 1,
               "item": 2,
               "controlLevel": "engineering"
             },
             {
               "basisArticle": "art:기준규칙:405",
+              "paragraph": 1,
               "item": 3,
               "controlLevel": "elimination"
             },
             {
               "basisArticle": "art:기준규칙:405",
+              "paragraph": 2,
               "controlLevel": "engineering"
             }
           ],
@@ -87,42 +91,50 @@
               "priority": "★★",
               "measures": [
                 {
-                  "@id": "workmeasure:871be7fce8c2",
+                  "@id": "workmeasure:0a903fa2c54e",
                   "@type": "WorkMeasure",
                   "measure": "벌목하려는 경우에는 미리 대피로 및 대피장소를 정해 둔다.",
                   "controlLevel": "administrative",
                   "basis": {
                     "basisArticle": "art:기준규칙:405",
-                    "item": 1
+                    "item": 1,
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:05e17c437052",
+                  "@id": "workmeasure:ffc0a1a49996",
                   "@type": "WorkMeasure",
                   "measure": "벌목하려는 나무의 가슴높이지름이 20센티미터 이상인 경우에는 수구(베어지는 쪽의 밑동 부근에 만드는 쐐기 모양의 절단면)의 상면ㆍ하면의 각도를 30도 이상으로 하며, 수구 깊이는 뿌리부분 지름의 4분의 1 이상 3분의 1 이하로 만든다.",
                   "controlLevel": "engineering",
                   "basis": {
                     "basisArticle": "art:기준규칙:405",
-                    "item": 2
+                    "item": 2,
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:b2dec6d21a8c",
+                  "@id": "workmeasure:efa71560a2c8",
                   "@type": "WorkMeasure",
                   "measure": "벌목작업 중에는 벌목하려는 나무로부터 해당 나무 높이의 2배에 해당하는 직선거리 안에서 다른 작업을 하지 않는다.",
                   "controlLevel": "elimination",
                   "basis": {
                     "basisArticle": "art:기준규칙:405",
-                    "item": 3
+                    "item": 3,
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:1dc2e6803dff",
+                  "@id": "workmeasure:e0e494801f0e",
                   "@type": "WorkMeasure",
                   "measure": "유압식 벌목기에는 견고한 헤드 가드(head guard)를 부착한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisArticle": "art:기준규칙:405"
+                    "basisArticle": "art:기준규칙:405",
+                    "paragraph": 2,
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -249,11 +261,12 @@
             },
             {
               "basisArticle": "art:기준규칙:200",
-              "controlLevel": "administrative"
+              "paragraph": 1,
+              "controlLevel": "elimination"
             },
             {
               "basisArticle": "art:기준규칙:200",
-              "controlLevel": "elimination"
+              "controlLevel": "administrative"
             },
             {
               "basisArticle": "art:기준규칙:99",
@@ -268,12 +281,14 @@
               "priority": "★★",
               "measures": [
                 {
-                  "@id": "workmeasure:61fc444dd0aa",
+                  "@id": "workmeasure:f829cc809798",
                   "@type": "WorkMeasure",
                   "measure": "차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시켜서는 아니 된다. 다만, 유도자를 배치하고 해당 차량계 건설기계를 유도하는 경우에는 그러하지 아니하다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisArticle": "art:기준규칙:200"
+                    "basisArticle": "art:기준규칙:200",
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -317,10 +332,12 @@
             },
             {
               "basisArticle": "art:기준규칙:14",
+              "paragraph": 2,
               "controlLevel": "engineering"
             },
             {
               "basisArticle": "art:기준규칙:37",
+              "paragraph": 1,
               "controlLevel": "elimination"
             }
           ],
@@ -341,21 +358,25 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:2455990afd4f",
+                  "@id": "workmeasure:0f4ec3e427e4",
                   "@type": "WorkMeasure",
                   "measure": "비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisArticle": "art:기준규칙:37"
+                    "basisArticle": "art:기준규칙:37",
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:afb008c5b65d",
+                  "@id": "workmeasure:b8309f274901",
                   "@type": "WorkMeasure",
                   "measure": "작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisArticle": "art:기준규칙:14"
+                    "basisArticle": "art:기준규칙:14",
+                    "paragraph": 2,
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]

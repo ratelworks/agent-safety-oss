@@ -68,10 +68,6 @@
               "controlLevel": "administrative"
             },
             {
-              "basisArticle": "art:기준규칙:363",
-              "controlLevel": "administrative"
-            },
-            {
               "basisGuide": "doc:kosha_guide/C-45-2012",
               "guideSection": "7.1",
               "controlLevel": "administrative"
@@ -98,6 +94,16 @@
             {
               "basisArticle": "art:기준규칙:362",
               "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:363",
+              "paragraph": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "basisArticle": "art:기준규칙:363",
+              "paragraph": 2,
+              "controlLevel": "administrative"
             },
             {
               "basisArticle": "art:기준규칙:364",
@@ -231,21 +237,25 @@
               "priority": "★",
               "measures": [
                 {
-                  "@id": "workmeasure:b8dcefb0a8a7",
+                  "@id": "workmeasure:dce088fa47de",
                   "@type": "WorkMeasure",
                   "measure": "터널 지보공을 조립하는 경우에는 미리 그 구조를 검토한 후 조립도를 작성하고, 그 조립도에 따라 조립하도록 한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisArticle": "art:기준규칙:363"
+                    "basisArticle": "art:기준규칙:363",
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:475b2334adad",
+                  "@id": "workmeasure:9f8381a6455a",
                   "@type": "WorkMeasure",
                   "measure": "조립도에는 재료의 재질, 단면규격, 설치간격 및 이음방법 등을 명시한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisArticle": "art:기준규칙:363"
+                    "basisArticle": "art:기준규칙:363",
+                    "paragraph": 2,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {

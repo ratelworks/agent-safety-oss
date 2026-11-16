@@ -45,7 +45,7 @@ interface BasisRef {
   section?: string;
   /** 조항 안의 세부 위치 — "(1)(가)", 부록의 "표 3", 점검표 항목 번호("14") */
   clause?: string;
-  /** 위치를 정한 방식 — "text-match": 원천의 조항 표기로 찾지 못해 대책 문장을 가이드 원문에서 찾아 정함 */
+  /** 위치를 정한 방식 — "text-match": 원천에 위치(항·조항)가 없거나 찾지 못해 대책 문장을 법령·가이드 원문에서 찾아 정함 */
   locatedBy?: string;
   controlLevel?: string;
 }
@@ -143,7 +143,7 @@ export interface ResolvedBasis {
   text?: string;
   controlLevel?: string;
   legalWeight: "mandatory" | "recommended";
-  /** "text-match" — 원천의 조항 표기로는 위치를 찾지 못해, 대책 문장을 가이드 원문에서 찾아 위치를 정했다 */
+  /** "text-match" — 원천에 위치가 없거나 조항 표기로 찾지 못해, 대책 문장을 법령·가이드 원문에서 찾아 위치를 정했다 */
   locatedBy?: string;
 }
 /**
@@ -407,6 +407,7 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
       text: itemText ? itemText.replace(/\s+/g, " ").trim() : clip(scope),
       controlLevel,
       legalWeight: "mandatory",
+      ...(b.locatedBy ? { locatedBy: b.locatedBy } : {}),
     };
   }
   if (b.annex) {

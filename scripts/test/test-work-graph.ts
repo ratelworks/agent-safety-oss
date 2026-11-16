@@ -348,6 +348,30 @@ async function main(): Promise<void> {
   check("호를 든 조문 근거가 모두 그 호 본문으로 풀린다", unresolvedItem.length === 0, unresolvedItem.slice(0, 5).join(", "));
   check("문장 대조로 정한 근거 위치는 응답에 그 표시가 붙는다", locatedByText > 0 && locatedByTextShown === locatedByText, `노드 ${locatedByText}건, 응답 ${locatedByTextShown}건`);
 
+  // 8-4b. 항을 적지 않은 조문 근거 가운데, 대책 문장이 그 조문의 한 항에만 그대로 있는 것은 없어야 한다 (항 누락 회귀)
+  const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮";
+  const squashLaw = (s: string): string => s.replace(/\s+/g, "").replace(/\([^)]*[\u4e00-\u9fff][^)]*\)/g, "").replace(/\.$/, "");
+  const missingParagraph: string[] = [];
+  for (const n of subtasks) {
+    for (const st of (n as { steps?: { stepHazards?: { risks?: { measures?: { measure: string; basis?: { basisArticle?: string; paragraph?: number } }[] }[] }[] }[] }).steps ?? []) {
+      for (const h of st.stepHazards ?? []) {
+        for (const r of h.risks ?? []) {
+          for (const m of r.measures ?? []) {
+            const art = m.basis?.basisArticle;
+            if (!art || m.basis?.paragraph !== undefined) continue;
+            const body = String(((await getNode(art)) as { description?: string } | undefined)?.description ?? "");
+            const marks = [...CIRCLED].map((c) => body.indexOf(c)).filter((i) => i >= 0).sort((x, y) => x - y);
+            if (marks.length < 2) continue;
+            const paras = marks.map((s, k) => squashLaw(body.slice(s, marks[k + 1] ?? body.length)));
+            const t = squashLaw(m.measure);
+            if (t.length >= 10 && paras.filter((p) => p.includes(t)).length === 1) missingParagraph.push(`${n.title}:${art}`);
+          }
+        }
+      }
+    }
+  }
+  check("항을 적지 않은 조문 근거 중 대책 문장이 한 항에 그대로 있는 것이 없다", missingParagraph.length === 0, missingParagraph.slice(0, 5).join(", "));
+
   // 8-5. 공종의 대체 이름은 가이드 원문 근거가 있고, 그 이름으로 그 공종을 찾는다
   const altNoEvidence: string[] = [];
   const altMisrouted: string[] = [];

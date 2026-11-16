@@ -948,10 +948,6 @@
               "controlLevel": "administrative"
             },
             {
-              "basisArticle": "art:기준규칙:623",
-              "controlLevel": "administrative"
-            },
-            {
               "basisGuide": "doc:kosha_guide/C-81-2013",
               "guideSection": "4",
               "controlLevel": "administrative"
@@ -963,10 +959,20 @@
             },
             {
               "basisArticle": "art:기준규칙:619의2",
+              "paragraph": 3,
               "controlLevel": "engineering"
             },
             {
               "basisArticle": "art:기준규칙:621",
+              "controlLevel": "administrative"
+            },
+            {
+              "basisArticle": "art:기준규칙:623",
+              "paragraph": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "basisArticle": "art:기준규칙:623",
               "controlLevel": "administrative"
             }
           ],
@@ -1007,12 +1013,14 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:2997ac53f2e3",
+                  "@id": "workmeasure:b936cea25ea8",
                   "@type": "WorkMeasure",
                   "measure": "근로자가 밀폐공간에서 작업을 하는 동안 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisArticle": "art:기준규칙:623"
+                    "basisArticle": "art:기준규칙:623",
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -1025,12 +1033,14 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:c7b3b9bdeed8",
+                  "@id": "workmeasure:256ddf6cd1ae",
                   "@type": "WorkMeasure",
                   "measure": "산소 및 유해가스 농도를 측정한 결과 적정공기가 유지되고 있지 아니하다고 평가된 경우에는 작업장을 환기시키거나, 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 하는 등 근로자의 건강장해 예방을 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisArticle": "art:기준규칙:619의2"
+                    "basisArticle": "art:기준규칙:619의2",
+                    "paragraph": 3,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {

@@ -95,10 +95,6 @@
               "controlLevel": "administrative"
             },
             {
-              "basisArticle": "art:기준규칙:623",
-              "controlLevel": "administrative"
-            },
-            {
               "basisGuide": "doc:kosha_guide/C-14-2012",
               "guideSection": "4.1",
               "controlLevel": "ppe"
@@ -120,6 +116,7 @@
             },
             {
               "basisArticle": "art:기준규칙:619의2",
+              "paragraph": 3,
               "controlLevel": "engineering"
             },
             {
@@ -136,7 +133,17 @@
             },
             {
               "basisArticle": "art:기준규칙:623",
+              "paragraph": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "basisArticle": "art:기준규칙:623",
+              "paragraph": 3,
               "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:623",
+              "controlLevel": "administrative"
             }
           ],
           "risks": [
@@ -176,12 +183,14 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:c7b3b9bdeed8",
+                  "@id": "workmeasure:256ddf6cd1ae",
                   "@type": "WorkMeasure",
                   "measure": "산소 및 유해가스 농도를 측정한 결과 적정공기가 유지되고 있지 아니하다고 평가된 경우에는 작업장을 환기시키거나, 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 하는 등 근로자의 건강장해 예방을 위하여 필요한 조치를 한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisArticle": "art:기준규칙:619의2"
+                    "basisArticle": "art:기준규칙:619의2",
+                    "paragraph": 3,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -289,12 +298,14 @@
               "priority": "★",
               "measures": [
                 {
-                  "@id": "workmeasure:2997ac53f2e3",
+                  "@id": "workmeasure:b936cea25ea8",
                   "@type": "WorkMeasure",
                   "measure": "근로자가 밀폐공간에서 작업을 하는 동안 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치한다.",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisArticle": "art:기준규칙:623"
+                    "basisArticle": "art:기준규칙:623",
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -307,12 +318,14 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:8bebed142eac",
+                  "@id": "workmeasure:795777b2e948",
                   "@type": "WorkMeasure",
                   "measure": "근로자가 밀폐공간에서 작업을 하는 동안 그 작업장과 외부의 감시인 간에 항상 연락을 취할 수 있는 설비를 설치한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisArticle": "art:기준규칙:623"
+                    "basisArticle": "art:기준규칙:623",
+                    "paragraph": 3,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -790,6 +803,7 @@
             },
             {
               "basisArticle": "art:기준규칙:624",
+              "paragraph": 1,
               "controlLevel": "ppe"
             }
           ],
@@ -841,12 +855,14 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:477ba15d0a4b",
+                  "@id": "workmeasure:764ee0c69a8a",
                   "@type": "WorkMeasure",
                   "measure": "밀폐공간에서 작업하는 근로자가 산소결핍이나 유해가스로 인하여 추락할 우려가 있는 경우에는 해당 근로자에게 안전대나 구명밧줄, 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "basisArticle": "art:기준규칙:624"
+                    "basisArticle": "art:기준규칙:624",
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {

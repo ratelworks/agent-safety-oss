@@ -2,7 +2,7 @@
 
 > **본 문서는 `npm run build` 시 `scripts/build/generate-inventory.ts` 가 자동 생성합니다. 수동 편집 금지** — drift 차단용.
 
-- 생성 시각: 2026-11-11T20:42:37+09:00
+- 생성 시각: 2026-11-16T12:16:17+09:00
 - 법령 데이터 최신 동기화: **2026-11-03**
 - 양식 인덱스 컴파일: 2026-04-29
 
@@ -13,8 +13,8 @@
 | 항목 | 수 |
 |---|---:|
 | 전체 등록 도구 | **92** |
-| API 키 불필요 (keyless) | 85 |
-| API 키 필요 (data.go.kr / KOSHA OneAPI) | 7 |
+| API 키 불필요 (keyless) | 84 |
+| API 키 필요 (data.go.kr / KOSHA OneAPI) | 8 |
 | 라이선스 placeholder (데이터 없음) | 2 |
 | **실질 활성 도구** | **90** |
 
@@ -30,26 +30,30 @@
 - `search_safety_materials`
 - `search_msds`
 - `search_ppe_certification`
+- `search_safety_law_smart`
 
 ## 2. 그래프 노드
 
-- 카테고리 1단계 노드 (직속 `.jsonld`): **2218**
-- 전체 노드 (재귀, KOSHA Guide 1,039건 포함): **3375**
-- 엣지 (주요 EDGE_FIELDS): **33034**
+- 카테고리 1단계 노드 (직속 `.jsonld`): **2814**
+- 전체 노드 (재귀, KOSHA Guide 1,040건 포함): **3972**
+- 엣지 (주요 EDGE_FIELDS): **40365**
 
 | 카테고리 | 1단계 | 재귀 (서브디렉토리 포함) |
 |---|---:|---:|
-| articles | 1309 | 1309 |
-| documents | 96 | 1135 |
+| articles | 1666 | 1666 |
+| documents | 96 | 1136 |
 | annexes | 227 | 227 |
+| chapters | 155 | 155 |
 | facets | 0 | 118 |
 | patterns | 110 | 110 |
 | capabilities | 92 | 92 |
-| chapters | 55 | 55 |
+| subtasks | 90 | 90 |
+| activities | 50 | 50 |
 | controls | 50 | 50 |
-| activities | 41 | 41 |
 | hazards | 38 | 38 |
+| conditions | 25 | 25 |
 | events | 24 | 24 |
+| acts | 23 | 23 |
 | applicabilities | 22 | 22 |
 | entities | 19 | 19 |
 | interpretations | 19 | 19 |
@@ -60,19 +64,18 @@
 | penalties | 12 | 12 |
 | equipment | 10 | 10 |
 | iso45001 | 9 | 9 |
-| acts | 8 | 8 |
 | manuals | 8 | 8 |
 | object_sets | 7 | 7 |
 | statistics | 3 | 3 |
 | kosha_guides | 2 | 2 |
-| **전체** | **2218** | **3375** |
+| **전체** | **2814** | **3972** |
 
 ## 3. KOSHA Guide 본문 / 메타
 
 | 항목 | 수 | 비고 |
 |---|---:|---|
-| 그래프 메타 (.jsonld) | **1039** | KOSHA OneAPI 15144147 가 인지한 가이드 메타 |
-| 본문 (.md) | **1039** | PDF → kordoc 변환 성공한 본문 |
+| 그래프 메타 (.jsonld) | **1040** | KOSHA OneAPI 15144147 가 인지한 가이드 메타 |
+| 본문 (.md) | **1040** | PDF → kordoc 변환 성공한 본문 |
 | 본문 미수집 | 0 | (없음 — 본문 = 메타) |
 
 **추출 품질 등급** (`.md` 의 빈 `<table>` 잔재 기준 자동 분류):
@@ -80,8 +83,8 @@
 | 등급 | 기준 | 수 | 비율 |
 |---|---|---:|---:|
 | **verified** | 빈 `<table>` 0건 — 본문 정상 | 14 | 1.3% |
-| **partial** | 빈 `<table>` 1~10건 — 표 일부 손실, 본문 텍스트 정상 | 960 | 92.4% |
-| **raw** | 빈 `<table>` 11+건 — kordoc 변환 잔재 다수, 본문은 텍스트로 가독 가능 | 65 | 6.3% |
+| **partial** | 빈 `<table>` 1~10건 — 표 일부 손실, 본문 텍스트 정상 | 960 | 92.3% |
+| **raw** | 빈 `<table>` 11+건 — kordoc 변환 잔재 다수, 본문은 텍스트로 가독 가능 | 66 | 6.3% |
 
 > ⚠️ KOSHA Guide 는 PDF → kordoc 변환 결과로, 일부 시각적 서식 손실 가능. LLM 인용 시 본문 텍스트만 사용 권장. 정확한 원본은 각 파일의 `원본 URL` 참조.
 

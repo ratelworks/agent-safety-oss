@@ -1902,11 +1902,12 @@
             {
               "basisArticle": "art:기준규칙:620",
               "paragraph": 1,
-              "controlLevel": "ppe"
+              "controlLevel": "engineering"
             },
             {
               "basisArticle": "art:기준규칙:620",
-              "controlLevel": "engineering"
+              "paragraph": 1,
+              "controlLevel": "ppe"
             },
             {
               "basisArticle": "art:기준규칙:622",
@@ -2074,12 +2075,14 @@
               "priority": "★★",
               "measures": [
                 {
-                  "@id": "workmeasure:7fb8d1ff097b",
+                  "@id": "workmeasure:192fc0092296",
                   "@type": "WorkMeasure",
                   "measure": "근로자가 밀폐공간에서 작업을 하는 경우에 작업을 시작하기 전과 작업 중에 해당 작업장을 적정공기 상태가 유지되도록 환기한다.",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisArticle": "art:기준규칙:620"
+                    "basisArticle": "art:기준규칙:620",
+                    "paragraph": 1,
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
