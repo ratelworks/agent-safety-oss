@@ -1,0 +1,58 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:adjacent_equipment",
+  "@type": "WorkCondition",
+  "title": "장비와 근로자 인접",
+  "altLabel": [
+    "장비 인접",
+    "장비 주변 작업",
+    "유도자",
+    "신호수"
+  ],
+  "conditionAxis": "동시작업",
+  "description": "운전 중인 건설기계·양중기 가까이에서 근로자가 함께 작업하는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시켜서는 아니 된다. 다만, 유도자를 배치하고 해당 차량계 건설기계를 유도하는 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:200",
+      "paragraph": 1,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:vehicle_construction"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 다음 각 호의 작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하여야 하며, 운전자는 그 신호에 따라야 한다. … 1. 양중기(揚重機)를 사용하는 작업 … 3. 제200조제1항 단서에 따라 유도자를 배치하는 작업",
+      "basisArticle": "art:기준규칙:40",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "③ 사업주는 타워크레인을 사용하여 작업을 하는 경우 타워크레인마다 근로자와 조종 작업을 하는 사람 간에 신호업무를 담당하는 사람을 각각 두어야 한다. <신설 2018.3.30>",
+      "basisArticle": "art:기준규칙:146",
+      "paragraph": 3,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:tower_crane",
+        "activity:tower_assembly"
+      ],
+      "appliesTo": [
+        "subtask:타워크레인"
+      ]
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:200",
+    "art:기준규칙:40",
+    "art:기준규칙:146"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

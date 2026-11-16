@@ -1,0 +1,50 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:mixed_contractor_work",
+  "@type": "WorkCondition",
+  "title": "여러 업체 작업 혼재",
+  "altLabel": [
+    "혼재작업",
+    "작업 혼재",
+    "타 공정 교차",
+    "협력업체 동시작업",
+    "관계수급인"
+  ],
+  "conditionAxis": "동시작업",
+  "description": "같은 장소에서 도급인과 여러 관계수급인의 작업이 함께 이뤄지는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "① 도급인은 관계수급인 근로자가 도급인의 사업장에서 작업을 하는 경우 다음 각 호의 사항을 이행하여야 한다. <개정 2021.5.18> … 7. 같은 장소에서 이루어지는 도급인과 관계수급인 등의 작업에 있어서 관계수급인 등의 작업시기ㆍ내용, 안전조치 및 보건조치 등의 확인",
+      "basisArticle": "art:산안법:64",
+      "paragraph": 1,
+      "item": 7,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 도급인은 관계수급인 근로자가 도급인의 사업장에서 작업을 하는 경우 다음 각 호의 사항을 이행하여야 한다. <개정 2021.5.18> … 8. 제7호에 따른 확인 결과 관계수급인 등의 작업 혼재로 인하여 화재ㆍ폭발 등 대통령령으로 정하는 위험이 발생할 우려가 있는 경우 관계수급인 등의 작업시기ㆍ내용 등의 조정",
+      "basisArticle": "art:산안법:64",
+      "paragraph": 1,
+      "item": 8,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 도급인은 관계수급인 근로자가 도급인의 사업장에서 작업을 하는 경우 다음 각 호의 사항을 이행하여야 한다. <개정 2021.5.18> … 5. 다음 각 목의 어느 하나의 경우에 대비한 경보체계 운영과 대피방법 등 훈련 … 가. 작업 장소에서 발파작업을 하는 경우",
+      "basisArticle": "art:산안법:64",
+      "paragraph": 1,
+      "item": 5,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:산안법:64"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

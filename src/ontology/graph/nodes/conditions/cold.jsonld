@@ -1,0 +1,64 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:cold",
+  "@type": "WorkCondition",
+  "title": "한랭·한파",
+  "altLabel": [
+    "한랭작업",
+    "한파",
+    "동상",
+    "혹한"
+  ],
+  "conditionAxis": "기상·계절",
+  "description": "차가운 온도로 동상 등 건강장해 우려가 있는 경우. 법령의 '한랭작업'은 장소(액체공기·드라이아이스 취급, 냉동고 내부 등)로 정의돼 있어, 옥외 한파 작업 자체는 그 정의에 열거돼 있지 않다 — 한랭 일반 조치는 그대로 참고한다.",
+  "conditionRules": [
+    {
+      "requirement": "2. \"한랭\"이란 냉각원(冷却源)에 의하여 근로자에게 동상 등의 건강장해를 유발할 수 있는 차가운 온도를 말한다.",
+      "basisArticle": "art:기준규칙:558",
+      "item": 2,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "② \"한랭작업\"이란 다음 각 호의 어느 하나에 해당하는 장소에서의 작업을 말한다. … 1. 다량의 액체공기ㆍ드라이아이스 등을 취급하는 장소 … 2. 냉장고ㆍ제빙고ㆍ저빙고 또는 냉동고 등의 내부 … 13. 그 밖에 고용노동부장관이 인정하는 장소",
+      "basisArticle": "art:기준규칙:559",
+      "paragraph": 2,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제563조(한랭장해 예방 조치) 사업주는 근로자가 한랭작업을 하는 경우에 동상 등의 건강장해를 예방하기 위하여 다음 각 호의 조치를 하여야 한다. … 1. 혈액순환을 원활히 하기 위한 운동지도를 할 것 … 2. 적절한 지방과 비타민 섭취를 위한 영양지도를 할 것 … 3. 체온 유지를 위하여 더운물을 준비할 것 … 4. 젖은 작업복 등은 즉시 갈아입도록 할 것",
+      "basisArticle": "art:기준규칙:563",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제566조(휴식 등) 사업주는 근로자가 고열ㆍ한랭ㆍ다습 작업을 하는 경우에는 적절하게 휴식하도록 하는 등 근로자 건강장해를 예방하기 위하여 필요한 조치를 해야 한다. <개정 2017.12.28, 2022.8.10, 2025.7.17>",
+      "basisArticle": "art:기준규칙:566",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 근로자가 고열ㆍ한랭ㆍ다습 작업을 하는 경우에 근로자들이 휴식시간에 이용할 수 있는 휴게시설을 갖추어야 한다.",
+      "basisArticle": "art:기준규칙:567",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:558",
+    "art:기준규칙:559",
+    "art:기준규칙:563",
+    "art:기준규칙:566",
+    "art:기준규칙:567"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/W-17-2015"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "guidedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

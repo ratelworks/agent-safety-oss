@@ -1,0 +1,57 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:overhead_work",
+  "@type": "WorkCondition",
+  "title": "상하 동시작업",
+  "altLabel": [
+    "상하 작업",
+    "상하 동시 작업",
+    "아래쪽 작업",
+    "낙하물 위험 구역"
+  ],
+  "conditionAxis": "동시작업",
+  "description": "위쪽 작업에서 물체가 떨어질 수 있는 곳 아래에서 다른 작업이 함께 이뤄지는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "② 사업주는 작업으로 인하여 물체가 떨어지거나 날아올 위험이 있는 경우 낙하물 방지망, 수직보호망 또는 방호선반의 설치, 출입금지구역의 설정, 보호구의 착용 등 위험을 방지하기 위하여 필요한 조치를 하여야 한다. 이 경우 낙하물 방지망 및 수직보호망은 「산업표준화법」 제12조에 따른 한국산업표준(이하 \"한국산업표준\"이라 한다)에서 정하는 성능기준에 적합한 것을 사용하여야 한다. <개정 2017.12.28, 2022.10.18>",
+      "basisArticle": "art:기준규칙:14",
+      "paragraph": 2,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "③ 제2항에 따라 낙하물 방지망 또는 방호선반을 설치하는 경우에는 다음 각 호의 사항을 준수하여야 한다. … 1. 높이 10미터 이내마다 설치하고, 내민 길이는 벽면으로부터 2미터 이상으로 할 것 … 2. 수평면과의 각도는 20도 이상 30도 이하를 유지할 것",
+      "basisArticle": "art:기준규칙:14",
+      "paragraph": 3,
+      "legalWeight": "mandatory",
+      "threshold": "높이 10미터 이내마다"
+    },
+    {
+      "requirement": "① 사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. … 4. 미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 할 것",
+      "basisArticle": "art:기준규칙:146",
+      "paragraph": 1,
+      "item": 4,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:tower_crane",
+        "activity:tower_assembly",
+        "activity:lifting_operation"
+      ],
+      "appliesTo": [
+        "subtask:타워크레인"
+      ]
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:14",
+    "art:기준규칙:146"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

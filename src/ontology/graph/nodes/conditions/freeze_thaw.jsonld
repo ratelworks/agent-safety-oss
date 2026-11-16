@@ -1,0 +1,52 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:freeze_thaw",
+  "@type": "WorkCondition",
+  "title": "결빙·해빙기",
+  "altLabel": [
+    "결빙",
+    "동결",
+    "해빙",
+    "해빙기",
+    "언 땅"
+  ],
+  "conditionAxis": "기상·계절",
+  "description": "지반이 얼거나 녹으면서 상태가 바뀌는 시기, 또는 바닥이 얼어 미끄러운 경우.",
+  "conditionRules": [
+    {
+      "requirement": "제338조(굴착작업 사전조사 등) 사업주는 굴착작업을 할 때에 토사등의 붕괴 또는 낙하에 의한 위험을 미리 방지하기 위하여 다음 각 호의 사항을 점검해야 한다. … 2. 함수(含水)ㆍ용수(湧水) 및 동결의 유무 또는 상태의 변화",
+      "basisArticle": "art:기준규칙:338",
+      "item": 2,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:excavation_2m_plus"
+      ]
+    },
+    {
+      "requirement": "제370조(지반 붕괴 등의 위험방지) 사업주는 채석작업을 하는 경우 지반의 붕괴 또는 토사등의 낙하로 인하여 근로자에게 발생할 우려가 있는 위험을 방지하기 위하여 다음 각 호의 조치를 해야 한다. <개정 2023.11.14> … 1. 점검자를 지명하고 당일 작업 시작 전에 작업장소 및 그 주변 지반의 부석과 균열의 유무와 상태, 함수ㆍ용수 및 동결상태의 변화를 점검할 것",
+      "basisArticle": "art:기준규칙:370",
+      "item": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 근로자가 작업장에서 넘어지거나 미끄러지는 등의 위험이 없도록 작업장 바닥 등을 안전하고 청결한 상태로 유지하여야 한다.",
+      "basisArticle": "art:기준규칙:3",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:338",
+    "art:기준규칙:370",
+    "art:기준규칙:3"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

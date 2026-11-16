@@ -185,6 +185,14 @@
       }
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/WorkCondition",
+      "@type": "owl:Class",
+      "rdfs:label": "WorkCondition",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/WorkMeasure",
       "@type": "owl:Class",
       "rdfs:label": "WorkMeasure",
@@ -792,6 +800,32 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Penalty"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/conditionAxis",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "conditionAxis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkCondition"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/conditionRule",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "conditionRule",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkCondition"
         }
       ]
     },
@@ -1691,6 +1725,9 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/WorkActivity"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkCondition"
         }
       ]
     },
@@ -1940,6 +1977,9 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/WorkActivity"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkCondition"
         }
       ],
       "schema:rangeIncludes": [
@@ -1984,6 +2024,9 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/WorkActivity"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkCondition"
         }
       ],
       "owl:inverseOf": {
@@ -2090,6 +2133,14 @@
           "@id": "https://safety.ratelworks.org/ontology/v1/Document"
         }
       ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/requirement",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "requirement",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
     },
     {
       "@id": "https://safety.ratelworks.org/ontology/v1/requires",

@@ -615,6 +615,7 @@
     "workstep": "https://safety.ratelworks.org/workstep/",
     "workrisk": "https://safety.ratelworks.org/workrisk/",
     "workmeasure": "https://safety.ratelworks.org/workmeasure/",
+    "workcond": "https://safety.ratelworks.org/workcondition/",
     "workGroup": "cc:workGroup",
     "steps": {
       "@id": "cc:hasStep",
@@ -659,6 +660,13 @@
       "@container": "@list"
     },
     "measure": "schema:text",
-    "variant": "cc:variant"
+    "variant": "cc:variant",
+    "WorkCondition": "safety:WorkCondition",
+    "conditionAxis": "safety:conditionAxis",
+    "conditionRules": {
+      "@id": "safety:conditionRule",
+      "@container": "@set"
+    },
+    "requirement": "safety:requirement"
   }
 }

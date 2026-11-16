@@ -1,0 +1,43 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:foreign_worker",
+  "@type": "WorkCondition",
+  "title": "외국인 근로자",
+  "altLabel": [
+    "외국인",
+    "외국인 근로자",
+    "이주노동자",
+    "의사소통 제한"
+  ],
+  "conditionAxis": "작업자",
+  "description": "우리말·작업 지시 이해에 어려움이 있을 수 있는 외국인 근로자가 작업하는 경우. 법령에 따로 정한 조치는 없고 KOSHA Guide 권고를 따른다.",
+  "conditionRules": [
+    {
+      "requirement": "외국인 근로자는 우리의 문화와 언어에 익숙하지 않아 작업수행에 많은 애로를 격을 수 있다.",
+      "basisGuide": "doc:kosha_guide/G-66-2011",
+      "guideSection": "6.1",
+      "guideClause": "(1)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(가) 외국인 근로자가 알고 있어야 할 주요사항은 근로자의 모국어 및 영어 등 외국인 근로자들이 쉽게 이해할 수 있는 언어로 작성하여 비치 및 게시하여야 한다.",
+      "basisGuide": "doc:kosha_guide/G-66-2011",
+      "guideSection": "6.1",
+      "guideClause": "(2)(가)",
+      "legalWeight": "recommended"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/G-66-2011"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "guidedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

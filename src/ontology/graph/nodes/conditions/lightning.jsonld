@@ -1,0 +1,46 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:lightning",
+  "@type": "WorkCondition",
+  "title": "낙뢰",
+  "altLabel": [
+    "벼락",
+    "뇌우",
+    "천둥"
+  ],
+  "conditionAxis": "기상·계절",
+  "description": "벼락이 떨어질 우려가 있는 경우. 법령은 화약류 취급 작업에 조치를 정한다.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 벼락이 떨어질 우려가 있는 경우에는 화약 또는 폭약의 장전 작업을 중지하고 근로자들을 안전한 장소로 대피시켜야 한다.",
+      "basisArticle": "art:기준규칙:349",
+      "paragraph": 1,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:blasting"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 화약류 또는 위험물을 저장하거나 취급하는 시설물에 낙뢰에 의한 산업재해를 예방하기 위하여 피뢰설비를 설치하여야 한다.",
+      "basisArticle": "art:기준규칙:326",
+      "paragraph": 1,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:blasting"
+      ]
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:349",
+    "art:기준규칙:326"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

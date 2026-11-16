@@ -1,0 +1,48 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:new_worker",
+  "@type": "WorkCondition",
+  "title": "신규 채용 근로자",
+  "altLabel": [
+    "신규 입사",
+    "신규자",
+    "신규 근로자",
+    "채용 시",
+    "일용근로자 채용"
+  ],
+  "conditionAxis": "작업자",
+  "description": "새로 채용했거나 작업내용이 바뀐 근로자가 작업에 들어가는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "② 사업주는 근로자를 채용할 때와 작업내용을 변경할 때에는 그 근로자에게 고용노동부령으로 정하는 바에 따라 해당 작업에 필요한 안전보건교육을 하여야 한다. 다만, 제31조제1항에 따른 안전보건교육을 이수한 건설 일용근로자를 채용하는 경우에는 그러하지 아니하다. <개정 2020.6.9>",
+      "basisArticle": "art:산안법:29",
+      "paragraph": 2,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "③ 사업주는 근로자를 유해하거나 위험한 작업에 채용하거나 그 작업으로 작업내용을 변경할 때에는 제2항에 따른 안전보건교육 외에 고용노동부령으로 정하는 바에 따라 유해하거나 위험한 작업에 필요한 안전보건교육을 추가로 하여야 한다.",
+      "basisArticle": "art:산안법:29",
+      "paragraph": 3,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 건설업의 사업주는 건설 일용근로자를 채용할 때에는 그 근로자로 하여금 제33조에 따른 안전보건교육기관이 실시하는 안전보건교육을 이수하도록 하여야 한다. 다만, 건설 일용근로자가 그 사업주에게 채용되기 전에 안전보건교육을 이수한 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:산안법:31",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:산안법:29",
+    "art:산안법:31"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

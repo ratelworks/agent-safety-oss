@@ -1,0 +1,47 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:near_power_line",
+  "@type": "WorkCondition",
+  "title": "가공전선·충전전로 인접",
+  "altLabel": [
+    "가공전선",
+    "충전전로",
+    "고압선",
+    "전선 인근",
+    "활선 인근"
+  ],
+  "conditionAxis": "현장·공간",
+  "description": "전기가 흐르는 전선 가까이에서 차량·장비가 움직이는 작업.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 충전전로 인근에서 차량, 기계장치 등(이하 이 조에서 \"차량등\"이라 한다)의 작업이 있는 경우에는 차량등을 충전전로의 충전부로부터 300센티미터 이상 이격시켜 유지시키되, 대지전압이 50킬로볼트를 넘는 경우 이격시켜 유지하여야 하는 거리(이하 이 조에서 \"이격거리\"라 한다)는 10킬로볼트 증가할 때마다 10센티미터씩 증가시켜야 한다. 다만, 차량등의 높이를 낮춘 상태에서 이동하는 경우에는 이격거리를 120센티미터 이상(대지전압이 50킬로볼트를 넘는 경우에는 10킬로볼트 증가할 때마다 이격거리를 10센티미터씩 증가)으로 할 수 있다.",
+      "basisArticle": "art:기준규칙:322",
+      "paragraph": 1,
+      "legalWeight": "mandatory",
+      "threshold": "300센티미터 이상 이격"
+    },
+    {
+      "requirement": "③ 사업주는 다음 각 호의 경우를 제외하고는 근로자가 차량등의 그 어느 부분과도 접촉하지 않도록 울타리를 설치하거나 감시인 배치 등의 조치를 하여야 한다. <개정 2019.10.15>",
+      "basisArticle": "art:기준규칙:322",
+      "paragraph": 3,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:322"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/E-1-2012",
+    "doc:kosha_guide/B-E-11-2026"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "guidedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

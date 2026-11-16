@@ -8,6 +8,7 @@ import worktypeFallback from "../ontology/construction-worktype.json" with { typ
 import { KOSHA_GUIDE_DISCLAIMER } from "../config/constants.js";
 import { stringBool } from "../lib/zod-helpers.js";
 import { getWorkSteps } from "../lib/work-steps.js";
+import { resolveWorkConditions, listWorkConditionTitles, WORK_CONDITIONS_NOTICE } from "../lib/work-conditions.js";
 
 // 파일 최상단 상수 — 공종 매칭 모드 및 스코어
 const MATCH = { CODE: "code", KEYWORD: "keyword", TOKEN: "token" } as const;
@@ -41,6 +42,12 @@ const WORK_STEPS_NOTICE =
 
 // 두 점수 이상 차이 안 나면 모호 매치로 간주
 const AMBIGUITY_THRESHOLD = 10;
+/** 기존 conditions 의 참/거짓 값을 작업 조건 이름으로 옮긴다 */
+const CONDITION_NAME_FROM_FLAG = {
+  nightWork: "야간작업",
+  heightWork: "높이 2미터 이상 작업",
+  foreignWorkers: "외국인 근로자",
+} as const;
 
 const inputSchema = z.object({
   workType: z
@@ -58,6 +65,12 @@ const inputSchema = z.object({
     })
     .optional()
     .describe("가중치 반영 조건 — boolean 은 'true'/'false'/1/0 등 literal 만 허용"),
+  workConditions: z
+    .array(z.string())
+    .optional()
+    .describe(
+      "작업 조건 이름 — 예: ['강풍', '야간작업', '폭염', '가공전선 인접', '외국인 근로자']. 조건마다 법령·KOSHA Guide 원문이 정한 조치를 돌려준다 (conditions 의 weather·nightWork·heightWork·foreignWorkers 도 함께 반영)",
+    ),
 });
 
 type Input = z.infer<typeof inputSchema>;
@@ -107,6 +120,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   const matchResult = matchSubtask(categories, input.workType);
   const workSteps = await getWorkSteps(input.workType);
+  const workConditions = await buildWorkConditions(input, workSteps?.result);
   if (!matchResult) {
     const payload = {
       query: input,
@@ -118,6 +132,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
             workStepsNotice: WORK_STEPS_NOTICE,
           }
         : {}),
+      ...(workConditions ? { workConditions } : {}),
       available: flattenSubtasks(categories).map((s) => ({ code: s.code, ko: s.ko })),
       message:
         workSteps
@@ -210,6 +225,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
           workStepsNotice: WORK_STEPS_NOTICE,
         }
       : {}),
+    ...(workConditions ? { workConditions } : {}),
     disclaimer: KOSHA_GUIDE_DISCLAIMER,
     degradedMode: usingFallbackTaxonomy
       ? {
@@ -237,6 +253,26 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   return {
     content: [{ type: "text", text: JSON.stringify(payload, null, 2) }],
     structuredContent: payload,
+  };
+}
+
+/** 입력의 작업 조건(이름 목록 + 기존 conditions 의 날씨·야간·고소·외국인)을 조건 노드에 맞추고 조치를 붙인다. 조건 입력이 없으면 undefined. */
+async function buildWorkConditions(input: Input, work?: { iri: string; activity?: string }) {
+  const cond = input.conditions ?? {};
+  const names = [
+    ...(input.workConditions ?? []),
+    ...(cond.weather ? [cond.weather] : []),
+    ...(cond.nightWork ? [CONDITION_NAME_FROM_FLAG.nightWork] : []),
+    ...(cond.heightWork ? [CONDITION_NAME_FROM_FLAG.heightWork] : []),
+    ...(cond.foreignWorkers ? [CONDITION_NAME_FROM_FLAG.foreignWorkers] : []),
+  ];
+  if (names.length === 0) return undefined;
+  const { conditions, unmatched, notCovered } = await resolveWorkConditions(names, work);
+  return {
+    conditions,
+    ...(notCovered.length ? { notCovered } : {}),
+    ...(unmatched.length ? { unmatched, available: await listWorkConditionTitles() } : {}),
+    notice: WORK_CONDITIONS_NOTICE,
   };
 }
 

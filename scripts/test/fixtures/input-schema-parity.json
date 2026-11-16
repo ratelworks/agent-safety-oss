@@ -3662,6 +3662,12 @@
      "type": "object",
      "optional": true,
      "description": "가중치 반영 조건 — boolean 은 'true'/'false'/1/0 등 literal 만 허용"
+    },
+    "workConditions": {
+     "type": "array",
+     "optional": true,
+     "description": "작업 조건 이름 — 예: ['강풍', '야간작업', '폭염', '가공전선 인접', '외국인 근로자']. 조건마다 법령·KOSHA Guide 원문이 정한 조치를 돌려준다 (conditions 의 weather·nightWork·heightWork·foreignWorkers 도 함께 반영)",
+     "itemsType": "string"
     }
    },
    "required": [

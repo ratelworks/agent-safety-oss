@@ -1,0 +1,54 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:confined_space",
+  "@type": "WorkCondition",
+  "title": "밀폐공간",
+  "altLabel": [
+    "밀폐",
+    "맨홀 내부",
+    "탱크 내부",
+    "질식 위험 장소"
+  ],
+  "conditionAxis": "현장·공간",
+  "description": "환기가 부족해 산소결핍·유해가스 위험이 있는 공간 안의 작업.",
+  "conditionRules": [
+    {
+      "requirement": "② 사업주는 근로자가 밀폐공간에서 작업을 시작하기 전에 다음 각 호의 사항을 확인하여 근로자가 안전한 상태에서 작업하도록 하여야 한다.",
+      "basisArticle": "art:기준규칙:619",
+      "paragraph": 2,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 근로자가 밀폐공간에서 작업을 하는 경우에 작업을 시작하기 전과 작업 중에 해당 작업장을 적정공기 상태가 유지되도록 환기하여야 한다. 다만, 폭발이나 산화 등의 위험으로 인하여 환기할 수 없거나 작업의 성질상 환기하기가 매우 곤란한 경우에는 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 하고 환기하지 아니할 수 있다. <개정 2017.3.3>",
+      "basisArticle": "art:기준규칙:620",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 근로자가 밀폐공간에서 작업을하는 동안 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치하여야 한다.",
+      "basisArticle": "art:기준규칙:623",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "③ 사업주는 근로자가 밀폐공간에서 작업을 하는 동안 그 작업장과 외부의 감시인 간에 항상 연락을 취할 수 있는 설비를 설치하여야 한다.",
+      "basisArticle": "art:기준규칙:623",
+      "paragraph": 3,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:619",
+    "art:기준규칙:620",
+    "art:기준규칙:623"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

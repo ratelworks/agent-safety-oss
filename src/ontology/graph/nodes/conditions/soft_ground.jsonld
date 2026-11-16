@@ -1,0 +1,66 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:soft_ground",
+  "@type": "WorkCondition",
+  "title": "연약지반·사면",
+  "altLabel": [
+    "연약지반",
+    "연약한 지반",
+    "굴착면",
+    "갓길",
+    "경사면",
+    "부동침하"
+  ],
+  "conditionAxis": "현장·공간",
+  "description": "지반이 약하거나 기울어 장비가 넘어지거나 굴착면이 무너질 우려가 있는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 지반 등을 굴착하는 경우 굴착면의 기울기를 별표 11의 기준에 맞도록 해야 한다. 다만, 「건설기술 진흥법」 제44조제1항에 따른 건설기준에 맞게 작성한 설계도서상의 굴착면의 기울기를 준수하거나 흙막이 등 기울기면의 붕괴 방지를 위하여 적절한 조치를 한 경우에는 그렇지 않다.",
+      "basisArticle": "art:기준규칙:339",
+      "paragraph": 1,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:excavation_2m_plus"
+      ]
+    },
+    {
+      "requirement": "제199조(전도 등의 방지) 사업주는 차량계 건설기계를 사용하는 작업할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자가 위험해질 우려가 있는 경우에는 유도하는 사람을 배치하고 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 하여야 한다.",
+      "basisArticle": "art:기준규칙:199",
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:vehicle_construction"
+      ]
+    },
+    {
+      "requirement": "제209조(무너짐의 방지) 사업주는 동력을 사용하는 항타기 또는 항발기에 대하여 무너짐을 방지하기 위하여 다음 각 호의 사항을 준수해야 한다. <개정 2019.1.31, 2022.10.18, 2023.11.14> … 1. 연약한 지반에 설치하는 경우에는 아웃트리거ㆍ받침 등 지지구조물의 침하를 방지하기 위하여 깔판ㆍ받침목 등을 사용할 것",
+      "basisArticle": "art:기준규칙:209",
+      "item": 1,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:phc_pile_driving",
+        "activity:cast_in_place_pile"
+      ]
+    },
+    {
+      "requirement": "제386조(중량물의 구름 위험방지) 사업주는 드럼통 등 구를 위험이 있는 중량물을 보관하거나 작업 중 구를 위험이 있는 중량물을 취급하는 경우에는 다음 각 호의 사항을 준수해야 한다. <개정 2023.11.14> … 2. 중량물이 구를 위험이 있는 방향 앞의 일정거리 이내로는 근로자의 출입을 제한할 것. 다만, 중량물을 보관하거나 작업 중인 장소가 경사면인 경우에는 경사면 아래로는 근로자의 출입을 제한해야 한다.",
+      "basisArticle": "art:기준규칙:386",
+      "item": 2,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:339",
+    "art:기준규칙:199",
+    "art:기준규칙:209",
+    "art:기준규칙:386"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:rain",
+  "@type": "WorkCondition",
+  "title": "강우",
+  "altLabel": [
+    "비",
+    "우천",
+    "강우량",
+    "빗물"
+  ],
+  "conditionAxis": "기상·계절",
+  "description": "비가 와서 작업 중지나 붕괴 예방 조치가 필요한 경우. 철골작업은 시간당 강우량으로 기준을 정한다.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지하여야 한다. 다만, 태풍 등으로 위험이 예상되거나 발생되어 긴급 복구작업을 필요로 하는 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:37",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제383조(작업의 제한) 사업주는 다음 각 호의 어느 하나에 해당하는 경우에 철골작업을 중지하여야 한다. … 2. 강우량이 시간당 1밀리미터 이상인 경우",
+      "basisArticle": "art:기준규칙:383",
+      "item": 2,
+      "legalWeight": "mandatory",
+      "threshold": "강우량이 시간당 1밀리미터 이상",
+      "appliesToActivity": [
+        "activity:steel_erection",
+        "activity:steel_structure"
+      ],
+      "appliesTo": [
+        "subtask:철골작업"
+      ]
+    },
+    {
+      "requirement": "② 사업주는 비가 올 경우를 대비하여 측구(側溝)를 설치하거나 굴착경사면에 비닐을 덮는 등 빗물 등의 침투에 의한 붕괴재해를 예방하기 위하여 필요한 조치를 해야 한다.",
+      "basisArticle": "art:기준규칙:339",
+      "paragraph": 2,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:excavation_2m_plus"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 달비계 또는 높이 5미터 이상의 비계를 조립ㆍ해체하거나 변경하는 작업을 하는 경우 다음 각 호의 사항을 준수하여야 한다. … 4. 비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:57",
+      "paragraph": 1,
+      "item": 4,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:scaffolding_assembly"
+      ]
+    },
+    {
+      "requirement": "제58조(비계의 점검 및 보수) 사업주는 비, 눈, 그 밖의 기상상태의 악화로 작업을 중지시킨 후 또는 비계를 조립ㆍ해체하거나 변경한 후에 그 비계에서 작업을 하는 경우에는 해당 작업을 시작하기 전에 다음 각 호의 사항을 점검하고, 이상을 발견하면 즉시 보수하여야 한다.",
+      "basisArticle": "art:기준규칙:58",
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:scaffolding_assembly"
+      ]
+    },
+    {
+      "requirement": "제141조(조립 등의 작업 시 조치사항) 사업주는 크레인의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 하여야 한다. … 3. 비, 눈, 그 밖에 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:141",
+      "item": 3,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:tower_crane",
+        "activity:tower_assembly",
+        "activity:lifting_operation"
+      ],
+      "appliesTo": [
+        "subtask:타워크레인"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 리프트의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 하여야 한다. … 3. 비, 눈, 그 밖에 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:156",
+      "paragraph": 1,
+      "item": 3,
+      "legalWeight": "mandatory",
+      "appliesTo": [
+        "subtask:건설용_리프트"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 사업장에 승강기의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 해야 한다. <개정 2022.10.18> … 3. 비, 눈, 그 밖에 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:162",
+      "paragraph": 1,
+      "item": 3,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:elevator_installation"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 기둥ㆍ보ㆍ벽체ㆍ슬래브 등의 거푸집 및 동바리를 조립하거나 해체하는 작업을 하는 경우에는 다음 각 호의 사항을 준수해야 한다. <개정 2021.5.28, 2023.11.14> … 2. 비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지할 것",
+      "basisArticle": "art:기준규칙:333",
+      "paragraph": 1,
+      "item": 2,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:formwork_shoring"
+      ]
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:37",
+    "art:기준규칙:383",
+    "art:기준규칙:339",
+    "art:기준규칙:57",
+    "art:기준규칙:58",
+    "art:기준규칙:141",
+    "art:기준규칙:156",
+    "art:기준규칙:162",
+    "art:기준규칙:333"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:elderly_worker",
+  "@type": "WorkCondition",
+  "title": "고령 근로자",
+  "altLabel": [
+    "고령자",
+    "고령근로자",
+    "고령 작업자",
+    "나이 많은 근로자"
+  ],
+  "conditionAxis": "작업자",
+  "description": "만 55세 이상 근로자가 작업하는 경우(KOSHA Guide 정의). 법령에 따로 정한 조치는 없고 KOSHA Guide 권고를 따른다.",
+  "conditionRules": [
+    {
+      "requirement": "(가) “고령근로자”라 함은 만 55세 이상인 근로자를 말한다1).",
+      "basisGuide": "doc:kosha_guide/G-87-2012",
+      "guideSection": "3",
+      "guideClause": "(1)(가)",
+      "legalWeight": "recommended",
+      "threshold": "만 55세 이상"
+    },
+    {
+      "requirement": "“고령근로자 취약작업”(이하 “취약 작업”이라한다) 이란 고령근로자의 신체적, 인지적 특성이 작업 수행에 영향을 미쳐서 고령근로자가 작업할 때 일반적으로 위험성이 높아지는 다음 각 호의 작업을 말한다. … (1) 고소 작업 … (2) 전도위험이 높은 작업 … (3) 중량물 운반 작업 … (4) 급격한 동작 및 부자연스러운 작업 자세를 필요로 하는 작업 … (5) 낮은 조도 및 소음 작업장에서의 작업 … (6) 신속하고 정확한 동작이 요구되는 작업 … (7) 작업내용이 다양하고 복잡한 작업",
+      "basisGuide": "doc:kosha_guide/G-87-2012",
+      "guideSection": "4.2",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(1) 사업주는 고령근로자의 신체적․인지적 특성을 고려하여 고령근로자의 기술과 능력에 적합한 과제를 부여해야 하며, 취약작업은 가급적 지양한다.",
+      "basisGuide": "doc:kosha_guide/G-87-2012",
+      "guideSection": "5",
+      "guideClause": "(1)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(3) 사업주는 고령근로자에 대해서는 휴식시간 주기를 단축 운영하거나 탄력적 근무시간제도를 운영해야 하며 개인보호구 지급, 작업환경의 개선, 작업시간과 작업내용의 조정 등 고령근로자를 보호하기 위한 적합한 안전보건 조치를 취해야 한다.",
+      "basisGuide": "doc:kosha_guide/G-87-2012",
+      "guideSection": "5",
+      "guideClause": "(3)",
+      "legalWeight": "recommended"
+    }
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/G-87-2012",
+    "doc:kosha_guide/G-93-2012"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "guidedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

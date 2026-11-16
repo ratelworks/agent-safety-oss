@@ -1,0 +1,93 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:night_work",
+  "@type": "WorkCondition",
+  "title": "야간작업",
+  "altLabel": [
+    "야간",
+    "야간공사",
+    "야간근로",
+    "밤 작업"
+  ],
+  "conditionAxis": "시간·조명",
+  "description": "해가 진 뒤 조명 아래에서 하는 작업.",
+  "conditionRules": [
+    {
+      "requirement": "⑤ 야간에 필요한 안전보건표지는 야광물질을 사용하는 등 쉽게 알아볼 수 있도록 제작해야 한다.",
+      "basisArticle": "art:산안법시행규칙:40",
+      "paragraph": 5,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 야간에 작업하는 근로자에게 수면을 취하도록 할 필요가 있는 경우에는 적당한 수면을 취할 수 있는 장소를 남녀 각각 구분하여 설치하여야 한다.",
+      "basisArticle": "art:기준규칙:81",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제669조(직무스트레스에 의한 건강장해 예방 조치) 사업주는 근로자가 장시간 근로, 야간작업을 포함한 교대작업, 차량운전[전업(專業)으로 하는 경우에만 해당한다] 및 정밀기계 조작작업 등 신체적 피로와 정신적 스트레스 등(이하 \"직무스트레스\"라 한다)이 높은 작업을 하는 경우에 법 제5조제1항에 따라 직무스트레스로 인한 건강장해 예방을 위하여 다음 각 호의 조치를 하여야 한다.",
+      "basisArticle": "art:기준규칙:669",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "(3) 가설 전기를 이용한 조명은 주간에 미리 설치하여야 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "5.2",
+      "guideClause": "(3)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(1) 야간작업에 종사하는 근로자는 안전모, 안전화, 작업복, 야광반사조끼를 반드시 착용하고 작업의 종류에 따라 필요시에는 안전대, 방진마스크, 정전기 방지복 등을 착용시켜야 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "6.1",
+      "guideClause": "(1)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(3) 작업시에는 가급적 2인 이상이 함께 작업하도록 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "6.1",
+      "guideClause": "(3)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(3) 야간작업에 적용되는 모든 안전표지판 및 도로교통표지판은 반사용으로 제작․설치하고, 적절한 조명을 주어 설치위치 및 내용의 식별이 가능하도록 하여야 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "6.2",
+      "guideClause": "(3)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(1) 작업을 하는 이동식 장비에는 경광등을 부착하고 근로자가 쉽게 장비를 식별할 수 있도록 형광벨트를 하여야 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "6.3",
+      "guideClause": "(1)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(2) 작업발판의 가장자리나 안전난간은 식별이 용이하도록 발광물을 부착시켜야 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "7.2",
+      "guideClause": "(2)",
+      "legalWeight": "recommended"
+    }
+  ],
+  "regulatedBy": [
+    "art:산안법시행규칙:40",
+    "art:기준규칙:81",
+    "art:기준규칙:669"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-52-2016"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "guidedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

@@ -24,6 +24,8 @@ import { fieldSafetyBriefingTool } from "../../src/tools/field-safety-briefing.j
 import { searchArticles } from "../../src/lib/article-search.js";
 import { generateTbmTopicsTool } from "../../src/tools/generate-tbm-topics.js";
 import { suggestControlsForHazardTool } from "../../src/tools/suggest-controls-for-hazard.js";
+import { analyzeConstructionWorkRisksTool } from "../../src/tools/analyze-construction-work-risks.js";
+import { resolveWorkConditions, RULE_SCOPE } from "../../src/lib/work-conditions.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -365,6 +367,46 @@ async function main(): Promise<void> {
   }
   check("공종 대체 이름마다 가이드 원문 근거 줄이 있다", altCount > 0 && altNoEvidence.length === 0, `대체 이름 ${altCount}개, 근거 없음 ${altNoEvidence.join(", ") || 0}`);
   check("공종 대체 이름으로 그 공종을 찾는다", altMisrouted.length === 0, altMisrouted.slice(0, 5).join(", "));
+
+  // 8-6. 작업 조건의 조치 문장은 원문 그대로이고, 기준값은 그 문장 안에 있으며, 지금 작업에 해당하는 조치가 앞에 온다
+  const conditionNodes = (await listNodesByType("WorkCondition")) as unknown as {
+    "@id": string;
+    title: string;
+    conditionRules?: { requirement: string; basisArticle?: string; basisGuide?: string; threshold?: string }[];
+  }[];
+  const ruleNotInSource: string[] = [];
+  const thresholdOutside: string[] = [];
+  let ruleCount = 0;
+  const squash = (s: string): string => s.replace(/<[^>]+>/g, "").replace(/\s+/g, "");
+  for (const c of conditionNodes) {
+    for (const r of c.conditionRules ?? []) {
+      ruleCount += 1;
+      let source = "";
+      if (r.basisArticle) source = String(((await getNode(r.basisArticle)) as { description?: string } | undefined)?.description ?? "");
+      else if (r.basisGuide) source = await readFile(resolve(GRAPH, "..", "kosha-guides", `${r.basisGuide.split("/").pop()}.md`), "utf-8").catch(() => "");
+      const body = squash(source);
+      // 머리 문장과 호를 " … " 로 이은 조치는 조각마다 원문에 있어야 한다
+      const parts = r.requirement.split(" … ").map(squash);
+      if (!source || parts.some((p) => !body.includes(p.replace(/^\*+|\*+$/g, "")))) ruleNotInSource.push(`${c.title}:${r.basisArticle ?? r.basisGuide}`);
+      if (r.threshold && !r.requirement.includes(r.threshold)) thresholdOutside.push(`${c.title}:${r.threshold}`);
+    }
+  }
+  check("작업 조건 조치 문장이 모두 법령·가이드 원문에 그대로 있다", ruleCount > 0 && ruleNotInSource.length === 0, `조건 ${conditionNodes.length}개·조치 ${ruleCount}건, 원문에 없는 것 ${ruleNotInSource.slice(0, 5).join(", ") || 0}`);
+  check("작업 조건 기준값이 그 조치 문장 안에 있다", thresholdOutside.length === 0, thresholdOutside.join(", "));
+  const windOnCrane = await resolveWorkConditions(["강풍"], { iri: "subtask:타워크레인", activity: "activity:tower_crane" });
+  const firstWindRule = windOnCrane.conditions[0]?.rules[0];
+  check(
+    "타워크레인 작업의 강풍 조건은 타워크레인 풍속 기준 조문이 맨 앞에 온다",
+    firstWindRule?.basisIri === "art:기준규칙:37" && firstWindRule.scope === RULE_SCOPE.thisWork && (firstWindRule.threshold ?? "").includes("10미터"),
+    `${firstWindRule?.basis ?? "없음"} · ${firstWindRule?.scope ?? ""}`,
+  );
+  const fog = await resolveWorkConditions(["안개", "없는조건"]);
+  check("원문 근거가 없는 조건은 이유와 함께, 모르는 조건은 따로 돌려준다", fog.notCovered.length === 1 && fog.unmatched.includes("없는조건"), JSON.stringify({ notCovered: fog.notCovered.length, unmatched: fog.unmatched }));
+  const riskWithWeather = (await analyzeConstructionWorkRisksTool.handler({ workType: "철골작업", conditions: { weather: "강풍 및 우천" } })) as {
+    structuredContent?: { workConditions?: { conditions: { title: string }[] } };
+  };
+  const weatherTitles = riskWithWeather.structuredContent?.workConditions?.conditions.map((c) => c.title) ?? [];
+  check("작업 위험 분석이 날씨 입력에서 작업 조건 조치를 붙인다", weatherTitles.includes("강풍") && weatherTitles.includes("강우"), weatherTitles.join(", "));
 
   // 9. 유해요인 → 조문: 공종 자료에서 끌어낸 연결이 있고, 끌어낸 것임이 적혀 있다
   const hazardNodes = await readDir("hazards");

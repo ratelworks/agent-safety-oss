@@ -1,0 +1,63 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:lone_work",
+  "@type": "WorkCondition",
+  "title": "단독작업",
+  "altLabel": [
+    "혼자 작업",
+    "1인 작업",
+    "단독 작업",
+    "나홀로 작업"
+  ],
+  "conditionAxis": "작업자",
+  "description": "다른 근로자나 감독 없이 혼자 하는 작업.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 근로자가 밀폐공간에서 작업을하는 동안 작업상황을 감시할 수 있는 감시인을 지정하여 밀폐공간 외부에 배치하여야 한다.",
+      "basisArticle": "art:기준규칙:623",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "(다) 건설공사 현장의 인력굴착 작업은 가급적 단독작업을 피하고, 최소 2인 이상이 함께 작업하도록 하며, 기타 자세한 사항은 안전보건기술지침 “굴착공사 표준안전작업지침”을 참조한다.",
+      "basisGuide": "doc:kosha_guide/X-41-2011",
+      "guideSection": "4",
+      "guideClause": "(5)(다)",
+      "legalWeight": "recommended",
+      "appliesToActivity": [
+        "activity:excavation_2m_plus"
+      ]
+    },
+    {
+      "requirement": "(라) 활선작업 시 주상에서의 방호작업은 원칙적으로 2명으로 하고, 단독작업은 금지하여야 하며, 기타 자세한 사항은 안전보건기술지침 “정전작업 및 활선작업 등에 관한 기술지침”을 참조한다.",
+      "basisGuide": "doc:kosha_guide/X-41-2011",
+      "guideSection": "4",
+      "guideClause": "(5)(라)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(3) 작업시에는 가급적 2인 이상이 함께 작업하도록 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "6.1",
+      "guideClause": "(3)",
+      "legalWeight": "recommended"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:623"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/X-41-2011",
+    "doc:kosha_guide/C-52-2016"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "guidedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:heavy_material",
+  "@type": "WorkCondition",
+  "title": "중량물 취급",
+  "altLabel": [
+    "중량물",
+    "무거운 자재",
+    "중량 자재"
+  ],
+  "conditionAxis": "자재",
+  "description": "무거운 자재를 운반하거나 취급하는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "제385조(중량물 취급) 사업주는 중량물을 운반하거나 취급하는 경우에 하역운반기계ㆍ운반용구(이하 \"하역운반기계등\"이라 한다)를 사용하여야 한다. 다만, 작업의 성질상 하역운반기계등을 사용하기 곤란한 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:385",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제386조(중량물의 구름 위험방지) 사업주는 드럼통 등 구를 위험이 있는 중량물을 보관하거나 작업 중 구를 위험이 있는 중량물을 취급하는 경우에는 다음 각 호의 사항을 준수해야 한다. <개정 2023.11.14> … 1. 구름멈춤대, 쐐기 등을 이용하여 중량물의 동요나 이동을 조절할 것",
+      "basisArticle": "art:기준규칙:386",
+      "item": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 다음 각 호의 작업을 하는 경우 근로자의 위험을 방지하기 위하여 별표 4에 따라 해당 작업, 작업장의 지형ㆍ지반 및 지층 상태 등에 대한 사전조사를 하고 그 결과를 기록ㆍ보존해야 하며, 조사결과를 고려하여 별표 4의 구분에 따른 사항을 포함한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 해야 한다. <개정 2023.11.14> … 11. 중량물의 취급작업",
+      "basisArticle": "art:기준규칙:38",
+      "paragraph": 1,
+      "item": 11,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 다음 각 호의 작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하여야 하며, 운전자는 그 신호에 따라야 한다. … 5. 중량물을 2명 이상의 근로자가 취급하거나 운반하는 작업",
+      "basisArticle": "art:기준규칙:40",
+      "paragraph": 1,
+      "item": 5,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:385",
+    "art:기준규칙:386",
+    "art:기준규칙:38",
+    "art:기준규칙:40"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:strong_wind",
+  "@type": "WorkCondition",
+  "title": "강풍",
+  "altLabel": [
+    "바람",
+    "순간풍속",
+    "폭풍",
+    "태풍"
+  ],
+  "conditionAxis": "기상·계절",
+  "description": "바람이 강해 작업 중지·점검 기준에 걸리는 경우. 법령은 순간풍속(초당 미터)으로 기준을 정한다.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지하여야 한다. 다만, 태풍 등으로 위험이 예상되거나 발생되어 긴급 복구작업을 필요로 하는 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:37",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "② 사업주는 순간풍속이 초당 10미터를 초과하는 경우 타워크레인의 설치ㆍ수리ㆍ점검 또는 해체 작업을 중지하여야 하며, 순간풍속이 초당 15미터를 초과하는 경우에는 타워크레인의 운전작업을 중지하여야 한다. <개정 2017.3.3>",
+      "basisArticle": "art:기준규칙:37",
+      "paragraph": 2,
+      "legalWeight": "mandatory",
+      "threshold": "순간풍속이 초당 10미터를 초과",
+      "appliesToActivity": [
+        "activity:tower_crane",
+        "activity:tower_assembly"
+      ],
+      "appliesTo": [
+        "subtask:타워크레인"
+      ]
+    },
+    {
+      "requirement": "제383조(작업의 제한) 사업주는 다음 각 호의 어느 하나에 해당하는 경우에 철골작업을 중지하여야 한다. … 1. 풍속이 초당 10미터 이상인 경우",
+      "basisArticle": "art:기준규칙:383",
+      "item": 1,
+      "legalWeight": "mandatory",
+      "threshold": "풍속이 초당 10미터 이상",
+      "appliesToActivity": [
+        "activity:steel_erection",
+        "activity:steel_structure"
+      ],
+      "appliesTo": [
+        "subtask:철골작업"
+      ]
+    },
+    {
+      "requirement": "제140조(폭풍에 의한 이탈 방지) 사업주는 순간풍속이 초당 30미터를 초과하는 바람이 불어올 우려가 있는 경우 옥외에 설치되어 있는 주행 크레인에 대하여 이탈방지장치를 작동시키는 등 이탈 방지를 위한 조치를 하여야 한다.",
+      "basisArticle": "art:기준규칙:140",
+      "legalWeight": "mandatory",
+      "threshold": "순간풍속이 초당 30미터를 초과",
+      "appliesToActivity": [
+        "activity:lifting_operation"
+      ]
+    },
+    {
+      "requirement": "제143조(폭풍 등으로 인한 이상 유무 점검) 사업주는 순간풍속이 초당 30미터를 초과하는 바람이 불거나 중진(中震) 이상 진도의 지진이 있은 후에 옥외에 설치되어 있는 양중기를 사용하여 작업을 하는 경우에는 미리 기계 각 부위에 이상이 있는지를 점검하여야 한다.",
+      "basisArticle": "art:기준규칙:143",
+      "legalWeight": "mandatory",
+      "threshold": "순간풍속이 초당 30미터를 초과",
+      "appliesToActivity": [
+        "activity:tower_crane",
+        "activity:tower_assembly",
+        "activity:lifting_operation"
+      ],
+      "appliesTo": [
+        "subtask:타워크레인",
+        "subtask:건설용_리프트"
+      ]
+    },
+    {
+      "requirement": "② 사업주는 순간풍속이 초당 35미터를 초과하는 바람이 불어올 우려가 있는 경우 건설용 리프트(지하에 설치되어 있는 것은 제외한다)에 대하여 받침의 수를 증가시키는 등 그 붕괴 등을 방지하기 위한 조치를 하여야 한다. <개정 2022.10.18>",
+      "basisArticle": "art:기준규칙:154",
+      "paragraph": 2,
+      "legalWeight": "mandatory",
+      "threshold": "순간풍속이 초당 35미터를 초과",
+      "appliesTo": [
+        "subtask:건설용_리프트"
+      ]
+    },
+    {
+      "requirement": "제161조(폭풍에 의한 무너짐 방지) 사업주는 순간풍속이 초당 35미터를 초과하는 바람이 불어 올 우려가 있는 경우 옥외에 설치되어 있는 승강기에 대하여 받침의 수를 증가시키는 등 승강기가 무너지는 것을 방지하기 위한 조치를 하여야 한다. <개정 2019.1.31>",
+      "basisArticle": "art:기준규칙:161",
+      "legalWeight": "mandatory",
+      "threshold": "순간풍속이 초당 35미터를 초과",
+      "appliesToActivity": [
+        "activity:elevator_installation"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 달비계 또는 높이 5미터 이상의 비계를 조립ㆍ해체하거나 변경하는 작업을 하는 경우 다음 각 호의 사항을 준수하여야 한다. … 4. 비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:57",
+      "paragraph": 1,
+      "item": 4,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:scaffolding_assembly"
+      ]
+    },
+    {
+      "requirement": "제58조(비계의 점검 및 보수) 사업주는 비, 눈, 그 밖의 기상상태의 악화로 작업을 중지시킨 후 또는 비계를 조립ㆍ해체하거나 변경한 후에 그 비계에서 작업을 하는 경우에는 해당 작업을 시작하기 전에 다음 각 호의 사항을 점검하고, 이상을 발견하면 즉시 보수하여야 한다.",
+      "basisArticle": "art:기준규칙:58",
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:scaffolding_assembly"
+      ]
+    },
+    {
+      "requirement": "제141조(조립 등의 작업 시 조치사항) 사업주는 크레인의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 하여야 한다. … 3. 비, 눈, 그 밖에 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:141",
+      "item": 3,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:tower_crane",
+        "activity:tower_assembly",
+        "activity:lifting_operation"
+      ],
+      "appliesTo": [
+        "subtask:타워크레인"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 리프트의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 하여야 한다. … 3. 비, 눈, 그 밖에 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:156",
+      "paragraph": 1,
+      "item": 3,
+      "legalWeight": "mandatory",
+      "appliesTo": [
+        "subtask:건설용_리프트"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 사업장에 승강기의 설치ㆍ조립ㆍ수리ㆍ점검 또는 해체 작업을 하는 경우 다음 각 호의 조치를 해야 한다. <개정 2022.10.18> … 3. 비, 눈, 그 밖에 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지시킬 것",
+      "basisArticle": "art:기준규칙:162",
+      "paragraph": 1,
+      "item": 3,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:elevator_installation"
+      ]
+    },
+    {
+      "requirement": "① 사업주는 기둥ㆍ보ㆍ벽체ㆍ슬래브 등의 거푸집 및 동바리를 조립하거나 해체하는 작업을 하는 경우에는 다음 각 호의 사항을 준수해야 한다. <개정 2021.5.28, 2023.11.14> … 2. 비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나쁜 경우에는 그 작업을 중지할 것",
+      "basisArticle": "art:기준규칙:333",
+      "paragraph": 1,
+      "item": 2,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:formwork_shoring"
+      ]
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:37",
+    "art:기준규칙:383",
+    "art:기준규칙:140",
+    "art:기준규칙:143",
+    "art:기준규칙:154",
+    "art:기준규칙:161",
+    "art:기준규칙:57",
+    "art:기준규칙:58",
+    "art:기준규칙:141",
+    "art:기준규칙:156",
+    "art:기준규칙:162",
+    "art:기준규칙:333"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

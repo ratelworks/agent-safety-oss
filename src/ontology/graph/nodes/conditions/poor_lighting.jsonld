@@ -1,0 +1,68 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:poor_lighting",
+  "@type": "WorkCondition",
+  "title": "조도 불량",
+  "altLabel": [
+    "조도",
+    "조명",
+    "어두운 장소",
+    "어두움"
+  ],
+  "conditionAxis": "시간·조명",
+  "description": "작업면·통로가 어두운 경우. 법령은 작업 종류별 최소 조도(럭스)를 정한다.",
+  "conditionRules": [
+    {
+      "requirement": "제8조(조도) 사업주는 근로자가 상시 작업하는 장소의 작업면 조도(照度)를 다음 각 호의 기준에 맞도록 하여야 한다. 다만, 갱내(坑內) 작업장과 감광재료(感光材料)를 취급하는 작업장은 그러하지 아니하다. … 1. 초정밀작업: 750럭스(lux) 이상 … 2. 정밀작업: 300럭스 이상 … 3. 보통작업: 150럭스 이상 … 4. 그 밖의 작업: 75럭스 이상",
+      "basisArticle": "art:기준규칙:8",
+      "legalWeight": "mandatory",
+      "threshold": "보통작업: 150럭스 이상"
+    },
+    {
+      "requirement": "제21조(통로의 조명) 사업주는 근로자가 안전하게 통행할 수 있도록 통로에 75럭스 이상의 채광 또는 조명시설을 하여야 한다. 다만, 갱도 또는 상시 통행을 하지 아니하는 지하실 등을 통행하는 근로자에게 휴대용 조명기구를 사용하도록 한 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:21",
+      "legalWeight": "mandatory",
+      "threshold": "75럭스 이상"
+    },
+    {
+      "requirement": "① 사업주는 작업발판 및 통로의 끝이나 개구부로서 근로자가 추락할 위험이 있는 장소에는 안전난간, 울타리, 수직형 추락방망 또는 덮개 등(이하 이 조에서 \"난간등\"이라 한다)의 방호 조치를 충분한 강도를 가진 구조로 튼튼하게 설치하여야 하며, 덮개를 설치하는 경우에는 뒤집히거나 떨어지지 않도록 설치하여야 한다. 이 경우 어두운 장소에서도 알아볼 수 있도록 개구부임을 표시해야 하며, 수직형 추락방망은 한국산업표준에서 정하는 성능기준에 적합한 것을 사용해야 한다. <개정 2019.12.26, 2022.10.18>",
+      "basisArticle": "art:기준규칙:43",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "④ 사업주는 고소작업대를 사용하는 경우에는 다음 각 호의 사항을 준수하여야 한다. … 3. 안전한 작업을 위하여 적정수준의 조도를 유지할 것",
+      "basisArticle": "art:기준규칙:186",
+      "paragraph": 4,
+      "item": 3,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "(2) 조명기구를 적절히 배치하고 조명기구에 고장이 생겨서 작업장이 어둡지 않도록 주간에 미리 점검하여 조명장치가 제기능을 발휘하도록 조치하여야 한다.",
+      "basisGuide": "doc:kosha_guide/C-52-2016",
+      "guideSection": "5.2",
+      "guideClause": "(2)",
+      "legalWeight": "recommended"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:8",
+    "art:기준규칙:21",
+    "art:기준규칙:43",
+    "art:기준규칙:186"
+  ],
+  "guidedBy": [
+    "doc:kosha_guide/C-52-2016",
+    "doc:kosha_guide/A-G-16-2026"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-16",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "guidedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}
