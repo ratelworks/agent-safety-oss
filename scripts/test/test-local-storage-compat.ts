@@ -33,7 +33,8 @@ const SELF = fileURLToPath(import.meta.url);
 const COMPANY = "샘플건설 다";
 const PROFILE_KEYS = "@context,_meta,contractors,equipments,persons,projects,sites";
 const DRAFT_KEYS = "autosave,createdAt,docId,formValues,manualSavedAt,updatedAt";
-const TIMESTAMP_FILE = /^\d{4}-\d{2}-\d{2}-\d{6}-\d{3}\.md$/;
+// 같은 밀리초에 두 번 보관하면 두 번째 파일에 -01 이 붙는다(local-storage.ts 의 기존 충돌 처리)
+const TIMESTAMP_FILE = /^\d{4}-\d{2}-\d{2}-\d{6}-\d{3}(-\d{2})?\.md$/;
 
 const { TOOLS } = await import("../../src/tool-registry.js");
 
@@ -102,8 +103,18 @@ const report = await call("generate_safety_report", { period: "monthly", startDa
 check("보고서 reports/<id>.json + .md", existsSync(join(STORE, "reports", "report.2026-11.generic.json")) && existsSync(join(STORE, "reports", "report.2026-11.generic.md")));
 check("보고서 응답 경로는 로컬", String(report.structuredContent.jsonPath ?? report.structuredContent.report?.jsonPath ?? JSON.stringify(report.structuredContent)).includes(join(STORE, "reports")));
 
+// 현장 거르기 — 이슈의 현장은 사진 증빙의 relatedSite 에서 오고, 조치 목록·보고서의 현장 거르기가 그 이슈를 찾아야 한다
+const SITE_IRI = `project:${COMPANY.replace(/\s+/g, "_")}_2공구`;
+const sitePhoto = await call("upload_photo_evidence", { filePath: src, relatedSite: SITE_IRI, relatedTask: "activity:excavation_2m_plus", evidenceType: "before_action", capturedAt: "2026-11-17T10:00:00+09:00" });
+const siteIssue = await call("register_safety_issue", { relatedTask: "activity:excavation_2m_plus", relatedRisk: "hazard:fall_from_height", severity: "medium", description: "가상 2공구 난간 미설치", photoEvidence: sitePhoto.structuredContent.photo.photoId });
+const siteAction = await call("record_corrective_action", { relatedIssue: siteIssue.structuredContent.issue.issueId, action: "난간 설치", assignee: "가상 관리감독자", dueBy: "2026-11-30" });
+const sitePending = await call("list_pending_actions", { siteId: SITE_IRI });
+check("현장 거르기: 조치 목록이 relatedSite 현장의 조치를 찾음", (sitePending.structuredContent.actions ?? []).some((a: any) => a.actionId === siteAction.structuredContent.actionId), JSON.stringify(sitePending.structuredContent).slice(0, 300));
+const siteReport = await call("generate_safety_report", { siteId: SITE_IRI, period: "monthly", startDate: "2026-11-01", endDate: "2026-11-30" });
+check("현장 거르기: 보고서가 relatedSite 현장의 이슈를 셈", (siteReport.structuredContent.report?.stats?.issueCount ?? siteReport.structuredContent.stats?.issueCount) === 1, JSON.stringify(siteReport.structuredContent).slice(0, 300));
+
 // 한글 파일
-const hwpx = await call("generate_safety_document", { docId: "daily_tbm", format: "hwpx", draft: { todayWork: "굴착" } });
+const hwpx =await call("generate_safety_document", { docId: "daily_tbm", format: "hwpx", draft: { todayWork: "굴착" } });
 check("한글 파일은 documents/<docId>/ 에 저장", String(hwpx.structuredContent.hwpxPath).startsWith(docDir) && existsSync(hwpx.structuredContent.hwpxPath));
 
 // 활동 기록

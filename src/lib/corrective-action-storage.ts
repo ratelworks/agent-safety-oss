@@ -516,11 +516,13 @@ function buildSafetyIssueReference(
     issueId,
     iri: readString(raw.iri) ?? readString(raw["@id"]) ?? toIssueIri(issueId),
     referenceStatus: "found",
+    // 안전 이슈 기록은 현장을 relatedSite 칸에 둔다(사진 증빙에서 이어받음) — 그 칸도 현장으로 본다
     siteId:
       readString(raw.siteId) ??
       readString(raw.site) ??
       readString(raw.projectId) ??
-      readString(raw.project),
+      readString(raw.project) ??
+      readString(raw.relatedSite),
     severity: readString(raw.severity) ?? readString(raw.riskLevel),
     title:
       readString(raw.title) ??
@@ -735,17 +737,12 @@ async function hostActionIdForRetry(host: HostRun, retryKey: string): Promise<st
   return undefined;
 }
 
-/**
- * 주입한 저장의 안전 이슈 기록을 참조로 바꾼다. 이슈 기록은 현장을 relatedSite 칸에 두므로
- * siteId 칸이 없으면 relatedSite 를 현장으로 본다(현장별 조치 목록·보고서가 그 현장의 이슈를 찾게).
- */
+/** 주입한 저장의 안전 이슈 기록을 참조로 바꾼다(현장은 buildSafetyIssueReference 가 relatedSite 까지 읽는다). */
 async function hostSafetyIssueReferences(host: HostRun): Promise<SafetyIssueReference[]> {
   const issues: SafetyIssueReference[] = [];
   for (const { id, value } of await host.list<Record<string, unknown>>("issue")) {
     if (!isRecord(value)) continue;
-    const ref = buildSafetyIssueReference(value, id, undefined);
-    if (!ref.siteId) ref.siteId = readString(value.relatedSite);
-    issues.push(ref);
+    issues.push(buildSafetyIssueReference(value, id, undefined));
   }
   return issues.sort((a, b) => (b.recordedAt ?? "").localeCompare(a.recordedAt ?? ""));
 }
