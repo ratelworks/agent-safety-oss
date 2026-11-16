@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
+import { doclangToMarkdown, readDclxDocument } from "../lib/dclx.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // build/ontology/forms 에서 양식 로드 (build 시 src/ontology/forms 가 복사됨)
@@ -22,6 +23,10 @@ interface FormMeta {
   sourceUrl: string;
   originalDownloadUrl: string;
   license: string;
+  /** 원본(HWP·PDF·XLSX)을 DocLang 으로 바꿔 둔 글 판 — forms/ 기준 상대 경로 */
+  textFile?: string;
+  /** 원본 파일 SHA-256 */
+  originalSha256?: string;
 }
 
 interface FormsMap {
@@ -55,10 +60,10 @@ const inputSchema = z.object({
     .optional()
     .describe("형식 필터 (hwp / hwpx / pdf / xlsx / md). md 는 forms/auto/ 자동 생성 양식."),
   encoding: z
-    .enum(["base64", "path", "list_only"])
+    .enum(["base64", "path", "list_only", "text"])
     .default("path")
     .describe(
-      "응답 형식: 'path' = 파일 경로만 반환 (사용자가 직접 읽음, 기본값) / 'base64' = 본문 base64 인코딩 / 'list_only' = 메타만 (본문 X)",
+      "응답 형식: 'path' = 파일 경로만 반환 (사용자가 직접 읽음, 기본값) / 'base64' = 본문 base64 인코딩 / 'list_only' = 메타만 (본문 X) / 'text' = 양식 내용을 글(Markdown)로 — 한글·PDF·엑셀 원본은 원본을 바꿔 둔 글 판(칸·표·안내문)을, md 양식은 그 글을 돌려준다",
     ),
 });
 
@@ -152,7 +157,47 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     };
   }
 
-  // 4. base64 인코딩
+  // 4. 글 — 원본을 바꿔 둔 글 판(DocLang) 또는 md 양식 그 자체
+  if (input.encoding === "text") {
+    let text: string;
+    let textSource: string;
+    if (f.format === "md") {
+      text = readFileSync(filePath, "utf8");
+      textSource = "md";
+    } else if (f.textFile) {
+      text = doclangToMarkdown(readDclxDocument(readFileSync(resolve(FORMS_DIR, f.textFile)))).trim();
+      textSource = "원본을 DocLang 으로 바꾼 글 판 (칸·표·안내문 — 서식 모양·글꼴은 원본 파일에서 확인)";
+    } else {
+      return {
+        content: [{ type: "text", text: `[NO_TEXT] '${f.formId}' 양식은 글 판이 없습니다. encoding='path' 또는 'base64' 로 원본 파일을 받으세요.` }],
+        structuredContent: { error: "no_text_version", formId: f.formId },
+        isError: true,
+      } as McpToolResult;
+    }
+    return {
+      content: [
+        {
+          type: "text",
+          text: `# ${f.title}\n\n> 출처: ${f.source} — ${f.sourceUrl} (라이선스: ${f.license})\n> 글 판: ${textSource}. 작성·제출에는 원본 파일(\`${f.filename}\`)을 쓰세요.\n\n${text}`,
+        },
+      ],
+      structuredContent: {
+        formId: f.formId,
+        docId: f.docId,
+        title: f.title,
+        filename: f.filename,
+        format: f.format,
+        textSource: f.format === "md" ? "md" : "dclx",
+        text,
+        source: f.source,
+        sourceUrl: f.sourceUrl,
+        license: f.license,
+        ...(f.originalSha256 ? { originalSha256: f.originalSha256 } : {}),
+      },
+    };
+  }
+
+  // 5. base64 인코딩
   const buffer = readFileSync(filePath);
   const base64 = buffer.toString("base64");
 
@@ -182,7 +227,7 @@ export const getOfficialFormTool: ToolDefinition = {
   name: "get_official_form",
   title: "내장 공식 안전관리 양식 (HWP·PDF·XLSX)",
   description:
-    "본 MCP 에 내장된 공식 안전관리 양식 132 formId 를 반환한다 (forms-map.json SSoT — HWP 14 / PDF 23 / XLSX 1 / md 94). 산재조사표 별지 30호·선임 보고서(일반·건설업)·보호구 지급대장·KOSHA TBM·안전보건교육일지(XLSX/HWP)·작업환경측정 결과보고서·결과표(별지 82·83호)·산안법시행령 PDF 등 + 자동 생성 .md 94 (legal-duty-master 94 docId 1대1 매핑). 사용자는 다운로드 없이 즉시 활용 가능 (공공누리 라이선스). formId/docId/format(hwp|hwpx|pdf|xlsx|md) 필터 지원, encoding=path(기본)·base64·list_only.",
+    "본 MCP 에 내장된 공식 안전관리 양식 132 formId 를 반환한다 (forms-map.json SSoT — HWP 14 / PDF 23 / XLSX 1 / md 94). 산재조사표 별지 30호·선임 보고서(일반·건설업)·보호구 지급대장·KOSHA TBM·안전보건교육일지(XLSX/HWP)·작업환경측정 결과보고서·결과표(별지 82·83호)·산안법시행령 PDF 등 + 자동 생성 .md 94 (legal-duty-master 94 docId 1대1 매핑). 사용자는 다운로드 없이 즉시 활용 가능 (공공누리 라이선스). formId/docId/format(hwp|hwpx|pdf|xlsx|md) 필터 지원, encoding=path(기본)·base64·list_only·text(양식 내용을 글로 — 한글·PDF·엑셀 원본은 원본을 바꿔 둔 글 판).",
   inputSchema,
   handler,
 };

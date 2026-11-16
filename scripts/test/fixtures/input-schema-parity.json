@@ -3188,12 +3188,13 @@
     "encoding": {
      "type": "enum",
      "optional": true,
-     "description": "응답 형식: 'path' = 파일 경로만 반환 (사용자가 직접 읽음, 기본값) / 'base64' = 본문 base64 인코딩 / 'list_only' = 메타만 (본문 X)",
+     "description": "응답 형식: 'path' = 파일 경로만 반환 (사용자가 직접 읽음, 기본값) / 'base64' = 본문 base64 인코딩 / 'list_only' = 메타만 (본문 X) / 'text' = 양식 내용을 글(Markdown)로 — 한글·PDF·엑셀 원본은 원본을 바꿔 둔 글 판(칸·표·안내문)을, md 양식은 그 글을 돌려준다",
      "default": "path",
      "enumValues": [
       "base64",
       "path",
-      "list_only"
+      "list_only",
+      "text"
      ]
     }
    },
