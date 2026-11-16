@@ -50,6 +50,8 @@ const KNOWN_PREFIXES = new Set([
   "equipment", "chapter", "section", "part",
   // 공종 노드 (context.jsonld 의 subtask 접두어)
   "subtask",
+  // 작업 조건 노드 (context.jsonld 의 workcond 접두어)
+  "workcond",
   "facet", "entity", "iso45001", "kosha", "cc", "safety",
 ]);
 
