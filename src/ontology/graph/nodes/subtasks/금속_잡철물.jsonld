@@ -153,11 +153,18 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
+              "guideSection": "5.1",
+              "controlLevel": "administrative"
+            },
+            {
+              "basisGuide": "doc:kosha_guide/C-55-2015",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             },
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
-              "controlLevel": "administrative"
+              "guideSection": "5.3",
+              "controlLevel": "engineering"
             }
           ],
           "risks": [
@@ -167,12 +174,13 @@
               "statement": "작업발판 미설치 또는 안전대 미착용으로 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:fb5cd43a3d34",
+                  "@id": "workmeasure:6267b62162b5",
                   "@type": "WorkMeasure",
                   "measure": "부재 설치 시 추락 및 부재의 낙하․비래 재해예방을 위하여 폭 40 cm 이상의 작업발판을 설치하여야 하며 작업여건상 작업발판의 설치가 곤란한 경우에는 안전대 부착설비 설치 및 안전대를 착용하고 작업하도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -183,12 +191,13 @@
               "statement": "리프트 적재중량 미확인, 통로 발판 미설치로 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:0b0c81a79a1a",
+                  "@id": "workmeasure:d824433ab65c",
                   "@type": "WorkMeasure",
                   "measure": "리프트를 이용하여 부재를 양중 시에는 적재 중량 확인, 출입문 닫힘상태 및 통로 발판 설치가 양호한지 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -199,12 +208,13 @@
               "statement": "양중 부위 안전시설 미설치로 떨어짐, 유니트 낙하",
               "measures": [
                 {
-                  "@id": "workmeasure:ef45229cb290",
+                  "@id": "workmeasure:0732f2856cef",
                   "@type": "WorkMeasure",
                   "measure": "리프트 및 부재 양중 부위에 대한 설치작업은 좁은 공간에 유니트 부재를 끼워 서 설치하여야 하므로 근로자의 추락, 유니트 부재의 낙하 등의 우려가 있으므로 작 업 전에 추락방지를 위한 시설, 유니트 부재를 지지할 수 있는 보조용 로프 등의 안전시설을 반드시 설치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.3"
                   }
                 }
               ]
@@ -217,15 +227,18 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
+              "guideSection": "5.3",
               "controlLevel": "engineering"
             },
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
-              "controlLevel": "administrative"
+              "guideSection": "5.1",
+              "controlLevel": "elimination"
             },
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
-              "controlLevel": "elimination"
+              "guideSection": "5.2",
+              "controlLevel": "administrative"
             }
           ],
           "risks": [
@@ -235,12 +248,13 @@
               "statement": "구조체 콘크리트 강도 미확보로 커튼월 틀 낙하",
               "measures": [
                 {
-                  "@id": "workmeasure:3ae64275cca4",
+                  "@id": "workmeasure:a49ad23ba6eb",
                   "@type": "WorkMeasure",
                   "measure": "부재 설치 시 구조체의 강도저하로 인한 커튼월 틀 낙하 등의 사고예방을 위하여 구조체 콘크리트의 압축강도가 설계기준강도 이상일 때 실시한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -251,30 +265,33 @@
               "statement": "긴결재를 가조립하지 않고 유니트를 세워 전도됨",
               "measures": [
                 {
-                  "@id": "workmeasure:dac3d43aec03",
+                  "@id": "workmeasure:bee850c0f09a",
                   "@type": "WorkMeasure",
                   "measure": "긴결재 설치는 고정용 구멍에 볼트를 끼우고 1차 긴결재를 가조립한 후 중량물인 유니트를 가조립하여 전도, 도괴 등을 방지한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.3"
                   }
                 },
                 {
-                  "@id": "workmeasure:303a2baf3eab",
+                  "@id": "workmeasure:a499bb8dfa51",
                   "@type": "WorkMeasure",
                   "measure": "유니트를 조립한 후 상부 양중용 구멍에 부착된 원형 걸고리를 우측 한곳은 제거하고 유니트와 유니트를 연결 시켜주는 슬리브를 우측에서 좌측으로 밀어 놓고 결합하여 전도 방지 및 접합부의 변형을 방지한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.3"
                   }
                 },
                 {
-                  "@id": "workmeasure:b51c4940a517",
+                  "@id": "workmeasure:f8e34fa22806",
                   "@type": "WorkMeasure",
                   "measure": "유니트를 결합시킨 후에 설치 기준선을 이용 수평거리를 확인하고 수평 측량기로 수평기준선을 기준으로 높낮이를 조정한 후에 좌측에 있는 원형고리를 제거하여 커튼월의 뒤틀림과 변형을 방지한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.3"
                   }
                 }
               ]
@@ -285,12 +302,13 @@
               "statement": "부착철물과 커튼월 접합부 보강 미흡으로 강풍에 커튼월이 변형·낙하하여 맞음",
               "measures": [
                 {
-                  "@id": "workmeasure:dd32c397d906",
+                  "@id": "workmeasure:ba485efbf584",
                   "@type": "WorkMeasure",
                   "measure": "커튼월 설치 작업 중 강풍 등 외부 환경적인 요인으로 커튼월의 변형 및 낙하 방지를 위해서 부착철물과 커튼월의 접합부에 대한 처리를 철저히 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.2"
                   }
                 }
               ]
@@ -303,6 +321,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             }
           ],
@@ -313,12 +332,13 @@
               "statement": "구조물 먹메김 중 돌출물에 걸려 넘어지거나 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:d46fe72a7fb7",
+                  "@id": "workmeasure:d0794d7cf513",
                   "@type": "WorkMeasure",
                   "measure": "부재 설치 전 구조물에 먹메김 시 돌출물에 의한 추락, 전도 등의 재해위험이 있으 므로 사전에 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -331,10 +351,12 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
+              "guideSection": "5.1",
               "controlLevel": "administrative"
             },
             {
               "basisGuide": "doc:kosha_guide/C-55-2015",
+              "guideSection": "5.1",
               "controlLevel": "engineering"
             }
           ],
@@ -345,12 +367,13 @@
               "statement": "양중용 로프 점검 미흡으로 부재가 낙하",
               "measures": [
                 {
-                  "@id": "workmeasure:20be9a0dc1e0",
+                  "@id": "workmeasure:e57af243be82",
                   "@type": "WorkMeasure",
                   "measure": "타워크레인이나 이동식크레인으로 부재를 양중 할 때에는 반드시 전담 신호수를 배치 하여야 하며 작업 전 양중용 로프의 이상 유무를 점검한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.1"
                   }
                 }
               ]
@@ -361,12 +384,13 @@
               "statement": "공구함 미사용으로 공구가 낙하",
               "measures": [
                 {
-                  "@id": "workmeasure:53c2a090e170",
+                  "@id": "workmeasure:08116a866287",
                   "@type": "WorkMeasure",
                   "measure": "부재 설치용 공구는 낙하 위험이 있으므로 공구함을 만들고 사용한 공구는 반드시 공구함에 넣어 관리한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/C-55-2015"
+                    "basisGuide": "doc:kosha_guide/C-55-2015",
+                    "guideSection": "5.1"
                   }
                 }
               ]

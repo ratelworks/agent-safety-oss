@@ -31,8 +31,9 @@ interface MeasureNode {
     basisAnnex?: string;
     basisGuide?: string;
     guideSection?: string;
+    guideClause?: string;
     paragraph?: number;
-    item?: number;
+    item?: number | number[];
     subitem?: string;
   };
 }
@@ -60,10 +61,11 @@ export interface FieldMeasure {
 /** 근거 참조의 세부 위치를 글로 */
 function scopeLabel(b: MeasureNode["basis"]): string | undefined {
   if (!b) return undefined;
-  if (b.basisGuide) return b.guideSection;
+  if (b.basisGuide) return [b.guideSection, b.guideClause && (/^\d+$/.test(b.guideClause) ? `${b.guideClause}번 항목` : b.guideClause)].filter(Boolean).join(" ") || undefined;
+  const items = b.item === undefined ? [] : Array.isArray(b.item) ? b.item : [b.item];
   const parts = [
     b.paragraph ? `제${b.paragraph}항` : "",
-    b.item ? `제${b.item}호` : "",
+    items.map((i) => `제${i}호`).join("·"),
     b.subitem ? `${b.subitem}목` : "",
   ].filter(Boolean);
   return parts.length ? parts.join(" ") : undefined;

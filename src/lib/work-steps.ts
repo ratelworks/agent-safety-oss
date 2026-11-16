@@ -35,13 +35,18 @@ const CONTROL_LEVEL_KO: Record<string, string> = {
 interface BasisRef {
   article?: string;
   paragraph?: number;
-  /** 호 번호 (조문·별표 공통) */
-  item?: number;
+  /** 호 번호 (조문·별표 공통). 근거가 호 둘을 함께 들면 배열 */
+  item?: number | number[];
   /** 목 (가·나·다…) */
   subitem?: string;
   annex?: string;
   guide?: string;
+  /** 가이드 조항 번호("7.1.1") 또는 부록("부록 3") */
   section?: string;
+  /** 조항 안의 세부 위치 — "(1)(가)", 부록의 "표 3", 점검표 항목 번호("14") */
+  clause?: string;
+  /** 위치를 정한 방식 — "text-match": 원천의 조항 표기로 찾지 못해 대책 문장을 가이드 원문에서 찾아 정함 */
+  locatedBy?: string;
   controlLevel?: string;
 }
 interface StepHazard {
@@ -82,8 +87,10 @@ interface RawBasisRef {
   basisAnnex?: string;
   basisGuide?: string;
   guideSection?: string;
+  guideClause?: string;
+  basisLocatedBy?: string;
   paragraph?: number;
-  item?: number;
+  item?: number | number[];
   subitem?: string;
   controlLevel?: string;
 }
@@ -95,13 +102,15 @@ interface RawStepHazard {
 }
 
 function toBasisRef(b: RawBasisRef): BasisRef {
-  const { basisArticle, basisAnnex, basisGuide, guideSection, ...rest } = b;
+  const { basisArticle, basisAnnex, basisGuide, guideSection, guideClause, basisLocatedBy, ...rest } = b;
   return {
     ...rest,
     ...(basisArticle ? { article: basisArticle } : {}),
     ...(basisAnnex ? { annex: basisAnnex } : {}),
     ...(basisGuide ? { guide: basisGuide } : {}),
     ...(guideSection ? { section: guideSection } : {}),
+    ...(guideClause ? { clause: guideClause } : {}),
+    ...(basisLocatedBy ? { locatedBy: basisLocatedBy } : {}),
   };
 }
 
@@ -131,6 +140,8 @@ export interface ResolvedBasis {
   text?: string;
   controlLevel?: string;
   legalWeight: "mandatory" | "recommended";
+  /** "text-match" — 원천의 조항 표기로는 위치를 찾지 못해, 대책 문장을 가이드 원문에서 찾아 위치를 정했다 */
+  locatedBy?: string;
 }
 /**
  * 연결을 정한 방식 (노드 _meta.linkBasis)
@@ -194,7 +205,7 @@ export interface ResolvedWorkSteps {
 export interface ResolvedRisk {
   statement: string;
   priority?: string;
-  measures: { measure: string; controlLevel?: string; variant?: string; basisRef?: string }[];
+  measures: { measure: string; controlLevel?: string; variant?: string; basisRef?: string; basisLocatedBy?: string }[];
 }
 
 /** 공종 ↔ 고시(장·절·조문) 연결은 모두 내용을 읽고 정한 것이다 */
@@ -316,9 +327,29 @@ function clip(text: string): string {
 
 /** 가이드 본문에서 조항 번호로 시작하는 제목 줄을 찾는다. */
 function findSectionTitle(body: string, section: string): string | undefined {
-  const escaped = section.replace(/\./g, "\\.");
-  const m = body.match(new RegExp(`^\\s*(?:#+\\s*)?${escaped}\\.?\\s+(\\S[^\\n]{0,60})`, "m"));
-  return m ? `${section} ${m[1].trim()}` : undefined;
+  // 부록: "<부록 3>" 줄(또는 "본 서식은 … <부록 3>") 다음의 첫 글줄이 제목
+  const app = section.match(/^부록\s*(\d+)$/);
+  if (app) {
+    const lines = body.split("\n");
+    const at = lines.findIndex((l) => new RegExp(`^(?:[-\\s※]*본 서식은.*)?\\s*[<〈]부록\\s*${app[1]}[>〉]\\s*$`).test(l.trim()));
+    const title = at >= 0 ? lines.slice(at + 1).find((l) => l.trim() && !l.trim().startsWith("<")) : undefined;
+    return title ? `${section} ${title.trim().slice(0, 60)}` : undefined;
+  }
+  // 원본 PDF 추출본은 "5. 1 일반사항"·"5.5선단슈"처럼 번호 사이 공백이나 제목과의 붙음이 섞여 있다
+  const pattern = section.split(".").map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\.\\s*");
+  const rx = new RegExp(`^\\s*(?:#+\\s*)?${pattern}\\.?(?!\\s*\\.?\\s*\\d)\\s*([^\\s\\d][^\\n]{0,60})`);
+  // 목차 줄("5.1 조립 강주 작업순서 ·····")은 건너뛴다
+  for (const line of body.split("\n")) {
+    if (/···|‥|…|\.{4,}/.test(line)) continue;
+    const m = line.match(rx);
+    if (m) return `${section} ${m[1].trim()}`;
+  }
+  return undefined;
+}
+
+/** 세부 위치 표기 — 숫자만이면 점검표 항목 번호 */
+function clauseLabel(clause: string): string {
+  return /^\d+$/.test(clause) ? `${clause}번 항목` : clause;
 }
 
 async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
@@ -330,9 +361,11 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
     const m = num.match(/^(\d+)(?:의(\d+))?$/);
     const articleLabel = m ? `제${m[1]}조${m[2] ? `의${m[2]}` : ""}` : num;
     const scope = paragraphScope(node.description ?? "", b.paragraph);
-    // 호·목이 지정돼 있으면 그 부분만, 아니면 항(또는 조문 앞부분)을 보여 준다
-    const itemText = b.item ? extractItem(scope, b.item, b.subitem) : undefined;
-    const detail = `${b.paragraph ? ` 제${b.paragraph}항` : ""}${b.item ? ` 제${b.item}호` : ""}${b.subitem ? ` ${b.subitem}목` : ""}`;
+    // 호·목이 지정돼 있으면 그 부분만, 아니면 항(또는 조문 앞부분)을 보여 준다. 호를 둘 이상 들면 각각을 잇는다
+    const items = b.item === undefined ? [] : Array.isArray(b.item) ? b.item : [b.item];
+    const itemParts = items.map((i) => extractItem(scope, i, items.length === 1 ? b.subitem : undefined)).filter((t): t is string => Boolean(t));
+    const itemText = itemParts.length ? itemParts.join(" / ") : undefined;
+    const detail = `${b.paragraph ? ` 제${b.paragraph}항` : ""}${items.length ? ` ${items.map((i) => `제${i}호`).join("·")}` : ""}${b.subitem ? ` ${b.subitem}목` : ""}`;
     return {
       kind: "law",
       ref: `산업안전보건기준에 관한 규칙 ${articleLabel}${detail}`,
@@ -363,9 +396,10 @@ async function resolveBasis(b: BasisRef): Promise<ResolvedBasis | null> {
     if (!md) return null;
     return {
       kind: "kosha_guide",
-      ref: `KOSHA Guide ${guideNo}${b.section ? ` ${b.section}` : ""}`,
+      ref: `KOSHA Guide ${guideNo}${b.section ? ` ${b.section}` : ""}${b.clause ? ` ${clauseLabel(b.clause)}` : ""}`,
       title: md.title,
       text: b.section ? findSectionTitle(md.body, b.section) : undefined,
+      ...(b.locatedBy ? { locatedBy: b.locatedBy } : {}),
       controlLevel,
       legalWeight: "recommended",
     };
@@ -503,6 +537,7 @@ export async function getWorkSteps(
             ...(m.controlLevel ? { controlLevel: CONTROL_LEVEL_KO[m.controlLevel] ?? m.controlLevel } : {}),
             ...(m.variant ? { variant: m.variant } : {}),
             ...(rb ? { basisRef: rb.ref } : {}),
+            ...(rb?.locatedBy ? { basisLocatedBy: rb.locatedBy } : {}),
           });
         }
         risks.push({ statement: r.statement, ...(r.priority ? { priority: r.priority } : {}), measures });

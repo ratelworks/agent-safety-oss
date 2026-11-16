@@ -321,6 +321,31 @@ async function main(): Promise<void> {
   }
   check("통제대책 추천의 위계별 묶음이 공종 대책을 빠짐없이 담는다", levelGaps.length === 0, levelGaps.join(", "));
 
+  // 8-4. 대책 근거의 위치는 원문에서 풀린다 — 가이드 조항·부록은 본문 제목으로, 호를 든 조문은 그 호 본문으로.
+  //      문장 대조로 정한 위치는 그 사실이 응답에 따라 나온다
+  const unresolvedGuide: string[] = [];
+  const unresolvedItem: string[] = [];
+  let locatedByText = 0;
+  let locatedByTextShown = 0;
+  for (const node of await readDir("subtasks")) {
+    for (const st of (node.steps as Array<{ stepHazards: Array<{ risks: Array<{ measures: Array<{ basis?: Record<string, unknown> }> }> }> }>) ?? []) {
+      for (const h of st.stepHazards) for (const r of h.risks) for (const m of r.measures) if (m.basis?.basisLocatedBy) locatedByText += 1;
+    }
+    const ws = await getWorkSteps(String(node.title));
+    for (const s of ws?.result.steps ?? []) {
+      for (const h of s.hazards) {
+        for (const b of h.basis) {
+          if (b.kind === "kosha_guide" && /^KOSHA Guide \S+ \S/.test(b.ref) && !b.text) unresolvedGuide.push(b.ref);
+          if (b.kind === "law" && /제\d+조.*제\d+호/.test(b.ref) && !b.text) unresolvedItem.push(b.ref);
+        }
+        for (const r of h.risks) for (const m of r.measures) if (m.basisLocatedBy) locatedByTextShown += 1;
+      }
+    }
+  }
+  check("가이드 근거의 조항·부록 번호가 모두 본문 제목으로 풀린다", unresolvedGuide.length === 0, unresolvedGuide.slice(0, 5).join(", "));
+  check("호를 든 조문 근거가 모두 그 호 본문으로 풀린다", unresolvedItem.length === 0, unresolvedItem.slice(0, 5).join(", "));
+  check("문장 대조로 정한 근거 위치는 응답에 그 표시가 붙는다", locatedByText > 0 && locatedByTextShown === locatedByText, `노드 ${locatedByText}건, 응답 ${locatedByTextShown}건`);
+
   // 9. 유해요인 → 조문: 공종 자료에서 끌어낸 연결이 있고, 끌어낸 것임이 적혀 있다
   const hazardNodes = await readDir("hazards");
   const derivedBad: string[] = [];

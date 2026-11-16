@@ -52,14 +52,17 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             },
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "engineering"
             },
             {
               "basisArticle": "art:기준규칙:141",
+              "item": 6,
               "controlLevel": "engineering"
             }
           ],
@@ -70,30 +73,37 @@
               "statement": "기초 지내력 미달로 침하되어 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:c693d985bb23",
+                  "@id": "workmeasure:1ced3523d352",
                   "@type": "WorkMeasure",
                   "measure": "타워크레인 위치의 확정 후 기초도면에 준하여 터파기를 한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:992a15aca614",
+                  "@id": "workmeasure:b13eb4b8a550",
                   "@type": "WorkMeasure",
                   "measure": "기초의 지내력은 타워크레인 기종별 앵커도면을 참조한다. 기초의 지내력이 미달되는 경우 별도의 구조검토를 수행하며, 그 결 과에 따라 필요시 보강한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:59ebef949888",
+                  "@id": "workmeasure:f0067b3f2bf6",
                   "@type": "WorkMeasure",
                   "measure": "크레인의 성능, 사용조건 등에 따라 충분한 응력(應力)을 갖는 구조로 기초를 설치하고 침하 등이 일어나지 않도록 할 것",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisArticle": "art:기준규칙:141"
+                    "basisArticle": "art:기준규칙:141",
+                    "item": 6
                   }
                 }
               ]
@@ -104,84 +114,111 @@
               "statement": "앵커 설치 불량으로 기초 이동·전도되어 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:9720cceb0304",
+                  "@id": "workmeasure:c90ebb39b74f",
                   "@type": "WorkMeasure",
                   "measure": "기초 앵커의 셋팅 순서는 버림 콘크리트 타설, 먹매김, 앵커 설치, 철 근배근, 콘크리트 타설 순으로 진행한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:1a3ab34087c3",
+                  "@id": "workmeasure:e27799d76968",
                   "@type": "WorkMeasure",
                   "measure": "버림 콘크리트는 10cm이상 타설하여야 하며 수평을 유지한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:ed0effc9726b",
+                  "@id": "workmeasure:38a5e3add870",
                   "@type": "WorkMeasure",
                   "measure": "먹매김 후 물이 고이면 완전히 제거한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:873035269f76",
+                  "@id": "workmeasure:ba5c5b5fab79",
                   "@type": "WorkMeasure",
                   "measure": "앵커 설치 시 레벨을 현장에서 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:5bd297c78b31",
+                  "@id": "workmeasure:313e438f2e06",
                   "@type": "WorkMeasure",
                   "measure": "앵커 셋팅 완료 후 현장 담당자 입회하에 레벨 확인서를 작성한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:8fcaa95da0ea",
+                  "@id": "workmeasure:4e64cb970988",
                   "@type": "WorkMeasure",
                   "measure": "콘크리트 타설 시 앵커가 밀리지 않도록 조심한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:27aaa834ef05",
+                  "@id": "workmeasure:da7b805d7866",
                   "@type": "WorkMeasure",
                   "measure": "콘크리트는 앵커에 미리 표시된 높이만큼만 타설한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:d6ab9bb35079",
+                  "@id": "workmeasure:78beceb64b8b",
                   "@type": "WorkMeasure",
                   "measure": "콘크리트 타설 시 양생기간을 준수한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:6c1a81a7f4a8",
+                  "@id": "workmeasure:72e35c1c69c9",
                   "@type": "WorkMeasure",
                   "measure": "콘크리트 타설, 양생 후 앵커의 레벨을 현장에서 재확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -194,6 +231,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "engineering"
             },
             {
@@ -209,21 +247,27 @@
               "statement": "방호울타리 미설치로 근로자가 넘어지거나 부딪힘",
               "measures": [
                 {
-                  "@id": "workmeasure:cfa82dbb66ef",
+                  "@id": "workmeasure:5bbfb9caa54c",
                   "@type": "WorkMeasure",
                   "measure": "전원 케이블은 타워크레인 단독으로 가설한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:4a36254160bf",
+                  "@id": "workmeasure:a71f75d298f2",
                   "@type": "WorkMeasure",
                   "measure": "타워크레인 방호울타리를 설치한다. 방호울타리의 규격은 높이 1.8m이상, 기초 규격 내의 크기를 설치한다.(권장사항)",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 5",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -253,6 +297,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             }
           ],
@@ -263,12 +308,14 @@
               "statement": "가이드 레일·안내롤러·유압장치 점검 미흡으로 텔레스코픽 케이지 오작동하여 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:96f9ce06408f",
+                  "@id": "workmeasure:f1fcbc8c221d",
                   "@type": "WorkMeasure",
                   "measure": "텔레스코픽 케이지 가이드 레일, 안내롤러 및 유압장치의 시험 작 동상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -279,21 +326,25 @@
               "statement": "작업발판·난간 볼트 고정 미흡으로 발판 파손되어 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:4801ce60e687",
+                  "@id": "workmeasure:f2cf8b93b760",
                   "@type": "WorkMeasure",
                   "measure": "텔레스코픽 케이지 상하부 작업발판, 난간의 견고성 및 볼트고정 상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:69424e919ad9",
+                  "@id": "workmeasure:c61987ce206b",
                   "@type": "WorkMeasure",
                   "measure": "텔레스코픽 케이지 상, 하부 작업발판․난간 설치의 견고성 및 볼트 고정 상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -304,12 +355,15 @@
               "statement": "실린더 슈·받침대 손상·작동불량으로 텔레스코픽 케이지 오작동하여 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:bb05403cc604",
+                  "@id": "workmeasure:e7a278b5915f",
                   "@type": "WorkMeasure",
                   "measure": "실린더 작동전 슈, 받침대의 손상여부와 작동상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -322,6 +376,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             },
             {
@@ -330,6 +385,7 @@
             },
             {
               "basisArticle": "art:기준규칙:141",
+              "item": 5,
               "controlLevel": "administrative"
             }
           ],
@@ -340,12 +396,14 @@
               "statement": "양쪽 지브 균형 유지 미흡으로 타워크레인 전도하여 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:e8a5e1fb55e6",
+                  "@id": "workmeasure:3ea67afbb22f",
                   "@type": "WorkMeasure",
                   "measure": "상승작업 중 타워크레인 양쪽 지브의 균형 유지를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -356,12 +414,15 @@
               "statement": "가드레일 변형·기능 이상으로 마스트 삽입 중 전도하여 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:9547c27cd6d9",
+                  "@id": "workmeasure:7dea693f91a5",
                   "@type": "WorkMeasure",
                   "measure": "새로운 마스트 상차전 가드레일의 변형, 기능 이상 유무를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -372,12 +433,15 @@
               "statement": "텔레스코핑 슈 브레이싱 미완전 안착으로 삽입 중 전도하여 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:dfbcbaafd19d",
+                  "@id": "workmeasure:825b0902e8c3",
                   "@type": "WorkMeasure",
                   "measure": "텔레스코핑 슈의 브레이싱이 완전하게 안착되었는지를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -404,12 +468,13 @@
               "statement": "기자재를 균형 유지하지 않고 들어 올리다 전도하여 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:48fd38fbe98c",
+                  "@id": "workmeasure:c086445f09de",
                   "@type": "WorkMeasure",
                   "measure": "들어올리거나 내리는 기자재는 균형을 유지하면서 작업을 하도록 할 것",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisArticle": "art:기준규칙:141"
+                    "basisArticle": "art:기준규칙:141",
+                    "item": 5
                   }
                 }
               ]
@@ -422,6 +487,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "elimination"
             }
           ],
@@ -432,12 +498,15 @@
               "statement": "상승 중 케이지와 마스트 사이 이동·작업 허용으로 끼임",
               "measures": [
                 {
-                  "@id": "workmeasure:b98036ffc657",
+                  "@id": "workmeasure:4c4bb9e34f4a",
                   "@type": "WorkMeasure",
                   "measure": "상승작업 중 케이지와 마스트 사이에서 작업 및 이동 금지를 확인 한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -448,12 +517,15 @@
               "statement": "상승 중 트롤리·선회 작동 허용으로 끼임",
               "measures": [
                 {
-                  "@id": "workmeasure:a767489d5e99",
+                  "@id": "workmeasure:943cdde09ff8",
                   "@type": "WorkMeasure",
                   "measure": "상승작업 중 트롤리의 이동 및 선회 작동 금지를 확인한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -473,10 +545,12 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             },
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "elimination"
             },
             {
@@ -491,39 +565,50 @@
               "statement": "카운터웨이트 조립 중 지브 균형 유지 실패로 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:3b2e1fe487c3",
+                  "@id": "workmeasure:8de5cb238a6d",
                   "@type": "WorkMeasure",
                   "measure": "매뉴얼상의 인양지점과 일치한지를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:6b43bfe7f1ec",
+                  "@id": "workmeasure:55d560b045bb",
                   "@type": "WorkMeasure",
                   "measure": "매뉴얼상의 순서에 따라 카운터 웨이트가 설치되는지 설치순서 준수 및 총 중량을 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:da8ce3a9f8d9",
+                  "@id": "workmeasure:48ff4c19e6f1",
                   "@type": "WorkMeasure",
                   "measure": "지브의 균형유지 여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:0c0711f7d7b5",
+                  "@id": "workmeasure:a3ae5143ecb1",
                   "@type": "WorkMeasure",
                   "measure": "메인 지브 해체에 따른 카운터 지브 불균형 상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 4",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -543,12 +628,15 @@
               "statement": "고장력 볼트·핀 누락 또는 적정토크 미체결로 접합부가 풀려 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:c1d897cc4e64",
+                  "@id": "workmeasure:bdf85c337361",
                   "@type": "WorkMeasure",
                   "measure": "모든 고장력 볼트 또는 핀의 누락 여부 및 적정토크 체결 여부를 확인 한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -559,12 +647,15 @@
               "statement": "상단부 마스트 미완전 안착 상태에서 핀 미체결 후 작동하여 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:b9a31e6660c8",
+                  "@id": "workmeasure:8459593b346a",
                   "@type": "WorkMeasure",
                   "measure": "상단부가 마스트에 완전히 안착된 상태에서 마스트 핀 체결 후의 작동을 확인한다. 핀이 체결되지 않은 상태에서는 절대로 작동을 금한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 4",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -575,12 +666,15 @@
               "statement": "카운터웨이트를 메인지브 해체 전에 인양하여 조립 중 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:a6a73d7ccc10",
+                  "@id": "workmeasure:be31b51f6c0b",
                   "@type": "WorkMeasure",
                   "measure": "카운터 웨이트를 메인지브 해체 후 해체한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 4",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -591,12 +685,15 @@
               "statement": "강풍·악천후 시 작업하여 인양물 또는 구조물이 넘어지거나 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:bd03c1c1ce2d",
+                  "@id": "workmeasure:7787c542474e",
                   "@type": "WorkMeasure",
                   "measure": "바람이 초속 5～10미터 이상 불면 인양하중표에서 20%를 감하여 야 하고, 비, 눈, 그 밖의 기상상태의 불안정으로 날씨가 몹시 나 쁜 경우에는 산업안전보건기준에 관한 규칙 제37조, 제141조 등 을 준용하여 작업을 중지한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 7",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -609,24 +706,34 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             },
             {
-              "basisArticle": "art:기준규칙:146",
-              "paragraph": 1,
+              "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "elimination"
             },
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
-              "controlLevel": "elimination"
-            },
-            {
-              "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "engineering"
             },
             {
               "basisArticle": "art:기준규칙:137",
               "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 1,
+              "controlLevel": "elimination"
+            },
+            {
+              "basisArticle": "art:기준규칙:146",
+              "paragraph": 1,
+              "item": 4,
+              "controlLevel": "elimination"
             }
           ],
           "risks": [
@@ -636,75 +743,97 @@
               "statement": "고정핀·볼트 체결 누락으로 지브·카운터웨이트가 탈락하여 넘어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:c96b277eadb0",
+                  "@id": "workmeasure:6630ff32c401",
                   "@type": "WorkMeasure",
                   "measure": "턴테이블과 텔레스코픽 케이지와의 핀조립 누락 여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:d63f34efbac3",
+                  "@id": "workmeasure:b9c54461bb32",
                   "@type": "WorkMeasure",
                   "measure": "카운터 지브 인양용 와이어로프의 꼬인 것, 변형, 부식 등이 없는지 준비상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:6da627c2be78",
+                  "@id": "workmeasure:eef638a3f93d",
                   "@type": "WorkMeasure",
                   "measure": "메인 지브 및 카운터지브의 위치 및 방향을 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:f8b6190852fa",
+                  "@id": "workmeasure:c6cd6ab650df",
                   "@type": "WorkMeasure",
                   "measure": "텔레스코픽 케이지와 턴테이블 고정핀 체결 상태에 대한 핀 또는 볼트 체결 누락 여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 4",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:c98a5f1474be",
+                  "@id": "workmeasure:f4e236959da6",
                   "@type": "WorkMeasure",
                   "measure": "타이바에서 해체된 핀, 볼트 등의 낙하 방지조치로 보관함을 사용한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 4",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:60349906fc16",
+                  "@id": "workmeasure:2a02b82565f8",
                   "@type": "WorkMeasure",
                   "measure": "와이어로프 설치 - 와이어로프 단말처리 상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:3e25300d31b3",
+                  "@id": "workmeasure:448123cdf675",
                   "@type": "WorkMeasure",
                   "measure": "텔레스코픽 케이지와 턴테이블 고정핀의 체결 누락여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:7eebed90eb25",
+                  "@id": "workmeasure:bbb8649d2425",
                   "@type": "WorkMeasure",
                   "measure": "새로운 마스트 인양시 상단부가 마스트에 완전 안착된 상태에서 안전핀 체결 누락 여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -715,22 +844,26 @@
               "statement": "중량물 인양 중 하물이 작업자 머리 위로 통과하여 맞음",
               "measures": [
                 {
-                  "@id": "workmeasure:562d12a47e2a",
+                  "@id": "workmeasure:b8321ded743d",
                   "@type": "WorkMeasure",
                   "measure": "중량물 인양 시 보행자를 전면 통제한다",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 7",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
-                  "@id": "workmeasure:a139572a5b67",
+                  "@id": "workmeasure:89139abe25fa",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. 미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 할 것",
                   "controlLevel": "elimination",
                   "basis": {
                     "basisArticle": "art:기준규칙:146",
-                    "paragraph": 1
+                    "paragraph": 1,
+                    "item": 4
                   }
                 }
               ]
@@ -741,13 +874,14 @@
               "statement": "인양하물을 바닥에서 끌어당기거나 밀어내다 하물이 넘어지거나 떨어져 맞음",
               "measures": [
                 {
-                  "@id": "workmeasure:863074659958",
+                  "@id": "workmeasure:50afa93bbab6",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. 인양할 하물(荷物)을 바닥에서 끌어당기거나 밀어내는 작업을 하지 아니할 것",
                   "controlLevel": "elimination",
                   "basis": {
                     "basisArticle": "art:기준규칙:146",
-                    "paragraph": 1
+                    "paragraph": 1,
+                    "item": 1
                   }
                 }
               ]
@@ -776,11 +910,17 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             },
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "substitution"
+            },
+            {
+              "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "controlLevel": "administrative"
             }
           ],
           "risks": [
@@ -790,12 +930,15 @@
               "statement": "와이어로프·체인 등 인양설비 불량 상태로 중량물 인양 중 파단으로 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:35ed0470dfb2",
+                  "@id": "workmeasure:bcbed8bde349",
                   "@type": "WorkMeasure",
                   "measure": "마스트 인양용 와이어로프를 준비한다",
                   "controlLevel": "substitution",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 },
                 {
@@ -808,12 +951,15 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:823826a46a30",
+                  "@id": "workmeasure:19620cb34be4",
                   "@type": "WorkMeasure",
                   "measure": "턴테이블 인양용 와이어로프의 꼬인 것, 변형, 부식 등이 없는지 준비상태를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -826,6 +972,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             }
           ],
@@ -836,12 +983,15 @@
               "statement": "메인 지브·카운터 지브 위치·방향 오류로 조립 중 구조물 넘어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:0df6e461d9a5",
+                  "@id": "workmeasure:79a75b107d90",
                   "@type": "WorkMeasure",
                   "measure": "메인 지브와 카운터 지브의 위치 및 방향을 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 4",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -860,21 +1010,6 @@
           "hasHazard": "hazard:cave_in",
           "basis": [
             {
-              "basisArticle": "art:기준규칙:142",
-              "paragraph": 3,
-              "controlLevel": "engineering"
-            },
-            {
-              "basisArticle": "art:기준규칙:142",
-              "paragraph": 2,
-              "controlLevel": "administrative"
-            },
-            {
-              "basisArticle": "art:기준규칙:142",
-              "paragraph": 2,
-              "controlLevel": "engineering"
-            },
-            {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
               "guideSection": "8.2",
               "controlLevel": "administrative"
@@ -891,8 +1026,57 @@
             },
             {
               "basisArticle": "art:기준규칙:142",
-              "paragraph": 3,
+              "paragraph": 2,
+              "item": 1,
               "controlLevel": "administrative"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 2,
+              "item": 2,
+              "controlLevel": "administrative"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 2,
+              "item": 3,
+              "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 2,
+              "item": 4,
+              "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 3,
+              "item": 1,
+              "controlLevel": "administrative"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 3,
+              "item": 2,
+              "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 3,
+              "item": 3,
+              "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 3,
+              "item": 4,
+              "controlLevel": "engineering"
+            },
+            {
+              "basisArticle": "art:기준규칙:142",
+              "paragraph": 3,
+              "item": 5,
+              "controlLevel": "engineering"
             }
           ],
           "risks": [
@@ -932,43 +1116,47 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:7d8bba556f4f",
+                  "@id": "workmeasure:4bd318935768",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 「산업안전보건법 시행규칙」 제110조제1항제2호에 따른 서면심사에 관한 서류(「건설기계관리법」 제18조에 따른 형식승인서류를 포함한다) 또는 제조사의 설치작업설명서 등에 따라 설치할 것",
                   "controlLevel": "administrative",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 2
+                    "paragraph": 2,
+                    "item": 1
                   }
                 },
                 {
-                  "@id": "workmeasure:7f492237875a",
+                  "@id": "workmeasure:33de6dd31dc2",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 제1호의 서면심사 서류 등이 없거나 명확하지 아니한 경우에는 「국가기술자격법」에 따른 건축구조ㆍ건설기계ㆍ기계안전ㆍ건설안전기술사 또는 건설안전분야 산업안전지도사의 확인을 받아 설치하거나 기종별ㆍ모델별 공인된 표준방법으로 설치할 것",
                   "controlLevel": "administrative",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 2
+                    "paragraph": 2,
+                    "item": 2
                   }
                 },
                 {
-                  "@id": "workmeasure:f4ced83effcc",
+                  "@id": "workmeasure:5430cc838d50",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 콘크리트구조물에 고정시키는 경우에는 매립이나 관통 또는 이와 같은 수준 이상의 방법으로 충분히 지지되도록 할 것",
                   "controlLevel": "engineering",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 2
+                    "paragraph": 2,
+                    "item": 3
                   }
                 },
                 {
-                  "@id": "workmeasure:69998723d278",
+                  "@id": "workmeasure:10d31171dad0",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 벽체에 지지하는 경우 다음 각 호의 사항을 준수하여야 한다. 건축 중인 시설물에 지지하는 경우에는 그 시설물의 구조적 안정성에 영향이 없도록 할 것",
                   "controlLevel": "engineering",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 2
+                    "paragraph": 2,
+                    "item": 4
                   }
                 }
               ]
@@ -979,53 +1167,58 @@
               "statement": "와이어로프 지지 시 각도·지지점·전용 프레임 기준을 지키지 않아 넘어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:5231b74e99e3",
+                  "@id": "workmeasure:0c6e8e1d04da",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 제2항제1호 또는 제2호의 조치를 취할 것",
                   "controlLevel": "administrative",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 3
+                    "paragraph": 3,
+                    "item": 1
                   }
                 },
                 {
-                  "@id": "workmeasure:48a24980e430",
+                  "@id": "workmeasure:8f071f25b79e",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프를 고정하기 위한 전용 지지프레임을 사용할 것",
                   "controlLevel": "engineering",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 3
+                    "paragraph": 3,
+                    "item": 2
                   }
                 },
                 {
-                  "@id": "workmeasure:76a49ff663b5",
+                  "@id": "workmeasure:e7eebbad7b79",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프 설치각도는 수평면에서 60도 이내로 하되, 지지점은 4개소 이상으로 하고, 같은 각도로 설치할 것",
                   "controlLevel": "engineering",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 3
+                    "paragraph": 3,
+                    "item": 3
                   }
                 },
                 {
-                  "@id": "workmeasure:860a6c2f66b6",
+                  "@id": "workmeasure:babffe084065",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프와 그 고정부위는 충분한 강도와 장력을 갖도록 설치하고, 와이어로프를 클립ㆍ샤클(shackle, 연결고리) 등의 고정기구를 사용하여 견고하게 고정시켜 풀리지 않도록 하며, 사용 중에는 충분한 강도와 장력을 유지하도록 할 것. 이 경우 클립ㆍ샤클 등의 고정기구는 한국산업표준 제품이거나 한국산업표준이 없는 제품의 경우에는 이에 준하는 규격을 갖춘 제품이도록 한다",
                   "controlLevel": "engineering",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 3
+                    "paragraph": 3,
+                    "item": 4
                   }
                 },
                 {
-                  "@id": "workmeasure:be73aa948335",
+                  "@id": "workmeasure:fad1c625a80a",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 타워크레인을 와이어로프로 지지하는 경우 다음 각 호의 사항을 준수해야 한다. 와이어로프가 가공전선(架空電線)에 근접하지 않도록 할 것",
                   "controlLevel": "engineering",
                   "basis": {
                     "basisArticle": "art:기준규칙:142",
-                    "paragraph": 3
+                    "paragraph": 3,
+                    "item": 5
                   }
                 }
               ]
@@ -1045,6 +1238,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             },
             {
@@ -1054,6 +1248,7 @@
             },
             {
               "basisArticle": "art:기준규칙:141",
+              "item": 7,
               "controlLevel": "substitution"
             },
             {
@@ -1068,12 +1263,14 @@
               "statement": "양쪽 지브 균형 유지하지 않고 해체하다 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:53bfe6c5d276",
+                  "@id": "workmeasure:72322c1eb5db",
                   "@type": "WorkMeasure",
                   "measure": "해체작업 중 타워크레인 양쪽 지브의 균형 유지를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -1084,12 +1281,15 @@
               "statement": "해체 순서와 맞지 않는 차량을 투입하여 인양 중 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:ff46b5435889",
+                  "@id": "workmeasure:8b2bc9e98a49",
                   "@type": "WorkMeasure",
                   "measure": "타워크레인 해체순서에 맞도록 차량을 투입한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 5",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -1100,12 +1300,15 @@
               "statement": "설치·해체 크레인 제원 미확인으로 조립·해체 중 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:49affdecbf60",
+                  "@id": "workmeasure:59f276c6ddaf",
                   "@type": "WorkMeasure",
                   "measure": "설치․해체 크레인의 제원을 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 7",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -1149,12 +1352,13 @@
               "statement": "비규격 조립용 볼트 사용, 대칭 순서 어겨 조립·해체 중 무너짐",
               "measures": [
                 {
-                  "@id": "workmeasure:3a79c5342139",
+                  "@id": "workmeasure:59566dc2cfa6",
                   "@type": "WorkMeasure",
                   "measure": "규격품인 조립용 볼트를 사용하고 대칭되는 곳을 차례로 결합하고 분해할 것",
                   "controlLevel": "substitution",
                   "basis": {
-                    "basisArticle": "art:기준규칙:141"
+                    "basisArticle": "art:기준규칙:141",
+                    "item": 7
                   }
                 }
               ]
@@ -1167,6 +1371,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             }
           ],
@@ -1177,12 +1382,15 @@
               "statement": "전력케이블 정리정돈 안 해 감전",
               "measures": [
                 {
-                  "@id": "workmeasure:f9c3c31b9b90",
+                  "@id": "workmeasure:410725a13357",
                   "@type": "WorkMeasure",
                   "measure": "운전실 해체전 전력케이블 정리정돈 여부를 확인한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 4",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -1195,15 +1403,18 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "engineering"
             },
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "administrative"
             },
             {
               "basisArticle": "art:기준규칙:146",
               "paragraph": 1,
+              "item": 5,
               "controlLevel": "administrative"
             },
             {
@@ -1219,12 +1430,15 @@
               "statement": "통제요원 미배치로 타워크레인 해체 중 부딪힘",
               "measures": [
                 {
-                  "@id": "workmeasure:20f90c1e5516",
+                  "@id": "workmeasure:b61c02eef207",
                   "@type": "WorkMeasure",
                   "measure": "설치․해체 작업구간 내 통제요원을 배치한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 7",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -1235,12 +1449,15 @@
               "statement": "작업자 신호체계 미유지로 해체 중 부딪힘",
               "measures": [
                 {
-                  "@id": "workmeasure:27849f30ec19",
+                  "@id": "workmeasure:eda6cf4a0c26",
                   "@type": "WorkMeasure",
                   "measure": "작업자 혼란방지를 위해 작업자간 신호체계를 유지한다",
                   "controlLevel": "administrative",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 7",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -1251,12 +1468,15 @@
               "statement": "해체 크레인의 작업 공간을 확보하지 않아 선회 중 부딪힘",
               "measures": [
                 {
-                  "@id": "workmeasure:c85f45a5aa46",
+                  "@id": "workmeasure:2633ddf238b4",
                   "@type": "WorkMeasure",
                   "measure": "설치․해체 크레인의 작업 공간을 확보한다",
                   "controlLevel": "engineering",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 7",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
@@ -1267,13 +1487,14 @@
               "statement": "하물이 보이지 않는 상태에서 크레인 동작시켜 맞음",
               "measures": [
                 {
-                  "@id": "workmeasure:5bfe3feec338",
+                  "@id": "workmeasure:f35f118633f6",
                   "@type": "WorkMeasure",
                   "measure": "사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. 인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니할 것(신호하는 사람에 의하여 작업을 하는 경우는 제외한다)",
                   "controlLevel": "administrative",
                   "basis": {
                     "basisArticle": "art:기준규칙:146",
-                    "paragraph": 1
+                    "paragraph": 1,
+                    "item": 5
                   }
                 }
               ]
@@ -1303,6 +1524,7 @@
           "basis": [
             {
               "basisGuide": "doc:kosha_guide/D-C-10-2026",
+              "guideSection": "부록 3",
               "controlLevel": "ppe"
             }
           ],
@@ -1313,12 +1535,15 @@
               "statement": "안전대 등 개인보호구를 준비하지 않고 해체작업하다 떨어짐",
               "measures": [
                 {
-                  "@id": "workmeasure:e00fb336f61b",
+                  "@id": "workmeasure:16b285197c70",
                   "@type": "WorkMeasure",
                   "measure": "설치․해체 작업자의 안전 장구류를 사전에 준비한다",
                   "controlLevel": "ppe",
                   "basis": {
-                    "basisGuide": "doc:kosha_guide/D-C-10-2026"
+                    "basisGuide": "doc:kosha_guide/D-C-10-2026",
+                    "guideSection": "부록 3",
+                    "guideClause": "표 7",
+                    "basisLocatedBy": "text-match"
                   }
                 }
               ]
