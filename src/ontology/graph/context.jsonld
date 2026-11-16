@@ -84,6 +84,11 @@
       "@type": "@id",
       "@container": "@set"
     },
+    "hasPart": {
+      "@id": "dc:hasPart",
+      "@type": "@id",
+      "@container": "@set"
+    },
     "hasSection": {
       "@id": "safety:hasSection",
       "@type": "@id",
@@ -345,6 +350,7 @@
     "userVisible": "safety:userVisible",
     "isAppendix": "safety:isAppendix",
     "chapterNumber": "safety:chapterNumber",
+    "partNumber": "safety:partNumber",
     "defaultIntervalDays": "safety:defaultIntervalDays",
     "legalBasisExternal": {
       "@id": "safety:legalBasisExternal",
@@ -616,6 +622,7 @@
     "workrisk": "https://safety.ratelworks.org/workrisk/",
     "workmeasure": "https://safety.ratelworks.org/workmeasure/",
     "workcond": "https://safety.ratelworks.org/workcondition/",
+    "supp": "https://safety.ratelworks.org/supplement/",
     "workGroup": "cc:workGroup",
     "steps": {
       "@id": "cc:hasStep",
@@ -662,7 +669,9 @@
     "measure": "schema:text",
     "variant": "cc:variant",
     "WorkCondition": "safety:WorkCondition",
+    "SupplementaryProvision": "safety:SupplementaryProvision",
     "conditionAxis": "safety:conditionAxis",
+    "supplementKind": "safety:supplementKind",
     "conditionRules": {
       "@id": "safety:conditionRule",
       "@container": "@set"

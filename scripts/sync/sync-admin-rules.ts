@@ -6,6 +6,7 @@
  *   - 조문 노드  src/ontology/graph/nodes/articles/{actKey}-§{조}.jsonld
  *   - 법령 노드  src/ontology/graph/nodes/acts/{파일명}.jsonld (hasArticle 포함)
  *   - 장·절 노드 src/ontology/graph/nodes/chapters/{actKey}-{N}장[{M}절].jsonld (hasArticle 포함)
+ *   - 편 노드   src/ontology/graph/nodes/chapters/{actKey}-{N}편.jsonld (편이 있는 고시만 — 편 아래 장은 {actKey}-{N}편{M}장)
  * 를 쓴다. 이름·발령번호·발령일·시행일은 응답에 적힌 값을 그대로 쓴다(손으로 적지 않는다).
  *
  * 사용
@@ -58,6 +59,20 @@ const ADMRULS: AdminRule[] = [
   { actKey: "자체심사업체-고시", id: "2100000186090", actSlug: "유해위험방지계획서자체심사및확인업체지정대상건설업체고시", alternativeNames: ["유해·위험방지계획서 자체심사 및 확인업체 고시"] },
   { actKey: "지도사평가-고시", id: "2100000186089", actSlug: "건설업유해위험방지계획서중지도사가평가확인할수있는대상건설공사의범위및지도사의요건", alternativeNames: ["지도사 평가·확인 대상 건설공사 고시"] },
   { actKey: "전문기관관리-규정", id: "2100000251782", actSlug: "안전보건관리전문기관및건설재해예방전문지도기관관리규정", alternativeNames: ["건설재해예방전문지도기관 관리규정"] },
+  { actKey: "교육-규정", id: "2100000269024", actSlug: "안전보건교육규정", alternativeNames: ["안전보건교육규정", "안전보건교육 규정"] },
+  { actKey: "클린사업장-규정", id: "2100000286788", actSlug: "산업재해예방시설자금융자금지원사업및클린사업장조성지원사업운영규정", alternativeNames: ["클린사업장 조성지원사업 운영규정", "산업재해예방시설자금 융자금 지원사업 운영규정"] },
+  { actKey: "감독관집무-규정", id: "2100000246934", actSlug: "근로감독관집무규정산업안전보건", alternativeNames: ["근로감독관 집무규정(산업안전보건)", "근로감독관 집무규정"] },
+  { actKey: "방호장치인증-고시", id: "2100000199056", actSlug: "방호장치안전인증고시", alternativeNames: ["방호장치 안전인증 고시", "방호장치안전인증고시"] },
+  { actKey: "보호구인증-고시", id: "2100000232806", actSlug: "보호구안전인증고시", alternativeNames: ["보호구 안전인증 고시", "보호구안전인증고시"] },
+  { actKey: "인증절차-고시", id: "2100000214148", actSlug: "안전인증자율안전확인신고의절차에관한고시", alternativeNames: ["안전인증·자율안전확인신고의 절차에 관한 고시"] },
+  { actKey: "기계인증-고시", id: "2100000228814", actSlug: "위험기계기구안전인증고시", alternativeNames: ["위험기계·기구 안전인증 고시", "위험기계기구 안전인증 고시"] },
+  { actKey: "방호장치자율-고시", id: "2100000214150", actSlug: "방호장치자율안전기준고시", alternativeNames: ["방호장치 자율안전기준 고시"] },
+  { actKey: "보호구자율-고시", id: "2100000186078", actSlug: "보호구자율안전확인고시", alternativeNames: ["보호구 자율안전확인 고시"] },
+  { actKey: "건강진단-기준", id: "2100000271410", actSlug: "근로자건강진단실시기준", alternativeNames: ["근로자 건강진단 실시기준"] },
+  { actKey: "MSDS-기준", id: "2100000278320", actSlug: "화학물질의분류표시및물질안전보건자료에관한기준", alternativeNames: ["화학물질의 분류·표시 및 물질안전보건자료에 관한 기준", "물질안전보건자료 기준", "MSDS 기준"] },
+  { actKey: "벌목-지침", id: "2100000262610", actSlug: "벌목표준안전작업지침", alternativeNames: ["벌목 표준안전 작업지침"] },
+  { actKey: "예정가격-기준", id: "2100000284228", actSlug: "계약예규예정가격작성기준", alternativeNames: ["(계약예규) 예정가격작성기준", "예정가격작성기준", "예정가격 작성기준"] },
+  { actKey: "업무위탁-고시", id: "2100000218739", actSlug: "업무위탁기관의지정등에관한고시", alternativeNames: ["업무위탁기관의 지정 등에 관한 고시"] },
 ];
 
 /**
@@ -131,7 +146,7 @@ const CHAPTER_SCOPE: Record<string, { works?: string[]; activities?: string[] }>
 const SCOPE_NOTE = "적용 공종·작업 연결은 장·절 제목과 조문 내용을 읽고 정한 것 — 법령이 정한 적용 범위가 아니다";
 
 interface ChapterDraft {
-  /** "2" 또는 "2-1" */
+  /** "2" 또는 "2-1" — 편이 있는 고시는 "3편1" · "3편1-2" (장 번호가 편마다 다시 시작한다) */
   number: string;
   title: string;
   parent?: string;
@@ -212,6 +227,8 @@ async function main(): Promise<void> {
     const contents = [...xml.matchAll(/<조문내용><!\[CDATA\[([\s\S]*?)\]\]>\s*<\/조문내용>/g)];
     const articleIris: string[] = [];
     const chapters: ChapterDraft[] = [];
+    const parts: ChapterDraft[] = [];
+    let part: ChapterDraft | undefined;
     let chapter: ChapterDraft | undefined;
     let section: ChapterDraft | undefined;
     let added = 0;
@@ -221,10 +238,18 @@ async function main(): Promise<void> {
       // "제5조(제목)" 과 "제5조의2(제목)" 을 구분한다 — 가지 조문을 본조 번호로 읽으면 본조 본문을 덮어쓴다
       const titleMatch = text.match(/^제(\d+)조(?:의(\d+))?\(([^)]+)\)/);
       if (!titleMatch) {
-        // 장·절 제목 — 뒤따르는 조문이 여기에 속한다
+        // 편·장·절 제목 — 뒤따르는 조문이 여기에 속한다
+        const partHead = text.match(/^제(\d+)편\s*(.+)/);
+        if (partHead) {
+          part = { number: partHead[1], title: headingTitle(partHead[2]), articles: [] };
+          parts.push(part);
+          chapter = undefined;
+          section = undefined;
+          continue;
+        }
         const head = text.match(/^제(\d+)(장|절)\s*(.+)/);
         if (head && head[2] === "장") {
-          chapter = { number: head[1], title: headingTitle(head[3]), articles: [] };
+          chapter = { number: part ? `${part.number}편${head[1]}` : head[1], title: headingTitle(head[3]), ...(part ? { parent: `편${part.number}` } : {}), articles: [] };
           section = undefined;
           chapters.push(chapter);
         } else if (head && chapter) {
@@ -235,6 +260,7 @@ async function main(): Promise<void> {
       }
       const num = titleMatch[2] ? `${titleMatch[1]}의${titleMatch[2]}` : titleMatch[1];
       const iri = `art:${rule.actKey}:${num}`;
+      part?.articles.push(iri);
       chapter?.articles.push(iri);
       section?.articles.push(iri);
       const path = resolve(ARTICLES, `${rule.actKey}-§${num}.jsonld`);
@@ -331,6 +357,10 @@ async function main(): Promise<void> {
 
     // 장·절 노드 — 조문이 속한 장·절과, 그 장·절이 다루는 공종·작업
     const chapterIri = (n: string): string => `chapter:${rule.actKey}:${n.replace("-", "장")}${n.includes("-") ? "절" : "장"}`;
+    const partIri = (n: string): string => `part:${rule.actKey}:${n}편`;
+    // 장의 상위 — 편 아래 장이면 편, 절이면 장, 아니면 법령
+    const parentIri = (ch: ChapterDraft): string =>
+      ch.parent?.startsWith("편") ? partIri(ch.parent.slice(1)) : ch.parent ? chapterIri(ch.parent) : actIri;
     let chapterWritten = 0;
     for (const ch of chapters) {
       const key = `${rule.actKey}:${ch.number}`;
@@ -349,7 +379,8 @@ async function main(): Promise<void> {
       // 장에 딸린 절
       const sections = chapters.filter((c) => c.parent === ch.number).map((c) => chapterIri(c.number));
       const [chapterNo, sectionNo] = ch.number.split("-");
-      const label = `제${chapterNo}장${sectionNo ? ` 제${sectionNo}절` : ""}`;
+      const [partNo, chapterInPart] = chapterNo.includes("편") ? chapterNo.split("편") : [null, chapterNo];
+      const label = `${partNo ? `제${partNo}편 ` : ""}제${chapterInPart}장${sectionNo ? ` 제${sectionNo}절` : ""}`;
       const file = resolve(CHAPTERS, `${rule.actKey}-${chapterNo}장${sectionNo ? `${sectionNo}절` : ""}.jsonld`);
       const previous = (await exists(file)) ? (JSON.parse(await readFile(file, "utf-8")) as { _meta?: { fetchedAt?: string } }) : undefined;
       const node = {
@@ -358,7 +389,7 @@ async function main(): Promise<void> {
         "@type": ["Chapter", "Legislation"],
         chapterNumber: ch.number,
         title: ch.title,
-        partOf: ch.parent ? chapterIri(ch.parent) : actIri,
+        partOf: parentIri(ch),
         verificationStatus: "verified",
         _meta: {
           publishedBy: "법제처 국가법령정보센터 (자동 sync)",
@@ -388,15 +419,51 @@ async function main(): Promise<void> {
         chapterWritten += 1;
       }
     }
+    // 편 노드 — 편에 속한 조문과, 편 바로 아래 장
+    for (const p of parts) {
+      const file = resolve(CHAPTERS, `${rule.actKey}-${p.number}편.jsonld`);
+      const previous = (await exists(file)) ? (JSON.parse(await readFile(file, "utf-8")) as { _meta?: { fetchedAt?: string } }) : undefined;
+      const inPart = chapters.filter((c) => c.parent === `편${p.number}`).map((c) => chapterIri(c.number));
+      const node = {
+        "@context": "../../context.jsonld",
+        "@id": partIri(p.number),
+        "@type": ["Part", "Legislation"],
+        partNumber: p.number,
+        title: p.title,
+        partOf: actIri,
+        verificationStatus: "verified",
+        _meta: {
+          publishedBy: "법제처 국가법령정보센터 (자동 sync)",
+          sourceUrl,
+          fetchedAt: previous?._meta?.fetchedAt ?? today,
+          admRulId: rule.id,
+          licenseHint: LICENSE_HINT,
+          linkBasis: { partOf: "source", hasArticle: "source", ...(inPart.length ? { hasChapter: "source" } : {}) },
+        },
+        description: `${name} 제${p.number}편 ${p.title}`,
+        legislationIdentifier: name,
+        jurisdiction: "KR",
+        hasArticle: p.articles,
+        ...(inPart.length ? { hasChapter: inPart } : {}),
+      };
+      const body = JSON.stringify(node, null, 2) + "\n";
+      if (!previous || (await readFile(file, "utf-8")) !== body) {
+        await writeFile(file, body, "utf-8");
+        chapterWritten += 1;
+      }
+    }
     const topChapters = chapters.filter((c) => !c.parent).map((c) => chapterIri(c.number));
+    const topParts = parts.map((p) => partIri(p.number));
 
     // 법령 노드 — 이미 있으면 장 목록만 맞춘다 (사람이 보강한 필드 보존). 없을 때만 새로 만든다.
     const actPath = resolve(ACTS, `${rule.actSlug}.jsonld`);
-    if ((await exists(actPath)) && topChapters.length) {
+    if ((await exists(actPath)) && (topChapters.length || topParts.length)) {
       const raw = await readFile(actPath, "utf-8");
       const current = JSON.parse(raw) as Record<string, unknown>;
-      if (JSON.stringify(current.hasChapter ?? []) !== JSON.stringify(topChapters)) {
-        current.hasChapter = topChapters;
+      const before = JSON.stringify([current.hasChapter ?? [], current.hasPart ?? []]);
+      if (topChapters.length) current.hasChapter = topChapters;
+      if (topParts.length) current.hasPart = topParts;
+      if (JSON.stringify([current.hasChapter ?? [], current.hasPart ?? []]) !== before) {
         await writeFile(actPath, JSON.stringify(current, null, 2) + (raw.endsWith("\n") ? "\n" : ""), "utf-8");
       }
     }
@@ -428,6 +495,7 @@ async function main(): Promise<void> {
         jurisdiction: "KR",
         hasArticle: articleIris,
         ...(topChapters.length ? { hasChapter: topChapters } : {}),
+        ...(topParts.length ? { hasPart: topParts } : {}),
       };
       await writeFile(actPath, JSON.stringify(act, null, 2) + "\n", "utf-8");
       console.log(`[${rule.actKey}] 법령 노드 신설 — ${name} (${no}, 시행 ${effective})`);

@@ -266,6 +266,7 @@ const EDGE_FIELDS: Record<string, string> = {
   delegationOf: "delegationOf", // delegates 의 역방향 (296 노드)
   // ─── 외부 평가 P0-2 — verify-edge-context-drift 정합 ───
   hasChapter: "hasChapter", // Act → Chapter (6 노드 사용)
+  hasPart: "hasPart", // Act → Part (편이 있는 고시 — 편 아래에 장·절)
   // ─── v1.3.x (2026-05-20) — 결정론 룰 레이어 (외부 평가 gap #3) ───
   // Applicability 조건 충족 시 강제되는 control IRIs. graph BFS 에서 "이 룰이 활성되면 어떤 통제가 필요한가" 추적.
   enforces: "enforces", // Applicability → Control (15 Applicability 노드 사용)

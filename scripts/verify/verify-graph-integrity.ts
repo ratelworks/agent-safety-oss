@@ -52,6 +52,10 @@ const KNOWN_PREFIXES = new Set([
   "subtask",
   // 작업 조건 노드 (context.jsonld 의 workcond 접두어)
   "workcond",
+  // 부칙 노드 (context.jsonld 의 supp 접두어)
+  "supp",
+  // 공단 자료실 자료 형식 노드 (context.jsonld 의 shp 접두어 — 공단 자료 노드가 hasFacet 으로 가리킨다)
+  "shp",
   "facet", "entity", "iso45001", "kosha", "cc", "safety",
 ]);
 

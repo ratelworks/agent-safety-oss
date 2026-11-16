@@ -9,6 +9,8 @@ import {
 import { legalRefToIri } from "../lib/article-iri-map.js";
 import { getNode } from "../lib/graph-nodes-loader.js";
 import { findMeasuresCiting, CONTROL_LEVEL_LABEL, type FieldMeasure } from "../lib/field-measures.js";
+import { findSupplementsFor, type SupplementForArticle } from "../lib/supplements.js";
+import { findKoshaMediaFor, type KoshaMedia } from "../lib/kosha-media.js";
 
 // 파일 최상단 상수 — 특정 조문 원문 조회
 /** 법률인 법령 키 — 시행령·시행규칙·규칙(regulation)과 구분한다. 조문 노드의 법령 종류 표기는 일부가 섞여 있어 키로 가른다 */
@@ -25,6 +27,51 @@ type FieldMeasureMode = (typeof FIELD_MEASURE_MODES)[number];
 
 /** 조문 응답에 보여 줄 현장 대책 수 — 넘으면 줄인 건수를 적는다 (전체는 structuredContent 에) */
 const MAX_FIELD_MEASURES_SHOWN = 12;
+/** 조문 응답에 보여 줄 부칙 수와 부칙 본문 길이 — 넘으면 줄인 건수를 적는다 (전체는 structuredContent 에) */
+const MAX_SUPPLEMENTS_SHOWN = 6;
+const SUPPLEMENT_TEXT_CHARS = 220;
+/** 조문 응답에 보여 줄 공단 연관 자료 수 */
+const MAX_MEDIA_SHOWN = 8;
+
+/** 이 조문을 언급한 부칙 — 언제부터 시행·적용되는지, 경과조치가 있는지 */
+async function supplementSection(iri: string | null): Promise<{ md: string; data?: SupplementForArticle[] }> {
+  if (!iri) return { md: "" };
+  const found = await findSupplementsFor(iri);
+  if (found.length === 0) return { md: "" };
+  const lines = [
+    "",
+    `## 이 조문에 관한 부칙 — ${found.length}건`,
+    "",
+    "> 부칙 본문이 이 조문을 언급한 것입니다(시행일·적용례·경과조치·특례). 최근 공포된 부칙부터 보입니다.",
+    "",
+  ];
+  for (const s of found.slice(0, MAX_SUPPLEMENTS_SHOWN)) {
+    // 제목에 이미 있는 부칙 조 머리말 "제N조(제목)" 은 본문에서 뺀다
+    const body = s.text.replace(/\s+/g, " ").trim().replace(/^제\d+조(?:의\d+)?\s*\([^)]*\)\s*/, "");
+    lines.push(`- **[${s.kindLabel}]** ${s.title}: ${body.length > SUPPLEMENT_TEXT_CHARS ? `${body.slice(0, SUPPLEMENT_TEXT_CHARS)}…` : body}`);
+  }
+  if (found.length > MAX_SUPPLEMENTS_SHOWN) lines.push(`- … 외 ${found.length - MAX_SUPPLEMENTS_SHOWN}건`);
+  lines.push("");
+  return { md: lines.join("\n"), data: found };
+}
+
+/** 이 조문 옆에 QR 로 실린 공단 자료실 자료 (만화로 보는 산업안전보건기준에 관한 규칙) */
+async function koshaMediaSection(iri: string | null): Promise<{ md: string; data?: KoshaMedia[] }> {
+  if (!iri) return { md: "" };
+  const found = await findKoshaMediaFor(iri);
+  if (found.length === 0) return { md: "" };
+  const lines = [
+    "",
+    `## 공단 연관 자료 — ${found.length}건`,
+    "",
+    "> 안전보건공단 「만화로 보는 산업안전보건기준에 관한 규칙」이 이 조문 옆에 QR 로 실어 둔 공단 자료실 자료입니다. 내용은 공단 자료실에서 보세요.",
+    "",
+  ];
+  for (const m of found.slice(0, MAX_MEDIA_SHOWN)) lines.push(`- ${m.form ? `**[${m.form}]** ` : ""}${m.title}${m.url ? ` — ${m.url}` : ""}`);
+  if (found.length > MAX_MEDIA_SHOWN) lines.push(`- … 외 ${found.length - MAX_MEDIA_SHOWN}건`);
+  lines.push("");
+  return { md: lines.join("\n"), data: found };
+}
 
 /** 이 조문을 근거로 한 공종 단계의 감소대책 — 조문이 현장에서 어떤 조치로 쓰이는지 */
 async function fieldMeasureSection(
@@ -122,11 +169,15 @@ async function findNoticeArticle(ref: string, mode: FieldMeasureMode): Promise<M
       : "**인용 시 근거 등급**: `basisType: law | regulation` / `legalWeight: mandatory`",
   ].join("\n");
   const field = await fieldMeasureSection(iri, mode);
+  const supplements = await supplementSection(iri);
+  const media = await koshaMediaSection(iri);
   return {
-    content: [{ type: "text", text: md + field.md }],
+    content: [{ type: "text", text: md + supplements.md + media.md + field.md }],
     structuredContent: {
       query: { ref },
       found: true,
+      ...(supplements.data ? { supplements: supplements.data } : {}),
+      ...(media.data ? { koshaMedia: media.data } : {}),
       ...(field.data ? { fieldMeasures: field.data } : {}),
       iri,
       law: lawName,
@@ -231,13 +282,17 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 
   const articleIri = legalRefToIri(article.lawShortName, article.ref).iri;
   const field = await fieldMeasureSection(articleIri, input.fieldMeasures);
+  const supplements = await supplementSection(articleIri);
+  const media = await koshaMediaSection(articleIri);
 
   return {
-    content: [{ type: "text", text: md + field.md }],
+    content: [{ type: "text", text: md + supplements.md + media.md + field.md }],
     structuredContent: {
       query: input,
       found: true,
       ...(articleIri ? { iri: articleIri } : {}),
+      ...(supplements.data ? { supplements: supplements.data } : {}),
+      ...(media.data ? { koshaMedia: media.data } : {}),
       ...(field.data ? { fieldMeasures: field.data } : {}),
       article: {
         lawCode: article.lawCode,

@@ -34,6 +34,18 @@ const TOOLS: { name: string; flag: string; label: string }[] = [
 ];
 /** 안전보건규칙을 가리키는 이름 — 번호만 같은 다른 법의 조문은 세지 않는다 */
 const RULE_NAME = "(?:산업안전보건기준에\\s*관한\\s*규칙|안전보건규칙|산안기준규칙|기준규칙)";
+/**
+ * 정답을 "법령키:조" 로 적은 문항(예: "산안법:84")의 법령 이름 — 키가 없으면 안전보건규칙.
+ * 시행령·시행규칙이 법 이름으로 잡히지 않게 법 이름 뒤에 "시행"이 오면 세지 않는다.
+ */
+const LAW_NAMES: Record<string, string> = {
+  기준규칙: RULE_NAME,
+  산안법: "(?:산업안전보건법|산안법)(?!\\s*시행)",
+  산안법시행령: "(?:산업안전보건법\\s*시행령|산안법\\s*시행령)",
+  산안법시행규칙: "(?:산업안전보건법\\s*시행규칙|산안법\\s*시행규칙)",
+  취업제한규칙: "(?:유해[·ㆍ]?\\s*위험작업의\\s*취업\\s*제한에\\s*관한\\s*규칙|취업제한규칙)",
+  "위험성평가-고시": "(?:사업장\\s*위험성평가에\\s*관한\\s*지침|위험성평가\\s*고시)",
+};
 /** 현장 브리핑에서 요약이 붙는 조문 구획의 제목과, 제목만 나오는 줄의 머리 */
 const TOP_SECTION_HEADS = ["## 📖 법령 근거", "## 🔎 문장이 비슷한 조문"];
 const REST_LINE_HEADS = ["- 그 밖의 관련 조문", "- 글이 비슷해서 찾은 조문"];
@@ -55,12 +67,22 @@ function arg(name: string): string | undefined {
   return i >= 0 ? process.argv[i + 1] : undefined;
 }
 
-/** "619의2" → 글 안에 그 조문이 있는가 ("규칙 이름 + 제N조/§N" 또는 조문 주소) */
+/** 정답 표기 → 보고용 이름 ("619의2" → "제619조의2", "산안법:84" → "산안법 제84조") */
+function refLabel(ref: string): string {
+  const [lawKey, article] = ref.includes(":") ? ref.split(":") : ["", ref];
+  const [num, sub] = article.split("의");
+  return `${lawKey ? `${lawKey} ` : ""}제${num}조${sub ? `의${sub}` : ""}`;
+}
+
+/** "619의2" · "산안법:84" → 글 안에 그 조문이 있는가 ("법령 이름 + 제N조/§N" 또는 조문 주소) */
 function hasArticle(text: string, ref: string): boolean {
-  const [num, sub] = ref.split("의");
+  const [lawKey, article] = ref.includes(":") ? ref.split(":") : ["기준규칙", ref];
+  const lawName = LAW_NAMES[lawKey];
+  if (!lawName) throw new Error(`정답 법령 키를 모릅니다: ${lawKey}`);
+  const [num, sub] = article.split("의");
   const tail = sub ? `\\s*의\\s*${sub}(?!\\d)` : "(?!\\s*의\\s*\\d)(?!\\d)";
-  const named = new RegExp(`${RULE_NAME}\\s*(?:제\\s*${num}\\s*조|§\\s*${num})${tail}`);
-  const iri = new RegExp(`art:기준규칙:${num}${sub ? `의${sub}(?!\\d)` : "(?![\\d의])"}`);
+  const named = new RegExp(`${lawName}\\s*(?:제\\s*${num}\\s*조|§\\s*${num})${tail}`);
+  const iri = new RegExp(`art:${lawKey}:${num}${sub ? `의${sub}(?!\\d)` : "(?![\\d의])"}`);
   return named.test(text) || iri.test(text);
 }
 
@@ -134,7 +156,7 @@ async function main(): Promise<void> {
     const top = topSection(answers[qi][0]);
     for (const ref of q.expect) {
       if (hasArticle(top, ref)) topHits += 1;
-      else outsideTop.push(`${q.id} 제${ref}조`);
+      else outsideTop.push(`${q.id} ${refLabel(ref)}`);
     }
     texts.forEach((text, ci) => {
       const found = q.expect.filter((ref) => hasArticle(text, ref));
@@ -142,7 +164,7 @@ async function main(): Promise<void> {
       if (found.length === q.expect.length) questionHits[ci] += 1;
       if (ci < TOOLS.length) bytes[ci] += Buffer.byteLength(text, "utf-8");
       if (ci === columns.length - 1 && !single) {
-        const absent = q.expect.filter((r) => !found.includes(r)).map((r) => `제${r}조`);
+        const absent = q.expect.filter((r) => !found.includes(r)).map(refLabel);
         missed.push(`${q.id} ${q.question} — ${absent.length ? `어느 도구에도 없음: ${absent.join(", ")}` : "정답이 여러 도구에 나뉘어 나옴"}`);
       }
     });
