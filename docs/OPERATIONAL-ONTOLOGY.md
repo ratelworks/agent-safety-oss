@@ -148,7 +148,7 @@ npm run audit:strict
 
 - Operational ontology: 41/41 통과
 - Full graph: <!-- INV:GRAPH_TOTAL -->5,409<!-- /INV:GRAPH_TOTAL --> nodes (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,040<!-- /INV:KOSHA_META --> 포함). 카테고리 1단계만 = <!-- INV:GRAPH_TOPLEVEL -->4,251<!-- /INV:GRAPH_TOPLEVEL --> (Article 1,306 + Document 96 + Annex 227 + Acts 8 + ...).
-- Graph edges: 약 <!-- INV:GRAPH_EDGES -->43,245<!-- /INV:GRAPH_EDGES --> (주요 EDGE_FIELDS: mitigatedBy / causedBy / hasArticle / guidedBy / partOf …)
+- Graph edges: 약 <!-- INV:GRAPH_EDGES -->43,269<!-- /INV:GRAPH_EDGES --> (주요 EDGE_FIELDS: mitigatedBy / causedBy / hasArticle / guidedBy / partOf …)
 - Semantic object type: 16/16 통과
 - Semantic link type: 6/6 통과
 - Kinetic action type: 12/12 통과

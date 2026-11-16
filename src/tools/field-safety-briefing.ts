@@ -285,6 +285,12 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       }
     }
   }
+  // 장비 — 질문에 장비 이름(크레인·리프트·곤돌라 등)이 나오면 그 장비에 걸린 법령(방호조치·안전인증·안전검사 등)을 잇는다
+  for (const eq of all.filter((n) => (n["@id"] as string)?.startsWith("equipment:"))) {
+    const names = [eq.name, ...((eq.alternativeNames as unknown[] | undefined) ?? [])].filter((n): n is string => typeof n === "string" && n.length >= 2);
+    if (!names.some((n) => q.includes(n))) continue;
+    addRegulated(eq["@id"] as string, ((eq.regulatedBy as string[] | undefined) ?? []).filter((r) => r.startsWith("art:")));
+  }
   // 공종 — 작업명이 공종(강관비계·지하연속벽 등)을 가리키면 그 공종의 유해요인과 근거 조문을 잇는다
   const subtask = await getWorkSteps(q);
   /** 조문이 답에 들어온 길의 무게 — 조문 구획의 순서를 정한다 (찾은 공종의 대책이 많이 근거로 든 조문부터) */
