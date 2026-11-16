@@ -112,9 +112,18 @@ async function main(): Promise<void> {
   }
   let copied = 0;
   let removedMd = 0;
+  let unchanged = 0;
   for (const no of guideNos) {
-    await copyFile(resolve(dclxDir, `${no}.dclx`), resolve(GUIDES_DIR, `${no}.dclx`));
-    copied += 1;
+    // document.xml 이 같으면 다시 쓰지 않는다 — 아카이브 시각만 다른 교체로 저장소가 흔들리지 않게
+    const src = resolve(dclxDir, `${no}.dclx`);
+    const dest = resolve(GUIDES_DIR, `${no}.dclx`);
+    const prev = await readFile(dest).then((b) => readDclxDocument(b), () => null);
+    if (prev !== null && prev === readDclxDocument(await readFile(src))) {
+      unchanged += 1;
+    } else {
+      await copyFile(src, dest);
+      copied += 1;
+    }
     const md = resolve(GUIDES_DIR, `${no}.md`);
     if (await stat(md).then(() => true, () => false)) {
       await rm(md);
@@ -124,7 +133,7 @@ async function main(): Promise<void> {
   await writeFile(SOURCES_FILE, JSON.stringify(sources, null, 1) + "\n", "utf8");
   const statuses: Record<string, number> = {};
   for (const g of Object.values(guides)) statuses[String(g.status)] = (statuses[String(g.status)] ?? 0) + 1;
-  console.log(`가이드 ${copied}건 dclx 로 들여옴 · 옛 md ${removedMd}건 지움 · 공단 상태 ${JSON.stringify(statuses)}`);
+  console.log(`가이드 ${copied}건 dclx 로 들여옴(내용 같아 그대로 둔 것 ${unchanged}건) · 옛 md ${removedMd}건 지움 · 공단 상태 ${JSON.stringify(statuses)}`);
 }
 
 void main();
