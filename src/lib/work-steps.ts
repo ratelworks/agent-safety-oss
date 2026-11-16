@@ -387,12 +387,16 @@ function locateSection(blocks: DclxBlock[], section: string): { text: string; pa
     const title = blocks.slice(at + 1).map((b) => b.text.split("\n")[0].trim()).find((l) => l && !l.startsWith("<"));
     return title ? { text: `${section} ${title.slice(0, 60)}`, page: blocks[at].page } : undefined;
   }
+  // 제목 요소를 먼저 찾는다 — 본문 앞의 참고문헌 목록("5) Safety working …", "5. 가설공사 표준시방서(…, 2006)")이
+  // 같은 번호로 시작해도 조항 제목으로 잡지 않게. 제목 요소에 없을 때만 문단·목록에서 찾는다.
   const rx = sectionPattern(section);
-  for (const b of blocks) {
-    for (const line of b.text.split("\n")) {
-      if (TOC_LINE.test(line)) continue;
-      const m = line.match(rx);
-      if (m) return { text: `${section} ${m[1].trim()}`, page: b.page };
+  for (const pass of [(b: DclxBlock) => b.type === "heading", (b: DclxBlock) => b.type !== "heading"]) {
+    for (const b of blocks.filter(pass)) {
+      for (const line of b.text.split("\n")) {
+        if (TOC_LINE.test(line)) continue;
+        const m = line.match(rx);
+        if (m) return { text: `${section} ${m[1].trim()}`, page: b.page };
+      }
     }
   }
   return undefined;

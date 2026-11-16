@@ -27,8 +27,10 @@ const SOURCES_FILE = resolve(GUIDES_DIR, "_SOURCES.json");
 /** 본문이 이보다 짧으면 변환 실패로 본다 (표지만 남은 경우 등) */
 const MIN_BODY_CHARS = 500;
 const SOURCE_NOTE =
-  "한국산업안전보건공단 포털(portal.kosha.or.kr) 안전보건기술지침 원본 PDF 를 DocLang 0.8(.dclx)로 바꿔 보관한다. 그림 파일은 싣지 않고 자리·캡션·원본 쪽 번호만 남긴다. 정확한 원본은 sourceUrl.";
+  "한국산업안전보건공단 포털(portal.kosha.or.kr) 안전보건기술지침 원본(PDF, 포털 첨부에 PDF 가 없는 지침은 한글 파일)을 DocLang 0.8(.dclx)로 바꿔 보관한다. 그림 파일은 싣지 않고 자리·캡션·원본 쪽 번호만 남긴다. 정확한 원본은 sourceUrl.";
 const LICENSE = "공공누리 출처표시·변경금지 (한국산업안전보건공단)";
+/** 원본 형식 기본값 */
+const DEFAULT_FORMAT = "pdf";
 
 interface ManifestEntry {
   portalNo?: string;
@@ -38,6 +40,8 @@ interface ManifestEntry {
   url?: string;
   sha256?: string;
   bytes?: number;
+  /** 원본 형식 — 없으면 pdf (공단 포털 첨부에 PDF 가 없고 한글 파일만 있는 지침은 hwp) */
+  format?: string;
   error?: string;
 }
 
@@ -90,6 +94,7 @@ async function main(): Promise<void> {
       ...(isoDate(m.ofancYmd) ? { publishedAt: isoDate(m.ofancYmd) } : {}),
       ...(m.portalNo && m.portalNo !== no ? { portalNo: m.portalNo } : {}),
       sourceUrl: m.url,
+      format: m.format ?? DEFAULT_FORMAT,
       sha256: m.sha256,
       bytes: m.bytes ?? 0,
     };

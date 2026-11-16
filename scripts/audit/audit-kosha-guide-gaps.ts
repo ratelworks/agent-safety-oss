@@ -44,7 +44,7 @@ interface GuideId {
 }
 
 function parse(filename: string): GuideId | null {
-  const m = filename.match(/^([A-Z](?:-[A-Z])?)-(\d+)-(\d{4})\.md$/);
+  const m = filename.match(/^([A-Z](?:-[A-Z])?)-(\d+)-(\d{4})\.dclx$/);
   if (!m) return null;
   return {
     category: m[1],
@@ -73,7 +73,7 @@ async function probeOneApiTotalCount(): Promise<number | null> {
 
 async function main(): Promise<void> {
   const all = readdirSync(GUIDES_DIR)
-    .filter((f) => f.endsWith(".md"))
+    .filter((f) => f.endsWith(".dclx"))
     .map(parse)
     .filter((g): g is GuideId => g !== null);
 

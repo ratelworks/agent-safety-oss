@@ -53,6 +53,8 @@ export interface KoshaGuideSource {
   /** 공단 포털 목록의 지침번호 (표지 번호와 다를 때만) */
   portalNo?: string;
   sourceUrl: string;
+  /** 원본 형식 (pdf · hwp) */
+  format?: string;
   sha256: string;
   bytes: number;
 }
@@ -67,6 +69,8 @@ export interface KoshaGuideBody {
   status?: string;
   /** 공단 포털 공고일 */
   publishedAt?: string;
+  /** 원본 형식 (pdf · hwp) */
+  sourceFormat?: string;
 }
 
 // 캐시 — 한 번 읽으면 메모리 보존
@@ -137,6 +141,7 @@ export async function getKoshaGuideMd(guideNo: string): Promise<KoshaGuideBody |
       bodyLength: body.length,
       ...(source?.status ? { status: source.status } : {}),
       ...(source?.publishedAt ? { publishedAt: source.publishedAt } : {}),
+      ...(source?.format ? { sourceFormat: source.format } : {}),
     };
     bodyCache.set(upper, result);
     return result;

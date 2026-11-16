@@ -15,6 +15,7 @@ import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { getSafetyLawArticleTool } from "../../src/tools/get-safety-law-article.js";
+import { searchSafetyLawsTool } from "../../src/tools/search-safety-laws.js";
 import { extractRefs, amendedSegment, loadArticleNumbers } from "../sync/sync-supplements.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
@@ -44,6 +45,8 @@ const SUPPLEMENT_REF_CASES: [string, string, string[]][] = [
   ["산안법", "이 법 시행 전에 종전의 제15조의3(종전의 제16조제3항, 제30조의2제3항, 제34조의5제4항, 제36조제10항, 제42조제10항 및 제43조제11항에 따라 준용되는 경우를 포함한다)을 위반한 행위", []],
   // 괄호 한정구가 옛 번호 나열을 끊지 않는다
   ["산안법", "제110조부터 제116조까지의 개정규정 시행일 전까지 종전의 제11조제2항제4호, 제41조, 제63조(제41조에 관한 부분에 한정한다), 제65조제2항제12호, 제72조제4항제3호(제41조에 관한 부분에 한정한다) 및 제2호에 따른다", ["110", "111", "112", "113", "114", "115", "116"]],
+  // "같은 조 제N항"도 앞 조문(옛 번호)을 잇는다 — 괄호 속 "제41조에 관한 부분"이 현행 제41조로 이어지지 않게 (산안법 부칙 제16272호 제14조 원문)
+  ["산안법", "제110조부터 제116조까지의 개정규정 시행일 전까지 종전의 제11조제2항제4호, 제41조, 제63조(제41조에 관한 부분에 한정한다), 제65조제2항제12호, 제72조제4항제3호(제41조에 관한 부분에 한정한다), 같은 조 제5항제1호(제41조에 관한 부분에 한정한다) 및 제2호, 같은 조 제6항제1호(제11조제2항제4호에 관한 부분에 한정한다) 및 제8호에 따른다.", ["110", "111", "112", "113", "114", "115", "116"]],
   // "종전의 법(설명) 제N조" 도 옛 조문
   ["산안법시행규칙", "1. 종전의 법(법률 제16272호로 개정되기 전의 것을 말한다. 이하 제2호에서 같다) 제41조제1항 또는 제6항에 따라", []],
   // "부칙 제N조" 는 부칙 자신, 그 뒤의 지금 조문은 잇는다
@@ -64,6 +67,9 @@ const LOOKUPS: [string, string][] = [
   // 법제처 원문은 "ㆍ"(U+318D), 입력은 "·"(U+00B7)
   ["유해·위험작업의 취업 제한에 관한 규칙 제3조", "취업 제한에 관한 규칙 §3"],
 ];
+
+/** 번호 붙은 조문이 없는 고시 — 검색 결과의 조회 안내대로 조회하면 본문이 나와야 한다 */
+const WHOLE_TEXT_NOTICE = { keyword: "지도사가 평가", law: "건설업 유해·위험방지계획서 중 지도사가 평가·확인 할 수 있는 대상 건설공사의 범위 및 지도사의 요건" };
 
 let failed = 0;
 function check(name: string, ok: boolean, detail = ""): void {
@@ -158,6 +164,12 @@ async function main(): Promise<void> {
     const head = text.split("\n").slice(0, 4).join("\n");
     check(`조문 조회: ${ref}`, !head.includes("조회 실패") && head.includes(expected), head.split("\n")[0]);
   }
+
+  // 4-1. 검색 결과의 조회 안내 — 번호 조문이 없는 고시는 고시 이름으로 안내하고, 그 안내대로 조회된다
+  const searchText = (await searchSafetyLawsTool.handler({ keyword: WHOLE_TEXT_NOTICE.keyword })).content[0]?.text ?? "";
+  const hintRef = searchText.split("\n").map((l) => l.match(/전문 조회: `get_safety_law_article\(ref="([^"]+)"\)`/)?.[1]).find((r) => r?.startsWith(WHOLE_TEXT_NOTICE.law));
+  const hintHead = hintRef ? ((await getSafetyLawArticleTool.handler({ ref: hintRef })).content[0]?.text ?? "").split("\n")[0] : "";
+  check("번호 조문이 없는 고시는 검색 안내대로 조회된다", hintRef === WHOLE_TEXT_NOTICE.law && !hintHead.includes("조회 실패"), `${hintRef ?? "안내 없음"} → ${hintHead}`);
 
   // 5. 4법 부칙
   const supplements = await Promise.all(

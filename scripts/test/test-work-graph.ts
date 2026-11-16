@@ -65,6 +65,12 @@ const KNOWN_GUIDE_LOCATIONS: Record<string, { text: string; page: number }> = {
   "KOSHA Guide C-47-2023 5.2.5": { text: "5.2.5 팽창제에 의한 해체작업", page: 13 },
   "KOSHA Guide D-C-13-2026 6": { text: "6 작업계획서 작성시기 및 승인", page: 16 },
   "KOSHA Guide D-C-7-2026 부록 2": { text: "부록 2 강관비계 및 시스템비계 안전점검표(예)", page: 66 },
+  // 본문 끝 참고문헌 목록의 "5. …"·"6. …" 줄을 조항 제목으로 잡지 않는다
+  "KOSHA Guide C-66-2016 5": { text: "5 안전작업 공통 사항", page: 5 },
+  "KOSHA Guide C-66-2016 6": { text: "6 천장공사 안전관리사항", page: 7 },
+  "KOSHA Guide C-11-2012 5": { text: "5 가설계단의 설치기준", page: 4 },
+  // 쪽 경계에서 앞 문단에 붙어 판독된 절 제목 — 실제 쪽(13쪽)
+  "KOSHA Guide C-6-2015 5.5": { text: "5.5 타일줄눈 및 타일붙이기 작업", page: 13 },
 };
 const SAMPLE_HAZARD = "hazard:fall_from_height";
 /** 정한 방식을 적어야 하는 연결 — 공종 노드 / 고시 장·절 노드 */

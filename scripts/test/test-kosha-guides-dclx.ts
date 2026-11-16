@@ -27,6 +27,8 @@ const STATUSES = new Set(["제정", "개정", "폐지"]);
 const MIN_BODY_CHARS = 500;
 /** 공단 포털에서 폐지된 번들 지침 (2026-11-16 포털 목록) */
 const REPEALED_GUIDE = "W-14-2022";
+/** 공단 포털 첨부에 PDF 가 없어 한글 파일이 원본인 지침 */
+const HWP_ORIGINAL = "T-25-2021";
 /** 표지 번호 ↔ 포털 목록 번호 */
 const ALIAS = { asked: "B-M-7-2025", bundled: "B-M-7-2026" };
 /** 원본 표 칸 안에서 줄이 바뀐 낱말과 그 가이드 */
@@ -52,7 +54,7 @@ async function main(): Promise<void> {
   check("옛 변환본(.md)이 남아 있지 않다", leftoverMd.length === 0, leftoverMd.slice(0, 5).join(", "));
 
   const sources = (JSON.parse(await readFile(resolve(GUIDES_DIR, "_SOURCES.json"), "utf8")) as {
-    guides: Record<string, { status: string; sourceUrl: string; sha256: string; bytes: number; title: string }>;
+    guides: Record<string, { status: string; sourceUrl: string; sha256: string; bytes: number; title: string; format?: string }>;
   }).guides;
   const badSource = nodeNos.filter((no) => {
     const s = sources[no];
@@ -81,6 +83,8 @@ async function main(): Promise<void> {
   const text = async (input: Record<string, unknown>): Promise<string> => (await getKoshaGuideMdTool.handler(input)).content[0]?.text ?? "";
   const c25Text = await text({ techGdlnNo: "C-25-2018" });
   check("조회 결과에 공단 상태와 원본 주소가 있다", c25Text.includes("> **공단 상태**: ") && c25Text.includes(PORTAL_DOWNLOAD));
+  const hwp = await text({ techGdlnNo: HWP_ORIGINAL });
+  check("원본이 한글 파일인 지침은 형식을 한글 파일로 적는다", hwp.includes("원본 한글(HWP) 파일") && sources[HWP_ORIGINAL]?.format === "hwp", HWP_ORIGINAL);
   const repealed = await text({ techGdlnNo: REPEALED_GUIDE });
   check("공단 포털에서 폐지된 지침에는 경고가 붙는다", repealed.includes("폐지된 지침입니다"), REPEALED_GUIDE);
   const viaAlias = await text({ techGdlnNo: ALIAS.asked });

@@ -24,6 +24,8 @@ import { COMMON_RESPONSE_META } from "../config/constants.js";
 /** 공단 포털 안전보건기술지침 목록 (2026-11 확인 — 옛 kosha.or.kr guideExp.do 는 내용 없는 페이지) */
 const PORTAL_GUIDE_LIST = "https://portal.kosha.or.kr/archive/resources/tech-support/search/const";
 const REPEALED_STATUS = "폐지";
+/** 원본 형식 표기 — 포털 첨부에 PDF 가 없는 지침은 한글 파일이 원본이다 */
+const SOURCE_FORMAT_LABEL: Record<string, string> = { pdf: "PDF", hwp: "한글(HWP) 파일" };
 
 const inputSchema = z.object({
   techGdlnNo: z
@@ -66,12 +68,12 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     const header = [
       `# ${body.title}`,
       "",
-      ...(repealed ? [`> ⚠️ **공단 포털에서 폐지된 지침입니다**${body.publishedAt ? ` (${body.publishedAt})` : ""} — 현행 기준으로 인용하지 마세요. 대체 지침은 공단 포털에서 확인하세요.`, ">"] : []),
+      ...(repealed ? [`> ⚠️ **공단 포털에서 폐지된 지침입니다**${body.publishedAt ? ` (포털 공고 ${body.publishedAt})` : ""} — 현행 기준으로 인용하지 마세요. 대체 지침은 공단 포털에서 확인하세요.`, ">"] : []),
       `> **지침번호**: ${body.guideNo}`,
       ...(body.status ? [`> **공단 상태**: ${body.status}${body.publishedAt ? ` · 공고 ${body.publishedAt}` : ""}`] : []),
       `> **원본 URL**: ${body.sourceUrl}`,
       "> **출처**: 한국산업안전보건공단 (공공누리 출처표시·변경금지)",
-      "> **형식**: 공단 포털 원본 PDF 를 DocLang(.dclx)으로 변환해 보관한 것을 그린 본문 — 표는 병합 셀까지 살리고, 그림은 자리·캡션·원본 쪽 번호만 있습니다",
+      `> **형식**: 공단 포털 원본 ${SOURCE_FORMAT_LABEL[body.sourceFormat ?? ""] ?? SOURCE_FORMAT_LABEL.pdf} → DocLang(.dclx) 보관본을 그린 본문 — 표는 병합 셀까지 살리고, 그림은 자리·캡션·원본 쪽 번호만 있습니다`,
       `> **본문**: ${body.bodyLength.toLocaleString()} chars`,
     ].join("\n");
     return {
@@ -145,7 +147,7 @@ export const getKoshaGuideMdTool: ToolDefinition = {
   name: "get_kosha_guide_md",
   title: "번들 KOSHA Guide 본문 조회",
   description:
-    "번들 KOSHA Guide 본문 1,040건 단일 통합 조회 (AGENTHQ_API_KEY 없이 동작, offline). 단건 조회 (techGdlnNo='A-1-2018') / 키워드 검색 (keyword='굴착') / 전체 인덱스 (인수 없음). 원본은 공단 포털 PDF 를 DocLang(.dclx)으로 변환해 보관하고, 본문은 그것을 Markdown 으로 그려 돌려준다 (표는 병합 셀까지 HTML, 그림은 자리·캡션·원본 쪽 번호, 공단 상태·공고일 포함, 정확 원본은 sourceUrl). KOSHA Guide 단일 진입점 (Live API 도구 통합·제거).",
+    "번들 KOSHA Guide 본문 1,040건 단일 통합 조회 (AGENTHQ_API_KEY 없이 동작, offline). 단건 조회 (techGdlnNo='A-1-2018') / 키워드 검색 (keyword='굴착') / 전체 인덱스 (인수 없음). 원본은 공단 포털 원본 파일(PDF, 포털에 PDF 가 없는 지침은 한글 파일)을 DocLang(.dclx)으로 변환해 보관하고, 본문은 그것을 Markdown 으로 그려 돌려준다 (표는 병합 셀까지 HTML, 그림은 자리·캡션·원본 쪽 번호, 공단 상태·공고일 포함, 정확 원본은 sourceUrl). KOSHA Guide 단일 진입점 (Live API 도구 통합·제거).",
   inputSchema,
   handler,
 };

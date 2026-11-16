@@ -7,6 +7,9 @@ import {
 } from "../lib/safety-laws-loader.js";
 import { getNode, listArticleIds } from "../lib/graph-nodes-loader.js";
 
+/** 번호 붙은 조문이 없는 고시의 조문 자리 (조문 노드 `art:{고시}:본문`) */
+const NOTICE_WHOLE_TEXT = "본문";
+
 // 파일 최상단 상수 — 로컬 번들 법령 검색 Tool
 // 저작권법 §7 비보호 저작물이므로 재배포·인용 자유
 const MAX_LIMIT = 30;
@@ -87,11 +90,14 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   }
 
   for (const n of noticeHits) {
-    lines.push(`## [${n.law}] §${n.article} ${n.title}`);
+    // 번호 붙은 조문이 없는 고시는 본문 한 덩어리("본문")라 고시 이름만으로 조회한다
+    const whole = n.article === NOTICE_WHOLE_TEXT;
+    lines.push(whole ? `## [${n.law}] ${n.title}` : `## [${n.law}] §${n.article} ${n.title}`);
     lines.push("");
     lines.push(n.preview);
     lines.push("");
-    lines.push(`> 전문 조회: \`get_safety_law_article(ref="${n.law} 제${n.article.replace("의", "조의")}${n.article.includes("의") ? "" : "조"}")\` · 고시·지침은 권고 기준입니다`);
+    const ref = whole ? n.law : `${n.law} 제${n.article.replace("의", "조의")}${n.article.includes("의") ? "" : "조"}`;
+    lines.push(`> 전문 조회: \`get_safety_law_article(ref="${ref}")\` · 고시·지침은 권고 기준입니다`);
     lines.push("");
     lines.push("---");
     lines.push("");

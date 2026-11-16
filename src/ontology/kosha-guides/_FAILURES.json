@@ -2,8 +2,8 @@
   "_meta": {
     "version": "1.4.2",
     "generatedAt": "2026-05-23",
-    "description": "KOSHA OneAPI 15144147 으로 본문 PDF 다운로드가 실패한 가이드 목록. 메타 (그래프 노드 `.jsonld`) 는 보유하나 본문 `.md` 부재. KOSHA 측 API 가 해당 가이드의 fileDownloadUrl 을 반환하지 않거나 빈 PDF (0 bytes) 를 반환하는 케이스. 현재 0건 — 본문 = 메타 (1,040 = 1,040) 일치.",
-    "verification": "src/ontology/graph/nodes/documents/guides/ 의 .jsonld 1,040 vs src/ontology/kosha-guides/ 의 .md 1,040 차이 0 (자동 검증). scripts/audit/audit-kosha-guide-gaps.ts 가 시퀀스 갭과 함께 검증. inspect CLI 가 build 시 정합도 확인.",
+    "description": "공단 포털 원본을 받지 못해 번들에 원본(.dclx)이 없는 가이드 목록. 메타(그래프 노드 `.jsonld`)는 있으나 원본 보관본이 없는 경우를 적는다. 현재 0건 — 원본 = 메타 (1,040 = 1,040) 일치.",
+    "verification": "src/ontology/graph/nodes/documents/guides/ 의 .jsonld 1,040 vs src/ontology/kosha-guides/ 의 .dclx 1,040 차이 0 (자동 검증). 원본을 들여오는 scripts/sync/import-kosha-guides-dclx.ts 는 한 건이라도 원본·본문이 없으면 아무것도 쓰지 않는다. inspect CLI 가 build 시 정합도 확인.",
     "history": [
       {
         "version": "1.4.1",
