@@ -81,10 +81,17 @@ type Input = z.infer<typeof inputSchema>;
 /** 조문 노드로만 수록한 고시·지침의 조문을 찾아 응답을 만든다. 법령명을 식별하지 못하면 null. */
 async function findNoticeArticle(ref: string, mode: FieldMeasureMode): Promise<McpToolResult | null> {
   const m = ref.trim().match(NOTICE_REF_PATTERN);
-  if (!m || !m[1].trim()) return null;
-  const { canonical } = legalRefToIri(m[1].trim(), `§${m[2]}`);
+  let canonical: string | null;
+  let num: string;
+  if (m && m[1].trim()) {
+    canonical = legalRefToIri(m[1].trim(), `§${m[2]}`).canonical;
+    num = m[3] ? `${m[2]}의${m[3]}` : m[2];
+  } else {
+    // 조문 번호 없이 고시 이름만 — 번호 붙은 조문 없이 본문 한 덩어리인 고시는 "본문" 노드로 찾는다
+    canonical = legalRefToIri(ref.trim().replace(/\s*본문$/, ""), "").canonical;
+    num = "본문";
+  }
   if (!canonical) return null;
-  const num = m[3] ? `${m[2]}의${m[3]}` : m[2];
   const iri = `art:${canonical}:${num}`;
   const node = (await getNode(iri)) as
     | { title?: string; description?: string; legislationIdentifier?: string; legislationDate?: string; legislationType?: string; _meta?: Record<string, unknown> }
@@ -95,10 +102,10 @@ async function findNoticeArticle(ref: string, mode: FieldMeasureMode): Promise<M
   // 근거 등급은 찾은 경로가 아니라 조문 노드에 적힌 법령 종류로 정한다 — 법·시행령·규칙은 의무, 고시·지침은 권고
   const isNotice = NOTICE_LEGISLATION_TYPES.has(node.legislationType ?? "");
   const md = [
-    `# ${lawName} §${num} ${node.title ?? ""}`,
+    num === "본문" ? `# ${lawName}` : `# ${lawName} §${num} ${node.title ?? ""}`,
     "",
-    `> **법령**: ${lawName}${meta.admRulNo ? ` (고용노동부고시 제${String(meta.admRulNo)}호)` : ""}`,
-    `> **조문**: §${num} ${node.title ?? ""}`,
+    `> **법령**: ${lawName}${meta.admRulNo ? ` (고용노동부${String(meta.admRulKind ?? "고시")} 제${String(meta.admRulNo)}호)` : ""}`,
+    num === "본문" ? "> **조문**: 본문 (번호 붙은 조문이 없는 고시)" : `> **조문**: §${num} ${node.title ?? ""}`,
     `> **발령일**: ${node.legislationDate ?? "(미기재)"}`,
     `> **출처 URL**: ${typeof meta.sourceUrl === "string" ? meta.sourceUrl : "https://www.law.go.kr"}`,
     `> **마지막 동기화**: ${typeof meta.fetchedAt === "string" ? meta.fetchedAt : "(미기재)"}`,

@@ -54,6 +54,10 @@ const ADMRULS: AdminRule[] = [
   { actKey: "운반하역-지침", id: "2100000186124", actSlug: "운반하역표준안전작업지침", alternativeNames: ["운반하역 표준안전 작업지침"] },
   { actKey: "산안비-기준", id: "2100000254546", actSlug: "건설업산업안전보건관리비계상및사용기준", alternativeNames: ["산업안전보건관리비 계상 및 사용기준", "산안비 계상기준"] },
   { actKey: "안전보건대장-고시", id: "2100000243390", actSlug: "건설공사안전보건대장의작성등에관한고시", alternativeNames: ["건설공사 안전보건대장 고시"] },
+  { actKey: "실적평가-기준", id: "2100000228660", actSlug: "건설업체의산업재해예방활동실적평가기준", alternativeNames: ["건설업체 산업재해예방활동 실적 평가기준"] },
+  { actKey: "자체심사업체-고시", id: "2100000186090", actSlug: "유해위험방지계획서자체심사및확인업체지정대상건설업체고시", alternativeNames: ["유해·위험방지계획서 자체심사 및 확인업체 고시"] },
+  { actKey: "지도사평가-고시", id: "2100000186089", actSlug: "건설업유해위험방지계획서중지도사가평가확인할수있는대상건설공사의범위및지도사의요건", alternativeNames: ["지도사 평가·확인 대상 건설공사 고시"] },
+  { actKey: "전문기관관리-규정", id: "2100000251782", actSlug: "안전보건관리전문기관및건설재해예방전문지도기관관리규정", alternativeNames: ["건설재해예방전문지도기관 관리규정"] },
 ];
 
 /**
@@ -250,6 +254,7 @@ async function main(): Promise<void> {
           verifiedBy: "법제처 lawService.do?target=admrul (자동 sync)",
           admRulId: rule.id,
           admRulNo: no,
+          admRulKind: tag(xml, "행정규칙종류"),
           licenseHint: LICENSE_HINT,
         },
         description: text,
@@ -276,6 +281,51 @@ async function main(): Promise<void> {
         added += 1;
       }
       await writeFile(path, JSON.stringify(merged, null, 2) + "\n", "utf-8");
+      articleIris.push(iri);
+    }
+
+    // 조문 형식이 아닌 고시(번호 붙은 조문 없이 본문 한 덩어리) — 본문 전체를 노드 하나("본문")로 싣는다
+    const titled = contents.some((cm) => /^제\d+조/.test(cm[1].trim()));
+    if (!titled && contents.length > 0) {
+      const iri = `art:${rule.actKey}:본문`;
+      const path = resolve(ARTICLES, `${rule.actKey}-§본문.jsonld`);
+      const text = contents.map((cm) => cm[1].trim()).join("\n");
+      const node = {
+        "@context": "../../context.jsonld",
+        "@id": iri,
+        "@type": ["Article", "Legislation"],
+        articleNumber: "본문",
+        title: name,
+        partOf: actIri,
+        verificationStatus: "verified",
+        _meta: {
+          publishedBy: "법제처 국가법령정보센터 (자동 sync)",
+          sourceUrl,
+          fetchedAt: today,
+          verifiedAt: today,
+          verifiedBy: "법제처 lawService.do?target=admrul (자동 sync)",
+          admRulId: rule.id,
+          admRulNo: no,
+          admRulKind: tag(xml, "행정규칙종류"),
+          licenseHint: LICENSE_HINT,
+          note: "조문 형식이 아닌 고시 — 번호 붙은 조문 없이 본문 전체를 한 노드에 담았다.",
+        },
+        description: text,
+        legislationIdentifier: name,
+        legislationDate: date,
+        legislationType: "Notification",
+        legislationLegalForce: "InForce",
+        jurisdiction: "KR",
+        temporalCoverage: `${effective}/..`,
+      };
+      const current = (await exists(path)) ? (JSON.parse(await readFile(path, "utf-8")) as Record<string, unknown>) : undefined;
+      if (!current || current.description !== node.description) {
+        const currentMeta = (current?._meta && typeof current._meta === "object" ? current._meta : {}) as Record<string, unknown>;
+        const merged = current ? { ...current, ...node, _meta: { ...currentMeta, ...node._meta, fetchedAt: currentMeta.fetchedAt ?? today } } : node;
+        await writeFile(path, JSON.stringify(merged, null, 2) + "\n", "utf-8");
+        if (current) updated += 1;
+        else added += 1;
+      }
       articleIris.push(iri);
     }
 
@@ -381,6 +431,15 @@ async function main(): Promise<void> {
       };
       await writeFile(actPath, JSON.stringify(act, null, 2) + "\n", "utf-8");
       console.log(`[${rule.actKey}] 법령 노드 신설 — ${name} (${no}, 시행 ${effective})`);
+    } else {
+      // 이미 있는 법령 노드에도 이번에 읽은 조문을 빠짐없이 잇는다 (사람이 더한 연결은 그대로 둔다)
+      const current = JSON.parse(await readFile(actPath, "utf-8")) as Record<string, unknown>;
+      const has = Array.isArray(current.hasArticle) ? (current.hasArticle as string[]) : [];
+      const missing = articleIris.filter((iri) => !has.includes(iri));
+      if (missing.length > 0) {
+        await writeFile(actPath, JSON.stringify({ ...current, hasArticle: [...has, ...missing] }, null, 2) + "\n", "utf-8");
+        console.log(`[${rule.actKey}] 법령 노드에 조문 ${missing.length}개 연결`);
+      }
     }
     console.log(`[${rule.actKey}] 조문 +${added} 신규 / ${updated} 갱신 · 장·절 ${chapters.length}개 (${chapterWritten}개 기록)`);
   }
