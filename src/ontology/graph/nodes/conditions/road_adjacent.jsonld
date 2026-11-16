@@ -1,0 +1,59 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:road_adjacent",
+  "@type": "WorkCondition",
+  "title": "도로·통행 인접",
+  "altLabel": [
+    "도로·통행 인접",
+    "도로 인접",
+    "도로측면 작업",
+    "통행로 인접",
+    "교통 통제"
+  ],
+  "conditionAxis": "현장·공간",
+  "description": "차량이 다니는 도로 옆이나 공사용 도로에 접해 작업하는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "제379조(가설도로) 사업주는 공사용 가설도로를 설치하는 경우에 다음 각 호의 사항을 준수하여야 한다. <개정 2019.10.15> … 2. 도로와 작업장이 접하여 있을 경우에는 울타리 등을 설치할 것",
+      "basisArticle": "art:기준규칙:379",
+      "item": 2,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:temporary_road"
+      ]
+    },
+    {
+      "requirement": "(5) 도로측면 작업 시 작업구역 주변에 안전표지판, 경고등, 방호울타리 등 교통안전시설을 설치하고 작업하여야 한다.",
+      "basisGuide": "doc:kosha_guide/D-C-11-2026",
+      "guideSection": "8.2.1",
+      "guideClause": "(5)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(6) 작업 중에는 교통신호 및 통제를 위한 신호수와 절단기, 굴착기, 덤프트럭 등 장비에는 유도자를 배치하고 안전하게 작업을 하여야 하며, 지시·안내표지판을 설치하여야 한다.",
+      "basisGuide": "doc:kosha_guide/D-C-11-2026",
+      "guideSection": "8.2.1",
+      "guideClause": "(6)",
+      "legalWeight": "recommended"
+    },
+    {
+      "requirement": "(3) 작업 전 안내표지판 및 위험경고 시설물 설치, 신호수 배치 등을 포함하는 교통처리 계획을 수립한 후, 작업 중 반드시 신호수를 배치하고, 신호방법을 정하여 신호하는 등 교통사고가 발생하지 않도록 하여야 한다.",
+      "basisGuide": "doc:kosha_guide/D-C-11-2026",
+      "guideSection": "8.2.6",
+      "guideClause": "(3)",
+      "legalWeight": "recommended"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:379"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-17",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

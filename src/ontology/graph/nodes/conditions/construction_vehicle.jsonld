@@ -1,0 +1,57 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:construction_vehicle",
+  "@type": "WorkCondition",
+  "title": "차량계 건설기계 사용",
+  "altLabel": [
+    "굴착·운반 중장비",
+    "중장비",
+    "건설기계",
+    "굴착기",
+    "굴삭기"
+  ],
+  "conditionAxis": "장비·작업방식",
+  "description": "굴착기·로더 등 차량계 건설기계로 굴착·운반하는 작업.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 다음 각 호의 작업을 하는 경우 근로자의 위험을 방지하기 위하여 별표 4에 따라 해당 작업, 작업장의 지형ㆍ지반 및 지층 상태 등에 대한 사전조사를 하고 그 결과를 기록ㆍ보존해야 하며, 조사결과를 고려하여 별표 4의 구분에 따른 사항을 포함한 작업계획서를 작성하고 그 계획에 따라 작업을 하도록 해야 한다. <개정 2023.11.14> … 3. 차량계 건설기계를 사용하는 작업",
+      "basisArticle": "art:기준규칙:38",
+      "paragraph": 1,
+      "item": 3,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제199조(전도 등의 방지) 사업주는 차량계 건설기계를 사용하는 작업할 때에 그 기계가 넘어지거나 굴러떨어짐으로써 근로자가 위험해질 우려가 있는 경우에는 유도하는 사람을 배치하고 지반의 부동침하 방지, 갓길의 붕괴 방지 및 도로 폭의 유지 등 필요한 조치를 하여야 한다.",
+      "basisArticle": "art:기준규칙:199",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 차량계 건설기계를 사용하여 작업을 하는 경우에는 운전 중인 해당 차량계 건설기계에 접촉되어 근로자가 부딪칠 위험이 있는 장소에 근로자를 출입시켜서는 아니 된다. 다만, 유도자를 배치하고 해당 차량계 건설기계를 유도하는 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:200",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 다음 각 호의 작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하여야 하며, 운전자는 그 신호에 따라야 한다. … 3. 제200조제1항 단서에 따라 유도자를 배치하는 작업",
+      "basisArticle": "art:기준규칙:40",
+      "paragraph": 1,
+      "item": 3,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:38",
+    "art:기준규칙:199",
+    "art:기준규칙:200",
+    "art:기준규칙:40"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-17",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:hazardous_materials",
+  "@type": "WorkCondition",
+  "title": "위험물질 취급·보관",
+  "altLabel": [
+    "인화·위험물",
+    "위험물",
+    "위험물질",
+    "인화성 액체",
+    "인화성 가스",
+    "인화성 물질"
+  ],
+  "conditionAxis": "자재",
+  "description": "인화성 액체·가스 등 기준규칙 별표 1의 위험물질을 현장에서 쓰거나 보관하는 경우.",
+  "conditionRules": [
+    {
+      "requirement": "제16조(위험물 등의 보관) 사업주는 별표 1에 규정된 위험물질을 작업장 외의 별도의 장소에 보관하여야 하며, 작업장 내부에는 작업에 필요한 양만 두어야 한다.",
+      "basisArticle": "art:기준규칙:16",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제225조(위험물질 등의 제조 등 작업 시의 조치) 사업주는 별표 1의 위험물질(이하 \"위험물\"이라 한다)을 제조하거나 취급하는 경우에 폭발ㆍ화재 및 누출을 방지하기 위한 적절한 방호조치를 하지 아니하고 다음 각 호의 행위를 해서는 아니 된다. … 4. 인화성 액체를 화기나 그 밖에 점화원이 될 우려가 있는 것에 접근시키거나 주입 또는 가열하거나 증발시키는 행위 … 5. 인화성 가스를 화기나 그 밖에 점화원이 될 우려가 있는 것에 접근시키거나 압축ㆍ가열 또는 주입하는 행위",
+      "basisArticle": "art:기준규칙:225",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제239조(위험물 등이 있는 장소에서 화기 등의 사용 금지) 사업주는 위험물이 있어 폭발이나 화재가 발생할 우려가 있는 장소 또는 그 상부에서 불꽃이나 아크를 발생하거나 고온으로 될 우려가 있는 화기ㆍ기계ㆍ기구 및 공구 등을 사용해서는 아니 된다.",
+      "basisArticle": "art:기준규칙:239",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 합성섬유ㆍ합성수지ㆍ면ㆍ양모ㆍ천조각ㆍ톱밥ㆍ짚ㆍ종이류 또는 인화성이 있는 액체(1기압에서 인화점이 섭씨 250도 미만의 액체를 말한다)를 다량으로 취급하는 작업을 하는 장소ㆍ설비 등은 화재예방을 위하여 적절한 배치 구조로 하여야 한다. <개정 2019.12.26>",
+      "basisArticle": "art:기준규칙:236",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:16",
+    "art:기준규칙:225",
+    "art:기준규칙:239",
+    "art:기준규칙:236"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-17",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

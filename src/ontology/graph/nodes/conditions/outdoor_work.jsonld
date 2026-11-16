@@ -1,0 +1,34 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:outdoor_work",
+  "@type": "WorkCondition",
+  "title": "옥외 작업",
+  "altLabel": [
+    "옥외 작업",
+    "야외 작업",
+    "실외 작업",
+    "옥외작업"
+  ],
+  "conditionAxis": "현장·공간",
+  "description": "비·눈·바람 등 날씨에 그대로 노출되는 바깥 작업. 날씨별 조치는 강풍·강우·강설·폭염·한랭·낙뢰 조건에 있다.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 비ㆍ눈ㆍ바람 또는 그 밖의 기상상태의 불안정으로 인하여 근로자가 위험해질 우려가 있는 경우 작업을 중지하여야 한다. 다만, 태풍 등으로 위험이 예상되거나 발생되어 긴급 복구작업을 필요로 하는 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:37",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:37"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-17",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

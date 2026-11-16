@@ -463,6 +463,9 @@ async function main(): Promise<void> {
   );
   const fog = await resolveWorkConditions(["안개", "없는조건"]);
   check("원문 근거가 없는 조건은 이유와 함께, 모르는 조건은 따로 돌려준다", fog.notCovered.length === 1 && fog.unmatched.includes("없는조건"), JSON.stringify({ notCovered: fog.notCovered.length, unmatched: fog.unmatched }));
+  const fieldConditionNames = ["도로·통행 인접", "경사지", "암반·발파구간", "옥외 작업", "취약 상부재 위 작업", "양중·인양 장비", "굴착·운반 중장비", "작업발판형 기구", "화기·고열 장비", "회전·절삭 공구", "타격·천공 장비", "압송·타설 장비", "인화·위험물", "가연성 자재", "인접 장비 작업"];
+  const fieldConditions = await resolveWorkConditions(fieldConditionNames);
+  check("현장에서 쓰는 장비·자재·장소 조건 이름을 조건 노드에 맞춘다", fieldConditions.unmatched.length === 0 && fieldConditions.conditions.every((c) => c.rules.length > 0), fieldConditions.unmatched.join(", "));
   const riskWithWeather = (await analyzeConstructionWorkRisksTool.handler({ workType: "철골작업", conditions: { weather: "강풍 및 우천" } })) as {
     structuredContent?: { workConditions?: { conditions: { title: string }[] } };
   };

@@ -1,0 +1,71 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:lifting_equipment",
+  "@type": "WorkCondition",
+  "title": "양중기 사용",
+  "altLabel": [
+    "양중·인양 장비",
+    "양중 장비",
+    "인양 장비",
+    "양중기",
+    "크레인 사용",
+    "인양 작업"
+  ],
+  "conditionAxis": "장비·작업방식",
+  "description": "크레인·이동식 크레인·리프트 등 양중기로 자재를 들어 올리거나 옮기는 작업.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 다음 각 호의 작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하여야 하며, 운전자는 그 신호에 따라야 한다. … 1. 양중기(揚重機)를 사용하는 작업",
+      "basisArticle": "art:기준규칙:40",
+      "paragraph": 1,
+      "item": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제135조(과부하의 제한 등) 사업주는 제132조제1항 각 호의 양중기에 그 적재하중을 초과하는 하중을 걸어서 사용하도록 해서는 아니 된다.",
+      "basisArticle": "art:기준규칙:135",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. … 4. 미리 근로자의 출입을 통제하여 인양 중인 하물이 작업자의 머리 위로 통과하지 않도록 할 것",
+      "basisArticle": "art:기준규칙:146",
+      "paragraph": 1,
+      "item": 4,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 크레인을 사용하여 작업을 하는 경우 다음 각 호의 조치를 준수하고, 그 작업에 종사하는 관계 근로자가 그 조치를 준수하도록 하여야 한다. … 5. 인양할 하물이 보이지 아니하는 경우에는 어떠한 동작도 하지 아니할 것(신호하는 사람에 의하여 작업을 하는 경우는 제외한다)",
+      "basisArticle": "art:기준규칙:146",
+      "paragraph": 1,
+      "item": 5,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "③ 사업주는 타워크레인을 사용하여 작업을 하는 경우 타워크레인마다 근로자와 조종 작업을 하는 사람 간에 신호업무를 담당하는 사람을 각각 두어야 한다. <신설 2018.3.30>",
+      "basisArticle": "art:기준규칙:146",
+      "paragraph": 3,
+      "legalWeight": "mandatory",
+      "appliesToActivity": [
+        "activity:tower_crane",
+        "activity:tower_assembly"
+      ],
+      "appliesTo": [
+        "subtask:타워크레인"
+      ]
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:40",
+    "art:기준규칙:135",
+    "art:기준규칙:146"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-17",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

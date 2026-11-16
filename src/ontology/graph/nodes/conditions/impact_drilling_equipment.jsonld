@@ -1,0 +1,65 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:impact_drilling_equipment",
+  "@type": "WorkCondition",
+  "title": "타격·천공 장비 사용",
+  "altLabel": [
+    "타격·천공 장비",
+    "착암기",
+    "브레이커",
+    "천공기",
+    "항타기",
+    "항발기",
+    "해머드릴"
+  ],
+  "conditionAxis": "장비·작업방식",
+  "description": "착암기·브레이커·항타기처럼 두드리거나 뚫는 장비를 쓰는 작업. 착암기·동력 해머 등을 쓰는 작업은 진동작업이다(기준규칙 제512조제4호).",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 진동작업에 근로자를 종사하도록 하는 경우에 방진장갑 등 진동보호구를 지급하여 착용하도록 하여야 한다.",
+      "basisArticle": "art:기준규칙:518",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 근로자가 소음작업, 강렬한 소음작업 또는 충격소음작업에 종사하는 경우에 근로자에게 청력보호구를 지급하고 착용하도록 하여야 한다.",
+      "basisArticle": "art:기준규칙:516",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "제513조(소음 감소 조치) 사업주는 강렬한 소음작업이나 충격소음작업 장소에 대하여 기계ㆍ기구 등의 대체, 시설의 밀폐ㆍ흡음(吸音) 또는 격리 등 소음 감소를 위한 조치를 하여야 한다. 다만, 작업의 성질상 기술적ㆍ경제적으로 소음 감소를 위한 조치가 현저히 곤란하다는 관계 전문가의 의견이 있는 경우에는 그러하지 아니하다.",
+      "basisArticle": "art:기준규칙:513",
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 다음 각 호의 작업을 하는 경우 일정한 신호방법을 정하여 신호하도록 하여야 하며, 운전자는 그 신호에 따라야 한다. … 4. 항타기 또는 항발기의 운전작업",
+      "basisArticle": "art:기준규칙:40",
+      "paragraph": 1,
+      "item": 4,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "③ 사업주는 항타기나 항발기를 조립ㆍ해체ㆍ변경 또는 이동하는 작업을 하는 경우 그 작업방법과 절차를 정하여 근로자에게 주지시켜야 한다.",
+      "basisArticle": "art:기준규칙:38",
+      "paragraph": 3,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:518",
+    "art:기준규칙:516",
+    "art:기준규칙:513",
+    "art:기준규칙:40",
+    "art:기준규칙:38"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-17",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}

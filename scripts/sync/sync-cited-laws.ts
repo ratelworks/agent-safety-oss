@@ -162,7 +162,8 @@ async function main(): Promise<void> {
         "@id": iri,
         "@type": ["Article", "Legislation"],
         articleNumber: num,
-        title: cdata(block, "조문제목"),
+        // 삭제된 조문은 원문에 제목 칸이 비어 있다 — 본문("제N조 삭제 <날짜>")대로 삭제 표시를 제목으로 둔다
+        title: cdata(block, "조문제목") || (/^제\d+조(의\d+)?\s*삭제/.test(articleText(block)) ? `제${main}조${branch ? `의${branch}` : ""} (삭제)` : ""),
         partOf: actIri,
         verificationStatus: "verified",
         _meta: {

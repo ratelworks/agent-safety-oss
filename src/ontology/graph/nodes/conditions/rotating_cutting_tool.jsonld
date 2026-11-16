@@ -1,0 +1,75 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "workcond:rotating_cutting_tool",
+  "@type": "WorkCondition",
+  "title": "회전·절삭 공구 사용",
+  "altLabel": [
+    "회전·절삭 공구",
+    "그라인더",
+    "연삭기",
+    "절단기",
+    "연삭숫돌"
+  ],
+  "conditionAxis": "장비·작업방식",
+  "description": "그라인더(연삭기)·절단기 등 회전하는 날이나 숫돌로 자르거나 가는 작업.",
+  "conditionRules": [
+    {
+      "requirement": "① 사업주는 회전 중인 연삭숫돌(지름이 5센티미터 이상인 것으로 한정한다)이 근로자에게 위험을 미칠 우려가 있는 경우에 그 부위에 덮개를 설치하여야 한다.",
+      "basisArticle": "art:기준규칙:122",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "② 사업주는 연삭숫돌을 사용하는 작업의 경우 작업을 시작하기 전에는 1분 이상, 연삭숫돌을 교체한 후에는 3분 이상 시험운전을 하고 해당 기계에 이상이 있는지를 확인하여야 한다.",
+      "basisArticle": "art:기준규칙:122",
+      "paragraph": 2,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "④ 사업주는 연삭숫돌의 최고 사용회전속도를 초과하여 사용하도록 해서는 아니 된다.",
+      "basisArticle": "art:기준규칙:122",
+      "paragraph": 4,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "⑤ 사업주는 측면을 사용하는 것을 목적으로 하지 않는 연삭숫돌을 사용하는 경우 측면을 사용하도록 해서는 아니 된다.",
+      "basisArticle": "art:기준규칙:122",
+      "paragraph": 5,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "② 사업주는 근로자에게 용접ㆍ용단 및 금속의 가열 등 화기를 사용하는 작업이나 연삭숫돌에 의한 건식연마작업 등 그 밖에 불꽃이 발생될 우려가 있는 작업(이하 \"화재위험작업\"이라 한다)을 하도록 하는 경우 제1항에 따른 물질을 화재위험이 없는 장소에 별도로 보관ㆍ저장해야 하며, 작업장 내부에는 해당 작업에 필요한 양만 두어야 한다. <신설 2019.12.26>",
+      "basisArticle": "art:기준규칙:236",
+      "paragraph": 2,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 다음 각 호의 어느 하나에 해당하는 작업을 하는 근로자에 대해서는 다음 각 호의 구분에 따라 그 작업조건에 맞는 보호구를 작업하는 근로자 수 이상으로 지급하고 착용하도록 하여야 한다. <개정 2017.3.3, 2024.6.28> … 4. 물체가 흩날릴 위험이 있는 작업: 보안경",
+      "basisArticle": "art:기준규칙:32",
+      "paragraph": 1,
+      "item": 4,
+      "legalWeight": "mandatory"
+    },
+    {
+      "requirement": "① 사업주는 진동작업에 근로자를 종사하도록 하는 경우에 방진장갑 등 진동보호구를 지급하여 착용하도록 하여야 한다.",
+      "basisArticle": "art:기준규칙:518",
+      "paragraph": 1,
+      "legalWeight": "mandatory"
+    }
+  ],
+  "regulatedBy": [
+    "art:기준규칙:122",
+    "art:기준규칙:236",
+    "art:기준규칙:32",
+    "art:기준규칙:518"
+  ],
+  "_meta": {
+    "createdAt": "2026-11-17",
+    "note": "조치 문장은 법령·KOSHA Guide 원문 줄을 그대로 옮겼다(머리 문장과 호를 함께 쓸 때는 ' … ' 로 이음). threshold 는 그 문장 안의 기준값 구절. appliesToActivity·appliesTo 는 조문이 그 작업·공종을 가리키는 경우에만 적었고, 없으면 작업 종류와 무관하게 적용되는 조치다.",
+    "linkBasis": {
+      "regulatedBy": "source",
+      "appliesToActivity": "editorial",
+      "appliesTo": "editorial"
+    }
+  }
+}
