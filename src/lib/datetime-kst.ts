@@ -16,6 +16,9 @@
  *   const sameDay = parseKstDate("2026-05-22"); // KST 자정 Date 객체
  */
 
+// 지금 시각: 단독 사용은 시스템 시계, 호스트 저장 주입 모드는 호스트가 준 시계 (같은 시각이면 같은 결과)
+import { engineNowMs } from "../engine/host-context.js";
+
 const KST_OFFSET_MS = 9 * 60 * 60 * 1000;
 
 /**
@@ -23,14 +26,14 @@ const KST_OFFSET_MS = 9 * 60 * 60 * 1000;
  * UTC `toISOString()` 에 +9h 보정 후 substring.
  */
 export function kstToday(): string {
-  return new Date(Date.now() + KST_OFFSET_MS).toISOString().slice(0, 10);
+  return new Date(engineNowMs() + KST_OFFSET_MS).toISOString().slice(0, 10);
 }
 
 /**
  * KST 기준 오늘 일시 (YYYY-MM-DD HH:mm) — 활동 로그·trace 등에 유용.
  */
 export function kstNow(): string {
-  const iso = new Date(Date.now() + KST_OFFSET_MS).toISOString();
+  const iso = new Date(engineNowMs() + KST_OFFSET_MS).toISOString();
   return iso.slice(0, 16).replace("T", " ");
 }
 
@@ -38,7 +41,7 @@ export function kstNow(): string {
  * KST 기준 ISO 형식 (YYYY-MM-DDTHH:mm:ss+09:00) — 저장·재파싱 안전.
  */
 export function kstIsoNow(): string {
-  const iso = new Date(Date.now() + KST_OFFSET_MS).toISOString();
+  const iso = new Date(engineNowMs() + KST_OFFSET_MS).toISOString();
   return iso.slice(0, 19) + "+09:00";
 }
 

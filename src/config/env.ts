@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { homedir } from "node:os";
 import { SafetyMcpError, ERROR_CODES } from "../lib/errors.js";
+import { isHostMode } from "../engine/host-context.js";
 
 // 파일 최상단 상수 — API 별 공공데이터포털 메타 (에러 payload 에 동봉)
 export const API_DATASET_META = {
@@ -204,6 +205,8 @@ export function getKoshaRelayUrl(): string | null {
 let cachedAgentHqKey: string | null | undefined = undefined;
 
 export function getAgentHqKey(): string | null {
+  // 호스트 저장 주입 모드: 환경변수만 본다 — 단독 사용의 홈 키 파일·프로세스 캐시를 읽거나 채우지 않는다
+  if (isHostMode()) return process.env["AGENTHQ_API_KEY"]?.trim() || null;
   if (cachedAgentHqKey !== undefined) return cachedAgentHqKey;
   // 1) 환경변수 우선
   const envKey = process.env["AGENTHQ_API_KEY"]?.trim();

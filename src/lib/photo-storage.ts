@@ -3,6 +3,10 @@
  *
  * 현장사진 증빙 로컬 저장소.
  * 기본 위치는 ~/.agent-safety-oss/photos 이며 SAFETY_LOCAL_DIR 로 루트 변경 가능.
+ *
+ * 호스트 저장 주입 모드(createSafetyEngine)에서는 사진 바이트를 복사하지 않는다 — filePath 는 호스트 파일 참조로 받아
+ * 호스트 파일 인터페이스로 읽고(내용 해시만 계산), 사진 기록만 주입한 저장(photo 종류)에 쓴다.
+ * 같은 촬영 시각·같은 내용의 사진은 같은 photoId 가 되어 다시 올려도 기록이 늘지 않는다.
  */
 import { copyFile, readFile, readdir, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -10,6 +14,15 @@ import { homedir } from "node:os";
 import { basename, extname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { ensureSecureDir, writeSecureJson, chmodSecureFile } from "./secure-fs.js";
+import {
+  HOST_FILE_URI_PREFIX,
+  assertLocalWriteAllowed,
+  currentHost,
+  engineNow,
+  hostStorageLabel,
+  sha256Hex,
+  type HostRun,
+} from "../engine/host-context.js";
 
 const STORAGE_ENV_NAME = "SAFETY_LOCAL_DIR";
 const DEFAULT_STORAGE_ROOT = resolve(homedir(), ".agent-safety-oss");
@@ -35,6 +48,9 @@ export interface PhotoEvidenceRecord {
   fileUri: string;
   originalFilePath?: string;
   storagePath?: string;
+  /** 호스트 저장 주입 모드: 호스트 파일 참조와 형식 */
+  fileRef?: string;
+  mimeType?: string;
   byteSize?: number;
   sha256?: string;
   relatedTask: string;
@@ -63,10 +79,12 @@ export interface ListPhotoEvidenceFilter {
 }
 
 export function getSafetyStorageRoot(): string {
+  if (currentHost()) return hostStorageLabel();
   return resolve(process.env[STORAGE_ENV_NAME] || DEFAULT_STORAGE_ROOT);
 }
 
 export function getPhotoStorageDir(): string {
+  if (currentHost()) return hostStorageLabel("photo");
   return join(getSafetyStorageRoot(), "photos");
 }
 
@@ -85,11 +103,13 @@ export function normalizePhotoId(photoIdOrIri: string): string {
 }
 
 export async function savePhotoEvidence(input: SavePhotoEvidenceInput): Promise<PhotoEvidenceRecord> {
+  const host = currentHost();
+  if (host) return hostSavePhotoEvidence(host, input);
   await ensurePhotoDir();
 
   const prepared = await preparePhotoFile(input);
   const photoId = makePhotoId(input.capturedAt, prepared.hashSeed);
-  const now = new Date().toISOString();
+  const now = engineNow().toISOString();
   const record: PhotoEvidenceRecord = {
     "@context": PHOTO_CONTEXT,
     "@id": toPhotoIri(photoId),
@@ -115,6 +135,8 @@ export async function savePhotoEvidence(input: SavePhotoEvidenceInput): Promise<
 }
 
 export async function loadPhotoEvidence(photoIdOrIri: string): Promise<PhotoEvidenceRecord | null> {
+  const host = currentHost();
+  if (host) return (await host.get<PhotoEvidenceRecord>("photo", normalizePhotoId(photoIdOrIri))) ?? null;
   try {
     const text = await readFile(photoRecordPath(photoIdOrIri), "utf8");
     return JSON.parse(text) as PhotoEvidenceRecord;
@@ -124,6 +146,14 @@ export async function loadPhotoEvidence(photoIdOrIri: string): Promise<PhotoEvid
 }
 
 export async function listPhotoEvidence(filter: ListPhotoEvidenceFilter = {}): Promise<PhotoEvidenceRecord[]> {
+  const host = currentHost();
+  if (host) {
+    const records = await host.list<PhotoEvidenceRecord>("photo");
+    return records
+      .map(({ value }) => value)
+      .filter((record) => matchesPhotoFilter(record, filter))
+      .sort((a, b) => b.capturedAt.localeCompare(a.capturedAt));
+  }
   await ensurePhotoDir();
   const files = await readdir(getPhotoStorageDir());
   const records: PhotoEvidenceRecord[] = [];
@@ -181,6 +211,7 @@ async function preparePhotoFile(input: SavePhotoEvidenceInput): Promise<{
     const extension = extname(sourcePath) || ".bin";
     const storagePath = join(getPhotoStorageDir(), `${safeFilename(tempPhotoId)}${extension}`);
     // 이미 메모리에 읽은 buffer 를 write — copyFile 대신 writeFile (재경합 회피).
+    assertLocalWriteAllowed("사진 복사");
     const { writeFile } = await import("node:fs/promises");
     await writeFile(storagePath, buffer, { mode: 0o600 });
 
@@ -202,6 +233,11 @@ async function preparePhotoFile(input: SavePhotoEvidenceInput): Promise<{
 }
 
 async function writePhotoRecord(record: PhotoEvidenceRecord): Promise<void> {
+  const host = currentHost();
+  if (host) {
+    host.put("photo", normalizePhotoId(record.photoId), record);
+    return;
+  }
   await ensurePhotoDir();
   await writeSecureJson(photoRecordPath(record.photoId), record);
 }
@@ -244,4 +280,57 @@ function safeFilename(photoIdOrIri: string): string {
 
 function localPhotoSlug(photoId: string): string {
   return photoId.startsWith(PHOTO_ID_PREFIX) ? photoId.slice(PHOTO_ID_PREFIX.length) : photoId;
+}
+
+// ── 호스트 저장 주입 모드 ──
+
+async function hostSavePhotoEvidence(host: HostRun, input: SavePhotoEvidenceInput): Promise<PhotoEvidenceRecord> {
+  let fileUri: string;
+  let hashSeed: string;
+  let fileRef: string | undefined;
+  let mimeType: string | undefined;
+  let byteSize: number | undefined;
+  let sha256: string | undefined;
+  if (input.filePath) {
+    // 호스트 모드의 filePath 는 로컬 경로가 아니라 호스트 파일 참조다
+    const file = await host.readFile(input.filePath);
+    sha256 = sha256Hex(file.bytes);
+    hashSeed = sha256;
+    fileRef = input.filePath;
+    mimeType = file.mimeType;
+    byteSize = file.bytes.byteLength;
+    fileUri = `${HOST_FILE_URI_PREFIX}${input.filePath}`;
+  } else {
+    if (!input.fileUri) throw new Error("filePath 또는 fileUri 중 하나는 필요합니다.");
+    if (/^file:/i.test(input.fileUri.trim())) {
+      host.raise("invalid_input", "호스트 저장 모드에서는 file 주소를 받지 않습니다 — 호스트 파일 참조(filePath)로 주세요.");
+    }
+    fileUri = input.fileUri;
+    hashSeed = sha256Hex(input.fileUri);
+  }
+  const photoId = makePhotoId(input.capturedAt, hashSeed);
+  const existing = await host.get<PhotoEvidenceRecord>("photo", photoId);
+  if (existing) return existing;
+  const now = host.nowIso();
+  const record: PhotoEvidenceRecord = {
+    "@context": PHOTO_CONTEXT,
+    "@id": toPhotoIri(photoId),
+    "@type": ["safety:PhotoEvidence", "prov:Entity", "foaf:Image"],
+    photoId,
+    label: makePhotoLabel(input.evidenceType, input.relatedTask, input.capturedAt),
+    fileUri,
+    fileRef,
+    mimeType,
+    byteSize,
+    sha256,
+    relatedTask: input.relatedTask,
+    relatedSite: input.relatedSite ?? host.scopeProjectId,
+    relatedRisk: input.relatedRisk,
+    evidenceType: input.evidenceType,
+    capturedAt: input.capturedAt,
+    createdAt: now,
+    evidences: [],
+  };
+  host.put("photo", photoId, record);
+  return record;
 }

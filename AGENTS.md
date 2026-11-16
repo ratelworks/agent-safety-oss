@@ -61,6 +61,7 @@ src/
 │   ├── safety-laws/*.md            # bundled law articles
 │   ├── guides/ · forms/ · kras-methods/
 │   └── legal-duty-master.json      # docId master (19 docs × variants)
+├── engine/                         # host storage injection mode (createSafetyEngine, per-tool storage/effects catalog)
 ├── lib/ · evidence/ · config/ · resources/
 scripts/
 ├── build/                          # asset copy · inventory · docs sync (INV markers)

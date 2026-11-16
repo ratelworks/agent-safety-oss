@@ -5,6 +5,9 @@
  *
  * SafetyReport 는 19 법정문서와 분리된 사내 운영 합본이다.
  * 이슈·조치·사진·법조 사슬을 모아 reports/{reportId}.json 및 .md 로 저장한다.
+ *
+ * 호스트 저장 주입 모드(createSafetyEngine)에서는 보고서 기록을 주입한 저장(report 종류)에 쓰고,
+ * Markdown 본문은 결과 파일(files)로 호스트에 넘긴다.
  */
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
@@ -23,6 +26,7 @@ import {
   listSafetyIssueReferences,
   toPhotoEvidenceIri,
 } from "./corrective-action-storage.js";
+import { currentHost, engineNow, hostStorageLabel } from "../engine/host-context.js";
 
 const REPORTS_DIRNAME = "reports";
 const ACTIVITY_LOG_NAME = "activity.log";
@@ -97,6 +101,7 @@ export interface ListSafetyReportsFilter {
 }
 
 export function getReportsDir(): string {
+  if (currentHost()) return hostStorageLabel("report");
   return join(getSafetyLocalDir(), REPORTS_DIRNAME);
 }
 
@@ -138,7 +143,7 @@ export async function generateSafetyReport(
     period: input.period,
     startDate: input.startDate,
     endDate: input.endDate,
-    generatedAt: new Date().toISOString(),
+    generatedAt: engineNow().toISOString(),
     note: OPERATIONAL_REPORT_NOTE,
     markdown,
     stats,
@@ -165,6 +170,18 @@ export async function generateSafetyReport(
 export async function listSafetyReports(
   filter: ListSafetyReportsFilter = {},
 ): Promise<SafetyReportSummary[]> {
+  const host = currentHost();
+  if (host) {
+    const out: SafetyReportSummary[] = [];
+    for (const { value } of await host.list<Record<string, unknown>>("report")) {
+      const summary = isRecord(value) ? summarizeReport(value) : null;
+      if (!summary) continue;
+      if (filter.siteId && summary.siteId !== filter.siteId) continue;
+      if (filter.period && summary.period !== filter.period) continue;
+      out.push(summary);
+    }
+    return out.sort((a, b) => b.generatedAt.localeCompare(a.generatedAt));
+  }
   const files = await safeReadDir(getReportsDir());
   const reports: SafetyReportSummary[] = [];
   for (const file of files) {
@@ -375,6 +392,17 @@ function renderReportMarkdown(input: {
 }
 
 async function saveSafetyReport(report: SafetyReportRecord): Promise<void> {
+  const host = currentHost();
+  if (host) {
+    host.put("report", report.reportId, report);
+    host.addFile({
+      fileName: `${report.reportId}.md`,
+      mimeType: "text/markdown; charset=utf-8",
+      bytes: new TextEncoder().encode(report.markdown),
+      documentKind: "safety_report",
+    });
+    return;
+  }
   await ensureDir(getReportsDir());
   await writeSecureJson(report.jsonPath, report);
   await writeSecureText(report.markdownPath, report.markdown);
@@ -488,6 +516,11 @@ async function readReportJson(path: string): Promise<Record<string, unknown> | n
 }
 
 async function logActivity(event: Record<string, unknown>): Promise<void> {
+  const host = currentHost();
+  if (host) {
+    host.activity(event);
+    return;
+  }
   try {
     await ensureDir(getSafetyLocalDir());
     const line = JSON.stringify({ at: new Date().toISOString(), ...event }) + "\n";

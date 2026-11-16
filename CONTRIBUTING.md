@@ -103,6 +103,7 @@ npm run mcp:inspect
 - `text` 에 안전관리자 친화 markdown
 - 한국어 description (LLM 모델명 박지 않음 — No-Lock-In)
 - LLM 환각 차단: 그래프 fact 만 인용, 외부 데이터 X
+- 저장·외부 통신·파일·사람 몫을 `src/engine/tool-catalog.ts` 에 한 줄 더하고 `npm run docs:host-tools` 로 문서 표를 다시 만든다. 저장은 `src/lib/` 의 저장 함수로만 한다(호스트 저장 주입 모드가 같은 함수를 넘겨받은 저장으로 돌린다)
 
 ### 4.4 SHACL Shape (`src/ontology/skeleton/shapes.ttl` + `shapes/safety-shapes.ttl`)
 

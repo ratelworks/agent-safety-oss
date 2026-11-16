@@ -15,6 +15,10 @@
       "types": "./build/tool-registry.d.ts",
       "import": "./build/tool-registry.js"
     },
+    "./engine": {
+      "types": "./build/engine/index.d.ts",
+      "import": "./build/engine/index.js"
+    },
     "./ontology/*": "./build/ontology/*"
   },
   "bin": {
@@ -35,7 +39,7 @@
     "build": "tsc && tsx scripts/build/copy-ontology-assets.ts && tsx scripts/build/generate-inventory.ts && tsx scripts/build/sync-docs.ts && node -e \"import('fs').then(fs=>fs.chmodSync('build/cli.js',0o755))\"",
     "watch": "tsc --watch",
     "start": "node build/index.js",
-    "test": "npm run check:essence && npm run check:lightweight && npm run mcp:test:doclang && npm run mcp:test:input-parity && npm run mcp:test:law-freshness && npm run mcp:test:a2ui-schema && npm run mcp:test:eras && npm run mcp:test:viewer-security && npm run mcp:test:hwpx && npm run mcp:test:trust && npm run docs:check && npm run mcp:test:smoke",
+    "test": "npm run check:essence && npm run check:lightweight && npm run mcp:test:doclang && npm run mcp:test:input-parity && npm run mcp:test:law-freshness && npm run mcp:test:a2ui-schema && npm run mcp:test:eras && npm run mcp:test:viewer-security && npm run mcp:test:hwpx && npm run mcp:test:trust && npm run mcp:test:host-storage && npm run mcp:test:local-storage && npm run docs:check && npm run mcp:test:smoke",
     "docs:sync": "tsx scripts/build/sync-docs.ts",
     "docs:check": "tsx scripts/build/sync-docs.ts --check",
     "test:full": "npm run mcp:test:all",
@@ -57,6 +61,9 @@
     "mcp:test:viewer-security": "tsx scripts/test/test-viewer-security.ts",
     "mcp:test:hwpx": "tsx scripts/test/test-hwpx-export.ts",
     "mcp:test:trust": "tsx scripts/test/test-trust-boundaries.ts",
+    "mcp:test:host-storage": "tsx scripts/test/test-host-storage.ts",
+    "mcp:test:local-storage": "tsx scripts/test/test-local-storage-compat.ts",
+    "docs:host-tools": "tsx scripts/build/generate-host-tool-table.ts",
     "mcp:test:lifecycle": "tsx scripts/test/test-lifecycle-tools.ts",
     "mcp:test:scenarios": "tsx scripts/test/test-real-scenarios.ts",
     "mcp:test:real-input": "tsx scripts/test/field-real-input-eval.ts",

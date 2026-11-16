@@ -3,12 +3,14 @@
  *
  * 현장 안전 이슈 로컬 저장소.
  * 기본 위치는 ~/.agent-safety-oss/issues 이며 SAFETY_LOCAL_DIR 로 루트 변경 가능.
+ * 호스트 저장 주입 모드(createSafetyEngine)에서는 주입한 저장(issue 종류)을 쓴다.
  */
 import { readFile, readdir } from "node:fs/promises";
 import { ensureSecureDir, writeSecureJson } from "./secure-fs.js";
 import { createHash } from "node:crypto";
 import { homedir } from "node:os";
 import { basename, join, resolve } from "node:path";
+import { currentHost, engineNow, hostStorageLabel } from "../engine/host-context.js";
 
 const STORAGE_ENV_NAME = "SAFETY_LOCAL_DIR";
 const DEFAULT_STORAGE_ROOT = resolve(homedir(), ".agent-safety-oss");
@@ -97,10 +99,12 @@ export interface ListSafetyIssueFilter {
 }
 
 export function getSafetyIssueStorageRoot(): string {
+  if (currentHost()) return hostStorageLabel();
   return resolve(process.env[STORAGE_ENV_NAME] || DEFAULT_STORAGE_ROOT);
 }
 
 export function getSafetyIssueStorageDir(): string {
+  if (currentHost()) return hostStorageLabel("issue");
   return join(getSafetyIssueStorageRoot(), "issues");
 }
 
@@ -133,9 +137,10 @@ export function normalizeActionId(actionIdOrIri: string): string {
 }
 
 export async function saveSafetyIssue(input: RegisterSafetyIssueInput): Promise<SafetyIssueRecord> {
-  await ensureIssueDir();
+  const host = currentHost();
+  if (!host) await ensureIssueDir();
 
-  const now = new Date().toISOString();
+  const now = engineNow().toISOString();
   const hash = createHash("sha256")
     .update([input.relatedTask, input.relatedRisk, input.severity, input.description, now].join("|"))
     .digest("hex");
@@ -151,7 +156,7 @@ export async function saveSafetyIssue(input: RegisterSafetyIssueInput): Promise<
     description: input.description,
     relatedTask: input.relatedTask,
     relatedRisk: input.relatedRisk,
-    relatedSite: input.relatedSite,
+    relatedSite: input.relatedSite ?? host?.scopeProjectId,
     severity: input.severity,
     status: "open",
     photoEvidence: input.photoEvidence ?? [],
@@ -175,6 +180,8 @@ export async function saveSafetyIssue(input: RegisterSafetyIssueInput): Promise<
 }
 
 export async function loadSafetyIssue(issueIdOrIri: string): Promise<SafetyIssueRecord | null> {
+  const host = currentHost();
+  if (host) return (await host.get<SafetyIssueRecord>("issue", normalizeIssueId(issueIdOrIri))) ?? null;
   try {
     const text = await readFile(issueRecordPath(issueIdOrIri), "utf8");
     return JSON.parse(text) as SafetyIssueRecord;
@@ -184,6 +191,14 @@ export async function loadSafetyIssue(issueIdOrIri: string): Promise<SafetyIssue
 }
 
 export async function listSafetyIssues(filter: ListSafetyIssueFilter = {}): Promise<SafetyIssueRecord[]> {
+  const host = currentHost();
+  if (host) {
+    const records = await host.list<SafetyIssueRecord>("issue");
+    return records
+      .map(({ value }) => value)
+      .filter((record) => matchesIssueFilter(record, filter))
+      .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  }
   await ensureIssueDir();
   const files = await readdir(getSafetyIssueStorageDir());
   const records: SafetyIssueRecord[] = [];
@@ -215,7 +230,7 @@ export async function updateSafetyIssueStatus(
   const record = await loadSafetyIssue(issueIdOrIri);
   if (!record) return null;
 
-  const now = new Date().toISOString();
+  const now = engineNow().toISOString();
   record.status = status;
   record.updatedAt = now;
   record.correctiveAction.status = status;
@@ -226,6 +241,11 @@ export async function updateSafetyIssueStatus(
 }
 
 async function writeIssueRecord(record: SafetyIssueRecord): Promise<void> {
+  const host = currentHost();
+  if (host) {
+    host.put("issue", normalizeIssueId(record.issueId), record);
+    return;
+  }
   await ensureIssueDir();
   await writeSecureJson(issueRecordPath(record.issueId), record);
 }

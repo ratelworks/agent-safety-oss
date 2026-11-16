@@ -9,6 +9,8 @@
  *
  * Phase C 의 SafetyIssue/PhotoEvidence 저장소가 같은 main 에 합쳐지기 전까지
  * issue/photos 도구 import 없이 파일 시스템을 직접 조회한다.
+ *
+ * 호스트 저장 주입 모드(createSafetyEngine)에서는 주입한 저장(action·issue 종류)을 쓴다.
  */
 import { readFile, readdir } from "node:fs/promises";
 import { homedir } from "node:os";
@@ -18,6 +20,7 @@ import {
   writeSecureJson,
   appendSecureLog,
 } from "./secure-fs.js";
+import { currentHost, engineNow, hostStorageLabel, sha256Hex, stableJson, type HostRun } from "../engine/host-context.js";
 
 const DEFAULT_STORAGE_DIRNAME = ".agent-safety-oss";
 const ACTIONS_DIRNAME = "actions";
@@ -109,6 +112,8 @@ export interface CorrectiveActionRecord {
   afterActionPhotoEvidence?: string;
   issueSnapshot: SafetyIssueReference;
   graphChain: GraphTriple[];
+  /** 호스트 저장 주입 모드: 같은 입력·같은 시각의 재실행을 같은 조치로 알아보는 키 */
+  retryKey?: string;
 }
 
 export interface CorrectiveActionWithEvidence extends CorrectiveActionRecord {
@@ -138,11 +143,13 @@ export interface PendingActionFilter {
 }
 
 export function getSafetyLocalDir(): string {
+  if (currentHost()) return hostStorageLabel();
   const override = process.env.SAFETY_LOCAL_DIR?.trim();
   return override ? resolve(override) : resolve(homedir(), DEFAULT_STORAGE_DIRNAME);
 }
 
 export function getActionsDir(): string {
+  if (currentHost()) return hostStorageLabel("action");
   return join(getSafetyLocalDir(), ACTIONS_DIRNAME);
 }
 
@@ -180,8 +187,11 @@ export async function recordCorrectiveAction(
   const issueSnapshot =
     (await loadSafetyIssueReference(input.relatedIssue)) ??
     makePendingIssueReference(input.relatedIssue);
-  const now = new Date().toISOString();
-  const actionId = await nextActionId();
+  const now = engineNow().toISOString();
+  const host = currentHost();
+  // 호스트 모드: 저장 중 실패 뒤 같은 시각·같은 입력으로 다시 실행하면 앞서 쓴 조치 id 를 그대로 쓴다(조치가 둘이 되지 않게)
+  const retryKey = host ? sha256Hex(stableJson({ ...input, createdAt: now })) : undefined;
+  const actionId = (host && retryKey ? await hostActionIdForRetry(host, retryKey) : undefined) ?? (await nextActionId());
   const record: CorrectiveActionRecord = {
     "@context": SAFETY_CONTEXT,
     "@id": toCorrectiveActionIri(actionId),
@@ -196,11 +206,12 @@ export async function recordCorrectiveAction(
     dueBy: input.dueBy,
     recommendedMeasure: input.recommendedMeasure,
     status: "requested",
-    siteId: issueSnapshot.siteId,
+    siteId: issueSnapshot.siteId ?? host?.scopeProjectId,
     createdAt: now,
     updatedAt: now,
     issueSnapshot,
     graphChain: [],
+    ...(retryKey ? { retryKey } : {}),
   };
   record.graphChain = buildCorrectiveActionGraphChain(record);
   await saveCorrectiveAction(record);
@@ -218,7 +229,7 @@ export async function completeCorrectiveAction(
 ): Promise<CorrectiveActionRecord | null> {
   const record = await loadCorrectiveAction(input.actionId);
   if (!record) return null;
-  const now = new Date().toISOString();
+  const now = engineNow().toISOString();
   const updated: CorrectiveActionRecord = {
     ...record,
     status: "resolved",
@@ -241,7 +252,10 @@ export async function loadCorrectiveAction(
   actionId: string,
 ): Promise<CorrectiveActionRecord | null> {
   assertActionId(actionId);
-  const record = await readJsonFile(getCorrectiveActionPath(actionId));
+  const host = currentHost();
+  const record = host
+    ? ((await host.get<Record<string, unknown>>("action", actionId)) ?? null)
+    : await readJsonFile(getCorrectiveActionPath(actionId));
   if (!record) return null;
   return normalizeCorrectiveActionRecord(record);
 }
@@ -269,6 +283,18 @@ export async function getCorrectiveActionWithEvidence(
 }
 
 export async function listCorrectiveActions(): Promise<CorrectiveActionRecord[]> {
+  const host = currentHost();
+  if (host) {
+    const records: CorrectiveActionRecord[] = [];
+    for (const { value } of await host.list<Record<string, unknown>>("action")) {
+      try {
+        records.push(normalizeCorrectiveActionRecord(value));
+      } catch {
+        // 손상 기록은 목록 조회를 막지 않는다.
+      }
+    }
+    return records.sort(compareDueThenCreated);
+  }
   const files = await safeReadDir(getActionsDir());
   const records: CorrectiveActionRecord[] = [];
   for (const file of files) {
@@ -288,7 +314,7 @@ export async function listPendingCorrectiveActions(
   filter: PendingActionFilter = {},
 ): Promise<CorrectiveActionRecord[]> {
   const actions = await listCorrectiveActions();
-  const cutoff = filter.dueWithin === undefined ? null : addDays(new Date(), filter.dueWithin);
+  const cutoff = filter.dueWithin === undefined ? null : addDays(engineNow(), filter.dueWithin);
   return actions
     .filter((action) => action.status === "requested" || action.status === "in_progress")
     .filter((action) => !filter.siteId || actionMatchesSite(action, filter.siteId))
@@ -299,6 +325,10 @@ export async function listPendingCorrectiveActions(
 export async function loadSafetyIssueReference(
   issueId: string,
 ): Promise<SafetyIssueReference | null> {
+  if (currentHost()) {
+    const issues = await listSafetyIssueReferences();
+    return issues.find((issue) => issueMatches(issue, issueId)) ?? null;
+  }
   const byDirectPath = await loadIssueByCandidatePath(issueId);
   if (byDirectPath) return byDirectPath;
 
@@ -307,6 +337,8 @@ export async function loadSafetyIssueReference(
 }
 
 export async function listSafetyIssueReferences(): Promise<SafetyIssueReference[]> {
+  const host = currentHost();
+  if (host) return hostSafetyIssueReferences(host);
   const files = await safeReadDir(getIssuesDir());
   const issues: SafetyIssueReference[] = [];
   for (const file of files) {
@@ -382,7 +414,7 @@ export function extractLegalReferences(value: unknown): string[] {
 }
 
 async function nextActionId(): Promise<string> {
-  const prefix = `action.${formatCompactDate(new Date())}.`;
+  const prefix = `action.${formatCompactDate(engineNow())}.`;
   const actions = await listCorrectiveActions().catch(() => []);
   let maxSeq = 0;
   for (const action of actions) {
@@ -395,6 +427,11 @@ async function nextActionId(): Promise<string> {
 
 async function saveCorrectiveAction(record: CorrectiveActionRecord): Promise<void> {
   assertActionId(record.actionId);
+  const host = currentHost();
+  if (host) {
+    host.put("action", record.actionId, record);
+    return;
+  }
   await ensureDir(getActionsDir());
   await writeSecureJson(getCorrectiveActionPath(record.actionId), record);
 }
@@ -452,13 +489,14 @@ function normalizeCorrectiveActionRecord(raw: Record<string, unknown>): Correcti
     recommendedMeasure: readString(raw.recommendedMeasure),
     status: readActionStatus(raw.status) ?? "requested",
     siteId: readString(raw.siteId) ?? issueSnapshot.siteId,
-    createdAt: readString(raw.createdAt) ?? new Date().toISOString(),
-    updatedAt: readString(raw.updatedAt) ?? new Date().toISOString(),
+    createdAt: readString(raw.createdAt) ?? engineNow().toISOString(),
+    updatedAt: readString(raw.updatedAt) ?? engineNow().toISOString(),
     completedAt: readString(raw.completedAt),
     completionNote: readString(raw.completionNote),
     afterActionPhotoEvidence: readString(raw.afterActionPhotoEvidence),
     issueSnapshot,
     graphChain: [],
+    ...(readString(raw.retryKey) ? { retryKey: readString(raw.retryKey) } : {}),
   };
   record.graphChain = buildCorrectiveActionGraphChain(record);
   return record;
@@ -604,6 +642,11 @@ async function readJsonFile(path: string): Promise<Record<string, unknown> | nul
 }
 
 async function logActivity(event: Record<string, unknown>): Promise<void> {
+  const host = currentHost();
+  if (host) {
+    host.activity(event);
+    return;
+  }
   try {
     await ensureDir(getSafetyLocalDir());
     const line = JSON.stringify({ at: new Date().toISOString(), ...event }) + "\n";
@@ -678,4 +721,31 @@ function compactIssueId(value: string): string | undefined {
 function safeFileStem(value: string): string {
   const stem = value.replace(/[^A-Za-z0-9._-]/g, "_").replace(/^_+|_+$/g, "");
   return stem || "item";
+}
+
+// ── 호스트 저장 주입 모드 ──
+
+async function hostActionIdForRetry(host: HostRun, retryKey: string): Promise<string | undefined> {
+  for (const { value } of await host.list<Record<string, unknown>>("action")) {
+    if (isRecord(value) && value.retryKey === retryKey) {
+      const actionId = readString(value.actionId);
+      if (actionId && ACTION_ID_RE.test(actionId)) return actionId;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * 주입한 저장의 안전 이슈 기록을 참조로 바꾼다. 이슈 기록은 현장을 relatedSite 칸에 두므로
+ * siteId 칸이 없으면 relatedSite 를 현장으로 본다(현장별 조치 목록·보고서가 그 현장의 이슈를 찾게).
+ */
+async function hostSafetyIssueReferences(host: HostRun): Promise<SafetyIssueReference[]> {
+  const issues: SafetyIssueReference[] = [];
+  for (const { id, value } of await host.list<Record<string, unknown>>("issue")) {
+    if (!isRecord(value)) continue;
+    const ref = buildSafetyIssueReference(value, id, undefined);
+    if (!ref.siteId) ref.siteId = readString(value.relatedSite);
+    issues.push(ref);
+  }
+  return issues.sort((a, b) => (b.recordedAt ?? "").localeCompare(a.recordedAt ?? ""));
 }

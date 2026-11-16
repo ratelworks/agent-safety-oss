@@ -10,6 +10,9 @@
  *   - 파일 형식: JSON-LD (그래프 호환)
  *   - 직접 편집 가능
  *
+ * 호스트 저장 주입 모드(createSafetyEngine)에서는 파일 대신 주입한 저장을 쓴다 — 회사 프로필(profile/company)과
+ * 현장별 프로필(project_profile/<현장 id>)을 따로 저장해, 여러 현장이 한 프로필을 덮어쓰지 않는다.
+ *
  * 사용 흐름:
  *   1) register_site_profile 로 사업장 등록
  *   2) register_project 로 현장 등록 (사업장 1개에 현장 여러 개 가능)
@@ -24,6 +27,8 @@ import { ensureSecureDir, writeSecureJson } from "./secure-fs.js";
 import { kstToday } from "./datetime-kst.js";
 import { getDocumentSync } from "./graph-nodes-loader.js";
 import { computeOshCost, estimateBaseFromContract, matchRateRow, readRateTable } from "./osh-cost.js";
+import { currentHost, hostStorageLabel, stableJson, type HostRun } from "../engine/host-context.js";
+import { COMPANY_PROFILE_ID } from "../engine/storage.js";
 
 // SAFETY_LOCAL_DIR 환경변수가 있으면 그 디렉토리를 루트로 사용. photo·issue·action·report
 // 등 다른 로컬 저장소(corrective-action-storage 의 getSafetyLocalDir)와 동일 정책.
@@ -242,6 +247,8 @@ const EMPTY_PROFILE: Profile = {
 const profileCache: Map<string, Profile> = new Map();
 
 export async function loadProfile(): Promise<Profile> {
+  const host = currentHost();
+  if (host) return hostLoadProfile(host);
   const path = getProfileFilePath();
   const cached = profileCache.get(path);
   if (cached) return cached;
@@ -256,6 +263,8 @@ export async function loadProfile(): Promise<Profile> {
 }
 
 export async function saveProfile(profile: Profile): Promise<void> {
+  const host = currentHost();
+  if (host) return hostSaveProfile(host, profile);
   await ensureSecureDir(getProfileDir());
   profile._meta.updatedAt = new Date().toISOString();
   const path = getProfileFilePath();
@@ -264,11 +273,154 @@ export async function saveProfile(profile: Profile): Promise<void> {
 }
 
 export function invalidateProfileCache(): void {
+  // 호스트 모드는 이 캐시를 쓰지 않는다 — 단독 사용의 캐시를 건드리지 않는다
+  if (currentHost()) return;
   profileCache.clear();
 }
 
 export function getProfilePath(): string {
+  if (currentHost()) return hostStorageLabel("profile");
   return getProfileFilePath();
+}
+
+// ── 호스트 저장 주입 모드 — 회사 프로필 / 현장별 프로필 ──
+
+/** 회사 프로필 기록 (profile/company): 사업장, 현장에 속하지 않은 인력·장비 */
+interface CompanyProfileRecord {
+  "@context": Profile["@context"];
+  _meta: Profile["_meta"];
+  sites: Site[];
+  persons: Person[];
+  equipments: Equipment[];
+  contractors: Contractor[];
+}
+
+/** 현장별 프로필 기록 (project_profile/<현장 id>): 현장 정보와 그 현장의 인력·장비·수급업체 */
+interface ProjectProfileRecord {
+  projectId: string;
+  project?: Project;
+  persons: Person[];
+  equipments: Equipment[];
+  contractors: Contractor[];
+  updatedAt: string;
+}
+
+interface CompanyPart {
+  sites: Site[];
+  persons: Person[];
+  equipments: Equipment[];
+  contractors: Contractor[];
+}
+
+interface ProjectPart {
+  project?: Project;
+  persons: Person[];
+  equipments: Equipment[];
+  contractors: Contractor[];
+}
+
+const PROFILE_VOCAB = "https://agent-safety-oss/vocab/profile#";
+const PROFILE_DESCRIPTION = "사용자 SSoT — 사업장·현장·직원·장비·수급업체 정보. 94종 양식이 자동 참조.";
+
+async function hostProjectRecords(host: HostRun): Promise<Array<{ id: string; value: ProjectProfileRecord }>> {
+  const scope = host.scopeProjectId;
+  if (scope) {
+    const one = await host.get<ProjectProfileRecord>("project_profile", scope);
+    return one ? [{ id: scope, value: one }] : [];
+  }
+  return host.list<ProjectProfileRecord>("project_profile");
+}
+
+async function hostLoadProfile(host: HostRun): Promise<Profile> {
+  const company = await host.get<CompanyProfileRecord>("profile", COMPANY_PROFILE_ID);
+  const projects = await hostProjectRecords(host);
+  const now = host.nowIso();
+  return {
+    "@context": { "@vocab": PROFILE_VOCAB },
+    _meta: company?._meta ?? { version: "0.1.0", createdAt: now, updatedAt: now, description: PROFILE_DESCRIPTION },
+    sites: [...(company?.sites ?? [])],
+    projects: projects.map((r) => r.value.project).filter((p): p is Project => Boolean(p)),
+    persons: [...(company?.persons ?? []), ...projects.flatMap((r) => r.value.persons ?? [])],
+    equipments: [...(company?.equipments ?? []), ...projects.flatMap((r) => r.value.equipments ?? [])],
+    contractors: [...(company?.contractors ?? []), ...projects.flatMap((r) => r.value.contractors ?? [])],
+  };
+}
+
+/** 프로필을 회사 몫과 현장 몫으로 나눈다 — 현장에 속한 것(project 칸)은 그 현장 기록으로 */
+function splitProfile(profile: Profile): { company: CompanyPart; projects: Map<string, ProjectPart> } {
+  const company: CompanyPart = { sites: [...(profile.sites ?? [])], persons: [], equipments: [], contractors: [] };
+  const projects = new Map<string, ProjectPart>();
+  const part = (id: string): ProjectPart => {
+    let found = projects.get(id);
+    if (!found) {
+      found = { persons: [], equipments: [], contractors: [] };
+      projects.set(id, found);
+    }
+    return found;
+  };
+  for (const project of profile.projects ?? []) part(project["@id"]).project = project;
+  for (const person of profile.persons ?? []) (person.project ? part(person.project).persons : company.persons).push(person);
+  for (const equipment of profile.equipments ?? []) (equipment.project ? part(equipment.project).equipments : company.equipments).push(equipment);
+  for (const contractor of profile.contractors ?? []) (contractor.project ? part(contractor.project).contractors : company.contractors).push(contractor);
+  return { company, projects };
+}
+
+function companyPartOf(record: CompanyProfileRecord | undefined): CompanyPart {
+  return {
+    sites: record?.sites ?? [],
+    persons: record?.persons ?? [],
+    equipments: record?.equipments ?? [],
+    contractors: record?.contractors ?? [],
+  };
+}
+
+function projectPartOf(record: ProjectProfileRecord): ProjectPart {
+  return {
+    project: record.project,
+    persons: record.persons ?? [],
+    equipments: record.equipments ?? [],
+    contractors: record.contractors ?? [],
+  };
+}
+
+/**
+ * 바뀐 몫만 쓴다. 현장으로 고정한 실행은 회사 몫과 다른 현장 몫을 바꾸지 않는다(바꾸려 하면 거절).
+ * 지금 프로필에서 빠진 현장은 현장별 프로필을 지운다.
+ */
+async function hostSaveProfile(host: HostRun, profile: Profile): Promise<void> {
+  const existingCompany = await host.get<CompanyProfileRecord>("profile", COMPANY_PROFILE_ID);
+  const existingProjects = await hostProjectRecords(host);
+  const { company, projects } = splitProfile(profile);
+  const scope = host.scopeProjectId;
+  const now = host.nowIso();
+
+  if (stableJson(companyPartOf(existingCompany)) !== stableJson(company)) {
+    if (scope) {
+      host.raise("scope_mismatch", "현장으로 고정한 실행은 회사 프로필(사업장, 현장에 속하지 않은 인력·장비)을 바꾸지 않습니다.");
+    }
+    const meta = existingCompany?._meta ?? profile._meta ?? { version: "0.1.0", createdAt: now, updatedAt: now, description: PROFILE_DESCRIPTION };
+    const record: CompanyProfileRecord = {
+      "@context": { "@vocab": PROFILE_VOCAB },
+      _meta: { ...meta, updatedAt: now },
+      ...company,
+    };
+    host.put("profile", COMPANY_PROFILE_ID, record);
+  }
+
+  const existingById = new Map(existingProjects.map((r) => [r.id, r.value]));
+  for (const [projectId, part] of projects) {
+    if (scope && projectId !== scope) {
+      host.raise("scope_mismatch", "현장으로 고정한 실행은 다른 현장의 프로필을 바꾸지 않습니다.");
+    }
+    const existing = existingById.get(projectId);
+    if (existing && stableJson(projectPartOf(existing)) === stableJson(part)) continue;
+    const record: ProjectProfileRecord = { projectId, ...part, updatedAt: now };
+    host.put("project_profile", projectId, record);
+  }
+  for (const projectId of existingById.keys()) {
+    if (!projects.has(projectId)) host.remove("project_profile", projectId);
+  }
+  if (profile._meta) profile._meta.updatedAt = now;
 }
 
 // 헬퍼 — IRI 자동 생성

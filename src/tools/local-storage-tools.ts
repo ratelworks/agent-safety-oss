@@ -23,6 +23,27 @@ import {
   getStorageStats,
   STORAGE_ROOT,
 } from "../lib/local-storage.js";
+import { hostStorageLabel, isHostMode } from "../engine/host-context.js";
+
+// 응답에 적는 저장 위치 — 단독 사용은 로컬 경로, 호스트 저장 주입 모드는 호스트 저장 이름(로컬 경로를 내지 않는다)
+function draftLocation(docId: string): { text: string; path: string } {
+  if (isHostMode()) {
+    const label = hostStorageLabel("draft", docId);
+    return { text: label, path: label };
+  }
+  return { text: `~/.agent-safety-oss/drafts/${docId}.jsonld`, path: `${STORAGE_ROOT}/drafts/${docId}.jsonld` };
+}
+
+function archiveLocation(docId: string, filename: string, documentId?: unknown): { text: string; path: string } {
+  if (isHostMode()) {
+    const label = hostStorageLabel("document", typeof documentId === "string" ? documentId : docId);
+    return { text: label, path: label };
+  }
+  return {
+    text: `~/.agent-safety-oss/documents/${docId}/${filename}`,
+    path: `${STORAGE_ROOT}/documents/${docId}/${filename}`,
+  };
+}
 
 // === 정규화 보조 — A2UI viewer 와 동일한 input type 추론·정규화 ===
 const __dirname_ls = dirname(fileURLToPath(import.meta.url));
@@ -145,7 +166,7 @@ async function saveDraftHandler(input: unknown): Promise<McpToolResult> {
   lines.push(`# 폼 초안 ${args.autosave ? "자동" : "수동"} 저장 완료`);
   lines.push("");
   lines.push(`- **docId**: \`${draft.docId}\``);
-  lines.push(`- **저장 위치**: \`~/.agent-safety-oss/drafts/${draft.docId}.jsonld\``);
+  lines.push(`- **저장 위치**: \`${draftLocation(draft.docId).text}\``);
   lines.push(`- **필드 수**: ${Object.keys(draft.formValues).length}`);
   lines.push(`- **최종 수정**: ${draft.updatedAt}`);
   if (draft.manualSavedAt) lines.push(`- **마지막 수동 저장**: ${draft.manualSavedAt}`);
@@ -169,7 +190,7 @@ async function saveDraftHandler(input: unknown): Promise<McpToolResult> {
       fieldCount: Object.keys(draft.formValues).length,
       updatedAt: draft.updatedAt,
       autosave: draft.autosave,
-      path: `${STORAGE_ROOT}/drafts/${draft.docId}.jsonld`,
+      path: draftLocation(draft.docId).path,
       normalizationReport: report,
     },
   };
@@ -238,6 +259,7 @@ const archiveSchema = z.object({
 async function archiveHandler(input: unknown): Promise<McpToolResult> {
   const args = archiveSchema.parse(input);
   const meta = await archiveDocument(args.docId, args.content, args.format);
+  const location = archiveLocation(args.docId, meta.filename, (meta as { documentId?: unknown }).documentId);
   let draftDeleted = false;
   if (args.cleanupDraft) {
     draftDeleted = await deleteDraft(args.docId);
@@ -252,11 +274,11 @@ async function archiveHandler(input: unknown): Promise<McpToolResult> {
           `- **파일**: ${meta.filename}\n` +
           `- **포맷**: ${args.format}\n` +
           `- **크기**: ${(meta.byteSize / 1024).toFixed(1)} KB\n` +
-          `- **보관 위치**: \`~/.agent-safety-oss/documents/${args.docId}/${meta.filename}\`\n` +
+          `- **보관 위치**: \`${location.text}\`\n` +
           `${draftDeleted ? "- **초안**: 정리 완료\n" : ""}`,
       },
     ],
-    structuredContent: { ...meta, draftDeleted, path: `${STORAGE_ROOT}/documents/${args.docId}/${meta.filename}` },
+    structuredContent: { ...meta, draftDeleted, path: location.path },
   };
 }
 
