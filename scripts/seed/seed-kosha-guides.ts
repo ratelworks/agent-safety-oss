@@ -105,7 +105,7 @@ const GUIDES: GuideSeed[] = [
     documents: [] },
 
   // ── 양중·크레인 ──
-  { guideNo: "B-M-7-2025", title: "양중기 일반 안전에 관한 기술지원규정",
+  { guideNo: "B-M-7-2026", title: "양중기 일반 안전에 관한 기술지원규정",
     category: "machine",
     activities: ["activity:tower_crane"],
     documents: [] },

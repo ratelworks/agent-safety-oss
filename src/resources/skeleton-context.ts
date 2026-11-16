@@ -17,7 +17,7 @@
  *     · controls    (45 통제수단 + ericLevel)
  *     · articles    (1,306 법조문)
  *     · annexes     (227 별표)
- *     · documents   (1,135 문서·양식 — guides 1,039 하위 폴더 포함)
+ *     · documents   (1,135 문서·양식 — guides 1,040 하위 폴더 포함)
  *     · kosha_guides (KOSHA Guide 원천 메타 2 — Guide 본문 노드는 documents/guides)
  *     · facets      (118 — code/group/shp 하위 폴더 포함)
  *     · cycles · methods · events · entities · sources · 등
@@ -67,7 +67,7 @@ const ALLOWED_CATEGORIES = new Set([
 /**
  * 디렉토리 안의 .jsonld·.json 파일을 재귀로 읽어 단일 @graph 배열로 반환.
  *
- * P0-2 변경: documents/guides/ 1,039건, facets/code·group·shp 118건 등 하위 폴더 재귀 로딩
+ * P0-2 변경: documents/guides/ 1,040건, facets/code·group·shp 118건 등 하위 폴더 재귀 로딩
  * 하위 폴더 노드를 Resource export 에서 누락하던 문제 해결.
  * 이전: readdir 1단계만 → documents 96건만 노출 (실제 1,135)
  */

@@ -7,7 +7,7 @@
 1. 안전관리자와 현장소장이 제출하거나 보관할 문서에는 법령 근거와 기술 권고를 구분한다.
 2. 법령 본문은 번들 자료를 우선 사용한다.
 3. KOSHA Guide, 재해사례, MSDS, 안전보건자료, 보호구 인증은 출처와 등급을 표시한다.
-4. KOSHA 원문 자료는 임의 재가공·대량 재배포하지 않는다. **KOSHA Guide 본문은 <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건 번들** (kordoc 추출 MD, 공공누리 출처표시·변경금지 명시. `get_kosha_guide_md` 도구로 offline·keyless 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선).
+4. KOSHA 원문 자료는 임의 재가공·대량 재배포하지 않는다. **KOSHA Guide 본문은 <!-- INV:KOSHA_BODY -->1,040<!-- /INV:KOSHA_BODY -->건 번들** (kordoc 추출 MD, 공공누리 출처표시·변경금지 명시. `get_kosha_guide_md` 도구로 offline·keyless 조회). 정부 양식 원본 HWP/PDF/XLSX 는 공공누리 라이선스에 따라 선별 번들 (출처 표기, 사용자 편의 우선).
 5. LLM이 법령 근거를 생성하지 않도록 graph IRI와 evidence metadata를 함께 반환한다.
 
 ## 주요 출처
@@ -16,7 +16,7 @@
 |---|---|---|---|
 | 산업안전보건법령 | 법제처 국가법령정보센터, 고용노동부 | `search_safety_laws`, `get_safety_law_article`, `list_core_safety_laws` | mandatory |
 | 위험성평가 고시 | 고용노동부 | `get_risk_assessment_schema`, `get_kras_method`, `choose_assessment_method` | mandatory/recommended |
-| KOSHA Guide | 한국산업안전보건공단 | `get_kosha_guide_md` (번들 <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건) | recommended |
+| KOSHA Guide | 한국산업안전보건공단 | `get_kosha_guide_md` (번들 <!-- INV:KOSHA_BODY -->1,040<!-- /INV:KOSHA_BODY -->건) | recommended |
 | KOSHA 안전보건자료실 | KOSHA portal24 | `search_kosha_archive`, `get_kosha_archive_files` | reference |
 | 재해사례 | KOSHA OpenAPI | `search_accident_cases`, `get_accident_case_attachments` | reference |
 | 건설업 중대재해 | KOSHA OpenAPI | `search_construction_fatal_accidents`, `search_all_fatal_accidents` | reference |
@@ -62,7 +62,7 @@ src/ontology/kras-methods/*.md      KRAS 방법론
 | KOSHA OneAPI 15001197 | MSDS (화학물질안전) | `search_msds` |
 | KOSHA OneAPI 15139497 | 보호구 안전인증 (KCs) | `search_ppe_certification` |
 | KOSHA OneAPI 15123696 | 안전보건법령 스마트검색 (AI 유사어) | `search_safety_law_smart` |
-| KOSHA OneAPI 15144147 | KOSHA Guide PDF 다운로드 (현재 번들 <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->) | (offline 번들로 대체) |
+| KOSHA OneAPI 15144147 | KOSHA Guide PDF 다운로드 (현재 번들 <!-- INV:KOSHA_BODY -->1,040<!-- /INV:KOSHA_BODY -->) | (offline 번들로 대체) |
 | KOSHA OneAPI 15087828 | 건설 공종 분류 (구조 분류) | `analyze_construction_work_risks` (fallback) |
 | KOSHA OneAPI 15116595 | 공종 ↔ KOSHA Guide 매핑 | `analyze_construction_work_risks` (fallback) |
 | KOSHA OneAPI 15140383 | SIF 아카이브 (사망 고위험요인) | `search_sif_archive` |

@@ -55,7 +55,7 @@ const CATEGORY_MAP: Record<string, string> = {
 
 // D-C, B-E 등 prefix 인식
 function detectCategory(no: string): string {
-  // D-C-1-2025 → D-C / B-M-7-2025 → B-M / C-C-7-2026 → C-C
+  // D-C-1-2025 → D-C / B-M-7-2026 → B-M / C-C-7-2026 → C-C
   const m = no.match(/^([A-Z](?:-[A-Z])?)-/);
   if (!m) return "uncategorized";
   const head = m[1];

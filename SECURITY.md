@@ -217,8 +217,8 @@ CI workflow (`.github/workflows/ci.yml`) 는 별도로 `npm audit --audit-level=
 |---|---|
 | 본 OSS 코드 | MIT |
 | 산안법·시행령·시행규칙·기준규칙·중처법·고시 (`src/ontology/safety-laws/`) | 저작권법 §7 비보호 (자유 인용) |
-| KOSHA Guide 메타 (<!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 노드) | 공공누리 출처표시·변경금지 (`_meta.licenseHint`) |
-| KOSHA Guide 본문 (<!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건 번들) | 공공누리 출처표시·변경금지 (npm 패키지 내장, `get_kosha_guide_md` 도구로 offline 조회) |
+| KOSHA Guide 메타 (<!-- INV:KOSHA_META -->1,040<!-- /INV:KOSHA_META --> 노드) | 공공누리 출처표시·변경금지 (`_meta.licenseHint`) |
+| KOSHA Guide 본문 (<!-- INV:KOSHA_BODY -->1,040<!-- /INV:KOSHA_BODY -->건 번들) | 공공누리 출처표시·변경금지 (npm 패키지 내장, `get_kosha_guide_md` 도구로 offline 조회) |
 | 정부 양식 (`src/ontology/forms/*.pdf|.hwp`) | 행정안전부·KOSHA 발행 (출처 표기) |
 
 ---

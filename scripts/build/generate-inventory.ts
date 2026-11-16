@@ -75,7 +75,7 @@ function renderInventoryMarkdown(data: InventoryData): string {
     `- 카테고리 1단계 노드 (직속 \`.jsonld\`): **${graph.totalTopLevel}**`,
   );
   lines.push(
-    `- 전체 노드 (재귀, KOSHA Guide 1,039건 포함): **${graph.totalRecursive}**`,
+    `- 전체 노드 (재귀, KOSHA Guide 1,040건 포함): **${graph.totalRecursive}**`,
   );
   lines.push(`- 엣지 (주요 EDGE_FIELDS): **${graph.edges}**`);
   lines.push("");

@@ -2,7 +2,7 @@
  * kosha-guides-loader.ts
  *
  * src/ontology/kosha-guides/*.md 폴더의 KOSHA Guide 본문 MD 를 로드.
- * 1,039 가이드를 hardcoded dict 대신 폴더 자동 scan (가이드 추가 시 코드 변경 0).
+ * 1,040 가이드를 hardcoded dict 대신 폴더 자동 scan (가이드 추가 시 코드 변경 0).
  *
  * 사용 도구:
  *   - get_kosha_guide_md (v1.1.19+ 단일 통합 — 단건/검색/인덱스 모두)
@@ -25,6 +25,14 @@ function resolveGuidesDir(): string {
 }
 
 const GUIDES_DIR = resolveGuidesDir();
+/**
+ * 지침번호 별칭 — 공단 공공데이터 지침 목록의 번호가 원본 PDF 표지의 번호와 다른 지침.
+ * 번들은 원본 표지 번호를 쓰고, 목록 번호로 물어도 같은 본문을 돌려준다.
+ */
+const GUIDE_NO_ALIASES: Record<string, string> = {
+  "B-M-7-2025": "B-M-7-2026",
+  "C-C-83-2020": "C-C-83-2026",
+};
 
 export interface KoshaGuideMeta {
   guideNo: string;
@@ -67,7 +75,7 @@ export async function listKoshaGuidesMd(): Promise<KoshaGuideMeta[]> {
 
 export async function getKoshaGuideMd(guideNo: string): Promise<KoshaGuideBody | null> {
   // 대소문자 정규화 — guideNo 표기 일관성 (A-1-2018 ↔ a-1-2018 모두 OK)
-  const upper = guideNo.toUpperCase();
+  const upper = GUIDE_NO_ALIASES[guideNo.toUpperCase()] ?? guideNo.toUpperCase();
   const cached = bodyCache.get(upper);
   if (cached) return cached;
 

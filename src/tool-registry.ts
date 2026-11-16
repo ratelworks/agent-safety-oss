@@ -5,7 +5,7 @@ import { TraceRecorder } from "./lib/trace-recorder.js";
 
 // ── 도구 모듈 import ──
 // 번들 통합:
-//   - getKoshaGuideContentTool (Live API 15144147) → 제거 (getKoshaGuideMdTool 이 1,039건 본문 offline 제공)
+//   - getKoshaGuideContentTool (Live API 15144147) → 제거 (getKoshaGuideMdTool 이 1,040건 본문 offline 제공)
 //   - searchKoshaGuidesTool (빈 번들 stub) → 제거 (getKoshaGuideMdTool 의 keyword 인수가 검색 기능 통합)
 import { fieldSafetyBriefingTool } from "./tools/field-safety-briefing.js";
 import { getKoshaGuideMdTool } from "./tools/get-kosha-guide-md.js";
@@ -85,7 +85,7 @@ import type { McpToolResult } from "./lib/types.js";
 // 파일 최상단 상수 - 공개 도구 수는 TOOLS.length 가 SSoT (`node build/cli.js tools` 로 실측).
 // 회귀 차단: ci.yml 의 `tool count regression` 단계가 README badge / docs 와 자동 대조.
 // KOSHA Guide 본문 번들 통합으로 getKoshaGuideContentTool·searchKoshaGuidesTool 2개 제거됨 (legacy)
-//   - getKoshaGuideMdTool (번들 1,039건, offline, keyless) 가 list/search/content 모두 통합 제공
+//   - getKoshaGuideMdTool (번들 1,040건, offline, keyless) 가 list/search/content 모두 통합 제공
 //   - compile-safety-references 의 kosha-guide 호출도 번들 도구로 자동 마이그레이션
 // 50억 미만 + 50인 미만 소규모 건설현장 + 안전관리자 겸임 현장소장의
 // 일·주·월·분기·반기·연·수시·상시 단위 법정문서 작성 길잡이
@@ -104,7 +104,7 @@ export const TOOLS: ToolDefinition[] = [
   listKoshaArchiveFacetsTool, // 5개 facet 코드 목록
   // ─── 1. 검색 (Search) — 로컬 번들 keyless ───
   searchSafetyLawsTool, // 법령 번들 키워드 검색 (저작권법 §7 비보호)
-  getKoshaGuideMdTool, // 번들 KOSHA Guide 본문 MD (1,039건, keyless offline). 목록·검색·본문 통합
+  getKoshaGuideMdTool, // 번들 KOSHA Guide 본문 MD (1,040건, keyless offline). 목록·검색·본문 통합
   searchSifArchiveTool, // SIF 아카이브 (번들, 빈 상태)
   listConstructionSubtasksTool, // 공종 세부공정 (번들, 빈 상태)
   // ─── 2. 조회 (Lookup) — 본문/메타 ───

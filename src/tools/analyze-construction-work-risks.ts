@@ -228,7 +228,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       "search_construction_fatal_accidents: 최근 중대재해 실사례 보강",
       "search_accident_cases: 업종·키워드 기반 유사 사례",
       "get_accident_case_attachments: 재해사례 이미지·도면",
-      "get_kosha_guide_md: 번들 KOSHA Guide 본문 (1,039건, keyless)",
+      "get_kosha_guide_md: 번들 KOSHA Guide 본문 (1,040건, keyless)",
       "search_ppe_certification: 필요 보호구 인증 모델",
       "verify_safety_basis: 생성 결과 근거 정합성 검증",
     ],

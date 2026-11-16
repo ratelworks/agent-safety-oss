@@ -10,7 +10,7 @@ agent-safety-oss 는 **건설현장의 법정 안전문서 작성을 더 빠르�
 
 번들 공공데이터:
 - **법령 본문 MD <!-- INV:LAW_BUNDLE_COUNT -->10<!-- /INV:LAW_BUNDLE_COUNT -->개** (합계 약 <!-- INV:LAW_ARTICLES -->79<!-- /INV:LAW_ARTICLES -->조): 산안법·시행령·시행규칙·기준규칙·중처법·중처법 시행령·위험성평가 고시·건진법·건진법 시행령·건진법 시행규칙
-- **KOSHA Guide <!-- INV:KOSHA_BODY -->1,039<!-- /INV:KOSHA_BODY -->건** (본문) + **<!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META -->건** (메타, 2026.1 재정비 후 유효본)
+- **KOSHA Guide <!-- INV:KOSHA_BODY -->1,040<!-- /INV:KOSHA_BODY -->건** (본문) + **<!-- INV:KOSHA_META -->1,040<!-- /INV:KOSHA_META -->건** (메타, 2026.1 재정비 후 유효본)
 - **부처별 분산 공공데이터 통합**: 법제처·KOSHA·고용노동부·국토부 등 자료를 같은 온톨로지 그래프로 묶어 LLM 이 관계 따라가며 도메인 추론 가능
 
 ## 핵심 사용자
@@ -51,7 +51,7 @@ Human Layer     검토, 수정, 승인, 제출, 책임 판단
 | Hazard | 위험요인 | <!-- INV:GRAPH_HAZARDS -->38<!-- /INV:GRAPH_HAZARDS -->개 hazard node |
 | Control | 통제대책과 보호구 | <!-- INV:GRAPH_CONTROLS -->50<!-- /INV:GRAPH_CONTROLS -->개 control node, ERIC-PP 위계 |
 | LegalArticle | 법령 조문 | 1,306개 article node (산안법 영역 거의 전수 + 건진법 §62 안전관리 영역 4건) |
-| SafetyDocument | 법정의무 문서 | <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId master + document graph node (KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) |
+| SafetyDocument | 법정의무 문서 | <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId master + document graph node (KOSHA Guide <!-- INV:KOSHA_META -->1,040<!-- /INV:KOSHA_META --> 포함) |
 | Evidence | 사진, 문서, 제출 증빙 | PhotoEvidence부터 시작 |
 | SafetyIssue | 현장 이슈 | local storage + graph chain |
 | CorrectiveAction | 개선조치 | local storage + resolves chain |
@@ -91,7 +91,7 @@ SafetyReport -> includes -> SafetyIssue
 
 - <!-- INV:TOOLS_TOTAL -->92<!-- /INV:TOOLS_TOTAL -->개 MCP 도구가 검색, 조회, 문서, 검수, 현장 사이클, 로컬 저장을 포괄한다.
 - <!-- INV:DOCID_MASTER -->94<!-- /INV:DOCID_MASTER --> docId 법정의무 마스터와 <!-- INV:FORMS_TOTAL -->132<!-- /INV:FORMS_TOTAL --> formId 양식 인덱스가 정합된다.
-- 운영 그래프는 <!-- INV:GRAPH_TOTAL -->3,909<!-- /INV:GRAPH_TOTAL --> 노드 (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,039<!-- /INV:KOSHA_META --> 포함) 와 약 <!-- INV:GRAPH_EDGES -->38,294<!-- /INV:GRAPH_EDGES --> 엣지로 중소 건설사 사용 범위에는 충분하다.
+- 운영 그래프는 <!-- INV:GRAPH_TOTAL -->3,910<!-- /INV:GRAPH_TOTAL --> 노드 (재귀, KOSHA Guide <!-- INV:KOSHA_META -->1,040<!-- /INV:KOSHA_META --> 포함) 와 약 <!-- INV:GRAPH_EDGES -->38,295<!-- /INV:GRAPH_EDGES --> 엣지로 중소 건설사 사용 범위에는 충분하다.
 - `ontology:operational`, `mcp:test:graph`, `audit:strict`가 통과한다.
 - 4개 필드 시나리오에서 29/29 단계가 통과한다.
 

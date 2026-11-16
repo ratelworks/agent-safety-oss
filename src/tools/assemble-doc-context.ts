@@ -305,7 +305,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
         title: g.title,
         category: meta.guideCategory,
         publishedBy: meta.publishedBy,
-        bodyAvailable: true, // 1,039 본문 100% 보유 (v1.4.2)
+        bodyAvailable: true, // 1,040 본문 100% 보유
       };
     });
 

@@ -2,12 +2,12 @@
  * get-kosha-guide-md.ts
  *
  * 번들된 KOSHA Guide 본문 MD 단일 통합 조회 도구. AGENTHQ_API_KEY 없이 동작 (offline, keyless).
- * KOSHA Guide 1,039건 번들 단일 진입점:
+ * KOSHA Guide 1,040건 번들 단일 진입점:
  *   - 단건 본문 조회: techGdlnNo='A-1-2018' 형식
  *   - 키워드 검색: keyword='굴착' (제목 + 본문 매칭)
  *   - 전체 인덱스: 인수 없음
  *
- * 번들이 1,039건을 keyless offline 제공하므로 외부 Live API 호출 불필요.
+ * 번들이 1,040건을 keyless offline 제공하므로 외부 Live API 호출 불필요.
  *   (이전 분리됐던 Live API · stub 도구는 본 단일 도구로 통합됨.)
  */
 import { z } from "zod";
@@ -80,7 +80,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       return {
         content: [{
           type: "text",
-          text: `[NOT_FOUND] '${input.keyword}' 매칭 KOSHA Guide 없음. 다른 키워드 또는 인수 없이 호출하면 전체 1,039건 인덱스 반환.`,
+          text: `[NOT_FOUND] '${input.keyword}' 매칭 KOSHA Guide 없음. 다른 키워드 또는 인수 없이 호출하면 전체 1,040건 인덱스 반환.`,
         }],
         structuredContent: { keyword: input.keyword, total: 0, results: [] },
         isError: true,
@@ -125,7 +125,7 @@ export const getKoshaGuideMdTool: ToolDefinition = {
   name: "get_kosha_guide_md",
   title: "번들 KOSHA Guide 본문 조회",
   description:
-    "번들 KOSHA Guide 본문 MD 1,039건 단일 통합 조회 (AGENTHQ_API_KEY 없이 동작, offline). 단건 조회 (techGdlnNo='A-1-2018') / 키워드 검색 (keyword='굴착') / 전체 인덱스 (인수 없음). 본문은 PDF → kordoc 추출 (HTML 표 보존, 정확 원본은 sourceUrl). KOSHA Guide 단일 진입점 (Live API 도구 통합·제거).",
+    "번들 KOSHA Guide 본문 MD 1,040건 단일 통합 조회 (AGENTHQ_API_KEY 없이 동작, offline). 단건 조회 (techGdlnNo='A-1-2018') / 키워드 검색 (keyword='굴착') / 전체 인덱스 (인수 없음). 본문은 PDF → kordoc 추출 (HTML 표 보존, 정확 원본은 sourceUrl). KOSHA Guide 단일 진입점 (Live API 도구 통합·제거).",
   inputSchema,
   handler,
 };

@@ -68,7 +68,7 @@ const MARKER_MAP: Record<string, (d: InventoryData) => string> = {
   LAW_ARTICLES: (d) => formatNumber(d.lawArticleTotal),
   LAW_BUNDLE_COUNT: (d) => String(d.laws.length),
   // 그래프 — 1단계 vs 재귀 분리 (외부 사용자가 무엇이 무엇인지 알 수 있도록)
-  GRAPH_TOTAL: (d) => formatNumber(d.graph.totalRecursive), // 재귀 (KOSHA 1,039 포함) — 외부 공개 표기
+  GRAPH_TOTAL: (d) => formatNumber(d.graph.totalRecursive), // 재귀 (KOSHA 1,040 포함) — 외부 공개 표기
   GRAPH_TOPLEVEL: (d) => formatNumber(d.graph.totalTopLevel), // 카테고리 1단계만
   GRAPH_EDGES: (d) => formatNumber(d.graph.edges),
   GRAPH_ACTIVITIES: (d) => String(d.graph.byCategoryTopLevel.activities ?? 0),
