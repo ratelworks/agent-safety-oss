@@ -59,6 +59,8 @@ interface StepHazard {
 }
 interface WorkStep {
   name: string;
+  /** 원문 근거로 확인한 단계 대체 이름 — 그 단계의 부재·장비 부품·작업을 부르는 말 (근거는 노드 _meta.stepAltLabelEvidence) */
+  altLabels: string[];
   hazards: StepHazard[];
 }
 interface Work {
@@ -83,7 +85,7 @@ interface SubtaskNode {
   broader?: string;
   references?: string[];
   _meta?: { linkBasis?: Record<string, string> };
-  steps: { stepName: string; stepHazards: RawStepHazard[] }[];
+  steps: { stepName: string; altLabel?: string[]; stepHazards: RawStepHazard[] }[];
 }
 /** 공종 노드에 적힌 그대로의 근거 참조 — 필드 이름이 문맥의 주소 접두어와 겹치지 않게 돼 있다 */
 interface RawBasisRef {
@@ -191,6 +193,8 @@ export interface ResolvedWorkSteps {
   relatedDocuments?: RelatedDocument[];
   /** 공종 이름이 아니라 동의어 사전의 낱말이나 원문 근거가 있는 대체 이름으로 찾았을 때 그 말 */
   matchedBySynonym?: string[];
+  /** 단계 대체 이름(부재·장비 부품·작업을 부르는 말)으로 찾았을 때 그 단계 이름 */
+  matchedStep?: string;
   /** 연결 종류별로 그 연결을 정한 방식 (예: 상위 작업 = 내용을 읽고 정함) — 값의 뜻은 linkBasisLegend */
   linkBasis?: Record<string, string>;
   linkBasisLegend?: Record<string, string>;
@@ -232,7 +236,7 @@ async function loadWorks(): Promise<Work[]> {
       altLabels: n.altLabel ?? [],
       references: n.references ?? [],
       linkBasis: n._meta?.linkBasis ?? {},
-      steps: (n.steps ?? []).map((st) => ({ name: st.stepName, hazards: (st.stepHazards ?? []).map(toStepHazard) })),
+      steps: (n.steps ?? []).map((st) => ({ name: st.stepName, altLabels: st.altLabel ?? [], hazards: (st.stepHazards ?? []).map(toStepHazard) })),
     }))
     .sort((a, b) => a.iri.localeCompare(b.iri));
   return worksCache;
@@ -258,11 +262,11 @@ function altLabelScore(query: string, q: string, alt: string): number {
 }
 
 /** 작업명으로 공종을 찾는다. 가장 잘 맞는 하나와, 같은 점수대의 다른 후보 이름을 돌려준다. */
-export async function findWork(query: string): Promise<{ work: Work; others: string[]; matchedBy?: string[] } | null> {
+export async function findWork(query: string): Promise<{ work: Work; others: string[]; matchedBy?: string[]; matchedStep?: string } | null> {
   const q = normalize(query);
   if (!q) return null;
   const tokens = query.split(/[\s.,()·]+/).filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t));
-  const scored: { work: Work; score: number; alt?: string }[] = [];
+  const scored: { work: Work; score: number; alt?: string; step?: string }[] = [];
   for (const w of await loadWorks()) {
     const name = normalize(w.name);
     const bare = normalize(w.name.replace(/작업$|공사$/, ""));
@@ -283,12 +287,29 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
         alt = a;
       }
     }
-    if (score >= SCORE_TOKEN) scored.push({ work: w, score, ...(alt ? { alt } : {}) });
+    // 단계 대체 이름("지브" → 타워크레인의 지브·카운터웨이트 조립 단계) — 공종과 함께 그 단계를 짚는다
+    let step: string | undefined;
+    for (const st of w.steps) {
+      for (const a of st.altLabels) {
+        const s = altLabelScore(query, q, a);
+        if (s > score) {
+          score = s;
+          alt = a;
+          step = st.name;
+        }
+      }
+    }
+    if (score >= SCORE_TOKEN) scored.push({ work: w, score, ...(alt ? { alt } : {}), ...(step ? { step } : {}) });
   }
   if (scored.length === 0) return findWorkBySynonym(query);
   scored.sort((a, b) => b.score - a.score);
   const top = scored[0];
-  return { work: top.work, others: scored.slice(1, 6).map((x) => x.work.name), ...(top.alt ? { matchedBy: [top.alt] } : {}) };
+  return {
+    work: top.work,
+    others: scored.slice(1, 6).map((x) => x.work.name),
+    ...(top.alt ? { matchedBy: [top.alt] } : {}),
+    ...(top.step ? { matchedStep: top.step } : {}),
+  };
 }
 
 /**
@@ -623,6 +644,7 @@ export async function getWorkSteps(
       work: found.work.name,
       activity: found.work.activity,
       ...(found.matchedBy ? { matchedBySynonym: found.matchedBy } : {}),
+      ...(found.matchedStep ? { matchedStep: found.matchedStep } : {}),
       ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
       ...(relatedDocuments.length > 0 ? { relatedDocuments } : {}),
       ...(Object.keys(found.work.linkBasis).length > 0 ? { linkBasis: found.work.linkBasis, linkBasisLegend: LINK_BASIS_LABEL } : {}),

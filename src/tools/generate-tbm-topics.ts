@@ -232,8 +232,9 @@ function pickRisks(
 function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
   const labelTokens = label.split(/[\s.,()·]+/).filter((t) => t.length >= 2);
   const workName = ws.work.replace(/\s/g, "");
-  const focused = ws.steps.filter((step) =>
-    labelTokens.some((t) => !workName.includes(t) && step.name.includes(t)),
+  // 작업명에 단계 이름이 들어 있거나, 단계 대체 이름("지브")으로 공종을 찾았으면 그 단계
+  const focused = ws.steps.filter(
+    (step) => step.name === ws.matchedStep || labelTokens.some((t) => !workName.includes(t) && step.name.includes(t)),
   );
   const chosen = focused.length > 0 ? focused : ws.steps;
   const maxBasis = focused.length > 0 ? MAX_STEP_BASIS_FOCUSED : MAX_STEP_BASIS_OVERVIEW;

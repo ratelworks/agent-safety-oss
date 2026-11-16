@@ -324,6 +324,35 @@ async function main(): Promise<void> {
   for (const iri of new Set(synonymTargets)) if (!(await getNode(iri))) missingSynonymTargets.push(iri);
   check("동의어 사전이 가리키는 공종·유해요인이 모두 있는 노드다", missingSynonymTargets.length === 0, `대상 ${new Set(synonymTargets).size}개, 없는 것 ${missingSynonymTargets.join(", ") || 0}`);
 
+  // 8-1. 단계 대체 이름(부재·장비 부품)으로 공종과 그 단계를 찾고, 근거는 원문에 있다
+  const stepAliasCases: [string, string, string][] = [
+    ["지브", "타워크레인", "지브·카운터웨이트 조립"],
+    ["폼타이", "벽체 거푸집(유로폼)", "벽체 거푸집 조립"],
+    ["복공", "흙막이 공통·부대", "복공설치"],
+    ["유니트", "금속·잡철물", "커튼월 설치"],
+  ];
+  const stepAliasBad: string[] = [];
+  for (const [q, work, step] of stepAliasCases) {
+    const hit = await findWork(q);
+    if (hit?.work.name !== work || hit.matchedStep !== step) stepAliasBad.push(`${q} → ${hit?.work.name ?? "없음"}/${hit?.matchedStep ?? "-"}`);
+  }
+  check("단계 대체 이름으로 공종과 그 단계를 찾는다", stepAliasBad.length === 0, stepAliasBad.join(" / "));
+  const stepAliasNoEvidence: string[] = [];
+  let stepAliasCount = 0;
+  for (const node of await readDir("subtasks")) {
+    const evidence = ((node._meta as { stepAltLabelEvidence?: { step: string; label: string; text: string }[] } | undefined)?.stepAltLabelEvidence ?? []);
+    for (const st of (node.steps ?? []) as { "@id": string; altLabel?: string[] }[]) {
+      for (const label of st.altLabel ?? []) {
+        stepAliasCount += 1;
+        const ev = evidence.find((e) => e.step === st["@id"] && e.label === label);
+        if (!ev || !ev.text.replace(/\s+/g, "").includes(label.replace(/\s+/g, ""))) stepAliasNoEvidence.push(`${st["@id"]} ${label}`);
+      }
+    }
+  }
+  check("단계 대체 이름마다 그 말이 든 원문 근거 문장이 있다", stepAliasCount > 0 && stepAliasNoEvidence.length === 0, `대체 이름 ${stepAliasCount}개, 근거 없는 것 ${stepAliasNoEvidence.join(", ") || 0}`);
+  const hoist = await findWork("호이스트");
+  check("KOSHA Guide 가 크레인으로 정의한 호이스트를 건설용 리프트로 잇지 않는다", hoist?.work.name !== "건설용 리프트", hoist?.work.name ?? "없음");
+
   // 8-2. TBM 은 상위 작업이 이어지지 않은 공종도 공종 이름으로 만든다 (공종 노드가 출발점)
   const tbmMissing: string[] = [];
   for (const node of await readDir("subtasks")) {

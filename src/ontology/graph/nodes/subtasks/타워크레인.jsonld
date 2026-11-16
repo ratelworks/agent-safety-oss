@@ -102,7 +102,45 @@
         "text": "(마) 운전실, 턴테이블, 타워헤드 해체 양호 불량"
       }
     ],
-    "altLabelNote": "대체 이름은 KOSHA Guide 원문 근거가 있는 것만 넣었다. kind: parenthetical = 원문 병기 / definition = 공종 전용 가이드의 정의·작업 내용 / transliteration = 원문 병기 영문의 한글 표기 / spelling = 원문에 실린 다른 표기."
+    "altLabelNote": "대체 이름은 KOSHA Guide 원문 근거가 있는 것만 넣었다. kind: parenthetical = 원문 병기 / definition = 공종 전용 가이드의 정의·작업 내용 / transliteration = 원문 병기 영문의 한글 표기 / spelling = 원문에 실린 다른 표기.",
+    "stepAltLabelEvidence": [
+      {
+        "step": "workstep:타워크레인/2",
+        "label": "마스트",
+        "guide": "D-C-10-2026",
+        "guideTitle": "건설장비(이동식크레인, 항타기 및 항발기, 타워크레인) 작업계획서 작성에 관한 기술지원규정",
+        "text": "② “텔레스코핑(Telescoping) 작업”이라 함은 기둥 역할을 하는 마스트를 연장 또는 해체작업을 하기위해 유압장치 및 실린더가 동작하고 있는 상태를 말한다."
+      },
+      {
+        "step": "workstep:타워크레인/3",
+        "label": "지브",
+        "guide": "D-C-10-2026",
+        "guideTitle": "건설장비(이동식크레인, 항타기 및 항발기, 타워크레인) 작업계획서 작성에 관한 기술지원규정",
+        "text": "⑤ \"권상하중\"이라 함은 타워크레인이 수평으로 뻗어 나온 팔 부분인 지브의 길이 및 경사각에 따라 들어 올릴 수 있는 최대의 하중을 말한다."
+      },
+      {
+        "step": "workstep:타워크레인/3",
+        "label": "카운터웨이트",
+        "guide": "D-C-10-2026",
+        "guideTitle": "건설장비(이동식크레인, 항타기 및 항발기, 타워크레인) 작업계획서 작성에 관한 기술지원규정",
+        "text": "메인 지브(Main jib) 및 카운터웨이트(Counter weight) 설치"
+      },
+      {
+        "step": "workstep:타워크레인/3",
+        "label": "턴테이블",
+        "guide": "D-C-10-2026",
+        "guideTitle": "건설장비(이동식크레인, 항타기 및 항발기, 타워크레인) 작업계획서 작성에 관한 기술지원규정",
+        "text": "턴테이블(Turn table) 및운전실(Cabin) 해체"
+      },
+      {
+        "step": "workstep:타워크레인/5",
+        "label": "운전실",
+        "guide": "D-C-10-2026",
+        "guideTitle": "건설장비(이동식크레인, 항타기 및 항발기, 타워크레인) 작업계획서 작성에 관한 기술지원규정",
+        "text": "턴테이블(Turn table) 및운전실(Cabin) 해체"
+      }
+    ],
+    "stepAltLabelNote": "단계 대체 이름은 KOSHA Guide 원문 근거가 있는 것만 넣었다 — 그 단계에서 다루는 부재·장비 부품·작업을 부르는 말. 사이트(공단 산업안전 AI 어시스턴트)의 단계 별칭 목록에서 후보를 얻고, 판정은 원문으로 했다."
   },
   "broader": "activity:tower_crane",
   "hasHazard": [
@@ -617,6 +655,9 @@
             }
           ]
         }
+      ],
+      "altLabel": [
+        "마스트"
       ]
     },
     {
@@ -1083,6 +1124,11 @@
             }
           ]
         }
+      ],
+      "altLabel": [
+        "지브",
+        "카운터웨이트",
+        "턴테이블"
       ]
     },
     {
@@ -1635,6 +1681,9 @@
             }
           ]
         }
+      ],
+      "altLabel": [
+        "운전실"
       ]
     }
   ]

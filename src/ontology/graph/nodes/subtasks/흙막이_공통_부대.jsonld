@@ -18,7 +18,33 @@
       "hasHazard": "mapped",
       "broader": "editorial",
       "references": "editorial"
-    }
+    },
+    "stepAltLabelEvidence": [
+      {
+        "step": "workstep:흙막이_공통_부대/7",
+        "label": "복공",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "표준시방서 KCS 21 30 00(가설흙막이 공사), KCS 21 45 10(노면 복공)"
+      },
+      {
+        "step": "workstep:흙막이_공통_부대/9",
+        "label": "계측관리",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "(6) 변위발생이 우려되는 시설물과 흙막이공에 대한 정기적인 계측관리를 시행하고, 그 결과를 공사감독자에게 서면으로 보고한 후 보관하여야 한다."
+      }
+    ],
+    "altLabelEvidence": [
+      {
+        "label": "흙막이 지보공",
+        "kind": "definition",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "4.1 흙막이 지보공 등의 위험방지"
+      }
+    ],
+    "stepAltLabelNote": "단계 대체 이름은 KOSHA Guide 원문 근거가 있는 것만 넣었다 — 그 단계에서 다루는 부재·장비 부품·작업을 부르는 말. 사이트(공단 산업안전 AI 어시스턴트)의 단계 별칭 목록에서 후보를 얻고, 판정은 원문으로 했다."
   },
   "broader": "activity:excavation_2m_plus",
   "hasHazard": [
@@ -1886,6 +1912,9 @@
             }
           ]
         }
+      ],
+      "altLabel": [
+        "복공"
       ]
     },
     {
@@ -2665,6 +2694,9 @@
             }
           ]
         }
+      ],
+      "altLabel": [
+        "계측관리"
       ]
     },
     {
@@ -2836,5 +2868,8 @@
         }
       ]
     }
+  ],
+  "altLabel": [
+    "흙막이 지보공"
   ]
 }
