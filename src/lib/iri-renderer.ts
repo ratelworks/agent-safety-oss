@@ -173,6 +173,7 @@ const LAW_NAME_MAP: Record<string, string> = {
 const PENALTY_AMOUNT_MAP: Record<string, string> = {
   "penalty:산안법:175": "5천만원 이하 과태료",
   "penalty:산안법:167": "7년 이하 징역 또는 1억원 이하 벌금 (사망 사고 시)",
+  "penalty:산안법:168": "5년 이하 징역 또는 5천만원 이하 벌금 — 제38조(안전조치)·제39조(보건조치) 위반 등",
   "penalty:중처법:6": "1년 이상 징역 또는 10억원 이하 벌금 (사망 사고 시)",
 };
 
