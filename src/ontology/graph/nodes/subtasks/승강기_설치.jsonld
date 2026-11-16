@@ -5,6 +5,11 @@
     "ConstructionSubtask"
   ],
   "title": "승강기 설치",
+  "altLabel": [
+    "엘리베이터",
+    "E/V",
+    "승강로"
+  ],
   "workGroup": "승강기설치",
   "jurisdiction": "KR",
   "_meta": {
@@ -17,7 +22,31 @@
       "steps": "source",
       "hasHazard": "mapped",
       "broader": "editorial"
-    }
+    },
+    "altLabelEvidence": [
+      {
+        "label": "엘리베이터",
+        "kind": "definition",
+        "guide": "D-C-14-2026",
+        "guideTitle": "엘리베이터 승강로용 고소 가설작업대 안전작업에 관한 기술지원규정",
+        "text": "엘리베이터 승강로용 고소 가설작업대 안전작업에 관한 기술지원규정"
+      },
+      {
+        "label": "E/V",
+        "kind": "parenthetical",
+        "guide": "D-C-14-2026",
+        "guideTitle": "엘리베이터 승강로용 고소 가설작업대 안전작업에 관한 기술지원규정",
+        "text": "(나) “엘리베이터(E/V) 승강로용 고소 가설작업대”라 함은 엘리베이터 승강로 내부 벽체 철근 조립 및 거푸집 설치․해체, 기타 마감작업 등을 위해 구조물에 지지시켜 총 3단으로 구성된 작업발판을 말한다."
+      },
+      {
+        "label": "승강로",
+        "kind": "definition",
+        "guide": "D-C-14-2026",
+        "guideTitle": "엘리베이터 승강로용 고소 가설작업대 안전작업에 관한 기술지원규정",
+        "text": "엘리베이터 승강로용 고소 가설작업대 안전작업에 관한 기술지원규정"
+      }
+    ],
+    "altLabelNote": "대체 이름은 KOSHA Guide 원문 근거가 있는 것만 넣었다. kind: parenthetical = 원문 병기 / definition = 공종 전용 가이드의 정의·작업 내용 / transliteration = 원문 병기 영문의 한글 표기 / spelling = 원문에 실린 다른 표기."
   },
   "broader": "activity:elevator_installation",
   "hasHazard": [

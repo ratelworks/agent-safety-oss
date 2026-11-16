@@ -346,6 +346,26 @@ async function main(): Promise<void> {
   check("호를 든 조문 근거가 모두 그 호 본문으로 풀린다", unresolvedItem.length === 0, unresolvedItem.slice(0, 5).join(", "));
   check("문장 대조로 정한 근거 위치는 응답에 그 표시가 붙는다", locatedByText > 0 && locatedByTextShown === locatedByText, `노드 ${locatedByText}건, 응답 ${locatedByTextShown}건`);
 
+  // 8-5. 공종의 대체 이름은 가이드 원문 근거가 있고, 그 이름으로 그 공종을 찾는다
+  const altNoEvidence: string[] = [];
+  const altMisrouted: string[] = [];
+  let altCount = 0;
+  for (const n of subtasks) {
+    const alts = (n as { altLabel?: string[] }).altLabel ?? [];
+    const evidence = ((n._meta as { altLabelEvidence?: { label: string; guide: string; text: string }[] } | undefined)?.altLabelEvidence ?? []);
+    for (const alt of alts) {
+      altCount += 1;
+      const ev = evidence.find((e) => e.label === alt);
+      const body = ev ? await readFile(resolve(GRAPH, "..", "kosha-guides", `${ev.guide}.md`), "utf-8").catch(() => "") : "";
+      const flat = body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+      if (!ev || !flat.includes(ev.text.slice(0, 30))) altNoEvidence.push(`${n.title}:${alt}`);
+      const hit = await findWork(alt);
+      if (hit?.work.name !== n.title) altMisrouted.push(`${alt} → ${hit?.work.name ?? "없음"} (${n.title})`);
+    }
+  }
+  check("공종 대체 이름마다 가이드 원문 근거 줄이 있다", altCount > 0 && altNoEvidence.length === 0, `대체 이름 ${altCount}개, 근거 없음 ${altNoEvidence.join(", ") || 0}`);
+  check("공종 대체 이름으로 그 공종을 찾는다", altMisrouted.length === 0, altMisrouted.slice(0, 5).join(", "));
+
   // 9. 유해요인 → 조문: 공종 자료에서 끌어낸 연결이 있고, 끌어낸 것임이 적혀 있다
   const hazardNodes = await readDir("hazards");
   const derivedBad: string[] = [];

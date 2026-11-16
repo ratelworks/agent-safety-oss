@@ -66,6 +66,8 @@ interface Work {
   name: string;
   group: string;
   activity?: string;
+  /** 원문 근거로 확인한 대체 이름 (노드 altLabel — 근거는 _meta.altLabelEvidence) */
+  altLabels: string[];
   /** 관련 고시(법령 노드)와 그 조문 */
   references: string[];
   /** 연결 종류별로 그 연결을 정한 방식 (노드 _meta.linkBasis) */
@@ -75,6 +77,7 @@ interface Work {
 interface SubtaskNode {
   "@id": string;
   title: string;
+  altLabel?: string[];
   workGroup: string;
   broader?: string;
   references?: string[];
@@ -183,7 +186,7 @@ export interface ResolvedWorkSteps {
   relatedNotices?: RelatedNotice[];
   /** 연결된 작업과 관련된 문서 — 작성 조건(when)에 해당할 때만 필요하다 */
   relatedDocuments?: RelatedDocument[];
-  /** 공종 이름이 아니라 동의어 사전의 낱말로 찾았을 때 그 낱말 */
+  /** 공종 이름이 아니라 동의어 사전의 낱말이나 원문 근거가 있는 대체 이름으로 찾았을 때 그 말 */
   matchedBySynonym?: string[];
   /** 연결 종류별로 그 연결을 정한 방식 (예: 상위 작업 = 내용을 읽고 정함) — 값의 뜻은 linkBasisLegend */
   linkBasis?: Record<string, string>;
@@ -223,6 +226,7 @@ async function loadWorks(): Promise<Work[]> {
       name: n.title,
       group: n.workGroup,
       ...(n.broader ? { activity: n.broader } : {}),
+      altLabels: n.altLabel ?? [],
       references: n.references ?? [],
       linkBasis: n._meta?.linkBasis ?? {},
       steps: (n.steps ?? []).map((st) => ({ name: st.stepName, hazards: (st.stepHazards ?? []).map(toStepHazard) })),
@@ -235,25 +239,53 @@ function normalize(s: string): string {
   return s.replace(/[\s·()\-+/]/g, "").toLowerCase();
 }
 
+/** 영문 대체 이름은 낱말 단위로만 맞춘다 — "E/V"·"RCD" 같은 짧은 말이 다른 낱말 속에서 맞지 않게 */
+function asciiTermIn(query: string, term: string): boolean {
+  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s*");
+  return new RegExp(`(^|[^A-Za-z0-9])${escaped}($|[^A-Za-z0-9])`, "i").test(query);
+}
+
+/** 대체 이름이 질문에 맞으면 점수, 아니면 0 — 이름과 같은 규칙(같으면 완전 일치, 들어 있으면 길이만큼 가산) */
+function altLabelScore(query: string, q: string, alt: string): number {
+  const a = normalize(alt);
+  if (a.length < 2) return 0;
+  if (a === q) return SCORE_EXACT;
+  const contained = /^[\x00-\x7F]+$/.test(alt) ? asciiTermIn(query, alt) : q.includes(a);
+  return contained ? SCORE_CONTAINS + a.length : 0;
+}
+
 /** 작업명으로 공종을 찾는다. 가장 잘 맞는 하나와, 같은 점수대의 다른 후보 이름을 돌려준다. */
 export async function findWork(query: string): Promise<{ work: Work; others: string[]; matchedBy?: string[] } | null> {
   const q = normalize(query);
   if (!q) return null;
   const tokens = query.split(/[\s.,()·]+/).filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t));
-  const scored: { work: Work; score: number }[] = [];
+  const scored: { work: Work; score: number; alt?: string }[] = [];
   for (const w of await loadWorks()) {
     const name = normalize(w.name);
     const bare = normalize(w.name.replace(/작업$|공사$/, ""));
+    // 괄호 속 부연을 뺀 이름 — "벽체 거푸집(유로폼)" 은 "벽체 거푸집" 으로도 불린다
+    const unparen = normalize(w.name.replace(/\(.*?\)/g, "").replace(/작업$|공사$/, ""));
     let score = 0;
-    if (name === q || bare === q) score = SCORE_EXACT;
+    if (name === q || bare === q || unparen === q) score = SCORE_EXACT;
     else if (bare.length >= 2 && q.includes(bare)) score = SCORE_CONTAINS + bare.length;
+    else if (unparen.length >= 2 && unparen !== bare && q.includes(unparen)) score = SCORE_CONTAINS + unparen.length;
     else if (q.length >= 2 && name.includes(q)) score = SCORE_CONTAINS;
     else score = tokens.filter((t) => name.includes(normalize(t))).length * SCORE_TOKEN;
-    if (score >= SCORE_TOKEN) scored.push({ work: w, score });
+    // 원문 근거가 있는 대체 이름이 이름보다 잘 맞으면 그 점수를 쓴다
+    let alt: string | undefined;
+    for (const a of w.altLabels) {
+      const s = altLabelScore(query, q, a);
+      if (s > score) {
+        score = s;
+        alt = a;
+      }
+    }
+    if (score >= SCORE_TOKEN) scored.push({ work: w, score, ...(alt ? { alt } : {}) });
   }
   if (scored.length === 0) return findWorkBySynonym(query);
   scored.sort((a, b) => b.score - a.score);
-  return { work: scored[0].work, others: scored.slice(1, 6).map((x) => x.work.name) };
+  const top = scored[0];
+  return { work: top.work, others: scored.slice(1, 6).map((x) => x.work.name), ...(top.alt ? { matchedBy: [top.alt] } : {}) };
 }
 
 /**

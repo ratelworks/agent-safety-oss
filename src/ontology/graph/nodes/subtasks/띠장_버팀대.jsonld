@@ -5,6 +5,11 @@
     "ConstructionSubtask"
   ],
   "title": "띠장·버팀대",
+  "altLabel": [
+    "띠장",
+    "버팀보",
+    "스트러트"
+  ],
   "workGroup": "흙막이공사",
   "jurisdiction": "KR",
   "_meta": {
@@ -18,7 +23,31 @@
       "hasHazard": "mapped",
       "broader": "editorial",
       "references": "editorial"
-    }
+    },
+    "altLabelEvidence": [
+      {
+        "label": "띠장",
+        "kind": "definition",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "8.2 띠장, 버팀대, 중간말뚝, X-브레이싱 공사 시 안전조치 사항"
+      },
+      {
+        "label": "버팀보",
+        "kind": "parenthetical",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "(4) 버팀보 작업 기준은 “ 8.2.2 버팀대(Strut), 경사 버팀대 및 경사 고임대(Raker) 설치 시 안전조치 사항”을 준수하여 시행한다."
+      },
+      {
+        "label": "스트러트",
+        "kind": "transliteration",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "⑨ 버팀대(strut) : 흙막이 벽에 작용하는 수평력을 굴착현장 내부에서 지지하기 위하여 수평 또는 경사로 설치하는 압축 부재"
+      }
+    ],
+    "altLabelNote": "대체 이름은 KOSHA Guide 원문 근거가 있는 것만 넣었다. kind: parenthetical = 원문 병기 / definition = 공종 전용 가이드의 정의·작업 내용 / transliteration = 원문 병기 영문의 한글 표기 / spelling = 원문에 실린 다른 표기."
   },
   "broader": "activity:excavation_2m_plus",
   "hasHazard": [

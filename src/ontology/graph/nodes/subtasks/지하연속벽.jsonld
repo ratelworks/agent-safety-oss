@@ -5,6 +5,12 @@
     "ConstructionSubtask"
   ],
   "title": "지하연속벽",
+  "altLabel": [
+    "Diaphragm Wall",
+    "다이아프램월",
+    "Slurry Wall",
+    "슬러리월"
+  ],
   "workGroup": "흙막이공사",
   "jurisdiction": "KR",
   "_meta": {
@@ -18,7 +24,38 @@
       "hasHazard": "mapped",
       "broader": "editorial",
       "references": "editorial"
-    }
+    },
+    "altLabelEvidence": [
+      {
+        "label": "Diaphragm Wall",
+        "kind": "parenthetical",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "⑤ 지하연속벽체(Diaphragm Wall)"
+      },
+      {
+        "label": "다이아프램월",
+        "kind": "transliteration",
+        "guide": "D-C-1-2025",
+        "guideTitle": "흙막이공사에 대한 기술지원규정",
+        "text": "⑤ 지하연속벽체(Diaphragm Wall)"
+      },
+      {
+        "label": "Slurry Wall",
+        "kind": "parenthetical",
+        "guide": "C-60-2015",
+        "guideTitle": "탑다운(Top down) 공법 안전작업 지침",
+        "text": "(나) “지하연속벽(Slurry wall)”이라 함은 안정액(벤토나이트액)을 이용하여 지중에"
+      },
+      {
+        "label": "슬러리월",
+        "kind": "transliteration",
+        "guide": "C-60-2015",
+        "guideTitle": "탑다운(Top down) 공법 안전작업 지침",
+        "text": "(나) “지하연속벽(Slurry wall)”이라 함은 안정액(벤토나이트액)을 이용하여 지중에"
+      }
+    ],
+    "altLabelNote": "대체 이름은 KOSHA Guide 원문 근거가 있는 것만 넣었다. kind: parenthetical = 원문 병기 / definition = 공종 전용 가이드의 정의·작업 내용 / transliteration = 원문 병기 영문의 한글 표기 / spelling = 원문에 실린 다른 표기."
   },
   "broader": "activity:excavation_2m_plus",
   "hasHazard": [
