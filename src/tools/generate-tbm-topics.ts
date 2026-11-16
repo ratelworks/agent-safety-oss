@@ -104,7 +104,9 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const workSteps = input.activityLabel ? await getWorkSteps(input.activityLabel) : null;
   const activityMatch =
     findActivity(input) ??
-    (workSteps?.result.activity ? findActivity({ activityId: workSteps.result.activity }) : null);
+    (workSteps?.result.activity ? findActivity({ activityId: workSteps.result.activity }) : null) ??
+    // 상위 작업이 이어지지 않은 공종도 공종 노드 자체가 유해요인·근거 조문·가이드를 갖고 있다 — 그 노드에서 시작한다
+    (workSteps ? subtaskAsStart(workSteps.result) : null);
   const stepTopics = workSteps ? buildStepTopics(workSteps.result, input.activityLabel ?? "") : undefined;
 
   if (!activityMatch) {
@@ -258,6 +260,13 @@ function buildStepTopics(ws: ResolvedWorkSteps, label: string): StepTopics {
     notice:
       "공종의 작업 단계마다 살필 재해유형과 근거를 연결한 참고 자료입니다. 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다.",
   };
+}
+
+/** 공종 노드를 TBM 의 출발점으로 쓴다 (작업 노드와 같이 hasHazard·regulatedBy·guidedBy 를 갖는다) */
+function subtaskAsStart(ws: ResolvedWorkSteps): ReturnType<typeof findActivity> {
+  const node = getGraphNode(ws.iri);
+  if (!node) return null;
+  return { node, iri: ws.iri, label: ws.work, score: 0, matchedBy: "workSteps" };
 }
 
 function resolveActivityHazards(activityNode: GraphNode): GraphNode[] {

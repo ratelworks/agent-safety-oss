@@ -23,6 +23,7 @@ import { findWork, getWorkSteps, LINK_BASIS_LABEL } from "../../src/lib/work-ste
 import { fieldSafetyBriefingTool } from "../../src/tools/field-safety-briefing.js";
 import { searchArticles } from "../../src/lib/article-search.js";
 import { generateTbmTopicsTool } from "../../src/tools/generate-tbm-topics.js";
+import { suggestControlsForHazardTool } from "../../src/tools/suggest-controls-for-hazard.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -295,6 +296,30 @@ async function main(): Promise<void> {
   const missingSynonymTargets: string[] = [];
   for (const iri of new Set(synonymTargets)) if (!(await getNode(iri))) missingSynonymTargets.push(iri);
   check("동의어 사전이 가리키는 공종·유해요인이 모두 있는 노드다", missingSynonymTargets.length === 0, `대상 ${new Set(synonymTargets).size}개, 없는 것 ${missingSynonymTargets.join(", ") || 0}`);
+
+  // 8-2. TBM 은 상위 작업이 이어지지 않은 공종도 공종 이름으로 만든다 (공종 노드가 출발점)
+  const tbmMissing: string[] = [];
+  for (const node of await readDir("subtasks")) {
+    const title = String(node.title);
+    const sc = (await generateTbmTopicsTool.handler({ activityLabel: title })).structuredContent as
+      | { found?: boolean; topics?: { workSteps?: { work?: string } } }
+      | undefined;
+    if (!sc?.found || sc.topics?.workSteps?.work !== title) tbmMissing.push(title);
+  }
+  check("TBM 이 모든 공종 이름에서 그 공종의 단계로 만들어진다", tbmMissing.length === 0, tbmMissing.join(", "));
+
+  // 8-3. 통제대책 추천은 위계가 적혀 있지 않은 대책도 묶어서 보인다 — 위계별 묶음의 합 = 전체 수
+  const levelGaps: string[] = [];
+  for (const node of await readDir("hazards")) {
+    const sc = (await suggestControlsForHazardTool.handler({ hazard: String(node["@id"]) })).structuredContent as
+      | { fieldMeasures?: { total: number; byLevel: Record<string, unknown[]> } }
+      | undefined;
+    const fm = sc?.fieldMeasures;
+    if (!fm) continue;
+    const sum = Object.values(fm.byLevel).reduce((a, l) => a + l.length, 0);
+    if (sum !== fm.total) levelGaps.push(`${String(node["@id"])} ${sum}/${fm.total}`);
+  }
+  check("통제대책 추천의 위계별 묶음이 공종 대책을 빠짐없이 담는다", levelGaps.length === 0, levelGaps.join(", "));
 
   // 9. 유해요인 → 조문: 공종 자료에서 끌어낸 연결이 있고, 끌어낸 것임이 적혀 있다
   const hazardNodes = await readDir("hazards");

@@ -30,6 +30,9 @@ import { findFieldMeasuresForHazard, CONTROL_LEVEL_ORDER, CONTROL_LEVEL_LABEL, t
 
 /** 위계마다 보여 줄 현장 대책 수 — 넘으면 줄인 건수를 적는다 */
 const MAX_FIELD_MEASURES_PER_LEVEL = 4;
+/** 원천 자료에 위계가 적혀 있지 않은 대책의 묶음 이름 */
+const UNCLASSIFIED_LEVEL = "unclassified";
+const UNCLASSIFIED_LABEL = "위계 미분류 (자료에 위계가 적혀 있지 않음)";
 import { updateComponentsMessage, textComponent, assistPanelComponent, type A2UIMessage } from "../lib/a2ui.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -346,11 +349,16 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     lines.push("");
     lines.push(`> 위험요인 ${field.riskCount}건 · 공종 ${field.works.length}개 · 대책 ${field.measures.length}건. 여러 공종에서 함께 쓰이는 것부터 위계마다 ${MAX_FIELD_MEASURES_PER_LEVEL}건씩 보입니다.`);
     lines.push("");
-    for (const level of CONTROL_LEVEL_ORDER) {
-      const list = field.measures.filter((m) => m.controlLevel === level);
+    // 위계가 정해지지 않은 대책도 빠뜨리지 않는다 — 위계별 묶음 뒤에 따로 보인다 (합계 = total)
+    const known = new Set<string>(CONTROL_LEVEL_ORDER);
+    const groups: Array<[string, string, FieldMeasure[]]> = [
+      ...CONTROL_LEVEL_ORDER.map((level): [string, string, FieldMeasure[]] => [level, CONTROL_LEVEL_LABEL[level], field.measures.filter((m) => m.controlLevel === level)]),
+      [UNCLASSIFIED_LEVEL, UNCLASSIFIED_LABEL, field.measures.filter((m) => !m.controlLevel || !known.has(m.controlLevel))],
+    ];
+    for (const [level, label, list] of groups) {
       if (list.length === 0) continue;
       fieldByLevel[level] = list;
-      lines.push(`**${CONTROL_LEVEL_LABEL[level]}** (${list.length}건)`);
+      lines.push(`**${label}** (${list.length}건)`);
       for (const m of list.slice(0, MAX_FIELD_MEASURES_PER_LEVEL)) {
         lines.push(`- ${m.variant ? `(${m.variant}) ` : ""}${m.measure} · ${m.works.length > 3 ? `${m.works.slice(0, 3).join(", ")} 외 ${m.works.length - 3}개 공종` : m.works.join(", ")}`);
       }
