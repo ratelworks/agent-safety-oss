@@ -39,6 +39,8 @@ interface CitedLaw {
   articles: string[];
   /** 전체 조문을 실은 법령 — "인용 조문만" 표지와 검색 제외를 붙이지 않는다 */
   complete?: boolean;
+  /** 조문을 붙일 기존 법령 노드 파일 이름(공백 없는 법령명) — 시행령 조문을 모법 노드에 모아 둔 기존 관례(건설기술 진흥법 등)를 따를 때 */
+  act?: string;
 }
 
 async function fetchText(url: string, attempt = 0): Promise<string> {
@@ -134,7 +136,7 @@ async function main(): Promise<void> {
     const date = found.promulgated;
     const effective = found.effective || date;
     const blocks = [...xml.matchAll(/<조문단위[^>]*>([\s\S]*?)<\/조문단위>/g)].map((m) => m[1]).filter((b) => cdata(b, "조문여부") === "조문");
-    const actSlug = official.replace(/[\s·ㆍ]/g, "");
+    const actSlug = law.act ?? official.replace(/[\s·ㆍ]/g, "");
     const actIri = `act:${actSlug}`;
     const sourceBase = `https://www.law.go.kr/법령/${encodeURIComponent(official)}`;
     const note = law.complete ? COMPLETE_NOTE : CITED_NOTE;
