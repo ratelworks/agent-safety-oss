@@ -7,6 +7,7 @@
  *              굴삭기 1대 + 작업자 8명. 월요일부터 작업. 작업계획서 써줘."
  */
 // runtime: tsx 가 .ts 를 직접 해석 (build/ 가 아닌 src/ 경로로 ts-only typecheck 도 통과)
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { generateSafetyDocumentTool } from "../../src/tools/generate-safety-document.js";
 
 const userRequest = {

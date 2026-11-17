@@ -4,6 +4,7 @@
  *
  * 의존성 추가 없이 현 repo의 tsx 테스트 패턴으로 실행한다.
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { XMLParser } from "fast-xml-parser";
 import { TOOLS } from "../../src/tool-registry.js";
 import type { McpToolResult } from "../../src/lib/types.js";
@@ -187,7 +188,9 @@ async function testGenerateSafetyDocumentIntegration(): Promise<void> {
     draft: TEST_DRAFT,
   });
 
-  assert(textOf(defaultMd) === textOf(explicitMd), "omitted format must keep existing md output");
+  // 형식을 주지 않으면 정본(.dclx)을 저장하고, 응답은 같은 Markdown 본문(미리보기) 뒤에 정본 경로를 붙인다
+  assert(typeof defaultMd.structuredContent?.dclxPath === "string", "omitted format must save the canonical .dclx");
+  assert(textOf(defaultMd).startsWith(`${textOf(explicitMd)}\n\n---\n\n> 📄 **정본(.dclx)을 저장했습니다**`), "omitted format must return the md body as preview followed by the canonical path");
   assert(hasDoclangRoot(textOf(doclang)), "doclang format must return XML with namespace and version");
   assert(textOf(doclang).includes("<field_region>"), "doclang output must include field_region");
   assert(textOf(doclang).includes("<custom>"), "doclang output must preserve element-level custom metadata");

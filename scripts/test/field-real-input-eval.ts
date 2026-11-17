@@ -5,6 +5,7 @@
  * 안전관리자/현장소장이 실제 필수값을 입력했다고 가정하고
  * generate_safety_document / review_safety_document 결과를 저장·점검한다.
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";

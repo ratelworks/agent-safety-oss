@@ -19,6 +19,7 @@
  *   npx tsx scripts/test/test-document-fillrate.ts --top 20    # 빈도 상위 20종만
  *   npx tsx scripts/test/test-document-fillrate.ts --docId daily_tbm  # 단일 검증
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { spawnSync } from "node:child_process";
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";

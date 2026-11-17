@@ -6,6 +6,7 @@
  * 사용자(안전관리자/현장소장/감독관) 시각의 객관 품질 평가용.
  */
 
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { generateSafetyDocumentTool } from "../../build/tools/generate-safety-document.js";
 
 interface ToolResult {

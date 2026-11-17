@@ -8,6 +8,7 @@
  *   3. ERIC-PP 정밀도 점수 (P4 개선 검증 — 직접 매핑 비율)
  */
 
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { generateSafetyDocumentTool } from "../../build/tools/generate-safety-document.js";
 import { writeFile, mkdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";

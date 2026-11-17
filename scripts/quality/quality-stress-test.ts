@@ -10,6 +10,7 @@
  *   5. 다양한 작업 조건 — 같은 docId × 다른 입력 → 출력 차이 있는가
  */
 
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { generateSafetyDocumentTool } from "../../build/tools/generate-safety-document.js";
 
 interface ToolResult {

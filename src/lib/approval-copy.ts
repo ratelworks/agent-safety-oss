@@ -28,6 +28,18 @@ function stripInlineParen(line: string, prefix: string): string {
   return (line.slice(0, start).replace(/\s+$/, "") + line.slice(close + 1)).replace(/\s+\./g, ".");
 }
 
+/** 한 줄 글에서 도구 표기를 뺀다 — "(그래프 추론 …)"·"(kordoc/pdftotext …)" 괄호와 ERIC-PP 이름 */
+function stripToolNotes(line: string): string {
+  let cleaned = line;
+  for (const prefix of INLINE_META_PREFIXES) cleaned = stripInlineParen(cleaned, prefix);
+  return cleaned.split("ERIC-PP 위계").join("통제수단 위계").split("ERIC-PP").join("통제수단");
+}
+
+/** 결재·제출용 글 한 토막 — 법령 기호를 한글 표기로, 도구 표기를 뺀다 (정본 DocLang 의 글에 쓴다) */
+export function approvalText(text: string): string {
+  return stripToolNotes(humanizeLawSymbols(text));
+}
+
 /** AI 비서·개발자용 안내를 본문에서 뺀다 */
 export function stripGeneratedNoise(text: string): string {
   // 1차 — 첫 절 제목(##) 앞의 인용문과 구분선(검사 상태 머리말, 작성 안내)을 뺀다. 문서 제목(#)은 남긴다
@@ -65,9 +77,7 @@ export function stripGeneratedNoise(text: string): string {
     // 맨 끝의 도구 안내문(구분선 뒤 몇 줄 안에 도구 이름이 나오면 거기서 끝낸다)
     if (line.trim() === "---" && lines.slice(i + 1, i + 1 + DISCLAIMER_LOOKAHEAD_LINES).join(" ").includes(TOOL_NAME)) break;
 
-    let cleaned = line;
-    for (const prefix of INLINE_META_PREFIXES) cleaned = stripInlineParen(cleaned, prefix);
-    out.push(cleaned.split("ERIC-PP 위계").join("통제수단 위계").split("ERIC-PP").join("통제수단"));
+    out.push(stripToolNotes(line));
   }
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }

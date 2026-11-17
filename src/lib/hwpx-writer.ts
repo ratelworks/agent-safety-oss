@@ -1,5 +1,9 @@
 /**
- * hwpx-writer.ts — Markdown 문서를 HWPX(한글) 파일로 만든다. 외부 의존성 없음(Node 표준 zlib 만 사용).
+ * hwpx-writer.ts — 문서를 HWPX(한글) 파일로 만든다. 외부 의존성 없음(Node 표준 zlib 만 사용).
+ *
+ * 두 가지 입력을 받는다.
+ *   정본(DocLang)에서 읽은 본문 블록 — docBlocksToHwpx. 글을 서식으로 해석하지 않고 적힌 글자 그대로 옮긴다(기본 경로).
+ *   Markdown 본문 — markdownToHwpx.
  *
  * HWPX 는 OWPML(KS X 6101) XML 을 ZIP 으로 묶은 형식이다.
  *   mimetype · version.xml · META-INF/container.xml · Contents/content.hpf ·
@@ -11,7 +15,8 @@
  * 패키지 구성과 요소 배열은 MIT 라이선스의 kordoc(github.com/chrisryugj/kordoc)이 만든 HWPX 를 참고했다.
  */
 
-import { deflateRawSync, crc32 } from "node:zlib";
+import { zip } from "./zip.js";
+import type { DocBlock } from "./doclang-reader.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 export const HWPX_MIME_TYPE = "application/hwp+zip";
@@ -31,13 +36,6 @@ const ROW_HEIGHT = 1500;
 const MIN_COLUMN_WEIGHT = 4;
 const MAX_COLUMN_WEIGHT = 40;
 const PREVIEW_TEXT_LIMIT = 1000;
-const ZIP_VERSION = 20;
-const ZIP_FLAG_UTF8 = 0x0800;
-const ZIP_METHOD_STORE = 0;
-const ZIP_METHOD_DEFLATE = 8;
-/** 1980-01-01 00:00 — 같은 입력이면 같은 파일이 나오도록 시각을 고정한다 */
-const ZIP_DOS_TIME = 0;
-const ZIP_DOS_DATE = 0x0021;
 
 /** 글자 모양 — id 는 배열 순서 */
 const CHAR = { body: 0, bold: 1, title: 2, h2: 3, h3: 4, h4: 5, small: 6, smallBold: 7 } as const;
@@ -360,66 +358,45 @@ function previewText(blocks: Block[]): string {
   return lines.join("\n").slice(0, PREVIEW_TEXT_LIMIT);
 }
 
-// ── ZIP 쓰기 ────────────────────────────────────────────────────────
-interface ZipEntry {
-  name: string;
-  data: Buffer;
-  /** mimetype 은 압축하지 않고 맨 앞에 둔다 (패키지 형식 규칙) */
-  store?: boolean;
-}
+// ── 본문 블록(정본)에서 ─────────────────────────────────────────────
+/** 적힌 글자 그대로의 글 — 서식 해석 없이 굵기 없는 한 구간 */
+const plainRuns = (text: string): Run[] => [{ text: stripPictographs(text), bold: false }];
+const plainParagraph = (para: number, char: number, text: string): Block => ({ kind: "paragraph", para, char, boldChar: char, runs: plainRuns(text) });
 
-function zip(entries: ZipEntry[]): Buffer {
-  const localParts: Buffer[] = [];
-  const centralParts: Buffer[] = [];
-  let offset = 0;
-  for (const entry of entries) {
-    const name = Buffer.from(entry.name, "utf8");
-    const method = entry.store ? ZIP_METHOD_STORE : ZIP_METHOD_DEFLATE;
-    const body = entry.store ? entry.data : deflateRawSync(entry.data);
-    const checksum = crc32(entry.data);
-    const local = Buffer.alloc(30);
-    local.writeUInt32LE(0x04034b50, 0);
-    local.writeUInt16LE(ZIP_VERSION, 4);
-    local.writeUInt16LE(ZIP_FLAG_UTF8, 6);
-    local.writeUInt16LE(method, 8);
-    local.writeUInt16LE(ZIP_DOS_TIME, 10);
-    local.writeUInt16LE(ZIP_DOS_DATE, 12);
-    local.writeUInt32LE(checksum, 14);
-    local.writeUInt32LE(body.length, 18);
-    local.writeUInt32LE(entry.data.length, 22);
-    local.writeUInt16LE(name.length, 26);
-    local.writeUInt16LE(0, 28);
-    const central = Buffer.alloc(46);
-    central.writeUInt32LE(0x02014b50, 0);
-    central.writeUInt16LE(ZIP_VERSION, 4);
-    central.writeUInt16LE(ZIP_VERSION, 6);
-    central.writeUInt16LE(ZIP_FLAG_UTF8, 8);
-    central.writeUInt16LE(method, 10);
-    central.writeUInt16LE(ZIP_DOS_TIME, 12);
-    central.writeUInt16LE(ZIP_DOS_DATE, 14);
-    central.writeUInt32LE(checksum, 16);
-    central.writeUInt32LE(body.length, 20);
-    central.writeUInt32LE(entry.data.length, 24);
-    central.writeUInt16LE(name.length, 28);
-    central.writeUInt32LE(offset, 42);
-    localParts.push(local, name, body);
-    centralParts.push(central, name);
-    offset += local.length + name.length + body.length;
+/** 정본의 본문 블록을 한글 문단·표로 — Markdown 경로와 같은 모양(제목 크기·목록 기호·표 제목)으로 */
+function blocksFromDoc(docBlocks: DocBlock[]): Block[] {
+  const blocks: Block[] = [];
+  const heading = (level: number, text: string): Block => {
+    const char = HEADING_CHARS[Math.min(level, HEADING_CHARS.length) - 1] ?? CHAR.h4;
+    return plainParagraph(level === 1 ? PARA.title : PARA.heading, char, text);
+  };
+  for (const block of docBlocks) {
+    if (block.kind === "heading") blocks.push(heading(block.level, block.text));
+    else if (block.kind === "text") blocks.push(plainParagraph(PARA.body, CHAR.body, block.text));
+    else if (block.kind === "list") block.items.forEach((item, i) => blocks.push(plainParagraph(PARA.list, CHAR.body, `${block.ordered ? `${i + 1}.` : "-"} ${item}`)));
+    else {
+      // 바로 앞 제목이 표 제목과 같으면 다시 적지 않는다
+      const prev = blocks[blocks.length - 1];
+      const prevText = prev?.kind === "paragraph" ? prev.runs.map((r) => r.text).join("") : "";
+      if (block.caption && !block.pair && prevText !== block.caption) blocks.push(heading(3, block.caption));
+      blocks.push({ kind: "table", rows: block.rows.map((row) => row.map((cell) => plainRuns(cell.replace(/\n/g, " ")))), hasHeader: true });
+    }
   }
-  const centralSize = centralParts.reduce((sum, part) => sum + part.length, 0);
-  const end = Buffer.alloc(22);
-  end.writeUInt32LE(0x06054b50, 0);
-  end.writeUInt16LE(entries.length, 8);
-  end.writeUInt16LE(entries.length, 10);
-  end.writeUInt32LE(centralSize, 12);
-  end.writeUInt32LE(offset, 16);
-  return Buffer.concat([...localParts, ...centralParts, end]);
+  return blocks;
 }
 
 // ── 공개 함수 ───────────────────────────────────────────────────────
+/** 정본(DocLang)에서 읽은 본문 블록을 HWPX 파일 내용으로 — 글은 적힌 그대로. 같은 입력이면 같은 바이트가 나온다 */
+export function docBlocksToHwpx(docBlocks: DocBlock[], options: HwpxOptions = {}): Buffer {
+  return packageHwpx(blocksFromDoc(docBlocks), options);
+}
+
 /** Markdown 문서를 HWPX 파일 내용으로 바꾼다. 같은 입력이면 같은 바이트가 나온다 */
 export function markdownToHwpx(markdown: string, options: HwpxOptions = {}): Buffer {
-  const blocks = parseMarkdownBlocks(markdown);
+  return packageHwpx(parseMarkdownBlocks(markdown), options);
+}
+
+function packageHwpx(blocks: Block[], options: HwpxOptions): Buffer {
   const title = xmlText(options.title ?? "");
   const text = (value: string): Buffer => Buffer.from(value, "utf8");
   return zip([

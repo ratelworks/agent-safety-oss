@@ -2108,7 +2108,7 @@ async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise
       const saved = callMcp("load_form_draft", { docId: parsed.docId });
       if (saved.ok && saved.data?.found && saved.data?.formValues) draft = saved.data.formValues;
     }
-    const r = callMcp("generate_safety_document", { docId: parsed.docId, draft });
+    const r = callMcp("generate_safety_document", { docId: parsed.docId, draft, format: "md" });
     if (!r.ok) return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: r.reason }));
     const text = r.text ?? "";
     return send(res, 200, "application/json", JSON.stringify({ ok: true, length: text.length, content: text, preview: text.slice(0, 500) }));

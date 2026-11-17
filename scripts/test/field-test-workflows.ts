@@ -18,6 +18,7 @@
  *   - 일관성 (1단계 결과를 다음 단계 input 으로 사용)
  *   - 최종 문서가 실무에서 결재 가능한 수준인가
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { listSafetyDocumentsByCycleTool } from "../../build/tools/list-safety-documents-by-cycle.js";
 import { getWorkPlanSchemaTool } from "../../build/tools/get-work-plan-schema.js";
 import { getRiskAssessmentSchemaTool } from "../../build/tools/get-risk-assessment-schema.js";

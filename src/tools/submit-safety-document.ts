@@ -80,6 +80,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     docId: args.docId,
     draft,
     useProfile: args.useProfile,
+    format: "md",
   });
   if (generated.isError) return generated;
 

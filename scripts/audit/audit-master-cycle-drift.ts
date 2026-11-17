@@ -11,6 +11,7 @@
  *
  * --lenient 또는 MASTER_CYCLE_DRIFT_LENIENT=1 면 경고만.
  */
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { readFile, readdir, stat } from "node:fs/promises";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

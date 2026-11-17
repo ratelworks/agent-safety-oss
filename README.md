@@ -220,7 +220,16 @@ archive_safety_document        로컬 보관
 
 `assemble_doc_context`와 `generate_safety_document`의 조합이 핵심입니다 — 전자는 LLM이 추측하지 않도록 근거를 모으고, 후자는 그 근거를 결재 가능한 Markdown 문서로 합성합니다.
 
-출력은 기본적으로 기존과 같은 Markdown입니다. 양식의 병합 셀·빈칸·법령 근거 연결까지 보존해 다른 LLM 검수나 문서 RAG에 넘기고 싶다면 `generate_safety_document` 호출 시 `format: "doclang"`을 지정할 수 있습니다. 이 [DocLang](https://www.doclang.ai/) 0.9 XML 출력은 현재 experimental 옵션이며, 여러 줄로 입력한 내용은 줄바꿈 그대로 전달됩니다.
+`generate_safety_document`는 문서의 정본을 [DocLang](https://www.doclang.ai/) 0.9 아카이브(`.dclx`)로 저장합니다. Markdown은 표의 칸 구조·빈칸·법령 근거 연결 같은 공문서 형식을 다 담지 못하기 때문입니다. 응답에는 저장 경로와 미리보기 Markdown이 함께 옵니다.
+
+| `format` | 결과 |
+|---|---|
+| `dclx` (기본) | 정본(`.dclx`)을 저장하고 경로와 미리보기 Markdown을 돌려줍니다 |
+| `hwpx` | 정본을 저장하고, 그 정본에서 만든 한글(`.hwpx`) 파일을 함께 저장합니다 |
+| `md` | 파일 없이 Markdown 본문만 돌려줍니다 |
+| `doclang` | 파일 없이 정본과 같은 DocLang XML 글을 돌려줍니다 |
+
+정본과 한글 파일에는 결재·제출용 본문만 들어갑니다. 작성 안내와 자동 검사 상태는 빠지고, 비어 있는 칸은 손으로 채울 빈칸으로 남습니다. 한글 파일은 정본에서 바로 만들므로 "규격 10\*20\*30" 같은 값의 기호가 바뀌지 않습니다. 정본 꾸러미는 DocLang 공식 도구(0.9.0)가 만드는 것과 같은 구성이고, 공식 검증기의 스키마·규칙 검사를 통과합니다. 여러 줄로 입력한 내용은 줄바꿈 그대로 전달됩니다.
 
 폼 UI([B. 브라우저 입력 폼](#b-브라우저-입력-폼--ai-비서cli-불필요))와 함께 쓰는 경우에는 `render_a2ui_form` (입력 폼 생성) → `save_form_draft` / `load_form_draft` (임시 저장·재로딩) → `submit_safety_document` (실제 문서 생성 흐름으로 제출) 를 같이 사용합니다.
 

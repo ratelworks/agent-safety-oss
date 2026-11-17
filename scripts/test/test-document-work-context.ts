@@ -11,6 +11,7 @@
  *
  * 사용: tsx scripts/test/test-document-work-context.ts
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { generateSafetyDocumentTool } from "../../src/tools/generate-safety-document.js";
 import { resolveWorkConditions, RULE_SCOPE } from "../../src/lib/work-conditions.js";
 import { getWorkSteps, pickFocusSteps } from "../../src/lib/work-steps.js";

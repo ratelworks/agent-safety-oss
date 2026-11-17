@@ -6,6 +6,7 @@
  * activity:excavation_2m_plus → koshaArchiveFacets: [facet:ctgr03/04, ...]
  * → graphContext에 facet IRI 노출 → LLM이 search_kosha_archive ctgr03=04로 자료실 진입
  */
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";

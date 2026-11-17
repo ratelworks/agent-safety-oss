@@ -5,6 +5,7 @@
  * render_a2ui_form 이 만든 UI 컴포넌트 ID가 실제 온톨로지 필드 키로 매핑되고,
  * 그 입력값이 generate_safety_document 결과 본문에 반영되는지 검증한다.
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { TOOLS } from "../../src/tool-registry.js";
 import type { McpToolResult } from "../../src/lib/types.js";
 import { formatGeneratedDocumentForArchive } from "../../src/tools/submit-safety-document.js";

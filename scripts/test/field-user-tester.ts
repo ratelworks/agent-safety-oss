@@ -5,6 +5,7 @@
  * 안전관리자/현장소장이 실제 검수자처럼 읽고 평가할 수 있도록
  * 입력값, 생성 문서, 자동 검토 결과, 수기 체크리스트, 피드백 양식을 한 번에 만든다.
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";

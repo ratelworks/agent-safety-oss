@@ -20,6 +20,7 @@
  *   콘솔 — 종합 매트릭스
  *   reports/v150-enrichment-value.json — 머신 가독
  */
+import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { spawnSync } from "node:child_process";
 import { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";

@@ -2,6 +2,7 @@
 // 교차 검증 9차 권장 (옵션 E): 새 클래스 추가 X, 기존 도구와 연결 닫기
 // CreateWorkPlanAction → generate_safety_document(docId='work_plan_excavation') 실행
 
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";

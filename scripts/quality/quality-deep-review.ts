@@ -12,6 +12,7 @@
  * 자동 의심 케이스 + 사람 판단 권장 케이스 분리 보고.
  */
 
+import "../test/isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용자 문서 폴더에 파일을 남기지 않는다
 import { generateSafetyDocumentTool } from "../../build/tools/generate-safety-document.js";
 import { listDocuments } from "../../build/lib/graph-nodes-loader.js";
 

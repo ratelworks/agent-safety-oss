@@ -4,6 +4,8 @@ export const DOCLANG_NAMESPACE = "https://www.doclang.ai/ns/v0";
 import type { DocumentNode, DocumentSection, DocumentSectionField } from "./graph-nodes-loader.js";
 import { kstToday } from "./datetime-kst.js";
 import { renderIri } from "./iri-renderer.js";
+import { approvalText } from "./approval-copy.js";
+import { fieldDetailTable } from "./field-detail.js";
 
 // XML 1.0 불법 제어문자(u0000-u0008, u000B, u000C, u000E-u001F)는 escape 불가 — 맵 폴백("")으로 제거
 const XML_ESCAPE_PATTERN = /[&<>"\u0000-\u0008\u000B\u000C\u000E-\u001F]/g;
@@ -57,6 +59,8 @@ const LIST_CLASS_UNORDERED = "unordered";
 const MIN_SPAN = 1;
 const MIN_HEADING_LEVEL = 1;
 const MAX_HEADING_LEVEL = 6;
+/** 적용 KOSHA Guide 표에 싣는 행 수 — 넘으면 "(외 N건)" 한 줄 */
+const KOSHA_ROWS_MAX = 30;
 const COMMON_META_KEYS = new Set(["documentNumber", "siteName", "compileDate", "compiler"]);
 const COMMON_APPROVAL_KEYS = new Set([
   "compiler_sign",
@@ -191,6 +195,15 @@ export interface SafetyDocumentDoclangInput {
   workStepTable?: WorkStepTable;
   statusText?: string;
   safetyDisclaimer?: string;
+  /**
+   * 정본(.dclx)으로 저장할 결재·제출용 문서 — 검사 상태·안내문·작성 안내·도구 표기를 싣지 않고,
+   * 법령 기호를 한글 표기로, 빈 칸은 손으로 채울 빈칸으로 둔다. 한글 파일은 이 정본에서 만든다.
+   */
+  canonical?: boolean;
+  /** 문서 메타 칸 — Markdown 본문과 같은 칸 이름·값 (없으면 기본 칸) */
+  metaRows?: Array<{ label: string; value?: unknown; placeholder?: string }>;
+  /** 인용 조문의 수록 판본 문장 (법령 근거 끝에 싣는다) */
+  legalEditionsNote?: string;
 }
 
 function escapeXml(value: unknown): string {
@@ -519,19 +532,23 @@ function buildMetaRows(document: DocumentNode, draft: Record<string, unknown>): 
   return rows;
 }
 
-function renderApprovalChain(draft: Record<string, unknown>): string {
+function renderMeta(input: SafetyDocumentDoclangInput): string {
+  if (!input.metaRows) return keyValueTable("문서 메타", buildMetaRows(input.document, input.draft));
+  const rows = input.metaRows.map((row): [unknown, unknown] => [row.label, isEmptyValue(row.value) ? (input.canonical ? "" : (row.placeholder ?? "")) : row.value]);
+  return [input.canonical ? heading(2, "문서 메타") : "", keyValueTable("문서 메타", rows)].filter(Boolean).join("\n");
+}
+
+/** 결재선 — 정본은 성명·서명·일자 칸을 손으로 채우게 비워 둔다 */
+function renderApprovalChain(draft: Record<string, unknown>, canonical = false): string {
   const chain = Array.isArray(draft.approvalChain) ? draft.approvalChain.filter((item) => item && typeof item === "object") : [];
+  const blank = (placeholder: string): string => (canonical ? "" : placeholder);
   const rows = chain.length > 0
     ? chain.map((item) => {
         const row = item as Record<string, unknown>;
-        return [row.role ?? "", row.name ?? "", row.signed ? "서명" : "(미서명)", row.date ?? "(미기재)"];
+        return [row.role ?? "", row.name ?? "", row.signed ? "서명" : blank("(미서명)"), row.date ?? blank("(미기재)")];
       })
-    : [
-        ["사업주", "(미작성)", "(미서명)", "(미기재)"],
-        ["관리감독자", "(미작성)", "(미서명)", "(미기재)"],
-        ["근로자대표", "(미작성)", "(미서명)", "(미기재)"],
-      ];
-  return simpleTable("결재선", ["역할", "성명", "서명", "일자"], rows);
+    : ["사업주", "관리감독자", "근로자대표"].map((role) => [role, blank("(미작성)"), blank("(미서명)"), blank("(미기재)")]);
+  return [canonical ? heading(2, "결재선") : "", simpleTable("결재선", ["역할", "성명", "서명", "일자"], rows)].filter(Boolean).join("\n");
 }
 
 function shouldSkipGenericSection(sec: DocumentSection): boolean {
@@ -542,6 +559,18 @@ function shouldSkipGenericSection(sec: DocumentSection): boolean {
   return false;
 }
 
+/** 제목 끝 괄호가 근거 표기인지 — "(고시 §16 ① 3호)" "(건설기술진흥법)" */
+const TRAILING_SOURCE = /\s*\(([^()]*(?:§|제\d+조|고시|법|규칙|KOSHA)[^()]*)\)\s*$/;
+
+/**
+ * 근거를 붙인 절 제목 — "제목 (근거)". 제목 끝에 이미 근거 괄호가 있으면 떼고 온전한 근거 표기 하나만 붙인다
+ * (Markdown 본문과 정본이 같은 제목을 쓴다)
+ */
+export function sectionHeadingWithSource(title: string, legalSource: string | undefined): string {
+  if (!legalSource) return title;
+  return `${title.replace(TRAILING_SOURCE, "")} (${legalSource})`;
+}
+
 function sectionTitle(index: number, section: DocumentSection): string {
   const hasOwnNumber = /^\s*(\d+[\.\-)]|[①-⑳]|\([0-9]+\)|[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ][\s.\-]|[가나다라마바사아자차]\.\s)/.test(
     section.title,
@@ -549,15 +578,26 @@ function sectionTitle(index: number, section: DocumentSection): string {
   return hasOwnNumber ? section.title : `${index}. ${section.title}`;
 }
 
-function renderSection(index: number, section: DocumentSection, draft: Record<string, unknown>): string {
+function renderSection(index: number, section: DocumentSection, draft: Record<string, unknown>, canonical = false): string {
   const custom = customXml([{ tag: CUSTOM_TAG.legalSource, value: section.legalSource }]);
-  const body = [heading(2, sectionTitle(index, section), custom)];
+  // 정본은 절 제목에 근거를 함께 적는다 (Markdown 본문·결재본과 같은 제목)
+  const title = canonical ? sectionHeadingWithSource(sectionTitle(index, section), section.legalSource) : sectionTitle(index, section);
+  const body = [heading(2, title, custom)];
 
   if (section.fields.length > 0) {
     body.push(keyValueTable(section.title, section.fields.map((field) => {
       const value = resolveDraftFieldValue(draft, field.key, field.label);
       return [field.label, isEmptyValue(value) ? "" : toText(value)];
     })));
+  }
+  if (canonical) {
+    // 표 형태 값(재해자 명단·위험성평가 행 등)은 상세 표로 — 작성 안내는 정본에 싣지 않는다
+    for (const field of section.fields) {
+      const detail = fieldDetailTable(field.key, resolveDraftFieldValue(draft, field.key, field.label));
+      if (detail) body.push(heading(3, `${field.label} 상세`), simpleTable(`${field.label} 상세`, detail.headers, detail.rows));
+    }
+    if (section.notes?.length) body.push(...section.notes.map((note) => textElement(note)));
+    return body.filter(Boolean).join("\n");
   }
 
   const guideLines = section.fields
@@ -575,14 +615,21 @@ function renderSection(index: number, section: DocumentSection, draft: Record<st
   return body.filter(Boolean).join("\n");
 }
 
-function renderWorkConditions(draft: Record<string, unknown>): string {
-  const workConditions = draft.workConditions;
-  if (!workConditions || typeof workConditions !== "object" || Array.isArray(workConditions)) return "";
-  const rows = Object.entries(workConditions as Record<string, unknown>).map(([key, value]) => [
-    WORK_CONDITION_LABELS[key] ?? key,
-    value,
-  ]);
-  return rows.length > 0 ? keyValueTable("작업 조건", rows as Array<[unknown, unknown]>) : "";
+/** 작업 조건 칸 — 항목별 값(객체)이면 항목마다, 조건 이름 목록·글이면 한 줄로 */
+export function workConditionRows(workConditions: unknown): Array<[string, unknown]> {
+  if (typeof workConditions === "string") return workConditions.trim() ? [["작업 조건", workConditions.trim()]] : [];
+  if (Array.isArray(workConditions)) {
+    const names = workConditions.map((x) => toText(x).trim()).filter(Boolean);
+    return names.length > 0 ? [["작업 조건", names.join(", ")]] : [];
+  }
+  if (!workConditions || typeof workConditions !== "object") return [];
+  return Object.entries(workConditions as Record<string, unknown>).map(([key, value]) => [WORK_CONDITION_LABELS[key] ?? key, value]);
+}
+
+function renderWorkConditions(draft: Record<string, unknown>, canonical = false): string {
+  const rows = workConditionRows(draft.workConditions);
+  if (rows.length === 0) return "";
+  return [canonical ? heading(2, "작업 조건") : "", keyValueTable("작업 조건", rows as Array<[unknown, unknown]>)].filter(Boolean).join("\n");
 }
 
 function renderHazards(input: SafetyDocumentDoclangInput): string {
@@ -599,7 +646,7 @@ function renderHazards(input: SafetyDocumentDoclangInput): string {
   return [
     heading(2, title),
     simpleTable(
-      "위험 요소",
+      input.canonical ? "식별된 위험 요소" : "위험 요소",
       ["위험 분류", "카테고리"],
       input.hazards.map((hazard) => [hazard.label, hazard.category]),
     ),
@@ -611,7 +658,7 @@ function renderWorkSteps(input: SafetyDocumentDoclangInput): string {
   if (!t) return "";
   const conditions = (t.conditions ?? []).flatMap((c) => [
     heading(3, `작업 조건 — ${c.title}`),
-    ...c.rules.map((r) => textElement(conditionRuleLine(r))),
+    listElement(c.rules.map((r) => conditionRuleLine(r))),
   ]);
   return [
     ...(conditions.length > 0 ? [heading(2, "작업 조건별 지켜야 할 조치"), ...conditions] : []),
@@ -622,6 +669,7 @@ function renderWorkSteps(input: SafetyDocumentDoclangInput): string {
 }
 
 function renderControls(input: SafetyDocumentDoclangInput): string {
+  if (input.canonical && input.controls.length === 0) return "";
   const headingXml = heading(2, "권장 안전대책 (ERIC-PP 위계 — 그래프 추론)");
   if (input.controls.length === 0) return [headingXml, textElement("(그래프 매핑된 Control 없음)")].join("\n");
 
@@ -632,18 +680,22 @@ function renderControls(input: SafetyDocumentDoclangInput): string {
   ]);
   return [
     headingXml,
-    textElement("ERIC-PP 5계층은 제거, 대체, 공학적, 관리적, 보호구 순으로 상위 계층 통제를 우선 적용합니다."),
+    input.canonical ? "" : textElement("ERIC-PP 5계층은 제거, 대체, 공학적, 관리적, 보호구 순으로 상위 계층 통제를 우선 적용합니다."),
     simpleTable("권장 안전대책", ["위계", "대책", "매핑"], rows),
   ].join("\n");
 }
 
 function renderKosha(input: SafetyDocumentDoclangInput): string {
   if (input.kosha.length === 0) {
+    if (input.canonical) return "";
     return [heading(2, "적용 KOSHA Guide (0건)"), textElement("(매핑된 KOSHA Guide 없음)")].join("\n");
   }
   return [
     heading(2, `적용 KOSHA Guide (${input.kosha.length}건)`),
-    simpleTable("적용 KOSHA Guide", ["번호", "제목"], input.kosha.slice(0, 30).map((guide) => [guide.guideNo, guide.title])),
+    simpleTable(input.canonical ? `적용 KOSHA Guide (${input.kosha.length}건)` : "적용 KOSHA Guide", ["번호", "제목"], [
+      ...input.kosha.slice(0, KOSHA_ROWS_MAX).map((guide) => [guide.guideNo, guide.title]),
+      ...(input.kosha.length > KOSHA_ROWS_MAX ? [["...", `(외 ${input.kosha.length - KOSHA_ROWS_MAX}건)`]] : []),
+    ]),
   ].join("\n");
 }
 
@@ -656,6 +708,7 @@ function renderLegalBasis(input: SafetyDocumentDoclangInput): string {
     body.push(heading(3, renderIri(iri), customXml([{ tag: CUSTOM_TAG.legalBasis, values: [iri] }])));
     if (excerpt) body.push(textElement(excerpt.length >= 200 ? `${excerpt.slice(0, 200)} ⋯ (전문은 별첨)` : excerpt));
   }
+  if (input.legalEditionsNote) body.push(textElement(input.legalEditionsNote));
   if (input.document.penaltyOnMissing) {
     const penalties = Array.isArray(input.document.penaltyOnMissing)
       ? input.document.penaltyOnMissing
@@ -666,15 +719,16 @@ function renderLegalBasis(input: SafetyDocumentDoclangInput): string {
   return body.filter(Boolean).join("\n");
 }
 
-function renderEmergencyContacts(draft: Record<string, unknown>): string {
+function renderEmergencyContacts(draft: Record<string, unknown>, canonical = false): string {
   const contacts = (draft.emergencyContacts ?? {}) as Record<string, unknown>;
+  const missing = canonical ? "" : "(미기재 — 작성 필수)";
   return [
     heading(2, "비상연락망"),
     listElement([
       `119 (소방): ${contacts.fire ?? "119"}`,
-      `관할 지방고용노동청: ${contacts.labor ?? "(미기재 — 작성 필수)"}`,
-      `응급의료기관: ${contacts.hospital ?? "(미기재 — 작성 필수)"}`,
-      `사업주 비상연락: ${contacts.owner ?? "(미기재 — 작성 필수)"}`,
+      `관할 지방고용노동청: ${contacts.labor ?? missing}`,
+      `응급의료기관: ${contacts.hospital ?? missing}`,
+      `사업주 비상연락: ${contacts.owner ?? missing}`,
     ]),
   ].join("\n");
 }
@@ -716,26 +770,30 @@ export function serializeSafetyDocumentToDoclang(input: SafetyDocumentDoclangInp
     { tag: CUSTOM_TAG.legalBasis, values: document.legalBasis ?? [] },
   ]);
   const genericSections = input.sections.filter((section) => !shouldSkipGenericSection(section));
+  const canonical = input.canonical === true;
   const body = [
     metadataToHead(document),
-    textElement(input.statusText),
+    canonical ? "" : textElement(input.statusText),
     heading(1, document.title, custom),
-    document.description ? textElement(document.description) : "",
-    keyValueTable("문서 메타", buildMetaRows(document, draft)),
-    renderApprovalChain(draft),
-    renderWorkConditions(draft),
-    ...genericSections.map((section, index) => renderSection(index + 1, section, draft)),
+    // 문서 설명은 도구가 문서 종류를 설명하는 글이라 정본 본문에는 싣지 않는다(<head> 에만)
+    document.description && !canonical ? textElement(document.description) : "",
+    renderMeta(input),
+    renderApprovalChain(draft, canonical),
+    renderWorkConditions(draft, canonical),
+    ...genericSections.map((section, index) => renderSection(index + 1, section, draft, canonical)),
     renderHazards(input),
     renderWorkSteps(input),
     renderControls(input),
     renderKosha(input),
     renderLegalBasis(input),
-    renderEmergencyContacts(draft),
+    renderEmergencyContacts(draft, canonical),
     renderWorkerNotification(draft),
     input.document.retention ? textElement(`보존: ${input.document.retention}`) : "",
-    textElement(input.safetyDisclaimer ?? DEFAULT_SAFETY_DISCLAIMER),
+    canonical ? "" : textElement(input.safetyDisclaimer ?? DEFAULT_SAFETY_DISCLAIMER),
     fieldRegion(genericSections, draft),
   ].filter(Boolean);
 
-  return `<${TAG.root} xmlns="${DOCLANG_NAMESPACE}" version="${DOCLANG_VERSION}">\n${body.join("\n")}\n</${TAG.root}>\n`;
+  const xml = `<${TAG.root} xmlns="${DOCLANG_NAMESPACE}" version="${DOCLANG_VERSION}">\n${body.join("\n")}\n</${TAG.root}>\n`;
+  // 정본은 글(요소 사이의 글자)마다 결재·제출용 표기로 — 법령 기호 → 한글 표기, 도구 표기 제거. 요소·속성은 그대로
+  return canonical ? xml.replace(/>([^<]+)</g, (_m, text: string) => `>${approvalText(text)}<`) : xml;
 }

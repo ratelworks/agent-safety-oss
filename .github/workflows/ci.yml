@@ -10,6 +10,9 @@ jobs:
   build:
     name: typecheck · build · smoke
     runs-on: ubuntu-latest
+    # 문서 생성은 기본으로 정본(.dclx)을 저장한다 — 시험 파일은 실행기 임시 폴더에 둔다
+    env:
+      SAFETY_LOCAL_DIR: ${{ runner.temp }}/agent-safety-oss
 
     strategy:
       matrix:
@@ -144,6 +147,12 @@ jobs:
           # 그래프 추론·정합·공종 연결 시험과, 현장 말투 질문에 정답 조문이 나오는지 재는 시험
           npm run mcp:test:graph
           npm run mcp:test:questions
+
+      - name: Document output — canonical .dclx and HWPX
+        run: |
+          # 문서 정본(.dclx)이 공식 규격 꾸러미와 같고, 한글 파일이 정본에서 내용·기호를 그대로 옮기는지
+          npm run mcp:test:doclang
+          npm run mcp:test:dclx
 
       - name: Smoke — analyze_construction_work_risks
         run: |

@@ -18,7 +18,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { getNodeSync } from "../lib/graph-nodes-loader.js";
-import { saveHwpx, type HwpxExportResult } from "../lib/hwpx-export.js";
+import { saveDclx, saveHwpxFromDoclang, type HwpxExportResult } from "../lib/hwpx-export.js";
 import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import {
@@ -40,7 +40,8 @@ import { kstToday } from "../lib/datetime-kst.js";
 import { getWorkSteps, pickFocusSteps } from "../lib/work-steps.js";
 import { resolveWorkConditions, RULE_SCOPE } from "../lib/work-conditions.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
-import { conditionRuleLine, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
+import { fieldDetailTable } from "../lib/field-detail.js";
+import { conditionRuleLine, sectionHeadingWithSource, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, workConditionRows, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 /** 서류에 싣는 별표 본문 상한 — 작업계획서의 별표 4 처럼 그 서류가 갖출 항목 목록이면 잘리지 않게 */
@@ -75,9 +76,9 @@ const inputSchema = z.object({
     .optional()
     .describe("자동 채움에 사용할 현장 ID. 미지정 시 사업장의 첫 현장 사용."),
   format: z
-    .enum(["md", "doclang", "hwpx"])
-    .default("md")
-    .describe("출력 포맷. md=기존 Markdown, doclang=DocLang v0.9 XML (experimental), hwpx=한글 파일로 저장하고 파일 경로를 돌려줌 (결재·제출용으로 정리한 본문)."),
+    .enum(["dclx", "hwpx", "md", "doclang"])
+    .default("dclx")
+    .describe("출력 형식. dclx(기본)=정본을 DocLang 아카이브(.dclx) 파일로 저장하고 경로와 미리보기 Markdown 을 돌려줌 · hwpx=정본(.dclx)을 저장하고 그 정본에서 한글 파일을 만듦 · md=Markdown 본문만(파일 없음) · doclang=정본과 같은 DocLang 0.9 XML 글자만(파일 없음). 정본·한글 파일에는 결재·제출용 본문만 들어간다(작성 안내·검사 상태 제외, 빈 칸은 빈칸)."),
   scale: z
     .object({
       workforce: z.number().optional(),
@@ -90,8 +91,8 @@ const inputSchema = z.object({
 
 type Input = z.infer<typeof inputSchema>;
 type OutputFormat = Input["format"];
-/** 글자로 돌려주는 형식 — hwpx 는 파일로 저장한다 */
-type TextFormat = Exclude<OutputFormat, "hwpx">;
+/** 글자로 돌려주는 형식 — dclx·hwpx 는 파일로 저장한다 */
+type TextFormat = Exclude<OutputFormat, "hwpx" | "dclx">;
 
 interface KoshaGuideInfo {
   iri: string;
@@ -328,70 +329,6 @@ const COMMON_APPROVAL_KEYS = new Set([
   "approver_name",
 ]);
 
-const DETAIL_COLUMN_ORDER: Record<string, string[]> = {
-  victimList: [
-    "name",
-    "birthDate",
-    "nationality",
-    "employer",
-    "occupation",
-    "employmentType",
-    "accidentType",
-    "injurySeverity",
-    "hospital",
-  ],
-  chemicalList: [
-    "productName",
-    "casNumber",
-    "manufacturer",
-    "monthlyVolume",
-    "storageLocation",
-    "msdsValidUntil",
-    "exposureLimit",
-    "mainHazard",
-    "requiredPPE",
-    "note",
-  ],
-  riskRows: [
-    "task",
-    "hazard",
-    "currentRisk",
-    "control",
-    "residualRisk",
-    "owner",
-    "due",
-  ],
-};
-
-const DETAIL_COLUMN_LABELS: Record<string, string> = {
-  name: "성명",
-  birthDate: "생년월일",
-  nationality: "국적",
-  employer: "소속",
-  occupation: "직종",
-  employmentType: "고용형태",
-  accidentType: "재해유형",
-  injurySeverity: "상해정도",
-  hospital: "병원",
-  productName: "제품명",
-  casNumber: "CAS/구성",
-  manufacturer: "제조사",
-  monthlyVolume: "취급량",
-  storageLocation: "비치위치",
-  msdsValidUntil: "MSDS 유효기한",
-  exposureLimit: "노출기준",
-  mainHazard: "주요 유해성",
-  requiredPPE: "필수 보호구",
-  note: "비고",
-  task: "작업",
-  hazard: "위험요인",
-  currentRisk: "현재위험도",
-  control: "감소대책",
-  residualRisk: "잔여위험도",
-  owner: "책임자",
-  due: "기한",
-};
-
 function isEmptyValue(value: unknown): boolean {
   return value === undefined || value === null || value === "";
 }
@@ -449,28 +386,16 @@ function getRawFieldValue(input: Input, fieldKey: string, fieldLabel?: string): 
 }
 
 function renderFieldDetailTable(field: { key: string; label: string }, value: unknown): string[] {
-  if (!Array.isArray(value) || value.length === 0) return [];
-  if (!value.every((item) => item && typeof item === "object" && !Array.isArray(item))) return [];
-
-  const objectRows = value as Array<Record<string, unknown>>;
-  const preferred = DETAIL_COLUMN_ORDER[field.key] ?? [];
-  const discovered = Array.from(new Set(objectRows.flatMap((row) => Object.keys(row))));
-  const columns = [
-    ...preferred.filter((key) => discovered.includes(key)),
-    ...discovered.filter((key) => !preferred.includes(key)),
+  const table = fieldDetailTable(field.key, value);
+  if (!table) return [];
+  return [
+    "",
+    `### ${field.label} 상세`,
+    "",
+    `| ${table.headers.join(" | ")} |`,
+    `| ${table.headers.map(() => "---").join(" | ")} |`,
+    ...table.rows.map((row) => `| ${row.map((cell) => formatMarkdownCell(cell)).join(" | ")} |`),
   ];
-  if (columns.length === 0) return [];
-
-  const lines: string[] = [];
-  lines.push("");
-  lines.push(`### ${field.label} 상세`);
-  lines.push("");
-  lines.push(`| ${columns.map((key) => DETAIL_COLUMN_LABELS[key] ?? key).join(" | ")} |`);
-  lines.push(`| ${columns.map(() => "---").join(" | ")} |`);
-  for (const row of objectRows) {
-    lines.push(`| ${columns.map((key) => formatMarkdownCell(row[key])).join(" | ")} |`);
-  }
-  return lines;
 }
 
 function normalizeDraftAliases(input: Input): void {
@@ -588,6 +513,81 @@ function shouldSkipGenericSection(sec: DocumentSection): boolean {
   return false;
 }
 
+/** 문서 메타 칸 하나 — 값이 비면 Markdown 본문은 placeholder 를, 정본은 빈칸을 싣는다 */
+export interface DocumentMetaRow {
+  label: string;
+  value?: unknown;
+  placeholder?: string;
+}
+
+/**
+ * 문서 메타 칸(문서번호·현장명·작성일·기간·책임자) — Markdown 본문과 정본(DocLang)이 같은 칸 이름·값을 쓴다.
+ * 행정 문서(선임·게시·보고 등)는 "사업장명/소재지·유효 기간·작성책임자", 작업 문서는 "현장명·작업기간·작업지휘자/책임자".
+ */
+function documentMetaRows(doc: DocumentNode, draft: Record<string, any>): DocumentMetaRow[] {
+  const metadata = (draft.metadata ?? {}) as Record<string, any>;
+  const siteName = draft.siteName ?? draft.projectName ?? metadata.siteName ?? metadata.projectName;
+  const planDate = draft.compileDate ?? draft.planDate ?? metadata.planDate ?? metadata.assessmentDate ?? kstToday();
+  const supervisor = draft.supervisor ?? draft.compiler ?? draft.principal_sign ?? metadata.supervisor;
+  const metaCat = (doc._meta as { documentCategory?: string } | undefined)?.documentCategory;
+  // decision 006: 라벨(행정/작업) 판정을 위험 폴백 분류기 allowGuideFallback 과 일원화한다
+  const isAdmin = !allowGuideFallback(metaCat, doc.docId);
+  const periodValue = draft.workPeriod ?? draft.validPeriod ?? draft.effectivePeriod ?? metadata.workPeriod ?? metadata.validPeriod ?? metadata.effectivePeriod;
+  const docNumber = draft.documentNumber ?? draft.documentId ?? "(자동) DOC-" + String(planDate ?? "YYYYMMDD").replace(/-/g, "") + "-001";
+  const rows: DocumentMetaRow[] = [
+    { label: "문서번호", value: docNumber },
+    { label: isAdmin ? "사업장명/소재지" : "현장명", value: siteName, placeholder: "(미작성)" },
+    { label: "작성일", value: planDate },
+  ];
+  if (!isAdmin || !isEmptyValue(periodValue)) rows.push({ label: isAdmin ? "유효 기간" : "작업기간", value: periodValue, placeholder: "(미기재 — 작성 필수)" });
+  if (supervisor) rows.push({ label: isAdmin ? "작성책임자" : "작업지휘자/책임자", value: supervisor });
+  return rows;
+}
+
+/** 대책 위계 이름 */
+const CONTROL_TIER_LABEL: Record<number, string> = {
+  1: "1. 제거 (Elimination)",
+  2: "2. 대체 (Substitution)",
+  3: "3. 공학적 (Engineering)",
+  4: "4. 관리적 (Administrative)",
+  5: "5. 보호구 (PPE)",
+};
+/** 위계별로 보여 줄 대책 수 (관리적·공학적은 4개씩, 제거·대체·보호구는 2개씩) */
+const CONTROL_TIER_CAP: Record<number, number> = { 1: 2, 2: 2, 3: 4, 4: 4, 5: 2 };
+const CONTROL_DISPLAY_MAX = 15;
+
+/**
+ * 서류에 싣는 권장 대책 — 문서·위험요소에 직접 연결된 대책을 위계 순으로 먼저, 모자라면 일반 대책으로 채운다(위계별 상한, 모두 15개).
+ * Markdown 본문과 정본이 같은 대책을 싣는다.
+ */
+function selectDisplayedControls(controls: ControlInfo[], directControlIris: Set<string>, hazards: HazardInfo[]) {
+  const directlyMapped = new Set<string>(directControlIris);
+  for (const h of hazards) {
+    for (const c of (h as any).mitigatedBy ?? []) {
+      if (typeof c === "string") directlyMapped.add(c);
+    }
+  }
+  const direct = controls.filter((c) => directlyMapped.has(c.iri));
+  const indirect = controls.filter((c) => !directlyMapped.has(c.iri));
+  const tierUsed: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+  const selected: ControlInfo[] = [];
+  const take = (c: ControlInfo): void => {
+    const cap = CONTROL_TIER_CAP[c.ericLevel] ?? 3;
+    if ((tierUsed[c.ericLevel] ?? 0) < cap) {
+      selected.push(c);
+      tierUsed[c.ericLevel] = (tierUsed[c.ericLevel] ?? 0) + 1;
+    }
+  };
+  for (const c of [...direct].sort((a, b) => a.ericLevel - b.ericLevel)) take(c);
+  if (selected.length < CONTROL_DISPLAY_MAX) {
+    for (const c of indirect.sort((a, b) => a.ericLevel - b.ericLevel)) {
+      if (selected.length >= CONTROL_DISPLAY_MAX) break;
+      take(c);
+    }
+  }
+  return { directlyMapped, direct, indirect, selected };
+}
+
 async function renderGeneric(
   doc: DocumentNode,
   input: Input,
@@ -601,33 +601,7 @@ async function renderGeneric(
   workStepTable?: WorkStepTable,
 ): Promise<string> {
   const d = (input.draft ?? {}) as Record<string, any>;
-  const metadata = (d.metadata ?? {}) as Record<string, any>;
-  const meta = {
-    siteName: d.siteName ?? d.projectName ?? metadata.siteName ?? metadata.projectName ?? "(미작성)",
-    planDate: d.compileDate ?? d.planDate ?? metadata.planDate ?? metadata.assessmentDate ?? kstToday(),
-    supervisor: d.supervisor ?? d.compiler ?? d.principal_sign ?? metadata.supervisor,
-  } as { siteName: string; planDate: string; supervisor?: string };
   const sections = doc.sections && doc.sections.length > 0 ? doc.sections : buildSectionsFromRequiredFields(doc);
-
-  // Document category — 양식 일관성 (행정 문서 vs 작업 문서) — v0.8 결함 #3 정정 + v0.9 fallback 추론
-  const metaCat = (doc._meta as { documentCategory?: string } | undefined)?.documentCategory;
-  const category = metaCat ?? inferCategoryFromDocId(doc.docId);
-  // decision 006: 라벨(행정/작업) 판정을 위험 폴백 분류기 allowGuideFallback 과 일원화한다.
-  // 이전엔 3값(administrative/report/register)만 행정 처리해, 위험 억제 집합(7값)에는 있으나
-  // 여기 없는 appointment/application/education/council(및 meta 없는 선임·교육 docId) 문서가
-  // "작업기간" 라벨 + "위험요인 미해당" 을 동시 출력하는 모순이 있었다. allowGuideFallback 으로 통일.
-  const isAdmin = !allowGuideFallback(metaCat, doc.docId);
-  const siteLabel = isAdmin ? "사업장명/소재지" : "현장명";
-  const supervisorLabel = isAdmin ? "작성책임자" : "작업지휘자/책임자";
-  const periodLabel = isAdmin ? "유효 기간" : "작업기간";
-  const periodValue =
-    d.workPeriod ??
-    d.validPeriod ??
-    d.effectivePeriod ??
-    metadata.workPeriod ??
-    metadata.validPeriod ??
-    metadata.effectivePeriod;
-  const shouldRenderPeriod = !isAdmin || !isEmptyValue(periodValue);
 
   const lines: string[] = [];
   lines.push(`# ${doc.title}`);
@@ -648,19 +622,13 @@ async function renderGeneric(
   // decision 005 / 결함 정정: 문서메타 표의 모든 셀을 formatMarkdownCell 로 일원화.
   // siteName="A | 사망 | 50세" 같은 파이프 포함 값이 2열표를 4열로 붕괴시키거나,
   // supervisor 줄바꿈이 행을 누출시키는 것을 방지 (파이프 \| 이스케이프, 줄바꿈 <br>).
-  const docNumber =
-    d.documentNumber ?? d.documentId ?? "(자동) DOC-" + (meta.planDate ?? "YYYYMMDD").replace(/-/g, "") + "-001";
   lines.push(`## 문서 메타`);
   lines.push("");
   lines.push(`| 항목 | 내용 |`);
   lines.push(`|---|---|`);
-  lines.push(`| 문서번호 | ${formatMarkdownCell(docNumber)} |`);
-  lines.push(`| ${siteLabel} | ${formatMarkdownCell(meta.siteName)} |`);
-  lines.push(`| 작성일 | ${formatMarkdownCell(meta.planDate)} |`);
-  if (shouldRenderPeriod) {
-    lines.push(`| ${periodLabel} | ${formatMarkdownCell(periodValue) || "(미기재 — 작성 필수)"} |`);
+  for (const row of documentMetaRows(doc, d)) {
+    lines.push(`| ${row.label} | ${isEmptyValue(row.value) ? (row.placeholder ?? "") : formatMarkdownCell(row.value)} |`);
   }
-  if (meta.supervisor) lines.push(`| ${supervisorLabel} | ${formatMarkdownCell(meta.supervisor)} |`);
   lines.push("");
 
   // 결재선
@@ -679,29 +647,15 @@ async function renderGeneric(
 
   // 작업 조건 — workConditions 입력 있을 때 자동 노출
   let secNo = 1;
-  // workConditions 키 → 한국어 라벨 변환 (v0.13 결함 #1 정정)
-  const WORK_COND_LABELS: Record<string, string> = {
-    depthM: "굴착 깊이 (m)",
-    heightM: "작업 높이 (m)",
-    voltageV: "전압 (V)",
-    workforce: "작업 인원 (명)",
-    location: "작업 위치·상세",
-    locationDetail: "작업 위치·상세",
-    weather: "기상 조건",
-    duration: "작업 시간",
-    chemicalName: "취급 화학물질",
-    spanM: "지간 길이 (m)",
-  };
-  if (d.workConditions && Object.keys(d.workConditions).length > 0) {
+  // 작업 조건 — 항목별 값(객체)이면 항목마다, 조건 이름 목록·글("강풍")이면 한 줄로 (정본과 같은 칸)
+  const conditionRows = workConditionRows(d.workConditions);
+  if (conditionRows.length > 0) {
     lines.push(`## 작업 조건`);
     lines.push("");
     lines.push(`| 항목 | 값 |`);
     lines.push(`|---|---|`);
-    for (const [k, v] of Object.entries(d.workConditions)) {
-      const label = WORK_COND_LABELS[k] ?? k;
-      // formatMarkdownCell 로 일원화 — 파이프·줄바꿈 이스케이프 (표 무결)
-      lines.push(`| ${formatMarkdownCell(label)} | ${formatMarkdownCell(v)} |`);
-    }
+    // formatMarkdownCell 로 일원화 — 파이프·줄바꿈 이스케이프 (표 무결)
+    for (const [label, v] of conditionRows) lines.push(`| ${formatMarkdownCell(label)} | ${formatMarkdownCell(v)} |`);
     lines.push("");
   }
 
@@ -710,9 +664,7 @@ async function renderGeneric(
     if (shouldSkipGenericSection(sec)) continue;
     // sec.title 이 이미 "1.", "1)", "①", "Ⅰ.", "가." 등으로 시작하면 renderer 자동 번호 생략 (별지 호 양식 충돌 방지)
     const titleHasOwnNumber = /^\s*(\d+[\.\-)]|[①-⑳]|\([0-9]+\)|[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ][\s.\-]|[가나다라마바사아자차]\.\s)/.test(sec.title);
-    const heading = titleHasOwnNumber
-      ? `## ${sec.title}${sec.legalSource ? ` (${sec.legalSource})` : ""}`
-      : `## ${secNo}. ${sec.title}${sec.legalSource ? ` (${sec.legalSource})` : ""}`;
+    const heading = `## ${sectionHeadingWithSource(titleHasOwnNumber ? sec.title : `${secNo}. ${sec.title}`, sec.legalSource)}`;
     lines.push(heading);
     lines.push("");
 
@@ -822,46 +774,8 @@ async function renderGeneric(
   if (controls.length === 0) {
     lines.push(`> (그래프 매핑된 Control 없음)`);
   } else {
-    // 문서·위험요소에 직접 연결된 control만 우선 표시
-    const directlyMapped = new Set<string>(directControlIris);
-    for (const h of hazards) {
-      for (const c of (h as any).mitigatedBy ?? []) {
-        if (typeof c === "string") directlyMapped.add(c);
-      }
-    }
-    // 직접 연결 + 미연결로 분리, 위계 순으로 정렬
-    const direct = controls.filter((c) => directlyMapped.has(c.iri));
-    const indirect = controls.filter((c) => !directlyMapped.has(c.iri));
-    // 위계별 카운트 캡 (관리적·공학적은 4개씩, 제거/대체/PPE는 2개씩)
-    const TIER_CAP: Record<number, number> = { 1: 2, 2: 2, 3: 4, 4: 4, 5: 2 };
-    const labelMap: Record<number, string> = {
-      1: "1. 제거 (Elimination)",
-      2: "2. 대체 (Substitution)",
-      3: "3. 공학적 (Engineering)",
-      4: "4. 관리적 (Administrative)",
-      5: "5. 보호구 (PPE)",
-    };
-    const sortedDirect = [...direct].sort((a, b) => a.ericLevel - b.ericLevel);
-    const tierUsed: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-    const selected: typeof controls = [];
-    for (const c of sortedDirect) {
-      const cap = TIER_CAP[c.ericLevel] ?? 3;
-      if ((tierUsed[c.ericLevel] ?? 0) < cap) {
-        selected.push(c);
-        tierUsed[c.ericLevel] = (tierUsed[c.ericLevel] ?? 0) + 1;
-      }
-    }
-    // 위계별로 직접 매핑 부족 시 indirect로 보충 (총 15개 cap)
-    if (selected.length < 15) {
-      for (const c of indirect.sort((a, b) => a.ericLevel - b.ericLevel)) {
-        if (selected.length >= 15) break;
-        const cap = TIER_CAP[c.ericLevel] ?? 3;
-        if ((tierUsed[c.ericLevel] ?? 0) < cap) {
-          selected.push(c);
-          tierUsed[c.ericLevel] = (tierUsed[c.ericLevel] ?? 0) + 1;
-        }
-      }
-    }
+    const { directlyMapped, direct, indirect, selected } = selectDisplayedControls(controls, directControlIris, hazards);
+    const labelMap = CONTROL_TIER_LABEL;
 
     lines.push(`> 직접 매핑 ${direct.length}개 + 일반 ${indirect.length}개 중 위계별 선별 ${selected.length}개 표시`);
     lines.push("");
@@ -905,9 +819,9 @@ async function renderGeneric(
       lines.push("");
     }
     // 수록 판본 — 인용한 조문이 어느 시행일 기준인지 밝힌다. 생성 시점의 현행 여부는 확인하지 않는다
-    const editions = legalEditionsOf(doc.legalBasis);
-    if (editions.length > 0) {
-      lines.push(`_수록 판본: ${editions.join(" · ")}. 이 문서를 만들 때 법령의 현행 여부는 확인하지 않습니다 — 법제처 국가법령정보센터에서 개정 여부를 확인하세요._`);
+    const editions = legalEditionsNote(doc.legalBasis);
+    if (editions) {
+      lines.push(`_${editions}_`);
       lines.push("");
     }
     if (doc.penaltyOnMissing) {
@@ -1064,6 +978,14 @@ function usabilityStatusText(missingRequiredCount: number, otherErrorCount: numb
   return "필수 항목 모두 작성됨 · 자동 검사 통과 — 담당자 검토와 결재선 서명·날짜 확인이 남아 있습니다.";
 }
 
+/** 수록 판본 문장 — 인용한 조문이 어느 시행일 기준인지 (Markdown 본문과 정본이 같은 문장을 쓴다) */
+function legalEditionsNote(legalBasis: string[] | undefined): string {
+  const editions = legalEditionsOf(legalBasis ?? []);
+  return editions.length > 0
+    ? `수록 판본: ${editions.join(" · ")}. 이 문서를 만들 때 법령의 현행 여부는 확인하지 않습니다 — 법제처 국가법령정보센터에서 개정 여부를 확인하세요.`
+    : "";
+}
+
 /** 인용 조문·별표의 법령별 수록 판본 — "산업안전보건법 (시행 2026-08-01)" */
 function legalEditionsOf(legalBasis: string[]): string[] {
   const datesByLaw = new Map<string, Set<string>>();
@@ -1105,7 +1027,12 @@ async function renderMarkdownOutput(context: DocumentRenderContext): Promise<str
   );
 }
 
-function renderDoclangOutput(context: DocumentRenderContext): string {
+/** 정본(.dclx 의 document.xml) — 결재·제출용 DocLang. 한글 파일은 이것에서 만든다 */
+function renderCanonicalDoclang(context: DocumentRenderContext): string {
+  return renderDoclangOutput(context, true);
+}
+
+function renderDoclangOutput(context: DocumentRenderContext, canonical = false): string {
   const draft = (context.input.draft ?? {}) as Record<string, unknown>;
   const statusText = usabilityStatusText(context.missingRequiredCount, context.otherErrorCount);
   const serializerInput: SafetyDocumentDoclangInput = {
@@ -1114,8 +1041,11 @@ function renderDoclangOutput(context: DocumentRenderContext): string {
     sections: context.sections,
     kosha: context.kosha,
     hazards: context.hazards,
-    controls: context.controls,
-    directControlIris: context.directControlIris,
+    ...(() => {
+      // Markdown 본문과 같은 대책을 같은 순서로 싣는다
+      const shown = selectDisplayedControls(context.controls, context.directControlIris, context.hazards);
+      return { controls: shown.selected, directControlIris: shown.directlyMapped };
+    })(),
     legalBodyByIri: context.legalBodyByIri,
     hazardFallbackSuppressed: context.hazardFallbackSuppressed,
     documentCategory: context.documentCategory,
@@ -1123,13 +1053,16 @@ function renderDoclangOutput(context: DocumentRenderContext): string {
     missingRequiredCount: context.missingRequiredCount,
     statusText,
     safetyDisclaimer: SAFETY_DISCLAIMER,
+    metaRows: documentMetaRows(context.doc, draft),
+    legalEditionsNote: legalEditionsNote(context.doc.legalBasis),
+    canonical,
   };
   return serializeSafetyDocumentToDoclang(serializerInput);
 }
 
 const DOCUMENT_RENDERERS: Record<TextFormat, (context: DocumentRenderContext) => Promise<string> | string> = {
   md: renderMarkdownOutput,
-  doclang: renderDoclangOutput,
+  doclang: renderCanonicalDoclang,
 };
 
 // 검증 결과 푸터 (v0.14 — 사용자 입력 사실성 검증)
@@ -1284,12 +1217,23 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   };
   const markdownBody = await DOCUMENT_RENDERERS.md(renderContext);
   let hwpxFile: HwpxExportResult | undefined;
+  let dclxFile: HwpxExportResult | undefined;
   let fullBody: string;
-  if (input.format === "hwpx") {
-    hwpxFile = await saveHwpx(input.docId, markdownBody, doc.title);
-    fullBody =
-      `HWPX(한글) 파일을 저장했습니다.\n\n- 파일: ${hwpxFile.path}\n- 크기: ${hwpxFile.bytes} bytes\n- 상태: ${usabilityStatusText(missingRequiredCount, otherErrorCount)}\n\n` +
-      "파일에는 결재·제출용으로 정리한 본문이 들어 있습니다(작성 안내와 검사 상태 머리말 제외). 한글에서 열어 내용과 서식을 확인한 뒤 사용하세요.";
+  if (input.format === "dclx" || input.format === "hwpx") {
+    // 정본은 DocLang — 한글 파일은 이 정본에서 만든다 (Markdown 을 거치지 않는다)
+    const documentXml = renderCanonicalDoclang(renderContext);
+    dclxFile = await saveDclx(input.docId, documentXml);
+    const status = usabilityStatusText(missingRequiredCount, otherErrorCount);
+    if (input.format === "hwpx") {
+      hwpxFile = await saveHwpxFromDoclang(input.docId, documentXml, doc.title);
+      fullBody =
+        `정본(.dclx)을 저장하고 그 정본에서 HWPX(한글) 파일을 만들었습니다.\n\n- 한글 파일: ${hwpxFile.path} (${hwpxFile.bytes} bytes)\n- 정본: ${dclxFile.path} (${dclxFile.bytes} bytes)\n- 상태: ${status}\n\n` +
+        "파일에는 결재·제출용 본문만 들어 있습니다(작성 안내와 검사 상태 제외, 빈 칸은 손으로 채울 빈칸). 한글에서 열어 내용과 서식을 확인한 뒤 사용하세요.";
+    } else {
+      fullBody =
+        `${markdownBody}\n\n---\n\n> 📄 **정본(.dclx)을 저장했습니다**: ${dclxFile.path} (${dclxFile.bytes} bytes) — DocLang 아카이브. 위 Markdown 은 작성 안내를 넣은 미리보기이고, 정본에는 결재·제출용 본문만 들어 있습니다. ` +
+        "한글 파일이 필요하면 format: \"hwpx\" 로 다시 부릅니다.";
+    }
   } else {
     fullBody = input.format === "md" ? markdownBody : await DOCUMENT_RENDERERS[input.format](renderContext);
   }
@@ -1350,6 +1294,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       sectionsCount: (doc.sections ?? []).length,
       legalBasisCount: (doc.legalBasis ?? []).length,
       bodyMarkdownLength: markdownBody.length,
+      ...(dclxFile ? { dclxPath: dclxFile.path, dclxBytes: dclxFile.bytes } : {}),
       ...(hwpxFile ? { hwpxPath: hwpxFile.path, hwpxBytes: hwpxFile.bytes } : {}),
       // decision 006 — 위험 출처/폴백 차단 여부 (환각 차단 관찰용)
       documentCategory,
@@ -1375,7 +1320,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
 export const generateSafetyDocumentTool: ToolDefinition = {
   name: "generate_safety_document",
   description:
-    "법정 안전관리 문서의 **초안 본문**을 결정론적으로 생성한다. v0.7 — Document.sections 기반 generic renderer로 모든 docId 자동 처리. 그래프 추론(KOSHA·Hazard·Control·법령) + 작업 조건 합성 → Markdown. `format=doclang` 은 DocLang v0.9 XML experimental 출력. PDF·docx 변환은 클라이언트. **⚠️ 작성 보조: 본 도구 단독 결과는 초안일 뿐, 결재 가능 여부 확인은 `review_safety_document` 호출 필수. 작성 주체는 안전관리자이며 MCP는 보조. 중대재해·산업재해 관련 문서는 법무·노무 검토 필요.**",
+    "법정 안전관리 문서의 **초안 본문**을 결정론적으로 생성한다. v0.7 — Document.sections 기반 generic renderer로 모든 docId 자동 처리. 그래프 추론(KOSHA·Hazard·Control·법령) + 작업 조건 합성. 기본으로 문서의 정본을 DocLang 아카이브(.dclx)로 저장하고 미리보기 Markdown 을 돌려준다 — 정본에는 결재·제출용 본문만 들어간다. 사용자가 한글 파일을 원하면 `format: hwpx` 로 정본과 함께 그 정본에서 만든 한글 파일을 저장한다. 파일 없이 본문만 필요하면 `format: md`, 정본 XML 글자만 필요하면 `format: doclang`. PDF·docx 변환은 클라이언트. **⚠️ 작성 보조: 본 도구 단독 결과는 초안일 뿐, 결재 가능 여부 확인은 `review_safety_document` 호출 필수. 작성 주체는 안전관리자이며 MCP는 보조. 중대재해·산업재해 관련 문서는 법무·노무 검토 필요.**",
   inputSchema,
   handler,
 };

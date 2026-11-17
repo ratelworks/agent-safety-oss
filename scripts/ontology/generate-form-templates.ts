@@ -13,6 +13,7 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { sectionHeadingWithSource } from "../../src/lib/doclang-serializer.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJ = resolve(__dirname, "..", "..");
@@ -99,9 +100,8 @@ function generateMarkdown(doc: DocNode): string {
 
   // sections 본문
   for (const sec of doc.sections ?? []) {
-    const titleHasNum = /^\s*(\d+\.|[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]|\([0-9]+\)|[①-⑳])/.test(sec.title);
-    const heading = titleHasNum ? sec.title : sec.title;
-    lines.push(`## ${heading}${sec.legalSource ? ` (${sec.legalSource})` : ""}`);
+    // 문서 생성기와 같은 규칙 — 제목 끝 근거 괄호는 떼고 온전한 근거 표기 하나만
+    lines.push(`## ${sectionHeadingWithSource(sec.title, sec.legalSource)}`);
     lines.push("");
     if (sec.fields && sec.fields.length > 0) {
       lines.push("| 항목 | 내용 |");
