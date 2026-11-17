@@ -17,7 +17,16 @@
       "steps": "source",
       "hasHazard": "mapped",
       "broader": "editorial"
-    }
+    },
+    "measureCorrections": [
+      {
+        "at": "2026-11-18",
+        "basis": "art:기준규칙:617 → art:기준규칙:620",
+        "was": "근로자에게 공기호흡기 또는 송기마스크 등 호흡용 보호구를 지급하여 착용하도록 한다. (제617조 — 분진작업 호흡용 보호구)",
+        "now": "제620조제1항 단서(밀폐공간 환기 곤란 시 공기호흡기·송기마스크) 원문 대책으로, 같은 위험에 이미 있으면 뺌",
+        "why": "질식(불활성가스·유해가스) 위험의 호흡보호구 근거로 분진작업 조항이 붙어 있었다"
+      }
+    ]
   },
   "broader": "activity:mechanical_equipment_installation",
   "hasHazard": [
@@ -1042,12 +1051,13 @@
                   }
                 },
                 {
-                  "@id": "workmeasure:46066c40ebf0",
+                  "@id": "workmeasure:89bab02263bb",
                   "@type": "WorkMeasure",
-                  "measure": "근로자에게 공기호흡기 또는 송기마스크 등 호흡용 보호구를 지급하여 착용하도록 한다.",
+                  "measure": "폭발이나 산화 등의 위험으로 환기할 수 없거나 작업의 성질상 환기하기가 매우 곤란한 경우에는 근로자에게 공기호흡기 또는 송기마스크를 지급하여 착용하도록 한다.",
                   "controlLevel": "ppe",
                   "basis": {
-                    "basisArticle": "art:기준규칙:617"
+                    "basisArticle": "art:기준규칙:620",
+                    "paragraph": 1
                   }
                 }
               ]

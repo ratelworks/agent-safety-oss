@@ -31,6 +31,8 @@ const SECOND_WORK_ENDINGS: ReadonlySet<string> = new Set(["을", "를", "이", "
 /** 공종 이름 낱말 바로 뒤에 오면 그 낱말이 작업을 가리킨다고 보는 동작어 ("콘크리트 타설", "도장 작업") */
 const SECOND_WORK_ACTIONS: ReadonlySet<string> = new Set([...GENERIC_TOKENS, "타설", "보수", "교체", "제거", "작업중", "공사중"]);
 /** 단계 이름을 낱말로 나누는 구분자 — "지브·카운터웨이트 조립"·"마스트 설치·상승(텔레스코핑)" */
+/** 앞 낱말을 작업 대상이 아니라 자리로 만드는 말 — "철골 보 위에서 데크플레이트 설치" 의 보는 단계가 아니라 작업 자리 */
+const PLACE_WORDS = new Set(["위", "위에서", "위의", "아래", "아래에서", "밑", "밑에서", "옆", "옆에서", "상부", "상부에서", "하부", "하부에서"]);
 const STEP_WORD_SPLIT = /[\s·()\-+/,]+/;
 /** 공종 하나에 보여 줄 관련 문서 수 상한 */
 const MAX_RELATED_DOCUMENTS = 8;
@@ -704,7 +706,7 @@ export async function getWorkSteps(
   };
 }
 
-function stepWordsOf(stepName: string): string[] {
+export function stepWordsOf(stepName: string): string[] {
   return stepName.split(STEP_WORD_SPLIT).map(normalize).filter(Boolean);
 }
 
@@ -737,18 +739,25 @@ export function pickFocusSteps(query: string, ws: Pick<ResolvedWorkSteps, "work"
   const inName = words.map((w, i) => (isNameWord(w) ? i : -1)).filter((i) => i >= 0);
   const [first, last] = [inName[0] ?? -1, inName.at(-1) ?? -1];
   const outsideName = (t: string, i: number) => !GENERIC_TOKENS.has(t) && !isNameWord(t) && !(i > first && i < last);
-  const tokens = words.filter((t, i) => t.length >= 2 && outsideName(t, i));
-  // 한 글자 낱말("보 설치" 의 보)은 단계 이름의 낱말과 똑같을 때만 짚는다
-  const singles = words.filter((t, i) => t.length === 1 && outsideName(t, i));
-  const picked = ws.steps
-    .filter(
-      (s) =>
-        s.name === ws.matchedStep ||
-        (s.altLabels ?? []).some((a) => normalize(a).length >= 2 && q.includes(normalize(a))) ||
-        tokens.some((t) => stepNameHasWord(s.name, t)) ||
-        singles.some((t) => stepWordsOf(s.name).includes(t)),
-    )
-    .map((s) => s.name);
+  // 바로 뒤에 "위에서"·"아래" 같은 말이 붙은 낱말은 작업 자리다 — 다른 단계가 걸리면 그 낱말로는 단계를 고르지 않는다
+  const isPlace = (i: number) => PLACE_WORDS.has(words[i + 1] ?? "");
+  const pick = (skipPlace: boolean): string[] => {
+    const usable = (t: string, i: number) => outsideName(t, i) && !(skipPlace && isPlace(i));
+    const tokens = words.filter((t, i) => t.length >= 2 && usable(t, i));
+    // 한 글자 낱말("보 설치" 의 보)은 단계 이름의 낱말과 똑같을 때만 짚는다
+    const singles = words.filter((t, i) => t.length === 1 && usable(t, i));
+    return ws.steps
+      .filter(
+        (s) =>
+          s.name === ws.matchedStep ||
+          (s.altLabels ?? []).some((a) => normalize(a).length >= 2 && q.includes(normalize(a))) ||
+          tokens.some((t) => stepNameHasWord(s.name, t)) ||
+          singles.some((t) => stepWordsOf(s.name).includes(t)),
+      )
+      .map((s) => s.name);
+  };
+  const withoutPlace = pick(true);
+  const picked = withoutPlace.length > 0 ? withoutPlace : pick(false);
   // 해체·설치·조립·시공 — 단계를 가르는 동작
   const actions = query
     .split(/[\s.,()·]+/)

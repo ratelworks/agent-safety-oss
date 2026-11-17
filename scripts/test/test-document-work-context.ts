@@ -146,6 +146,8 @@ async function main(): Promise<void> {
   check("공종을 정하지 못해도 작업 조건 조치는 싣는다 — 작업명의 이동식 크레인은 이동식 크레인 조항", craneCond.includes("### 작업 조건 — 야간작업") && craneCond.includes("§149") && craneCond.includes("§150") && !craneCond.includes("§146"), craneCond.match(/§\d+/g)?.join(",") ?? "");
   const tbmBeam = stepColumn(await draftText("daily_tbm", { workName: "고소작업대로 철골 보 볼트 체결" }));
   check("단계는 낱말 단위로 짚는다 — 볼트 체결은 앵커볼트 매립이 아니라 보 설치", tbmBeam.length > 0 && tbmBeam.every((s) => s === "보 설치"), tbmBeam.join(", "));
+  const deck = stepColumn(await draftText("daily_tbm", { workName: "철골 보 위에서 데크플레이트 설치" }));
+  check("\"보 위에서\" 처럼 자리를 가리키는 낱말로는 단계를 고르지 않는다 — 데크플레이트 설치", deck.length > 0 && deck.every((s) => s.includes("Deck Plate")), deck.join(", "));
   const paint = await draftText("ad_hoc_risk_assessment", { workName: "외부 강관비계 위에서 외벽 도장 작업" });
   const paintSteps = stepColumn(paint);
   check("작업명에 공종 이름이 둘이면 두 공종의 단계를 함께 싣는다", paintSteps.some((s) => s.startsWith("강관비계 · ")) && paintSteps.some((s) => s.startsWith("도장작업 · ")), [...new Set(paintSteps.map((s) => s.split(" · ")[0]))].join(", "));

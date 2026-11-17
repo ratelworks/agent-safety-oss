@@ -37,7 +37,7 @@ import { validateDocumentInput, type ValidationReport } from "../lib/input-valid
 import { COMMON_RESPONSE_META } from "../config/constants.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
 import { kstToday } from "../lib/datetime-kst.js";
-import { findSecondNamedWork, getWorkSteps, pickFocusSteps, stepNameHasWord, type ResolvedWorkSteps } from "../lib/work-steps.js";
+import { findSecondNamedWork, getWorkSteps, pickFocusSteps, stepNameHasWord, stepWordsOf, type ResolvedWorkSteps } from "../lib/work-steps.js";
 import { resolveWorkConditions, RULE_SCOPE } from "../lib/work-conditions.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
 import { fieldDetailTable } from "../lib/field-detail.js";
@@ -928,7 +928,10 @@ function stepRows(workName: string, ws: ResolvedWorkSteps, docId: string): {
 } {
   // 작업명의 낱말이 다른 단계 이름에도 있으면("지브 조립 및 해체" → 해체·운전) 단계를 줄이지 않는다
   const focus = pickFocusSteps(workName, ws);
-  const words = workName.split(/[\s.,()·]+/).filter((w) => w.length >= 2 && !ws.work.includes(w));
+  // 고른 단계 이름의 낱말과 글자가 똑같은 말("데크플레이트 설치" 의 설치, "거푸집 동바리 해체" 의 동바리)은 다른 단계를 가리키는 말로 치지 않는다.
+  // 앞부분만 겹치는 말("화약" 과 "화약고")은 그대로 센다 — 잘못 고른 단계로 TBM 을 줄이지 않게
+  const focusWords = new Set(focus.flatMap((f) => stepWordsOf(f)));
+  const words = workName.split(/[\s.,()·]+/).filter((w) => w.length >= 2 && !ws.work.includes(w) && !focusWords.has(stepWordsOf(w)[0] ?? ""));
   const namesOtherStep = ws.steps.some((s) => !focus.includes(s.name) && words.some((w) => stepNameHasWord(s.name, w) || (s.altLabels ?? []).includes(w)));
   const narrowed = focus.length > 0 && SINGLE_DAY_DOC.test(docId) && !namesOtherStep;
   const ordered = [...ws.steps.filter((s) => focus.includes(s.name)), ...(narrowed ? [] : ws.steps.filter((s) => !focus.includes(s.name)))];
