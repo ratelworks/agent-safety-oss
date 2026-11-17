@@ -279,6 +279,7 @@ check("보고서가 이슈·조치를 모음", JSON.stringify(Object.values(snap
 // 한글 형식은 정본(.dclx)과 그 정본에서 만든 한글 파일(.hwpx) 둘을 결과 파일로 넘긴다
 const genFiles = o.generate_safety_document.files as { fileName: string; bytes: Uint8Array }[];
 check("한글 파일은 결과 파일로 (정본과 함께)", genFiles.length === 2 && genFiles.some((f) => f.fileName.endsWith(".hwpx") && f.bytes.byteLength > 1000) && genFiles.some((f) => f.fileName.endsWith(".dclx")));
+check("결과 파일 이름에 내용 해시 8자가 붙는다 — 같은 초에 만든 다른 문서와 이름이 겹치지 않게", genFiles.every((f) => /-[0-9a-f]{8}\.(hwpx|dclx)$/.test(f.fileName)));
 check("내보내기 한글 파일도 결과 파일로", o.export_drafted_document.files.length === 1 && String((o.export_drafted_document.result.structuredContent as any).hwpxPath).startsWith("host-storage/"));
 // 기본 형식은 정본(.dclx) 하나를 결과 파일로 넘긴다 — 로컬 폴더에는 쓰지 않는다
 check("문서 생성이 주입한 프로필로 자동 채움 (정본은 결과 파일로)", o.generate_md.result.content.some((c: any) => String(c.text).includes(`${COMPANY_A} 1공구`)) && o.generate_md.files.length === 1 && o.generate_md.files[0].fileName.endsWith(".dclx"));

@@ -8,6 +8,7 @@
  * 호스트 저장 주입 모드(createSafetyEngine)에서는 파일을 쓰지 않고 결과 파일(files)로 호스트에 넘긴다.
  */
 
+import { createHash } from "node:crypto";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getDocumentsDir } from "../config/paths.js";
@@ -58,7 +59,8 @@ async function saveDocumentBytes(docId: string, extension: string, data: Buffer,
   const stamp = kstIsoNow().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
   const host = currentHost();
   if (host) {
-    const fileName = `${docId}-${stamp}.${extension}`;
+    // 같은 초에 같은 종류 문서를 또 만들어도 이름이 겹치지 않게 내용 해시 앞 8자를 붙인다(내용이 같으면 이름도 같다)
+    const fileName = `${docId}-${stamp}-${createHash("sha256").update(data).digest("hex").slice(0, 8)}.${extension}`;
     host.addFile({ fileName, mimeType: MIME_BY_EXTENSION[extension] ?? "application/octet-stream", bytes: data, documentKind: docId });
     return { path: hostStorageLabel("file", fileName), bytes: data.length };
   }
