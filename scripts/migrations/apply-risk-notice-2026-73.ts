@@ -427,7 +427,8 @@ async function main(): Promise<void> {
   for (const a of articles) {
     if (a.chapter !== chapter) {
       chapter = a.chapter;
-      md += `\n## ${chapter.replace(/\s+/g, " ")}\n`;
+      // 장 제목 앞 구분선 — 조문 본문 추출이 다음 장 제목을 앞 조문에 붙이지 않게
+      md += `${articles[0].chapter === chapter ? "" : "\n---\n"}\n## ${chapter.replace(/\s+/g, " ")}\n`;
     }
     md += `\n${articleMarkdown(a)}`;
   }

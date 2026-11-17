@@ -233,7 +233,7 @@ export function renderIri(iri: string): string {
   // Article (조문)
   if (iri.startsWith("art:")) {
     // art:기준규칙:38#2 → 산안기준규칙 §38 ②
-    const m = iri.match(/^art:([^:]+):(\d+)(?:#(\d+))?$/);
+    const m = iri.match(/^art:([^:]+):(\d+(?:의\d+)?)(?:#(\d+))?$/);
     if (m) {
       const lawName = LAW_NAME_MAP[m[1]] ?? m[1];
       const articleNo = m[2];

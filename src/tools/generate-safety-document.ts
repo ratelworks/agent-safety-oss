@@ -45,6 +45,9 @@ import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDo
 /** 서류에 싣는 별표 본문 상한 — 작업계획서의 별표 4 처럼 그 서류가 갖출 항목 목록이면 잘리지 않게 */
 const ANNEX_BODY_MAX_CHARS = 2000;
 const WORK_STEP_BASIS_PER_ROW = 3;
+/** 위험성평가 결과를 적는 서류 — 단계 표에 현장이 채울 결과 칸을 붙인다 (시행규칙 제37조의3제2호) */
+const RISK_RESULT_DOC = /risk_assessment|daily_tbm/;
+const RISK_RESULT_COLUMNS = ["위험성 수준 결정 결과", "개선대책 이행 결과"] as const;
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -787,9 +790,10 @@ async function renderGeneric(
   if (workStepTable) {
     lines.push(`## ${workStepTable.title}`);
     lines.push("");
-    lines.push(`| ${workStepTable.headers.join(" | ")} |`);
-    lines.push(`|---|---|---|`);
-    for (const row of workStepTable.rows) lines.push(`| ${row[0]} | ${row[1]} | ${row[2].join("<br>")} |`);
+    const fill = workStepTable.fillColumns ?? [];
+    lines.push(`| ${[...workStepTable.headers, ...fill].join(" | ")} |`);
+    lines.push(`|${"---|".repeat(workStepTable.headers.length + fill.length)}`);
+    for (const row of workStepTable.rows) lines.push(`| ${row[0]} | ${row[1]} | ${row[2].join("<br>")} |${fill.map(() => "  |").join("")}`);
     lines.push("");
     lines.push(`> ${workStepTable.notice}`);
     lines.push("");
@@ -942,6 +946,7 @@ interface DocumentRenderContext {
 async function buildWorkStepTable(
   draft: Record<string, unknown>,
   hazardFallbackSuppressed: boolean,
+  docId = "",
 ): Promise<WorkStepTable | undefined> {
   if (hazardFallbackSuppressed) return undefined;
   const metadata = (draft.metadata ?? {}) as Record<string, unknown>;
@@ -976,10 +981,12 @@ async function buildWorkStepTable(
     title: `작업 단계별 위험요인·근거 — ${found.result.work}`,
     headers: ["단계", "유해·위험요인", "감소대책 [위계] (근거)"],
     rows,
+    ...(RISK_RESULT_DOC.test(docId) ? { fillColumns: [...RISK_RESULT_COLUMNS] } : {}),
     notice:
       "공종의 작업 단계별 유해·위험요인과 감소대책을 근거와 함께 정리한 참고 자료입니다(안전보건공단 자료 기반). 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다." +
       (found.result.matchedBySynonym?.length ? ` 공종 이름이 아니라 현장 용어 사전의 낱말로 찾은 공종입니다 (찾은 낱말: ${found.result.matchedBySynonym.join(", ")}). 맞는 공종인지 확인하세요.` : "") +
-      (notices ? ` 함께 볼 표준안전 작업지침(권고 기준): ${notices}.` : ""),
+      (notices ? ` 함께 볼 표준안전 작업지침(권고 기준): ${notices}.` : "") +
+      (RISK_RESULT_DOC.test(docId) ? ` '${RISK_RESULT_COLUMNS.join("'·'")}' 칸은 시행규칙 제37조의3제2호에 따라 근로자와 공유하고 기록할 사항이므로 사업장이 정한 기준으로 판단해 적습니다(위험성평가 고시 제11조·제12조).` : ""),
   };
 }
 
@@ -1213,7 +1220,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     documentCategory,
     missingRequiredCount,
     otherErrorCount,
-    workStepTable: await buildWorkStepTable((input.draft ?? {}) as Record<string, unknown>, hazardFallbackSuppressed),
+    workStepTable: await buildWorkStepTable((input.draft ?? {}) as Record<string, unknown>, hazardFallbackSuppressed, input.docId),
   };
   const markdownBody = await DOCUMENT_RENDERERS.md(renderContext);
   let hwpxFile: HwpxExportResult | undefined;

@@ -36,7 +36,7 @@ const DOCS_DIR = resolve(ROOT, "src/ontology/graph/nodes/documents");
 const OFFICIAL_EXAMPLE = resolve(__dirname, "fixtures/a2ui-1.0/contact_form_example.jsonl");
 const SAMPLE_DOC_ID = "daily_tbm";
 /** 예/아니오 선택형 필드가 있는 문서 */
-const CHOICE_DOC_ID = "ad_hoc_risk_assessment";
+const CHOICE_DOC_ID = "asbestos_investigation_report";
 const SURFACE = "safety-form";
 
 let pass = 0;

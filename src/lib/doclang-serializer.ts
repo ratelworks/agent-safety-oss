@@ -158,6 +158,8 @@ export interface WorkStepTable {
   headers: [string, string, string];
   rows: Array<[string, string, string[]]>;
   notice: string;
+  /** 현장이 채우는 빈 칸 (위험성평가·TBM — 위험성 수준 결정 결과·이행 결과) */
+  fillColumns?: string[];
 }
 
 export interface SafetyDocumentDoclangInput {
@@ -595,7 +597,7 @@ function renderWorkSteps(input: SafetyDocumentDoclangInput): string {
   if (!t) return "";
   return [
     heading(2, t.title),
-    simpleTable(t.title, t.headers, t.rows.map((row) => [row[0], row[1], row[2].join(" / ")])),
+    simpleTable(t.title, [...t.headers, ...(t.fillColumns ?? [])], t.rows.map((row) => [row[0], row[1], row[2].join(" / "), ...(t.fillColumns ?? []).map(() => "")])),
     textElement(t.notice),
   ].join("\n");
 }
