@@ -236,13 +236,19 @@ function testPlacement(): void {
   check("별지30: 발주자 — 고른 것만 √", squash(cellAt(form, 9, 24)) === "[ ]민간 [√ ]국가ㆍ지방자치단체 [ ]공공기관", cellAt(form, 9, 24));
   check("별지30: 공정률은 숫자만, 공사금액은 백만원으로 — 서식의 단위 그대로", cellAt(form, 12, 33) === "45 %" && squash(cellAt(form, 12, 38)) === "공사금액 4,500 백만원", `${cellAt(form, 12, 33)} / ${cellAt(form, 12, 38)}`);
   // 공사금액은 원·억·백만원 어느 표기로 와도 서식의 백만원 칸에 맞게 (문서 안내 예시는 원 단위)
-  for (const [input, want] of [["32,000,000,000", "32,000"], ["320억원", "32,000"], ["4,500백만원", "4,500"], ["1,250만원", "13"], ["4500", "4,500"]] as const) {
+  for (const [input, want] of [["32,000,000,000", "32,000"], ["320억원", "32,000"], ["1억 5천만원", "150"], ["15억3천만", "1,530"], ["3.2억", "320"], ["4,500백만원", "4,500"], ["1,250만원", "12.5"], ["4500", "4,500"], ["4500 (45억)", "4,500"]] as const) {
     const amount = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { constructionAmount: input }));
     const got = squash(cellAt(readTables(amount ? sectionOf(amount.data) : "")[0], 12, 38));
     check(`별지30: 공사금액 "${input}" → 백만원 ${want}`, got === `공사금액 ${want} 백만원`, got);
   }
   // 국적 칸에 나라 이름만 적어도 외국인 √ 와 국적, "한국" 은 내국인
-  for (const [input, want] of [["베트남", "[ ]내국인 [√ ]외국인 [국적: 베트남 ⑩체류자격: ]"], ["한국", "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]"], ["대한민국", "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]"]] as const) {
+  for (const [input, want] of [
+    ["베트남", "[ ]내국인 [√ ]외국인 [국적: 베트남 ⑩체류자격: ]"],
+    ["미국", "[ ]내국인 [√ ]외국인 [국적: 미국 ⑩체류자격: ]"],
+    ["부탄", "[ ]내국인 [√ ]외국인 [국적: 부탄 ⑩체류자격: ]"],
+    ["한국", "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]"],
+    ["대한민국", "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]"],
+  ] as const) {
     const nat = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { injuredNationality: input }));
     const got = squash(cellAt(readTables(nat ? sectionOf(nat.data) : "")[0], 16, 7));
     check(`별지30: 국적 "${input}"`, got === want && nat?.notInForm.length === 0, `${got} / ${nat?.notInForm.join(" / ")}`);
@@ -263,6 +269,23 @@ function testPlacement(): void {
   check("별지30: 제출처가 지역 이름뿐이면 서식 괄호 안에", squash(cellAt(st, 34, 0)) === "( 중부 )지방고용노동청장(지청장) 귀하", cellAt(st, 34, 0));
   check("별지30: 사망이면 사망 칸 √, 내국인이면 국적 괄호는 비움", squash(cellAt(st, 21, 39)) === "[√ ] 사망" && squash(cellAt(st, 16, 7)) === "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]", `${cellAt(st, 21, 39)} / ${cellAt(st, 16, 7)}`);
   check("별지30: 넣은 입력은 모두 자리를 찾았다", filled?.notInForm.length === 0, filled?.notInForm.join(" / "));
+  // 표시가 하나뿐인 칸은 긍정 낱말일 때만 고르고, 정하지 못하면 알린다
+  for (const [input, ticked, noted] of [["사망", true, false], ["예", true, false], ["(미사망 — 휴업만)", false, false], ["해당 없음", false, false], ["부상", false, true]] as const) {
+    const fatal = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { fatalFlag: input }));
+    const got = squash(cellAt(readTables(fatal ? sectionOf(fatal.data) : "")[0], 21, 39));
+    check(`별지30: 사망 여부 "${input}" → ${ticked ? "√" : "비움"}${noted ? " + 알림" : ""}`, got === (ticked ? "[√ ] 사망" : "[ ] 사망") && (fatal?.notInForm.length ?? 0) > 0 === noted, `${got} / ${fatal?.notInForm.join(" / ")}`);
+  }
+  // 값은 있는데 칸 꼴로 읽지 못하면 칸을 비우고 알린다 (조용히 버리지 않는다)
+  const unread = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { constructionAmount: "사억", occurrenceDate: "2026-04-24" }));
+  const ut = readTables(unread ? sectionOf(unread.data) : "")[0];
+  check(
+    "별지30: 읽지 못한 금액·시각은 칸을 비우고 알린다",
+    squash(cellAt(ut, 12, 38)) === "공사금액 백만원" &&
+      squash(cellAt(ut, 22, 13)) === "[ 2026 ]년 [ 4 ]월 [ 24 ]일 [ 금 ]요일 [ ]시 [ ]분" &&
+      (unread?.notInForm ?? []).some((n) => n.includes("사억") && n.includes("백만원 금액")) &&
+      (unread?.notInForm ?? []).some((n) => n.includes("2026-04-24") && n.includes("시·분")),
+    unread?.notInForm.join(" / "),
+  );
   const odd = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { employmentType: "파견" }));
   const oddCell = cellAt(readTables(odd ? sectionOf(odd.data) : "")[0], 18, 7);
   check("별지30: 서식 칸에 없는 고용형태는 그 밖의 사항 괄호 안에", squash(oddCell).endsWith("[√ ]그 밖의 사항 [파견 ]"), oddCell);

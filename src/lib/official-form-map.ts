@@ -57,6 +57,7 @@ export interface CellSpec {
  * mode "yes": 칸에 표시가 하나뿐 — 값이 긍정(비어 있지 않고 부정어가 아님)이면 고른다.
  * aliases: 칸 이름 → 값에 그 칸을 뜻하는 다른 말 ("내국인": ["한국", "대한민국"]).
  * fallback: 값에 어느 칸 이름도 없을 때 고를 칸 ("외국인" — 국적 칸에 나라 이름만 적은 경우).
+ * yesWords: mode yes 에서 고를 긍정 낱말 ("사망", "요청", "동의") — 표시(√)·예·네 등은 기본으로 본다. 부정도 긍정도 아니면 고르지 않고 알린다.
  */
 export interface CheckSpec {
   table: number;
@@ -68,6 +69,7 @@ export interface CheckSpec {
   other?: string;
   aliases?: Record<string, string[]>;
   fallback?: string;
+  yesWords?: string[];
 }
 export interface RowCell {
   offset?: number;

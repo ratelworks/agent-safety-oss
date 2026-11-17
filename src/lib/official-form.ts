@@ -37,8 +37,14 @@ const WON_THRESHOLD = 10_000_000;
 const MILLION = 1_000_000;
 /** 체크 칸 값에서 떼는 표시 — "[√] 일용" → "일용" */
 const TICK_MARKS = /\[\s*[√✓v■xX]?\s*\]|[√✓■□]/gu;
-/** 값이 부정이면 "yes" 체크를 고르지 않는다 */
-const NEGATIVE = /^(?:\(?\s*(?:미|부|비|아니|없음|해당\s*없|no\b|false\b|n\b|0$))|미사망|미요청|부동의|비동의|요청\s*안\s*함|동의\s*안\s*함/iu;
+/**
+ * 부정·긍정은 낱말로 가린다 — 첫 글자로 가리면 나라 이름(미국·부탄)이나 "부상" 같은 말을 잘못 읽는다.
+ * 부정: 첫 낱말이 NEGATIVE_FIRST 이거나, 띄어쓰기를 뗀 값에 NEGATIVE_PHRASES 가 있음.
+ */
+const NEGATIVE_FIRST = new Set(["아니", "아니오", "아니요", "아님", "없음", "해당없음", "미해당", "비해당", "no", "n", "false", "x", "0", "-"]);
+const NEGATIVE_PHRASES = ["미사망", "미요청", "미동의", "부동의", "비동의", "동의안함", "동의하지않", "요청안함", "요청하지않", "해당없음", "해당안됨", "신청안함"];
+/** 표시가 하나뿐인 체크 칸을 고르는 긍정 낱말 (칸 지도의 yesWords 를 더한다) */
+const AFFIRMATIVE = ["예", "네", "y", "yes", "true", "o", "해당", "있음"];
 /** 이름 비교에서 같게 보는 글자 — 가운뎃점 여러 꼴·띄어쓰기 */
 const FLAT = /[\sㆍ·‧・.,()]/gu;
 /** 정본 표의 상세 표 제목 */
@@ -180,35 +186,86 @@ function valuePart(value: string, part: string): string {
   }
 }
 
+/** 값 꼴의 이름 (알림 문구) */
+function partLabel(part: string): string {
+  const names: Record<string, string> = { Y: "연", M: "월", D: "일", dow: "요일", h: "시", min: "분", time: "시각", date: "날짜", num: "숫자", million: "백만원 금액", bare: "글" };
+  if (part.startsWith("after:")) return part.slice("after:".length);
+  const digit = /^d(\d+)$/u.exec(part);
+  return digit ? `${digit[1]}번째 숫자` : (names[part] ?? part);
+}
+
 /** 숫자에 세 자리마다 쉼표 */
 const withCommas = (n: number): string => String(n).replace(/\B(?=(\d{3})+(?!\d))/gu, ",");
 
+const BIG_UNITS: Record<string, number> = { 조: 1e12, 억: 1e8, 만: 1e4 };
+const SMALL_UNITS: Record<string, number> = { 천: 1e3, 백: 1e2, 십: 10 };
+
 /**
- * 금액을 백만원 단위 숫자로 — "32,000,000,000"(원) · "320억원" · "4500"(백만원) · "4500 (45억)" · "1,200만원" · "4,500백만원".
- * 단위가 없으면 크기로 가린다(WON_THRESHOLD 이상은 원). 읽지 못하면 빈 글.
+ * 한국어 금액 표기를 원으로 — "1억 5천만원" · "15억3천만" · "3.2억" · "32,000,000,000원" · "1,250만원". 단위가 하나라도 있으면 hasUnit.
+ * 숫자·단위·"원"·"약" 말고 다른 글이 남으면 null(읽지 못함) — 아는 만큼만 읽고 나머지를 버리지 않는다.
  */
-function toMillionWon(value: string): string {
-  const v = value.replace(/\s+/gu, "");
-  const num = (s: string | undefined): number => Number((s ?? "").replace(/,/gu, ""));
-  let m: number;
-  const eok = /(\d[\d,]*(?:\.\d+)?)억/u.exec(v);
-  if (/백만원/u.test(v)) m = num(/(\d[\d,]*(?:\.\d+)?)백만원/u.exec(v)?.[1]);
-  else if (eok) m = num(eok[1]) * 100 + num(/억(\d[\d,]*)만/u.exec(v)?.[1]) / 100;
-  else if (/\d만원/u.test(v)) m = num(/(\d[\d,]*(?:\.\d+)?)만원/u.exec(v)?.[1]) / 100;
-  else {
-    const n = num(/\d[\d,]*(?:\.\d+)?/u.exec(v)?.[0]);
-    m = n >= WON_THRESHOLD || /\d원/u.test(v) ? n / MILLION : n;
+function parseKoreanWon(text: string): { won: number; hasUnit: boolean } | null {
+  const s = text.replace(/[\s,]/gu, "").replace(/^약/u, "").replace(/원$/u, "");
+  if (!/\d/u.test(s)) return null;
+  let total = 0;
+  let section = 0;
+  let hasUnit = false;
+  let pending: number | null = null;
+  const re = /(\d+(?:\.\d+)?)|([천백십])|([조억만])/gy;
+  let at = 0;
+  for (let m = re.exec(s); m; m = re.exec(s)) {
+    at = re.lastIndex;
+    if (m[1] !== undefined) {
+      if (pending !== null) section += pending;
+      pending = Number(m[1]);
+    } else if (m[2] !== undefined) {
+      section += (pending ?? 1) * (SMALL_UNITS[m[2]] as number);
+      pending = null;
+      hasUnit = true;
+    } else if (m[3] !== undefined) {
+      total += (section + (pending ?? (section === 0 ? 1 : 0))) * (BIG_UNITS[m[3]] as number);
+      section = 0;
+      pending = null;
+      hasUnit = true;
+    }
   }
-  return Number.isFinite(m) && m > 0 ? withCommas(Math.round(m)) : "";
+  if (at !== s.length) return null;
+  return { won: total + section + (pending ?? 0), hasUnit };
 }
 
-/** template 의 {이름} 자리를 값으로 — 모든 자리가 비면 null(칸을 건드리지 않는다) */
-function render(template: string, lookup: (name: string) => string, used?: Set<string>): string | null {
+/**
+ * 금액을 백만원 단위로 — "32,000,000,000"(원) · "1억 5천만원" · "320억원" · "4,500백만원" · "4500"(백만원) · "4500 (45억)".
+ * 괄호 뒤의 덧붙인 말은 읽지 않는다. 단위가 없는 숫자는 크기로 가린다(WON_THRESHOLD 이상은 원, 미만은 백만원).
+ * 읽지 못하면 빈 글 — render 가 알림으로 올린다.
+ */
+function toMillionWon(value: string): string {
+  const head = value.split(/[(（]/u)[0]?.trim() ?? "";
+  const million = /^([\d,]+(?:\.\d+)?)\s*백만\s*원?$/u.exec(head.replace(/^약\s*/u, ""));
+  let m: number;
+  if (million) m = Number((million[1] as string).replace(/,/gu, ""));
+  else {
+    const parsed = parseKoreanWon(head);
+    if (!parsed) return "";
+    m = parsed.hasUnit || parsed.won >= WON_THRESHOLD || /원\s*$/u.test(head) ? parsed.won / MILLION : parsed.won;
+  }
+  if (!Number.isFinite(m) || m <= 0) return "";
+  // 백만원 아래 자리는 소수 한 자리까지 (12.5 백만원)
+  const rounded = Math.round(m * 10) / 10;
+  const [int, frac] = String(rounded).split(".");
+  return withCommas(Number(int)) + (frac ? `.${frac}` : "");
+}
+
+/**
+ * template 의 {이름} 자리를 값으로 — 모든 자리가 비면 null(칸을 건드리지 않는다).
+ * 값은 있는데 그 칸의 꼴(날짜·금액·숫자 자리 등)로 읽지 못하면 unreadable 에 이름·값을 담는다 — 조용히 버리지 않는다.
+ */
+function render(template: string, lookup: (name: string) => string, used?: Set<string>, unreadable?: Map<string, string>): string | null {
   let any = !new RegExp(PLACEHOLDER.source, "u").test(template);
   const out = template.replace(PLACEHOLDER, (_m, name: string, part?: string) => {
     used?.add(name);
     const raw = lookup(name).trim();
     const value = raw && part ? valuePart(raw, part) : raw;
+    if (raw && !value && part) unreadable?.set(`${name}\u0000${part}`, raw);
     if (value) any = true;
     return value || BLANK;
   });
@@ -418,6 +475,24 @@ function tick(cell: string, box: Box, style: NonNullable<CheckSpec["style"]>, ex
   return replaceAt(out, x, TICK);
 }
 
+/** 값의 낱말 — 괄호·문장부호·대시로 나눈다 */
+const tokens = (s: string): string[] => s.toLowerCase().split(/[\s,.;:/()[\]{}<>—–\-]+/u).filter(Boolean);
+
+/** 부정인 값인가 ("미사망", "아니오", "(해당 없음)", "동의 안 함") */
+function isNegative(words: string): boolean {
+  const t = tokens(words);
+  const squashed = words.replace(/\s+/gu, "");
+  return (t.length > 0 && NEGATIVE_FIRST.has(t[0] as string)) || NEGATIVE_PHRASES.some((p) => squashed.includes(p));
+}
+
+/** 표시가 하나뿐인 체크 칸을 고를 값인가 — 표시(√·[√])가 있거나 긍정 낱말이 있고, 부정이 아님 */
+function isAffirmative(value: string, yesWords: string[]): boolean {
+  if (isNegative(value.replace(TICK_MARKS, " "))) return false;
+  if (/\[\s*[√✓v■]\s*\]|[√✓■]/u.test(value)) return true;
+  const t = tokens(value);
+  return [...AFFIRMATIVE, ...yesWords].some((w) => t.includes(w.toLowerCase()));
+}
+
 /** 체크 칸 값 — 표시를 떼고 "그 밖의 사항 [교육·훈련생]" 의 괄호 안 글도 꺼낸다 */
 function checkWords(value: string): { words: string; inner: string } {
   const inner = /\[\s*([^\]√✓■]+?)\s*\]/u.exec(value.replace(/\[\s*[√✓v■xX]\s*\]/gu, ""))?.[1]?.trim() ?? "";
@@ -535,10 +610,15 @@ function fillCheck(xml: string, spec: CheckSpec, value: string, label: string, n
   return setCell(xml, spec.table, spec.row, spec.col, (cell) => {
     const boxes = boxesOf(visibleMap(cell).text, style);
     if (spec.mode === "yes") {
-      if (NEGATIVE.test(checkWords(value).words)) return cell;
+      if (isNegative(checkWords(value).words)) return cell;
+      // 부정도 긍정도 아니면 고르지 않고 알린다 ("부상" 을 사망 칸에 √ 하지 않는다)
+      if (!isAffirmative(value, spec.yesWords ?? [])) {
+        notes.push(`${label}: ${value} — 표시 여부를 정하지 못함`);
+        return cell;
+      }
       const box = boxes[0];
       const out = box ? tick(cell, box, style) : null;
-      if (!out) notes.push(`${label}: ${value}`);
+      if (!out) notes.push(`${label}: ${value} — 서식에서 표시 칸을 찾지 못함`);
       return out ?? cell;
     }
     const { words, inner } = checkWords(value);
@@ -548,7 +628,7 @@ function fillCheck(xml: string, spec: CheckSpec, value: string, label: string, n
     const names = (b: Box): string[] => [b.label, ...(spec.aliases?.[b.label] ?? [])];
     let picked = boxes.filter((b) => b !== other && b.label && names(b).some((n) => f.includes(flat(n))));
     // 어느 칸 이름도 없고 부정어도 아니면 칸 지도가 정한 기본 칸 (국적: "베트남" → 외국인)
-    if (picked.length === 0 && spec.fallback && !NEGATIVE.test(words)) picked = boxes.filter((b) => b.label === spec.fallback);
+    if (picked.length === 0 && spec.fallback && !isNegative(words)) picked = boxes.filter((b) => b.label === spec.fallback);
     let out: string | null = cell;
     // 뒤의 칸부터 표시해야 앞 칸의 자리가 흔들리지 않는다
     for (const box of [...picked].sort((a, b) => b.mark - a.mark)) out = out && tick(out, box, style);
@@ -558,7 +638,7 @@ function fillCheck(xml: string, spec: CheckSpec, value: string, label: string, n
       else out = null;
     }
     if (!out) {
-      notes.push(`${label}: ${value}`);
+      notes.push(`${label}: ${value} — 서식에 맞는 표시 칸이 없음`);
       return cell;
     }
     return out;
@@ -571,19 +651,30 @@ function fillSection(xml: string, map: FormMap, values: FormValues, used: Set<st
   const lookup = (name: string): string => values.scalar.get(name) ?? "";
   const label = (name: string): string => values.labels.get(name) ?? name;
 
+  const unreadable = new Map<string, string>();
   for (const spec of map.cells ?? []) {
     if (!matches(spec.when, lookup, used)) continue;
-    const text = render(spec.template, lookup, used);
+    const text = render(spec.template, lookup, used, unreadable);
     if (text === null) continue;
     out = setCell(out, spec.table, spec.row, spec.col, (c) => {
       if (spec.after) {
         const next = insertAfter(c, spec.after, text);
-        if (next === null) notes.push(`서식에서 "${spec.after}" 자리를 찾지 못함 — ${text.trim()}`);
+        if (next === null) notes.push(`${text.trim()} — 서식에서 "${spec.after}" 자리를 찾지 못함`);
         return next ?? c;
       }
       return spec.append ? appendToCell(c, text) : rewriteCell(c, text);
     }).xml;
   }
+
+  // 값은 있는데 칸 꼴로 읽지 못한 것 — 칸을 비워 두고 알린다
+  const unread = new Map<string, { raw: string; parts: string[] }>();
+  for (const [k, raw] of unreadable) {
+    const [name, part] = k.split("\u0000") as [string, string];
+    const entry = unread.get(name) ?? { raw, parts: [] };
+    entry.parts.push(partLabel(part));
+    unread.set(name, entry);
+  }
+  for (const [name, { raw, parts }] of unread) notes.push(`${label(name)}: ${raw} — 서식 칸(${[...new Set(parts)].join("·")})의 꼴로 읽지 못해 비워 둠`);
 
   for (const spec of map.checks ?? []) {
     used.add(spec.field);
@@ -604,7 +695,7 @@ function fillSection(xml: string, map: FormMap, values: FormValues, used: Set<st
     rows.forEach((row, i) => {
       const r = fillRowCells(out, spec.table, spec.firstRow + i * step, spec.cells, row);
       out = r.xml;
-      if (r.leftover.length > 0) notes.push(`${label(spec.field)} ${i + 1}번 줄: ${r.leftover.join(", ")}`);
+      if (r.leftover.length > 0) notes.push(`${label(spec.field)} ${i + 1}번 줄: ${r.leftover.join(", ")} — 서식에 맞는 칸이 없음`);
     });
   }
   return out;
@@ -647,7 +738,7 @@ export function fillOfficialForm(docId: string, values: FormValues): FilledForm 
     data: zip(out),
     form: `${map.source.law} ${map.source.form}`,
     source: map.source,
-    notInForm: [...notes.map((n) => `서식 칸에 맞는 자리가 없음 — ${n}`), ...unplacedValues(values, used)],
+    notInForm: [...notes, ...unplacedValues(values, used).map((n) => `${n} — 서식에 이 항목의 칸이 없음`)],
   };
 }
 
