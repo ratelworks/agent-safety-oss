@@ -288,8 +288,8 @@ async function main(): Promise<void> {
             const nums = numbersOf(m.measure ?? "");
             if (!iri || nums.size === 0) continue;
             if (!articleText.has(iri)) articleText.set(iri, String(((await getNode(iri)) as { description?: string } | undefined)?.description ?? ""));
+            if (!articleText.get(iri)) continue; // 조문 노드가 없는 근거는 다른 시험이 잡는다 — 조문에 수치가 없으면 대책의 수치는 모두 원문 밖
             const have = numbersOf(articleText.get(iri) ?? "");
-            if (have.size === 0) continue;
             numberChecked += 1;
             const miss = [...nums].filter((n) => !have.has(n));
             if (miss.length) numberOutside.push(`${s.title}:${iri}:${miss.join("·")}`);
