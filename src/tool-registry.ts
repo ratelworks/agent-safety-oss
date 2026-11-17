@@ -123,7 +123,7 @@ export const TOOLS: ToolDefinition[] = [
   getSafetyDocumentGuideTool, // 특정 문서 풀 가이드 (양식+작성가이드+검토규칙)
   getRiskAssessmentSchemaTool, // 위험성평가 스키마 (kras_method 통합)
   getWorkPlanSchemaTool, // 작업계획서 13종 스키마
-  getTbmSchemaTool, // TBM 스키마 (고시 §15 ④ 3호)
+  getTbmSchemaTool, // TBM 스키마 (위험성평가 고시 §16 ① 3호)
   getOpsSchemaTool, // OPS 1페이지 스키마
   getWorkPermitSchemaTool, // 작업허가서 5종 스키마
   listKrasMethodsTool, // KRAS 7방법 목록

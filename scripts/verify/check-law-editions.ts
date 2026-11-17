@@ -12,6 +12,9 @@
  *   - 시행예정 개정은 시행일 순으로 안내만 (exit 에 영향 없음)
  *   - LAW_OC 가 없으면 점검을 건너뛴다고 출력하고 exit 0
  *
+ *   4. 수록 고시·지침 = 행정규칙일련번호(수록 목록·조문 노드 _meta.admRulId) ↔ lawSearch.do (target=admrul) 의 현행 일련번호
+ *      — 고시는 개정되면 새 일련번호가 생기고, 전부개정이면 조 번호가 통째로 바뀐다
+ *
  * 사용: LAW_OC=... npm run check:law-editions   (--json 이면 JSON 출력)
  */
 
@@ -19,6 +22,7 @@ import { readFile, readdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
+import { ADMRULS, type AdminRule } from "../sync/admin-rules-list.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,6 +30,7 @@ const ROOT = resolve(__dirname, "..", "..");
 const LAWS_DIR = resolve(ROOT, "src", "ontology", "safety-laws");
 const ARTICLES_DIR = resolve(ROOT, "src", "ontology", "graph", "nodes", "articles");
 const SEARCH_URL = "https://www.law.go.kr/DRF/lawSearch.do";
+const ACTS_DIR = resolve(ROOT, "src", "ontology", "graph", "nodes", "acts");
 
 /** 번들 법령 — 파일·정식 법령명·조문 노드 접두(canonical) */
 export const BUNDLED_LAWS = [
@@ -136,6 +141,90 @@ export function judgeEdition(
   return { ...base, status: stale ? "낡음" : "현행" };
 }
 
+// ── 수록 고시·지침 ──────────────────────────────────────────────────
+export interface AdmRulEntry {
+  id: string;
+  name: string;
+  status: string; // 현행 | 연혁
+  issuedNo: string;
+  issuedDate: string;
+  effectiveDate: string;
+  revision: string; // 일부개정 | 전부개정 …
+}
+
+export interface AdmRulResult {
+  actKey: string;
+  name: string;
+  bundleId: string;
+  nodeIds: Record<string, number>;
+  current: AdmRulEntry | null;
+  status: "현행" | "낡음" | "조회 실패";
+  notes: string[];
+}
+
+export function parseAdmRulSearchXml(xml: string): AdmRulEntry[] {
+  const parser = new XMLParser({ ignoreAttributes: true, parseTagValue: false, isArray: (n) => n === "admrul" });
+  const root = parser.parse(xml)?.AdmRulSearch;
+  if (!root) throw new Error("검색 응답이 행정규칙 목록이 아님(인증키·신청 범위 확인)");
+  return (root.admrul ?? []).map((a: Record<string, unknown>) => ({
+    id: String(a.행정규칙일련번호 ?? ""),
+    name: String(a.행정규칙명 ?? "").trim(),
+    status: String(a.현행연혁구분 ?? ""),
+    issuedNo: String(a.발령번호 ?? ""),
+    issuedDate: toDate(String(a.발령일자 ?? "")),
+    effectiveDate: toDate(String(a.시행일자 ?? "")),
+    revision: String(a.제개정구분명 ?? ""),
+  }));
+}
+
+/** 수록 일련번호·조문 노드 일련번호를 현행 목록과 비교한다 (네트워크 없이 시험할 수 있게 분리) */
+export function judgeAdminRule(
+  rule: Pick<AdminRule, "actKey" | "id">,
+  name: string,
+  nodeIds: Record<string, number>,
+  list: AdmRulEntry[],
+): AdmRulResult {
+  const notes: string[] = [];
+  const current = list.find((e) => e.name === name && e.status === "현행") ?? null;
+  const base = { actKey: rule.actKey, name, bundleId: rule.id, nodeIds, current, notes };
+  if (!current) return { ...base, status: "조회 실패" };
+  const staleNodes = Object.entries(nodeIds).filter(([id]) => id !== current.id);
+  for (const [id, n] of staleNodes) notes.push(`조문 노드 ${n}건이 일련번호 ${id}`);
+  return { ...base, status: rule.id !== current.id || staleNodes.length > 0 ? "낡음" : "현행" };
+}
+
+async function adminRuleNodeIds(): Promise<Map<string, Record<string, number>>> {
+  const out = new Map<string, Record<string, number>>();
+  for (const f of await readdir(ARTICLES_DIR)) {
+    if (!f.endsWith(".jsonld")) continue;
+    const node = JSON.parse(await readFile(resolve(ARTICLES_DIR, f), "utf8")) as { "@id": string; _meta?: { admRulId?: string } };
+    if (!node._meta?.admRulId) continue;
+    const key = node["@id"].split(":")[1];
+    const counts = out.get(key) ?? {};
+    counts[node._meta.admRulId] = (counts[node._meta.admRulId] ?? 0) + 1;
+    out.set(key, counts);
+  }
+  return out;
+}
+
+async function checkAdminRules(oc: string): Promise<AdmRulResult[]> {
+  const nodeMap = await adminRuleNodeIds();
+  const results: AdmRulResult[] = [];
+  for (const rule of ADMRULS) {
+    const act = JSON.parse(await readFile(resolve(ACTS_DIR, `${rule.actSlug}.jsonld`), "utf8")) as { legislationIdentifier: string };
+    const name = act.legislationIdentifier;
+    try {
+      const params = new URLSearchParams({ OC: oc, target: "admrul", type: "XML", query: name, display: "100" });
+      const res = await fetch(`${SEARCH_URL}?${params.toString()}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      results.push(judgeAdminRule(rule, name, nodeMap.get(rule.actKey) ?? {}, parseAdmRulSearchXml(await res.text())));
+    } catch (err) {
+      results.push({ actKey: rule.actKey, name, bundleId: rule.id, nodeIds: nodeMap.get(rule.actKey) ?? {}, current: null, status: "조회 실패", notes: [(err as Error).message] });
+    }
+  }
+  return results;
+}
+
 // ── 실행 ────────────────────────────────────────────────────────────
 async function loadEnv(): Promise<void> {
   try {
@@ -187,8 +276,10 @@ async function main(): Promise<void> {
     }
   }
 
+  const adminRules = await checkAdminRules(oc);
+
   if (asJson) {
-    console.log(JSON.stringify({ checkedAt: new Date().toISOString(), results }, null, 2));
+    console.log(JSON.stringify({ checkedAt: new Date().toISOString(), results, adminRules }, null, 2));
   } else {
     console.log("# 번들 법령 판본 점검 (법제처 현행·시행예정 판과 비교)\n");
     for (const r of results) {
@@ -203,15 +294,27 @@ async function main(): Promise<void> {
       }
     }
   }
-  const stale = results.filter((r) => r.status === "낡음");
-  const failed = results.filter((r) => r.status !== "현행" && r.status !== "낡음");
+  if (!asJson) {
+    console.log("\n# 수록 고시·지침 판본 점검 (법제처 현행 행정규칙과 비교)\n");
+    for (const r of adminRules) {
+      const sym = r.status === "현행" ? "✅" : r.status === "낡음" ? "❌" : "⚠️";
+      const cur = r.current ? `현행 ${r.current.id} (제${r.current.issuedNo}호 ${r.current.revision}, 시행 ${r.current.effectiveDate})` : "현행 판 조회 실패";
+      console.log(`${sym} ${r.name} — 수록 ${r.bundleId} / ${cur} → ${r.status}`);
+      for (const n of r.notes) console.log(`    · ${n}`);
+    }
+  }
+  const staleRules = adminRules.filter((r) => r.status === "낡음");
+  const failedRules = adminRules.filter((r) => r.status === "조회 실패");
+  console.log(`고시·지침: 현행 ${adminRules.length - staleRules.length - failedRules.length} · 낡음 ${staleRules.length} · 조회 실패 ${failedRules.length}`);
+  const stale = [...results.filter((r) => r.status === "낡음"), ...staleRules];
+  const failed = [...results.filter((r) => r.status !== "현행" && r.status !== "낡음"), ...failedRules];
   console.log(
-    `\n요약: 현행 ${results.length - stale.length - failed.length} · 낡음 ${stale.length} · 조회 실패/표지 없음 ${failed.length} · 시행예정 ${results.reduce((s, r) => s + r.pending.length, 0)}건`,
+    `\n요약(법령 ${results.length} + 고시·지침 ${adminRules.length}): 현행 ${results.length + adminRules.length - stale.length - failed.length} · 낡음 ${stale.length} · 조회 실패/표지 없음 ${failed.length} · 시행예정 ${results.reduce((s, r) => s + r.pending.length, 0)}건`,
   );
   if (stale.length > 0) process.exit(1);
   // 정기 점검에서는 조회 실패·표지 없음도 "확인하지 못함"으로 실패시킨다
   if (failed.length > 0 && process.argv.includes("--require-key")) {
-    console.error(`❌ ${failed.length}개 법령의 판본을 확인하지 못했습니다 (조회 실패 또는 표지 없음)`);
+    console.error(`❌ ${failed.length}개 법령·고시의 판본을 확인하지 못했습니다 (조회 실패 또는 표지 없음)`);
     process.exit(3);
   }
 }

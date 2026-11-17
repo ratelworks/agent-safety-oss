@@ -14,7 +14,7 @@ function buildSchema(): DocumentSchema {
     docType: "ops",
     docTypeKo: "OPS (One Point Sheet)",
     purpose:
-      "단일 위험요인·주제에 대한 1페이지 안전 요약. KOSHA 안전보건자료 표준 포맷 중 하나로 현장 벽보·교재로 활용. 위험성평가 고시 §7 'KRAS 7방법' 중 핵심요인 기술법(OPS) 의 법정 인정 방법.",
+      "단일 위험요인·주제에 대한 1페이지 안전 요약. KOSHA 안전보건자료 표준 포맷 중 하나로 현장 벽보·교재로 활용. 위험성평가 고시 §9 제4호의 핵심 요인 기술(One Point Sheet)법.",
     legalObligation:
       "법정 의무 문서 아님 (관행·법정 인정 방법). 단, TBM·위험성평가 증빙으로 활용 가능.",
     frequency: "필요시 (공정 변경·사고 후·교육 등)",
@@ -66,8 +66,8 @@ function buildSchema(): DocumentSchema {
     ],
     relatedLaws: [
       "산안법 §36 (위험성평가 의무)",
-      "위험성평가 고시 §7 (위험성평가 방법 — KRAS 7방법 중 핵심요인 기술법)",
-      "위험성평가 고시 §15 ④ (상시평가 증빙으로도 활용 가능)",
+      "위험성평가 고시 §9 제4호 (위험성평가 기법 — 핵심 요인 기술법)",
+      "위험성평가 고시 §16 (상시평가 — 매 작업일 공유 자료로 활용 가능)",
     ],
     relatedTools: [
       "compile_safety_references(workType, docType='ops')",
@@ -98,7 +98,7 @@ export const getOpsSchemaTool: ToolDefinition = {
   name: "get_ops_schema",
   title: "OPS (One Point Sheet) 스키마",
   description:
-    "단일 위험요인에 대한 1페이지 안전 요약 문서 스키마. 위험성평가 고시 §7 'KRAS 7방법' 중 핵심요인 기술법(OPS) 으로 인정. 매 작업일 TBM(§15 ④ 3호) 부속 자료로 상시평가 증빙 활용 가능. 제목·위험요인·핵심 수칙 3~5개·유사사례·체크리스트 구조.",
+    "단일 위험요인에 대한 1페이지 안전 요약 문서 스키마. 위험성평가 고시 §9 제4호 핵심 요인 기술법(OPS). 매 작업일 TBM(고시 §16 ① 3호) 공유 자료로 활용 가능. 제목·위험요인·핵심 수칙 3~5개·유사사례·체크리스트 구조.",
   inputSchema,
   handler,
 };

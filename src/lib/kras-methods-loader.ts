@@ -190,7 +190,7 @@ export function recommendMethod(input: RecommendInput): Recommendation {
       primary: "construction_continuous",
       secondary: input.scale === "small" ? ["3step", "key_factor"] : ["frequency_severity", "checklist"],
       reasoning:
-        "건설업은 최초·상시·수시·정기 평가 의무 (위험성평가 고시 2024-76). 작업별 위험성은 " +
+        "건설업은 최초·정기·수시 평가 의무, 정기평가는 상시평가로 갈음 가능 (시행규칙 §37②, 위험성평가 고시 §13~§16). 작업별 위험성은 " +
         (input.scale === "small"
           ? "3단계 판단법 또는 핵심요인 기술법(OPS)"
           : "빈도·강도법(5×4) + 체크리스트") +

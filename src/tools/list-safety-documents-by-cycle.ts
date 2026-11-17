@@ -134,7 +134,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     if (input.industry === "construction") {
       lines.push(`- 업종: **건설업**`);
       lines.push(`  · ✅ 산업안전보건관리비 계상·사용 (모든 건설공사) — 산안법 §72`);
-      lines.push(`  · ✅ TBM 매 작업일 + 합동점검 매주 + 발굴 매월 (위험성평가 고시 §15 ④)`);
+      lines.push(`  · ✅ TBM 매 작업일 + 합동점검 매주 + 발굴 매월 (상시평가 — 위험성평가 고시 §16)`);
       if (input.constructionValue !== undefined) {
         lines.push(`  · 총 공사금액: **${input.constructionValue}억원**`);
         if (input.constructionValue < 50) {

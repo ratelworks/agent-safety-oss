@@ -43,7 +43,7 @@ const STAGE_DUTIES: Record<"pre" | "active" | "post", StageDuty[]> = {
     { docId: "safety_health_regulation", why: "100인 이상 또는 별표 2 업종은 안전보건관리규정", priority: "may" },
   ],
   active: [
-    { docId: "daily_tbm", why: "매일 작업 시작 전 TBM (위험성평가 고시 §15 ④ 3호)", priority: "must" },
+    { docId: "daily_tbm", why: "매일 작업 시작 전 TBM (위험성평가 고시 §16 ① 3호 · 산안법 §36 ④ 후단)", priority: "must" },
     { docId: "monthly_risk_assessment", why: "상시 위험성평가 (매일·매주·매월 KRAS)", priority: "must" },
     { docId: "pre_work_inspection", why: "작업 전 안전점검", priority: "must" },
     { docId: "work_start_pre_check", why: "작업시작 전 점검표 별표 3 23종 (산안기준규칙 §35)", priority: "must" },

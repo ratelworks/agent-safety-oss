@@ -4,7 +4,7 @@
  *
  *   1. 인용 법령 목록(scripts/sync/cited-laws.json)의 조문이 전부 노드로 있고, 법제처 원문 출처를 갖췄다
  *   2. 인용 법령 노드는 "인용된 조문만 수록"이라고 밝힌다 (법령 전체가 있는 것처럼 보이지 않게)
- *   3. 고시·규정 수집 목록(sync-admin-rules.ts)의 법령마다 법령 노드와 조문 노드가 있다
+ *   3. 고시·규정 수집 목록(admin-rules-list.ts)의 법령마다 법령 노드와 조문 노드가 있다
  *   4. 조문 조회 도구가 고시 조문·인용 조문을 찾고, 가운뎃점 표기(· / ㆍ)가 달라도 같은 법령으로 찾는다
  *   5. 4법 부칙 — 원문 건수대로 있고, 가리키는 조문이 모두 있고, 옛 번호·다른 법령·부칙 자신의 조를 잇지 않는다
  *   6. 공단 연관 자료 — 「만화로 보는 산업안전보건기준에 관한 규칙」 원본에서 읽은 QR 이 모두 있고, 자료 노드가 그 QR 의 조문을 가리킨다
@@ -17,6 +17,7 @@ import { fileURLToPath } from "node:url";
 import { getSafetyLawArticleTool } from "../../src/tools/get-safety-law-article.js";
 import { searchSafetyLawsTool } from "../../src/tools/search-safety-laws.js";
 import { extractRefs, amendedSegment, loadArticleNumbers } from "../sync/sync-supplements.js";
+import { ADMRULS } from "../sync/admin-rules-list.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -25,7 +26,6 @@ const NODES = resolve(ROOT, "src", "ontology", "graph", "nodes");
 const ARTICLES = resolve(NODES, "articles");
 const ACTS = resolve(NODES, "acts");
 const CITED_LIST = resolve(ROOT, "scripts", "sync", "cited-laws.json");
-const ADMIN_SYNC = resolve(ROOT, "scripts", "sync", "sync-admin-rules.ts");
 const CITED_NOTE_MARK = "인용하는 조문만";
 const SUPPLEMENTS = resolve(NODES, "supplements");
 const MEDIA = resolve(NODES, "kosha-media");
@@ -148,8 +148,7 @@ async function main(): Promise<void> {
   check("전체 조문을 실은 법령(취업제한규칙 등)은 현장 브리핑·조문 검색에서 빠지지 않는다", searchHidden.length === 0, searchHidden.slice(0, 3).join(", "));
 
   // 3. 고시·규정 수집 목록의 법령마다 법령 노드와 조문이 있다
-  const adminSrc = await readFile(ADMIN_SYNC, "utf-8");
-  const adminKeys = [...adminSrc.matchAll(/\{ actKey: "([^"]+)", id: "(\d+)", actSlug: "([^"]+)"/g)].map((m) => ({ key: m[1], slug: m[3] }));
+  const adminKeys = ADMRULS.map((r) => ({ key: r.actKey, slug: r.actSlug }));
   const emptyAdmin: string[] = [];
   for (const { key, slug } of adminKeys) {
     const hasAct = acts.some((a) => a["@id"] === `act:${slug}`);

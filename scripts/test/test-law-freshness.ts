@@ -22,7 +22,8 @@ import {
   extractBundleLawText,
   renderArticle,
 } from "../sync/reconcile-article-editions.js";
-import { judgeEdition, extractHeaderMST, BUNDLED_LAWS } from "../verify/check-law-editions.js";
+import { judgeEdition, extractHeaderMST, BUNDLED_LAWS, judgeAdminRule } from "../verify/check-law-editions.js";
+import { ADMRULS } from "../sync/admin-rules-list.js";
 import { computeOshCost, matchRateRow, readRateTable, estimateBaseFromContract } from "../../src/lib/osh-cost.js";
 import { applyInputMigrations, readInputMigrations, keepLeadingDigits } from "../../src/lib/input-migrations.js";
 
@@ -118,6 +119,29 @@ const readJson = (p: string) => JSON.parse(readFileSync(p, "utf8"));
   const md = readFileSync(resolve(ROOT, "src/ontology/safety-laws/산업안전보건법.md"), "utf8");
   check("산안법 번들 머리말 MST 가 현행 판", extractHeaderMST(md) === "291447");
   check("산안법 번들 머리말 현행 표기 제22122호", md.includes("법률 제22122호"));
+}
+
+// ── 2-2. 고시·지침 판본 점검 ───────────────────────────────────────
+{
+  const rule = { actKey: "위험성평가-고시", id: "2100000288038" };
+  const name = "사업장 위험성평가에 관한 지침";
+  const entry = (id: string, status: string) => ({ id, name, status, issuedNo: "2026-73", issuedDate: "2026-11-04", effectiveDate: "2026-11-04", revision: "전부개정" });
+  const list = [entry("2100000288038", "현행"), entry("2100000251014", "연혁")];
+  check("고시: 수록 일련번호 = 현행이면 현행", judgeAdminRule(rule, name, { "2100000288038": 34 }, list).status === "현행");
+  check("[대조군] 고시: 수록 일련번호가 옛 판이면 낡음", judgeAdminRule({ ...rule, id: "2100000251014" }, name, { "2100000251014": 29 }, list).status === "낡음");
+  check("[대조군] 고시: 조문 노드 일부가 옛 판이면 낡음", judgeAdminRule(rule, name, { "2100000288038": 33, "2100000251014": 1 }, list).status === "낡음");
+  check("[대조군] 고시: 현행을 못 찾으면 조회 실패", judgeAdminRule(rule, name, {}, [entry("2100000251014", "연혁")]).status === "조회 실패");
+  // 수록 목록 ↔ 조문 노드 — 동기화가 일부만 되면 같은 고시 노드의 일련번호가 섞인다
+  const ids = new Map<string, Set<string>>();
+  for (const f of readdirSync(resolve(ROOT, "src/ontology/graph/nodes/articles"))) {
+    if (!f.endsWith(".jsonld")) continue;
+    const n = readJson(resolve(ROOT, "src/ontology/graph/nodes/articles", f)) as { "@id": string; _meta?: { admRulId?: string } };
+    if (!n._meta?.admRulId) continue;
+    const key = n["@id"].split(":")[1];
+    ids.set(key, (ids.get(key) ?? new Set()).add(n._meta.admRulId));
+  }
+  const mixed = ADMRULS.filter((r) => ids.has(r.actKey) && [...ids.get(r.actKey)!].some((id) => id !== r.id)).map((r) => `${r.actKey}(${[...ids.get(r.actKey)!].join(",")} ≠ ${r.id})`);
+  check("수록 고시의 조문 노드가 모두 수록 일련번호 판", mixed.length === 0, mixed.join(" / "));
 }
 
 // ── 3. 관리비 계상 ─────────────────────────────────────────────────

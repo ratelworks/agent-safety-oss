@@ -48,9 +48,9 @@ const LAW_FILES: Record<string, { fileName: string; shortName: string; official:
     official: "중대재해 처벌 등에 관한 법률",
   },
   "risk-assessment-notice": {
-    fileName: "위험성평가-고시-2024-76.md",
+    fileName: "위험성평가-고시-2026-73.md",
     shortName: "위험성평가 고시",
-    official: "사업장 위험성평가에 관한 지침 (고용노동부 고시 제2024-76호, 시행 2025-01-02)",
+    official: "사업장 위험성평가에 관한 지침 (고용노동부고시 제2026-73호, 시행 2026-11-04)",
   },
   // 그래프 article 본문 → MD 통일 (교차 검증 권고: "MD 6 + graph 2" 분리 표현 제거)
   "severe-accident-decree": {
@@ -309,7 +309,7 @@ export function guessLawCodeFromRef(lawPart: string): LawCode | undefined {
   const isSevere = lp.includes("중처") || lp.includes("중대재해");
   const isCtpa = lp.includes("건진") || lp.includes("건설기술");
   const isRiskNotice =
-    lp.includes("위험성평가") || lp.includes("고시") || lp.includes("2024-76");
+    lp.includes("위험성평가") || lp.includes("고시") || lp.includes("2026-73") || lp.includes("2024-76");
   const isStandard = lp.includes("기준") || lp.includes("standard");
   const hasDecree = lp.includes("시행령") || lp.includes("decree");
   const hasRule = lp.includes("시행규칙") || lp.includes("rule");

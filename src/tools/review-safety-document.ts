@@ -466,7 +466,7 @@ async function judgeApplicability(scale: Input["scale"]): Promise<ApplicabilityR
   // 건설업 전체 의무 — Applicability 노드 외 추가 fallback (산안비·TBM 등)
   if (scale?.industry === "construction") {
     result.appliesTo.push("산업안전보건관리비 계상·사용 (산안법 §72) — 모든 건설공사 의무");
-    result.appliesTo.push("TBM 일단위 + 합동점검 주단위 + 위험요인 발굴 월단위 (위험성평가 고시 §15 ④ 상시평가)");
+    result.appliesTo.push("상시평가를 택하면 매 작업일 작업 전 안전점검회의 + 매주 관리자 논의·점검 + 매월 근로자 참여 평가 (위험성평가 고시 §16)");
   }
 
   return result;
@@ -484,21 +484,21 @@ async function reviewRiskAssessment(
   checks.push({
     rule: "필수 — 사업장명",
     status: meta.siteName ? "pass" : "fail",
-    legalBasis: "위험성평가 고시 §14 ① (기록 항목)",
+    legalBasis: "시행규칙 §37의4 ① (기록 사항)",
     reason: meta.siteName ? undefined : "사업장명 누락",
   });
 
   checks.push({
     rule: "필수 — 평가 실시일",
     status: meta.assessmentDate ? "pass" : "fail",
-    legalBasis: "위험성평가 고시 §14 ①",
+    legalBasis: "시행규칙 §37의4 ① 1호 (실시 시기)",
     reason: meta.assessmentDate ? undefined : "평가일 누락",
   });
 
   checks.push({
     rule: "필수 — 평가 유형 (최초/정기/수시/상시)",
     status: meta.assessmentType ? "pass" : "fail",
-    legalBasis: "위험성평가 고시 §15 (실시 시기)",
+    legalBasis: "시행규칙 §37 ② · 위험성평가 고시 §13~§16 (최초·정기·수시·상시)",
     reason: meta.assessmentType ? undefined : "평가 유형 미선택",
   });
 
@@ -511,29 +511,29 @@ async function reviewRiskAssessment(
     checks.push({
       rule: "필수 — 참여자 명단",
       status: "fail",
-      legalBasis: "위험성평가 고시 §6 (근로자 참여 의무)",
-      reason: "참여자 명단 누락. 근로자 참여 미실시 = 과태료 대상.",
+      legalBasis: "산안법 §36 ② · 시행규칙 §37의2 · 위험성평가 고시 §6 (근로자 참여)",
+      reason: "참여자 명단 누락 — 근로자 참여는 법 §36 ② 의무이고, 기록에는 참여한 근로자를 적어야 함 (시행규칙 §37의4 ① 2호).",
     });
   } else if (!workerRep) {
     checks.push({
-      rule: "필수 — 근로자 대표 참여",
+      rule: "필수 — 근로자 참여",
       status: "fail",
-      legalBasis: "위험성평가 고시 §6",
+      legalBasis: "산안법 §36 ② · 위험성평가 고시 §6",
       reason:
-        "참여자에 '근로자 대표' 역할이 없음. 사업주·관리자만 참여 시 §6 위반 소지.",
+        "참여자에 근로자가 없음 — 사업주·관리자만 참여하면 근로자 참여 의무(법 §36 ②, 해당 작업에 실제 종사하는 근로자 — 고시 §6) 위반 소지. 근로자대표는 요구하면 참여시켜야 함(법 §36 ③).",
     });
   } else if (!workerRep.signed) {
     checks.push({
-      rule: "필수 — 근로자 대표 서명",
+      rule: "필수 — 참여 근로자 확인",
       status: "warn",
-      legalBasis: "위험성평가 고시 §6",
-      reason: "근로자 대표 서명(signed=true) 미확인. 인쇄본 서명 확인 필요.",
+      legalBasis: "시행규칙 §37의4 ① 2호",
+      reason: "참여 근로자 서명(signed=true) 미확인. 기록에 참여한 근로자·근로자대표를 적고 인쇄본 서명을 확인.",
     });
   } else {
     checks.push({
-      rule: "필수 — 참여자·근로자 대표 서명",
+      rule: "필수 — 참여자·근로자 서명",
       status: "pass",
-      legalBasis: "위험성평가 고시 §6",
+      legalBasis: "시행규칙 §37의4 ① 2호",
     });
   }
 
@@ -572,7 +572,7 @@ async function reviewRiskAssessment(
     checks.push({
       rule: "필수 — 감소대책",
       status: "fail",
-      legalBasis: "고시 §12 (위험성 감소대책 수립 및 실행)",
+      legalBasis: "고시 §12 (개선대책 수립·이행)",
       reason: "감소대책 0건.",
     });
   } else {

@@ -146,7 +146,7 @@ export const queryDelegationChainTool: ToolDefinition = {
   name: "query_delegation_chain",
   title: "법령 위임 사슬 추적 (산안법 → 시행령 → 시행규칙 → 고시)",
   description:
-    "출발 조문(art: 또는 act: IRI) 또는 docId 입력 시 위임 관계를 BFS 로 추적해 시행령·시행규칙·고시까지 연결된 법적 근거 사슬을 반환. 산안법 §36 → 위험성평가 고시 §15 처럼 본문에 명시 안 된 위임도 추적. Phase 1 P1 — Article 노드의 delegates 엣지가 채워지는 만큼 사슬 길이 확장.",
+    "출발 조문(art: 또는 act: IRI) 또는 docId 입력 시 위임 관계를 BFS 로 추적해 시행령·시행규칙·고시까지 연결된 법적 근거 사슬을 반환. 산안법 §36 → 시행규칙 §37 → 위험성평가 고시 §13~§16 처럼 본문에 명시 안 된 위임도 추적. Phase 1 P1 — Article 노드의 delegates 엣지가 채워지는 만큼 사슬 길이 확장.",
   inputSchema,
   handler,
 };

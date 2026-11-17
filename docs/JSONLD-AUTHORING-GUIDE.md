@@ -65,9 +65,9 @@
   "trigger": "...",
   "applicableWhen": { "appliesTo": "applic:all_workplace", "scaleNotes": "..." },
   "exemptedWhen": { "reasons": ["..."] },
-  "legalBasis": ["art:산안법:36", "art:고시:위험성평가:15"],
+  "legalBasis": ["art:산안법:36", "art:산안법시행규칙:37", "art:위험성평가-고시:14"],
   "requiredFields": [
-    { "key": "f_1_사업장명", "label": "사업장명", "source": "위험성평가 고시 제15조", "inputGuide": "...", "examples": ["..."] }
+    { "key": "f_1_사업장명", "label": "사업장명", "source": "위험성평가 고시 제14조", "inputGuide": "...", "examples": ["..."] }
   ],
   "retention": "5년",
   "penaltyOnMissing": "penalty:산안법:175",

@@ -266,7 +266,7 @@ export const LAW_TOTAL_ARTICLES: Record<string, { total: number | null; shortNam
   "중대재해처벌법.md": { total: 16, shortName: "중대재해처벌법" },
   "중대재해처벌법-시행령.md": { total: 14, shortName: "중처법 시행령" },
   // 고시 전체 조문 = §1~§28 + §5의2 = 29 (번들은 인정심사 등 행정절차 6조 제외 23조 수록 — 파일 헤더 "23/29 조문 검증" 참조)
-  "위험성평가-고시-2024-76.md": { total: 29, shortName: "위험성평가 고시" },
+  "위험성평가-고시-2026-73.md": { total: 34, shortName: "위험성평가 고시" },
   "건설기술진흥법.md": { total: null, shortName: "건진법" },
   "건설기술진흥법-시행령.md": { total: null, shortName: "건진법 시행령" },
   "건설기술진흥법-시행규칙.md": { total: null, shortName: "건진법 시행규칙" },

@@ -345,7 +345,7 @@ export const CATEGORY_DEFAULTS: Record<string, FieldGuide> = {
     checkPoints: ["GHS 9차 개정 기준", "KOSHA MSDS DB 일치", "산안법 §110·§114·§115 의무"],
   },
   risk: {
-    inputGuide: "위험성평가 (KRAS) 표준. 산안법 §36 + 위험성평가 고시 (2024-76). 7대 방법 + 5단계 절차.",
+    inputGuide: "위험성평가 (KRAS) 표준. 산안법 §36 + 시행규칙 §37 + 위험성평가 고시 (2026-73) §9 기법 + 3단계 절차(요인 파악·위험성 결정·개선대책).",
     standardFormat: "[평가 항목] [방법 코드] [평가 결과]",
     examples: ["(위험성평가 표준 — 사전준비·식별·추정·결정·통제 5단계)"],
     checkPoints: ["산안법 §36 의무", "위험성평가 고시 §6", "근로자 참여 의무"],

@@ -3292,7 +3292,7 @@
     "method": {
      "type": "enum",
      "optional": true,
-     "description": "(레거시 명칭) 위험성평가 방법 (고시 §5) — auto/3x3_matrix/checklist/3-step/ops. KRAS 공식 명칭은 kras_method 파라미터 권장",
+     "description": "(레거시 명칭) 위험성평가 방법 (고시 §9 위험성평가 기법) — auto/3x3_matrix/checklist/3-step/ops. KRAS 공식 명칭은 kras_method 파라미터 권장",
      "default": "auto",
      "enumValues": [
       "3x3_matrix",
@@ -3319,7 +3319,7 @@
     "type": {
      "type": "enum",
      "optional": true,
-     "description": "평가 유형 (시행규칙 §37 ②) — initial(최초: 최초로 작업을 시작하기 전까지)/regular(정기: 최초평가 실시 연도의 다음 연도부터 매년 1회 이상)/ad_hoc(수시: 추가 유해·위험 요인 발생 우려 또는 중대산업사고·산업재해 발생 시 관련 작업 시작 전까지)/ongoing(상시: 고시 §15 ④ 매월·매주·매 작업일 모두 이행 시 수시·정기 갈음)",
+     "description": "평가 유형 (시행규칙 §37 ②) — initial(최초: 최초로 작업을 시작하기 전까지)/regular(정기: 최초평가 실시 연도의 다음 연도부터 매년 1회 이상)/ad_hoc(수시: 추가 유해·위험 요인 발생 우려 또는 중대산업사고·산업재해 발생 시 관련 작업 시작 전까지)/ongoing(상시: 고시 §16 — 매월 평가·매주 논의·매 작업일 공유, 매월 평가 이행을 정기평가로 봄. 추가 위험요인은 수시평가 별도)",
      "default": "auto",
      "enumValues": [
       "initial",

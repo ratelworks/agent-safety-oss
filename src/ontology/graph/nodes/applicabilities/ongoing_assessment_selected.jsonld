@@ -2,14 +2,18 @@
   "@context": "../../context.jsonld",
   "@id": "applic:ongoing_assessment_selected",
   "@type": "Applicability",
-  "label": "상시평가 선택 사업장 (위험성평가 고시 §15 ④)",
+  "label": "상시평가 선택 사업장 (위험성평가 고시 §16)",
   "condition": {
     "all": [
-      { "var": "ongoingAssessmentSelected", "op": "==", "value": true }
+      {
+        "var": "ongoingAssessmentSelected",
+        "op": "==",
+        "value": true
+      }
     ]
   },
   "legalBasis": [
-    "art:위험성평가-고시:15",
+    "art:위험성평가-고시:16",
     "art:산안법:36"
   ],
   "legalWeight": "recommended",
@@ -21,6 +25,6 @@
     "fetchedAt": "2026-04-26",
     "updatedAt": "2026-05-20",
     "licenseHint": "공공자료 (출처 표기 시 활용)",
-    "note": "v1.3.x 결정론 룰 보강 — title/condition string → 정식 ApplicabilityShape 적합. 위험성평가 고시 §15 ④: 최초·정기·수시평가 외 상시평가 선택 시 매일·매주·매월 단위로 점검 가능"
+    "note": "v1.3.x 결정론 룰 보강 — title/condition string → 정식 ApplicabilityShape 적합. 위험성평가 고시 §16(2026-11-04 전부개정): 최초평가 후 상시평가를 택하면 매월 근로자 참여 평가·매주 관리자 논의·매 작업일 공유로 이행, 매월 평가 이행은 정기평가로 보고 추가 위험요인은 수시평가를 따로 한다"
   }
 }

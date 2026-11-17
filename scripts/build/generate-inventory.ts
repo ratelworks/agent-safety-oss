@@ -131,7 +131,7 @@ function renderInventoryMarkdown(data: InventoryData): string {
   lines.push("## 4. 법령 본문 (핵심 조문 발췌)");
   lines.push("");
   lines.push(
-    "> ⚠️ **본 OSS 의 법령 번들은 건설안전 실무 핵심 조문 발췌 — 전문 (全文) 아님**. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조 필수. 위험성평가 고시 (2024-76호) 는 29조 중 핵심 23조 수록 (인정심사 등 행정절차 6조 제외).",
+    "> ⚠️ **본 OSS 의 법령 번들은 건설안전 실무 핵심 조문 발췌 — 전문 (全文) 아님**. 전체 법령은 [법제처](https://www.law.go.kr) 직접 참조 필수. 위험성평가 고시 (제2026-73호, 2026-11-04 전부개정) 는 34조 전문 수록.",
   );
   lines.push("");
   lines.push("| 법령 | 수록 조문 | 전체 조문 | 커버리지 | 마지막 동기화 | 현행 호수 |");

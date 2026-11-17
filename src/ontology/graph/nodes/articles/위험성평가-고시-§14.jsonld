@@ -1,37 +1,32 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:위험성평가-고시:14",
-  "regulates": ["activity:risk_assessment_general"],
   "@type": [
     "Article",
     "Legislation"
   ],
   "articleNumber": "14",
-  "title": "기록 및 보존",
+  "title": "정기평가",
   "partOf": "act:사업장위험성평가에관한지침",
   "verificationStatus": "verified",
   "_meta": {
     "publishedBy": "법제처 국가법령정보센터 (자동 sync)",
     "sourceUrl": "https://www.law.go.kr/행정규칙/%EC%82%AC%EC%97%85%EC%9E%A5%20%EC%9C%84%ED%97%98%EC%84%B1%ED%8F%89%EA%B0%80%EC%97%90%20%EA%B4%80%ED%95%9C%20%EC%A7%80%EC%B9%A8",
-    "fetchedAt": "2026-04-28",
-    "verifiedAt": "2026-04-28",
+    "fetchedAt": "2026-11-17",
+    "verifiedAt": "2026-11-17",
     "verifiedBy": "법제처 lawService.do?target=admrul (자동 sync)",
-    "admRulId": "2100000251014",
-    "admRulNo": "2024-76",
-    "licenseHint": "저작권법 제7조 비보호 (자유 인용)",
-    "userClassifiedAt": "2026-04-28",
-    "classificationMethod": "keyword-heuristic"
+    "admRulId": "2100000288038",
+    "admRulNo": "2026-73",
+    "admRulKind": "고시",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)"
   },
-  "description": "제14조(기록 및 보존) ① 규칙 제37조제1항제4호에 따른 \"그 밖에 위험성평가의 실시내용을 확인하기 위하여 필요한 사항으로서 고용노동부장관이 정하여 고시하는 사항\"이란 다음 각 호에 관한 사항을 말한다.\n  1. 위험성평가를 위해 사전조사 한 안전보건정보\n  2. 그 밖에 사업장에서 필요하다고 정한 사항\n  ② 시행규칙 제37조제2항의 기록의 최소 보존기한은 제15조에 따른 실시 시기별 위험성평가를 완료한 날부터 기산한다.",
+  "description": "제14조(정기평가) ① 사업주는 파악한 유해ㆍ위험 요인을 지속적으로 관리하고, 새로운 유해ㆍ위험 요인을 파악ㆍ개선하기 위해 규칙 제37조제2항제2호에 따른 정기평가를 매년 1회 이상 실시하여야 한다.\n  ② 사업주는 정기평가를 실시할 때 다음 각 호의 사항을 고려하여야 한다.\n  1. 기계ㆍ기구, 설비 등의 기간 경과에 의한 성능 저하\n  2. 안전ㆍ보건과 관련된 지식 또는 경험의 변화\n  3. 현재 수립되어 있는 개선대책의 유효성 등",
   "legislationIdentifier": "사업장 위험성평가에 관한 지침",
-  "legislationDate": "2024-12-18",
+  "legislationDate": "2026-11-04",
   "legislationType": "Notification",
   "legislationLegalForce": "InForce",
   "jurisdiction": "KR",
-  "temporalCoverage": "2025-01-02/..",
-  "references": [
-    "art:위험성평가-고시:15"
-  ],
+  "temporalCoverage": "2026-11-04/..",
   "constructionRelevance": "high",
   "userPersona": [
     "site_manager",
@@ -39,7 +34,16 @@
   ],
   "userVisible": true,
   "isAppendix": false,
+  "references": [
+    "art:산안법시행규칙:37"
+  ],
   "legalBasisOf": [
-    "doc:monthly/monthly_risk_assessment"
+    "doc:annual/regular_risk_assessment"
+  ],
+  "regulates": [
+    "activity:risk_assessment_general"
+  ],
+  "delegationOf": [
+    "art:산안법시행규칙:37"
   ]
 }
