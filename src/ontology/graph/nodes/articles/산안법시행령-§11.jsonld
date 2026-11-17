@@ -1,7 +1,10 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:산안법시행령:11",
-  "legalBasisOf": ["doc:kosha_guide/H-193-2021"],
+  "delegates": ["art:산안법시행규칙:7"],
+  "legalBasisOf": [
+    "doc:kosha_guide/H-193-2021"
+  ],
   "@type": [
     "Article",
     "Legislation"
@@ -32,14 +35,15 @@
   "legislationLegalForce": "InForce",
   "jurisdiction": "KR",
   "temporalCoverage": "2025-10-01/..",
-  "references": [
-    "art:산안법시행령:3"
-  ],
+  "references": [],
   "constructionRelevance": "high",
   "userPersona": [
     "site_manager",
     "safety_manager"
   ],
   "userVisible": true,
-  "isAppendix": false
+  "isAppendix": false,
+  "delegationOf": [
+    "art:산안법:10"
+  ]
 }

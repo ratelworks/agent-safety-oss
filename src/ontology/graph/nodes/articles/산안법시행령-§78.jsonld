@@ -1,7 +1,15 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:산안법시행령:78",
-  "regulates": ["equipment:aerial_work_platform", "equipment:crane", "equipment:gondola", "equipment:lift", "equipment:pressure_vessel", "equipment:shear_bender"],
+  "delegates": ["art:산안법시행규칙:132"],
+  "regulates": [
+    "equipment:aerial_work_platform",
+    "equipment:crane",
+    "equipment:gondola",
+    "equipment:lift",
+    "equipment:pressure_vessel",
+    "equipment:shear_bender"
+  ],
   "@type": [
     "Article",
     "Legislation"
@@ -34,10 +42,7 @@
   "legislationLegalForce": "InForce",
   "jurisdiction": "KR",
   "temporalCoverage": "2025-10-01/..",
-  "references": [
-    "art:산안법시행령:93",
-    "art:산안법시행령:3"
-  ],
+  "references": [],
   "delegationOf": [
     "art:산안법:93"
   ],

@@ -1,7 +1,10 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:산안법시행령:5",
-  "legalBasisOf": ["doc:kosha_guide/A-R-1-2026", "doc:kosha_guide/E-T-4-2025"],
+  "legalBasisOf": [
+    "doc:kosha_guide/A-R-1-2026",
+    "doc:kosha_guide/E-T-4-2025"
+  ],
   "@type": [
     "Article",
     "Legislation"
@@ -38,5 +41,8 @@
     "safety_manager"
   ],
   "userVisible": true,
-  "isAppendix": false
+  "isAppendix": false,
+  "delegationOf": [
+    "art:산안법:4"
+  ]
 }

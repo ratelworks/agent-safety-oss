@@ -1,7 +1,10 @@
 {
   "@context": "../../context.jsonld",
   "@id": "art:산안법시행령:12",
-  "legalBasisOf": ["doc:kosha_guide/H-189-2021"],
+  "delegates": ["art:산안법시행규칙:7"],
+  "legalBasisOf": [
+    "doc:kosha_guide/H-189-2021"
+  ],
   "@type": [
     "Article",
     "Legislation"
@@ -37,5 +40,8 @@
     "legal_specialist"
   ],
   "userVisible": true,
-  "isAppendix": false
+  "isAppendix": false,
+  "delegationOf": [
+    "art:산안법:10"
+  ]
 }

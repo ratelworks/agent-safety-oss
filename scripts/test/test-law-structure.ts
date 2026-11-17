@@ -8,6 +8,8 @@
  *   4. 구조 노드의 위·아래 연결(partOf·hasChapter)이 서로 맞는다
  *   5. KOSHA Guide 의 장 연결(relatedChapter)은 모두 있는 구조 노드를 가리키고, 편이 있는 법령에서 편 없는 장을 가리키지 않는다
  *   6. 구조 인용 해석 — 편·장·절·관을 따라 내려가고, 편이 없으면 원문 제목으로 가리며, 하나로 정해지지 않으면 잇지 않는다
+ *   7. 조문 인용 해석 — 법령 머리말·목록·범위·"같은 규칙"·조사 "이" 를 가려 어느 법령의 몇 조인지 정한다
+ *   8. 조문 사이 연결이 원문 인용대로다 — 범위로 인용한 조문도 잇고, 본문이 다른 법령으로 인용한 번호를 이 법령 조문에 잇지 않는다
  *
  * 사용: tsx scripts/test/test-law-structure.ts
  */
@@ -15,6 +17,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildStructureIndex, resolveStructureCitation } from "../lib/law-structure-citation.js";
+import { parseCitations, LAW_RANK } from "../ontology/link-law-citations.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -107,6 +110,40 @@ for (const [text, num, want] of cases) {
   const got = resolveStructureCitation(index, "기준규칙", text, num)?.id ?? null;
   check(`인용 해석: "${text.slice(0, 40)}…" (제${num}장) → ${want ?? "잇지 않음"}`, got === want, String(got));
 }
+
+// 7. 조문 인용 해석
+const citeCases: Array<[string, string, string]> = [
+  ["제129조부터 제132조까지에 따른 근로자의 건강진단", "산안법", "산안법:129 산안법:130 산안법:131 산안법:132"],
+  ["이 규칙은 「산업안전보건법」 제5조, 제37조부터 제39조까지, 제63조 및 제123조에서 위임된 사항", "기준규칙", "산안법:5 산안법:37 산안법:38 산안법:39 산안법:63 산안법:123"],
+  ["영 제14조제1항에 따라 법 제15조에 따른", "산안법시행규칙", "산안법시행령:14 산안법:15"],
+  ["「산업안전보건기준에 관한 규칙」 제33조 및 같은 규칙 제34조", "산안법시행규칙", "기준규칙:33 기준규칙:34"],
+  ["(이하 \"건축물ㆍ설비소유주등\"이라 한다)이 영 제89조제2항 각 호에 따른", "산안법시행규칙", "산안법시행령:89"],
+  ["「산업재해보상보험법」 제38조에 따른 업무상질병판정위원회", "산안법", "null:38"],
+  ["보건관리자의 배치에 관하여는 제18조제2항을 준용한다 [종전 제20조는 제21조로 이동 <2020.1.16>]", "산안법시행령", "산안법시행령:18"],
+];
+for (const [text, law, want] of citeCases) {
+  const got = parseCitations(text, law).map((c) => `${c.law}:${c.num}`).join(" ");
+  check(`조문 인용 해석: "${text.slice(0, 34)}…"`, got === want, got);
+}
+
+// 8. 조문 사이 연결
+const art = (id: string): Record<string, unknown> | undefined => articles.find((a) => a["@id"] === id);
+const list = (id: string, key: string): string[] => ((art(id)?.[key] as string[] | undefined) ?? []);
+check("산업안전보건법 제15조가 범위로 인용한 제130조·제131조(제129조부터 제132조까지)에 잇는다", ["art:산안법:130", "art:산안법:131"].every((t) => list("art:산안법:15", "references").includes(t)));
+check("시행규칙 제3조(\"법 제2조제2호에서 …\")는 법 제2조의 위임이다", list("art:산안법시행규칙:3", "delegationOf").includes("art:산안법:2") && list("art:산안법:2", "delegates").includes("art:산안법시행규칙:3"));
+check("안전보건규칙 제1조는 「산업안전보건법」 조문을 잇고 같은 번호의 안전보건규칙 조문에는 잇지 않는다", list("art:기준규칙:1", "delegationOf").includes("art:산안법:123") && !list("art:기준규칙:1", "references").includes("art:기준규칙:5"));
+const misread: string[] = [];
+for (const a of articles) {
+  const law = String(a["@id"]).split(":")[1];
+  const cites = parseCitations(String(a.description ?? ""), law);
+  for (const t of (a.references as string[] | undefined) ?? []) {
+    const [, tl, tn] = t.split(":");
+    if (!(tl in LAW_RANK)) continue;
+    const same = cites.filter((c) => c.num === tn);
+    if (same.length > 0 && !same.some((c) => c.law === tl)) misread.push(`${String(a["@id"])}→${t}`);
+  }
+}
+check("본문이 다른 법령으로 인용한 번호를 이 법령 조문에 잇는 연결이 없다", misread.length === 0, misread.slice(0, 5).join(", "));
 
 console.log(failed ? `\n❌ ${failed}개 실패` : "\n✅ 전체 통과");
 process.exit(failed ? 1 : 0);
