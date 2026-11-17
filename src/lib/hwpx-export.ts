@@ -5,6 +5,7 @@
  * 한글 파일은 정본(DocLang)에서 만든다 — 글을 Markdown 으로 바꿨다가 다시 읽지 않으므로 값의 기호("10*20*30")가 서식으로 바뀌지 않는다.
  * 법정 서식 원본이 있는 문서(산업재해조사표 등)는 그 서식 파일의 칸에 정본의 값을 채운다(official-form.ts) — 서식 모양 그대로다.
  * 본문(Markdown)에서 만드는 길(saveHwpx)은 초안 항목을 그대로 옮기는 내보내기 도구가 쓴다.
+ * 호스트 저장 주입 모드(createSafetyEngine)에서는 파일을 쓰지 않고 결과 파일(files)로 호스트에 넘긴다.
  */
 
 import { writeFile } from "node:fs/promises";
@@ -13,17 +14,20 @@ import { getDocumentsDir } from "../config/paths.js";
 import { ensureSecureDir, SAFE_FILE_MODE } from "./secure-fs.js";
 import { kstIsoNow } from "./datetime-kst.js";
 import { toApprovalCopy } from "./approval-copy.js";
-import { docBlocksToHwpx, markdownToHwpx } from "./hwpx-writer.js";
-import { packDclx } from "./dclx.js";
+import { docBlocksToHwpx, HWPX_MIME_TYPE, markdownToHwpx } from "./hwpx-writer.js";
+import { DCLX_MIME_TYPE, packDclx } from "./dclx.js";
+import { assertLocalWriteAllowed, currentHost, hostStorageLabel } from "../engine/host-context.js";
 import { doclangToBlocks } from "./doclang-reader.js";
 import { officialFormFromDoclang } from "./official-form.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const SAFE_DOC_ID = /^[a-z][a-z0-9_]*$/;
 const MAX_NAME_ATTEMPTS = 100;
+/** 확장자별 결과 파일 형식 — 호스트 저장 주입 모드에서 넘길 때 */
+const MIME_BY_EXTENSION: Record<string, string> = { hwpx: HWPX_MIME_TYPE, dclx: DCLX_MIME_TYPE };
 
 export interface HwpxExportResult {
-  /** 저장한 파일의 절대 경로 */
+  /** 저장한 파일의 절대 경로 (호스트 저장 주입 모드: host-storage/file/<파일 이름> — 바이트는 결과 files 에 있다) */
   path: string;
   bytes: number;
   /** 법정 서식 원본에 채웠으면 그 서식과, 서식에 칸이 없어 넣지 못한 값 */
@@ -51,13 +55,20 @@ export async function buildDocumentHwpx(docId: string, documentXml: string, titl
 /** 파일을 문서 보관 폴더에 새로 쓴다. 같은 초에 다시 저장해도 앞 파일을 덮어쓰지 않는다 */
 async function saveDocumentBytes(docId: string, extension: string, data: Buffer, label: string): Promise<HwpxExportResult> {
   if (!SAFE_DOC_ID.test(docId)) throw new Error(`${label} 저장 불가 — docId 형식 오류: ${docId}`);
+  const stamp = kstIsoNow().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
+  const host = currentHost();
+  if (host) {
+    const fileName = `${docId}-${stamp}.${extension}`;
+    host.addFile({ fileName, mimeType: MIME_BY_EXTENSION[extension] ?? "application/octet-stream", bytes: data, documentKind: docId });
+    return { path: hostStorageLabel("file", fileName), bytes: data.length };
+  }
   const dir = join(getDocumentsDir(), docId);
   await ensureSecureDir(dir);
-  const stamp = kstIsoNow().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
   // 이미 있으면 번호를 붙인다
   for (let attempt = 0; attempt < MAX_NAME_ATTEMPTS; attempt += 1) {
     const path = join(dir, `${docId}-${stamp}${attempt === 0 ? "" : `-${attempt + 1}`}.${extension}`);
     try {
+      assertLocalWriteAllowed(`${label} 저장`);
       await writeFile(path, data, { mode: SAFE_FILE_MODE, flag: "wx" });
       return { path, bytes: data.length };
     } catch (err) {

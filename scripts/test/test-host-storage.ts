@@ -276,9 +276,12 @@ check("이슈 상태 변경", (snapA.issue as any)[o.ids.issueId]?.status === "r
 check("미완료 조치 목록에 조치가 보임", (o.pending_before.result.structuredContent as any)?.actions?.length === 1 || JSON.stringify(o.pending_before.result.structuredContent).includes(o.ids.actionId));
 check("보고서 기록 + Markdown 파일", Object.keys(snapA.report ?? {}).length === 1 && o.generate_safety_report.files.length === 1 && o.generate_safety_report.files[0].documentKind === "safety_report");
 check("보고서가 이슈·조치를 모음", JSON.stringify(Object.values(snapA.report ?? {})[0]).includes(o.ids.issueId));
-check("한글 파일은 결과 파일로", o.generate_safety_document.files.length === 1 && o.generate_safety_document.files[0].fileName.endsWith(".hwpx") && o.generate_safety_document.files[0].bytes.byteLength > 1000);
+// 한글 형식은 정본(.dclx)과 그 정본에서 만든 한글 파일(.hwpx) 둘을 결과 파일로 넘긴다
+const genFiles = o.generate_safety_document.files as { fileName: string; bytes: Uint8Array }[];
+check("한글 파일은 결과 파일로 (정본과 함께)", genFiles.length === 2 && genFiles.some((f) => f.fileName.endsWith(".hwpx") && f.bytes.byteLength > 1000) && genFiles.some((f) => f.fileName.endsWith(".dclx")));
 check("내보내기 한글 파일도 결과 파일로", o.export_drafted_document.files.length === 1 && String((o.export_drafted_document.result.structuredContent as any).hwpxPath).startsWith("host-storage/"));
-check("문서 생성이 주입한 프로필로 자동 채움", o.generate_md.result.content.some((c: any) => String(c.text).includes(`${COMPANY_A} 1공구`)) && o.generate_md.files.length === 0);
+// 기본 형식은 정본(.dclx) 하나를 결과 파일로 넘긴다 — 로컬 폴더에는 쓰지 않는다
+check("문서 생성이 주입한 프로필로 자동 채움 (정본은 결과 파일로)", o.generate_md.result.content.some((c: any) => String(c.text).includes(`${COMPANY_A} 1공구`)) && o.generate_md.files.length === 1 && o.generate_md.files[0].fileName.endsWith(".dclx"));
 check("제출 도구의 보관은 기록 + 파일", o.submit_safety_document.files.length === 1 && o.submit_safety_document.writes.some((w: any) => w.kind === "document"));
 check("활동 기록이 쓰기 작업마다 남음", Object.keys(snapA.activity ?? {}).length >= 6, String(Object.keys(snapA.activity ?? {}).length));
 const allOutputs = JSON.stringify(Object.values(o).map((r: any) => r?.result));
