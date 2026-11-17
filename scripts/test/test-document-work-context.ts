@@ -14,6 +14,7 @@
  *      — 적용 KOSHA Guide 는 이 작업의 대책 근거 지침을 먼저 싣고, 적용범위가 화학공정인 지침은 싣지 않는다
  *      — 식별된 위험 요소는 작업 단계 자료의 재해유형이다
  *      — 이동식 크레인은 이동식 크레인 조항(제147조~제150조)을, 밀폐공간은 작업 전 확인 각 호·적정공기 기준을 싣는다
+ *   7. 서류·안내·서식이 적은 위험성평가 고시 조·항·호는 현행 고시(2026-11-04 전부개정)에 있다 — 옛 번호(제15조 ④ 상시평가 등) 방지
  *
  * 사용: tsx scripts/test/test-document-work-context.ts
  */
@@ -21,11 +22,54 @@ import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용�
 import { generateSafetyDocumentTool } from "../../src/tools/generate-safety-document.js";
 import { resolveWorkConditions, RULE_SCOPE } from "../../src/lib/work-conditions.js";
 import { getWorkSteps, pickFocusSteps } from "../../src/lib/work-steps.js";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const WORK = "타워크레인 지브 조립";
 const CONDITION = "강풍";
 const CONDITION_HEADING = "## 작업 조건별 지켜야 할 조치";
+const ONTOLOGY = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "src", "ontology");
+const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
+/** 위험성평가 고시 조·항·호 인용 — "위험성평가 고시 제16조제1항제3호", "고시 §15 ② 1~5호", "위험성평가-고시:16" */
+const NOTICE_REF = /(위험성평가 고시|위험성평가-고시|고시)\s*(?:제|§|:)\s*(\d+)조?(?:\s*제?(\d+)항|\s*([①-⑩]))?(?:\s*제?(\d+)(?:~\d+)?호)?/g;
+
+/** 서류 노드·안내·서식·동의어·의무 목록에서 위험성평가 고시 인용 중 현행 고시에 없는 조·항·호 */
+function staleNoticeRefs(): { checked: number; missing: string[] } {
+  const files = [
+    ...readdirSync(resolve(ONTOLOGY, "graph/nodes/documents")).map((f) => resolve(ONTOLOGY, "graph/nodes/documents", f)),
+    ...readdirSync(resolve(ONTOLOGY, "guides")).map((f) => resolve(ONTOLOGY, "guides", f)),
+    ...readdirSync(resolve(ONTOLOGY, "forms/auto")).map((f) => resolve(ONTOLOGY, "forms/auto", f)),
+    resolve(ONTOLOGY, "synonyms.json"),
+    resolve(ONTOLOGY, "legal-duty-master.json"),
+  ];
+  let checked = 0;
+  const missing: string[] = [];
+  for (const f of files.filter((x) => /\.(jsonld|json|md)$/.test(x))) {
+    const text = readFileSync(f, "utf-8");
+    for (const m of text.matchAll(NOTICE_REF)) {
+      // 맨 "고시" 는 앞 40자 안에 "위험성평가" 가 있을 때만(다른 고시와 구분), 고시 번호(제2026-73호)는 조가 아니다
+      if (m[1] === "고시" && !text.slice(Math.max(0, m.index! - 40), m.index).includes("위험성평가")) continue;
+      if (Number(m[2]) >= 1000) continue;
+      const node = resolve(ONTOLOGY, "graph/nodes/articles", `위험성평가-고시-§${m[2]}.jsonld`);
+      const where = `${f.split("/").pop()}:${m[0]}`;
+      if (!existsSync(node)) { missing.push(`${where}(조 없음)`); continue; }
+      checked += 1;
+      const body = String((JSON.parse(readFileSync(node, "utf-8")) as { description?: string }).description ?? "");
+      const p = m[3] ? Number(m[3]) : m[4] ? CIRCLED.indexOf(m[4]) + 1 : 0;
+      let scope = body;
+      if (p > 0) {
+        const i = body.indexOf(CIRCLED[p - 1]);
+        if (i < 0 && !(p === 1 && !body.includes("②"))) { missing.push(`${where}(항 없음)`); continue; }
+        const j = i >= 0 && p < CIRCLED.length ? body.indexOf(CIRCLED[p], i + 1) : -1;
+        scope = i >= 0 ? body.slice(i, j > 0 ? j : undefined) : body;
+      }
+      if (m[5] && !new RegExp(`(^|\\n)\\s*${m[5]}\\.\\s`).test(scope)) missing.push(`${where}(호 없음)`);
+    }
+  }
+  return { checked, missing };
+}
 
 let failed = 0;
 function check(name: string, ok: boolean, detail = ""): void {
@@ -113,6 +157,12 @@ async function main(): Promise<void> {
   check("식별된 위험 요소는 작업 단계 자료의 재해유형이다", hazards.includes("거푸집작업 작업 단계 자료") && hazards.includes("무너짐") && !hazards.includes("폭발"), hazards.split("\n")[0]);
   const manhole = section(await draftText("ad_hoc_risk_assessment", { workName: "맨홀 내부 작업", workConditions: ["밀폐공간"] }), CONDITION_HEADING);
   check("밀폐공간: 작업 전 확인 각 호와 적정공기 기준·측정·인원 점검을 싣는다", manhole.includes("3. 산소 및 유해가스 농도의 측정결과") && manhole.includes("18퍼센트 이상 23.5퍼센트 미만") && manhole.includes("§619의2") && manhole.includes("§621"), manhole.match(/§[\d의]+/g)?.join(",") ?? "");
+
+  // 7. 위험성평가 고시 인용 — 현행 조·항·호
+  const notice = staleNoticeRefs();
+  check("서류·안내·서식의 위험성평가 고시 조·항·호 인용이 현행 고시에 있다", notice.checked > 100 && notice.missing.length === 0, `인용 ${notice.checked}건, 없는 것 ${notice.missing.slice(0, 5).join(", ") || 0}`);
+  const adhoc2 = await draftText("ad_hoc_risk_assessment", { workName: "거푸집 동바리 해체" });
+  check("수시 위험성평가는 상시평가로 갈음된다고 적지 않는다 — 현행 고시 제16조제2항", !adhoc2.includes("갈음 가능") && adhoc2.includes("제16조제2항"), adhoc2.match(/[^\n]*상시평가[^\n]*/)?.[0]?.slice(0, 120) ?? "");
 
   console.log(failed ? `\n❌ ${failed}개 실패` : "\n✅ 전체 통과");
   process.exit(failed ? 1 : 0);
