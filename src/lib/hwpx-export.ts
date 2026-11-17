@@ -3,6 +3,7 @@
  *
  * 저장 위치: <문서 보관 폴더>/<docId>/<docId>-<YYYYMMDD-HHmmss>.{dclx,hwpx} (소유자만 읽고 쓰는 권한)
  * 한글 파일은 정본(DocLang)에서 만든다 — 글을 Markdown 으로 바꿨다가 다시 읽지 않으므로 값의 기호("10*20*30")가 서식으로 바뀌지 않는다.
+ * 법정 서식 원본이 있는 문서(산업재해조사표 등)는 그 서식 파일의 칸에 정본의 값을 채운다(official-form.ts) — 서식 모양 그대로다.
  * 본문(Markdown)에서 만드는 길(saveHwpx)은 초안 항목을 그대로 옮기는 내보내기 도구가 쓴다.
  */
 
@@ -15,6 +16,7 @@ import { toApprovalCopy } from "./approval-copy.js";
 import { docBlocksToHwpx, markdownToHwpx } from "./hwpx-writer.js";
 import { packDclx } from "./dclx.js";
 import { doclangToBlocks } from "./doclang-reader.js";
+import { officialFormFromDoclang } from "./official-form.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const SAFE_DOC_ID = /^[a-z][a-z0-9_]*$/;
@@ -24,6 +26,8 @@ export interface HwpxExportResult {
   /** 저장한 파일의 절대 경로 */
   path: string;
   bytes: number;
+  /** 법정 서식 원본에 채웠으면 그 서식과, 서식에 칸이 없어 넣지 못한 값 */
+  officialForm?: { form: string; sourceUrl: string; notInForm: string[] };
 }
 
 /** 결재·제출용으로 정리한 본문을 HWPX 내용으로 바꾼다 */
@@ -35,6 +39,13 @@ export function buildHwpx(markdown: string, title: string): Buffer {
 export function buildHwpxFromDoclang(documentXml: string, title?: string): Buffer {
   const read = doclangToBlocks(documentXml);
   return docBlocksToHwpx(read.blocks, { title: title?.trim() || read.title });
+}
+
+/** 문서 종류에 법정 서식 원본이 있으면 그 서식에 채우고, 없으면 정본 블록으로 한글 파일을 만든다 */
+export async function buildDocumentHwpx(docId: string, documentXml: string, title?: string): Promise<{ data: Buffer; officialForm?: HwpxExportResult["officialForm"] }> {
+  const filled = await officialFormFromDoclang(docId, documentXml);
+  if (filled) return { data: filled.data, officialForm: { form: filled.form, sourceUrl: filled.source.url, notInForm: filled.notInForm } };
+  return { data: buildHwpxFromDoclang(documentXml, title) };
 }
 
 /** 파일을 문서 보관 폴더에 새로 쓴다. 같은 초에 다시 저장해도 앞 파일을 덮어쓰지 않는다 */
@@ -66,7 +77,9 @@ export async function saveDclx(docId: string, documentXml: string): Promise<Hwpx
   return saveDocumentBytes(docId, "dclx", packDclx(documentXml), "정본(.dclx)");
 }
 
-/** 정본(DocLang 문서)에서 만든 한글 파일을 저장한다 */
+/** 정본(DocLang 문서)에서 만든 한글 파일을 저장한다 — 법정 서식이 있는 문서는 그 서식 모양으로 */
 export async function saveHwpxFromDoclang(docId: string, documentXml: string, title?: string): Promise<HwpxExportResult> {
-  return saveDocumentBytes(docId, "hwpx", buildHwpxFromDoclang(documentXml, title), "HWPX");
+  const built = await buildDocumentHwpx(docId, documentXml, title);
+  const saved = await saveDocumentBytes(docId, "hwpx", built.data, "HWPX");
+  return built.officialForm ? { ...saved, officialForm: built.officialForm } : saved;
 }

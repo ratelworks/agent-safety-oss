@@ -150,9 +150,11 @@ jobs:
 
       - name: Document output — canonical .dclx and HWPX
         run: |
-          # 문서 정본(.dclx)이 공식 규격 꾸러미와 같고, 한글 파일이 정본에서 내용·기호를 그대로 옮기는지
+          # 문서 정본(.dclx)이 공식 규격 꾸러미와 같고, 한글 파일이 정본에서 내용·기호를 그대로 옮기는지,
+          # 법정 서식이 있는 문서는 서식 원본의 칸에 값이 들어가는지
           npm run mcp:test:doclang
           npm run mcp:test:dclx
+          npm run mcp:test:official-forms
 
       - name: Smoke — analyze_construction_work_risks
         run: |

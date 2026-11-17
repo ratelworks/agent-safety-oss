@@ -27,7 +27,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { buildHwpx } from "./lib/hwpx-export.js";
+import { buildDocumentHwpx, buildHwpx } from "./lib/hwpx-export.js";
 import { HWPX_MIME_TYPE } from "./lib/hwpx-writer.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -71,6 +71,8 @@ const MARKED_SCRIPT = ((): string | null => {
 const HOST = "127.0.0.1";
 /** 요청 본문 상한 (1 MiB) */
 const MAX_BODY_BYTES = 1024 * 1024;
+/** 문서 종류 이름 — 서버가 받는 docId 의 꼴 (영소문자로 시작, 영소문자·숫자·밑줄) */
+const SAFE_DOC_ID = /^[a-z][a-z0-9_]*$/;
 const LOOPBACK_HOSTNAMES = ["localhost", "127.0.0.1", "[::1]"];
 
 class BodyTooLargeError extends Error {}
@@ -1177,16 +1179,20 @@ function onRefreshPreview() {
   setStatus('info', '양식 갱신 완료');
 }
 
-// 현재 우측 본문을 한글(.hwpx) 파일로 다운로드 — 서버가 결재·제출용으로 정리해 파일로 만든다
+// 한글(.hwpx) 파일로 다운로드 — 문서 양식이면 폼 입력값으로 서버가 정본을 만들고 그 정본에서 한글 파일을 만든다
+// (법정 서식이 있는 문서는 서식 원본의 칸에 값을 채운다 — 생성 도구가 저장하는 한글 파일과 같다)
 async function onSaveHwpx() {
   if (!lastRenderedMd) { setStatus('err', '저장할 본문이 없습니다 — 양식을 먼저 갱신하세요'); return; }
-  const docId = (currentTarget && currentTarget.startsWith('doc:')) ? currentTarget.replace('doc:', '') : 'document';
+  const isDoc = Boolean(currentTarget && currentTarget.startsWith('doc:'));
+  const docId = isDoc ? currentTarget.replace('doc:', '') : 'document';
   const filename = docId + '-' + new Date().toISOString().slice(0, 10) + '.hwpx';
   try {
     const r = await fetch('/api/export-hwpx', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ markdown: lastRenderedMd, title: currentDocTitle || docId }),
+      body: JSON.stringify(isDoc
+        ? { docId, draft: collectFormValues(), markdown: lastRenderedMd, title: currentDocTitle || docId }
+        : { markdown: lastRenderedMd, title: currentDocTitle || docId }),
     });
     if (!r.ok) { setStatus('err', '한글 파일을 만들지 못했습니다'); return; }
     const url = URL.createObjectURL(await r.blob());
@@ -2219,16 +2225,33 @@ async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise
 
   if (url.pathname === "/api/export-hwpx" && req.method === "POST") {
     const body = await readBody(req);
-    let parsed: { markdown?: unknown; title?: unknown };
+    let parsed: { markdown?: unknown; title?: unknown; docId?: unknown; draft?: unknown };
     try {
-      parsed = JSON.parse(body) as { markdown?: unknown; title?: unknown };
+      parsed = JSON.parse(body) as { markdown?: unknown; title?: unknown; docId?: unknown; draft?: unknown };
     } catch {
       return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "요청 형식 오류" }));
+    }
+    const title = typeof parsed.title === "string" ? parsed.title : "";
+    // 문서 양식 — 폼 입력값으로 정본을 만들고 그 정본에서 한글 파일을 만든다(생성 도구와 같은 길)
+    if (typeof parsed.docId === "string" && SAFE_DOC_ID.test(parsed.docId) && parsed.draft && typeof parsed.draft === "object" && !Array.isArray(parsed.draft)) {
+      let draft = parsed.draft as Record<string, unknown>;
+      if (Object.keys(draft).length === 0) {
+        const saved = callMcp("load_form_draft", { docId: parsed.docId });
+        if (saved.ok && saved.data?.found && saved.data?.formValues) draft = saved.data.formValues;
+      }
+      const documentXml = callMcpText("generate_safety_document", { docId: parsed.docId, draft, format: "doclang" });
+      if (documentXml === null || !documentXml.includes("<doclang")) {
+        return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: "정본을 만들지 못했습니다" }));
+      }
+      const built = await buildDocumentHwpx(parsed.docId, documentXml, title);
+      res.writeHead(200, { "Content-Type": HWPX_MIME_TYPE, "Content-Length": built.data.length, "Cache-Control": "no-cache" });
+      res.end(built.data);
+      return;
     }
     if (typeof parsed.markdown !== "string" || parsed.markdown.trim() === "") {
       return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "내보낼 본문이 없습니다" }));
     }
-    const data = buildHwpx(parsed.markdown, typeof parsed.title === "string" ? parsed.title : "");
+    const data = buildHwpx(parsed.markdown, title);
     res.writeHead(200, { "Content-Type": HWPX_MIME_TYPE, "Content-Length": data.length, "Cache-Control": "no-cache" });
     res.end(data);
     return;

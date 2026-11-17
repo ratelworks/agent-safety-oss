@@ -14,6 +14,7 @@ import { networkInterfaces } from "node:os";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { requestRejection } from "../../src/viewer.js";
+import { unzip } from "../../src/lib/zip.js";
 
 // ── 상수 ────────────────────────────────────────────────────────────
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -31,16 +32,19 @@ function check(name: string, cond: boolean, detail = ""): void {
   }
 }
 
-interface Reply { status: number; body: string }
+interface Reply { status: number; body: string; raw: Buffer }
 
 function send(options: { method?: string; path?: string; headers?: Record<string, string>; body?: string }): Promise<Reply> {
   return new Promise((resolvePromise, reject) => {
     const req = request(
       { host: "127.0.0.1", port: PORT, method: options.method ?? "GET", path: options.path ?? "/", headers: options.headers },
       (res) => {
-        let body = "";
-        res.on("data", (c) => (body += c));
-        res.on("end", () => resolvePromise({ status: res.statusCode ?? 0, body }));
+        const chunks: Buffer[] = [];
+        res.on("data", (c: Buffer) => chunks.push(c));
+        res.on("end", () => {
+          const raw = Buffer.concat(chunks);
+          resolvePromise({ status: res.statusCode ?? 0, body: raw.toString("utf8"), raw });
+        });
       },
     );
     req.on("error", reject);
@@ -125,6 +129,18 @@ async function testServer(): Promise<void> {
       body: JSON.stringify({ markdown: "" }),
     });
     check("본문 없는 한글 내보내기는 400", emptyHwpx.status === 400, String(emptyHwpx.status));
+    const formHwpx = await send({
+      method: "POST",
+      path: "/api/export-hwpx",
+      headers: { Host: `localhost:${PORT}`, Origin: `http://localhost:${PORT}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ docId: "industrial_accident_report", draft: { injuredName: "시험재해자" }, markdown: "# 산업재해조사표", title: "산업재해조사표" }),
+    });
+    const formSection = formHwpx.status === 200 ? (unzip(formHwpx.raw).get("Contents/section0.xml")?.toString("utf8") ?? "") : "";
+    check(
+      "문서 양식의 한글 내보내기는 정본을 거쳐 법정 서식 원본에 채운다",
+      formSection.includes("별지 제30호서식") && formSection.includes("<hp:t>시험재해자</hp:t>"),
+      String(formHwpx.status),
+    );
 
     const lan = Object.values(networkInterfaces()).flat().find((i) => i && i.family === "IPv4" && !i.internal)?.address;
     if (lan) check(`다른 기기용 주소(${lan})로는 접속되지 않음`, !(await canConnect(lan)));

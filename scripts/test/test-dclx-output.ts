@@ -20,6 +20,7 @@ import { fileURLToPath } from "node:url";
 import { generateSafetyDocumentTool } from "../../src/tools/generate-safety-document.js";
 import { packDclx, unpackDclx } from "../../src/lib/dclx.js";
 import { unzip, zip } from "../../src/lib/zip.js";
+import { officialFormMaps } from "../../src/lib/official-form-map.js";
 import { toApprovalCopy } from "../../src/lib/approval-copy.js";
 import { markdownToHwpx } from "../../src/lib/hwpx-writer.js";
 
@@ -93,8 +94,8 @@ async function main(): Promise<void> {
   const viaMarkdown = unzip(markdownToHwpx(toApprovalCopy(textOf(markdownPath)), { title: "대조" })).get("Contents/section0.xml")?.toString("utf8") ?? "";
   check("대조: Markdown 을 거쳐 만든 한글 파일은 그 값을 바꾼다 (이 시험이 차이를 잡는다)", !viaMarkdown.includes("10*20*30") && viaMarkdown.includes("102030"));
 
-  // 5. 결재본 내용이 빠짐없이
-  for (const docId of PARITY_DOCS) {
+  // 5. 결재본 내용이 빠짐없이 — 법정 서식 원본에 채우는 문서는 서식 칸만 싣는다(서식 시험 test-official-forms 가 본다)
+  for (const docId of PARITY_DOCS.filter((d) => officialFormMaps(d).length === 0)) {
     const md = textOf(await generateSafetyDocumentTool.handler({ docId, draft: PARITY_DRAFT, useProfile: false, format: "md" }));
     const out = await generateSafetyDocumentTool.handler({ docId, draft: PARITY_DRAFT, useProfile: false, format: "hwpx" });
     const file = flat(hwpxText((out.structuredContent as { hwpxPath: string }).hwpxPath));

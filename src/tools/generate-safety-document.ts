@@ -1226,9 +1226,15 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     const status = usabilityStatusText(missingRequiredCount, otherErrorCount);
     if (input.format === "hwpx") {
       hwpxFile = await saveHwpxFromDoclang(input.docId, documentXml, doc.title);
-      fullBody =
-        `정본(.dclx)을 저장하고 그 정본에서 HWPX(한글) 파일을 만들었습니다.\n\n- 한글 파일: ${hwpxFile.path} (${hwpxFile.bytes} bytes)\n- 정본: ${dclxFile.path} (${dclxFile.bytes} bytes)\n- 상태: ${status}\n\n` +
-        "파일에는 결재·제출용 본문만 들어 있습니다(작성 안내와 검사 상태 제외, 빈 칸은 손으로 채울 빈칸). 한글에서 열어 내용과 서식을 확인한 뒤 사용하세요.";
+      const official = hwpxFile.officialForm;
+      fullBody = official
+        ? `정본(.dclx)을 저장하고, 법정 서식 원본(${official.form})의 칸에 정본의 값을 채운 HWPX(한글) 파일을 만들었습니다.\n\n- 한글 파일: ${hwpxFile.path} (${hwpxFile.bytes} bytes)\n- 정본: ${dclxFile.path} (${dclxFile.bytes} bytes)\n- 서식 원본: ${official.sourceUrl}\n- 상태: ${status}\n\n` +
+          "서식의 칸 배치·병합은 그대로이고 칸의 글자만 바뀝니다. 입력하지 않은 칸과 서명 칸은 비어 있습니다." +
+          (official.notInForm.length > 0
+            ? `\n\n서식에 칸이 없어 한글 파일에 넣지 못한 값 (정본에는 있습니다):\n${official.notInForm.map((n) => `- ${n}`).join("\n")}`
+            : "")
+        : `정본(.dclx)을 저장하고 그 정본에서 HWPX(한글) 파일을 만들었습니다.\n\n- 한글 파일: ${hwpxFile.path} (${hwpxFile.bytes} bytes)\n- 정본: ${dclxFile.path} (${dclxFile.bytes} bytes)\n- 상태: ${status}\n\n` +
+          "파일에는 결재·제출용 본문만 들어 있습니다(작성 안내와 검사 상태 제외, 빈 칸은 손으로 채울 빈칸). 한글에서 열어 내용과 서식을 확인한 뒤 사용하세요.";
     } else {
       fullBody =
         `${markdownBody}\n\n---\n\n> 📄 **정본(.dclx)을 저장했습니다**: ${dclxFile.path} (${dclxFile.bytes} bytes) — DocLang 아카이브. 위 Markdown 은 작성 안내를 넣은 미리보기이고, 정본에는 결재·제출용 본문만 들어 있습니다. ` +
@@ -1296,6 +1302,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       bodyMarkdownLength: markdownBody.length,
       ...(dclxFile ? { dclxPath: dclxFile.path, dclxBytes: dclxFile.bytes } : {}),
       ...(hwpxFile ? { hwpxPath: hwpxFile.path, hwpxBytes: hwpxFile.bytes } : {}),
+      ...(hwpxFile?.officialForm ? { officialForm: hwpxFile.officialForm } : {}),
       // decision 006 — 위험 출처/폴백 차단 여부 (환각 차단 관찰용)
       documentCategory,
       hazardSource: hasWhitelist ? "whitelist" : hazardFallbackAllowed ? "guide_fallback" : "suppressed_administrative",

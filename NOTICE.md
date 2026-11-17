@@ -54,6 +54,16 @@ original download URL, its SHA-256, and the KOSHA portal status (including
 guides the portal has since repealed). Treat these guides as KOGL
 Attribution + No-derivative works.
 
+**Statutory form originals.** The forms annexed to the Occupational Safety
+and Health Act enforcement rules (산업안전보건법 시행규칙 별지 서식) in
+`src/ontology/forms/official/` are the form files as downloaded from
+법제처 국가법령정보센터 (law.go.kr), used as templates for filled HWPX
+output: only the text of the cells is written, the layout is kept. HWP forms
+were converted once to HWPX with the layout kept. The download URL, date and
+SHA-256 of each downloaded file are recorded in
+`src/ontology/forms/official/forms.json`. Forms annexed to statutes are not
+protected works under 저작권법 제7조.
+
 ---
 
 ## 3. Required Attribution When Redistributing Data
