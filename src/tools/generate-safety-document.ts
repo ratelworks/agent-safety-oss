@@ -37,16 +37,22 @@ import { validateDocumentInput, type ValidationReport } from "../lib/input-valid
 import { COMMON_RESPONSE_META } from "../config/constants.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
 import { kstToday } from "../lib/datetime-kst.js";
-import { getWorkSteps, pickFocusSteps } from "../lib/work-steps.js";
+import { findSecondNamedWork, getWorkSteps, pickFocusSteps, stepNameHasWord, type ResolvedWorkSteps } from "../lib/work-steps.js";
 import { resolveWorkConditions, RULE_SCOPE } from "../lib/work-conditions.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
 import { fieldDetailTable } from "../lib/field-detail.js";
-import { conditionRuleLine, sectionHeadingWithSource, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, workConditionRows, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
+import { conditionRuleLine, hazardSectionTitle, koshaGuideRows, sectionHeadingWithSource, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, workConditionRows, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 /** 서류에 싣는 별표 본문 상한 — 작업계획서의 별표 4 처럼 그 서류가 갖출 항목 목록이면 잘리지 않게 */
 const ANNEX_BODY_MAX_CHARS = 2000;
 const WORK_STEP_BASIS_PER_ROW = 3;
+/** 적용 KOSHA Guide 표에 싣는 행 수 (결재본 Markdown) */
+const KOSHA_LIST_MAX = 30;
+/** 공종을 하나로 정하지 못했을 때 보여 줄 후보 수 */
+const MAX_TIED_CANDIDATES = 5;
+/** 대책·조건 조치의 근거 표기에서 KOSHA Guide 번호를 꺼낸다 — "KOSHA Guide D-C-9-2026 10" → D-C-9-2026 */
+const GUIDE_REF_PATTERN = /KOSHA Guide ([A-Z](?:-[A-Z])?-\d+-\d{4})/g;
 /** 위험성평가 결과를 적는 서류 — 단계 표에 현장이 채울 결과 칸을 붙인다 (시행규칙 제37조의3제2호) */
 const RISK_RESULT_DOC = /risk_assessment|daily_tbm/;
 const RISK_RESULT_COLUMNS = ["위험성 수준 결정 결과", "개선대책 이행 결과"] as const;
@@ -599,6 +605,7 @@ async function renderGeneric(
   // decision 006 — 행정성 문서로 위험 폴백이 차단됐는지 (hazards 비었을 때 메시지 결정용)
   hazardFallbackSuppressed: boolean = false,
   workStepTable?: WorkStepTable,
+  hazardsFromWork = false,
 ): Promise<string> {
   const d = (input.draft ?? {}) as Record<string, any>;
   const sections = doc.sections && doc.sections.length > 0 ? doc.sections : buildSectionsFromRequiredFields(doc);
@@ -723,10 +730,7 @@ async function renderGeneric(
   // 위험 요소 — 화이트리스트(hasHazard)는 그래프 직접 매핑, 그 외엔 KOSHA Guide causedBy 추론.
   // decision 006 — 행정성 문서는 위험 폴백을 차단하므로 hazards 가 비면 "위험요인 미해당"으로 표기
   // (근거 없는 위험을 그래프 추론인 양 제시하는 환각 방지).
-  const hazardHeader =
-    hazards.length === 0 && hazardFallbackSuppressed
-      ? `## 식별된 위험 요소`
-      : `## 식별된 위험 요소 (그래프 추론 — KOSHA Guide ${kosha.length}건 기반)`;
+  const hazardHeader = `## ${hazardSectionTitle(hazards.length, hazardFallbackSuppressed, kosha.length, hazardsFromWork ? workStepTable?.work : undefined)}`;
   lines.push(hazardHeader);
   lines.push("");
   if (hazards.length === 0) {
@@ -756,11 +760,14 @@ async function renderGeneric(
     }
     lines.push(`## ${workStepTable.title}`);
     lines.push("");
-    const fill = workStepTable.fillColumns ?? [];
-    lines.push(`| ${[...workStepTable.headers, ...fill].join(" | ")} |`);
-    lines.push(`|${"---|".repeat(workStepTable.headers.length + fill.length)}`);
-    for (const row of workStepTable.rows) lines.push(`| ${row[0]} | ${row[1]} | ${row[2].join("<br>")} |${fill.map(() => "  |").join("")}`);
-    lines.push("");
+    // 공종을 정하지 못하면 행이 없다 — 빈 표 대신 안내만 싣는다
+    if (workStepTable.rows.length > 0) {
+      const fill = workStepTable.fillColumns ?? [];
+      lines.push(`| ${[...workStepTable.headers, ...fill].join(" | ")} |`);
+      lines.push(`|${"---|".repeat(workStepTable.headers.length + fill.length)}`);
+      for (const row of workStepTable.rows) lines.push(`| ${row[0]} | ${row[1]} | ${row[2].join("<br>")} |${fill.map(() => "  |").join("")}`);
+      lines.push("");
+    }
     lines.push(`> ${workStepTable.notice}`);
     lines.push("");
   }
@@ -788,16 +795,17 @@ async function renderGeneric(
   }
   lines.push("");
 
-  // 적용 KOSHA Guide
-  lines.push(`## 적용 KOSHA Guide (${kosha.length}건)`);
+  // 적용 KOSHA Guide — 이 작업의 대책 근거로 인용한 지침을 먼저, 서류 종류에 연결된 지침을 뒤에
+  const guideTable = koshaGuideRows(kosha, workStepTable?.guides);
+  lines.push(`## 적용 KOSHA Guide (${guideTable.rows.length}건)`);
   lines.push("");
-  if (kosha.length === 0) {
+  if (guideTable.rows.length === 0) {
     lines.push(`> (매핑된 KOSHA Guide 없음)`);
   } else {
-    lines.push(`| 번호 | 제목 |`);
-    lines.push(`|---|---|`);
-    for (const g of kosha.slice(0, 30)) lines.push(`| ${g.guideNo} | ${g.title} |`);
-    if (kosha.length > 30) lines.push(`| ... | (외 ${kosha.length - 30}건) |`);
+    lines.push(`| ${guideTable.headers.join(" | ")} |`);
+    lines.push(`|${"---|".repeat(guideTable.headers.length)}`);
+    for (const r of guideTable.rows.slice(0, KOSHA_LIST_MAX)) lines.push(`| ${r.join(" | ")} |`);
+    if (guideTable.rows.length > KOSHA_LIST_MAX) lines.push(`| ... | (외 ${guideTable.rows.length - KOSHA_LIST_MAX}건) |${guideTable.headers.slice(2).map(() => " |").join("")}`);
   }
   lines.push("");
 
@@ -868,6 +876,8 @@ interface DocumentRenderContext {
   otherErrorCount: number;
   /** 초안의 작업명에 맞는 공종의 단계별 재해유형·근거 표 (없으면 구획을 넣지 않는다) */
   workStepTable?: WorkStepTable;
+  /** hazards 를 작업 단계 자료로 채웠는가 (아니면 서류 종류에 연결된 위험) */
+  hazardsFromWork?: boolean;
 }
 
 /**
@@ -897,6 +907,48 @@ async function workConditionMeasures(
     .filter((c) => c.rules.length > 0);
 }
 
+/** 대책·조건 조치의 근거 글에서 인용한 KOSHA Guide — 인용 순서대로 한 번씩 */
+async function citedGuides(texts: string[]): Promise<Array<{ guideNo: string; title: string }>> {
+  const nos: string[] = [];
+  for (const text of texts) for (const m of text.matchAll(GUIDE_REF_PATTERN)) if (!nos.includes(m[1])) nos.push(m[1]);
+  return (await loadKoshaGuides(nos.map((no) => `doc:kosha_guide/${no}`))).map((g) => ({ guideNo: g.guideNo, title: g.title }));
+}
+
+/** 공종 하나의 단계별 행 — 작업명이 가리키는 단계를 앞에 두고, 그날 작업만 다루는 서류는 그 단계만 싣는다 */
+function stepRows(workName: string, ws: ResolvedWorkSteps, docId: string): {
+  rows: WorkStepTable["rows"];
+  focus: string[];
+  narrowed: boolean;
+  ordered: ResolvedWorkSteps["steps"];
+} {
+  // 작업명의 낱말이 다른 단계 이름에도 있으면("지브 조립 및 해체" → 해체·운전) 단계를 줄이지 않는다
+  const focus = pickFocusSteps(workName, ws);
+  const words = workName.split(/[\s.,()·]+/).filter((w) => w.length >= 2 && !ws.work.includes(w));
+  const namesOtherStep = ws.steps.some((s) => !focus.includes(s.name) && words.some((w) => stepNameHasWord(s.name, w) || (s.altLabels ?? []).includes(w)));
+  const narrowed = focus.length > 0 && SINGLE_DAY_DOC.test(docId) && !namesOtherStep;
+  const ordered = [...ws.steps.filter((s) => focus.includes(s.name)), ...(narrowed ? [] : ws.steps.filter((s) => !focus.includes(s.name)))];
+  const rows: WorkStepTable["rows"] = [];
+  for (const step of ordered) {
+    for (const h of step.hazards) {
+      // 위험요인마다 한 줄 — 유해·위험요인과 감소대책(근거)
+      for (const r of h.risks) {
+        // 감소대책은 줄이지 않는다 — 공법·조건별 대책이 뒤쪽에 있어 앞에서 자르면 조용히 빠진다
+        const measures = r.measures.map(
+          (m) => `${m.variant ? `(${m.variant}) ` : ""}${m.measure}${m.controlLevel ? ` [${m.controlLevel}]` : ""}${m.basisRef ? ` (${m.basisRef.replace("산업안전보건기준에 관한 규칙", "안전보건규칙")})` : ""}`,
+        );
+        rows.push([step.name, `${h.hazardLabel} — ${r.statement}`, measures]);
+      }
+      if (h.risks.length > 0) continue;
+      const basis = h.basis.slice(0, WORK_STEP_BASIS_PER_ROW).map((x) => {
+        const title = x.kind === "kosha_guide" && x.text ? x.text.replace(/^[\d.]+\s+/, "") : x.title;
+        return `${x.ref} ${title}${x.controlLevel ? ` (${x.controlLevel})` : ""}`.trim();
+      });
+      rows.push([step.name, h.hazardLabel, basis]);
+    }
+  }
+  return { rows, focus, narrowed, ordered };
+}
+
 /** 초안의 작업명으로 공종을 찾아 단계별 표를 만든다. 행정 문서이거나 작업명·공종이 없으면 undefined. */
 async function buildWorkStepTable(
   draft: Record<string, unknown>,
@@ -910,53 +962,63 @@ async function buildWorkStepTable(
   );
   if (!workName) return undefined;
   const found = await getWorkSteps(workName);
-  if (!found) return undefined;
-  // 작업명이 가리키는 단계 — 맨 앞에 두고, 그날 작업만 다루는 서류는 그 단계만 싣는다.
-  // 작업명의 낱말이 다른 단계 이름에도 있으면("지브 조립 및 해체" → 해체·운전) 단계를 줄이지 않는다
-  const focus = pickFocusSteps(workName, found.result);
-  const words = workName.split(/[\s.,()·]+/).filter((w) => w.length >= 2 && !found.result.work.includes(w));
-  const namesOtherStep = found.result.steps.some(
-    (s) => !focus.includes(s.name) && words.some((w) => s.name.includes(w) || (s.altLabels ?? []).includes(w)),
-  );
-  const narrowed = focus.length > 0 && SINGLE_DAY_DOC.test(docId) && !namesOtherStep;
-  const ordered = [
-    ...found.result.steps.filter((s) => focus.includes(s.name)),
-    ...(narrowed ? [] : found.result.steps.filter((s) => !focus.includes(s.name))),
-  ];
-  const conditions = await workConditionMeasures(draft, workName, found.result);
-  const rows: WorkStepTable["rows"] = [];
-  for (const step of ordered) {
-    for (const h of step.hazards) {
-      // 위험요인마다 한 줄 — 유해·위험요인과 감소대책(근거)
-      for (const r of h.risks) {
-        // 감소대책은 줄이지 않는다 — 공법·조건별 대책이 뒤쪽에 있어 앞에서 자르면 조용히 빠진다
-        const measures = r.measures
-          .map((m) => `${m.variant ? `(${m.variant}) ` : ""}${m.measure}${m.controlLevel ? ` [${m.controlLevel}]` : ""}${m.basisRef ? ` (${m.basisRef.replace("산업안전보건기준에 관한 규칙", "안전보건규칙")})` : ""}`);
-        rows.push([step.name, `${h.hazardLabel} — ${r.statement}`, measures]);
-      }
-      if (h.risks.length > 0) continue;
-      const basis = h.basis.slice(0, WORK_STEP_BASIS_PER_ROW).map((x) => {
-        const title = x.kind === "kosha_guide" && x.text ? x.text.replace(/^[\d.]+\s+/, "") : x.title;
-        return `${x.ref} ${title}${x.controlLevel ? ` (${x.controlLevel})` : ""}`.trim();
-      });
-      rows.push([step.name, h.hazardLabel, basis]);
-    }
+  const headers: WorkStepTable["headers"] = ["단계", "유해·위험요인", "감소대책 [위계] (근거)"];
+  // 공종을 못 찾았거나, 작업명 낱말 일부가 여러 공종 이름에 똑같이 맞아 하나로 정할 근거가 없으면 단계표를 붙이지 않는다
+  // (틀린 공종의 단계표는 없는 것보다 해롭다). 작업 조건 조치는 공종과 상관없이 싣는다.
+  const tied = found?.result.weakMatch && found.result.tiedWith?.length ? [found.result.work, ...found.result.tiedWith] : null;
+  if (!found || tied) {
+    const conditions = await workConditionMeasures(draft, workName, {});
+    if (!tied && conditions.length === 0) return undefined;
+    const guides = await citedGuides(conditions.flatMap((c) => c.rules.map((r) => r.basis)));
+    return {
+      title: "작업 단계별 위험요인·근거 — 공종을 정하지 못함",
+      headers,
+      rows: [],
+      ...(conditions.length > 0 ? { conditions } : {}),
+      ...(guides.length > 0 ? { guides } : {}),
+      notice: tied
+        ? `작업명 "${workName}"과 낱말 일부만 겹치는 공종이 여럿(${tied.slice(0, MAX_TIED_CANDIDATES).join(", ")}${tied.length > MAX_TIED_CANDIDATES ? ` 외 ${tied.length - MAX_TIED_CANDIDATES}개` : ""})이라 공종을 하나로 정하지 못했습니다. 이 가운데 맞는 공종이 있으면 작업명에 그 공종 이름을 그대로 적으세요 — 그 공종의 단계별 위험요인 표를 붙입니다. 맞는 공종이 없으면 단계별 위험요인은 현장에서 직접 찾아 적어야 합니다.`
+        : `작업명 "${workName}"에 맞는 공종을 찾지 못했습니다 — 단계별 위험요인은 현장에서 직접 찾아 적어야 합니다.`,
+    };
   }
+  const first = stepRows(workName, found.result, docId);
+  // 작업명에 이름이 온전히 든 두 번째 공종 — 같은 장소에서 함께 하는 작업("강관비계 위에서 외벽 도장")
+  const secondFound = await findSecondNamedWork(workName, found.result, found.otherCandidates);
+  const second = secondFound ? stepRows(workName, secondFound.result, docId) : null;
+  const { focus, narrowed, ordered } = first;
+  const conditions = await workConditionMeasures(draft, workName, found.result);
+  // 두 공종이면 단계 칸에 공종 이름을 붙여 어느 공종의 단계인지 보이게 한다
+  const rows: WorkStepTable["rows"] = second
+    ? [
+        ...first.rows.map((r): WorkStepTable["rows"][number] => [`${found.result.work} · ${r[0]}`, r[1], r[2]]),
+        ...second.rows.map((r): WorkStepTable["rows"][number] => [`${secondFound!.result.work} · ${r[0]}`, r[1], r[2]]),
+      ]
+    : first.rows;
+  const guides = await citedGuides([...rows.flatMap((r) => r[2]), ...conditions.flatMap((c) => c.rules.map((r) => r.basis))]);
   const notices = (found.result.relatedNotices ?? [])
     .map((n) => `${n.law}${n.articles.length > 0 ? ` ${n.articles.map((x) => x.ref.split(" ").pop()).join("·")}` : ""}`)
     .join(", ");
   return {
-    title: `작업 단계별 위험요인·근거 — ${found.result.work}`,
-    headers: ["단계", "유해·위험요인", "감소대책 [위계] (근거)"],
+    title: `작업 단계별 위험요인·근거 — ${found.result.work}${secondFound ? ` + ${secondFound.result.work}` : ""}`,
+    headers,
     rows,
     ...(RISK_RESULT_DOC.test(docId) ? { fillColumns: [...RISK_RESULT_COLUMNS] } : {}),
     ...(conditions.length > 0 ? { conditions } : {}),
+    ...(guides.length > 0 ? { guides } : {}),
+    work: secondFound ? `${found.result.work}·${secondFound.result.work}` : found.result.work,
+    hazardIris: [...new Set([...ordered, ...(second?.ordered ?? [])].flatMap((s) => s.hazards.map((h) => h.hazard).filter((x): x is string => !!x)))],
     notice:
       "공종의 작업 단계별 유해·위험요인과 감소대책을 근거와 함께 정리한 참고 자료입니다(안전보건공단 자료 기반). 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다." +
       (focus.length > 0
         ? narrowed
           ? ` 작업명이 가리키는 단계(${focus.join(", ")})만 실었습니다 — 그날 다른 단계도 하면 작업명에 적으세요.`
           : ` 작업명이 가리키는 단계(${focus.join(", ")})를 맨 앞에 두었습니다.`
+        : "") +
+      (secondFound
+        ? ` 작업명에 공종 이름이 둘(${found.result.work}, ${secondFound.result.work}) 들어 있어 두 공종의 단계를 함께 실었습니다${second && second.focus.length > 0 ? ` — ${secondFound.result.work}에서 작업명이 가리키는 단계: ${second.focus.join(", ")}` : ""}.`
+        : "") +
+      (found.result.weakMatch
+        ? ` 작업명의 낱말 일부만 공종 이름과 맞아 고른 공종입니다 — 다른 작업이면 작업명에 공종 이름을 그대로 적으세요${found.otherCandidates.length > 0 ? `(다른 후보: ${found.otherCandidates.slice(0, MAX_TIED_CANDIDATES).join(", ")})` : ""}.`
         : "") +
       (found.result.matchedBySynonym?.length ? ` 공종 이름이 아니라 현장 용어 사전의 낱말로 찾은 공종입니다 (찾은 낱말: ${found.result.matchedBySynonym.join(", ")}). 맞는 공종인지 확인하세요.` : "") +
       (notices ? ` 함께 볼 표준안전 작업지침(권고 기준): ${notices}.` : "") +
@@ -1018,6 +1080,7 @@ async function renderMarkdownOutput(context: DocumentRenderContext): Promise<str
     context.legalBodyByIri,
     context.hazardFallbackSuppressed,
     context.workStepTable,
+    context.hazardsFromWork,
   );
   return (
     renderUsabilityHeader(context.missingRequiredCount, context.otherErrorCount) +
@@ -1041,6 +1104,7 @@ function renderDoclangOutput(context: DocumentRenderContext, canonical = false):
     sections: context.sections,
     kosha: context.kosha,
     hazards: context.hazards,
+    hazardsFromWork: context.hazardsFromWork ?? false,
     ...(() => {
       // Markdown 본문과 같은 대책을 같은 순서로 싣는다
       const shown = selectDisplayedControls(context.controls, context.directControlIris, context.hazards);
@@ -1200,12 +1264,16 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   ).length;
   const otherErrorCount = validation.errors.length - missingRequiredCount;
   const sections = doc.sections && doc.sections.length > 0 ? doc.sections : buildSectionsFromRequiredFields(doc);
+  const workStepTable = await buildWorkStepTable((input.draft ?? {}) as Record<string, unknown>, hazardFallbackSuppressed, input.docId);
+  // 작업을 짚었으면 식별된 위험 요소는 서류 종류의 예시가 아니라 그 작업 단계의 재해유형이다
+  const workHazards = workStepTable?.hazardIris?.length ? await loadHazards([], workStepTable.hazardIris, false) : [];
   const renderContext: DocumentRenderContext = {
     doc,
     input,
     sections,
     kosha,
-    hazards,
+    hazards: workHazards.length > 0 ? workHazards : hazards,
+    hazardsFromWork: workHazards.length > 0,
     controls,
     directControlIris,
     legalBodyByIri,
@@ -1213,7 +1281,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     documentCategory,
     missingRequiredCount,
     otherErrorCount,
-    workStepTable: await buildWorkStepTable((input.draft ?? {}) as Record<string, unknown>, hazardFallbackSuppressed, input.docId),
+    workStepTable,
   };
   const markdownBody = await DOCUMENT_RENDERERS.md(renderContext);
   let hwpxFile: HwpxExportResult | undefined;
@@ -1295,7 +1363,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
       docId: input.docId,
       title: doc.title,
       koshaGuideCount: kosha.length,
-      hazardCount: hazards.length,
+      hazardCount: renderContext.hazards.length,
       controlCount: controls.length,
       sectionsCount: (doc.sections ?? []).length,
       legalBasisCount: (doc.legalBasis ?? []).length,

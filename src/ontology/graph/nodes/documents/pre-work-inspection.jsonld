@@ -171,16 +171,7 @@
     "doc:kosha_guide/G-36-2012",
     "doc:kosha_guide/H-26-2020",
     "doc:kosha_guide/M-89-2016",
-    "doc:kosha_guide/C-C-21-2026",
-    "doc:kosha_guide/C-C-22-2026",
-    "doc:kosha_guide/C-C-30-2026",
-    "doc:kosha_guide/C-C-36-2026",
-    "doc:kosha_guide/C-C-37-2026",
-    "doc:kosha_guide/C-C-41-2026",
     "doc:kosha_guide/C-C-67-2026",
-    "doc:kosha_guide/C-C-7-2026",
-    "doc:kosha_guide/C-C-73-2026",
-    "doc:kosha_guide/C-C-75-2026",
     "doc:kosha_guide/A-1-2018",
     "doc:kosha_guide/A-10-2018",
     "doc:kosha_guide/A-100-2018",
@@ -260,7 +251,49 @@
     "promotionNote": "자동 시뮬레이션 통과 — review_safety_document 도구 호출 + 그래프 정합성 확인. 진짜 사람 도메인 검토(황룡건설 dogfooding) 후 verified 승급 예정.",
     "licenseHint": "황룡건설(주) + ㈜라텔웍스 (자체 정의)",
     "alignedAt": "2026-04-29",
-    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)"
+    "alignSource": "align-nodes-bulk.ts (KOSHA 권고 + 산안법 본문 기반)",
+    "guidedByScopeReview": {
+      "reviewedAt": "2026-11-17",
+      "rule": "지침 원문의 적용범위가 이 서류의 대상(건설 작업)을 포함하지 않으면 연결하지 않는다",
+      "removed": [
+        {
+          "guide": "C-C-21-2026",
+          "scope": "가연성 가스 및 인화성물질을 취급․저장하는 기존 공정설비 및 저장탱크"
+        },
+        {
+          "guide": "C-C-22-2026",
+          "scope": "화학 및 석유화학 산업의 PVC 생산을 위한 인화성 물질 저장․취급설비"
+        },
+        {
+          "guide": "C-C-30-2026",
+          "scope": "화학반응공정의 열적 위험성평가(폭주반응)"
+        },
+        {
+          "guide": "C-C-36-2026",
+          "scope": "저장탱크 설비·유틸리티 설비·제조공정 중 고체건조․분쇄설비 등"
+        },
+        {
+          "guide": "C-C-37-2026",
+          "scope": "화학공장 등의 연속공정의 위험성평가"
+        },
+        {
+          "guide": "C-C-41-2026",
+          "scope": "화학공장 등의 회분식 공정에서의 위험성평가"
+        },
+        {
+          "guide": "C-C-7-2026",
+          "scope": "화학 및 가스공정 등 위험물질을 취급, 저장, 운송 및 활용하는 전주기 공정"
+        },
+        {
+          "guide": "C-C-73-2026",
+          "scope": "기 시행한 공정위험성평가를 정기적으로 다시 평가하고자 하는 사업장"
+        },
+        {
+          "guide": "C-C-75-2026",
+          "scope": "부식성 유체를 사용하거나 부식을 일으키는 환경에 있는 화학설비"
+        }
+      ]
+    }
   },
   "legalBasis": [
     "art:기준규칙:35",

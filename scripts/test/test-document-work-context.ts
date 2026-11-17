@@ -8,6 +8,12 @@
  *   3. 초안의 작업 조건 칸(workConditions)으로 준 조건도 읽는다
  *   4. 작업명이 단계를 가리키면 그 단계가 표 맨 앞에 오고, TBM 은 그 단계만 싣는다
  *   5. 조건·단계가 없는 초안은 조건 구획을 넣지 않는다
+ *   6. 같은 현장 장면 나란히 측정(2026-11-17)에서 나온 결함
+ *      — 낱말 일부만 여러 공종에 똑같이 맞으면 단계표를 붙이지 않고(조건 조치는 싣는다), 단계는 낱말 단위로 짚는다
+ *      — 작업명에 공종 이름이 둘이면 두 공종의 단계를 함께 싣는다
+ *      — 적용 KOSHA Guide 는 이 작업의 대책 근거 지침을 먼저 싣고, 적용범위가 화학공정인 지침은 싣지 않는다
+ *      — 식별된 위험 요소는 작업 단계 자료의 재해유형이다
+ *      — 이동식 크레인은 이동식 크레인 조항(제147조~제150조)을, 밀폐공간은 작업 전 확인 각 호·적정공기 기준을 싣는다
  *
  * 사용: tsx scripts/test/test-document-work-context.ts
  */
@@ -82,6 +88,26 @@ async function main(): Promise<void> {
   // 5. 조건 없는 초안
   const plain = await draftText("work_plan_tower_crane", { workName: "타워크레인" });
   check("조건이 없는 초안에는 조건 구획이 없다", !plain.includes(CONDITION_HEADING));
+
+  // 6. 나란히 측정 결함
+  const crane = await draftText("ad_hoc_risk_assessment", { workName: "이동식 크레인으로 PC 부재 설치", workConditions: ["야간작업"] });
+  const craneSteps = section(crane, "## 작업 단계별 위험요인·근거");
+  check("낱말 일부(이동식)만 여러 공종에 똑같이 맞으면 단계표를 붙이지 않고 그 사실을 적는다", craneSteps.includes("공종을 정하지 못함") && !craneSteps.includes("| 설치 및 사용 |") && !crane.includes("사다리가 넘어지거나"), craneSteps.slice(0, 120));
+  const craneCond = section(crane, CONDITION_HEADING);
+  check("공종을 정하지 못해도 작업 조건 조치는 싣는다 — 작업명의 이동식 크레인은 이동식 크레인 조항", craneCond.includes("### 작업 조건 — 야간작업") && craneCond.includes("§149") && craneCond.includes("§150") && !craneCond.includes("§146"), craneCond.match(/§\d+/g)?.join(",") ?? "");
+  const tbmBeam = stepColumn(await draftText("daily_tbm", { workName: "고소작업대로 철골 보 볼트 체결" }));
+  check("단계는 낱말 단위로 짚는다 — 볼트 체결은 앵커볼트 매립이 아니라 보 설치", tbmBeam.length > 0 && tbmBeam.every((s) => s === "보 설치"), tbmBeam.join(", "));
+  const paint = await draftText("ad_hoc_risk_assessment", { workName: "외부 강관비계 위에서 외벽 도장 작업" });
+  const paintSteps = stepColumn(paint);
+  check("작업명에 공종 이름이 둘이면 두 공종의 단계를 함께 싣는다", paintSteps.some((s) => s.startsWith("강관비계 · ")) && paintSteps.some((s) => s.startsWith("도장작업 · ")), [...new Set(paintSteps.map((s) => s.split(" · ")[0]))].join(", "));
+  const formwork = await draftText("ad_hoc_risk_assessment", { workName: "거푸집 동바리 해체", workConditions: ["강풍"] });
+  const guides = section(formwork, "## 적용 KOSHA Guide");
+  const PROCESS_GUIDES = ["C-C-22-2026", "C-C-37-2026", "X-78-2018", "E-179-2020", "E-G-17-2026"];
+  check("적용 KOSHA Guide: 이 작업의 대책 근거 지침이 먼저, 적용범위가 화학공정인 지침은 없다", /\| D-C-9-2026 \| [^|]+ \| 이 작업의 대책 근거 \|/.test(guides) && PROCESS_GUIDES.every((g) => !guides.includes(g)), guides.split("\n").filter((l) => l.startsWith("| ") && !l.includes("---")).slice(1, 4).join(" / "));
+  const hazards = section(formwork, "## 식별된 위험 요소");
+  check("식별된 위험 요소는 작업 단계 자료의 재해유형이다", hazards.includes("거푸집작업 작업 단계 자료") && hazards.includes("무너짐") && !hazards.includes("폭발"), hazards.split("\n")[0]);
+  const manhole = section(await draftText("ad_hoc_risk_assessment", { workName: "맨홀 내부 작업", workConditions: ["밀폐공간"] }), CONDITION_HEADING);
+  check("밀폐공간: 작업 전 확인 각 호와 적정공기 기준·측정·인원 점검을 싣는다", manhole.includes("3. 산소 및 유해가스 농도의 측정결과") && manhole.includes("18퍼센트 이상 23.5퍼센트 미만") && manhole.includes("§619의2") && manhole.includes("§621"), manhole.match(/§[\d의]+/g)?.join(",") ?? "");
 
   console.log(failed ? `\n❌ ${failed}개 실패` : "\n✅ 전체 통과");
   process.exit(failed ? 1 : 0);

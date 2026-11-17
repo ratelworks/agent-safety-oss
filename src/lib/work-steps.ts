@@ -24,6 +24,14 @@ const SCORE_TOKEN = 20;
 const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "설치", "해체", "조립"]);
 /** 공종을 고를 때는 흔한 말이지만, 공종 안에서는 단계를 가르는 말 ("거푸집 해체" → 거푸집 동바리 해체 단계) */
 const STEP_ACTION_TOKENS: ReadonlySet<string> = new Set(["시공", "설치", "해체", "조립"]);
+/** 두 번째 공종을 찾을 때 작업명을 낱말로 나누는 구분자 */
+const SECOND_WORK_WORD_SPLIT = /[\s.,()·]+/;
+/** 공종 이름 낱말 뒤에 붙어도 같은 낱말로 보는 조사·어미 ("도장을", "도장하는") */
+const SECOND_WORK_ENDINGS: ReadonlySet<string> = new Set(["을", "를", "이", "가", "은", "는", "과", "와", "도", "하는", "하기", "하고", "할", "한", "중"]);
+/** 공종 이름 낱말 바로 뒤에 오면 그 낱말이 작업을 가리킨다고 보는 동작어 ("콘크리트 타설", "도장 작업") */
+const SECOND_WORK_ACTIONS: ReadonlySet<string> = new Set([...GENERIC_TOKENS, "타설", "보수", "교체", "제거", "작업중", "공사중"]);
+/** 단계 이름을 낱말로 나누는 구분자 — "지브·카운터웨이트 조립"·"마스트 설치·상승(텔레스코핑)" */
+const STEP_WORD_SPLIT = /[\s·()\-+/,]+/;
 /** 공종 하나에 보여 줄 관련 문서 수 상한 */
 const MAX_RELATED_DOCUMENTS = 8;
 
@@ -197,6 +205,10 @@ export interface ResolvedWorkSteps {
   matchedBySynonym?: string[];
   /** 단계 대체 이름(부재·장비 부품·작업을 부르는 말)으로 찾았을 때 그 단계 이름 */
   matchedStep?: string;
+  /** 이름·대체 이름·단계 이름이 아니라 질문 낱말 일부가 이름에 든 것만으로 고른 공종 — 맞는지 확인이 필요하다 */
+  weakMatch?: boolean;
+  /** weakMatch 일 때 같은 점수로 맞은 다른 공종 — 있으면 하나로 정할 근거가 없다 */
+  tiedWith?: string[];
   /** 연결 종류별로 그 연결을 정한 방식 (예: 상위 작업 = 내용을 읽고 정함) — 값의 뜻은 linkBasisLegend */
   linkBasis?: Record<string, string>;
   linkBasisLegend?: Record<string, string>;
@@ -281,7 +293,7 @@ function altLabelScore(query: string, q: string, alt: string): number {
 }
 
 /** 작업명으로 공종을 찾는다. 가장 잘 맞는 하나와, 같은 점수대의 다른 후보 이름을 돌려준다. */
-export async function findWork(query: string): Promise<{ work: Work; others: string[]; matchedBy?: string[]; matchedStep?: string } | null> {
+export async function findWork(query: string): Promise<{ work: Work; others: string[]; matchedBy?: string[]; matchedStep?: string; weak?: boolean; tiedWith?: string[] } | null> {
   const q = normalize(query);
   if (!q) return null;
   const tokens = query.split(/[\s.,()·]+/).filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t));
@@ -334,11 +346,16 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
   if (scored.length === 0) return findWorkBySynonym(query);
   scored.sort((a, b) => b.score - a.score);
   const top = scored[0];
+  // 이름·대체 이름·단계 이름이 아니라 질문 낱말 몇 개가 이름에 든 것만으로 고른 공종 — 근거가 약하다
+  const weak = top.score < SCORE_CONTAINS && !top.alt && !top.step;
+  const tiedWith = scored.slice(1).filter((x) => x.score === top.score).map((x) => x.work.name);
   return {
     work: top.work,
     others: scored.slice(1, 6).map((x) => x.work.name),
     ...(top.alt ? { matchedBy: [top.alt] } : {}),
     ...(top.step ? { matchedStep: top.step } : {}),
+    ...(weak ? { weak: true } : {}),
+    ...(tiedWith.length > 0 ? { tiedWith } : {}),
   };
 }
 
@@ -675,6 +692,8 @@ export async function getWorkSteps(
       activity: found.work.activity,
       ...(found.matchedBy ? { matchedBySynonym: found.matchedBy } : {}),
       ...(found.matchedStep ? { matchedStep: found.matchedStep } : {}),
+      ...(found.weak ? { weakMatch: true } : {}),
+      ...(found.weak && found.tiedWith ? { tiedWith: found.tiedWith } : {}),
       ...(relatedNotices.length > 0 ? { relatedNotices } : {}),
       ...(relatedDocuments.length > 0 ? { relatedDocuments } : {}),
       ...(Object.keys(found.work.linkBasis).length > 0 ? { linkBasis: found.work.linkBasis, linkBasisLegend: LINK_BASIS_LABEL } : {}),
@@ -683,6 +702,20 @@ export async function getWorkSteps(
     },
     otherCandidates: found.others,
   };
+}
+
+function stepWordsOf(stepName: string): string[] {
+  return stepName.split(STEP_WORD_SPLIT).map(normalize).filter(Boolean);
+}
+
+/**
+ * 단계 이름에 이 낱말이 낱말로 들어 있는가 — 낱말 속 일부("앵커볼트" 의 볼트)로는 맞지 않는다.
+ * 단계 낱말의 앞부분이 맞거나(앵커 → 앵커볼트), 질문 낱말에 조사가 붙은 것("기둥을" → 기둥)은 맞는다.
+ */
+export function stepNameHasWord(stepName: string, word: string): boolean {
+  const t = normalize(word);
+  if (t.length < 2) return false;
+  return stepWordsOf(stepName).some((w) => t === w || w.startsWith(t) || (w.length >= 2 && t.startsWith(w)));
 }
 
 /**
@@ -697,24 +730,87 @@ export function pickFocusSteps(query: string, ws: Pick<ResolvedWorkSteps, "work"
   const workName = normalize(ws.work);
   const words = query.split(/[\s.,()·]+/).map(normalize);
   // 공종 이름 낱말 사이에 낀 말은 이름의 일부다 ("현장타설 콘크리트 말뚝" 의 "콘크리트" 는 단계가 아니라 말뚝 종류)
-  const inName = words.map((w, i) => (w.length >= 2 && workName.includes(w) ? i : -1)).filter((i) => i >= 0);
+  const bareName = normalize(ws.work.replace(/작업$|공사$/, ""));
+  // 공종 이름 속 말 — 이름에 든 낱말, 또는 이름에 조사가 붙은 낱말("타워크레인으로").
+  // "작업"·"공사" 같은 흔한 말은 치지 않는다 — "철골 기둥을 세우는 작업" 의 끝 "작업" 이 가운데 낱말을 이름 속 말로 만들지 않게
+  const isNameWord = (w: string) => w.length >= 2 && !GENERIC_TOKENS.has(w) && (workName.includes(w) || (bareName.length >= 2 && w.startsWith(bareName)));
+  const inName = words.map((w, i) => (isNameWord(w) ? i : -1)).filter((i) => i >= 0);
   const [first, last] = [inName[0] ?? -1, inName.at(-1) ?? -1];
-  const tokens = words.filter((t, i) => t.length >= 2 && !GENERIC_TOKENS.has(t) && !workName.includes(t) && !(i > first && i < last));
+  const outsideName = (t: string, i: number) => !GENERIC_TOKENS.has(t) && !isNameWord(t) && !(i > first && i < last);
+  const tokens = words.filter((t, i) => t.length >= 2 && outsideName(t, i));
+  // 한 글자 낱말("보 설치" 의 보)은 단계 이름의 낱말과 똑같을 때만 짚는다
+  const singles = words.filter((t, i) => t.length === 1 && outsideName(t, i));
   const picked = ws.steps
     .filter(
       (s) =>
         s.name === ws.matchedStep ||
         (s.altLabels ?? []).some((a) => normalize(a).length >= 2 && q.includes(normalize(a))) ||
-        tokens.some((t) => normalize(s.name).includes(t)),
+        tokens.some((t) => stepNameHasWord(s.name, t)) ||
+        singles.some((t) => stepWordsOf(s.name).includes(t)),
     )
     .map((s) => s.name);
-  if (picked.length > 0) return picked;
-  // 더 구체적인 말이 없으면 해체·설치·조립·시공으로 단계를 가른다 ("거푸집 해체" → 거푸집 동바리 해체)
+  // 해체·설치·조립·시공 — 단계를 가르는 동작
   const actions = query
     .split(/[\s.,()·]+/)
     .map(normalize)
     .filter((t) => STEP_ACTION_TOKENS.has(t));
-  return ws.steps.filter((s) => actions.some((t) => normalize(s.name).includes(t))).map((s) => s.name);
+  const withAction = (names: string[]) => names.filter((n) => actions.some((t) => normalize(n).includes(t)));
+  // 여러 단계에 든 말("거푸집 동바리 해체" 의 동바리)로 여러 단계가 걸리면 동작으로 좁힌다
+  if (picked.length > 1 && withAction(picked).length > 0) return withAction(picked);
+  if (picked.length > 0) return picked;
+  // 더 구체적인 말이 없으면 동작으로 단계를 가른다 ("거푸집 해체" → 거푸집 동바리 해체)
+  return withAction(ws.steps.map((s) => s.name));
+}
+
+/** 공종 이름이 질문에 온전히 들어 있는 자리 — 이름(뒤 "작업·공사" 를 뗀 것)·괄호를 뗀 이름·대체 이름 가운데 처음 맞는 것 */
+function nameSpanIn(q: string, names: string[]): [number, number] | null {
+  for (const n of names) {
+    const k = normalize(n);
+    if (k.length < 2) continue;
+    const i = q.indexOf(k);
+    if (i >= 0) return [i, i + k.length];
+  }
+  return null;
+}
+
+/**
+ * 질문에 이름이 온전히 든 두 번째 공종 — "외부 강관비계 위에서 외벽 도장" 의 도장작업, "터파기 굴착 … 흙막이 지보공" 의 굴착작업.
+ * 첫 공종이 맞은 자리와 겹치거나 첫 공종 이름 속에 든 이름("벽체 거푸집" 의 거푸집)은 두 번째 공종이 아니다. 없으면 null.
+ */
+export async function findSecondNamedWork(
+  query: string,
+  first: Pick<ResolvedWorkSteps, "work" | "matchedBySynonym"> & { steps?: { name: string }[] },
+  candidates: string[],
+): Promise<{ result: ResolvedWorkSteps; otherCandidates: string[] } | null> {
+  const q = normalize(query);
+  const bare = (n: string) => n.replace(/작업$|공사$/, "");
+  const firstName = normalize(first.work);
+  // 첫 공종이 맞은 자리 — 이름이 통째로 들어 있으면 그 자리, 낱말 사이에 나뉘어 들어 있으면("현장타설 콘크리트 말뚝") 첫 조각부터 끝 조각까지
+  const pieces = query.split(/[\s.,()·]+/).map(normalize).filter((w) => w.length >= 2 && !GENERIC_TOKENS.has(w) && firstName.includes(w));
+  const firstSpan =
+    nameSpanIn(q, [bare(first.work), bare(first.work.replace(/\(.*?\)/g, "")), ...(first.matchedBySynonym ?? [])]) ??
+    (pieces.length >= 2 ? ([q.indexOf(pieces[0]), q.lastIndexOf(pieces.at(-1)!) + pieces.at(-1)!.length] as [number, number]) : null);
+  const qWords = query.split(SECOND_WORK_WORD_SPLIT).map(normalize).filter(Boolean);
+  const firstStepNames = (first.steps ?? []).map((st) => normalize(st.name));
+  for (const c of candidates) {
+    const span = nameSpanIn(q, [bare(c), bare(c.replace(/\(.*?\)/g, ""))]);
+    if (!span) continue;
+    const name = normalize(bare(c.replace(/\(.*?\)/g, "")));
+    if (firstName.includes(name)) continue;
+    if (firstSpan && span[0] < firstSpan[1] && firstSpan[0] < span[1]) continue;
+    // 첫 공종의 단계가 이미 그 작업을 담고 있으면("수직구작업" 의 수직구 굴착 단계) 두 번째 공종이 아니다
+    if (firstStepNames.some((st) => st.includes(name))) continue;
+    // 작업명의 낱말로 들어 있고(조사·"하는" 등이 붙어도), 그 낱말이 동작 앞이나 끝에 있어야 한다 —
+    // "철근 다발 인양" 의 철근처럼 다른 작업의 대상물인 말은 공종이 아니다
+    const at = qWords.findIndex((w) => w === name || w === `${name}작업` || w === `${name}공사` || (w.startsWith(name) && SECOND_WORK_ENDINGS.has(w.slice(name.length))));
+    if (at < 0) continue;
+    const next = qWords[at + 1];
+    const endsVerb = qWords[at] !== name && !qWords[at].endsWith("작업") && !qWords[at].endsWith("공사");
+    if (!(next === undefined || endsVerb || SECOND_WORK_ACTIONS.has(next))) continue;
+    const second = await getWorkSteps(c);
+    if (second && second.result.work === c && second.result.work !== first.work) return second;
+  }
+  return null;
 }
 
 /** 공종 전체 (대공종별) */

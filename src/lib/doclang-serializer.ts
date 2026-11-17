@@ -166,6 +166,41 @@ export interface WorkStepTable {
   fillColumns?: string[];
   /** 초안의 작업 조건(강풍·야간작업 등)에서 이 작업이 지켜야 할 조치 — 표 앞에 싣는다 */
   conditions?: WorkConditionMeasures[];
+  /** 단계별 대책·조건 조치가 근거로 인용한 KOSHA Guide (인용 순서) — 적용 KOSHA Guide 표 앞쪽에 싣는다 */
+  guides?: Array<{ guideNo: string; title: string }>;
+  /** 공종 이름 */
+  work?: string;
+  /** 실은 단계의 재해유형 노드 (실은 순서, 한 번씩) — 식별된 위험 요소를 서류 종류의 예시 대신 이것으로 채운다 */
+  hazardIris?: string[];
+}
+
+/** 식별된 위험 요소 제목 — 작업 단계 자료로 채웠으면 그 출처를, 아니면 서류 종류에 연결된 자료를 적는다 */
+export function hazardSectionTitle(hazardCount: number, suppressed: boolean, guideCount: number, work?: string): string {
+  if (work) return `식별된 위험 요소 (${work} 작업 단계 자료 — 재해유형 ${hazardCount}종)`;
+  return hazardCount === 0 && suppressed ? "식별된 위험 요소" : `식별된 위험 요소 (그래프 추론 — KOSHA Guide ${guideCount}건 기반)`;
+}
+
+/** 적용 KOSHA Guide 표의 연결 칸 — 이 작업의 근거로 인용한 지침과 서류 종류에 연결된 지침을 가른다 */
+export const GUIDE_LINK_WORK = "이 작업의 대책 근거";
+export const GUIDE_LINK_DOCUMENT = "서류 작성·절차";
+
+/**
+ * 적용 KOSHA Guide 표의 행 — 작업 근거 지침(단계표·조건 조치가 인용한 것)을 먼저, 서류 종류에 연결된 지침을 뒤에.
+ * 같은 지침은 한 번만(작업 근거로) 싣는다. 작업 근거가 없으면 연결 칸 없이 [번호, 제목].
+ */
+export function koshaGuideRows(
+  documentGuides: Array<{ guideNo: string; title: string }>,
+  workGuides: Array<{ guideNo: string; title: string }> = [],
+): { headers: string[]; rows: string[][] } {
+  if (workGuides.length === 0) return { headers: ["번호", "제목"], rows: documentGuides.map((g) => [g.guideNo, g.title]) };
+  const seen = new Set(workGuides.map((g) => g.guideNo));
+  return {
+    headers: ["번호", "제목", "연결"],
+    rows: [
+      ...workGuides.map((g) => [g.guideNo, g.title, GUIDE_LINK_WORK]),
+      ...documentGuides.filter((g) => !seen.has(g.guideNo)).map((g) => [g.guideNo, g.title, GUIDE_LINK_DOCUMENT]),
+    ],
+  };
 }
 
 /** 작업 조건 하나의 조치 — 법령 조치(mandatory) 먼저, 기준값·근거는 원문 그대로 */
@@ -186,6 +221,8 @@ export interface SafetyDocumentDoclangInput {
   sections: DocumentSection[];
   kosha: DoclangKoshaGuideInfo[];
   hazards: DoclangHazardInfo[];
+  /** hazards 를 작업 단계 자료(workStepTable.hazardIris)로 채웠는가 */
+  hazardsFromWork?: boolean;
   controls: DoclangControlInfo[];
   directControlIris: ReadonlySet<string>;
   legalBodyByIri: ReadonlyMap<string, string | undefined>;
@@ -633,9 +670,7 @@ function renderWorkConditions(draft: Record<string, unknown>, canonical = false)
 }
 
 function renderHazards(input: SafetyDocumentDoclangInput): string {
-  const title = input.hazards.length === 0 && input.hazardFallbackSuppressed
-    ? "식별된 위험 요소"
-    : `식별된 위험 요소 (그래프 추론 — KOSHA Guide ${input.kosha.length}건 기반)`;
+  const title = hazardSectionTitle(input.hazards.length, input.hazardFallbackSuppressed, input.kosha.length, input.hazardsFromWork ? input.workStepTable?.work : undefined);
   if (input.hazards.length === 0) {
     return [heading(2, title), textElement(
       input.hazardFallbackSuppressed
@@ -663,7 +698,8 @@ function renderWorkSteps(input: SafetyDocumentDoclangInput): string {
   return [
     ...(conditions.length > 0 ? [heading(2, "작업 조건별 지켜야 할 조치"), ...conditions] : []),
     heading(2, t.title),
-    simpleTable(t.title, [...t.headers, ...(t.fillColumns ?? [])], t.rows.map((row) => [row[0], row[1], row[2].join(" / "), ...(t.fillColumns ?? []).map(() => "")])),
+    // 공종을 정하지 못하면 행이 없다 — 빈 표 대신 그 사실(안내)만 싣는다
+    ...(t.rows.length > 0 ? [simpleTable(t.title, [...t.headers, ...(t.fillColumns ?? [])], t.rows.map((row) => [row[0], row[1], row[2].join(" / "), ...(t.fillColumns ?? []).map(() => "")]))] : []),
     textElement(t.notice),
   ].join("\n");
 }
@@ -686,16 +722,15 @@ function renderControls(input: SafetyDocumentDoclangInput): string {
 }
 
 function renderKosha(input: SafetyDocumentDoclangInput): string {
-  if (input.kosha.length === 0) {
+  const { headers, rows } = koshaGuideRows(input.kosha, input.workStepTable?.guides);
+  if (rows.length === 0) {
     if (input.canonical) return "";
     return [heading(2, "적용 KOSHA Guide (0건)"), textElement("(매핑된 KOSHA Guide 없음)")].join("\n");
   }
+  const more = rows.length > KOSHA_ROWS_MAX ? [["...", `(외 ${rows.length - KOSHA_ROWS_MAX}건)`, ...headers.slice(2).map(() => "")]] : [];
   return [
-    heading(2, `적용 KOSHA Guide (${input.kosha.length}건)`),
-    simpleTable(input.canonical ? `적용 KOSHA Guide (${input.kosha.length}건)` : "적용 KOSHA Guide", ["번호", "제목"], [
-      ...input.kosha.slice(0, KOSHA_ROWS_MAX).map((guide) => [guide.guideNo, guide.title]),
-      ...(input.kosha.length > KOSHA_ROWS_MAX ? [["...", `(외 ${input.kosha.length - KOSHA_ROWS_MAX}건)`]] : []),
-    ]),
+    heading(2, `적용 KOSHA Guide (${rows.length}건)`),
+    simpleTable(input.canonical ? `적용 KOSHA Guide (${rows.length}건)` : "적용 KOSHA Guide", headers, [...rows.slice(0, KOSHA_ROWS_MAX), ...more]),
   ].join("\n");
 }
 
