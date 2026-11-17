@@ -41,6 +41,7 @@ export const ADMRULS: AdminRule[] = [
   { actKey: "건설안전관리-지침", id: "2100000216960", actSlug: "건설공사안전관리업무수행지침", alternativeNames: ["건설공사 안전관리 업무수행 지침", "국토교통부 건설공사 안전관리 업무수행 지침"] },
   { actKey: "보호구인증-고시", id: "2100000232806", actSlug: "보호구안전인증고시", alternativeNames: ["보호구 안전인증 고시", "보호구안전인증고시"] },
   { actKey: "인증절차-고시", id: "2100000214148", actSlug: "안전인증자율안전확인신고의절차에관한고시", alternativeNames: ["안전인증·자율안전확인신고의 절차에 관한 고시"] },
+  { actKey: "안전검사-고시", id: "2100000281068", actSlug: "안전검사절차에관한고시", alternativeNames: ["안전검사 절차에 관한 고시", "안전검사 고시"] },
   { actKey: "기계인증-고시", id: "2100000228814", actSlug: "위험기계기구안전인증고시", alternativeNames: ["위험기계·기구 안전인증 고시", "위험기계기구 안전인증 고시"] },
   { actKey: "방호장치자율-고시", id: "2100000214150", actSlug: "방호장치자율안전기준고시", alternativeNames: ["방호장치 자율안전기준 고시"] },
   { actKey: "보호구자율-고시", id: "2100000186078", actSlug: "보호구자율안전확인고시", alternativeNames: ["보호구 자율안전확인 고시"] },
@@ -66,4 +67,5 @@ export const ANNEX_RULES: ReadonlySet<string> = new Set([
   "교육-규정",
   "감독관집무-규정",
   "인증절차-고시",
+  "안전검사-고시",
 ]);
