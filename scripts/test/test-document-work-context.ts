@@ -52,6 +52,7 @@ function staleNoticeRefs(): { checked: number; missing: string[] } {
     ...readdirSync(resolve(ONTOLOGY, "graph/nodes/documents")).map((f) => resolve(ONTOLOGY, "graph/nodes/documents", f)),
     ...readdirSync(resolve(ONTOLOGY, "guides")).map((f) => resolve(ONTOLOGY, "guides", f)),
     ...readdirSync(resolve(ONTOLOGY, "forms/auto")).map((f) => resolve(ONTOLOGY, "forms/auto", f)),
+    ...readdirSync(resolve(ONTOLOGY, "kras-methods")).map((f) => resolve(ONTOLOGY, "kras-methods", f)),
     resolve(ONTOLOGY, "synonyms.json"),
     resolve(ONTOLOGY, "legal-duty-master.json"),
   ];
@@ -59,6 +60,8 @@ function staleNoticeRefs(): { checked: number; missing: string[] } {
   const missing: string[] = [];
   for (const f of files.filter((x) => /\.(jsonld|json|md)$/.test(x))) {
     const text = readFileSync(f, "utf-8");
+    // 개정 전 고시(제2024-76호)는 "이전 판" 이라고 밝힌 줄에서만 쓴다 — 그 판의 조번호·원문을 현행처럼 싣지 않게
+    for (const line of text.split("\n")) if (line.includes("2024-76") && !line.includes("이전 판")) missing.push(`${f.split("/").pop()}:개정 전 고시 제2024-76호를 현행처럼 씀`);
     for (const m of text.matchAll(NOTICE_REF)) {
       // 맨 "고시" 는 위험성평가 서류(수시·정기·최초·월·TBM·주간·근로자 의견) 파일 안이거나 앞 40자 안에 "위험성평가" 가 있을 때만(다른 고시와 구분),
       // 고시 번호(제2026-73호)는 조가 아니다
