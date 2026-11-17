@@ -129,8 +129,9 @@ async function loadSubtaskIris(): Promise<Map<string, string>> {
 }
 
 function tag(xml: string, name: string): string {
-  const m = xml.match(new RegExp(`<${name}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${name}>`));
-  return m ? m[1].trim() : "";
+  // 요소 안의 CDATA 표식은 모두 걷는다 — "]]>" 뒤에 줄바꿈이 오면(목 내용) 끝 표식이 본문에 남았다
+  const m = xml.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
+  return m ? m[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim() : "";
 }
 
 /** 20200116 → 2020-01-16 */
@@ -193,7 +194,8 @@ async function main(): Promise<void> {
     for (const cm of contents) {
       const text = cm[1].trim();
       // "제5조(제목)" 과 "제5조의2(제목)" 을 구분한다 — 가지 조문을 본조 번호로 읽으면 본조 본문을 덮어쓴다
-      const titleMatch = text.match(/^제(\d+)조(?:의(\d+))?\(([^)]+)\)/);
+      // "제15조 (제목)" 처럼 조 번호와 괄호 사이에 빈칸이 있는 고시도 있다
+      const titleMatch = text.match(/^제(\d+)조(?:의(\d+))?\s*\(([^)]+)\)/);
       if (!titleMatch) {
         // 편·장·절 제목 — 뒤따르는 조문이 여기에 속한다
         const partHead = text.match(/^제(\d+)편\s*(.+)/);

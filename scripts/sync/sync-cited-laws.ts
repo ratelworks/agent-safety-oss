@@ -13,6 +13,7 @@
  *
  * 사용
  *   LAW_OC=... tsx scripts/sync/sync-cited-laws.ts
+ *   LAW_OC=... tsx scripts/sync/sync-cited-laws.ts --only 건진법,건진법시행령   # 목록 가운데 그 법령만
  */
 import { readFile, writeFile, access } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
@@ -62,8 +63,9 @@ async function fetchText(url: string, attempt = 0): Promise<string> {
 }
 
 function cdata(block: string, name: string): string {
-  const m = block.match(new RegExp(`<${name}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${name}>`));
-  return m ? m[1].trim() : "";
+  // 요소 안의 CDATA 표식은 모두 걷는다 — "]]>" 뒤에 줄바꿈이 오면(목 내용) 끝 표식이 본문에 남았다
+  const m = block.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
+  return m ? m[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim() : "";
 }
 
 function isoDate(yyyymmdd: string): string {
@@ -121,7 +123,14 @@ async function main(): Promise<void> {
     process.exit(2);
   }
   const today = new Date().toISOString().substring(0, 10);
-  const laws = JSON.parse(await readFile(LIST, "utf-8")) as CitedLaw[];
+  // --only 건진법,건진법시행령 — 목록 가운데 그 법령만 받는다(전체를 다시 받지 않고 새로 넣은 조문만 수록할 때)
+  const onlyIdx = process.argv.indexOf("--only");
+  const only = onlyIdx >= 0 ? new Set((process.argv[onlyIdx + 1] ?? "").split(",").filter(Boolean)) : undefined;
+  const laws = (JSON.parse(await readFile(LIST, "utf-8")) as CitedLaw[]).filter((law) => !only || only.has(law.key));
+  if (only && laws.length !== only.size) {
+    console.error(`--only 의 법령 중 목록에 없는 것이 있습니다: ${[...only].filter((k) => !laws.some((l) => l.key === k)).join(", ")}`);
+    process.exit(2);
+  }
   for (const law of laws) {
     const found = await findMst(oc, law.name);
     if (!found) {

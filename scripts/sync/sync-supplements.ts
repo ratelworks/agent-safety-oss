@@ -84,8 +84,9 @@ async function fetchXml(oc: string, mst: string, efYd: string): Promise<string> 
 }
 
 function tag(block: string, name: string): string {
-  const m = block.match(new RegExp(`<${name}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${name}>`));
-  return m ? m[1].trim() : "";
+  // 요소 안의 CDATA 표식은 모두 걷는다 — "]]>" 뒤에 줄바꿈이 오면(목 내용) 끝 표식이 본문에 남았다
+  const m = block.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
+  return m ? m[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim() : "";
 }
 
 /** <부칙내용> 의 CDATA 줄을 원문 순서대로 (빈 줄 제외) */

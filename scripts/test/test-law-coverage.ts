@@ -7,6 +7,7 @@
  *   3. 고시·규정 수집 목록(admin-rules-list.ts)의 법령마다 법령 노드와 조문 노드가 있다
  *   4. 조문 조회 도구가 고시 조문·인용 조문을 찾고, 가운뎃점 표기(· / ㆍ)가 달라도 같은 법령으로 찾는다
  *   5. 4법 부칙 — 원문 건수대로 있고, 가리키는 조문이 모두 있고, 옛 번호·다른 법령·부칙 자신의 조를 잇지 않는다
+ *   5-1. 그래프 노드 글에 법제처 XML 표식(<![CDATA[ · ]]>)이 남지 않는다
  *   6. 공단 연관 자료 — 「만화로 보는 산업안전보건기준에 관한 규칙」 원본에서 읽은 QR 이 모두 있고, 자료 노드가 그 QR 의 조문을 가리킨다
  *
  * 사용: tsx scripts/test/test-law-coverage.ts
@@ -202,6 +203,22 @@ async function main(): Promise<void> {
     const withSupp = (await getSafetyLawArticleTool.handler({ ref })).content[0]?.text ?? "";
     check(`조문 조회에 그 조문을 언급한 부칙이 붙는다 (${ref})`, withSupp.includes("## 이 조문에 관한 부칙") && withSupp.includes("부칙 <제16272호"), withSupp.includes("이 조문에 관한 부칙") ? "있음" : "없음");
   }
+
+  // 5-1. 법제처 XML 표식이 본문에 남지 않는다 — 목 내용 "…]]>" 줄바꿈 뒤 끝 표식, 세목 앞 "<![CDATA[" (수록 도구 읽기 결함 회귀)
+  const leaked: string[] = [];
+  for (const dir of await readdir(NODES)) {
+    const sub = resolve(NODES, dir);
+    let names: string[];
+    try {
+      names = (await readdir(sub)).filter((f) => f.endsWith(".jsonld"));
+    } catch {
+      continue;
+    }
+    for (const name of names) {
+      if (/<!\[CDATA\[|\]\]>/.test(await readFile(resolve(sub, name), "utf-8"))) leaked.push(`${dir}/${name}`);
+    }
+  }
+  check("그래프 노드 글에 법제처 XML 표식(<![CDATA[ · ]]>)이 남지 않았다", leaked.length === 0, leaked.slice(0, 5).join(", "));
 
   // 6. 공단 연관 자료
   const comic = JSON.parse(await readFile(COMIC_QR, "utf-8")) as { occurrences: { article: string | null; url: string }[] };

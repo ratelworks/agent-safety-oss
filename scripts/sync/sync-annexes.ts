@@ -38,8 +38,9 @@ function parseAnnexes(xml: string): AnnexData[] {
     const key = m[1];
     const inner = m[2];
     const get = (tag: string) => {
-      const r = inner.match(new RegExp(`<${tag}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?<\\/${tag}>`));
-      return r ? r[1].trim() : "";
+      const r = inner.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`));
+      // 요소 안의 CDATA 표식은 모두 걷는다 ("]]>" 뒤 줄바꿈이 있어도)
+      return r ? r[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim() : "";
     };
     const num = get("별표번호").replace(/^0+/, "") || "0";
     const sub = get("별표가지번호").replace(/^0+/, "") || "0";

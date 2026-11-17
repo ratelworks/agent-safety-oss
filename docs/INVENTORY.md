@@ -2,7 +2,7 @@
 
 > **본 문서는 `npm run build` 시 `scripts/build/generate-inventory.ts` 가 자동 생성합니다. 수동 편집 금지** — drift 차단용.
 
-- 생성 시각: 2026-11-17T10:31:44+09:00
+- 생성 시각: 2026-11-17T13:33:13+09:00
 - 법령 데이터 최신 동기화: **2026-11-17**
 - 양식 인덱스 컴파일: 2026-04-29
 
@@ -34,19 +34,19 @@
 
 ## 2. 그래프 노드
 
-- 카테고리 1단계 노드 (직속 `.jsonld`): **4270**
-- 전체 노드 (재귀, KOSHA Guide 1,040건 포함): **5428**
-- 엣지 (주요 EDGE_FIELDS): **43370**
+- 카테고리 1단계 노드 (직속 `.jsonld`): **4388**
+- 전체 노드 (재귀, KOSHA Guide 1,040건 포함): **5546**
+- 엣지 (주요 EDGE_FIELDS): **43783**
 
 | 카테고리 | 1단계 | 재귀 (서브디렉토리 포함) |
 |---|---:|---:|
-| articles | 2319 | 2319 |
+| articles | 2413 | 2413 |
 | documents | 96 | 1136 |
-| chapters | 350 | 350 |
+| chapters | 372 | 372 |
 | kosha-media | 231 | 231 |
 | annexes | 227 | 227 |
 | supplements | 220 | 220 |
-| acts | 156 | 156 |
+| acts | 157 | 157 |
 | facets | 0 | 118 |
 | patterns | 110 | 110 |
 | capabilities | 92 | 92 |
@@ -55,7 +55,7 @@
 | controls | 50 | 50 |
 | hazards | 38 | 38 |
 | conditions | 35 | 35 |
-| penalties | 26 | 26 |
+| penalties | 27 | 27 |
 | events | 24 | 24 |
 | applicabilities | 22 | 22 |
 | entities | 19 | 19 |
@@ -70,7 +70,7 @@
 | object_sets | 7 | 7 |
 | statistics | 3 | 3 |
 | kosha_guides | 2 | 2 |
-| **전체** | **4270** | **5428** |
+| **전체** | **4388** | **5546** |
 
 ## 3. KOSHA Guide 본문 / 메타
 
