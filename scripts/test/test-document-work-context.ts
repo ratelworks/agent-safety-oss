@@ -32,8 +32,10 @@ const CONDITION = "강풍";
 const CONDITION_HEADING = "## 작업 조건별 지켜야 할 조치";
 const ONTOLOGY = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "src", "ontology");
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
+/** 위험성평가 고시를 따르는 서류 파일 — 이 안의 맨 "고시" 는 위험성평가 고시 */
+const RISK_DOC_FILE = /(risk[-_]assessment|daily[-_]tbm|weekly[-_]joint|worker[-_]complaint)/;
 /** 위험성평가 고시 조·항·호 인용 — "위험성평가 고시 제16조제1항제3호", "고시 §15 ② 1~5호", "위험성평가-고시:16" */
-const NOTICE_REF = /(위험성평가 고시|위험성평가-고시|고시)\s*(?:제|§|:)\s*(\d+)조?(?:\s*제?(\d+)항|\s*([①-⑩]))?(?:\s*제?(\d+)(?:~\d+)?호)?/g;
+const NOTICE_REF = /(위험성평가 고시|위험성평가-고시|고시)\s*(?:제|§|:)\s*(\d+)조?(?:\s*제?(\d+)항|\s*([①-⑩])|:(\d+))?(?:\s*제?(\d+)(?:~(\d+))?호)?/g;
 
 /** 서류 노드·안내·서식·동의어·의무 목록에서 위험성평가 고시 인용 중 현행 고시에 없는 조·항·호 */
 function staleNoticeRefs(): { checked: number; missing: string[] } {
@@ -49,15 +51,17 @@ function staleNoticeRefs(): { checked: number; missing: string[] } {
   for (const f of files.filter((x) => /\.(jsonld|json|md)$/.test(x))) {
     const text = readFileSync(f, "utf-8");
     for (const m of text.matchAll(NOTICE_REF)) {
-      // 맨 "고시" 는 앞 40자 안에 "위험성평가" 가 있을 때만(다른 고시와 구분), 고시 번호(제2026-73호)는 조가 아니다
-      if (m[1] === "고시" && !text.slice(Math.max(0, m.index! - 40), m.index).includes("위험성평가")) continue;
+      // 맨 "고시" 는 위험성평가 서류(수시·정기·최초·월·TBM·주간·근로자 의견) 파일 안이거나 앞 40자 안에 "위험성평가" 가 있을 때만(다른 고시와 구분),
+      // 고시 번호(제2026-73호)는 조가 아니다
+      if (m[1] === "고시" && !RISK_DOC_FILE.test(f) && !text.slice(Math.max(0, m.index! - 40), m.index).includes("위험성평가")) continue;
       if (Number(m[2]) >= 1000) continue;
       const node = resolve(ONTOLOGY, "graph/nodes/articles", `위험성평가-고시-§${m[2]}.jsonld`);
       const where = `${f.split("/").pop()}:${m[0]}`;
       if (!existsSync(node)) { missing.push(`${where}(조 없음)`); continue; }
       checked += 1;
       const body = String((JSON.parse(readFileSync(node, "utf-8")) as { description?: string }).description ?? "");
-      const p = m[3] ? Number(m[3]) : m[4] ? CIRCLED.indexOf(m[4]) + 1 : 0;
+      // 항: "제2항"·"②"·콜론 형식("위험성평가-고시:16:1" 의 1)
+      const p = m[3] ? Number(m[3]) : m[4] ? CIRCLED.indexOf(m[4]) + 1 : m[5] ? Number(m[5]) : 0;
       let scope = body;
       if (p > 0) {
         const i = body.indexOf(CIRCLED[p - 1]);
@@ -65,7 +69,11 @@ function staleNoticeRefs(): { checked: number; missing: string[] } {
         const j = i >= 0 && p < CIRCLED.length ? body.indexOf(CIRCLED[p], i + 1) : -1;
         scope = i >= 0 ? body.slice(i, j > 0 ? j : undefined) : body;
       }
-      if (m[5] && !new RegExp(`(^|\\n)\\s*${m[5]}\\.\\s`).test(scope)) missing.push(`${where}(호 없음)`);
+      // 호: 범위("1~3호")면 끝 호까지 하나하나
+      const [from, to] = [Number(m[6] ?? 0), Number(m[7] ?? m[6] ?? 0)];
+      for (let k = from; k > 0 && k <= to; k += 1) {
+        if (!new RegExp(`(^|\\n)\\s*${k}\\.\\s`).test(scope)) { missing.push(`${where}(${k}호 없음)`); break; }
+      }
     }
   }
   return { checked, missing };
