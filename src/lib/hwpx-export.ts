@@ -59,7 +59,8 @@ async function saveDocumentBytes(docId: string, extension: string, data: Buffer,
   const stamp = kstIsoNow().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
   const host = currentHost();
   if (host) {
-    // 같은 초에 같은 종류 문서를 또 만들어도 이름이 겹치지 않게 내용 해시 앞 8자를 붙인다(내용이 같으면 이름도 같다)
+    // 같은 초에 같은 종류의 다른 문서를 만들어도 이름이 겹치지 않게 내용 SHA-256 앞 8자를 붙인다
+    // (겹칠 확률은 같은 종류·같은 초 안에서 32비트 접두사가 우연히 같을 때뿐. 같은 초의 같은 내용은 같은 이름)
     const fileName = `${docId}-${stamp}-${createHash("sha256").update(data).digest("hex").slice(0, 8)}.${extension}`;
     host.addFile({ fileName, mimeType: MIME_BY_EXTENSION[extension] ?? "application/octet-stream", bytes: data, documentKind: docId });
     return { path: hostStorageLabel("file", fileName), bytes: data.length };
