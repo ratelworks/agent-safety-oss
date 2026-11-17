@@ -1,5 +1,5 @@
 {
-  "_note": "법정 서식 원본(법제처 국가법령정보센터) 파일과 칸 지도. 표 순번은 본문의 표를 문서 순서대로(칸 안의 표 포함) 0 부터 센다. row·col 은 서식 표의 행·열 주소다. template 의 {칸 이름} 자리에 문서 칸의 값이 들어가고, 모든 자리가 비면 칸을 건드리지 않는다(서식의 틀 글자가 남는다). {이름|부분} — Y·M·D·dow·h·min·date(날짜), num(첫 숫자), bare(앞뒤 괄호를 뗌), dN(숫자만 남긴 값의 N번째 글자), after:글(값에서 그 글 뒤의 내용). append 는 칸에 인쇄된 항목 이름 아래에 값을 적고, after 는 칸 글자의 그 글 뒤 빈자리에 적는다. checks 는 서식의 [  ]·□ 표시를 값에 맞게 고른다(mode yes = 표시가 하나뿐인 칸). 구형 HWP 서식은 한 번 HWPX 로 바꿔 넣었다(converted). 법령에 딸린 서식은 저작권법 제7조의 보호받지 못하는 저작물이다.",
+  "_note": "법정 서식 원본(법제처 국가법령정보센터) 파일과 칸 지도. 표 순번은 본문의 표를 문서 순서대로(칸 안의 표 포함) 0 부터 센다. row·col 은 서식 표의 행·열 주소다. template 의 {칸 이름} 자리에 문서 칸의 값이 들어가고, 모든 자리가 비면 칸을 건드리지 않는다(서식의 틀 글자가 남는다). {이름|부분} — Y·M·D·dow·h·min·date(날짜), num(첫 숫자), million(금액을 백만원 단위로 — 원·억·만원·백만원 표기를 읽고 단위가 없으면 1천만 이상은 원), bare(앞뒤 괄호를 뗌), dN(숫자만 남긴 값의 N번째 글자), after:글(값에서 그 글 뒤의 내용). append 는 칸에 인쇄된 항목 이름 아래에 값을 적고, after 는 칸 글자의 그 글 뒤 빈자리에 적는다. checks 는 서식의 [  ]·□ 표시를 값에 맞게 고른다(mode yes = 표시가 하나뿐인 칸, aliases = 칸을 뜻하는 다른 말, fallback = 어느 칸 이름도 없을 때 고를 칸). 구형 HWP 서식은 한 번 HWPX 로 바꿔 넣었다(converted). 법령에 딸린 서식은 저작권법 제7조의 보호받지 못하는 저작물이다.",
   "forms": {
     "industrial_accident_report": {
       "file": "rule-30.hwpx",
@@ -27,7 +27,7 @@
         { "table": 0, "row": 11, "col": 15, "template": "{primaryContractorCode}" },
         { "table": 0, "row": 12, "col": 15, "template": "{constructionType}" },
         { "table": 0, "row": 12, "col": 33, "template": "{constructionProgress|num} %" },
-        { "table": 0, "row": 12, "col": 38, "after": "공사금액", "template": " {constructionAmount|num}" },
+        { "table": 0, "row": 12, "col": 38, "after": "공사금액", "template": " {constructionAmount|million}" },
         { "table": 0, "row": 14, "col": 7, "template": "{injuredName}" },
         { "table": 1, "row": 0, "col": 0, "template": "{injuredId|d1}" },
         { "table": 1, "row": 0, "col": 1, "template": "{injuredId|d2}" },
@@ -38,7 +38,8 @@
         { "table": 1, "row": 0, "col": 7, "template": "{injuredId|d7}" },
         { "table": 0, "row": 15, "col": 7, "template": "{injuredAddress}" },
         { "table": 0, "row": 15, "col": 37, "template": "{injuredMobile}" },
-        { "table": 0, "row": 16, "col": 7, "after": "국적:", "template": " {injuredNationality|after:국적}" },
+        { "table": 0, "row": 16, "col": 7, "after": "국적:", "when": { "key": "injuredNationality", "has": ["국적"] }, "template": " {injuredNationality|after:국적}" },
+        { "table": 0, "row": 16, "col": 7, "after": "국적:", "when": { "key": "injuredNationality", "notHas": ["국적", "내국", "외국인", "한국", "대한민국"] }, "template": " {injuredNationality}" },
         { "table": 0, "row": 16, "col": 7, "after": "체류자격:", "template": " {residenceStatus}" },
         { "table": 0, "row": 16, "col": 37, "template": "{injuredOccupation}" },
         { "table": 0, "row": 17, "col": 7, "template": "   {hireDate|Y}년  {hireDate|M}월  {hireDate|D}일" },
@@ -62,7 +63,7 @@
       ],
       "checks": [
         { "table": 0, "row": 9, "col": 24, "field": "developerType", "style": "bracket-before" },
-        { "table": 0, "row": 16, "col": 7, "field": "injuredNationality", "style": "bracket-before" },
+        { "table": 0, "row": 16, "col": 7, "field": "injuredNationality", "style": "bracket-before", "aliases": { "내국인": ["한국", "대한민국", "내국"] }, "fallback": "외국인" },
         { "table": 0, "row": 18, "col": 7, "field": "employmentType", "style": "bracket-before", "other": "그 밖의 사항" },
         { "table": 0, "row": 19, "col": 7, "field": "workForm", "style": "bracket-before", "other": "그 밖의 사항" },
         { "table": 0, "row": 21, "col": 39, "field": "fatalFlag", "style": "bracket-before", "mode": "yes" },

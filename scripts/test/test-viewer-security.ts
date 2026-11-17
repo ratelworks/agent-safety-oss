@@ -133,13 +133,24 @@ async function testServer(): Promise<void> {
       method: "POST",
       path: "/api/export-hwpx",
       headers: { Host: `localhost:${PORT}`, Origin: `http://localhost:${PORT}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ docId: "industrial_accident_report", draft: { injuredName: "시험재해자" }, markdown: "# 산업재해조사표", title: "산업재해조사표" }),
+      body: JSON.stringify({
+        docId: "industrial_accident_report",
+        draft: { injuredName: "시험재해자", classifierAccidentType: "떨어짐" },
+        markdown: "# 산업재해조사표",
+        title: "산업재해조사표",
+      }),
     });
-    const formSection = formHwpx.status === 200 ? (unzip(formHwpx.raw).get("Contents/section0.xml")?.toString("utf8") ?? "") : "";
+    const formReply = formHwpx.status === 200 ? (JSON.parse(formHwpx.body) as { hwpxBase64?: string; form?: string; notInForm?: string[] }) : {};
+    const formSection = unzip(Buffer.from(formReply.hwpxBase64 ?? "", "base64")).get("Contents/section0.xml")?.toString("utf8") ?? "";
     check(
       "문서 양식의 한글 내보내기는 정본을 거쳐 법정 서식 원본에 채운다",
-      formSection.includes("별지 제30호서식") && formSection.includes("<hp:t>시험재해자</hp:t>"),
+      formSection.includes("별지 제30호서식") && formSection.includes("<hp:t>시험재해자</hp:t>") && (formReply.form ?? "").includes("별지 제30호서식"),
       String(formHwpx.status),
+    );
+    check(
+      "서식에 칸이 없어 넣지 못한 값을 화면에 돌려준다",
+      (formReply.notInForm ?? []).some((n) => n.includes("떨어짐")),
+      JSON.stringify(formReply.notInForm),
     );
 
     const lan = Object.values(networkInterfaces()).flat().find((i) => i && i.family === "IPv4" && !i.internal)?.address;

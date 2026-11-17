@@ -32,6 +32,9 @@ const LINESEG_RE = /<hp:linesegarray>[\s\S]*?<\/hp:linesegarray>/gu;
 const PLACEHOLDER = /\{([^{}|]+)(?:\|([^{}]+))?\}/gu;
 const DATE_PARTS = /^(\d{4})[-./년\s]+(\d{1,2})[-./월\s]+(\d{1,2})(?:일)?(?:\s*\([^)]*\))?(?:[ T]+(\d{1,2})[:시]\s*(\d{2}))?/u;
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
+/** 단위 없이 이보다 큰 금액은 원 단위로 본다 — 백만원 단위로 1천만(=10조 원)을 넘는 공사는 없다 */
+const WON_THRESHOLD = 10_000_000;
+const MILLION = 1_000_000;
 /** 체크 칸 값에서 떼는 표시 — "[√] 일용" → "일용" */
 const TICK_MARKS = /\[\s*[√✓v■xX]?\s*\]|[√✓■□]/gu;
 /** 값이 부정이면 "yes" 체크를 고르지 않는다 */
@@ -157,6 +160,7 @@ function valuePart(value: string, part: string): string {
     return new RegExp(`${label}\\s*[:：]?\\s*([^/\\],;]+)`, "u").exec(value)?.[1]?.trim() ?? "";
   }
   if (part === "num") return /\d[\d,]*(?:\.\d+)?/u.exec(value)?.[0] ?? "";
+  if (part === "million") return toMillionWon(value);
   if (part === "bare") return value.trim().replace(/^[([{（]\s*/u, "").replace(/\s*[)\]}）]$/u, "").trim();
   const digit = /^d(\d+)$/u.exec(part);
   if (digit) return value.replace(/\D/gu, "")[Number(digit[1]) - 1] ?? "";
@@ -174,6 +178,28 @@ function valuePart(value: string, part: string): string {
     case "date": return `${y}. ${Number(mo)}. ${Number(d)}.`;
     default: return value;
   }
+}
+
+/** 숫자에 세 자리마다 쉼표 */
+const withCommas = (n: number): string => String(n).replace(/\B(?=(\d{3})+(?!\d))/gu, ",");
+
+/**
+ * 금액을 백만원 단위 숫자로 — "32,000,000,000"(원) · "320억원" · "4500"(백만원) · "4500 (45억)" · "1,200만원" · "4,500백만원".
+ * 단위가 없으면 크기로 가린다(WON_THRESHOLD 이상은 원). 읽지 못하면 빈 글.
+ */
+function toMillionWon(value: string): string {
+  const v = value.replace(/\s+/gu, "");
+  const num = (s: string | undefined): number => Number((s ?? "").replace(/,/gu, ""));
+  let m: number;
+  const eok = /(\d[\d,]*(?:\.\d+)?)억/u.exec(v);
+  if (/백만원/u.test(v)) m = num(/(\d[\d,]*(?:\.\d+)?)백만원/u.exec(v)?.[1]);
+  else if (eok) m = num(eok[1]) * 100 + num(/억(\d[\d,]*)만/u.exec(v)?.[1]) / 100;
+  else if (/\d만원/u.test(v)) m = num(/(\d[\d,]*(?:\.\d+)?)만원/u.exec(v)?.[1]) / 100;
+  else {
+    const n = num(/\d[\d,]*(?:\.\d+)?/u.exec(v)?.[0]);
+    m = n >= WON_THRESHOLD || /\d원/u.test(v) ? n / MILLION : n;
+  }
+  return Number.isFinite(m) && m > 0 ? withCommas(Math.round(m)) : "";
 }
 
 /** template 의 {이름} 자리를 값으로 — 모든 자리가 비면 null(칸을 건드리지 않는다) */
@@ -518,8 +544,11 @@ function fillCheck(xml: string, spec: CheckSpec, value: string, label: string, n
     const { words, inner } = checkWords(value);
     const f = flat(words);
     const other = spec.other ? boxes.find((b) => flat(b.label).startsWith(flat(spec.other as string))) : undefined;
-    // 이름이 긴 것부터 — "그 밖의 사항" 같은 칸이 짧은 이름에 먼저 걸리지 않게
-    const picked = boxes.filter((b) => b !== other && b.label && f.includes(flat(b.label)));
+    // 값에 칸 이름(또는 칸 지도가 정한 다른 이름)이 들어 있으면 그 칸
+    const names = (b: Box): string[] => [b.label, ...(spec.aliases?.[b.label] ?? [])];
+    let picked = boxes.filter((b) => b !== other && b.label && names(b).some((n) => f.includes(flat(n))));
+    // 어느 칸 이름도 없고 부정어도 아니면 칸 지도가 정한 기본 칸 (국적: "베트남" → 외국인)
+    if (picked.length === 0 && spec.fallback && !NEGATIVE.test(words)) picked = boxes.filter((b) => b.label === spec.fallback);
     let out: string | null = cell;
     // 뒤의 칸부터 표시해야 앞 칸의 자리가 흔들리지 않는다
     for (const box of [...picked].sort((a, b) => b.mark - a.mark)) out = out && tick(out, box, style);

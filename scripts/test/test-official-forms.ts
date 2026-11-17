@@ -149,7 +149,7 @@ function sampleScalar(docId: string, map: FormMap): Record<string, string> {
     const how = use.get(f.key) ?? new Set(["plain"]);
     if ([...how].some((h) => /^(Y|M|D|dow|h|min|date|time)$/.test(h))) out[f.key] = "2026-03-15 09:30";
     else if ([...how].some((h) => /^d\d+$/.test(h))) out[f.key] = "830101-1";
-    else if (how.has("num")) out[f.key] = "45";
+    else if (how.has("num") || how.has("million")) out[f.key] = "45";
     else if ([...how].some((h) => h.startsWith("after:"))) out[f.key] = `[√] 외국인 [${[...how].find((h) => h.startsWith("after:"))?.slice(6)}: 견본국]`;
     else if (how.has("yes")) out[f.key] = "[√] 예";
     else if (how.has("check")) out[f.key] = "[√] 견본 아님";
@@ -234,7 +234,19 @@ function testPlacement(): void {
   const [form, rrn] = [t[0], t[1]];
   check("별지30: 사업장 정보 칸", cellAt(form, 4, 9) === "11-1234567-1-001" && cellAt(form, 5, 9) === "황룡건설(주)" && cellAt(form, 5, 26) === "85명" && squash(cellAt(form, 6, 26)) === "( - ) 서울특별시 강남구 테헤란로 123");
   check("별지30: 발주자 — 고른 것만 √", squash(cellAt(form, 9, 24)) === "[ ]민간 [√ ]국가ㆍ지방자치단체 [ ]공공기관", cellAt(form, 9, 24));
-  check("별지30: 공정률·공사금액은 숫자만, 서식의 단위 그대로", cellAt(form, 12, 33) === "45 %" && squash(cellAt(form, 12, 38)) === "공사금액 4500 백만원", `${cellAt(form, 12, 33)} / ${cellAt(form, 12, 38)}`);
+  check("별지30: 공정률은 숫자만, 공사금액은 백만원으로 — 서식의 단위 그대로", cellAt(form, 12, 33) === "45 %" && squash(cellAt(form, 12, 38)) === "공사금액 4,500 백만원", `${cellAt(form, 12, 33)} / ${cellAt(form, 12, 38)}`);
+  // 공사금액은 원·억·백만원 어느 표기로 와도 서식의 백만원 칸에 맞게 (문서 안내 예시는 원 단위)
+  for (const [input, want] of [["32,000,000,000", "32,000"], ["320억원", "32,000"], ["4,500백만원", "4,500"], ["1,250만원", "13"], ["4500", "4,500"]] as const) {
+    const amount = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { constructionAmount: input }));
+    const got = squash(cellAt(readTables(amount ? sectionOf(amount.data) : "")[0], 12, 38));
+    check(`별지30: 공사금액 "${input}" → 백만원 ${want}`, got === `공사금액 ${want} 백만원`, got);
+  }
+  // 국적 칸에 나라 이름만 적어도 외국인 √ 와 국적, "한국" 은 내국인
+  for (const [input, want] of [["베트남", "[ ]내국인 [√ ]외국인 [국적: 베트남 ⑩체류자격: ]"], ["한국", "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]"], ["대한민국", "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]"]] as const) {
+    const nat = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { injuredNationality: input }));
+    const got = squash(cellAt(readTables(nat ? sectionOf(nat.data) : "")[0], 16, 7));
+    check(`별지30: 국적 "${input}"`, got === want && nat?.notInForm.length === 0, `${got} / ${nat?.notInForm.join(" / ")}`);
+  }
   check("별지30: 주민등록번호 앞 7자리는 칸마다 한 자, 뒤 6자리는 * 그대로", [0, 1, 2, 3, 4, 5].map((c) => cellAt(rrn, 0, c)).join("") === "830101" && cellAt(rrn, 0, 7) === "5" && cellAt(rrn, 0, 8) === "*");
   check("별지30: 국적 — 외국인 √, 국적·체류자격은 서식 괄호 안", squash(cellAt(form, 16, 7)) === "[ ]내국인 [√ ]외국인 [국적: 베트남 ⑩체류자격: E-9 ]", cellAt(form, 16, 7));
   check("별지30: 고용형태 — 고른 것만 √", squash(cellAt(form, 18, 7)).startsWith("[ ]상용 [ ]임시 [√ ]일용 [ ]무급가족종사자"), cellAt(form, 18, 7));

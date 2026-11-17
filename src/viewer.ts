@@ -1195,7 +1195,25 @@ async function onSaveHwpx() {
         : { markdown: lastRenderedMd, title: currentDocTitle || docId }),
     });
     if (!r.ok) { setStatus('err', '한글 파일을 만들지 못했습니다'); return; }
-    const url = URL.createObjectURL(await r.blob());
+    // 문서 양식이면 파일과 함께 법정 서식 이름·서식에 칸이 없어 넣지 못한 값이 온다
+    let blob;
+    let notice = '';
+    let level = 'ok';
+    if ((r.headers.get('content-type') || '').includes('application/json')) {
+      const data = await r.json();
+      const bin = atob(data.hwpxBase64 || '');
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i += 1) bytes[i] = bin.charCodeAt(i);
+      blob = new Blob([bytes], { type: 'application/hwp+zip' });
+      if (data.form) notice += ' — 법정 서식(' + data.form + ')에 채움';
+      if (Array.isArray(data.notInForm) && data.notInForm.length > 0) {
+        level = 'info';
+        notice += ' · 서식에 칸이 없어 넣지 못한 값 ' + data.notInForm.length + '건(정본에는 있음): ' + data.notInForm.join(' / ');
+      }
+    } else {
+      blob = await r.blob();
+    }
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = filename;
@@ -1203,7 +1221,7 @@ async function onSaveHwpx() {
     a.click();
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 0);
-    setStatus('ok', '한글 파일 다운로드 — ' + filename);
+    setStatus(level, '한글 파일 다운로드 — ' + filename + notice);
   } catch (e) {
     setStatus('err', '한글 파일을 만들지 못했습니다');
   }
@@ -2244,9 +2262,13 @@ async function handleRequest(req: IncomingMessage, res: ServerResponse): Promise
         return send(res, 500, "application/json", JSON.stringify({ ok: false, reason: "정본을 만들지 못했습니다" }));
       }
       const built = await buildDocumentHwpx(parsed.docId, documentXml, title);
-      res.writeHead(200, { "Content-Type": HWPX_MIME_TYPE, "Content-Length": built.data.length, "Cache-Control": "no-cache" });
-      res.end(built.data);
-      return;
+      // 파일과 함께 법정 서식 이름·서식에 칸이 없어 넣지 못한 값을 돌려준다 — 화면이 알린다
+      return send(res, 200, "application/json", JSON.stringify({
+        ok: true,
+        hwpxBase64: built.data.toString("base64"),
+        form: built.officialForm?.form ?? null,
+        notInForm: built.officialForm?.notInForm ?? [],
+      }));
     }
     if (typeof parsed.markdown !== "string" || parsed.markdown.trim() === "") {
       return send(res, 400, "application/json", JSON.stringify({ ok: false, reason: "내보낼 본문이 없습니다" }));

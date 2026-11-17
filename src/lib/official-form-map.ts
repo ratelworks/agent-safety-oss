@@ -36,7 +36,7 @@ export interface When {
 }
 /**
  * 한 칸 — template 의 {칸 이름} 자리에 값을 넣는다. {이름|부분}: Y·M·D·date·dow(요일)·h(시)·min(분)·time,
- * num(값의 첫 숫자), bare(앞뒤 괄호를 뗀 값), dN(숫자만 남긴 값의 N번째 글자), after:글(값에서 그 글 뒤 ":" 다음부터 "/"·"]"·"," 앞까지 — "외국인 [국적: 베트남 / …]" 의 "베트남").
+ * num(값의 첫 숫자), million(금액을 백만원 단위로 — 원·억·만원·백만원 표기를 읽고, 단위가 없으면 1천만 이상은 원으로 본다), bare(앞뒤 괄호를 뗀 값), dN(숫자만 남긴 값의 N번째 글자), after:글(값에서 그 글 뒤 ":" 다음부터 "/"·"]"·"," 앞까지 — "외국인 [국적: 베트남 / …]" 의 "베트남").
  * 칸을 바꾸는 방법 (하나만)
  *   - 기본: 칸 글자를 template 으로 바꾼다(첫 문단 모양)
  *   - append: 칸에 인쇄된 항목 이름을 두고 그 아래 문단으로 값을 적는다(시행규칙 별지처럼 이름과 값이 한 칸인 서식)
@@ -55,6 +55,8 @@ export interface CellSpec {
  * 체크 칸 — 칸의 "[  ]이름"(bracket-before)·"이름 [  ]"(bracket-after)·"이름□"(box-after) 표시를 고른다.
  * mode "options"(기본): 값에 든 이름의 칸을 고른다. 맞는 이름이 없으면 other 칸을 고르고 그 뒤 [ ] 안에 값을 적는다.
  * mode "yes": 칸에 표시가 하나뿐 — 값이 긍정(비어 있지 않고 부정어가 아님)이면 고른다.
+ * aliases: 칸 이름 → 값에 그 칸을 뜻하는 다른 말 ("내국인": ["한국", "대한민국"]).
+ * fallback: 값에 어느 칸 이름도 없을 때 고를 칸 ("외국인" — 국적 칸에 나라 이름만 적은 경우).
  */
 export interface CheckSpec {
   table: number;
@@ -64,6 +66,8 @@ export interface CheckSpec {
   style?: "bracket-before" | "bracket-after" | "box-after";
   mode?: "options" | "yes";
   other?: string;
+  aliases?: Record<string, string[]>;
+  fallback?: string;
 }
 export interface RowCell {
   offset?: number;
