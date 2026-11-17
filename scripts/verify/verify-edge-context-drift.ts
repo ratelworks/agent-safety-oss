@@ -26,6 +26,9 @@ const LOADER_PATH = resolve(ROOT, "src", "lib", "graph-nodes-loader.ts");
 
 // 의도된 비-runtime predicate (PROV-O / taxonomy / structural)
 const INTENTIONAL_EXCLUSIONS = new Set([
+  // 벌칙 노드가 그 벌칙이 적힌 조문(벌칙 조항)을 가리키는 표지 — 벌칙 조회 도구(query_penalty)가 노드 칸으로 바로 읽는다.
+  // 서류·의무에서 벌칙으로 가는 길은 penaltyOnMissing 이 맡는다.
+  "articleRef",
   // 공종 노드의 단계·대책 안에 들어 있는 근거 표기 — 노드 최상위 필드가 아니라 BFS 가 읽지 않는다.
   // 같은 연결은 공종 노드 최상위의 regulatedBy·guidedBy 로 올라가 있어 그래프 탐색에는 그쪽이 쓰인다.
   "basisArticle",

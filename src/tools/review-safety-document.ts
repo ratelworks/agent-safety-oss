@@ -756,6 +756,8 @@ const FIELD_ALIASES: Record<string, string[]> = {
   plan_signal: ["plan.signal"],
   plan_shoring: ["plan.shoring"],
   plan_director: ["plan.director", "plan.supervisor", "metadata.supervisor"],
+  // 별표 4 제6호 작업계획서 내용 사목 (그 밖에 안전ㆍ보건에 관련된 사항)
+  plan_other: ["plan.other"],
   notifiedToWorkers: [
     "metadata.notifiedToWorkers",
     "workerNotification",

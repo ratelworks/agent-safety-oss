@@ -22,6 +22,8 @@ const SCORE_CONTAINS = 60;
 const SCORE_TOKEN = 20;
 /** 매칭에 쓰지 않는 흔한 낱말 */
 const GENERIC_TOKENS: ReadonlySet<string> = new Set(["작업", "공사", "시공", "설치", "해체", "조립"]);
+/** 공종을 고를 때는 흔한 말이지만, 공종 안에서는 단계를 가르는 말 ("거푸집 해체" → 거푸집 동바리 해체 단계) */
+const STEP_ACTION_TOKENS: ReadonlySet<string> = new Set(["시공", "설치", "해체", "조립"]);
 /** 공종 하나에 보여 줄 관련 문서 수 상한 */
 const MAX_RELATED_DOCUMENTS = 8;
 
@@ -254,6 +256,21 @@ function asciiTermIn(query: string, term: string): boolean {
   return new RegExp(`(^|[^A-Za-z0-9])${escaped}($|[^A-Za-z0-9])`, "i").test(query);
 }
 
+/**
+ * 질문 낱말들이 공종 이름을 빈틈없이 덮는가 — "현장타설 콘크리트 말뚝" 의 "현장타설"·"말뚝" 이 "현장타설말뚝" 을 덮는다.
+ * 이름이 질문에 통째로 들어 있지 않아도(사이에 다른 낱말) 이름 전체를 말한 것으로 본다.
+ */
+function tokensCoverName(name: string, tokens: string[]): boolean {
+  if (name.length < 2) return false;
+  const covered = new Array<boolean>(name.length).fill(false);
+  for (const t of tokens) {
+    const n = normalize(t);
+    if (n.length < 2) continue;
+    for (let i = name.indexOf(n); i >= 0; i = name.indexOf(n, i + 1)) covered.fill(true, i, i + n.length);
+  }
+  return covered.every(Boolean);
+}
+
 /** 대체 이름이 질문에 맞으면 점수, 아니면 0 — 이름과 같은 규칙(같으면 완전 일치, 들어 있으면 길이만큼 가산) */
 function altLabelScore(query: string, q: string, alt: string): number {
   const a = normalize(alt);
@@ -269,7 +286,10 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
   if (!q) return null;
   const tokens = query.split(/[\s.,()·]+/).filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t));
   const scored: { work: Work; score: number; alt?: string; step?: string }[] = [];
-  for (const w of await loadWorks()) {
+  const works = await loadWorks();
+  // 질문을 품은 단계 이름이 몇 공종에 있는가 — "해체"·"자재반입" 처럼 여러 공종의 단계에 들어 있는 말로는 공종을 정하지 않는다
+  const worksWithStepContaining = works.filter((w) => w.steps.some((st) => normalize(st.name).includes(q))).length;
+  for (const w of works) {
     const name = normalize(w.name);
     const bare = normalize(w.name.replace(/작업$|공사$/, ""));
     // 괄호 속 부연을 뺀 이름 — "벽체 거푸집(유로폼)" 은 "벽체 거푸집" 으로도 불린다
@@ -279,6 +299,8 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
     else if (bare.length >= 2 && q.includes(bare)) score = SCORE_CONTAINS + bare.length;
     else if (unparen.length >= 2 && unparen !== bare && q.includes(unparen)) score = SCORE_CONTAINS + unparen.length;
     else if (q.length >= 2 && name.includes(q)) score = SCORE_CONTAINS;
+    // 이름이 질문 낱말 여럿에 나뉘어 들어 있으면 이름 전체가 들어 있는 것과 같게 본다
+    else if (tokensCoverName(bare, tokens)) score = SCORE_CONTAINS + bare.length;
     else score = tokens.filter((t) => name.includes(normalize(t))).length * SCORE_TOKEN;
     // 원문 근거가 있는 대체 이름이 이름보다 잘 맞으면 그 점수를 쓴다
     let alt: string | undefined;
@@ -292,6 +314,12 @@ export async function findWork(query: string): Promise<{ work: Work; others: str
     // 단계 대체 이름("지브" → 타워크레인의 지브·카운터웨이트 조립 단계) — 공종과 함께 그 단계를 짚는다
     let step: string | undefined;
     for (const st of w.steps) {
+      // 질문이 단계 이름 그대로면("이동식 전기기계기구" → 가설전기작업의 이동식 전기 기계기구 단계) 그 공종·단계
+      if (normalize(st.name) === q && worksWithStepContaining === 1 && SCORE_EXACT - 1 > score) {
+        score = SCORE_EXACT - 1;
+        alt = undefined;
+        step = st.name;
+      }
       for (const a of st.altLabels) {
         const s = altLabelScore(query, q, a);
         if (s > score) {
@@ -660,16 +688,19 @@ export async function getWorkSteps(
 /**
  * 질문이 가리키는 단계 이름들. 단계 대체 이름으로 공종을 찾았으면 그 단계, 아니면 질문에 단계 대체 이름이 들어 있거나
  * 공종 이름이 아닌 질문 낱말이 단계 이름에 들어 있는 단계("타워크레인 지브 조립" → 지브·카운터웨이트 조립).
+ * 그런 말이 없으면 해체·설치·조립·시공으로 단계를 가른다("거푸집 해체" → 거푸집 동바리 해체).
+ * 공종 이름 낱말 사이에 낀 말은 이름의 일부로 보고 단계를 고르는 데 쓰지 않는다.
  * 짚을 단계가 없으면 빈 배열 — 공종 전체를 본다.
  */
 export function pickFocusSteps(query: string, ws: Pick<ResolvedWorkSteps, "work" | "matchedStep" | "steps">): string[] {
   const q = normalize(query);
   const workName = normalize(ws.work);
-  const tokens = query
-    .split(/[\s.,()·]+/)
-    .map(normalize)
-    .filter((t) => t.length >= 2 && !GENERIC_TOKENS.has(t) && !workName.includes(t));
-  return ws.steps
+  const words = query.split(/[\s.,()·]+/).map(normalize);
+  // 공종 이름 낱말 사이에 낀 말은 이름의 일부다 ("현장타설 콘크리트 말뚝" 의 "콘크리트" 는 단계가 아니라 말뚝 종류)
+  const inName = words.map((w, i) => (w.length >= 2 && workName.includes(w) ? i : -1)).filter((i) => i >= 0);
+  const [first, last] = [inName[0] ?? -1, inName.at(-1) ?? -1];
+  const tokens = words.filter((t, i) => t.length >= 2 && !GENERIC_TOKENS.has(t) && !workName.includes(t) && !(i > first && i < last));
+  const picked = ws.steps
     .filter(
       (s) =>
         s.name === ws.matchedStep ||
@@ -677,6 +708,13 @@ export function pickFocusSteps(query: string, ws: Pick<ResolvedWorkSteps, "work"
         tokens.some((t) => normalize(s.name).includes(t)),
     )
     .map((s) => s.name);
+  if (picked.length > 0) return picked;
+  // 더 구체적인 말이 없으면 해체·설치·조립·시공으로 단계를 가른다 ("거푸집 해체" → 거푸집 동바리 해체)
+  const actions = query
+    .split(/[\s.,()·]+/)
+    .map(normalize)
+    .filter((t) => STEP_ACTION_TOKENS.has(t));
+  return ws.steps.filter((s) => actions.some((t) => normalize(s.name).includes(t))).map((s) => s.name);
 }
 
 /** 공종 전체 (대공종별) */

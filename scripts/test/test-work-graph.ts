@@ -19,7 +19,7 @@ import { fileURLToPath } from "node:url";
 import jsonld from "jsonld";
 import { getNode, neighborsByEdge, listNodesByType } from "../../src/lib/graph-nodes-loader.js";
 import { findMeasuresCiting, findFieldMeasuresForHazard } from "../../src/lib/field-measures.js";
-import { findWork, getWorkSteps, LINK_BASIS_LABEL } from "../../src/lib/work-steps.js";
+import { findWork, getWorkSteps, pickFocusSteps, LINK_BASIS_LABEL } from "../../src/lib/work-steps.js";
 import { fieldSafetyBriefingTool } from "../../src/tools/field-safety-briefing.js";
 import { searchArticles } from "../../src/lib/article-search.js";
 import { generateTbmTopicsTool } from "../../src/tools/generate-tbm-topics.js";
@@ -356,6 +356,16 @@ async function main(): Promise<void> {
   check("현장 브리핑이 문장의 단계와 작업 조건을 읽어 그 단계 대책과 이 작업의 조건 조치를 붙인다", ctxNeeds.every((n) => ctxText.includes(n)), ctxNeeds.filter((n) => !ctxText.includes(n)).join(" / ") || "단계·조건 모두");
   const hoist = await findWork("호이스트");
   check("KOSHA Guide 가 크레인으로 정의한 호이스트를 건설용 리프트로 잇지 않는다", hoist?.work.name !== "건설용 리프트", hoist?.work.name ?? "없음");
+  // 공종 이름이 질문 낱말 사이에 나뉘어 있어도 그 공종 — 이름 일부만 맞는 다른 공종(콘크리트작업)으로 가지 않는다
+  const pile = await getWorkSteps("현장타설 콘크리트 말뚝");
+  check("\"현장타설 콘크리트 말뚝\" 은 현장타설말뚝이고 가운데 낱말로 단계를 좁히지 않는다", pile?.result.work === "현장타설말뚝" && pickFocusSteps("현장타설 콘크리트 말뚝", pile.result).length === 0, `${pile?.result.work ?? "없음"} [${pile ? pickFocusSteps("현장타설 콘크리트 말뚝", pile.result).join(",") : ""}]`);
+  // 한 공종에만 있는 단계 이름은 그 공종·단계 — 여러 공종 단계에 들어 있는 말("자재반입")로는 공종을 정하지 않는다
+  const portable = await getWorkSteps("이동식 전기기계기구");
+  check("단계 이름 그대로(이동식 전기 기계기구)면 가설전기작업의 그 단계", portable?.result.work === "가설전기작업" && portable.result.matchedStep === "이동식 전기 기계기구", `${portable?.result.work ?? "없음"} / ${portable?.result.matchedStep ?? "-"}`);
+  check("여러 공종 단계에 들어 있는 말(자재반입)만으로는 공종을 정하지 않는다", (await findWork("자재반입")) === null);
+  // 공종 안에서는 해체·설치·조립이 단계를 가른다
+  const formwork = await getWorkSteps("거푸집 해체");
+  check("\"거푸집 해체\" 는 거푸집작업의 해체 단계를 짚는다", !!formwork && pickFocusSteps("거푸집 해체", formwork.result).join(",") === "거푸집 동바리 해체", formwork ? pickFocusSteps("거푸집 해체", formwork.result).join(",") : "없음");
 
   // 8-2. TBM 은 상위 작업이 이어지지 않은 공종도 공종 이름으로 만든다 (공종 노드가 출발점)
   const tbmMissing: string[] = [];

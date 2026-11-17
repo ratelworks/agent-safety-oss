@@ -41,7 +41,8 @@ const INVERSE_PAIRS: Array<[string, string]> = [
 ];
 
 // partOf → 부모 노드에 has{Type} 中 어느 하나라도 매칭되면 OK
-const PART_INVERSE_KEYS = ["hasArticle","hasChapter","hasSection","hasAnnex","hasPenalty","hasFacet"];
+// 편(Part)은 법령의 hasPart 로 잇는다
+const PART_INVERSE_KEYS = ["hasArticle","hasChapter","hasSection","hasPart","hasAnnex","hasPenalty","hasFacet"];
 
 // _meta / standardForm / 기타 @json term — 안의 키는 RDF expand 대상 아님
 const JSON_TERMS_NO_DESCEND = new Set(["_meta","standardForm","applicableWhen","exemptedWhen","externalRef","sections","requiredFields","reviewRules"]);
@@ -182,7 +183,7 @@ async function main() {
       const target = nodes.get(t);
       if (!target) continue;
       const matched = PART_INVERSE_KEYS.some((k) => (target.refs.get(k) ?? []).includes(iri));
-      if (!matched) partAsym.push(`${iri} -[partOf]-> ${t} (역참조 has{Article|Chapter|Section|Annex|Penalty|Facet} 중 어느 것도 없음)`);
+      if (!matched) partAsym.push(`${iri} -[partOf]-> ${t} (역참조 has{Article|Chapter|Section|Part|Annex|Penalty|Facet} 중 어느 것도 없음)`);
     }
   }
   if (partAsym.length) {

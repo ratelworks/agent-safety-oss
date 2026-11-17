@@ -15,6 +15,7 @@
 import { readFileSync, readdirSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildStructureIndex, resolveStructureCitation, type StructureIndex } from "../lib/law-structure-citation.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const GUIDES_MD_DIR = resolve(ROOT, "src/ontology/kosha-guides");
@@ -276,24 +277,9 @@ function buildArticleIndex(): Map<string, ArticleNode> {
   return index;
 }
 
-function buildChapterIndex(): Map<string, ChapterNode> {
-  const index = new Map<string, ChapterNode>();
-  if (!existsSync(CHAPTERS_NODE_DIR)) return index;
-  for (const f of readdirSync(CHAPTERS_NODE_DIR)) {
-    if (!f.endsWith(".jsonld")) continue;
-    const d = JSON.parse(readFileSync(join(CHAPTERS_NODE_DIR, f), "utf8"));
-    const cid: string = d["@id"];
-    if (!cid) continue;
-    const m = cid.match(/^chapter:([^:]+):(\d+)장/);
-    if (m) {
-      index.set(`${m[1]}:${m[2]}`, {
-        id: cid,
-        title: d.title || "",
-        partOf: d.partOf || "",
-      });
-    }
-  }
-  return index;
+/** 구조 노드(편·장·절·관·속) 색인 — 장 번호는 편마다 다시 시작하므로 인용의 편·제목으로 가린다 */
+function buildChapterIndex(): StructureIndex {
+  return existsSync(CHAPTERS_NODE_DIR) ? buildStructureIndex(CHAPTERS_NODE_DIR) : new Map();
 }
 
 function matchCitation(c: Citation, index: Map<string, ArticleNode>): ArticleNode | null {
@@ -304,9 +290,10 @@ function matchCitation(c: Citation, index: Map<string, ArticleNode>): ArticleNod
   return null;
 }
 
-function matchChapter(c: ChapterCitation, index: Map<string, ChapterNode>): ChapterNode | null {
+function matchChapter(c: ChapterCitation, index: StructureIndex): ChapterNode | null {
   if (c.unit !== "장") return null;
-  return index.get(`${c.law}:${c.num}`) || null;
+  const unit = resolveStructureCitation(index, c.law, c.rawText, c.num);
+  return unit ? { id: unit.id, title: unit.title, partOf: "" } : null;
 }
 
 function updateGuideNodes(results: GuideResult[]): number {
@@ -399,7 +386,7 @@ function main() {
   const articleIndex = buildArticleIndex();
   const chapterIndex = buildChapterIndex();
   process.stderr.write(`Article 인덱스: ${articleIndex.size}개 노드 로드\n`);
-  process.stderr.write(`Chapter 인덱스: ${chapterIndex.size}개 노드 로드\n`);
+  process.stderr.write(`구조 노드 색인: ${[...chapterIndex.values()].reduce((n, l) => n + l.length, 0)}개 노드 로드\n`);
 
   let mdFiles = readdirSync(GUIDES_MD_DIR).filter((f) => f.endsWith(".md")).sort();
   if (limit) mdFiles = mdFiles.slice(0, limit);

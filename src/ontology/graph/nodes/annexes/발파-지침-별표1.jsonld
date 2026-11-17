@@ -1,0 +1,27 @@
+{
+  "@context": "../../context.jsonld",
+  "@id": "annex:발파-지침:별표1",
+  "@type": [
+    "Annex"
+  ],
+  "title": "발파 표준안전 작업지침 별표 1 — 저항측정 및 소요전압 산출(제19조관련)",
+  "annexNumber": "1",
+  "annexKind": "별표",
+  "partOf": "act:발파표준안전작업지침",
+  "verificationStatus": "verified",
+  "_meta": {
+    "publishedBy": "법제처 국가법령정보센터",
+    "sourceUrl": "https://www.law.go.kr/행정규칙/%EB%B0%9C%ED%8C%8C%20%ED%91%9C%EC%A4%80%EC%95%88%EC%A0%84%20%EC%9E%91%EC%97%85%EC%A7%80%EC%B9%A8",
+    "fetchedAt": "2026-11-17",
+    "verifiedAt": "2026-11-17",
+    "verifiedBy": "법제처 lawService.do (target=admrul, ID=2100000226042) <별표단위>",
+    "admRulId": "2100000226042",
+    "annexKey": "000100",
+    "hwpDownloadUrl": "https://www.law.go.kr/LSW/flDownload.do?flSeq=130852705",
+    "pdfDownloadUrl": "https://www.law.go.kr/LSW/flDownload.do?flSeq=130852709",
+    "licenseHint": "저작권법 제7조 비보호 (자유 인용)"
+  },
+  "description": "■ 발파 표준안전 작업지침 [별표 1]                                                          \n\n                                                                                              \n\n  저항측정 및 소요전압 산출(제19조관련)                                                       \n\n                                                                                              \n\n   1. 저항측정 및 소요전압 산출 시 회로의 전저항(R)은 다음 각 목의 식을 기준으로 하며,        \n\n  저항측정기의 오차는 ±2% 이내를 기준으로 한다.                                              \n\n     가. 전저항(R) 산정기준 : R = nR1 + ℓR2 + LR3 + r                                        \n\n  ┌───────────────────────────────┐                          \n\n  │ㆍR1 : 전기뇌관의 저항값(Ω)                                  │                          \n\n  │ㆍR2 : 보조모선의 1m 저항 측정당 저항값(Ω)                   │                          \n\n  │ㆍR3 : 발파모선의 1m당 저항값(Ω)                             │                          \n\n  │ㆍ r : 결선에 의한 접속 저항(실제 때에는 r은 생략하여도 무관) │                          \n\n  │ㆍ n : 직렬로 결선된 저항 R1의 전기뇌관 수                    │                          \n\n  │ㆍ ℓ : 보조모선에 사용된 1m당 R2의 단선 길이(m)              │                          \n\n  │ㆍ L : 발파모선에 사용된 1m당 R3의 단선 길이(m)               │                          \n\n  └───────────────────────────────┘                          \n\n     나. 소정의 저항값(R0) 산정기준 : R0 = (1 ± 0.02) R                                      \n\n   2. 위 사항의 산정기준에 의한 계산치와 실측치를 비교하고, 허용오차의 ±10% 이내를 확인한    \n\n  다음 모선을 발파기 단자에 접속하여야 한다.                                                  \n\n   3. 실제 발파에 필요한 소요전압은 다음 각 목의 식에 의해 산출한다.                          \n\n     가. 직렬 결선의 경우 소요전압 V = I(R1 + nR2 + R3)                                       \n\n     나. 병렬 결선의 경우 소요전압 V = nI(R1 + R2/n + R3)                                     \n\n     다. 직·병렬 결선의 경우 소요전압 V= bI(R1 + a/bR2 + R3)                                 \n\n  ┌─────────────────────┐                                              \n\n  │ㆍV = 소요전압          ㆍI = 소요전류    │                                              \n\n  │ㆍR1 = 모선의 저항      ㆍn = 뇌관 수     │                                              \n\n  │ㆍR2 = 뇌관의 저항      ㆍa = 직렬 뇌관 수│                                              \n\n  │ㆍR3 = 발파기 내부저항  ㆍb = 병렬 뇌관 수│                                              \n\n  └─────────────────────┘",
+  "legislationIdentifier": "발파 표준안전 작업지침",
+  "jurisdiction": "KR"
+}

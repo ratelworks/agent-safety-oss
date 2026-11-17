@@ -694,6 +694,24 @@
       ]
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/articleRef",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "articleRef",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/Penalty"
+        }
+      ],
+      "schema:rangeIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/Article"
+        }
+      ]
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/calculationBasis",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "calculationBasis",
@@ -1890,9 +1908,6 @@
         }
       ],
       "schema:rangeIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/Article"
-        },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Penalty"
         }

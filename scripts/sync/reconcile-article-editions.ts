@@ -15,6 +15,11 @@
  *   LAW_OC=... tsx scripts/sync/reconcile-article-editions.ts            # 대조 + 노드 갱신 + 기록
  *   LAW_OC=... tsx scripts/sync/reconcile-article-editions.ts --dry-run  # 기록만, 노드는 그대로
  *   --cache <dir>  : 받은 XML 을 dir 에 저장·재사용 (같은 판을 여러 번 받지 않기)
+ *   --new-only     : 신설 조문만 만들고 기존 노드·기록 파일은 그대로 둔다
+ *
+ * 현행 판에 있고 시행일이 지났는데 노드가 없는 조문(개정으로 새로 생긴 조문)은 원문으로 노드를 새로 만든다 —
+ * 판본(MST)만 현행이고 신설 조문이 빠지는 일을 막는다. 시행일이 아직 오지 않은 조문은 만들지 않는다(현행본만 싣는다).
+ * 가지 조문(제N조의M)은 제N조와 같은 장·절에 둔다.
  */
 
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
@@ -27,6 +32,9 @@ import { XMLParser } from "fast-xml-parser";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
 const ARTICLES_DIR = resolve(ROOT, "src", "ontology", "graph", "nodes", "articles");
+const CHAPTERS_DIR = resolve(ROOT, "src", "ontology", "graph", "nodes", "chapters");
+/** 새로 만드는 조문 노드의 법령 종류 (schema.org legislationType) */
+const LEGISLATION_TYPE: Record<string, string> = { 산안법: "Act", 산안법시행령: "Decree", 산안법시행규칙: "Rule", 기준규칙: "Rule" };
 const REPORT_DIR = resolve(ROOT, "reports", "law-freshness");
 const REPORT_JSON = resolve(REPORT_DIR, "article-editions.json");
 const REPORT_MD = resolve(REPORT_DIR, "article-editions.md");
@@ -331,6 +339,8 @@ async function compareBundles(sources: Map<string, Map<string, ArticleSrc>>): Pr
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const dryRun = args.includes("--dry-run");
+  // --new-only: 신설 조문만 만들고 기존 노드·기록 파일은 건드리지 않는다 (판본 표지 갱신 없이 빠진 조문만 채울 때)
+  const newOnly = args.includes("--new-only");
   const cacheIdx = args.indexOf("--cache");
   const cacheDir = cacheIdx >= 0 ? resolve(args[cacheIdx + 1]) : null;
   const today = new Date().toISOString().slice(0, 10);
@@ -429,8 +439,95 @@ async function main(): Promise<void> {
     meta.verifiedBy = `법제처 lawService.do (target=eflaw, MST=${ed.mst}, efYd=${ed.efYd}) 원문 대조`;
     node._meta = meta;
     node.verificationStatus = "verified";
-    if (!dryRun) await writeFile(path, JSON.stringify(node, null, 2) + "\n", "utf8");
+    if (!dryRun && !newOnly) await writeFile(path, JSON.stringify(node, null, 2) + "\n", "utf8");
   }
+
+  // ── 신설 조문 — 현행 판에 있고 시행 중인데 노드가 없는 조문 ──
+  const created: Array<{ id: string; title: string; effective: string }> = [];
+  const pendingFuture: Array<{ id: string; effective: string }> = [];
+  const existing = new Set(files);
+  for (const ed of EDITIONS) {
+    const src = sources.get(ed.canonical);
+    if (!src) continue;
+    for (const article of src.values()) {
+      const file = `${ed.canonical}-§${article.number}.jsonld`;
+      if (existing.has(file)) continue;
+      const body = renderArticle(article);
+      if (isRepealedText(body)) continue;
+      const id = `art:${ed.canonical}:${article.number}`;
+      // 조문시행일자가 현행 판 시행일(efYd)보다 뒤면 아직 시행 전 — 싣지 않는다
+      if (article.effective && article.effective > ed.efYd) {
+        pendingFuture.push({ id, effective: article.effective });
+        continue;
+      }
+      // 같은 장·절 — 가지 조문은 본조(제N조), 아니면 바로 앞 번호 조문의 장·절
+      const base = article.number.split("의")[0];
+      const sibling = [`${ed.canonical}-§${base}.jsonld`, `${ed.canonical}-§${Number(base) - 1}.jsonld`].find((f) => existing.has(f));
+      const partOf = sibling ? (JSON.parse(await readFile(resolve(ARTICLES_DIR, sibling), "utf8")) as { partOf?: string }).partOf : undefined;
+      const effective = article.effective ? `${article.effective.slice(0, 4)}-${article.effective.slice(4, 6)}-${article.effective.slice(6, 8)}` : today;
+      const node = {
+        "@context": "../../context.jsonld",
+        "@id": id,
+        "@type": ["Article", "Legislation"],
+        articleNumber: article.number,
+        title: article.title,
+        ...(partOf ? { partOf } : {}),
+        verificationStatus: "verified",
+        _meta: {
+          publishedBy: "법제처 국가법령정보센터 (자동 sync)",
+          // "23의2" → 제23조의2, "23" → 제23조
+          sourceUrl: `https://www.law.go.kr/법령/${encodeURIComponent(ed.name)}/제${article.number.includes("의") ? article.number.replace("의", "조의") : `${article.number}조`}`,
+          fetchedAt: today,
+          licenseHint: "저작권법 제7조 비보호 (자유 인용)",
+          verifiedAt: today,
+          verifiedBy: `법제처 lawService.do (target=eflaw, MST=${ed.mst}, efYd=${ed.efYd}) 원문`,
+          lawServiceMST: ed.mst,
+          lawServiceLawId: ed.lawId,
+          bodyLength: body.length,
+          bodySource: `법제처 국가법령정보센터 현행 원문 (${ed.label}, MST ${ed.mst})`,
+          note: "현행 판에 새로 생긴 조문 — 판본 대조에서 노드가 없어 원문으로 만들었다",
+        },
+        description: body,
+        legislationIdentifier: ed.name,
+        legislationDate: effective,
+        legislationType: LEGISLATION_TYPE[ed.canonical] ?? "Rule",
+        legislationLegalForce: "InForce",
+        jurisdiction: "KR",
+        temporalCoverage: `${effective}/..`,
+        userVisible: true,
+        isAppendix: false,
+      };
+      created.push({ id, title: article.title, effective });
+      if (dryRun) continue;
+      await writeFile(resolve(ARTICLES_DIR, file), JSON.stringify(node, null, 2) + "\n", "utf8");
+      existing.add(file);
+      // 법령 노드·장·절 노드의 조문 목록에도 잇는다
+      const actPath = resolve(ROOT, "src", "ontology", "graph", "nodes", "acts", `${ed.name.replace(/\s+/g, "")}.jsonld`);
+      if (existsSync(actPath)) {
+        const raw = await readFile(actPath, "utf8");
+        const act = JSON.parse(raw) as { hasArticle?: string[] };
+        if (Array.isArray(act.hasArticle) && !act.hasArticle.includes(id)) {
+          act.hasArticle.push(id);
+          await writeFile(actPath, JSON.stringify(act, null, 2) + (raw.endsWith("\n") ? "\n" : ""), "utf8");
+        }
+      }
+      if (partOf?.startsWith("chapter:")) {
+        const chapterFile = (await readdir(CHAPTERS_DIR)).find((f) => f.endsWith(".jsonld") && f === `${partOf.slice("chapter:".length).replace(":", "-")}.jsonld`);
+        if (chapterFile) {
+          const chapterPath = resolve(CHAPTERS_DIR, chapterFile);
+          const raw = await readFile(chapterPath, "utf8");
+          const chapter = JSON.parse(raw) as { hasArticle?: string[] };
+          if (Array.isArray(chapter.hasArticle) && !chapter.hasArticle.includes(id)) {
+            chapter.hasArticle.push(id);
+            // 파일 끝 줄바꿈은 원래 모양대로 둔다
+            await writeFile(chapterPath, JSON.stringify(chapter, null, 2) + (raw.endsWith("\n") ? "\n" : ""), "utf8");
+          }
+        }
+      }
+    }
+  }
+  if (created.length) console.log(`[신설] 현행 판에 있는데 노드가 없던 조문 ${created.length}개${dryRun ? " (dry-run — 만들지 않음)" : "를 만들었다"}: ${created.map((c) => c.id).join(", ")}`);
+  if (pendingFuture.length) console.log(`[시행 전] 현행 판에 실렸지만 시행일이 오지 않아 싣지 않은 조문 ${pendingFuture.length}개: ${pendingFuture.map((c) => `${c.id}(${c.effective})`).join(", ")}`);
 
   const bundleRows = await compareBundles(sources);
 
@@ -449,9 +546,11 @@ async function main(): Promise<void> {
     summary,
     results: rows,
     bundle: bundleRows,
+    created,
+    pendingFuture,
   };
-  if (dryRun) {
-    // dry-run 은 기록 파일을 덮어쓰지 않는다 (실제 반영 기록 보존)
+  if (dryRun || newOnly) {
+    // dry-run·new-only 는 기록 파일을 덮어쓰지 않는다 (실제 반영 기록 보존)
     printSummary(summary, bundleRows, rows.length, true);
     return;
   }
