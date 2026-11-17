@@ -997,11 +997,17 @@ async function buildWorkStepTable(
   if (!workName) return undefined;
   const found = await getWorkSteps(workName);
   if (!found) return undefined;
-  // 작업명이 가리키는 단계 — 맨 앞에 두고, 그날 작업만 다루는 서류는 그 단계만 싣는다
+  // 작업명이 가리키는 단계 — 맨 앞에 두고, 그날 작업만 다루는 서류는 그 단계만 싣는다.
+  // 작업명의 낱말이 다른 단계 이름에도 있으면("지브 조립 및 해체" → 해체·운전) 단계를 줄이지 않는다
   const focus = pickFocusSteps(workName, found.result);
+  const words = workName.split(/[\s.,()·]+/).filter((w) => w.length >= 2 && !found.result.work.includes(w));
+  const namesOtherStep = found.result.steps.some(
+    (s) => !focus.includes(s.name) && words.some((w) => s.name.includes(w) || (s.altLabels ?? []).includes(w)),
+  );
+  const narrowed = focus.length > 0 && SINGLE_DAY_DOC.test(docId) && !namesOtherStep;
   const ordered = [
     ...found.result.steps.filter((s) => focus.includes(s.name)),
-    ...(focus.length > 0 && SINGLE_DAY_DOC.test(docId) ? [] : found.result.steps.filter((s) => !focus.includes(s.name))),
+    ...(narrowed ? [] : found.result.steps.filter((s) => !focus.includes(s.name))),
   ];
   const conditions = await workConditionMeasures(draft, workName, found.result);
   const rows: WorkStepTable["rows"] = [];
@@ -1034,7 +1040,7 @@ async function buildWorkStepTable(
     notice:
       "공종의 작업 단계별 유해·위험요인과 감소대책을 근거와 함께 정리한 참고 자료입니다(안전보건공단 자료 기반). 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다." +
       (focus.length > 0
-        ? SINGLE_DAY_DOC.test(docId)
+        ? narrowed
           ? ` 작업명이 가리키는 단계(${focus.join(", ")})만 실었습니다 — 그날 다른 단계도 하면 작업명에 적으세요.`
           : ` 작업명이 가리키는 단계(${focus.join(", ")})를 맨 앞에 두었습니다.`
         : "") +

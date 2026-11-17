@@ -75,6 +75,9 @@ async function main(): Promise<void> {
   const tbmSteps = stepColumn(tbm);
   check("TBM: 작업명이 가리키는 단계만 싣는다", tbmSteps.length > 0 && tbmSteps.every((s) => focus.includes(s)), tbmSteps.join(", "));
 
+  const tbmBoth = stepColumn(await draftText("daily_tbm", { workName: `${WORK} 및 해체` }));
+  check("TBM: 작업명이 다른 단계(해체)도 가리키면 단계를 줄이지 않는다", tbmBoth.some((s) => s.includes("해체")) && focus.includes(tbmBoth[0]), tbmBoth.join(", "));
+
   // 5. 조건 없는 초안
   const plain = await draftText("work_plan_tower_crane", { workName: "타워크레인" });
   check("조건이 없는 초안에는 조건 구획이 없다", !plain.includes(CONDITION_HEADING));
