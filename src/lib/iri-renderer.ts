@@ -8,7 +8,7 @@
 //   art:기준규칙:38         → "산업안전보건기준에 관한 규칙 §38"
 //   art:기준규칙:38#2       → "산업안전보건기준에 관한 규칙 §38 ②"
 //   annex:기준규칙:별표4-6호 → "산업안전보건기준에 관한 규칙 별표 4 제6호"
-//   penalty:산안법:175       → "산업안전보건법 §175 (5천만원 이하 과태료)"
+//   penalty:산안법:175-2-1   → "산업안전보건법 §175 ② 1호 (3천만원 이하 과태료)"
 // ─────────────────────────────────────────────────────────────────────────────
 
 const LAW_NAME_MAP: Record<string, string> = {
@@ -170,12 +170,21 @@ const LAW_NAME_MAP: Record<string, string> = {
   "도로법": "도로법",
 };
 
+/** 벌칙 조(제167~172조) 전체 — 조문이 정한 형량 */
 const PENALTY_AMOUNT_MAP: Record<string, string> = {
-  "penalty:산안법:175": "5천만원 이하 과태료",
-  "penalty:산안법:167": "7년 이하 징역 또는 1억원 이하 벌금 (사망 사고 시)",
+  "penalty:산안법:167": "7년 이하 징역 또는 1억원 이하 벌금 — 제38조·제39조·제63조 위반으로 근로자 사망 시",
   "penalty:산안법:168": "5년 이하 징역 또는 5천만원 이하 벌금 — 제38조(안전조치)·제39조(보건조치) 위반 등",
+  "penalty:산안법:169": "3년 이하 징역 또는 3천만원 이하 벌금",
+  "penalty:산안법:170": "1년 이하 징역 또는 1천만원 이하 벌금",
+  "penalty:산안법:171": "1천만원 이하 벌금",
+  "penalty:산안법:172": "500만원 이하 벌금",
   "penalty:중처법:6": "1년 이상 징역 또는 10억원 이하 벌금 (사망 사고 시)",
 };
+/** 산업안전보건법 제175조 항별 과태료 상한 — 조문 각 항 첫 문장 */
+const FINE_BY_PARAGRAPH: Record<string, string> = { "1": "5천만원", "2": "3천만원", "3": "1천500만원", "4": "1천만원", "5": "500만원", "6": "300만원" };
+/** 시행 예정 과태료 — 법률 제21374호 부칙 제1조 단서 */
+const STAGED_PENALTIES = new Set(["penalty:산안법:175-4-2의2", "penalty:산안법:175-6-2의2"]);
+const STAGED_NOTE = "2027-01-01(상시 50명 이상·건설업 공사금액 50억원 이상)·2028-01-01(그 밖) 시행";
 
 const HANG_NUMBER_MAP: Record<string, string> = {
   "1": "①",
@@ -195,20 +204,25 @@ const HANG_NUMBER_MAP: Record<string, string> = {
  *   renderIri("art:기준규칙:38")        → "산업안전보건기준에 관한 규칙 §38"
  *   renderIri("art:기준규칙:38#2")      → "산업안전보건기준에 관한 규칙 §38 ②"
  *   renderIri("annex:기준규칙:별표4-6호") → "산업안전보건기준에 관한 규칙 별표 4 제6호"
- *   renderIri("penalty:산안법:175")      → "산업안전보건법 §175 (5천만원 이하 과태료)"
+ *   renderIri("penalty:산안법:175-2-1")  → "산업안전보건법 §175 ② 1호 (3천만원 이하 과태료)"
  */
 export function renderIri(iri: string): string {
   if (!iri || typeof iri !== "string") return iri;
 
   // Penalty
   if (iri.startsWith("penalty:")) {
-    const amount = PENALTY_AMOUNT_MAP[iri];
     const m = iri.match(/^penalty:([^:]+):(.+)$/);
-    if (m) {
-      const lawName = LAW_NAME_MAP[m[1]] ?? m[1];
-      return `${lawName} §${m[2]}${amount ? ` (${amount})` : ""}`;
+    if (!m) return iri;
+    const lawName = LAW_NAME_MAP[m[1]] ?? m[1];
+    // 제175조 항·호 — penalty:산안법:175-2-1 → §175 ② 1호 (3천만원 이하 과태료)
+    const sub = m[2].match(/^(\d+)-(\d)-(\d+(?:의\d+)?)$/);
+    if (sub) {
+      const fine = sub[1] === "175" ? FINE_BY_PARAGRAPH[sub[2]] : undefined;
+      const staged = STAGED_PENALTIES.has(iri) ? ` — ${STAGED_NOTE}` : "";
+      return `${lawName} §${sub[1]} ${HANG_NUMBER_MAP[sub[2]] ?? `제${sub[2]}항`} ${sub[3]}호${fine ? ` (${fine} 이하 과태료${staged})` : ""}`;
     }
-    return iri;
+    const amount = PENALTY_AMOUNT_MAP[iri];
+    return `${lawName} §${m[2]}${amount ? ` (${amount})` : ""}`;
   }
 
   // Annex (별표·서식)
