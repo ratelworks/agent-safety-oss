@@ -492,7 +492,8 @@ async function main(): Promise<void> {
       // 머리 문장과 호를 " … " 로 이은 조치는 조각마다 원문에 있어야 한다
       const parts = r.requirement.split(" … ").map(squash);
       if (!source || parts.some((p) => !body.includes(p.replace(/^\*+|\*+$/g, "")))) ruleNotInSource.push(`${c.title}:${r.basisArticle ?? r.basisGuide}`);
-      if (r.threshold && !r.requirement.includes(r.threshold)) thresholdOutside.push(`${c.title}:${r.threshold}`);
+      // 기준값이 둘 이상이면(" · " 로 이음 — 설치·해체 10미터, 운전 15미터) 구절마다 조치 문장 안에 있어야 한다
+      if (r.threshold && r.threshold.split(" · ").some((t) => !r.requirement.includes(t))) thresholdOutside.push(`${c.title}:${r.threshold}`);
     }
   }
   check("작업 조건 조치 문장이 모두 법령·가이드 원문에 그대로 있다", ruleCount > 0 && ruleNotInSource.length === 0, `조건 ${conditionNodes.length}개·조치 ${ruleCount}건, 원문에 없는 것 ${ruleNotInSource.slice(0, 5).join(", ") || 0}`);

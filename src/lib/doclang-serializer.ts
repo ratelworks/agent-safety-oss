@@ -174,6 +174,9 @@ export interface WorkStepTable {
   hazardIris?: string[];
 }
 
+/** 작업명은 있으나 공종을 정하지 못했을 때 식별된 위험 요소 자리에 적는 말 */
+export const HAZARDS_UNDECIDED_TEXT = "작업명으로 공종을 정하지 못해 작업 단계 자료의 재해유형을 싣지 않았습니다 — 이 작업의 유해·위험요인은 현장에서 직접 찾아 적어야 합니다.";
+
 /** 식별된 위험 요소 제목 — 작업 단계 자료로 채웠으면 그 출처를, 아니면 서류 종류에 연결된 자료를 적는다 */
 export function hazardSectionTitle(hazardCount: number, suppressed: boolean, guideCount: number, work?: string): string {
   if (work) return `식별된 위험 요소 (${work} 작업 단계 자료 — 재해유형 ${hazardCount}종)`;
@@ -223,6 +226,8 @@ export interface SafetyDocumentDoclangInput {
   hazards: DoclangHazardInfo[];
   /** hazards 를 작업 단계 자료(workStepTable.hazardIris)로 채웠는가 */
   hazardsFromWork?: boolean;
+  /** 작업명은 있으나 공종을 정하지 못해 hazards 를 비웠는가 */
+  hazardsUndecided?: boolean;
   controls: DoclangControlInfo[];
   directControlIris: ReadonlySet<string>;
   legalBodyByIri: ReadonlyMap<string, string | undefined>;
@@ -670,12 +675,14 @@ function renderWorkConditions(draft: Record<string, unknown>, canonical = false)
 }
 
 function renderHazards(input: SafetyDocumentDoclangInput): string {
-  const title = hazardSectionTitle(input.hazards.length, input.hazardFallbackSuppressed, input.kosha.length, input.hazardsFromWork ? input.workStepTable?.work : undefined);
+  const title = hazardSectionTitle(input.hazards.length, input.hazardFallbackSuppressed || !!input.hazardsUndecided, input.kosha.length, input.hazardsFromWork ? input.workStepTable?.work : undefined);
   if (input.hazards.length === 0) {
     return [heading(2, title), textElement(
-      input.hazardFallbackSuppressed
-        ? "본 문서는 행정·선임·게시·보고 성격으로 특정 작업 위험요인을 다루지 않습니다 (위험요인 미해당)."
-        : "(그래프 매핑된 Hazard 없음)",
+      input.hazardsUndecided
+        ? HAZARDS_UNDECIDED_TEXT
+        : input.hazardFallbackSuppressed
+          ? "본 문서는 행정·선임·게시·보고 성격으로 특정 작업 위험요인을 다루지 않습니다 (위험요인 미해당)."
+          : "(그래프 매핑된 Hazard 없음)",
     )].join("\n");
   }
   return [

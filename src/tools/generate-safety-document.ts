@@ -41,7 +41,7 @@ import { findSecondNamedWork, getWorkSteps, pickFocusSteps, stepNameHasWord, typ
 import { resolveWorkConditions, RULE_SCOPE } from "../lib/work-conditions.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
 import { fieldDetailTable } from "../lib/field-detail.js";
-import { conditionRuleLine, hazardSectionTitle, koshaGuideRows, sectionHeadingWithSource, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, workConditionRows, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
+import { conditionRuleLine, HAZARDS_UNDECIDED_TEXT, hazardSectionTitle, koshaGuideRows, sectionHeadingWithSource, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, workConditionRows, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 /** 서류에 싣는 별표 본문 상한 — 작업계획서의 별표 4 처럼 그 서류가 갖출 항목 목록이면 잘리지 않게 */
@@ -606,6 +606,7 @@ async function renderGeneric(
   hazardFallbackSuppressed: boolean = false,
   workStepTable?: WorkStepTable,
   hazardsFromWork = false,
+  hazardsUndecided = false,
 ): Promise<string> {
   const d = (input.draft ?? {}) as Record<string, any>;
   const sections = doc.sections && doc.sections.length > 0 ? doc.sections : buildSectionsFromRequiredFields(doc);
@@ -730,14 +731,16 @@ async function renderGeneric(
   // 위험 요소 — 화이트리스트(hasHazard)는 그래프 직접 매핑, 그 외엔 KOSHA Guide causedBy 추론.
   // decision 006 — 행정성 문서는 위험 폴백을 차단하므로 hazards 가 비면 "위험요인 미해당"으로 표기
   // (근거 없는 위험을 그래프 추론인 양 제시하는 환각 방지).
-  const hazardHeader = `## ${hazardSectionTitle(hazards.length, hazardFallbackSuppressed, kosha.length, hazardsFromWork ? workStepTable?.work : undefined)}`;
+  const hazardHeader = `## ${hazardSectionTitle(hazards.length, hazardFallbackSuppressed || hazardsUndecided, kosha.length, hazardsFromWork ? workStepTable?.work : undefined)}`;
   lines.push(hazardHeader);
   lines.push("");
   if (hazards.length === 0) {
     lines.push(
-      hazardFallbackSuppressed
-        ? `> 본 문서는 행정·선임·게시·보고 성격으로 특정 작업 위험요인을 다루지 않습니다 (위험요인 미해당).`
-        : `> (그래프 매핑된 Hazard 없음)`,
+      hazardsUndecided
+        ? `> ${HAZARDS_UNDECIDED_TEXT}`
+        : hazardFallbackSuppressed
+          ? `> 본 문서는 행정·선임·게시·보고 성격으로 특정 작업 위험요인을 다루지 않습니다 (위험요인 미해당).`
+          : `> (그래프 매핑된 Hazard 없음)`,
     );
   } else {
     lines.push(`| 위험 분류 | 카테고리 |`);
@@ -878,6 +881,8 @@ interface DocumentRenderContext {
   workStepTable?: WorkStepTable;
   /** hazards 를 작업 단계 자료로 채웠는가 (아니면 서류 종류에 연결된 위험) */
   hazardsFromWork?: boolean;
+  /** 작업명은 있으나 공종을 정하지 못해 식별된 위험 요소를 비웠는가 */
+  hazardsUndecided?: boolean;
 }
 
 /**
@@ -1081,6 +1086,7 @@ async function renderMarkdownOutput(context: DocumentRenderContext): Promise<str
     context.hazardFallbackSuppressed,
     context.workStepTable,
     context.hazardsFromWork,
+    context.hazardsUndecided,
   );
   return (
     renderUsabilityHeader(context.missingRequiredCount, context.otherErrorCount) +
@@ -1105,6 +1111,7 @@ function renderDoclangOutput(context: DocumentRenderContext, canonical = false):
     kosha: context.kosha,
     hazards: context.hazards,
     hazardsFromWork: context.hazardsFromWork ?? false,
+    hazardsUndecided: context.hazardsUndecided ?? false,
     ...(() => {
       // Markdown 본문과 같은 대책을 같은 순서로 싣는다
       const shown = selectDisplayedControls(context.controls, context.directControlIris, context.hazards);
@@ -1267,13 +1274,16 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
   const workStepTable = await buildWorkStepTable((input.draft ?? {}) as Record<string, unknown>, hazardFallbackSuppressed, input.docId);
   // 작업을 짚었으면 식별된 위험 요소는 서류 종류의 예시가 아니라 그 작업 단계의 재해유형이다
   const workHazards = workStepTable?.hazardIris?.length ? await loadHazards([], workStepTable.hazardIris, false) : [];
+  // 작업명이 있는데 공종을 정하지 못했으면(단계표 행 없음) 서류 종류의 예시 위험을 이 작업의 위험처럼 싣지 않는다
+  const hazardsUndecided = !!workStepTable && workStepTable.rows.length === 0;
   const renderContext: DocumentRenderContext = {
     doc,
     input,
     sections,
     kosha,
-    hazards: workHazards.length > 0 ? workHazards : hazards,
+    hazards: workHazards.length > 0 ? workHazards : hazardsUndecided ? [] : hazards,
     hazardsFromWork: workHazards.length > 0,
+    hazardsUndecided,
     controls,
     directControlIris,
     legalBodyByIri,
