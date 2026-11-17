@@ -17,7 +17,16 @@
       "steps": "source",
       "hasHazard": "mapped",
       "broader": "editorial"
-    }
+    },
+    "measureCorrections": [
+      {
+        "at": "2026-11-18",
+        "basis": "art:기준규칙:37",
+        "was": "순간풍속이 초당 20미터를 초과하는 경우에는 타워크레인의 운전작업을 중지",
+        "now": "순간풍속이 초당 15미터를 초과하는 경우에는 타워크레인의 운전작업을 중지 (근거에 제2항 표시)",
+        "why": "근거 조문(안전보건규칙 제37조제2항) 현행 원문 <개정 2017.3.3> — 옮겨 온 자료가 개정 전 수치였다"
+      }
+    ]
   },
   "broader": "activity:bridge_5m_30m",
   "hasHazard": [
@@ -1286,10 +1295,11 @@
                 {
                   "@id": "workmeasure:394eadd2cb35",
                   "@type": "WorkMeasure",
-                  "measure": "순간풍속이 초당 10미터를 초과하는 경우 타워크레인의 설치ㆍ수리ㆍ점검 또는 해체 작업을 중지하여야 하며, 순간풍속이 초당 20미터를 초과하는 경우에는 타워크레인의 운전작업을 중지하여야 한다.",
+                  "measure": "순간풍속이 초당 10미터를 초과하는 경우 타워크레인의 설치ㆍ수리ㆍ점검 또는 해체 작업을 중지하여야 하며, 순간풍속이 초당 15미터를 초과하는 경우에는 타워크레인의 운전작업을 중지하여야 한다.",
                   "controlLevel": "elimination",
                   "basis": {
-                    "basisArticle": "art:기준규칙:37"
+                    "basisArticle": "art:기준규칙:37",
+                    "paragraph": 2
                   }
                 }
               ]

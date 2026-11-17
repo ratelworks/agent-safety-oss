@@ -57,6 +57,9 @@ const LAW_TYPE: Record<string, string> = {
 };
 /** 역방향 조회를 확인할 조문 — 굴착 인접 매설물 방호 (여러 흙막이 공종의 대책 근거) */
 const SAMPLE_ARTICLE = "art:기준규칙:341";
+/** 대책 문장의 수치(숫자+단위) — 근거 조문 현행 원문에 그대로 있어야 한다(개정 전 수치 방지) */
+const MEASURE_NUMBER = /(\d+(?:\.\d+)?)\s*(킬로미터|센티미터|밀리미터|미터|퍼센트|킬로그램|킬로볼트|볼트|톤|룩스|m(?![a-z])|cm|mm|kg|%)/g;
+const UNIT_SAME: Record<string, string> = { m: "미터", cm: "센티미터", mm: "밀리미터", kg: "킬로그램", "%": "퍼센트" };
 /**
  * 가이드 근거 위치 정답 — 공단 포털 원본 PDF 에서 확인한 조항 제목과 쪽 (2026-11-16).
  * 본문 글자 맞춤은 C-47-2023 에서 목차 줄("… ⇥10")을, D-C-13-2026 에서 본문에 인용된 법령 항목("6. 안전모를 착용하되 …")을 잡았다.
@@ -270,6 +273,32 @@ async function main(): Promise<void> {
   for (const s of subtasks) checkBasis(s, SUBTASK_LINK_KEYS);
   for (const c of chapters) checkBasis(c, CHAPTER_LINK_KEYS);
   check("연결마다 정한 방식이 적혀 있다", missingBasis.length === 0, `빠진 곳 ${missingBasis.length} ${missingBasis.slice(0, 3).join(", ")}`);
+
+  // 대책 문장의 수치는 근거 조문 현행 원문의 수치다 — 옮겨 온 자료가 개정 전 수치(예: 타워크레인 운전 중지 초당 20미터)를 들고 있으면 잡는다
+  const numbersOf = (t: string): Set<string> => new Set([...t.matchAll(MEASURE_NUMBER)].map((m) => `${m[1]}${UNIT_SAME[m[2]] ?? m[2]}`));
+  const articleText = new Map<string, string>();
+  const numberOutside: string[] = [];
+  let numberChecked = 0;
+  for (const s of subtasks) {
+    for (const st of (s.steps ?? []) as RawStep[]) {
+      for (const h of st.stepHazards ?? []) {
+        for (const r of h.risks ?? []) {
+          for (const m of r.measures ?? []) {
+            const iri = m.basis?.basisArticle;
+            const nums = numbersOf(m.measure ?? "");
+            if (!iri || nums.size === 0) continue;
+            if (!articleText.has(iri)) articleText.set(iri, String(((await getNode(iri)) as { description?: string } | undefined)?.description ?? ""));
+            const have = numbersOf(articleText.get(iri) ?? "");
+            if (have.size === 0) continue;
+            numberChecked += 1;
+            const miss = [...nums].filter((n) => !have.has(n));
+            if (miss.length) numberOutside.push(`${s.title}:${iri}:${miss.join("·")}`);
+          }
+        }
+      }
+    }
+  }
+  check("조문을 근거로 단 대책의 수치는 그 조문 현행 원문에 있다", numberChecked > 0 && numberOutside.length === 0, `수치 있는 대책 ${numberChecked}건, 원문에 없는 것 ${numberOutside.slice(0, 5).join(", ") || 0}`);
 
   let withGaps = 0;
   let gapMismatch = 0;
