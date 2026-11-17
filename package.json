@@ -78,7 +78,7 @@
     "mcp:test:work-graph": "tsx scripts/ontology/derive-hazard-articles.ts --check && tsx scripts/test/test-work-graph.ts",
     "mcp:test:questions": "tsx scripts/test/test-field-questions.ts --min 100 && tsx scripts/test/test-field-questions.ts --fixture field-questions-holdout.json --min 100 && tsx scripts/test/test-field-questions.ts --fixture field-questions-set-a.json --min 100 && tsx scripts/test/test-field-questions.ts --fixture field-questions-set-b.json --min 100 && tsx scripts/test/test-field-questions.ts --fixture field-questions-set-c.json --min 100 && tsx scripts/test/test-field-questions.ts --fixture field-questions-kosha-faq.json --min 100",
     "ontology:derive-hazard-articles": "tsx scripts/ontology/derive-hazard-articles.ts",
-    "mcp:test:graph": "npm run mcp:test:reasoning && npm run mcp:test:consistency && npm run mcp:test:effect && npm run mcp:test:work-graph && npm run mcp:test:law-coverage && npm run mcp:test:kosha-guides && npm run mcp:test:forms-text && npm run mcp:test:work-plan-annex4 && npm run mcp:test:risk-forms-law && npm run mcp:test:document-penalties",
+    "mcp:test:graph": "npm run mcp:test:reasoning && npm run mcp:test:consistency && npm run mcp:test:effect && npm run mcp:test:work-graph && npm run mcp:test:law-coverage && npm run mcp:test:kosha-guides && npm run mcp:test:forms-text && npm run mcp:test:work-plan-annex4 && npm run mcp:test:risk-forms-law && npm run mcp:test:document-penalties && npm run mcp:test:document-work-context",
     "mcp:a2ui:demo": "node build/cli.js call render_a2ui_form --inputJson '{\"docId\":\"daily_tbm\",\"format\":\"jsonl\"}'",
     "mcp:viewer": "tsx src/viewer.ts",
     "mcp:test:all": "npm run build && npm run mcp:test:lifecycle && npm run mcp:test:a2ui && npm run mcp:test:scenarios && npm run mcp:test:fillrate:top && npm run mcp:test:graph && npm run mcp:test:questions",
@@ -136,7 +136,8 @@
     "mcp:test:forms-text": "tsx scripts/test/test-official-forms-text.ts",
     "mcp:test:work-plan-annex4": "tsx scripts/test/test-work-plan-annex4.ts",
     "mcp:test:risk-forms-law": "tsx scripts/test/test-risk-assessment-forms-law.ts",
-    "mcp:test:document-penalties": "tsx scripts/test/test-document-penalties.ts"
+    "mcp:test:document-penalties": "tsx scripts/test/test-document-penalties.ts",
+    "mcp:test:document-work-context": "tsx scripts/test/test-document-work-context.ts"
   },
   "keywords": [
     "mcp",

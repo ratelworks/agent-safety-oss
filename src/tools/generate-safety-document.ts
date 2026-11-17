@@ -37,9 +37,10 @@ import { validateDocumentInput, type ValidationReport } from "../lib/input-valid
 import { COMMON_RESPONSE_META } from "../config/constants.js";
 // Issue #5 lateral (2026-05-22) — KST 기준 작성일 fallback
 import { kstToday } from "../lib/datetime-kst.js";
-import { getWorkSteps } from "../lib/work-steps.js";
+import { getWorkSteps, pickFocusSteps } from "../lib/work-steps.js";
+import { resolveWorkConditions, RULE_SCOPE } from "../lib/work-conditions.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
-import { resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput, type WorkStepTable } from "../lib/doclang-serializer.js";
+import { conditionRuleLine, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 /** 서류에 싣는 별표 본문 상한 — 작업계획서의 별표 4 처럼 그 서류가 갖출 항목 목록이면 잘리지 않게 */
@@ -48,6 +49,10 @@ const WORK_STEP_BASIS_PER_ROW = 3;
 /** 위험성평가 결과를 적는 서류 — 단계 표에 현장이 채울 결과 칸을 붙인다 (시행규칙 제37조의3제2호) */
 const RISK_RESULT_DOC = /risk_assessment|daily_tbm/;
 const RISK_RESULT_COLUMNS = ["위험성 수준 결정 결과", "개선대책 이행 결과"] as const;
+/** 작업 조건을 읽는 초안 칸 — 작업명과 함께 조건 이름(강풍·야간작업 등)을 찾는다 */
+const CONDITION_DRAFT_KEYS = ["workConditions", "conditions", "작업조건", "작업 조건", "weather", "날씨"];
+/** 그날 작업만 다루는 서류 — 작업명이 단계를 가리키면 그 단계만 싣는다 */
+const SINGLE_DAY_DOC = /^daily_tbm$/;
 
 const inputSchema = z.object({
   docId: z.string().describe("작성할 법정문서 docId — listDocuments / getSafetyDocumentGuide 로 확인"),
@@ -55,7 +60,7 @@ const inputSchema = z.object({
     .record(z.string(), z.unknown())
     .optional()
     .default({})
-    .describe("작업 조건 + 사용자 작성 본문 (key·value 자유 형식). useProfile=true 시 사업장·결재선 등은 SSoT 자동 채움."),
+    .describe("작업 조건 + 사용자 작성 본문 (key·value 자유 형식). workName(작업명)이 공종·작업 단계를 가리키면 단계별 위험요인 표를 붙이고, workConditions(예: [\"강풍\", \"야간작업\"])나 작업명에 든 작업 조건은 그 조건에서 이 작업이 지켜야 할 조치를 근거 조문·기준값과 함께 싣는다. useProfile=true 시 사업장·결재선 등은 SSoT 자동 채움."),
   useProfile: z
     .boolean()
     .optional()
@@ -788,6 +793,15 @@ async function renderGeneric(
   // 작업 단계별 위험요인·근거 — 위의 위험 요소 표는 문서 종류에 묶인 것이라 작업이 무엇이든 같다.
   // 이 구획이 그 작업의 단계별 내용을 채운다 (초안에 작업명이 있고 작업을 다루는 문서일 때만).
   if (workStepTable) {
+    if (workStepTable.conditions?.length) {
+      lines.push("## 작업 조건별 지켜야 할 조치");
+      lines.push("");
+      for (const c of workStepTable.conditions) {
+        lines.push(`### 작업 조건 — ${c.title}`);
+        for (const r of c.rules) lines.push(`- ${conditionRuleLine(r)}`);
+        lines.push("");
+      }
+    }
     lines.push(`## ${workStepTable.title}`);
     lines.push("");
     const fill = workStepTable.fillColumns ?? [];
@@ -942,6 +956,33 @@ interface DocumentRenderContext {
   workStepTable?: WorkStepTable;
 }
 
+/**
+ * 초안의 작업명과 작업 조건 칸에서 조건 이름을 찾아, 이 작업에 해당하는 조치와 작업 종류와 무관한 조치를 모은다.
+ * 다른 작업에만 해당하는 조치는 빼고, 법령 조치를 권고보다 앞에 둔다.
+ */
+async function workConditionMeasures(
+  draft: Record<string, unknown>,
+  workName: string,
+  work: { iri?: string; activity?: string },
+): Promise<WorkConditionMeasures[]> {
+  const texts = [workName];
+  for (const key of CONDITION_DRAFT_KEYS) {
+    const v = draft[key];
+    if (typeof v === "string" && v.trim()) texts.push(v);
+    else if (Array.isArray(v)) texts.push(...v.filter((x): x is string => typeof x === "string" && x.trim().length > 0));
+  }
+  const { conditions } = await resolveWorkConditions(texts, { iri: work.iri, activity: work.activity });
+  return conditions
+    .map((c) => ({
+      title: c.title,
+      rules: c.rules
+        .filter((r) => r.scope !== RULE_SCOPE.otherWork)
+        .map((r) => ({ requirement: r.requirement, basis: r.basis, ...(r.threshold ? { threshold: r.threshold } : {}), mandatory: r.legalWeight === "mandatory" }))
+        .sort((a, b) => Number(b.mandatory) - Number(a.mandatory)),
+    }))
+    .filter((c) => c.rules.length > 0);
+}
+
 /** 초안의 작업명으로 공종을 찾아 단계별 표를 만든다. 행정 문서이거나 작업명·공종이 없으면 undefined. */
 async function buildWorkStepTable(
   draft: Record<string, unknown>,
@@ -956,8 +997,15 @@ async function buildWorkStepTable(
   if (!workName) return undefined;
   const found = await getWorkSteps(workName);
   if (!found) return undefined;
+  // 작업명이 가리키는 단계 — 맨 앞에 두고, 그날 작업만 다루는 서류는 그 단계만 싣는다
+  const focus = pickFocusSteps(workName, found.result);
+  const ordered = [
+    ...found.result.steps.filter((s) => focus.includes(s.name)),
+    ...(focus.length > 0 && SINGLE_DAY_DOC.test(docId) ? [] : found.result.steps.filter((s) => !focus.includes(s.name))),
+  ];
+  const conditions = await workConditionMeasures(draft, workName, found.result);
   const rows: WorkStepTable["rows"] = [];
-  for (const step of found.result.steps) {
+  for (const step of ordered) {
     for (const h of step.hazards) {
       // 위험요인마다 한 줄 — 유해·위험요인과 감소대책(근거)
       for (const r of h.risks) {
@@ -982,8 +1030,14 @@ async function buildWorkStepTable(
     headers: ["단계", "유해·위험요인", "감소대책 [위계] (근거)"],
     rows,
     ...(RISK_RESULT_DOC.test(docId) ? { fillColumns: [...RISK_RESULT_COLUMNS] } : {}),
+    ...(conditions.length > 0 ? { conditions } : {}),
     notice:
       "공종의 작업 단계별 유해·위험요인과 감소대책을 근거와 함께 정리한 참고 자료입니다(안전보건공단 자료 기반). 현장 조건에 맞는지 확인하고, 여기 없는 위험요인도 추가로 찾아야 합니다. 위험성의 크기(빈도·강도)는 현장에서 판단해 적습니다." +
+      (focus.length > 0
+        ? SINGLE_DAY_DOC.test(docId)
+          ? ` 작업명이 가리키는 단계(${focus.join(", ")})만 실었습니다 — 그날 다른 단계도 하면 작업명에 적으세요.`
+          : ` 작업명이 가리키는 단계(${focus.join(", ")})를 맨 앞에 두었습니다.`
+        : "") +
       (found.result.matchedBySynonym?.length ? ` 공종 이름이 아니라 현장 용어 사전의 낱말로 찾은 공종입니다 (찾은 낱말: ${found.result.matchedBySynonym.join(", ")}). 맞는 공종인지 확인하세요.` : "") +
       (notices ? ` 함께 볼 표준안전 작업지침(권고 기준): ${notices}.` : "") +
       (RISK_RESULT_DOC.test(docId) ? ` '${RISK_RESULT_COLUMNS.join("'·'")}' 칸은 시행규칙 제37조의3제2호에 따라 근로자와 공유하고 기록할 사항이므로 사업장이 정한 기준으로 판단해 적습니다(위험성평가 고시 제11조·제12조).` : ""),

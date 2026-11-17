@@ -160,6 +160,20 @@ export interface WorkStepTable {
   notice: string;
   /** 현장이 채우는 빈 칸 (위험성평가·TBM — 위험성 수준 결정 결과·이행 결과) */
   fillColumns?: string[];
+  /** 초안의 작업 조건(강풍·야간작업 등)에서 이 작업이 지켜야 할 조치 — 표 앞에 싣는다 */
+  conditions?: WorkConditionMeasures[];
+}
+
+/** 작업 조건 하나의 조치 — 법령 조치(mandatory) 먼저, 기준값·근거는 원문 그대로 */
+export interface WorkConditionMeasures {
+  title: string;
+  rules: Array<{ requirement: string; basis: string; threshold?: string; mandatory: boolean }>;
+}
+
+/** 조건 조치 한 줄 — "[법령] 조치 (기준: …) — 근거" */
+export function conditionRuleLine(r: WorkConditionMeasures["rules"][number]): string {
+  const requirement = r.requirement.replace(/\s*<(?:개정|신설)[^>]*>/g, "");
+  return `[${r.mandatory ? "법령" : "권고"}] ${requirement}${r.threshold ? ` (기준: ${r.threshold})` : ""} — ${r.basis}`;
 }
 
 export interface SafetyDocumentDoclangInput {
@@ -595,7 +609,12 @@ function renderHazards(input: SafetyDocumentDoclangInput): string {
 function renderWorkSteps(input: SafetyDocumentDoclangInput): string {
   const t = input.workStepTable;
   if (!t) return "";
+  const conditions = (t.conditions ?? []).flatMap((c) => [
+    heading(3, `작업 조건 — ${c.title}`),
+    ...c.rules.map((r) => textElement(conditionRuleLine(r))),
+  ]);
   return [
+    ...(conditions.length > 0 ? [heading(2, "작업 조건별 지켜야 할 조치"), ...conditions] : []),
     heading(2, t.title),
     simpleTable(t.title, [...t.headers, ...(t.fillColumns ?? [])], t.rows.map((row) => [row[0], row[1], row[2].join(" / "), ...(t.fillColumns ?? []).map(() => "")])),
     textElement(t.notice),

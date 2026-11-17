@@ -3520,7 +3520,7 @@
     "draft": {
      "type": "object",
      "optional": true,
-     "description": "작업 조건 + 사용자 작성 본문 (key·value 자유 형식). useProfile=true 시 사업장·결재선 등은 SSoT 자동 채움.",
+     "description": "작업 조건 + 사용자 작성 본문 (key·value 자유 형식). workName(작업명)이 공종·작업 단계를 가리키면 단계별 위험요인 표를 붙이고, workConditions(예: [\"강풍\", \"야간작업\"])나 작업명에 든 작업 조건은 그 조건에서 이 작업이 지켜야 할 조치를 근거 조문·기준값과 함께 싣는다. useProfile=true 시 사업장·결재선 등은 SSoT 자동 채움.",
      "default": {}
     },
     "useProfile": {
