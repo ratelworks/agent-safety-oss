@@ -39,10 +39,10 @@ const MILLION = 1_000_000;
 const TICK_MARKS = /\[\s*[√✓v■xX]?\s*\]|[√✓■□]/gu;
 /**
  * 부정·긍정은 낱말로 가린다 — 첫 글자로 가리면 나라 이름(미국·부탄)이나 "부상" 같은 말을 잘못 읽는다.
- * 부정: 첫 낱말이 NEGATIVE_FIRST 이거나, 띄어쓰기를 뗀 값에 NEGATIVE_PHRASES 가 있음.
+ * 부정: 낱말 하나가 NEGATIVE_WORDS 이거나, 띄어쓰기를 뗀 값 어디에든 NEGATIVE_PARTS 가 있음 — 부정은 긍정 낱말 뒤에도 온다("사망 아님", "동의 안 합니다").
  */
-const NEGATIVE_FIRST = new Set(["아니", "아니오", "아니요", "아님", "없음", "해당없음", "미해당", "비해당", "no", "n", "false", "x", "0", "-"]);
-const NEGATIVE_PHRASES = ["미사망", "미요청", "미동의", "부동의", "비동의", "동의안함", "동의하지않", "요청안함", "요청하지않", "해당없음", "해당안됨", "신청안함"];
+const NEGATIVE_WORDS = new Set(["no", "n", "not", "false", "x", "0", "-", "안", "못", "미해당", "비해당"]);
+const NEGATIVE_PARTS = ["아님", "아니", "않", "안함", "안합", "안해", "안할", "안됨", "안 됨", "없음", "없다", "없습", "미사망", "미요청", "미동의", "미신청", "부동의", "비동의", "해당없", "불필요", "거부", "원치"];
 /** 표시가 하나뿐인 체크 칸을 고르는 긍정 낱말 (칸 지도의 yesWords 를 더한다) */
 const AFFIRMATIVE = ["예", "네", "y", "yes", "true", "o", "해당", "있음"];
 /** 이름 비교에서 같게 보는 글자 — 가운뎃점 여러 꼴·띄어쓰기 */
@@ -171,7 +171,8 @@ function valuePart(value: string, part: string): string {
   const digit = /^d(\d+)$/u.exec(part);
   if (digit) return value.replace(/\D/gu, "")[Number(digit[1]) - 1] ?? "";
   const m = DATE_PARTS.exec(value.trim());
-  if (!m) return part === "Y" || part === "date" ? value : "";
+  // 날짜로 읽지 못하면 네 자리 해만 연도로 — 나머지는 비우고 render 가 알린다("미정" 을 연도 칸에 적지 않는다)
+  if (!m) return part === "Y" ? (/(?:^|\D)(\d{4})(?:\D|$)/u.exec(value)?.[1] ?? "") : "";
   const [, y, mo, d, hh, mm] = m as unknown as [string, string, string, string, string | undefined, string | undefined];
   switch (part) {
     case "Y": return y;
@@ -478,11 +479,11 @@ function tick(cell: string, box: Box, style: NonNullable<CheckSpec["style"]>, ex
 /** 값의 낱말 — 괄호·문장부호·대시로 나눈다 */
 const tokens = (s: string): string[] => s.toLowerCase().split(/[\s,.;:/()[\]{}<>—–\-]+/u).filter(Boolean);
 
-/** 부정인 값인가 ("미사망", "아니오", "(해당 없음)", "동의 안 함") */
+/** 부정인 값인가 ("미사망", "아니오", "(해당 없음)", "동의 안 함", "사망 아님", "요청하지 않음") */
 function isNegative(words: string): boolean {
   const t = tokens(words);
   const squashed = words.replace(/\s+/gu, "");
-  return (t.length > 0 && NEGATIVE_FIRST.has(t[0] as string)) || NEGATIVE_PHRASES.some((p) => squashed.includes(p));
+  return t.some((w) => NEGATIVE_WORDS.has(w)) || NEGATIVE_PARTS.some((p) => squashed.includes(p.replace(/\s+/gu, "")));
 }
 
 /** 표시가 하나뿐인 체크 칸을 고를 값인가 — 표시(√·[√])가 있거나 긍정 낱말이 있고, 부정이 아님 */

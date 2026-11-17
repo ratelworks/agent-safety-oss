@@ -270,10 +270,22 @@ function testPlacement(): void {
   check("별지30: 사망이면 사망 칸 √, 내국인이면 국적 괄호는 비움", squash(cellAt(st, 21, 39)) === "[√ ] 사망" && squash(cellAt(st, 16, 7)) === "[√ ]내국인 [ ]외국인 [국적: ⑩체류자격: ]", `${cellAt(st, 21, 39)} / ${cellAt(st, 16, 7)}`);
   check("별지30: 넣은 입력은 모두 자리를 찾았다", filled?.notInForm.length === 0, filled?.notInForm.join(" / "));
   // 표시가 하나뿐인 칸은 긍정 낱말일 때만 고르고, 정하지 못하면 알린다
-  for (const [input, ticked, noted] of [["사망", true, false], ["예", true, false], ["(미사망 — 휴업만)", false, false], ["해당 없음", false, false], ["부상", false, true]] as const) {
+  for (const [input, ticked, noted] of [["사망", true, false], ["예", true, false], ["(미사망 — 휴업만)", false, false], ["해당 없음", false, false], ["사망 아님", false, false], ["사망하지 않음", false, false], ["부상", false, true]] as const) {
     const fatal = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { fatalFlag: input }));
     const got = squash(cellAt(readTables(fatal ? sectionOf(fatal.data) : "")[0], 21, 39));
     check(`별지30: 사망 여부 "${input}" → ${ticked ? "√" : "비움"}${noted ? " + 알림" : ""}`, got === (ticked ? "[√ ] 사망" : "[ ] 사망") && (fatal?.notInForm.length ?? 0) > 0 === noted, `${got} / ${fatal?.notInForm.join(" / ")}`);
+  }
+  // 부정은 긍정 낱말 뒤에도 온다 — 동의·요청 칸도 부정이면 고르지 않는다
+  for (const [field, input, row] of [["benefitGuidanceConsent", "동의 안 합니다", 29], ["benefitGuidanceConsent", "동의하지 않습니다", 29], ["freeTechnicalSupportRequest", "요청하지 않음", 28]] as const) {
+    const neg = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { [field]: input }));
+    const got = cellAt(readTables(neg ? sectionOf(neg.data) : "")[0], row, 28).replace(/\s/g, "");
+    check(`별지30: "${input}" 는 고르지 않는다`, got.endsWith("[]") && !got.includes("√"), got);
+  }
+  // 날짜로 읽지 못하면 연도 칸에도 원문을 적지 않는다 (네 자리 해만 연도로)
+  for (const [input, want] of [["미정", "[ ]년 [ ]월 [ ]일 [ ]요일 [ ]시 [ ]분"], ["2026년 4월", "[ 2026 ]년 [ ]월 [ ]일 [ ]요일 [ ]시 [ ]분"]] as const) {
+    const d = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { occurrenceDate: input }));
+    const got = squash(cellAt(readTables(d ? sectionOf(d.data) : "")[0], 22, 13));
+    check(`별지30: 발생일시 "${input}" → 읽지 못한 칸은 비우고 알림`, got === want && (d?.notInForm ?? []).some((n) => n.includes(input) && n.includes("월")), `${got} / ${d?.notInForm.join(" / ")}`);
   }
   // 값은 있는데 칸 꼴로 읽지 못하면 칸을 비우고 알린다 (조용히 버리지 않는다)
   const unread = fillOfficialForm("industrial_accident_report", values("industrial_accident_report", { constructionAmount: "사억", occurrenceDate: "2026-04-24" }));
