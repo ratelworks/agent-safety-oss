@@ -95,6 +95,9 @@ async function main(): Promise<void> {
   check("낱말 일부(이동식)만 여러 공종에 똑같이 맞으면 단계표를 붙이지 않고 그 사실을 적는다", craneSteps.includes("공종을 정하지 못함") && !craneSteps.includes("| 설치 및 사용 |") && !crane.includes("사다리가 넘어지거나"), craneSteps.slice(0, 120));
   const craneHazards = section(crane, "## 식별된 위험 요소");
   check("공종을 정하지 못하면 식별된 위험 요소에 서류 종류의 예시 위험을 싣지 않는다", craneHazards.includes("공종을 정하지 못해") && !craneHazards.includes("폭발"), craneHazards.split("\n").slice(0, 3).join(" "));
+  const unknown = await draftText("ad_hoc_risk_assessment", { workName: "광케이블 융착" });
+  const unknownHazards = section(unknown, "## 식별된 위험 요소");
+  check("공종을 못 찾고 작업 조건도 없어도 예시 위험을 싣지 않고 못 찾았다고 적는다", unknownHazards.includes("공종을 정하지 못해") && !unknownHazards.includes("폭발") && unknown.includes("에 맞는 공종을 찾지 못했습니다"), unknownHazards.split("\n").slice(0, 3).join(" "));
   const craneCond = section(crane, CONDITION_HEADING);
   check("공종을 정하지 못해도 작업 조건 조치는 싣는다 — 작업명의 이동식 크레인은 이동식 크레인 조항", craneCond.includes("### 작업 조건 — 야간작업") && craneCond.includes("§149") && craneCond.includes("§150") && !craneCond.includes("§146"), craneCond.match(/§\d+/g)?.join(",") ?? "");
   const tbmBeam = stepColumn(await draftText("daily_tbm", { workName: "고소작업대로 철골 보 볼트 체결" }));

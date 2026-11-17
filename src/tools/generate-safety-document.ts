@@ -973,7 +973,7 @@ async function buildWorkStepTable(
   const tied = found?.result.weakMatch && found.result.tiedWith?.length ? [found.result.work, ...found.result.tiedWith] : null;
   if (!found || tied) {
     const conditions = await workConditionMeasures(draft, workName, {});
-    if (!tied && conditions.length === 0) return undefined;
+    // 조건 조치가 없어도 구획을 만든다 — 공종을 못 찾았다는 사실을 적고, 서류 종류의 예시 위험을 이 작업의 위험처럼 싣지 않게
     const guides = await citedGuides(conditions.flatMap((c) => c.rules.map((r) => r.basis)));
     return {
       title: "작업 단계별 위험요인·근거 — 공종을 정하지 못함",
