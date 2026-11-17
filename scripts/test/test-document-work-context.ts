@@ -34,8 +34,16 @@ const ONTOLOGY = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "s
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
 /** 위험성평가 고시를 따르는 서류 파일 — 이 안의 맨 "고시" 는 위험성평가 고시 */
 const RISK_DOC_FILE = /(risk[-_]assessment|daily[-_]tbm|weekly[-_]joint|worker[-_]complaint)/;
-/** 위험성평가 고시 조·항·호 인용 — "위험성평가 고시 제16조제1항제3호", "고시 §15 ② 1~5호", "위험성평가-고시:16" */
-const NOTICE_REF = /(위험성평가 고시|위험성평가-고시|고시)\s*(?:제|§|:)\s*(\d+)조?(?:\s*제?(\d+)항|\s*([①-⑩])|:(\d+))?(?:\s*제?(\d+)(?:~(\d+))?호)?/g;
+/**
+ * 위험성평가 고시 인용 한 덩이 — 조 번호 뒤에 이어지는 항·호 표기를 통째로 잘라 낸다
+ * ("위험성평가 고시 제16조제1항제3호", "고시 §15 ②·③ 1~5호", "고시 제15조제1항·제3항", "위험성평가-고시:16:1").
+ * 덩이 안의 항·호는 아래에서 하나하나 뽑아 모두 대조한다 — 표기 방식마다 정규식을 늘리지 않는다
+ */
+const NOTICE_REF = /(위험성평가 고시|위험성평가-고시|고시)\s*(?:제|§|:)\s*(\d+)조?((?:\s*(?:제?\d+(?:~\d+)?[항호]|[①-⑩]|:\d+|[·,~]|및)\s*)*)/g;
+/** 덩이 안의 항 — "제2항"·"②"·콜론 형식(":1") */
+const PARA_IN = /제?(\d+)항|([①-⑩])|:(\d+)/g;
+/** 덩이 안의 호 — "3호"·"1~5호" */
+const ITEM_IN = /제?(\d+)(?:~(\d+))?호/g;
 
 /** 서류 노드·안내·서식·동의어·의무 목록에서 위험성평가 고시 인용 중 현행 고시에 없는 조·항·호 */
 function staleNoticeRefs(): { checked: number; missing: string[] } {
@@ -60,19 +68,23 @@ function staleNoticeRefs(): { checked: number; missing: string[] } {
       if (!existsSync(node)) { missing.push(`${where}(조 없음)`); continue; }
       checked += 1;
       const body = String((JSON.parse(readFileSync(node, "utf-8")) as { description?: string }).description ?? "");
-      // 항: "제2항"·"②"·콜론 형식("위험성평가-고시:16:1" 의 1)
-      const p = m[3] ? Number(m[3]) : m[4] ? CIRCLED.indexOf(m[4]) + 1 : m[5] ? Number(m[5]) : 0;
-      let scope = body;
-      if (p > 0) {
+      const tail = m[3] ?? "";
+      // 항마다 그 항의 본문 — 덩이에 적힌 항을 모두("②·③", "제1항·제3항")
+      const paras = [...tail.matchAll(PARA_IN)].map((x) => (x[1] ? Number(x[1]) : x[2] ? CIRCLED.indexOf(x[2]) + 1 : Number(x[3])));
+      const scopes: string[] = [];
+      for (const p of paras) {
         const i = body.indexOf(CIRCLED[p - 1]);
-        if (i < 0 && !(p === 1 && !body.includes("②"))) { missing.push(`${where}(항 없음)`); continue; }
+        if (i < 0 && !(p === 1 && !body.includes("②"))) { missing.push(`${where}(${p}항 없음)`); continue; }
         const j = i >= 0 && p < CIRCLED.length ? body.indexOf(CIRCLED[p], i + 1) : -1;
-        scope = i >= 0 ? body.slice(i, j > 0 ? j : undefined) : body;
+        scopes.push(i >= 0 ? body.slice(i, j > 0 ? j : undefined) : body);
       }
-      // 호: 범위("1~3호")면 끝 호까지 하나하나
-      const [from, to] = [Number(m[6] ?? 0), Number(m[7] ?? m[6] ?? 0)];
-      for (let k = from; k > 0 && k <= to; k += 1) {
-        if (!new RegExp(`(^|\\n)\\s*${k}\\.\\s`).test(scope)) { missing.push(`${where}(${k}호 없음)`); break; }
+      // 호마다 — 범위("1~5호")는 끝 호까지 하나하나, 적힌 항 가운데 어느 하나에 있으면 된다(항이 없으면 조 전체)
+      const itemScope = paras.length > 0 ? scopes.join("\n") : body;
+      for (const x of tail.matchAll(ITEM_IN)) {
+        const [from, to] = [Number(x[1]), Number(x[2] ?? x[1])];
+        for (let k = from; k <= to; k += 1) {
+          if (!new RegExp(`(^|\\n)\\s*${k}\\.\\s`).test(itemScope)) { missing.push(`${where}(${k}호 없음)`); break; }
+        }
       }
     }
   }
