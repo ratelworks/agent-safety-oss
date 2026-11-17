@@ -751,7 +751,7 @@ const ALIGN_TEMPLATES: Record<string, Section[]> = {
   ],
   daily_tbm: [
     META_SECTION,
-    {title:"2. TBM 회의록 (Tool Box Meeting)",legalSource:"위험성평가 고시 §15 ④ 3호 + KOSHA P-103",fields:[
+    {title:"2. TBM 회의록 (Tool Box Meeting)",legalSource:"위험성평가 고시 §15 ④ 3호",fields:[
       {key:"tbmDate",label:"TBM 일시",required:true,inputGuide:"매 작업일 시작 전.",examples:["2026-04-29 07:30"],checkPoints:[]},
       {key:"presenter",label:"진행자 (관리감독자)",required:true,inputGuide:"관리감독자 또는 작업지휘자.",examples:["박감독"],checkPoints:[]},
       {key:"todayWork",label:"오늘의 작업",required:true,inputGuide:"오늘 시행할 작업·위치·인원.",examples:["A동 6층 외벽 도장 + B동 굴착, 작업자 12명"],checkPoints:[]},
