@@ -15,6 +15,7 @@
  *      — 식별된 위험 요소는 작업 단계 자료의 재해유형이다
  *      — 이동식 크레인은 이동식 크레인 조항(제147조~제150조)을, 밀폐공간은 작업 전 확인 각 호·적정공기 기준을 싣는다
  *   7. 서류·안내·서식이 적은 위험성평가 고시 조·항·호는 현행 고시(2026-11-04 전부개정)에 있다 — 옛 번호(제15조 ④ 상시평가 등) 방지
+ *   8. 명단·목록 칸의 표는 머리가 한글이고 참·거짓을 true/false 로 내지 않는다(서류 예시의 영문 키 전부)
  *
  * 사용: tsx scripts/test/test-document-work-context.ts
  */
@@ -22,6 +23,7 @@ import "./isolated-storage.js"; // 저장 폴더를 임시 폴더로 — 사용�
 import { generateSafetyDocumentTool } from "../../src/tools/generate-safety-document.js";
 import { resolveWorkConditions, RULE_SCOPE } from "../../src/lib/work-conditions.js";
 import { getWorkSteps, pickFocusSteps } from "../../src/lib/work-steps.js";
+import { DETAIL_COLUMN_LABELS } from "../../src/lib/field-detail.js";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -189,6 +191,26 @@ async function main(): Promise<void> {
   check("서류·안내·서식의 위험성평가 고시 조·항·호 인용이 현행 고시에 있다", notice.checked > 100 && notice.missing.length === 0, `인용 ${notice.checked}건, 없는 것 ${notice.missing.slice(0, 5).join(", ") || 0}`);
   const adhoc2 = await draftText("ad_hoc_risk_assessment", { workName: "거푸집 동바리 해체" });
   check("수시 위험성평가는 상시평가로 갈음된다고 적지 않는다 — 현행 고시 제16조제2항", !adhoc2.includes("갈음 가능") && adhoc2.includes("제16조제2항"), adhoc2.match(/[^\n]*상시평가[^\n]*/)?.[0]?.slice(0, 120) ?? "");
+
+  // 8. 명단·목록 표 — 서류 예시 행의 영문 키는 모두 한글 머리가 있다
+  const unlabeled = new Set<string>();
+  const docsDir = resolve(ONTOLOGY, "graph/nodes/documents");
+  const scanExamples = (o: unknown): void => {
+    if (Array.isArray(o)) { o.forEach(scanExamples); return; }
+    if (!o || typeof o !== "object") return;
+    const rec = o as Record<string, unknown>;
+    if (typeof rec.key === "string" && Array.isArray(rec.examples)) {
+      for (const ex of rec.examples.flat()) {
+        if (ex && typeof ex === "object" && !Array.isArray(ex)) for (const k of Object.keys(ex)) if (/^[A-Za-z]/.test(k) && !DETAIL_COLUMN_LABELS[k]) unlabeled.add(`${rec.key}.${k}`);
+      }
+    }
+    Object.values(rec).forEach(scanExamples);
+  };
+  for (const f of readdirSync(docsDir).filter((x) => x.endsWith(".jsonld"))) scanExamples(JSON.parse(readFileSync(resolve(docsDir, f), "utf-8")));
+  check("명단·목록 칸 예시의 영문 키는 모두 한글 표 머리가 있다", unlabeled.size === 0, [...unlabeled].slice(0, 6).join(", "));
+  const tbmPeople = await draftText("daily_tbm", { workName: "거푸집 동바리 해체", participants: [{ name: "박작업", signed: true, language: "한국어" }, { name: "Nguyen", signed: false, language: "베트남어" }] });
+  const peopleTable = section(tbmPeople, "### 참석자 명단·서명 상세");
+  check("참석자 표 머리는 성명·서명·언어이고 참·거짓을 글자로 쓴다(서명 안 함은 빈 칸)", /\| 성명 \| 서명 \| 언어 \|/.test(peopleTable) && peopleTable.includes("| 박작업 | 예 | 한국어 |") && peopleTable.includes("| Nguyen |  | 베트남어 |") && !/true|false/.test(peopleTable), peopleTable.split("\n").slice(0, 6).join(" / "));
 
   console.log(failed ? `\n❌ ${failed}개 실패` : "\n✅ 전체 통과");
   process.exit(failed ? 1 : 0);
