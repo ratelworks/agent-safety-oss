@@ -30,7 +30,7 @@ const { ok, result, files: outFiles, writes } = await engine.call("register_safe
   | `hwpx` | 정본 `.dclx`, 그 정본에서 만든 한글 `.hwpx` — 2개 |
   | `md`·`doclang` | 없음 (본문 글자만 `result` 에) |
 
-  정본의 형식은 `application/zip`, 한글 파일은 `application/hwp+zip` 입니다. 파일 이름은 `<문서 종류>-<작성 시각(초)>-<내용 SHA-256 앞 8자>.<확장자>` 이고, `documentKind` 는 문서 종류입니다. 내보내기(`export_drafted_document`)는 한글 파일 1개를 냅니다.
+  정본의 형식은 `application/zip`, 한글 파일은 `application/hwp+zip` 입니다. 파일 이름은 `<문서 종류>-<작성 시각(초)>-<내용 SHA-256 앞 8자>.<확장자>` 이고, `documentKind` 는 문서 종류입니다. 내보내기(`export_drafted_document`)는 `format: hwpx` 일 때만 한글 `.hwpx` 1개를 내고, 기본(`html`)과 `markdown` 은 결과 파일 없이 본문 글자만 돌려줍니다.
 - `writes` 는 저장 인터페이스로 보낸 쓰기 목록입니다.
 - `getSafetyEngineManifest()` 는 호스트 모드에서 쓸 수 있는 도구 목록(입력 스키마·저장·통신·사람 몫 포함)과 쓸 수 없는 도구를 돌려줍니다.
 - 사진 올리기의 `filePath` 는 이 모드에서 로컬 경로가 아니라 호스트 파일 참조입니다. 엔진은 `files.read` 로 읽어 내용 해시만 기록하고 사진을 복사하지 않습니다.
