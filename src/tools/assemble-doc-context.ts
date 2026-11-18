@@ -17,6 +17,7 @@ import { z } from "zod";
 import type { ToolDefinition, McpToolResult } from "../lib/types.js";
 import { findDoc } from "../lib/master-loader.js";
 import { graphRepository } from "../lib/graph-repository.js";
+import { hazardCategoryLabel } from "../lib/doclang-serializer.js";
 
 // v1.3.0 P0-3 (외부 평가): 자체 nodeCache·locateNodesDir·loadJsonldRecursive 제거.
 // graphRepository SSoT 사용 — get-measures-by-risk, field-safety-briefing 등과
@@ -430,7 +431,7 @@ async function handler(rawInput: unknown): Promise<McpToolResult> {
     lines.push("");
     for (const h of ctx.hazards) {
       if (!h.found) lines.push(`- ❌ \`${h.iri}\` (미존재)`);
-      else lines.push(`- **${h.label}** [${h.category}] — \`${h.iri}\``);
+      else lines.push(`- **${h.label}** [${hazardCategoryLabel(h.category ?? "")}] — \`${h.iri}\``);
     }
     lines.push("");
   }

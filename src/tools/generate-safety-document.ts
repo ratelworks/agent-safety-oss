@@ -41,7 +41,7 @@ import { findSecondNamedWork, getWorkSteps, pickFocusSteps, stepNameHasWord, ste
 import { resolveWorkConditions, RULE_SCOPE } from "../lib/work-conditions.js";
 import { applyInputMigrations, readInputMigrations } from "../lib/input-migrations.js";
 import { fieldDetailTable } from "../lib/field-detail.js";
-import { conditionRuleLine, HAZARDS_UNDECIDED_TEXT, hazardSectionTitle, koshaGuideRows, sectionHeadingWithSource, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, workConditionRows, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
+import { conditionRuleLine, HAZARDS_UNDECIDED_TEXT, hazardCategoryLabel, hazardSectionTitle, koshaGuideRows, sectionHeadingWithSource, resolveDraftFieldValue, serializeSafetyDocumentToDoclang, workConditionRows, type SafetyDocumentDoclangInput, type WorkConditionMeasures, type WorkStepTable } from "../lib/doclang-serializer.js";
 
 /** 작업 단계별 표에서 한 줄(단계·재해유형)에 적는 근거 수 */
 /** 서류에 싣는 별표 본문 상한 — 작업계획서의 별표 4 처럼 그 서류가 갖출 항목 목록이면 잘리지 않게 */
@@ -745,7 +745,7 @@ async function renderGeneric(
   } else {
     lines.push(`| 위험 분류 | 카테고리 |`);
     lines.push(`|---|---|`);
-    for (const h of hazards) lines.push(`| ${h.label} | ${h.category} |`);
+    for (const h of hazards) lines.push(`| ${h.label} | ${hazardCategoryLabel(h.category)} |`);
   }
   lines.push("");
 

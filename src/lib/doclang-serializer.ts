@@ -174,6 +174,21 @@ export interface WorkStepTable {
   hazardIris?: string[];
 }
 
+/** 위험 요소의 성격(노드 category) — 서류에는 한글로 싣는다 */
+const HAZARD_CATEGORY_LABELS: Record<string, string> = {
+  physical: "물리적",
+  chemical: "화학적",
+  biological: "생물학적",
+  ergonomic: "인간공학적",
+  environmental: "환경적",
+  psychosocial: "사회심리적",
+};
+
+/** 위험 요소 성격의 한글 이름 — 모르는 값은 그대로 */
+export function hazardCategoryLabel(category: string): string {
+  return HAZARD_CATEGORY_LABELS[category.trim().toLowerCase()] ?? category;
+}
+
 /** 작업명은 있으나 공종을 정하지 못했을 때 식별된 위험 요소 자리에 적는 말 */
 export const HAZARDS_UNDECIDED_TEXT = "작업명으로 공종을 정하지 못해 작업 단계 자료의 재해유형을 싣지 않았습니다 — 이 작업의 유해·위험요인은 현장에서 직접 찾아 적어야 합니다.";
 
@@ -690,7 +705,7 @@ function renderHazards(input: SafetyDocumentDoclangInput): string {
     simpleTable(
       input.canonical ? "식별된 위험 요소" : "위험 요소",
       ["위험 분류", "카테고리"],
-      input.hazards.map((hazard) => [hazard.label, hazard.category]),
+      input.hazards.map((hazard) => [hazard.label, hazardCategoryLabel(hazard.category)]),
     ),
   ].join("\n");
 }

@@ -182,6 +182,7 @@ async function main(): Promise<void> {
   const PROCESS_GUIDES = ["C-C-22-2026", "C-C-37-2026", "X-78-2018", "E-179-2020", "E-G-17-2026"];
   check("적용 KOSHA Guide: 이 작업의 대책 근거 지침이 먼저, 적용범위가 화학공정인 지침은 없다", /\| D-C-9-2026 \| [^|]+ \| 이 작업의 대책 근거 \|/.test(guides) && PROCESS_GUIDES.every((g) => !guides.includes(g)), guides.split("\n").filter((l) => l.startsWith("| ") && !l.includes("---")).slice(1, 4).join(" / "));
   const hazards = section(formwork, "## 식별된 위험 요소");
+  check("식별된 위험 요소의 성격 칸은 한글이다(physical 같은 영문 값 없음)", /\| 물리적 \|/.test(hazards) && !/\| (physical|chemical|biological|ergonomic|environmental|psychosocial) \|/.test(hazards), hazards.split("\n").filter((l) => l.startsWith("| ") && !l.includes("---")).slice(1, 3).join(" / "));
   check("식별된 위험 요소는 작업 단계 자료의 재해유형이다", hazards.includes("거푸집작업 작업 단계 자료") && hazards.includes("무너짐") && !hazards.includes("폭발"), hazards.split("\n")[0]);
   const manhole = section(await draftText("ad_hoc_risk_assessment", { workName: "맨홀 내부 작업", workConditions: ["밀폐공간"] }), CONDITION_HEADING);
   check("밀폐공간: 작업 전 확인 각 호와 적정공기 기준·측정·인원 점검을 싣는다", manhole.includes("3. 산소 및 유해가스 농도의 측정결과") && manhole.includes("18퍼센트 이상 23.5퍼센트 미만") && manhole.includes("§619의2") && manhole.includes("§621"), manhole.match(/§[\d의]+/g)?.join(",") ?? "");
