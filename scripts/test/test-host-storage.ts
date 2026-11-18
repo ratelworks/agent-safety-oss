@@ -240,6 +240,8 @@ async function companyFlow(company: string, opts: { strict: Strict; files: Retur
   await step("list_safety_reports", {});
   await step("generate_safety_document", { docId: "daily_tbm", draft: { todayWork: "굴착" } });
   out.generate_md = out.generate_safety_document;
+  await step("generate_safety_document", { docId: "daily_tbm", format: "md", draft: { todayWork: "굴착" } });
+  out.generate_md_only = out.generate_safety_document;
   await step("generate_safety_document", { docId: "daily_tbm", format: "hwpx", draft: { todayWork: "굴착" } });
   await step("export_drafted_document", { docId: "daily_tbm", format: "hwpx", draft: { todayWork: "굴착" } });
   await step("render_a2ui_form", { docId: "daily_tbm" });
@@ -278,7 +280,8 @@ check("보고서 기록 + Markdown 파일", Object.keys(snapA.report ?? {}).leng
 check("보고서가 이슈·조치를 모음", JSON.stringify(Object.values(snapA.report ?? {})[0]).includes(o.ids.issueId));
 // 한글 형식은 정본(.dclx)과 그 정본에서 만든 한글 파일(.hwpx) 둘을 결과 파일로 넘긴다
 const genFiles = o.generate_safety_document.files as { fileName: string; bytes: Uint8Array; sha256: string }[];
-check("한글 파일은 결과 파일로 (정본과 함께)", genFiles.length === 2 && genFiles.some((f) => f.fileName.endsWith(".hwpx") && f.bytes.byteLength > 1000) && genFiles.some((f) => f.fileName.endsWith(".dclx")));
+check("한글 형식은 정본(.dclx, application/zip)·한글(.hwpx, application/hwp+zip) 순서로 결과 파일 2개", genFiles.length === 2 && genFiles[0].fileName.endsWith(".dclx") && (genFiles[0] as { mimeType?: string }).mimeType === "application/zip" && genFiles[1].fileName.endsWith(".hwpx") && (genFiles[1] as { mimeType?: string }).mimeType === "application/hwp+zip" && genFiles[1].bytes.byteLength > 1000);
+check("본문만(format md)은 결과 파일이 없다", o.generate_md_only.files.length === 0);
 // 이름 끝 8자는 그 파일 바이트의 SHA-256 앞 8자다(결과 파일의 sha256 과 대조) — 같은 초에 만든 다른 내용 문서와 이름이 겹칠 확률을 32비트 수준으로 낮춘다
 check("결과 파일 이름 끝 8자가 그 파일 내용의 SHA-256 앞 8자다", genFiles.length > 0 && genFiles.every((f) => f.fileName.endsWith(`-${f.sha256.slice(0, 8)}.${f.fileName.split(".").pop()}`)));
 check("내보내기 한글 파일도 결과 파일로", o.export_drafted_document.files.length === 1 && String((o.export_drafted_document.result.structuredContent as any).hwpxPath).startsWith("host-storage/"));
