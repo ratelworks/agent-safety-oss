@@ -6,7 +6,7 @@
     "notice": "고시 제2025-365호",
     "facet": "W",
     "facetLabel": "공종",
-    "note": "공종 코드는 고시 별표의 원문 코드 그대로다. 대응 관계는 SKOS 대응 관계(closeMatch·broadMatch·narrowMatch)로만 적고 같음(exactMatch)은 쓰지 않는다 — 이 도구의 작업 구분과 고시 공종은 나눈 기준이 다르다."
+    "note": "공종 코드는 고시 별표의 원문 코드 그대로다. 대응 관계는 SKOS 대응 관계로만 적고 같음(exactMatch)은 쓰지 않는다 — 이 도구의 구분과 고시 공종은 나눈 기준이 다르다. closeMatch = 거의 같은 범위, narrowMatch = 고시 코드가 이 노드 안에 든다, broadMatch = 이 노드가 고시 코드의 일부다, relatedMatch = 일부만 겹친다. 같은 노드라도 코드마다 범위가 다르면 항목을 나눈다. 다른 도구가 코드로 이 도구의 작업을 자동으로 붙일 때는 closeMatch·narrowMatch 만 따라가는 것을 전제로 적는다."
   },
   "edition": 1,
   "entries": [
@@ -41,6 +41,17 @@
       "match": "closeMatch"
     },
     {
+      "node": "subtask:거푸집작업",
+      "codes": [
+        {
+          "code": "W0322",
+          "label": "동바리"
+        }
+      ],
+      "match": "narrowMatch",
+      "note": "작업 단계 '거푸집 동바리 조립' — 동바리 설치는 이 작업 안에 든다"
+    },
+    {
       "node": "subtask:굴착작업",
       "codes": [
         {
@@ -50,6 +61,10 @@
         {
           "code": "W213",
           "label": "터파기"
+        },
+        {
+          "code": "W214",
+          "label": "트랜치 터파기"
         }
       ],
       "match": "closeMatch"
