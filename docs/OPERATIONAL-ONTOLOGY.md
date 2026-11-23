@@ -7,18 +7,9 @@
 
 이 프로젝트의 온톨로지는 지식 저장소가 아니라 안전관리 업무를 실행하기 위한 운영 그래프다.
 
-AgentHQ 상위 구조에서 이 프로젝트의 위치는 다음이다.
+이 프로젝트는 안전 영역 팩이다. 자기 접두 `safety:`(`https://safety.ratelworks.org/ontology/v1/`)를 쓰고, 다른 영역(품질·환경·공정)과는 공공 표준 코드로 만난다 — 공종마다 국토교통부 건설정보분류체계 공종(W) 코드 대응을 `src/ontology/standard-bridge.json` 에 둔다. 따로 공유하는 공통 메타 온톨로지 주소(예전 `cc:`)는 두지 않는다.
 
-```text
-L0 AgentHQ Ontology Constitution
-  └─ L1 AgentHQ Core
-       └─ L2 construction-common
-            └─ L3 safety domain pack
-                 └─ L4 agent-safety-oss
-                      └─ L5 Agent_* product runtime
-```
-
-따라서 이 프로젝트는 Core가 아니라 Safety domain pack의 참조 구현체다. `src/ontology/operational/profile.jsonld`는 안전 도메인의 운영 프로파일이며, 상위 Core 헌법을 대체하지 않는다.
+`src/ontology/operational/profile.jsonld`는 안전 도메인의 운영 프로파일이다.
 
 핵심 목표는 다음이다.
 

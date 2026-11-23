@@ -57,7 +57,6 @@ const PHOTO_KEYS = new Set([
 const LEGAL_IRI_RE = /^(art|annex|penalty|law|doc:kosha_guide|kosha):/;
 const SAFETY_CONTEXT = {
   safety: "https://safety.ratelworks.org/ontology/v1/",
-  cc: "https://construction.ratelworks.org/ontology/v1/",
   schema: "https://schema.org/",
   prov: "http://www.w3.org/ns/prov#",
 } as const;

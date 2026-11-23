@@ -14,7 +14,6 @@
     "bfo": "http://purl.obolibrary.org/obo/",
     "iao": "http://purl.obolibrary.org/obo/",
     "iso45001": "https://safety.ratelworks.org/iso45001#",
-    "cc": "https://construction.ratelworks.org/ontology/v1/",
     "safety": "https://safety.ratelworks.org/ontology/v1/"
   },
   "@graph": [
@@ -49,7 +48,7 @@
     },
 
     {
-      "@id": "cc:Site",
+      "@id": "safety:Site",
       "@type": "owl:Class",
       "rdfs:subClassOf": [
         {"@id": "bfo:BFO_0000027"},
@@ -68,7 +67,7 @@
     },
 
     {
-      "@id": "cc:WorkType",
+      "@id": "safety:WorkType",
       "@type": "owl:Class",
       "rdfs:subClassOf": [
         {"@id": "skos:Concept"}
@@ -140,7 +139,7 @@
       "@id": "safety:SafetyReport",
       "@type": "owl:Class",
       "rdfs:subClassOf": [
-        {"@id": "cc:Document"},
+        {"@id": "safety:Document"},
         {"@id": "prov:Entity"}
       ],
       "rdfs:label": [
@@ -159,7 +158,7 @@
       "@type": "owl:Class",
       "rdfs:subClassOf": [
         {"@id": "bfo:BFO_0000015"},
-        {"@id": "cc:ConstructionActivity"}
+        {"@id": "safety:ConstructionActivity"}
       ],
       "skos:closeMatch": {"@id": "iso45001:Activity"},
       "rdfs:label": [
@@ -213,7 +212,7 @@
       "@id": "safety:KoshaGuide",
       "@type": "owl:Class",
       "rdfs:subClassOf": [
-        {"@id": "cc:Document"},
+        {"@id": "safety:Document"},
         {"@id": "iao:IAO_0000030"},
         {"@id": "prov:Entity"}
       ],
@@ -233,7 +232,7 @@
       "@id": "safety:Article",
       "@type": "owl:Class",
       "rdfs:subClassOf": [
-        {"@id": "cc:Document"},
+        {"@id": "safety:Document"},
         {"@id": "iao:IAO_0000030"},
         {"@id": "prov:Entity"}
       ],
@@ -250,10 +249,10 @@
     },
 
     {
-      "@id": "cc:hasWorkType",
+      "@id": "safety:hasWorkType",
       "@type": "owl:ObjectProperty",
-      "rdfs:domain": {"@id": "cc:Site"},
-      "rdfs:range": {"@id": "cc:WorkType"},
+      "rdfs:domain": {"@id": "safety:Site"},
+      "rdfs:range": {"@id": "safety:WorkType"},
       "rdfs:label": [
         {"@value": "공종을 가짐", "@language": "ko"},
         {"@value": "has work type", "@language": "en"}
@@ -266,9 +265,9 @@
     },
 
     {
-      "@id": "cc:hasTask",
+      "@id": "safety:hasTask",
       "@type": "owl:ObjectProperty",
-      "rdfs:domain": {"@id": "cc:WorkType"},
+      "rdfs:domain": {"@id": "safety:WorkType"},
       "rdfs:range": {"@id": "safety:WorkActivity"},
       "rdfs:label": [
         {"@value": "작업을 가짐", "@language": "ko"},
@@ -382,7 +381,7 @@
       "@id": "safety:SafetyChecklist",
       "@type": "owl:Class",
       "rdfs:subClassOf": [
-        {"@id": "cc:Document"},
+        {"@id": "safety:Document"},
         {"@id": "iao:IAO_0000030"}
       ],
       "rdfs:label": [
@@ -447,7 +446,7 @@
     {
       "@id": "safety:provides",
       "@type": "owl:ObjectProperty",
-      "rdfs:domain": {"@id": "cc:Document"},
+      "rdfs:domain": {"@id": "safety:Document"},
       "rdfs:range": {"@id": "safety:ControlMeasure"},
       "rdfs:label": [
         {"@value": "제공함", "@language": "ko"},

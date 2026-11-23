@@ -233,239 +233,6 @@
       }
     },
     {
-      "@id": "https://construction.ratelworks.org/ontology/v1/basis",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "basis",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/WorkMeasure"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/basisAnnex",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "basisAnnex",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:rangeIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/Annex"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/basisArticle",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "basisArticle",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:rangeIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/Article"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/basisGuide",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "basisGuide",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:rangeIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/Document"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/basisLocatedBy",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "basisLocatedBy",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/guideClause",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "guideClause",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/guideSection",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "guideSection",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/hasStep",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "hasStep",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/hazardLabel",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "hazardLabel",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/item",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "item",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/legalBasisLabel",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "legalBasisLabel",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://construction.ratelworks.org/ontology/v1/WorkType"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/measure",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "measure",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/WorkRisk"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/paragraph",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "paragraph",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/priority",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "priority",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/WorkRisk"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/risk",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "risk",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/statement",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "statement",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/WorkRisk"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/stepHazard",
-      "@type": "owl:ObjectProperty",
-      "rdfs:label": "stepHazard",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/WorkStep"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/subitem",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "subitem",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      }
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/variant",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "variant",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/WorkMeasure"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/workGroup",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "workGroup",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
-        }
-      ]
-    },
-    {
-      "@id": "https://construction.ratelworks.org/ontology/v1/workTypeLabel",
-      "@type": "owl:DatatypeProperty",
-      "rdfs:label": "workTypeLabel",
-      "rdfs:isDefinedBy": {
-        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
-      },
-      "schema:domainIncludes": [
-        {
-          "@id": "https://safety.ratelworks.org/ontology/v1/WorkActivity"
-        }
-      ]
-    },
-    {
       "@id": "https://safety.ratelworks.org/ontology/v1/_legacyRelatedLaw",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "_legacyRelatedLaw",
@@ -710,6 +477,66 @@
           "@id": "https://safety.ratelworks.org/ontology/v1/Article"
         }
       ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/basis",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "basis",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkMeasure"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/basisAnnex",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "basisAnnex",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/Annex"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/basisArticle",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "basisArticle",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/Article"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/basisGuide",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "basisGuide",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/Document"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/basisLocatedBy",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "basisLocatedBy",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
     },
     {
       "@id": "https://safety.ratelworks.org/ontology/v1/calculationBasis",
@@ -1123,6 +950,22 @@
       ]
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/guideClause",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "guideClause",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/guideSection",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "guideSection",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/hasAnnex",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "hasAnnex",
@@ -1245,6 +1088,27 @@
           "@id": "https://safety.ratelworks.org/ontology/v1/Penalty"
         }
       ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/hasStep",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "hasStep",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/hazardLabel",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "hazardLabel",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
     },
     {
       "@id": "https://safety.ratelworks.org/ontology/v1/hazardScope",
@@ -1459,6 +1323,14 @@
       ]
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/item",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "item",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/koshaAccidentType",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "koshaAccidentType",
@@ -1576,6 +1448,19 @@
       ]
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/legalBasisLabel",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "legalBasisLabel",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkType"
+        }
+      ]
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/legalBasisOf",
       "@type": "owl:ObjectProperty",
       "rdfs:label": "legalBasisOf",
@@ -1592,9 +1477,6 @@
       ],
       "schema:rangeIncludes": [
         {
-          "@id": "https://construction.ratelworks.org/ontology/v1/WorkType"
-        },
-        {
           "@id": "https://safety.ratelworks.org/ontology/v1/Act"
         },
         {
@@ -1605,6 +1487,9 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Method"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkType"
         }
       ]
     },
@@ -1631,6 +1516,19 @@
       "schema:domainIncludes": [
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Capability"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/measure",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "measure",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkRisk"
         }
       ]
     },
@@ -1691,9 +1589,6 @@
         "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
       },
       "schema:domainIncludes": [
-        {
-          "@id": "https://construction.ratelworks.org/ontology/v1/WorkType"
-        },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Act"
         },
@@ -1777,6 +1672,9 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/WorkCondition"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkType"
         }
       ]
     },
@@ -1792,6 +1690,14 @@
           "@id": "https://safety.ratelworks.org/ontology/v1/Document"
         }
       ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/paragraph",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "paragraph",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
     },
     {
       "@id": "https://safety.ratelworks.org/ontology/v1/partNumber",
@@ -1923,6 +1829,19 @@
       "schema:domainIncludes": [
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Penalty"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/priority",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "priority",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkRisk"
         }
       ]
     },
@@ -2284,6 +2203,14 @@
       ]
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/risk",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "risk",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/sampleKeywords",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "sampleKeywords",
@@ -2334,9 +2261,6 @@
       },
       "schema:domainIncludes": [
         {
-          "@id": "https://construction.ratelworks.org/ontology/v1/WorkType"
-        },
-        {
           "@id": "https://safety.ratelworks.org/ontology/v1/ContentForm"
         },
         {
@@ -2359,6 +2283,9 @@
         },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Hazard"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkType"
         }
       ]
     },
@@ -2418,6 +2345,40 @@
           "@id": "https://safety.ratelworks.org/ontology/v1/Document"
         }
       ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/statement",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "statement",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkRisk"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/stepHazard",
+      "@type": "owl:ObjectProperty",
+      "rdfs:label": "stepHazard",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkStep"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/subitem",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "subitem",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      }
     },
     {
       "@id": "https://safety.ratelworks.org/ontology/v1/suitableFor",
@@ -2556,6 +2517,19 @@
       ]
     },
     {
+      "@id": "https://safety.ratelworks.org/ontology/v1/variant",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "variant",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkMeasure"
+        }
+      ]
+    },
+    {
       "@id": "https://safety.ratelworks.org/ontology/v1/verificationStatus",
       "@type": "owl:DatatypeProperty",
       "rdfs:label": "verificationStatus",
@@ -2563,9 +2537,6 @@
         "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
       },
       "schema:domainIncludes": [
-        {
-          "@id": "https://construction.ratelworks.org/ontology/v1/WorkType"
-        },
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/Act"
         },
@@ -2626,6 +2597,35 @@
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/SupplementaryProvision"
         },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkActivity"
+        },
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/WorkType"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/workGroup",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "workGroup",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
+        {
+          "@id": "https://safety.ratelworks.org/ontology/v1/ConstructionSubtask"
+        }
+      ]
+    },
+    {
+      "@id": "https://safety.ratelworks.org/ontology/v1/workTypeLabel",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:label": "workTypeLabel",
+      "rdfs:isDefinedBy": {
+        "@id": "https://safety.ratelworks.org/ontology/v1/vocabulary"
+      },
+      "schema:domainIncludes": [
         {
           "@id": "https://safety.ratelworks.org/ontology/v1/WorkActivity"
         }

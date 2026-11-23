@@ -30,7 +30,6 @@ const PHOTO_ID_PREFIX = "photo:";
 const PHOTO_IRI_PREFIX = "safety:photo_evidence/";
 const PHOTO_CONTEXT = {
   safety: "https://safety.ratelworks.org/ontology/v1/",
-  cc: "https://construction.ratelworks.org/ontology/v1/",
   prov: "http://www.w3.org/ns/prov#",
   foaf: "http://xmlns.com/foaf/0.1/",
   xsd: "http://www.w3.org/2001/XMLSchema#",

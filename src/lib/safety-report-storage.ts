@@ -33,7 +33,6 @@ const ACTIVITY_LOG_NAME = "activity.log";
 const DATE_RE = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 const REPORT_CONTEXT = {
   safety: "https://safety.ratelworks.org/ontology/v1/",
-  cc: "https://construction.ratelworks.org/ontology/v1/",
   schema: "https://schema.org/",
   prov: "http://www.w3.org/ns/prov#",
 } as const;

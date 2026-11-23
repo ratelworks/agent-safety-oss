@@ -92,7 +92,7 @@ async function main() {
       curie.startsWith("safety:schema/") ||
       curie.startsWith("safety:action/") ||
       curie.startsWith("safety:agent/") ||
-      curie.startsWith("cc:")
+      curie.startsWith("safety:")
     );
   }
 

@@ -92,7 +92,7 @@ npm run mcp:inspect
 
 - 모든 노드: `@context`, `@id`, `@type` 필수
 - 다국어: `label`, `description` 한국어 우선 + 영문 권장
-- IRI: `safety:` (안전 specific) 또는 `cc:` (건설 도메인 공통)
+- IRI: `safety:` 하나. 다른 영역과 함께 쓰는 공종은 국토교통부 건설정보분류체계 공종(W) 코드 대응(`src/ontology/standard-bridge.json`)으로 잇는다
 - PROV-O: `wasGeneratedBy` / `generatedAtTime` / `wasDerivedFrom` / `hadPrimarySource` / `contentHash` 필수
 
 ### 4.3 MCP Tool (`src/tools/*.ts`)

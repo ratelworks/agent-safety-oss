@@ -29,7 +29,7 @@ function isVocabularyRef(iri: string): boolean {
     iri.startsWith("safety:schema/") ||
     iri.startsWith("safety:action/") ||
     iri.startsWith("safety:agent/") ||
-    iri.startsWith("cc:")
+    iri.startsWith("safety:")
   );
 }
 

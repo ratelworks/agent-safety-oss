@@ -2,7 +2,7 @@
 /**
  * generate-vocabulary.ts — 그래프가 쓰는 자체 어휘의 선언 색인을 만든다
  *
- * 그래프 노드가 쓰는 자체 어휘(safety:, cc:)의 클래스·속성 가운데, 손으로 쓴 어휘 정의
+ * 그래프 노드가 쓰는 자체 어휘(safety:)의 클래스·속성 가운데, 손으로 쓴 어휘 정의
  * (skeleton·운영 프로파일·ISO 45001 매핑·동작 정의)에 선언이 없는 것을 모아
  * `src/ontology/graph/vocabulary.jsonld` 에 선언한다.
  *
@@ -34,7 +34,7 @@ const AUTHORED_FILES = [
   "src/ontology/operational/profile.jsonld",
   "src/ontology/graph/iso45001-mapping.jsonld",
 ].map((p) => resolve(ROOT, p));
-const OWN_NAMESPACES = ["https://safety.ratelworks.org/ontology/v1/", "https://construction.ratelworks.org/ontology/v1/"];
+const OWN_NAMESPACES = ["https://safety.ratelworks.org/ontology/v1/"];
 const SAFETY_NS = OWN_NAMESPACES[0];
 const VOCABULARY_IRI = "https://safety.ratelworks.org/ontology/v1/vocabulary";
 const RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";

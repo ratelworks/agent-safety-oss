@@ -41,7 +41,6 @@ async function guideBody(guideNo: string): Promise<string> {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const GRAPH = resolve(__dirname, "..", "..", "src", "ontology", "graph");
 const NODES = resolve(GRAPH, "nodes");
-const CC = "https://construction.ratelworks.org/ontology/v1/";
 const SAFETY = "https://safety.ratelworks.org/ontology/v1/";
 /** 조문 주소의 법령 키 → 법령 종류. 조문은 소속 법령의 종류를 따른다 */
 const LAW_TYPE: Record<string, string> = {
@@ -195,7 +194,7 @@ async function main(): Promise<void> {
       if (Array.isArray(o)) o.forEach(walk);
       else if (o && typeof o === "object") {
         for (const [k, v] of Object.entries(o)) {
-          if ([`${CC}basisArticle`, `${CC}basisAnnex`, `${CC}basisGuide`, `${SAFETY}hasHazard`].includes(k)) {
+          if ([`${SAFETY}basisArticle`, `${SAFETY}basisAnnex`, `${SAFETY}basisGuide`, `${SAFETY}hasHazard`].includes(k)) {
             for (const x of v as { "@id"?: string }[]) if (x["@id"]) found.add(x["@id"]);
           }
           walk(v);

@@ -1,5 +1,4 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix cc: <https://construction.ratelworks.org/ontology/v1/> .
 @prefix safety: <https://safety.ratelworks.org/ontology/v1/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -161,9 +160,9 @@ safety:ActionShape
 # 7. SiteShape — 현장은 label + location 의무
 #################################################################
 
-cc:SiteShape
+safety:SiteShape
   a sh:NodeShape ;
-  sh:targetClass cc:Site ;
+  sh:targetClass safety:Site ;
   sh:closed false ;
   rdfs:label "Site 무결성 Shape"@ko ;
   sh:property [
@@ -184,9 +183,9 @@ cc:SiteShape
 # 8. WorkTypeShape — 공종은 label + slug 의무
 #################################################################
 
-cc:WorkTypeShape
+safety:WorkTypeShape
   a sh:NodeShape ;
-  sh:targetClass cc:WorkType ;
+  sh:targetClass safety:WorkType ;
   sh:closed false ;
   rdfs:label "WorkType 무결성 Shape"@ko ;
   sh:property [

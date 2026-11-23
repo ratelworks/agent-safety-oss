@@ -150,14 +150,14 @@ function isOutOfDomain(iri: string): boolean {
   return OUT_OF_DOMAIN_HINTS.some((hint) => iri.includes(hint));
 }
 
-// safety:* / cc:* 는 그래프 노드가 아니라 JSON-LD vocabulary/class/action 식별자다.
+// safety:* 는 그래프 노드가 아니라 JSON-LD vocabulary/class/action 식별자다.
 // 노드 존재성(dangling) 검증 대상에서 제외하되 IRI 형식 검증은 그대로 유지한다.
 function isVocabularyRef(iri: string): boolean {
   return /^safety:[A-Z]/.test(iri)
     || iri.startsWith("safety:schema/")
     || iri.startsWith("safety:action/")
     || iri.startsWith("safety:agent/")
-    || iri.startsWith("cc:");
+    || iri.startsWith("safety:");
 }
 
 // ─── 5. JSON-LD expand 검증 ───

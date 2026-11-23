@@ -20,7 +20,6 @@ const ISSUE_IRI_PREFIX = "safety:safety_issue/";
 const ACTION_IRI_PREFIX = "safety:corrective_action/";
 const ISSUE_CONTEXT = {
   safety: "https://safety.ratelworks.org/ontology/v1/",
-  cc: "https://construction.ratelworks.org/ontology/v1/",
   prov: "http://www.w3.org/ns/prov#",
   xsd: "http://www.w3.org/2001/XMLSchema#",
   rdfs: "http://www.w3.org/2000/01/rdf-schema#",

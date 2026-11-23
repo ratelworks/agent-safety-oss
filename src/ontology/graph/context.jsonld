@@ -14,7 +14,6 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "time": "http://www.w3.org/2006/time#",
     "iso45001": "https://safety.ratelworks.org/iso45001#",
-    "cc": "https://construction.ratelworks.org/ontology/v1/",
     "safety": "https://safety.ratelworks.org/ontology/v1/",
     "act": "https://safety.ratelworks.org/act/",
     "art": "https://safety.ratelworks.org/article/",
@@ -515,20 +514,20 @@
     },
     "hazardScope": "safety:hazardScope",
     "hasWorkType": {
-      "@id": "cc:hasWorkType",
+      "@id": "safety:hasWorkType",
       "@type": "@id"
     },
     "hasTask": {
-      "@id": "cc:hasTask",
+      "@id": "safety:hasTask",
       "@type": "@id",
       "@container": "@set"
     },
     "workTypeLabel": {
-      "@id": "cc:workTypeLabel",
+      "@id": "safety:workTypeLabel",
       "@container": "@language"
     },
     "legalBasisLabel": {
-      "@id": "cc:legalBasisLabel",
+      "@id": "safety:legalBasisLabel",
       "@container": "@language"
     },
     "toolName": "safety:toolName",
@@ -627,51 +626,51 @@
     "workmeasure": "https://safety.ratelworks.org/workmeasure/",
     "workcond": "https://safety.ratelworks.org/workcondition/",
     "supp": "https://safety.ratelworks.org/supplement/",
-    "workGroup": "cc:workGroup",
+    "workGroup": "safety:workGroup",
     "steps": {
-      "@id": "cc:hasStep",
+      "@id": "safety:hasStep",
       "@container": "@list"
     },
     "stepName": "schema:name",
     "stepHazards": {
-      "@id": "cc:stepHazard",
+      "@id": "safety:stepHazard",
       "@container": "@set"
     },
-    "hazardLabel": "cc:hazardLabel",
+    "hazardLabel": "safety:hazardLabel",
     "basis": {
-      "@id": "cc:basis",
+      "@id": "safety:basis",
       "@container": "@set"
     },
-    "paragraph": "cc:paragraph",
-    "item": "cc:item",
-    "subitem": "cc:subitem",
-    "guideSection": "cc:guideSection",
-    "guideClause": "cc:guideClause",
-    "basisLocatedBy": "cc:basisLocatedBy",
+    "paragraph": "safety:paragraph",
+    "item": "safety:item",
+    "subitem": "safety:subitem",
+    "guideSection": "safety:guideSection",
+    "guideClause": "safety:guideClause",
+    "basisLocatedBy": "safety:basisLocatedBy",
     "basisArticle": {
-      "@id": "cc:basisArticle",
+      "@id": "safety:basisArticle",
       "@type": "@id"
     },
     "basisAnnex": {
-      "@id": "cc:basisAnnex",
+      "@id": "safety:basisAnnex",
       "@type": "@id"
     },
     "basisGuide": {
-      "@id": "cc:basisGuide",
+      "@id": "safety:basisGuide",
       "@type": "@id"
     },
     "risks": {
-      "@id": "cc:risk",
+      "@id": "safety:risk",
       "@container": "@list"
     },
-    "statement": "cc:statement",
-    "priority": "cc:priority",
+    "statement": "safety:statement",
+    "priority": "safety:priority",
     "measures": {
-      "@id": "cc:measure",
+      "@id": "safety:measure",
       "@container": "@list"
     },
     "measure": "schema:text",
-    "variant": "cc:variant",
+    "variant": "safety:variant",
     "WorkCondition": "safety:WorkCondition",
     "SupplementaryProvision": "safety:SupplementaryProvision",
     "conditionAxis": "safety:conditionAxis",

@@ -13,7 +13,6 @@
     "bfo": "http://purl.obolibrary.org/obo/",
     "iao": "http://purl.obolibrary.org/obo/",
     "iso45001": "https://safety.ratelworks.org/iso45001#",
-    "cc": "https://construction.ratelworks.org/ontology/v1/",
     "safety": "https://safety.ratelworks.org/ontology/v1/",
 
     "_v1.2.0_canonical_prefixes": "v1.2.0 P0-1: runtime graph IRI prefix 와 정렬 — Walking Skeleton instance 는 runtime canonical IRI 를 사용하여 join·provenance·citation chain 강화. safety: 는 클래스·property·action·policy vocabulary 전용.",
@@ -135,7 +134,7 @@
         "iao:IAO_0000030",
         "prov:Entity",
         "iso45001:TechnicalGuideline",
-        "cc:Document",
+        "safety:Document",
         "owl:NamedIndividual"
       ],
       "rdfs:label": [
@@ -169,7 +168,7 @@
         "akn:Article",
         "iao:IAO_0000030",
         "prov:Entity",
-        "cc:Document",
+        "safety:Document",
         "owl:NamedIndividual"
       ],
       "rdfs:label": [
@@ -193,9 +192,9 @@
     },
 
     {
-      "@id": "cc:site/asan-001",
+      "@id": "safety:site/asan-001",
       "@type": [
-        "cc:Site",
+        "safety:Site",
         "bfo:BFO_0000027",
         "schema:Place",
         "owl:NamedIndividual"
@@ -209,8 +208,8 @@
         {"@value": "Site reference point tying together the excavation work and safety issue samples. Instance for validating the site registration to task-risk graph cycle.", "@language": "en"}
       ],
       "schema:location": "충청남도 아산시 배방읍 안전로 1",
-      "cc:hasWorkType": [
-        {"@id": "cc:worktype/excavation"}
+      "safety:hasWorkType": [
+        {"@id": "safety:worktype/excavation"}
       ],
       "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
       "prov:generatedAtTime": {"@value": "2026-05-03T00:00:00Z", "@type": "xsd:dateTime"},
@@ -221,9 +220,9 @@
     },
 
     {
-      "@id": "cc:worktype/excavation",
+      "@id": "safety:worktype/excavation",
       "@type": [
-        "cc:WorkType",
+        "safety:WorkType",
         "skos:Concept",
         "owl:NamedIndividual"
       ],
@@ -236,7 +235,7 @@
         {"@value": "Excavation work type based on Annex 4 work categories of the Korean Standard Regulation on OSH. Linked to the concrete excavation work activity.", "@language": "en"}
       ],
       "skos:notation": "excavation",
-      "cc:hasTask": [
+      "safety:hasTask": [
         {"@id": "activity:excavation_2m_plus"}
       ],
       "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
@@ -269,7 +268,7 @@
       "safety:evidences": {"@id": "safety:safety_issue/2026-05-03-001"},
       "prov:wasGeneratedBy": {"@id": "safety:process/skeleton-d7a-2026-05-02"},
       "prov:generatedAtTime": {"@value": "2026-05-03T00:15:00Z", "@type": "xsd:dateTime"},
-      "prov:wasDerivedFrom": {"@id": "cc:site/asan-001"},
+      "prov:wasDerivedFrom": {"@id": "safety:site/asan-001"},
       "prov:hadPrimarySource": {"@id": "file:///var/agent-safety-oss/photos/2026-05-03-001.jpg"},
       "safety:hashStatus": "not_computed",
       "safety:contentHash": "sha256:not-computed-photo-evidence-2026-05-03-001"
@@ -332,7 +331,7 @@
       "@id": "safety:safety_report/2026-05-W18",
       "@type": [
         "safety:SafetyReport",
-        "cc:Document",
+        "safety:Document",
         "prov:Entity",
         "owl:NamedIndividual"
       ],

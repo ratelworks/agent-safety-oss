@@ -10,7 +10,6 @@
     "prov": "http://www.w3.org/ns/prov#",
     "dcterms": "http://purl.org/dc/terms/",
     "agenthq": "https://agenthq.ratelworks.org/ontology/core/v1/",
-    "cc": "https://construction.ratelworks.org/ontology/v1/",
     "safety": "https://safety.ratelworks.org/ontology/v1/",
     "activity": "https://safety.ratelworks.org/activity/",
     "art": "https://safety.ratelworks.org/article/",
@@ -62,24 +61,15 @@
       "safety:profileGoal": "중소 건설사가 법령·문서·위험·통제·증거를 환각 없이 조회하고, MCP 도구로 작성·검토·증빙·조치를 실행할 수 있게 한다.",
       "safety:dynamicBoundary": "LLM은 자연어 해석, 도구 조합, 설명, 누락 질문만 수행한다. 법령 근거·필수 의무·검증 결과는 그래프와 MCP 도구에서만 나온다.",
       "safety:stackPosition": "L4 Reference Implementation",
-      "safety:governedBy": {
-        "@id": "agenthq:constitution/ontology-layer"
-      },
-      "safety:extendsCore": {
-        "@id": "https://agenthq.ratelworks.org/ontology/core/v1"
-      },
-      "safety:dependsOnPack": {
-        "@id": "agenthq:domain-pack/construction-common"
-      },
       "safety:implementsDomainPack": {
         "@id": "agenthq:domain-pack/safety"
       },
+      "safety:meetsOtherDomainsVia": "국토교통부 건설정보분류체계 공종(W) 코드 — 공종마다 대응을 src/ontology/standard-bridge.json 에 둔다",
       "safety:notAuthorityFor": [
-        "AgentHQ Ontology Constitution",
-        "AgentHQ Core",
-        "construction-common foundation pack"
+        "건설정보분류체계 공종 코드(국토교통부 고시 원문이 정본)",
+        "다른 영역(품질·환경·공정)의 지식"
       ],
-      "safety:promotionBoundary": "검증된 운영 패턴은 상위 Core 또는 construction-common으로 승격될 수 있지만 안전 법령·문서·위험 지식은 safety domain pack에 남는다."
+      "safety:promotionBoundary": "안전 법령·문서·위험 지식은 이 안전 영역 팩에 남는다. 다른 영역과 함께 쓰는 개념은 공공 표준 코드로 잇고, 따로 공통 팩 주소를 두지 않는다."
     },
 
     {
@@ -242,7 +232,7 @@
         "@id": "safety:layer/semantic"
       },
       "safety:mapsToClass": {
-        "@id": "cc:Site"
+        "@id": "safety:Site"
       },
       "safety:sourceCategory": "site_profile",
       "safety:minGraphNodes": 0,

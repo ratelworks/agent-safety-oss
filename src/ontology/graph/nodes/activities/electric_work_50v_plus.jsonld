@@ -2,27 +2,26 @@
   "@context": [
     "../../context.jsonld",
     {
-      "cc": "https://construction.ratelworks.org/ontology/v1/",
       "hasWorkType": {
-        "@id": "cc:hasWorkType",
+        "@id": "safety:hasWorkType",
         "@type": "@id"
       },
       "hasTask": {
-        "@id": "cc:hasTask",
+        "@id": "safety:hasTask",
         "@type": "@id",
         "@container": "@set"
       },
-      "slug": "cc:slug",
+      "slug": "safety:slug",
       "label": {
         "@id": "schema:name",
         "@container": "@language"
       },
       "workTypeLabel": {
-        "@id": "cc:workTypeLabel",
+        "@id": "safety:workTypeLabel",
         "@container": "@language"
       },
       "legalBasisLabel": {
-        "@id": "cc:legalBasisLabel",
+        "@id": "safety:legalBasisLabel",
         "@container": "@language"
       }
     }
@@ -168,7 +167,7 @@
       "hazard:cold_stress"
     ]
   },
-  "hasWorkType": "cc:worktype/electric",
+  "hasWorkType": "safety:worktype/electric",
   "workTypeLabel": {
     "ko": "정전·활선 전기작업",
     "en": "De-energized and live electrical work"
