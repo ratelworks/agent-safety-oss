@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 공개 저장소 첫 화면과 Issues 이동을 재검증한다.
 set -euo pipefail
-BROWSER_PORT="${BROWSER_PORT:-agent-browser}"; export BROWSER_PORT  # 브라우저 명령 — 다른 도구로 돌릴 땐 BROWSER_PORT 로 바꾼다(이 스크립트는 고치지 않는다)
+BROWSER_PORT="${BROWSER_PORT:-browser-port}"; export BROWSER_PORT  # 브라우저 입구 명령 — 어떤 브라우저인지는 이 명령의 설정이 정한다(이 스크립트는 고치지 않는다)
 
 BASE_URL="${BASE_URL:-https://github.com/ratelworks/agent-safety-oss}"
 README_SELECTOR='#readme article, article.markdown-body'
