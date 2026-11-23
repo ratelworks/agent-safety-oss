@@ -49,16 +49,19 @@ shot final_execution_2_install_command_visible
 
 ab eval 'window.scrollTo({top: 0, behavior: "instant"})' >/dev/null
 stars_json=null forks_json=null cp3=false
-if wait_visible '#repo-stars-counter-star' && stars="$(text '#repo-stars-counter-star')"; then
+# 활동 지표는 보이는 글("46 stars"·"9 forks")로 찾는다 — GitHub 의 요소 id 는 화면 개편마다 바뀐다
+counts="$(ab --json eval '(() => { const find = (re) => [...document.querySelectorAll("a, span, strong")].map((e) => (e.innerText || "").trim()).find((s) => re.test(s)) ?? null; return { stars: find(/^[0-9.,]+k?\s+stars?$/i), forks: find(/^[0-9.,]+k?\s+forks?$/i) }; })()' | jq -c '.data.result // {}')"
+stars="$(jq -r '.stars // empty' <<<"$counts")"
+forks="$(jq -r '.forks // empty' <<<"$counts")"
+if [[ -n "$stars" && -n "$forks" ]]; then
   stars_json="$(jq -n --arg value "$stars" '$value')"
-  if wait_visible '#repo-network-counter' && forks="$(text '#repo-network-counter')"; then
-    forks_json="$(jq -n --arg value "$forks" '$value')"
-    cp3=true
-  fi
+  forks_json="$(jq -n --arg value "$forks" '$value')"
+  cp3=true
 fi
 shot final_execution_3_counters_visible
 
-if wait_visible '#issues-tab' && ab click '#issues-tab' >/dev/null; then
+# Issues 탭은 역할·이름으로 누른다(요소 id 에 기대지 않는다)
+if ab find role link click --name Issues --exact >/dev/null; then
   ab wait --timeout 30000 --url '**/issues**' >/dev/null || true
 fi
 issues="$(ab --json get url | jq -er '.data.url')"

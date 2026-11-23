@@ -25,11 +25,14 @@ expected-behavior — 기대 동작 스냅샷(온보딩 meta 신호가 충족됨
 ## 실행
 
 ```bash
-# 표준 회귀 (재현성 확인용)
-~/.claude/scripts/webwright-python tests/ux/TC-onboarding-001/final_runs/run_0/final_script.py
+# 표준 회귀 — runs/run_0/ 에 기록
+bash tests/ux/TC-onboarding-001/run.sh
 
 # 시계열 추적 (run_<N+1>/ 새로 생성)
-WEBWRIGHT_FRESH=1 ~/.claude/scripts/webwright-python tests/ux/TC-onboarding-001/final_runs/run_0/final_script.py
+UX_FRESH=1 bash tests/ux/TC-onboarding-001/run.sh
+
+# 다른 브라우저로 — 스크립트는 고치지 않는다
+BROWSER_PORT=<브라우저 명령> bash tests/ux/TC-onboarding-001/run.sh
 ```
 
 자산 형식 표준: 테스트 스위트(type:ux) 규약.

@@ -3,7 +3,7 @@
 > **목적**: 첫 방문 안전관리자의 GitHub repo 온보딩 meta 신호(설치 명령·활동 지표·Issues 채널)를 회귀로 고정. README '5초 진입' 약속과 실제 UX의 불일치를 잡는다.
 > **소유 모듈**: `README.md`(설치 명령 가시성) · GitHub repo meta(stars/forks/issues 카운터·탭)
 > **type**: ux
-> **실행 모델**: Webwright 재실행 — `~/.claude/scripts/webwright-python tests/ux/{TC-id}/final_runs/run_0/final_script.py`. PASS = exit 0 + 모든 CP 스크린샷 생성 + `final_script_log.txt`의 final datum이 `plan.md` ground truth와 매칭.
+> **실행 모델**: `bash tests/ux/{TC-id}/run.sh` 재실행(브라우저 명령은 `BROWSER_PORT`, 기본 `agent-browser` — 브라우저를 바꿔도 스크립트는 그대로). PASS = exit 0 + 모든 CP 스크린샷 생성 + `runs/run_<N>/log.txt` 의 final 값이 `plan.md` ground truth와 매칭.
 
 ## Cases
 
@@ -20,6 +20,6 @@ severity: P1
 origin: dogfooding-discovery
 status: active
 runner: a-qa
-executor: ~/.claude/scripts/webwright-python tests/ux/TC-onboarding-001/final_runs/run_0/final_script.py
+executor: bash tests/ux/TC-onboarding-001/run.sh
 created_at: 2026-05-28T16:45:00+09:00
 ```

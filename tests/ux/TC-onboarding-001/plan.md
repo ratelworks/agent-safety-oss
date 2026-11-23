@@ -15,14 +15,14 @@ External safety officer (Korea SME construction sector) who discovered the proje
 ## Ground Truth (research-verified 2026-05-28)
 - Repo URL: https://github.com/ratelworks/agent-safety-oss (HTTP 200)
 - Install command standard: `npx -y agent-safety-oss` (per project README convention)
-- Stable selectors (GitHub UI 2026 layout):
+- Locators (GitHub changes element ids between redesigns — match visible text and roles instead):
   - README article: `#readme article` or `article.markdown-body`
-  - Stars counter: `#repo-stars-counter-star`
-  - Forks counter: `#repo-network-counter`
-  - Issues tab: `#issues-tab`
+  - Stars counter: visible text `<n> stars`
+  - Forks counter: visible text `<n> forks`
+  - Issues tab: link role named `Issues`
 
 ## Browser Config
-- engine: firefox (headless)
+- browser: whatever `BROWSER_PORT` points to (a shared browser entry, default `agent-browser`) — the script does not change when the browser does
 - viewport: 1280×1800
 - nav timeout: 30s
 - selector timeout: 15s
@@ -32,15 +32,15 @@ External safety officer (Korea SME construction sector) who discovered the proje
 {
   "repo_url": "https://github.com/ratelworks/agent-safety-oss",
   "http_status": <int>,
-  "stars_label": "<string from #repo-stars-counter-star>",
-  "forks_label": "<string from #repo-network-counter>",
+  "stars_label": "<visible text, e.g. 46 stars>",
+  "forks_label": "<visible text, e.g. 9 forks>",
   "has_install_command": <bool>,
   "issues_tab_url_after_click": "<string>"
 }
 ```
 
 ## Success Criteria
-All CP1..CP4 PASS. Process exits 0. Four screenshots produced under `final_runs/run_<N>/screenshots/`:
+All CP1..CP4 PASS. Process exits 0. Four screenshots produced under `runs/run_<N>/screenshots/`:
 - `final_execution_1_repo_loaded.png`
 - `final_execution_2_install_command_visible.png`
 - `final_execution_3_counters_visible.png`
