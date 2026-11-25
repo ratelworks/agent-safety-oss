@@ -24,15 +24,16 @@ expected-behavior — 기대 동작 스냅샷(온보딩 meta 신호가 충족됨
 
 ## 실행
 
+스크립트는 브라우저를 `BROWSER_PORT` 명령으로 다룬다(기본 이름 `browser-port`). 이 저장소는 그 명령을 함께 배포하지 않으므로, 쓰는 브라우저 자동화 CLI 를 `BROWSER_PORT` 로 지정한다. 스크립트가 쓰는 명령은 `open`·`wait`·`eval`·`get`·`find`·`screenshot`·`set viewport`·`close` 와 `--session <이름>`·`--json` 출력(`{success,data,error}`)이다.
+
 ```bash
 # 표준 회귀 — runs/run_0/ 에 기록
-bash tests/ux/TC-onboarding-001/run.sh
+BROWSER_PORT=<브라우저 명령> bash tests/ux/TC-onboarding-001/run.sh
 
 # 시계열 추적 (run_<N+1>/ 새로 생성)
-UX_FRESH=1 bash tests/ux/TC-onboarding-001/run.sh
-
-# 다른 브라우저로 — 스크립트는 고치지 않는다
-BROWSER_PORT=<브라우저 명령> bash tests/ux/TC-onboarding-001/run.sh
+UX_FRESH=1 BROWSER_PORT=<브라우저 명령> bash tests/ux/TC-onboarding-001/run.sh
 ```
+
+`BROWSER_PORT` 를 바꿔도 스크립트는 고치지 않는다.
 
 자산 형식 표준: 테스트 스위트(type:ux) 규약.
